@@ -1,6 +1,5 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../core/localization/localized_text.dart';
@@ -74,17 +73,14 @@ class QuranMiniPlayer extends ConsumerWidget {
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 children: [
-            // ② "Yukarı çek" ipucu: hafifçe zıplayan ok → yukarı kaydır = tam ekran.
+            // ② "Yukarı çek" ipucu (statik ok). Zıplama animasyonu KALDIRILDI:
+            // repeat'li ticker mini görünürken uygulamayı kesintisiz 60fps
+            // çizime zorluyordu — navbar blur'uyla birlikte cihazda/emülatörde
+            // sürekli jank ("donma/yavaşlık") üretiyordu (profile kanıtlı).
             SizedBox(
               height: 14,
               child: Icon(Icons.keyboard_arrow_up_rounded,
-                      size: 22, color: c.textTertiary)
-                  .animate(onPlay: (a) => a.repeat(reverse: true))
-                  .moveY(
-                      begin: 2,
-                      end: -2,
-                      duration: 1000.ms,
-                      curve: Curves.easeInOut),
+                  size: 22, color: c.textTertiary),
             ),
             Row(
               children: [
