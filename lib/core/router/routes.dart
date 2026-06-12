@@ -20,7 +20,7 @@ abstract final class Routes {
   // KABUK ALTINDA (alt menü görünür kalır): sure açıkken/çalarken kullanıcı
   // sekmeler arasında gezinebilsin diye okuyucu Kur'an sekmesinin altında.
   static const quranReader = '/quran/reader'; // /:surah
-  static const mushaf = '/mushaf'; // sayfa sayfa gerçek mushaf (extra: int? başlangıç sayfası)
+  static const mushaf = '/quran/mushaf'; // kabuk-altı sayfa-sayfa mushaf (extra: int? başlangıç sayfası)
   static const story = '/story'; // /:index
   static const dhikr = '/dhikr';
   static const asma = '/asma';

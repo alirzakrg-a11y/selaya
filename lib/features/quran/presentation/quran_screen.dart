@@ -156,7 +156,7 @@ class _QuranScreenState extends ConsumerState<QuranScreen> {
                       value: lang == 'tr'
                           ? 'Sayfa ${ref.read(sharedPreferencesProvider).getInt(PrefKeys.mushafLastPage) ?? 1} — sayfa sayfa oku'
                           : 'Page ${ref.read(sharedPreferencesProvider).getInt(PrefKeys.mushafLastPage) ?? 1} — read page by page',
-                      onTap: () => context.push(Routes.mushaf),
+                      onTap: () => context.go(Routes.mushaf),
                     ),
                   ),
                 TabBar(

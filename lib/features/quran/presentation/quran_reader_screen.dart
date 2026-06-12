@@ -414,7 +414,7 @@ class _QuranReaderScreenState extends ConsumerState<QuranReaderScreen> {
         IconButton(
           tooltip: lang == 'tr' ? 'Mushaf modu' : 'Mushaf view',
           icon: Icon(Icons.auto_stories_rounded, color: c.gold),
-          onPressed: () => context.push(Routes.mushaf,
+          onPressed: () => context.go(Routes.mushaf,
               extra: pageForSurah(widget.surahNumber)),
         ),
         versesAsync.maybeWhen(

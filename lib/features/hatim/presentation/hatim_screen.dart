@@ -37,7 +37,8 @@ class HatimScreen extends ConsumerWidget {
 }
 
 void openMushafAt(BuildContext context, int page) {
-  context.push(Routes.mushaf, extra: page.clamp(1, hatimPageTotal));
+  // go: Mushaf kabuk-altı rota — Kur'an sekmesine geçirir, alt menü görünür.
+  context.go(Routes.mushaf, extra: page.clamp(1, hatimPageTotal));
 }
 
 // ─────────────────────────── BOŞ DURUM ───────────────────────────

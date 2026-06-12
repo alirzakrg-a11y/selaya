@@ -90,6 +90,10 @@ final routerProvider = Provider<GoRouter>((ref) {
                     path: 'yasin',
                     builder: (_, _) =>
                         const QuranReaderScreen(surahNumber: 36)),
+                GoRoute(
+                    path: 'mushaf',
+                    builder: (_, s) => MushafScreen(
+                        initialPage: s.extra is int ? s.extra as int : null)),
               ],
             ),
           ]),
@@ -106,10 +110,6 @@ final routerProvider = Provider<GoRouter>((ref) {
       ),
 
       // Full-screen detail routes (pushed above the shell).
-      // GoRoute (raw push değil) → location '/mushaf' olur; global mini buna
-      // bakarak kendini ekranın altına (safe-bottom) konumlar.
-      fs(Routes.mushaf, (_, s) =>
-          MushafScreen(initialPage: s.extra is int ? s.extra as int : null)),
       fs('${Routes.story}/:index', (_, s) => StoryViewerScreen(
           startIndex: int.tryParse(s.pathParameters['index'] ?? '0') ?? 0)),
       fs(Routes.dhikr, (_, s) => DhikrScreen(
