@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:convert';
 
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -88,14 +89,26 @@ final overpassServiceProvider =
     Provider<OverpassService>((ref) => const OverpassService());
 
 /// The single nearest mosque to the user (GPS + OSM), cached for the session so
-/// the home-screen card doesn't re-query on every rebuild. Resolves to null when
-/// location is unavailable/denied or nothing is found — the card then hides.
-/// Permission is only *checked* (never requested) so this passive card never
-/// triggers a prompt; the dedicated mosque screen handles asking.
-final nearestMosqueProvider = FutureProvider<NearbyMosque?>((ref) async {
-  if (!await ref.read(permissionServiceProvider).locationGranted()) return null;
-  final pos = await ref.read(locationServiceProvider).currentPosition();
-  if (pos == null) return null;
-  final list = await ref.read(overpassServiceProvider).findNearby(pos);
-  return list.isEmpty ? null : list.first;
+/// the home-screen card doesn't re-query on every rebuild.
+/// `granted:false` → kart "Konum izni gerekli" gösterir (izin İSTEMEZ — pasif
+/// kart; istek akışı cami ekranında). `granted:true, mosque:null` → gizlenir.
+/// 8 sn toplam zaman aşımı: GPS/ağ asılı kalırsa yükleniyor spinner'ı sonsuza
+/// dek dönmesin (sürekli animasyon = sürekli frame üretimi — perf turu 2).
+final nearestMosqueProvider =
+    FutureProvider<({bool granted, NearbyMosque? mosque})>((ref) async {
+  if (!await ref.read(permissionServiceProvider).locationGranted()) {
+    return (granted: false, mosque: null);
+  }
+  try {
+    final mosque = await () async {
+      final pos = await ref.read(locationServiceProvider).currentPosition();
+      if (pos == null) return null;
+      final list = await ref.read(overpassServiceProvider).findNearby(pos);
+      return list.isEmpty ? null : list.first;
+    }()
+        .timeout(const Duration(seconds: 8));
+    return (granted: true, mosque: mosque);
+  } on TimeoutException {
+    return (granted: true, mosque: null);
+  }
 });

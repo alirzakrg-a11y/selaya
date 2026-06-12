@@ -1573,7 +1573,29 @@ class _NearestMosqueCard extends ConsumerWidget {
             ),
           ),
           error: (_, _) => const SizedBox.shrink(),
-          data: (m) {
+          data: (r) {
+            // Konum izni yok → spinner yerine net durum (dokun → cami ekranı,
+            // izin akışı orada). İzin var ama sonuç yok/zaman aşımı → gizle.
+            if (!r.granted) {
+              return SelayaCard(
+                onTap: () => context.push(Routes.mosques),
+                child: Row(
+                  children: [
+                    _iconBadge(c),
+                    const Gap.md(),
+                    Expanded(
+                      child: Text('home.nearestMosqueNoPermission'.tr(),
+                          style: Theme.of(context)
+                              .textTheme
+                              .bodyMedium
+                              ?.copyWith(color: c.textSecondary)),
+                    ),
+                    Icon(Icons.chevron_right_rounded, color: c.textTertiary),
+                  ],
+                ),
+              );
+            }
+            final m = r.mosque;
             if (m == null) return const SizedBox.shrink();
             return SelayaCard(
               onTap: () => _openMosqueDirections(m.lat, m.lng),
