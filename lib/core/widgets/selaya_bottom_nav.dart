@@ -1,5 +1,3 @@
-import 'dart:ui';
-
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
@@ -36,12 +34,15 @@ class SelayaBottomNav extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final c = context.colors;
+    // BackdropFilter KALDIRILDI (perf): blur'un asıl maliyeti sigma değil,
+    // her karede arka planı ayrı katmana kopyalayan saveLayer'dı — video/
+    // animasyon oynarken her frame'i pahalılaştırıyordu (profile kanıtlı;
+    // sigma 22→9 denemesi hiç kazandırmadı). Çoğu uygulamanın yaptığı gibi
+    // yarı saydam düz renk + ince üst çizgi: görünüm yakın, maliyet ~sıfır.
     return ClipRect(
-      child: BackdropFilter(
-        filter: ImageFilter.blur(sigmaX: 22, sigmaY: 22),
-        child: Container(
+      child: Container(
           decoration: BoxDecoration(
-            color: c.surface.withValues(alpha: c.isDark ? 0.72 : 0.86),
+            color: c.surface.withValues(alpha: c.isDark ? 0.92 : 0.97),
             border: Border(top: BorderSide(color: c.border)),
           ),
           padding: EdgeInsets.only(
@@ -60,9 +61,7 @@ class SelayaBottomNav extends StatelessWidget {
                   onTap: () => onTap(i),
                 ),
             ],
-          ),
-        ),
-      ),
+          )),
     );
   }
 }
