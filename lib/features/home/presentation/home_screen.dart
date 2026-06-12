@@ -643,7 +643,9 @@ class _DailyContentCard extends StatelessWidget {
       borderRadius: AppRadius.rXl,
       child: Stack(
         children: [
-          Positioned.fill(child: AppImage.cdn(backgroundImage)),
+          // memWidth: degrade altındaki dekoratif arka plan — tam çözünürlük
+          // decode etmek RAM/jank israfı (perf turu 2).
+          Positioned.fill(child: AppImage.cdn(backgroundImage, memWidth: 720)),
           const Positioned.fill(
             child: DecoratedBox(
               decoration: BoxDecoration(
@@ -961,7 +963,7 @@ class _VideoRail extends ConsumerWidget {
                   // karesinden üretilen thumbnail (native, cache'li); o da
                   // yoksa nötr degrade. Duvar kâğıdından ÇEKİLMEZ.
                   if (v.poster.isNotEmpty)
-                    AppImage.cdn(v.poster)
+                    AppImage.cdn(v.poster, memWidth: 800)
                   else
                     ref.watch(videoThumbProvider(v.video)).maybeWhen(
                           data: (p) => p == null
@@ -1172,7 +1174,7 @@ class _DailyWallpaper extends ConsumerWidget {
               child: Stack(
                 fit: StackFit.expand,
                 children: [
-                  AppImage.cdn(wp.image),
+                  AppImage.cdn(wp.image, memWidth: 540),
                   const DecoratedBox(
                     decoration: BoxDecoration(
                       gradient: LinearGradient(

@@ -106,6 +106,8 @@ class _StoryAvatar extends StatelessWidget {
                       child: AppImage.cdn(
                         story.cover,
                         fit: BoxFit.cover,
+                        // 62px avatar — küçük decode (RAM + ilk kaydırma jank'ı).
+                        memWidth: 160,
                         fallbackColors: [
                           ring[0].withValues(alpha: 0.35),
                           ring[1].withValues(alpha: 0.15),
