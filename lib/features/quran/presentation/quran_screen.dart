@@ -44,14 +44,14 @@ class _QuranScreenState extends ConsumerState<QuranScreen> {
       final tracks = buildQuranTracks(
           s.number, s.name(lang), verses, quranWallpaperArt(ref, s.number));
       if (tracks.isEmpty) {
-        if (mounted) context.push('${Routes.quranReader}/${s.number}');
+        if (mounted) context.go('${Routes.quranReader}/${s.number}');
         return;
       }
       await ref
           .read(quranAudioControllerProvider.notifier)
           .play(s.number, s.name(lang), tracks, 0);
     } catch (_) {
-      if (mounted) context.push('${Routes.quranReader}/${s.number}');
+      if (mounted) context.go('${Routes.quranReader}/${s.number}');
     }
   }
 
@@ -127,7 +127,7 @@ class _QuranScreenState extends ConsumerState<QuranScreen> {
                             icon: AppIcons.book,
                             label: 'quran.lastRead'.tr(),
                             value: lastSurah?.name(lang) ?? '—',
-                            onTap: () => context.push(
+                            onTap: () => context.go(
                                 '${Routes.quranReader}/${lastSurah?.number ?? 1}'),
                           ),
                         ),
@@ -293,7 +293,7 @@ class _SurahTile extends StatelessWidget {
   Widget build(BuildContext context) {
     final c = context.colors;
     return SelayaCard(
-      onTap: () => context.push('${Routes.quranReader}/${surah.number}'),
+      onTap: () => context.go('${Routes.quranReader}/${surah.number}'),
       padding: const EdgeInsets.symmetric(
           horizontal: AppSpacing.md, vertical: AppSpacing.md),
       child: Row(
@@ -380,7 +380,7 @@ class _JuzList extends StatelessWidget {
             orElse: () => all.first);
         return SelayaCard(
           onTap: () =>
-              context.push('${Routes.quranReader}/${startSurah.number}'),
+              context.go('${Routes.quranReader}/${startSurah.number}'),
           child: Row(
             children: [
               CircleAvatar(

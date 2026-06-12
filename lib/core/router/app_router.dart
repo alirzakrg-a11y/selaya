@@ -72,7 +72,26 @@ final routerProvider = Provider<GoRouter>((ref) {
             GoRoute(path: Routes.times, builder: (_, _) => const PrayerTimesScreen()),
           ]),
           StatefulShellBranch(routes: [
-            GoRoute(path: Routes.quran, builder: (_, _) => const QuranScreen()),
+            GoRoute(
+              path: Routes.quran,
+              builder: (_, _) => const QuranScreen(),
+              // 📖 Okuyucu KABUK ALTINDA (kullanıcı isteği): sure açıkken ve
+              // çalarken alt menü görünür kalır, sekmeler gezilebilir. Bu
+              // rotalara `go` ile gidilir (openRoute) — push, başka sekmeden
+              // görünmez kalırdı.
+              routes: [
+                GoRoute(
+                    path: 'reader/:surah',
+                    builder: (_, s) => QuranReaderScreen(
+                        surahNumber:
+                            int.tryParse(s.pathParameters['surah'] ?? '1') ??
+                                1)),
+                GoRoute(
+                    path: 'yasin',
+                    builder: (_, _) =>
+                        const QuranReaderScreen(surahNumber: 36)),
+              ],
+            ),
           ]),
           StatefulShellBranch(routes: [
             GoRoute(path: Routes.qibla, builder: (_, _) => const QiblaScreen()),
@@ -87,8 +106,6 @@ final routerProvider = Provider<GoRouter>((ref) {
       ),
 
       // Full-screen detail routes (pushed above the shell).
-      fs('${Routes.quranReader}/:surah', (_, s) => QuranReaderScreen(
-          surahNumber: int.tryParse(s.pathParameters['surah'] ?? '1') ?? 1)),
       // GoRoute (raw push değil) → location '/mushaf' olur; global mini buna
       // bakarak kendini ekranın altına (safe-bottom) konumlar.
       fs(Routes.mushaf, (_, s) =>
@@ -143,7 +160,6 @@ final routerProvider = Provider<GoRouter>((ref) {
       fs(Routes.widgetsGallery, (_, _) => const WidgetsGalleryScreen()),
       fs(Routes.homeLayout, (_, _) => const HomeLayoutScreen()),
       fs(Routes.featuredEdit, (_, _) => const FeaturedGridScreen()),
-      fs(Routes.yasin, (_, _) => const QuranReaderScreen(surahNumber: 36)),
       fs('${Routes.adhanAlarm}/:slot', (_, s) => AdhanAlarmScreen(
             slotIndex: int.tryParse(s.pathParameters['slot'] ?? '0') ?? 0,
           )),

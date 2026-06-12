@@ -14,6 +14,7 @@ import '../../../core/theme/app_colors.dart';
 import '../../../core/theme/app_spacing.dart';
 import '../../../core/theme/app_typography.dart';
 import '../../../core/widgets/app_image.dart';
+import '../../../core/widgets/mini_player_chrome.dart';
 import '../../../core/widgets/selaya_card.dart';
 import '../../../core/widgets/selaya_scaffold.dart';
 import '../../audio_stories/data/audio_story_controller.dart';
@@ -116,8 +117,8 @@ class LikedScreen extends ConsumerWidget {
                             s.ayahCount.toString()
                           ])}',
                       icon: Icons.menu_book_rounded,
-                      onTap: () =>
-                          context.push('${Routes.quranReader}/${s.number}'),
+                      onTap: () => openRoute(
+                          context, '${Routes.quranReader}/${s.number}'),
                     ),
                   const Gap.lg(),
                 ],

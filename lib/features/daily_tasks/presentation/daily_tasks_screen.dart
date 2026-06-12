@@ -7,6 +7,7 @@ import '../../../core/localization/localized_text.dart';
 import '../../../core/theme/app_colors.dart';
 import '../../../core/theme/app_spacing.dart';
 import '../../../core/widgets/confetti_overlay.dart';
+import '../../../core/widgets/mini_player_chrome.dart';
 import '../../../core/widgets/selaya_card.dart';
 import '../../../core/router/routes.dart';
 import '../../hatim/data/hatim_controller.dart';
@@ -208,7 +209,7 @@ class _TaskRow extends StatelessWidget {
                         )),
                 if (task.navRoute != null)
                   GestureDetector(
-                    onTap: () => context.push(task.navRoute!),
+                    onTap: () => openRoute(context, task.navRoute!),
                     behavior: HitTestBehavior.opaque,
                     child: Container(
                       margin: const EdgeInsets.only(top: 7),

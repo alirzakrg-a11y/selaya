@@ -49,7 +49,21 @@ const _shellLocations = <String>{
 bool miniHiddenForLocation(String location) =>
     _miniHiddenPrefixes.any((p) => location == p || location.startsWith('$p/'));
 
-bool isShellLocation(String location) => _shellLocations.contains(location);
+/// Kabuk alanında mıyız? Sekme kökleri VE altlarına yuvalanmış rotalar
+/// (örn. /quran/reader/36) — hepsinde alt menü görünür, mini onun üstünde.
+bool isShellLocation(String location) =>
+    _shellLocations.any((p) => location == p || location.startsWith('$p/'));
+
+/// Rotayı doğru şekilde açar: kabuk-altı hedefe `go` (doğru sekmeye geçer,
+/// alt menü görünür kalır — başka sekmeden/push'lu sayfadan da çalışır),
+/// tam ekran hedefe `push`. Menü/kart gibi genel açıcılar bunu kullanır.
+void openRoute(BuildContext context, String route) {
+  if (isShellLocation(route)) {
+    GoRouter.of(context).go(route);
+  } else {
+    GoRouter.of(context).push(route);
+  }
+}
 
 /// GoRouter konfigürasyonundaki EN ÜSTTEKİ yaprak rotanın konumu.
 /// `currentConfiguration.uri` context.push ile açılan rotalarda DEĞİŞMEZ

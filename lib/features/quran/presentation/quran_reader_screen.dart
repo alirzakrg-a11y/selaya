@@ -118,7 +118,9 @@ class _QuranReaderScreenState extends ConsumerState<QuranReaderScreen> {
   void _goToSurah(int n) {
     if (_surahNavLock || n < 1 || n > 114) return;
     _surahNavLock = true;
-    context.pushReplacement('/quran-reader/$n');
+    // go (pushReplacement değil): okuyucu kabuk-altı rota — branch stack'i
+    // [liste, okuyucu] kalır, geri tuşu listeye döner, alt menü hep görünür.
+    context.go('${Routes.quranReader}/$n');
   }
 
   void _ensureVisible(int ayah) {
@@ -354,7 +356,7 @@ class _QuranReaderScreenState extends ConsumerState<QuranReaderScreen> {
       if (prev?.surahNumber == widget.surahNumber &&
           next.surahNumber != null &&
           next.surahNumber != widget.surahNumber) {
-        context.pushReplacement('/quran-reader/${next.surahNumber}');
+        context.go('${Routes.quranReader}/${next.surahNumber}');
       }
     });
 
@@ -375,7 +377,7 @@ class _QuranReaderScreenState extends ConsumerState<QuranReaderScreen> {
       final target = st.surahNumber;
       WidgetsBinding.instance.addPostFrameCallback((_) {
         if (mounted && target != null) {
-          context.pushReplacement('/quran-reader/$target');
+          context.go('${Routes.quranReader}/$target');
         }
       });
     }

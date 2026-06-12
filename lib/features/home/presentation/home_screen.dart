@@ -24,6 +24,7 @@ import '../../../core/widgets/app_image.dart';
 import '../../../core/widgets/feature_icon.dart';
 import '../../../core/widgets/like_button.dart';
 import '../../../core/widgets/geometric_background.dart';
+import '../../../core/widgets/mini_player_chrome.dart';
 import '../../../core/widgets/selaya_card.dart';
 import '../../../core/widgets/section_header.dart';
 import '../../daily_tasks/data/daily_tasks_controller.dart';
@@ -1195,7 +1196,7 @@ class _FeaturedGrid extends ConsumerWidget {
         for (final (i, key) in keys.indexed)
           if (featuredTools[key] != null)
             SelayaCard(
-              onTap: () => context.push(featuredTools[key]!.route),
+              onTap: () => openRoute(context, featuredTools[key]!.route),
               borderRadius: AppRadius.rMd,
               padding: const EdgeInsets.symmetric(horizontal: 3, vertical: 8),
               child: Column(

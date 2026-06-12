@@ -17,7 +17,9 @@ abstract final class Routes {
   static const liked = '/liked'; // Beğendiklerim (beğenilen içerikler)
 
   // Pushed above the shell (full screen)
-  static const quranReader = '/quran-reader'; // /:surah
+  // KABUK ALTINDA (alt menü görünür kalır): sure açıkken/çalarken kullanıcı
+  // sekmeler arasında gezinebilsin diye okuyucu Kur'an sekmesinin altında.
+  static const quranReader = '/quran/reader'; // /:surah
   static const mushaf = '/mushaf'; // sayfa sayfa gerçek mushaf (extra: int? başlangıç sayfası)
   static const story = '/story'; // /:index
   static const dhikr = '/dhikr';
@@ -39,7 +41,7 @@ abstract final class Routes {
   static const audioStories = '/audio-stories';
   static const fasting = '/fasting';
   static const greetings = '/greetings';
-  static const yasin = '/yasin';
+  static const yasin = '/quran/yasin'; // kabuk-altı Yâsîn kısayolu
   static const kaza = '/kaza';
   static const tasks = '/tasks'; // günlük görevler (#18)
   static const abdestGuide = '/abdest'; // abdest & taharet rehberi HUB

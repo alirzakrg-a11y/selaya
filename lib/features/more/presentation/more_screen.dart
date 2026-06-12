@@ -10,6 +10,7 @@ import '../../../core/theme/app_icons.dart';
 import '../../../core/theme/app_spacing.dart';
 import '../../../core/widgets/animated_ai_icon.dart';
 import '../../../core/widgets/feature_icon.dart';
+import '../../../core/widgets/mini_player_chrome.dart';
 import '../../../core/widgets/selaya_card.dart';
 import '../../../core/widgets/selaya_scaffold.dart';
 import '../../../core/widgets/selaya_logo.dart';
@@ -138,7 +139,7 @@ class _Grid extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.only(bottom: AppSpacing.sm),
             child: SelayaCard(
-              onTap: () => context.push(e.route),
+              onTap: () => openRoute(context, e.route),
               padding: const EdgeInsets.all(AppSpacing.md),
               child: Row(
                 children: [
