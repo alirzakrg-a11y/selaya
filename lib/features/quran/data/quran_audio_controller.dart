@@ -62,9 +62,8 @@ class QuranAudioController extends Notifier<QuranAudioState> {
   bool _advancing = false;
 
   /// Çalan sure bitince sıradaki sureyi (N+1) yükleyip çalar — kesintisiz okuma.
-  /// Nâs (114) bitince durur; sıradaki surenin sesli ayeti yoksa sessizce geçer.
-  /// `completed` olayı arka arkaya birden çok gelebilir → [_advancing] kilidi
-  /// çift geçişi/yeniden başlatmayı önler.
+  /// Nâs (114) bitince stop() ile temizler (mini gizlenir). `completed` olayı
+  /// arka arkaya birden çok gelebilir → [_advancing] kilidi çift geçişi önler.
   Future<void> _advanceToNextSurah() async {
     if (_advancing) return;
     _advancing = true;
@@ -75,9 +74,19 @@ class QuranAudioController extends Notifier<QuranAudioState> {
     }
   }
 
+  /// Tüm "kuyruk sonu" yolları buradan geçer: otomatik (completed event'i →
+  /// [_advanceToNextSurah]) ve manuel (son ayette ⏭ → [next]); sona seek de
+  /// completed üretip ilk yola düşer.
   Future<void> _doAdvance() async {
     final cur = state.surahNumber;
-    if (cur == null || cur >= 114) return;
+    if (cur == null) return;
+    if (cur >= 114) {
+      // Nâs bitti → ilerlenecek sure yok. just_audio 'completed'da playing=true
+      // bıraktığından temizlemezsek mini "play" ikonuyla takılı kalır; stop()
+      // handler'ı idle'a alır + state'i sıfırlar → mini kendiliğinden gizlenir.
+      await stop();
+      return;
+    }
     await _loadSurah(cur + 1, fromStart: true);
   }
 
@@ -125,7 +134,7 @@ class QuranAudioController extends Notifier<QuranAudioState> {
   Future<void> jumpTo(int index) => _h.player.seek(Duration.zero, index: index);
 
   /// ⏭ Sıradaki ayet — kuyruğun SONUNDAYSA sıradaki sureye geçer (manuel,
-  /// otomatik geçişi beklemeden). 114'ün sonunda bir şey yapmaz.
+  /// otomatik geçişi beklemeden). 114'ün son ayetinde okumayı bitirir (stop).
   Future<void> next() async {
     final i = _h.player.currentIndex ?? 0;
     if (i < _h.tracks.length - 1) {

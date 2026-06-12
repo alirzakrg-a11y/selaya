@@ -39,6 +39,19 @@ class AudioStoryController extends Notifier<AudioStoryState> {
         loading: s.processingState == ProcessingState.loading ||
             s.processingState == ProcessingState.buffering,
       );
+      // 🏁 Son bölüm bitti (kuyruk sonu) → durdur + temizle → mini gizlenir.
+      // Kur'an'dan farklı: hikâyede albümler arası otomatik geçiş YOK, düz
+      // bitiş. just_audio 'completed'da playing=true bıraktığından temizlemezsek
+      // mini "play" ikonuyla takılı kalırdı. Mode şartı: paylaşılan player'da
+      // Kur'an çalıyorken (bayat current ile) onun sure geçişini söndürmeyelim.
+      // Son şart: araya yeni liste yüklemesi girdiyse (player artık completed
+      // değil) dokunma.
+      if (_h.mode == 'story' &&
+          s.processingState == ProcessingState.completed &&
+          state.current != null &&
+          _h.player.processingState == ProcessingState.completed) {
+        stop();
+      }
     });
     ref.onDispose(sub.cancel);
     return const AudioStoryState();
