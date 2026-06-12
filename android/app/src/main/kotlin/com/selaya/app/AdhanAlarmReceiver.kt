@@ -33,9 +33,11 @@ class AdhanAlarmReceiver : BroadcastReceiver() {
                 // ACTION_FIRE → ezanı çal (servisi başlat).
                 val res = intent?.getStringExtra(AdhanPlayerService.EXTRA_RES)
                 val label = intent?.getStringExtra(AdhanPlayerService.EXTRA_LABEL) ?: "Namaz"
+                val slot = intent?.getIntExtra(AdhanPlayerService.EXTRA_SLOT, -1) ?: -1
                 val svc = Intent(context, AdhanPlayerService::class.java).apply {
                     putExtra(AdhanPlayerService.EXTRA_RES, res)
                     putExtra(AdhanPlayerService.EXTRA_LABEL, label)
+                    putExtra(AdhanPlayerService.EXTRA_SLOT, slot)
                 }
                 try {
                     ContextCompat.startForegroundService(context, svc)
@@ -59,7 +61,10 @@ class AdhanAlarmReceiver : BroadcastReceiver() {
         /** Tek bir ezan alarmı kur + prefs listesine ekle (BOOT yeniden-kurma için). */
         const val MAX_ALARMS = 50
 
-        fun addAlarm(context: Context, id: Int, time: Long, res: String, label: String) {
+        fun addAlarm(
+            context: Context, id: Int, time: Long, res: String, label: String,
+            slot: Int = -1
+        ) {
             val prefs = context.getSharedPreferences(PREFS, Context.MODE_PRIVATE)
             val arr = try { JSONArray(prefs.getString(KEY_ALARMS, "[]")) } catch (_: Exception) { JSONArray() }
             // İPTAL'i garanti etmek için SIRALI küçük id (liste konumu) kullan:
@@ -68,9 +73,15 @@ class AdhanAlarmReceiver : BroadcastReceiver() {
             // İlk MAX_ALARMS girişi hemen takılır; FAZLASI prefs'te bekler —
             // her ezan tetiklendiğinde / BOOT'ta pencere ileri kayar (reschedule).
             val pos = arr.length()
-            if (pos < MAX_ALARMS) setAlarm(context, pos, time, res, label)
-            arr.put(JSONObject().put("id", pos).put("time", time).put("res", res).put("label", label))
+            if (pos < MAX_ALARMS) setAlarm(context, pos, time, res, label, slot)
+            arr.put(JSONObject().put("id", pos).put("time", time).put("res", res)
+                .put("label", label).put("slot", slot))
             prefs.edit().putString(KEY_ALARMS, arr.toString()).apply()
+            // Pencereyi hemen tazele: liste 50'yi aştıysa YENİ giriş (örn. 5 sn
+            // sonrası test ezanı) kronolojik sırada öne geçebilsin — yoksa dolu
+            // pencerede sona eklenir ve hiç kurulmazdı. reschedule geçmişleri
+            // eler ve EN YAKIN 50'yi kurar (FIRE/BOOT'taki çağrının aynısı).
+            reschedule(context)
         }
 
         /** TÜM ezan alarmlarını iptal et + listeyi temizle. Sıralı id'ler (0..MAX)
@@ -101,15 +112,19 @@ class AdhanAlarmReceiver : BroadcastReceiver() {
                     // id = takılma sırası (0..MAX): geçmişler elendiği için aynı
                     // sabit aralık yeniden kullanılır; cancelAll hep temizler.
                     setAlarm(context, armed, time,
-                        o.optString("res"), o.optString("label", "Namaz"))
+                        o.optString("res"), o.optString("label", "Namaz"),
+                        o.optInt("slot", -1))
                     armed++
                 }
             } catch (_: Exception) {}
         }
 
-        fun setAlarm(context: Context, id: Int, time: Long, res: String, label: String) {
+        fun setAlarm(
+            context: Context, id: Int, time: Long, res: String, label: String,
+            slot: Int = -1
+        ) {
             val am = context.getSystemService(Context.ALARM_SERVICE) as AlarmManager
-            val pi = firePendingIntent(context, id, res, label)
+            val pi = firePendingIntent(context, id, res, label, slot)
             try {
                 if (Build.VERSION.SDK_INT >= 31 && !am.canScheduleExactAlarms()) {
                     am.setAndAllowWhileIdle(AlarmManager.RTC_WAKEUP, time, pi)
@@ -121,11 +136,14 @@ class AdhanAlarmReceiver : BroadcastReceiver() {
             }
         }
 
-        private fun firePendingIntent(context: Context, id: Int, res: String, label: String): PendingIntent {
+        private fun firePendingIntent(
+            context: Context, id: Int, res: String, label: String, slot: Int = -1
+        ): PendingIntent {
             val i = Intent(context, AdhanAlarmReceiver::class.java).apply {
                 action = ACTION_FIRE
                 putExtra(AdhanPlayerService.EXTRA_RES, res)
                 putExtra(AdhanPlayerService.EXTRA_LABEL, label)
+                putExtra(AdhanPlayerService.EXTRA_SLOT, slot)
             }
             var f = PendingIntent.FLAG_UPDATE_CURRENT
             if (Build.VERSION.SDK_INT >= 23) f = f or PendingIntent.FLAG_IMMUTABLE

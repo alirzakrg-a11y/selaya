@@ -188,6 +188,9 @@ class PrayerScheduler {
           when: _tz(t, loc),
           sound: alarm.atTimeSound,
           label: '${slot.labelKey.tr()} • ${_hm(t)}',
+          // 0-7 gün penceresiyle tutarlı: Tam Ekran AÇIK ise 7+ günlerde de
+          // bildirim tam-ekran alarmı açar (pencere mekanizması değişmedi).
+          slot: fullScreen ? slot.index : -1,
         );
       }
     }

@@ -46,7 +46,11 @@ class AdhanPlayerService : Service() {
         }
         ensureChannel()
         label = intent?.getStringExtra(EXTRA_LABEL) ?: "Namaz"
-        startForegroundNow(label)
+        // Tam Ekran Alarm AÇIK → Dart, vakit slotunu (0..5) geçirir; bildirim
+        // fullScreenIntent ile MainActivity'yi uyandırır (kilitli/ölü dahil) ve
+        // mevcut pending_adhan köprüsü alarm ekranını açar. KAPALI → -1.
+        val slot = intent?.getIntExtra(EXTRA_SLOT, -1) ?: -1
+        startForegroundNow(label, slot)
         play(intent?.getStringExtra(EXTRA_RES))
         return START_NOT_STICKY
     }
@@ -130,8 +134,14 @@ class AdhanPlayerService : Service() {
         super.onDestroy()
     }
 
-    private fun startForegroundNow(label: String) {
-        val n = NotificationCompat.Builder(this, CHANNEL)
+    private fun startForegroundNow(label: String, slot: Int) {
+        // "Tek bildirim, tek Kapat": tam-ekran tetik de ARTIK bu bildirimde —
+        // eskiden ayrıca sessiz bir flutter_local_notifications bildirimi
+        // kuruluyordu; onun Dart "Durdur" aksiyonu uygulama ölüyken native
+        // MediaPlayer'ı DURDURAMIYORDU (bg isolate'te kanal yok) → "Kapat ses
+        // kesmiyor" şikâyetinin kökü. Kapat burada native ACTION_STOP'tur ve
+        // uygulama ölü olsa da keser.
+        val b = NotificationCompat.Builder(this, CHANNEL)
             .setSmallIcon(R.mipmap.ic_launcher)
             .setContentTitle("SELAYA · Ezan")
             .setContentText("$label vakti — ezan okunuyor")
@@ -140,9 +150,21 @@ class AdhanPlayerService : Service() {
             .setCategory(NotificationCompat.CATEGORY_ALARM)
             .setVisibility(NotificationCompat.VISIBILITY_PUBLIC)
             .addAction(0, "Kapat", stopPendingIntent())
-            .setContentIntent(stopPendingIntent())
             .setDeleteIntent(stopPendingIntent())
-            .build()
+        if (slot >= 0) {
+            // Tam Ekran AÇIK: bildirim ekranı uyandırıp alarm sayfasını açar
+            // (soğuk başlatma dahil — MainActivity.handleAdhanIntent payload'ı
+            // pending_adhan'a yazar, Dart resume'da tüketir). Dokunmak da
+            // alarmı açar; sesi yalnız Kapat/Durdur keser.
+            val pi = fullScreenPendingIntent(slot)
+            b.setFullScreenIntent(pi, true)
+            b.setContentIntent(pi)
+        } else {
+            // Tam Ekran KAPALI: bildirim ezanın kendisidir — dokunmak da
+            // alarm saatindeki gibi kapatır (eski davranış aynen).
+            b.setContentIntent(stopPendingIntent())
+        }
+        val n = b.build()
         try {
             if (Build.VERSION.SDK_INT >= 34) {
                 startForeground(
@@ -152,6 +174,17 @@ class AdhanPlayerService : Service() {
                 startForeground(NOTIF_ID, n)
             }
         } catch (_: Exception) {}
+    }
+
+    /** Tam-ekran tetik: MainActivity'yi `adhan:<slot>` payload'ıyla açar —
+     *  mevcut pending_adhan köprüsü (soğuk/sıcak) alarm ekranını gösterir. */
+    private fun fullScreenPendingIntent(slot: Int): PendingIntent {
+        val i = Intent(this, MainActivity::class.java)
+            .putExtra("payload", "adhan:$slot")
+            .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+        var f = PendingIntent.FLAG_UPDATE_CURRENT
+        if (Build.VERSION.SDK_INT >= 23) f = f or PendingIntent.FLAG_IMMUTABLE
+        return PendingIntent.getActivity(this, 73, i, f)
     }
 
     /** "Durdur" → bu servise [ACTION_STOP] gönderir (ses kesilir, bildirim kapanır). */
@@ -197,5 +230,6 @@ class AdhanPlayerService : Service() {
         const val EXTRA_RES = "res"
         const val EXTRA_LABEL = "label"
         const val EXTRA_VOLUME = "volume"
+        const val EXTRA_SLOT = "slot" // 0..5 = tam-ekran alarm vakti; -1 = kapalı
     }
 }

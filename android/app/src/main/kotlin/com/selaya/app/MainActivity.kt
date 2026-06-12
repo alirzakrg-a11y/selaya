@@ -126,7 +126,10 @@ class MainActivity : AudioServiceActivity() {
                         val time = (call.argument<Number>("time"))?.toLong() ?: 0L
                         val res = call.argument<String>("res") ?: AdhanPlayerService.DEFAULT
                         val label = call.argument<String>("label") ?: "Namaz"
-                        AdhanAlarmReceiver.addAlarm(this, id, time, res, label)
+                        // Tam Ekran Alarm AÇIK → vakit slotu (0..5); bildirim
+                        // fullScreenIntent ile alarm ekranını açar. KAPALI → -1.
+                        val slot = (call.argument<Number>("slot"))?.toInt() ?: -1
+                        AdhanAlarmReceiver.addAlarm(this, id, time, res, label, slot)
                         result.success(true)
                     }
                     "cancelAllAdhanAlarms" -> {

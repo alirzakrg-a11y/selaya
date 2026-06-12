@@ -30,11 +30,12 @@ void _dispatchAdhanPayload(String? payload) {
   }
 }
 
-/// Background isolate tap handler. Drives no navigation (separate isolate), but
-/// MUST handle the "Durdur" action even when the app is killed: cancel the whole
-/// prayer block + the test id so the adhan sound stops and the notification
-/// closes (the per-action cancelNotification alone can leave a long alarm-stream
-/// adhan playing on some OEMs). Also a valid entry-point so taps never crash.
+/// Background isolate tap handler. Drives no navigation (separate isolate).
+/// ARTIK yalnız FALLBACK yolunun (native ezan kurulamayıp kanal-sesli FLN
+/// bildirimi kurulduğunda) "Durdur" aksiyonunu kapsar: bildirimleri iptal
+/// etmek kanal sesini de keser. Normal yolda at-time ezanın TEK bildirimi
+/// native servisindir ve Kapat'ı native ACTION_STOP'tur (bg isolate'e hiç
+/// uğramaz). Valid entry-point so taps never crash.
 @pragma('vm:entry-point')
 void _onBgNotificationResponse(NotificationResponse response) {
   if (response.actionId != 'stop_adhan') return;
@@ -124,6 +125,8 @@ class NotificationService {
         'selaya_prayer_${s.id}_v3s',
         'selaya_prayer_${s.id}_v4',
         'selaya_prayer_${s.id}_alarm_v1',
+        // "Tek bildirim" geçişiyle kullanım dışı kalan sessiz görsel kanal.
+        'selaya_adhan_visual',
         // Eski 2-haneli titreşim+LED kombolar (LED kaldırıldı) — hepsini sil.
         for (final v in const ['00', '01', '10', '11']) ...[
           'selaya_prayer_${s.id}_v5_$v',
@@ -504,18 +507,15 @@ class NotificationService {
           {bool fullScreen = false,
           bool atTime = false,
           bool dropSound = false,
-          bool mute = false,
           String? stopLabel}) =>
       NotificationDetails(
         android: AndroidNotificationDetails(
-          // [mute] → sessiz "görsel" kanal: ezan sesi native serviste çalarken
-          // bu bildirim yalnız tam-ekran alarmı tetikler (çift ses olmasın).
           // At-time → alarm-stream channel (the adhan sounds even on
           // silent/vibrate); before-reminders → notification-stream channel.
-          mute
-              ? 'selaya_adhan_visual'
-              : (atTime ? sound.alarmChannelId : sound.channelId),
-          mute ? 'Ezan — tam ekran' : 'Namaz — ${sound.id}',
+          // (At-time normalde native serviste çalar — buraya yalnız native
+          // kurulamazsa FALLBACK olarak düşülür.)
+          atTime ? sound.alarmChannelId : sound.channelId,
+          'Namaz — ${sound.id}',
           channelDescription: 'Namaz vakti bildirimi',
           importance: Importance.max,
           priority: Priority.high,
@@ -530,14 +530,13 @@ class NotificationService {
           // alive, the alarm-channel adhan plays as a fallback; "Durdur" stops it.
           // Full-screen OFF: there's no adhan screen, so the notification IS the
           // adhan — tapping it should close it + stop the sound, like an alarm.
-          // (mute'ta ses bildirimde değil → kapatmak sesi etkilemez, autoCancel OK.)
-          autoCancel: mute || !(atTime && fullScreen),
-          playSound: !mute && sound != AdhanSound.silent,
+          autoCancel: !(atTime && fullScreen),
+          playSound: sound != AdhanSound.silent,
           // [dropSound] omits the raw-resource sound: a resilience fallback for
           // when the resource can't be resolved (so scheduling still succeeds and
           // the channel's own sound is used) — a missing sound must never again
           // silently stop the whole prayer notification from being scheduled.
-          sound: (mute || dropSound || sound.androidRaw == null)
+          sound: (dropSound || sound.androidRaw == null)
               ? null
               : RawResourceAndroidNotificationSound(sound.androidRaw!),
           // "Durdur" action — tapping it cancels the notification (which stops the
@@ -577,13 +576,14 @@ class NotificationService {
     await init();
     if (!when.isAfter(tz.TZDateTime.now(tz.local))) return;
     // ⑨ At-time ezan HER ZAMAN native serviste çalar (AdhanPlayerService —
-    // MediaPlayer, alarm-muafiyetli AlarmManager): "Durdur" sesi GERÇEKTEN keser
-    // ve uygulama ölüyken bile çalar. Tam Ekran KAPALI → native bildirimi tek
-    // deneyimdir (burada biter). Tam Ekran AÇIK → ses yine native'te; aşağıda
-    // yalnız SESSİZ bir tam-ekran tetik bildirimi kurulur (eskiden kanal sesi +
-    // 15 sn sonra tam ekran = ÇİFT ezan saçmalığı vardı). Native kurulamazsa
-    // eski kanal-sesi yoluna düşülür → ezan ASLA susmaz.
-    var nativeAdhan = false;
+    // MediaPlayer, alarm-muafiyetli AlarmManager): "Kapat" sesi GERÇEKTEN keser
+    // ve uygulama ölüyken bile çalar. TEK BİLDİRİM, TEK KAPAT: Tam Ekran AÇIK
+    // ise tam-ekran tetiği de native bildirimin fullScreenIntent'idir (slot
+    // native'e geçer) — eskiden ek SESSİZ bir FLN bildirimi kuruluyordu ve onun
+    // Dart "Durdur" aksiyonu uygulama ölüyken native sesi DURDURAMIYORDU
+    // ("Kapat kesmiyor" şikâyetinin kökü). Native kurulamazsa eski kanal-sesi
+    // yoluna düşülür (aşağıda) → ezan ASLA susmaz; o yolda "Durdur" bildirimi
+    // kapatır ve kanal sesi bildirimle birlikte zaten kesilir.
     if (atTime && sound != AdhanSound.silent && sound.androidRaw != null) {
       try {
         await _adhanNativeChannel.invokeMethod('scheduleAdhanAlarm', {
@@ -591,20 +591,15 @@ class NotificationService {
           'time': when.millisecondsSinceEpoch,
           'res': sound.androidRaw,
           'label': title,
+          'slot': alarmSlot?.index ?? -1,
         });
-        nativeAdhan = true;
-        if (alarmSlot == null) return;
+        return;
       } catch (_) {/* native başarısız → eski kanal-sesi yoluna düş */}
     }
-    // The adhan plays from the alarm-stream channel (sounds even on
-    // silent/vibrate) — unless the native service owns the sound (then this
-    // notification is the MUTED full-screen trigger only). With [alarmSlot] it
-    // wakes the full-screen alarm.
+    // FALLBACK yolu (native kurulamadı) ya da öncesi-hatırlatması: ezan/zil
+    // alarm-stream kanalından çalar; [alarmSlot] ile tam-ekranı da uyandırır.
     final details = _prayerDetails(sound, body,
-        fullScreen: alarmSlot != null,
-        atTime: atTime,
-        mute: nativeAdhan,
-        stopLabel: stopLabel);
+        fullScreen: alarmSlot != null, atTime: atTime, stopLabel: stopLabel);
     final payload = alarmSlot == null ? null : 'adhan:${alarmSlot.index}';
     try {
       await _plugin.zonedSchedule(
@@ -641,7 +636,6 @@ class NotificationService {
             notificationDetails: _prayerDetails(sound, body,
                 fullScreen: alarmSlot != null,
                 atTime: atTime,
-                mute: nativeAdhan,
                 stopLabel: stopLabel,
                 dropSound: true),
             androidScheduleMode: AndroidScheduleMode.exactAllowWhileIdle,
@@ -693,6 +687,7 @@ class NotificationService {
     required tz.TZDateTime when,
     required AdhanSound sound,
     required String label,
+    int slot = -1,
   }) async {
     if (sound == AdhanSound.silent || sound.androidRaw == null) return;
     if (!when.isAfter(tz.TZDateTime.now(tz.local))) return;
@@ -702,6 +697,7 @@ class NotificationService {
         'time': when.millisecondsSinceEpoch,
         'res': sound.androidRaw,
         'label': label,
+        'slot': slot,
       });
     } catch (_) {/* native yoksa görsel pencere yine de korur */}
   }
