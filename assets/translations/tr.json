@@ -312,6 +312,7 @@
     "nearestMosque": "En yakın cami",
     "nearestMosqueFinding": "En yakın cami aranıyor…",
     "nearestMosqueNoPermission": "Konum izni gerekli — en yakın camiyi görmek için dokun",
+    "nearestMosqueRetry": "En yakın camiyi bulmak için dokun",
     "tools": "Öne Çıkanlar",
     "featured": "Öne Çıkanlar",
     "addWidgetTitle": "Ana ekrana widget ekle",

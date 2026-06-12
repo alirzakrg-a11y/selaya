@@ -96,7 +96,19 @@ final overpassServiceProvider =
 /// dek dönmesin (sürekli animasyon = sürekli frame üretimi — perf turu 2).
 final nearestMosqueProvider =
     FutureProvider<({bool granted, NearbyMosque? mosque})>((ref) async {
+  // Başarısız sonuç (izin yok / zaman aşımı / boş) YAPIŞMASIN: provider
+  // keepAlive olduğundan bir kez null'a düşünce kart sonsuza dek "yok"
+  // kalıyordu (cami ekranına girip izin verip/konum çözüp dönünce bile —
+  // regresyon, kullanıcı bildirdi). 1 dk'da bir kendini tazeler; konum
+  // cache'i (3 dk) dolu olduğundan yeniden deneme anında sonuçlanır,
+  // başarıda timer kurulmaz.
+  void retrySoon() {
+    final t = Timer(const Duration(minutes: 1), ref.invalidateSelf);
+    ref.onDispose(t.cancel);
+  }
+
   if (!await ref.read(permissionServiceProvider).locationGranted()) {
+    retrySoon();
     return (granted: false, mosque: null);
   }
   try {
@@ -107,8 +119,10 @@ final nearestMosqueProvider =
       return list.isEmpty ? null : list.first;
     }()
         .timeout(const Duration(seconds: 8));
+    if (mosque == null) retrySoon();
     return (granted: true, mosque: mosque);
   } on TimeoutException {
+    retrySoon();
     return (granted: true, mosque: null);
   }
 });

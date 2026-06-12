@@ -1626,7 +1626,27 @@ class _NearestMosqueCard extends ConsumerWidget {
               );
             }
             final m = r.mosque;
-            if (m == null) return const SizedBox.shrink();
+            if (m == null) {
+              // Zaman aşımı / sonuç yok: kart KAYBOLMAZ (regresyondu) —
+              // "dokun" satırı kalır; provider 1 dk'da bir kendini tazeler.
+              return SelayaCard(
+                onTap: () => context.push(Routes.mosques),
+                child: Row(
+                  children: [
+                    _iconBadge(c),
+                    const Gap.md(),
+                    Expanded(
+                      child: Text('home.nearestMosqueRetry'.tr(),
+                          style: Theme.of(context)
+                              .textTheme
+                              .bodyMedium
+                              ?.copyWith(color: c.textSecondary)),
+                    ),
+                    Icon(Icons.chevron_right_rounded, color: c.textTertiary),
+                  ],
+                ),
+              );
+            }
             return SelayaCard(
               onTap: () => _openMosqueDirections(m.lat, m.lng),
               child: Row(

@@ -312,6 +312,7 @@
     "nearestMosque": "Nearest mosque",
     "nearestMosqueFinding": "Finding the nearest mosque…",
     "nearestMosqueNoPermission": "Location permission needed — tap to find the nearest mosque",
+    "nearestMosqueRetry": "Tap to find the nearest mosque",
     "tools": "Featured",
     "featured": "Featured",
     "addWidgetTitle": "Add a home-screen widget",
