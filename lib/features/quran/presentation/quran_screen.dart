@@ -15,7 +15,9 @@ import '../../../core/theme/app_typography.dart';
 import '../../../core/widgets/selaya_card.dart';
 import '../../../core/widgets/selaya_scaffold.dart';
 import '../../../core/widgets/states.dart';
+import '../data/quran_audio_controller.dart';
 import '../data/quran_favorites.dart';
+import '../data/quran_tracks.dart';
 
 const _juzStart = [1, 2, 2, 3, 4, 4, 5, 6, 7, 8, 9, 11, 12, 15, 17, 18, 21, 23,
     25, 27, 29, 33, 36, 39, 41, 46, 51, 58, 67, 78];
@@ -31,6 +33,27 @@ class _QuranScreenState extends ConsumerState<QuranScreen> {
 
   int? get _lastRead =>
       ref.read(sharedPreferencesProvider).getInt(PrefKeys.quranLastRead);
+
+  /// 🎧 "Dinlemeye Başla": okuyucuya GİTMEDEN sureyi doğrudan çalar — kullanıcı
+  /// listede kalır, kumanda global mini'de belirir (alt menü kapanmaz). Sesli
+  /// ayet verisi yoksa/yüklenemezse eski davranışa düşer: okuyucu açılır.
+  Future<void> _startListening(Surah s) async {
+    final lang = context.langCode;
+    try {
+      final verses = await ref.read(versesProvider(s.number).future);
+      final tracks = buildQuranTracks(
+          s.number, s.name(lang), verses, quranWallpaperArt(ref, s.number));
+      if (tracks.isEmpty) {
+        if (mounted) context.push('${Routes.quranReader}/${s.number}');
+        return;
+      }
+      await ref
+          .read(quranAudioControllerProvider.notifier)
+          .play(s.number, s.name(lang), tracks, 0);
+    } catch (_) {
+      if (mounted) context.push('${Routes.quranReader}/${s.number}');
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -115,8 +138,8 @@ class _QuranScreenState extends ConsumerState<QuranScreen> {
                             label: 'quran.startListening'.tr(),
                             value: (lastSurah ?? all.first).name(lang),
                             accent: true,
-                            onTap: () => context.push(
-                                '${Routes.quranReader}/${lastSurah?.number ?? 1}'),
+                            onTap: () =>
+                                _startListening(lastSurah ?? all.first),
                           ),
                         ),
                       ],

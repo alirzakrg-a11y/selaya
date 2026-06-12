@@ -17,7 +17,6 @@ import '../../../core/widgets/app_image.dart';
 import '../../../core/widgets/selaya_card.dart';
 import '../../../core/widgets/selaya_scaffold.dart';
 import '../../audio_stories/data/audio_story_controller.dart';
-import '../../audio_stories/presentation/audio_story_now_playing.dart';
 import '../../quran/data/quran_favorites.dart';
 import '../../wallpapers/presentation/wallpapers_screen.dart';
 
@@ -130,10 +129,11 @@ class LikedScreen extends ConsumerWidget {
                       title: e.cat.episodes[e.index].title(lang),
                       icon: Icons.headphones_rounded,
                       onTap: () {
+                        // Yerinde çal — tam ekran çalar AÇILMAZ; kumanda
+                        // global mini'de belirir.
                         ref
                             .read(audioStoryControllerProvider.notifier)
                             .play(e.cat, e.index, lang);
-                        openAudioStoryNowPlaying(context);
                       },
                     ),
                   const Gap.lg(),

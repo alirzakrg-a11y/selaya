@@ -15,7 +15,6 @@ import '../../../core/widgets/like_button.dart';
 import '../../../core/widgets/selaya_scaffold.dart';
 import '../../../core/widgets/states.dart';
 import '../data/audio_story_controller.dart';
-import 'audio_story_now_playing.dart';
 
 /// Records "catId:index" as the most recently played (deduped, capped at 8).
 void addRecentAudio(SharedPreferences prefs, String catId, int index) {
@@ -124,10 +123,11 @@ class _RecentCard extends ConsumerWidget {
     return GestureDetector(
       onTap: () {
         addRecentAudio(ref.read(sharedPreferencesProvider), category.id, index);
+        // Yerinde çal — tam ekran çalar AÇILMAZ (alt menü/sayfa kaybolmasın);
+        // kumanda global mini'de belirir, tam ekrana mini'den geçilir.
         ref
             .read(audioStoryControllerProvider.notifier)
             .play(category, index, lang);
-        openAudioStoryNowPlaying(context);
       },
       child: SizedBox(
         width: 150,
@@ -249,10 +249,11 @@ class _CategoryBlock extends ConsumerWidget {
             onTap: () {
               addRecentAudio(
                   ref.read(sharedPreferencesProvider), category.id, i);
+              // Yerinde çal — tam ekran çalar AÇILMAZ (liste kaybolmasın);
+              // kumanda global mini'de belirir.
               ref
                   .read(audioStoryControllerProvider.notifier)
                   .play(category, i, lang);
-              openAudioStoryNowPlaying(context);
             },
           ),
         const Gap.lg(),
