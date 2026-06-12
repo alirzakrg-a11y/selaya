@@ -167,10 +167,15 @@ class _RecentCard extends ConsumerWidget {
               ),
             ),
             const Gap.xs(),
-            Text(ep.title(lang),
-                maxLines: 2,
-                overflow: TextOverflow.ellipsis,
-                style: Theme.of(context).textTheme.labelMedium),
+            // Flexible: kapak (kare) + 2 satır başlık, rayın verdiği yüksekliği
+            // büyük yazı ölçeğinde 10px taşırabiliyordu → başlık kalan alana
+            // sığar, taşarsa erken kırpılır.
+            Flexible(
+              child: Text(ep.title(lang),
+                  maxLines: 2,
+                  overflow: TextOverflow.ellipsis,
+                  style: Theme.of(context).textTheme.labelMedium),
+            ),
           ],
         ),
       ),

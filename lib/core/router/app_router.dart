@@ -161,7 +161,17 @@ class _MainShell extends StatelessWidget {
       // Mini çalarlar burada DEĞİL — app.dart'taki GlobalMiniPlayerOverlay tüm
       // rotaların üstünde TEK instance render eder. Navbar'ın yüksekliği,
       // overlay'in "navbar'ın hemen üstü" konumu için ölçülüp paylaşılır.
-      body: shell,
+      // Sekme içeriği, görünür mini kadar alttan kısalır (en alttaki öğe mini
+      // arkasında kalmasın) — Scaffold bottomNavigationBar'lıyken app.dart'ın
+      // MediaQuery padding eki body'ye ulaşmaz, o yüzden burada uygulanır.
+      body: ValueListenableBuilder<double>(
+        valueListenable: miniPlayerHeight,
+        child: shell,
+        builder: (_, miniH, child) => Padding(
+          padding: EdgeInsets.only(bottom: miniH),
+          child: child!,
+        ),
+      ),
       bottomNavigationBar: HeightReporter(
         notifier: navBarHeight,
         child: SelayaBottomNav(

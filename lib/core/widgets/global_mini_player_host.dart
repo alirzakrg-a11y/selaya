@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../features/audio_stories/presentation/audio_story_mini_player.dart';
+import '../../features/quran/data/quran_audio_controller.dart';
 import '../../features/quran/presentation/quran_mini_player.dart';
 import '../router/app_router.dart';
 import 'mini_player_chrome.dart';
@@ -11,17 +12,23 @@ import 'mini_player_chrome.dart';
 /// kopya yok). Mini'lerin kendi görünürlük kuralları (mode-guard: yalnız kendi
 /// sesi çalarken görünme) aynen kendi içlerinde.
 class GlobalMiniPlayerHost extends StatelessWidget {
-  const GlobalMiniPlayerHost({super.key});
+  /// Okuyucu, çalan surenin KENDİ kumandasını gösterirken Kur'an mini'si
+  /// gizlenir — çift kumanda olmasın (hikâye mini'si etkilenmez).
+  final bool hideQuranMini;
+  const GlobalMiniPlayerHost({super.key, this.hideQuranMini = false});
 
   @override
   Widget build(BuildContext context) {
     // Overlay, Navigator/Scaffold dışında yaşar → IconButton ink'leri için
     // Material atasını burada sağlarız.
-    return const Material(
+    return Material(
       type: MaterialType.transparency,
       child: Column(
         mainAxisSize: MainAxisSize.min,
-        children: [QuranMiniPlayer(), AudioStoryMiniPlayer()],
+        children: [
+          if (!hideQuranMini) const QuranMiniPlayer(),
+          const AudioStoryMiniPlayer(),
+        ],
       ),
     );
   }
@@ -40,12 +47,18 @@ class GlobalMiniPlayerOverlay extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final router = ref.watch(routerProvider);
+    // Okuyucu "çalan sureyi" gösterirken kendi kumandası çıkar → Kur'an
+    // mini'sini orada gizleyeceğiz (çift kumanda olmasın).
+    final playingSurah = ref.watch(
+        quranAudioControllerProvider.select((s) => s.surahNumber));
     return ListenableBuilder(
       // routerDelegate her navigasyonda bildirir → location'a göre konum/gizlilik.
       listenable: Listenable.merge(
           [router.routerDelegate, fullScreenPlayerOpen, navBarHeight]),
       builder: (context, _) {
-        final location = router.routerDelegate.currentConfiguration.uri.path;
+        // DİKKAT: uri.path DEĞİL — push'lanan rotalarda uri güncellenmez.
+        final location =
+            topRouteLocation(router.routerDelegate.currentConfiguration);
         final hidden =
             fullScreenPlayerOpen.value || miniHiddenForLocation(location);
         if (hidden) {
@@ -59,13 +72,15 @@ class GlobalMiniPlayerOverlay extends ConsumerWidget {
         final bottom = isShellLocation(location)
             ? navBarHeight.value
             : MediaQuery.viewPaddingOf(context).bottom;
+        final hideQuranMini =
+            playingSurah != null && quranReaderSurah(location) == playingSurah;
         return Align(
           alignment: Alignment.bottomCenter,
           child: Padding(
             padding: EdgeInsets.only(bottom: bottom),
             child: HeightReporter(
               notifier: miniPlayerHeight,
-              child: const GlobalMiniPlayerHost(),
+              child: GlobalMiniPlayerHost(hideQuranMini: hideQuranMini),
             ),
           ),
         );

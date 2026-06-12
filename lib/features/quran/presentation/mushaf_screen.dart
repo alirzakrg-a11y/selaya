@@ -10,7 +10,6 @@ import '../../../core/models/content.dart';
 import '../../../core/theme/app_colors.dart';
 import '../../../core/theme/app_typography.dart';
 import '../../../core/widgets/app_image.dart';
-import '../../../core/widgets/mini_player_chrome.dart';
 import '../../../core/widgets/selaya_scaffold.dart';
 import '../../hatim/data/hatim_controller.dart';
 import '../data/mushaf_meta.dart';
@@ -41,8 +40,11 @@ class _MushafScreenState extends ConsumerState<MushafScreen>
   // 📖 HATİM otomatik sayım: sayfada en az 3 sn geçirip İLERİ gidince o sayfa
   // okundu sayılır (geri gidiş sayılmaz; gün-içi dedup controller'da).
   DateTime _pageEnteredAt = DateTime.now();
-  late final HatimController _hatim =
-      ref.read(hatimControllerProvider.notifier);
+  // initState'te atanır — lazy bırakılırsa (sayfa hiç çevrilmeden çıkışta)
+  // ilk erişim dispose'a denk gelir ve ref orada kullanılamaz ("Bad state:
+  // Using ref... unmounted"); üstelik exception alttaki controller
+  // dispose'larını da atlatıyordu (cihazda yakalandı).
+  late final HatimController _hatim;
 
   /// Mevcut sayfada ≥3 sn geçildiyse onu okundu işle (dispose + arka plan için
   /// — yoksa son okunan sayfa ve 604. sayfa asla sayılmazdı). recordPage gün-içi
@@ -77,6 +79,7 @@ class _MushafScreenState extends ConsumerState<MushafScreen>
   @override
   void initState() {
     super.initState();
+    _hatim = ref.read(hatimControllerProvider.notifier);
     WidgetsBinding.instance.addObserver(this);
     WidgetsBinding.instance.addPostFrameCallback((_) {
       if (mounted) _precacheAround(_page);
@@ -533,13 +536,6 @@ class _MushafScreenState extends ConsumerState<MushafScreen>
                   .labelSmall
                   ?.copyWith(color: c.textTertiary, fontSize: 10),
             ),
-          ),
-          // Global mini çalar görünürken alt şerit (Kur'ân Okuyucu + atıf) onun
-          // altında kalmasın: mini kadar boşluk. Eski bottomNavigationBar
-          // düzenindeki sıralama korunur — bar üstte, mini en altta.
-          ValueListenableBuilder<double>(
-            valueListenable: miniPlayerHeight,
-            builder: (_, h, _) => SizedBox(height: h),
           ),
         ],
       ),

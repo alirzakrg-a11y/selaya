@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:go_router/go_router.dart';
 
 import '../router/routes.dart';
 
@@ -49,6 +50,32 @@ bool miniHiddenForLocation(String location) =>
     _miniHiddenPrefixes.any((p) => location == p || location.startsWith('$p/'));
 
 bool isShellLocation(String location) => _shellLocations.contains(location);
+
+/// GoRouter konfigürasyonundaki EN ÜSTTEKİ yaprak rotanın konumu.
+/// `currentConfiguration.uri` context.push ile açılan rotalarda DEĞİŞMEZ
+/// (go_router tasarımı: push URL'yi güncellemez) → uri.path kullanmak tüm
+/// detay sayfalarını kabuk sanma hatası doğuruyordu (cihazda görüldü). Shell
+/// zincirini açıp imperative push'lar dahil gerçek üst rotayı döndürür.
+String topRouteLocation(RouteMatchList configuration) {
+  if (configuration.matches.isEmpty) return '';
+  RouteMatchBase match = configuration.matches.last;
+  while (match is ShellRouteMatch) {
+    match = match.matches.last;
+  }
+  return match.matchedLocation;
+}
+
+/// Konum bir Kur'an okuyucusuysa gösterdiği sure numarası (değilse null).
+/// Okuyucu, ÇALAN sureyi gösterirken kendi alt kumandasını kuruyor — global
+/// Kur'an mini'si o ekranda gizlenir ki çift kumanda olmasın (hikâye mini'si
+/// etkilenmez). Eski `bottomBar ?? mini` ilişkisinin overlay karşılığı.
+int? quranReaderSurah(String location) {
+  if (location == Routes.yasin) return 36;
+  final prefix = '${Routes.quranReader}/';
+  if (!location.startsWith(prefix)) return null;
+  final raw = location.substring(prefix.length);
+  return int.tryParse(raw.split('/').first.split('?').first);
+}
 
 /// Child'ının layout sonrası yüksekliğini [notifier]'a yazar (frame sonunda —
 /// layout sırasında notifier tetiklenmez). Navbar + mini ölçümünde kullanılır.

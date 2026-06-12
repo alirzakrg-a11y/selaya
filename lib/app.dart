@@ -13,6 +13,7 @@ import 'core/services/widget_service.dart';
 import 'core/services/widget_updater.dart';
 import 'core/theme/app_theme.dart';
 import 'core/widgets/global_mini_player_host.dart';
+import 'core/widgets/mini_player_chrome.dart';
 import 'features/audio_stories/data/audio_handler.dart';
 import 'features/audio_stories/data/audio_story_controller.dart';
 import 'features/auth/data/sync_service.dart';
@@ -172,7 +173,25 @@ class _SelayaAppState extends ConsumerState<SelayaApp> with WidgetsBindingObserv
             // GlobalMiniPlayerOverlay (mini_player_chrome.dart'taki rota seti).
             child: Stack(
               children: [
-                child ?? const SizedBox.shrink(),
+                // Mini görünürken sayfa içeriği o kadar alttan KISALIR — en
+                // alttaki öğe mini arkasında kalmaz: padding.bottom'a mini
+                // yüksekliği eklenir, SelayaScaffold'ların SafeArea'sı uygular.
+                // Kendi alt barı olan Scaffold'lar (okuyucu) bu padding'i zaten
+                // kaldırır; kabuk sekmelerinin muadili _MainShell'de.
+                ValueListenableBuilder<double>(
+                  valueListenable: miniPlayerHeight,
+                  child: child ?? const SizedBox.shrink(),
+                  builder: (context, miniH, routerChild) {
+                    if (miniH <= 0) return routerChild!;
+                    final mq = MediaQuery.of(context);
+                    return MediaQuery(
+                      data: mq.copyWith(
+                          padding: mq.padding
+                              .copyWith(bottom: mq.padding.bottom + miniH)),
+                      child: routerChild!,
+                    );
+                  },
+                ),
                 const Positioned.fill(child: GlobalMiniPlayerOverlay()),
               ],
             ),
