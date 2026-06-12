@@ -1,0 +1,66 @@
+[
+  {
+    "id": "story_verse", "type": "verse", "accent": "#E0B250", "cover": "assets/images/stories/story_verse.jpg",
+    "translations": { "tr": { "title": "Günün Ayeti" }, "en": { "title": "Verse of the Day" } },
+    "slides": [
+      { "image": "assets/images/stories/story_verse.jpg", "durationMs": 6000, "arabic": "إِنَّ مَعَ الْعُسْرِ يُسْرًا", "translations": { "tr": { "heading": "Şerh 6", "body": "Şüphesiz her zorlukla beraber bir kolaylık vardır." }, "en": { "heading": "Ash-Sharh 6", "body": "Indeed, with hardship comes ease." } } },
+      { "image": "assets/images/inspiration_1.jpg", "durationMs": 6000, "arabic": "أَلَا بِذِكْرِ اللَّهِ تَطْمَئِنُّ الْقُلُوبُ", "translations": { "tr": { "heading": "Ra'd 28", "body": "Kalpler ancak Allah'ı anmakla huzur bulur." }, "en": { "heading": "Ar-Ra'd 28", "body": "In the remembrance of Allah do hearts find rest." } } }
+    ]
+  },
+  {
+    "id": "story_hadith", "type": "hadith", "accent": "#46D08A", "cover": "assets/images/stories/story_hadith.jpg",
+    "translations": { "tr": { "title": "Günün Hadisi" }, "en": { "title": "Hadith of the Day" } },
+    "slides": [
+      { "image": "assets/images/stories/story_hadith.jpg", "durationMs": 6000, "arabic": "خَيْرُكُمْ مَنْ تَعَلَّمَ الْقُرْآنَ وَعَلَّمَهُ", "translations": { "tr": { "heading": "Tirmizî", "body": "En hayırlınız Kur'an'ı öğrenen ve öğretendir." }, "en": { "heading": "Tirmidhi", "body": "The best of you are those who learn the Quran and teach it." } } }
+    ]
+  },
+  {
+    "id": "story_dua", "type": "dua", "accent": "#7E7BF2", "cover": "assets/images/stories/story_dua.jpg",
+    "translations": { "tr": { "title": "Günün Duası" }, "en": { "title": "Dua of the Day" } },
+    "slides": [
+      { "image": "assets/images/stories/story_dua.jpg", "durationMs": 7000, "arabic": "رَبِّ اشْرَحْ لِي صَدْرِي وَيَسِّرْ لِي أَمْرِي", "translations": { "tr": { "heading": "Tâhâ 25-26", "body": "Rabbim! Göğsümü genişlet ve işimi kolaylaştır." }, "en": { "heading": "Ta-Ha 25-26", "body": "My Lord, expand my chest and ease my task." } } }
+    ]
+  },
+  {
+    "id": "story_friday", "type": "friday", "accent": "#54B8E6", "cover": "assets/images/stories/story_friday.jpg",
+    "translations": { "tr": { "title": "Cuma Mesajı" }, "en": { "title": "Friday Message" } },
+    "slides": [
+      { "image": "assets/images/stories/story_friday.jpg", "durationMs": 6000, "translations": { "tr": { "heading": "Hayırlı Cumalar", "body": "Cuma günü salavatı çoğaltmayı unutmayalım. Bu mübarek gün hepimize huzur getirsin." }, "en": { "heading": "Blessed Friday", "body": "Let us increase our salawat today. May this blessed day bring us all peace." } } }
+    ]
+  },
+  {
+    "id": "story_knowledge", "type": "knowledge", "accent": "#E0B250", "cover": "assets/images/stories/story_knowledge.jpg",
+    "translations": { "tr": { "title": "İslami Bilgi" }, "en": { "title": "Islamic Knowledge" } },
+    "slides": [
+      { "image": "assets/images/stories/story_knowledge.jpg", "durationMs": 7000, "translations": { "tr": { "heading": "Biliyor muydun?", "body": "Kur'an-ı Kerim 114 sureden ve 6236 ayetten oluşur. 30 cüze ayrılmıştır." }, "en": { "heading": "Did you know?", "body": "The Quran has 114 surahs and 6236 verses, divided into 30 juz." } } }
+    ]
+  },
+  {
+    "id": "story_ramadan", "type": "ramadan", "accent": "#9A6CF0", "cover": "assets/images/stories/story_ramadan.jpg",
+    "translations": { "tr": { "title": "Ramazan" }, "en": { "title": "Ramadan" } },
+    "slides": [
+      { "image": "assets/images/stories/story_ramadan.jpg", "durationMs": 6000, "translations": { "tr": { "heading": "Ramazan Hazırlığı", "body": "Oruç sadece açlık değil; sabrı, şükrü ve merhameti öğreten bir mekteptir." }, "en": { "heading": "Preparing for Ramadan", "body": "Fasting is not just hunger; it is a school of patience, gratitude and mercy." } } }
+    ]
+  },
+  {
+    "id": "story_special", "type": "special", "accent": "#F4D27A", "cover": "assets/images/stories/story_special.jpg",
+    "translations": { "tr": { "title": "Kadir Gecesi" }, "en": { "title": "Laylat al-Qadr" } },
+    "slides": [
+      { "image": "assets/images/stories/story_special.jpg", "durationMs": 7000, "arabic": "لَيْلَةُ الْقَدْرِ خَيْرٌ مِنْ أَلْفِ شَهْرٍ", "translations": { "tr": { "heading": "Kadir 3", "body": "Kadir gecesi bin aydan daha hayırlıdır." }, "en": { "heading": "Al-Qadr 3", "body": "The Night of Decree is better than a thousand months." } } }
+    ]
+  },
+  {
+    "id": "story_bayram", "type": "bayram", "accent": "#46D08A", "cover": "assets/images/stories/story_bayram.jpg",
+    "translations": { "tr": { "title": "Bayram" }, "en": { "title": "Eid" } },
+    "slides": [
+      { "image": "assets/images/stories/story_bayram.jpg", "durationMs": 6000, "translations": { "tr": { "heading": "Bayramınız Mübarek Olsun", "body": "Bayram; kırgınlıkları unutmanın, sıla-i rahmin ve paylaşmanın günüdür." }, "en": { "heading": "Eid Mubarak", "body": "Eid is a day of reconciliation, family ties and sharing." } } }
+    ]
+  },
+  {
+    "id": "story_motivation", "type": "motivation", "accent": "#54B8E6", "cover": "assets/images/stories/story_motivation.jpg",
+    "translations": { "tr": { "title": "Motivasyon" }, "en": { "title": "Motivation" } },
+    "slides": [
+      { "image": "assets/images/stories/story_motivation.jpg", "durationMs": 6000, "translations": { "tr": { "heading": "Küçük Adımlar", "body": "Allah'a en sevimli ameller, az da olsa devamlı olanlardır. Bugün bir adım at." }, "en": { "heading": "Small Steps", "body": "The most beloved deeds to Allah are the constant ones, even if small. Take one step today." } } }
+    ]
+  }
+]

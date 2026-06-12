@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/widget_root"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center_horizontal"
+    android:background="@drawable/widget_bg"
+    android:padding="14dp">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="ESMAÜL HÜSNA"
+        android:textColor="#E0B250"
+        android:textSize="10sp"
+        android:textStyle="bold"
+        android:letterSpacing="0.10" />
+
+    <TextView
+        android:id="@+id/widget_esma_ar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingTop="6dp"
+        android:text="الرَّحْمَٰن"
+        android:textColor="#E0B250"
+        android:textSize="30sp"
+        android:maxLines="1"
+        android:textDirection="rtl" />
+
+    <TextView
+        android:id="@+id/widget_esma_tr"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingTop="2dp"
+        android:text="Ar-Rahman"
+        android:textColor="#F4F6FB"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:maxLines="1" />
+
+    <TextView
+        android:id="@+id/widget_esma_mn"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:paddingTop="2dp"
+        android:gravity="center"
+        android:text="Dünyada bütün mahlûkatına merhamet eden."
+        android:textColor="#9AA3B8"
+        android:textSize="12sp"
+        android:maxLines="2"
+        android:ellipsize="end" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="↻ dokun"
+        android:textColor="#7A8194"
+        android:textSize="10sp" />
+</LinearLayout>

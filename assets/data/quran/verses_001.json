@@ -1,0 +1,72 @@
+[
+  {
+    "ayah": 1,
+    "arabic": "بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ",
+    "transliteration": "Bismillahir rahmanir rahim",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/001001.mp3",
+    "translations": {
+      "tr": "Rahmân ve Rahîm olan Allah'ın adıyla.",
+      "en": "In the name of Allah, the Most Gracious, the Most Merciful."
+    }
+  },
+  {
+    "ayah": 2,
+    "arabic": "الْحَمْدُ لِلَّهِ رَبِّ الْعَالَمِينَ",
+    "transliteration": "El hamdu lillahi rabbil alemin",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/001002.mp3",
+    "translations": {
+      "tr": "Hamd, âlemlerin Rabbi Allah'a mahsustur.",
+      "en": "All praise is due to Allah, Lord of the worlds."
+    }
+  },
+  {
+    "ayah": 3,
+    "arabic": "الرَّحْمَٰنِ الرَّحِيمِ",
+    "transliteration": "Er rahmanir rahim",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/001003.mp3",
+    "translations": {
+      "tr": "O, Rahmân'dır, Rahîm'dir.",
+      "en": "The Most Gracious, the Most Merciful."
+    }
+  },
+  {
+    "ayah": 4,
+    "arabic": "مَالِكِ يَوْمِ الدِّينِ",
+    "transliteration": "Maliki yevmid din",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/001004.mp3",
+    "translations": {
+      "tr": "Hesap gününün sahibidir.",
+      "en": "Master of the Day of Judgment."
+    }
+  },
+  {
+    "ayah": 5,
+    "arabic": "إِيَّاكَ نَعْبُدُ وَإِيَّاكَ نَسْتَعِينُ",
+    "transliteration": "İyyake na'budu ve iyyake nestain",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/001005.mp3",
+    "translations": {
+      "tr": "Yalnız sana kulluk eder, yalnız senden yardım dileriz.",
+      "en": "You alone we worship, and You alone we ask for help."
+    }
+  },
+  {
+    "ayah": 6,
+    "arabic": "اهْدِنَا الصِّرَاطَ الْمُسْتَقِيمَ",
+    "transliteration": "İhdinas sıratel mustakim",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/001006.mp3",
+    "translations": {
+      "tr": "Bizi doğru yola ilet.",
+      "en": "Guide us to the straight path."
+    }
+  },
+  {
+    "ayah": 7,
+    "arabic": "صِرَاطَ الَّذِينَ أَنْعَمْتَ عَلَيْهِمْ غَيْرِ الْمَغْضُوبِ عَلَيْهِمْ وَلَا الضَّالِّينَ",
+    "transliteration": "Sıratallezine en'amte aleyhim gayril magdubi aleyhim ve lad dallin",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/001007.mp3",
+    "translations": {
+      "tr": "Kendilerine nimet verdiklerinin yoluna; gazaba uğrayanların ve sapkınların yoluna değil.",
+      "en": "The path of those You have blessed, not of those who earned anger or went astray."
+    }
+  }
+]

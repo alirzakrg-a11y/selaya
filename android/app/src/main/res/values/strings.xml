@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="hadith_widget_desc">SELAYA — Günün hadis-i şerifi</string>
+    <string name="prayer_widget_desc">SELAYA — Namaz vakitleri ve sıradaki vakit</string>
+    <string name="ayah_widget_desc">SELAYA — Günün ayeti (dokun: sonraki)</string>
+    <string name="esma_widget_desc">SELAYA — Esmaül Hüsna (dokun: sonraki isim)</string>
+    <string name="hijri_widget_desc">SELAYA — Hicri tarih</string>
+    <string name="clock_minimal_desc">SELAYA — Minimal dijital saat</string>
+    <string name="clock_green_desc">SELAYA — İslami yeşil saat</string>
+    <string name="clock_prayer_desc">SELAYA — Saat + sıradaki namaz ve kalan süre</string>
+</resources>

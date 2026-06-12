@@ -1,0 +1,72 @@
+[
+  {
+    "ayah": 1,
+    "arabic": "أَرَأَيْتَ الَّذِي يُكَذِّبُ بِالدِّينِ",
+    "transliteration": "E raeytellezi yukezzibu bid din",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/107001.mp3",
+    "translations": {
+      "tr": "Dini yalanlayanı gördün mü?",
+      "en": "Have you seen the one who denies the Recompense?"
+    }
+  },
+  {
+    "ayah": 2,
+    "arabic": "فَذَٰلِكَ الَّذِي يَدُعُّ الْيَتِيمَ",
+    "transliteration": "Fe zalikellezi yedu'ul yetim",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/107002.mp3",
+    "translations": {
+      "tr": "İşte o, yetimi itip kakar.",
+      "en": "For that is the one who drives away the orphan,"
+    }
+  },
+  {
+    "ayah": 3,
+    "arabic": "وَلَا يَحُضُّ عَلَىٰ طَعَامِ الْمِسْكِينِ",
+    "transliteration": "Ve la yahuddu ala taamil miskin",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/107003.mp3",
+    "translations": {
+      "tr": "Yoksulu doyurmaya teşvik etmez.",
+      "en": "and does not encourage the feeding of the poor."
+    }
+  },
+  {
+    "ayah": 4,
+    "arabic": "فَوَيْلٌ لِلْمُصَلِّينَ",
+    "transliteration": "Fe veylun lil musallin",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/107004.mp3",
+    "translations": {
+      "tr": "Yazıklar olsun o namaz kılanlara ki,",
+      "en": "So woe to those who pray,"
+    }
+  },
+  {
+    "ayah": 5,
+    "arabic": "الَّذِينَ هُمْ عَنْ صَلَاتِهِمْ سَاهُونَ",
+    "transliteration": "Ellezine hum an salatihim sahun",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/107005.mp3",
+    "translations": {
+      "tr": "Onlar namazlarından gafildirler.",
+      "en": "but who are heedless of their prayer —"
+    }
+  },
+  {
+    "ayah": 6,
+    "arabic": "الَّذِينَ هُمْ يُرَاءُونَ",
+    "transliteration": "Ellezine hum yuraun",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/107006.mp3",
+    "translations": {
+      "tr": "Onlar gösteriş yaparlar.",
+      "en": "those who make show of their deeds,"
+    }
+  },
+  {
+    "ayah": 7,
+    "arabic": "وَيَمْنَعُونَ الْمَاعُونَ",
+    "transliteration": "Ve yemneunel maun",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/107007.mp3",
+    "translations": {
+      "tr": "Ve hayra (zekâta) da engel olurlar.",
+      "en": "and withhold simple assistance."
+    }
+  }
+]

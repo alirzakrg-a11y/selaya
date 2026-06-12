@@ -1,0 +1,932 @@
+[
+  {
+    "ayah": 1,
+    "arabic": "طسٓ ۚ تِلْكَ ءَايَٰتُ ٱلْقُرْءَانِ وَكِتَابٍۢ مُّبِينٍ",
+    "transliteration": "Ta sin, tilke ayatul kur'ani ve kitabin mubin",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/027001.mp3",
+    "translations": {
+      "tr": "Ta, Sin, Bunlar Kuran'ın, Kitab-ı Mübin'in ayetleridir.",
+      "en": "Ta, Seen. These are the verses of the Qur'an and a clear Book"
+    }
+  },
+  {
+    "ayah": 2,
+    "arabic": "هُدًۭى وَبُشْرَىٰ لِلْمُؤْمِنِينَ",
+    "transliteration": "Huden ve buşra lil mu'minin",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/027002.mp3",
+    "translations": {
+      "tr": "Bunlar, namaz kılan, zekat veren ve ahirete de kesin olarak inanan müminlere doğruluk rehberi ve müjdedir.",
+      "en": "As guidance and good tidings for the believers"
+    }
+  },
+  {
+    "ayah": 3,
+    "arabic": "ٱلَّذِينَ يُقِيمُونَ ٱلصَّلَوٰةَ وَيُؤْتُونَ ٱلزَّكَوٰةَ وَهُم بِٱلْءَاخِرَةِ هُمْ يُوقِنُونَ",
+    "transliteration": "Ellezine yukimunes salate ve yu'tunez zekate ve hum bil ahıreti hum yukınun",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/027003.mp3",
+    "translations": {
+      "tr": "Bunlar, namaz kılan, zekat veren ve ahirete de kesin olarak inanan müminlere doğruluk rehberi ve müjdedir.",
+      "en": "Who establish prayer and give zakah, and of the Hereafter they are certain [in faith]."
+    }
+  },
+  {
+    "ayah": 4,
+    "arabic": "إِنَّ ٱلَّذِينَ لَا يُؤْمِنُونَ بِٱلْءَاخِرَةِ زَيَّنَّا لَهُمْ أَعْمَٰلَهُمْ فَهُمْ يَعْمَهُونَ",
+    "transliteration": "İnnellezine la yu'minune bil ahireti zeyyenna lehum a'malehum fe hum ya'mehun",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/027004.mp3",
+    "translations": {
+      "tr": "Ahirete inanmayanların yaptıkları işleri kendilerine güzel göstermişizdir; bu yüzden körü körüne bocalarlar.",
+      "en": "Indeed, for those who do not believe in the Hereafter, We have made pleasing to them their deeds, so they wander blindly."
+    }
+  },
+  {
+    "ayah": 5,
+    "arabic": "أُو۟لَٰٓئِكَ ٱلَّذِينَ لَهُمْ سُوٓءُ ٱلْعَذَابِ وَهُمْ فِى ٱلْءَاخِرَةِ هُمُ ٱلْأَخْسَرُونَ",
+    "transliteration": "Ulaikellezine lehum suul azabi ve hum fil ahıreti humul ahserun",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/027005.mp3",
+    "translations": {
+      "tr": "Kötü azap işte bunlaradır. Ahirette en çok kayba uğrayacaklar da bunlardır.",
+      "en": "Those are the ones for whom there will be the worst of punishment, and in the Hereafter they are the greatest losers."
+    }
+  },
+  {
+    "ayah": 6,
+    "arabic": "وَإِنَّكَ لَتُلَقَّى ٱلْقُرْءَانَ مِن لَّدُنْ حَكِيمٍ عَلِيمٍ",
+    "transliteration": "Ve inneke le tulekkal kur'ane minledun hakimin alim",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/027006.mp3",
+    "translations": {
+      "tr": "Şüphesiz, Kuran'ı, Hakim ve Alim olan Allah katından almaktasın.",
+      "en": "And indeed, [O Muhammad], you receive the Qur'an from one Wise and Knowing."
+    }
+  },
+  {
+    "ayah": 7,
+    "arabic": "إِذْ قَالَ مُوسَىٰ لِأَهْلِهِۦٓ إِنِّىٓ ءَانَسْتُ نَارًۭا سَـَٔاتِيكُم مِّنْهَا بِخَبَرٍ أَوْ ءَاتِيكُم بِشِهَابٍۢ قَبَسٍۢ لَّعَلَّكُمْ تَصْطَلُونَ",
+    "transliteration": "İz kale musa li ehlihi inni anestu nara, se atikum minha bi haberin ev atikum bi şihabin kabesin leallekum tastalun",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/027007.mp3",
+    "translations": {
+      "tr": "Musa, ailesine: \"Ben bir ateş gördüm; size oradan ya bir haber getireceğim, yahut ısınasınız diye tutuşmuş bir odun getireceğim\" demişti.",
+      "en": "[Mention] when Moses said to his family, \"Indeed, I have perceived a fire. I will bring you from there information or will bring you a burning torch that you may warm yourselves.\""
+    }
+  },
+  {
+    "ayah": 8,
+    "arabic": "فَلَمَّا جَآءَهَا نُودِىَ أَنۢ بُورِكَ مَن فِى ٱلنَّارِ وَمَنْ حَوْلَهَا وَسُبْحَٰنَ ٱللَّهِ رَبِّ ٱلْعَٰلَمِينَ",
+    "transliteration": "Fe lemma caeha nudiye en burike men fin nari ve men havleha, ve subhanallahi rabbil alemin",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/027008.mp3",
+    "translations": {
+      "tr": "Oraya geldiğinde, kendisine şöyle nida olunmuştu: \"Ateşin yanında olan ve çevresinde bulunanlar mübarek kılınmıştır. Alemlerin Rabbi olan Allah münezzehtir\"",
+      "en": "But when he came to it, he was called, \"Blessed is whoever is at the fire and whoever is around it. And exalted is Allah, Lord of the worlds."
+    }
+  },
+  {
+    "ayah": 9,
+    "arabic": "يَٰمُوسَىٰٓ إِنَّهُۥٓ أَنَا ٱللَّهُ ٱلْعَزِيزُ ٱلْحَكِيمُ",
+    "transliteration": "Ya musa innehu enallahul azizul hakim",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/027009.mp3",
+    "translations": {
+      "tr": "\"Ey Musa! Gerçek şu ki, Ben, güçlü ve hakim olan Allah'ım\"",
+      "en": "O Moses, indeed it is I - Allah, the Exalted in Might, the Wise.\""
+    }
+  },
+  {
+    "ayah": 10,
+    "arabic": "وَأَلْقِ عَصَاكَ ۚ فَلَمَّا رَءَاهَا تَهْتَزُّ كَأَنَّهَا جَآنٌّۭ وَلَّىٰ مُدْبِرًۭا وَلَمْ يُعَقِّبْ ۚ يَٰمُوسَىٰ لَا تَخَفْ إِنِّى لَا يَخَافُ لَدَىَّ ٱلْمُرْسَلُونَ",
+    "transliteration": "Ve elkı asak, fe lemma reaha tehtezzu ke enneha cannun vella mudbiren ve lem yuakkıb, ya musa la tehaf inni la yehafu ledeyyel murselun",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/027010.mp3",
+    "translations": {
+      "tr": "\"Değneğini at!\" Musa, değneğinin yılan gibi hareketler yaptığını görünce, arkasına bakmadan dönüp kaçtı. \"Ey Musa! Korkma; Benim katımda peygamberler korkmaz; yalnız haksızlık eden bunun dışındadır. Kötü hali iyiliğe çeviren kimse bilsin ki Ben şüphesiz bağışlarım, merhamet ederim. Elini koynuna sok, Firavun ve milletine gönderilen dokuz mucizeden biri olarak kusursuz, bembeyaz çıksın. Gerçekten onlar yoldan çıkmış bir millettir.\"",
+      "en": "And [he was told], \"Throw down your staff.\" But when he saw it writhing as if it were a snake, he turned in flight and did not return. [Allah said], \"O Moses, fear not. Indeed, in My presence the messengers do not fear."
+    }
+  },
+  {
+    "ayah": 11,
+    "arabic": "إِلَّا مَن ظَلَمَ ثُمَّ بَدَّلَ حُسْنًۢا بَعْدَ سُوٓءٍۢ فَإِنِّى غَفُورٌۭ رَّحِيمٌۭ",
+    "transliteration": "İlla men zaleme summe beddele husnen ba'de suin fe inni gafurun rahim",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/027011.mp3",
+    "translations": {
+      "tr": "\"Değneğini at!\" Musa, değneğinin yılan gibi hareketler yaptığını görünce, arkasına bakmadan dönüp kaçtı. \"Ey Musa! Korkma; Benim katımda peygamberler korkmaz; yalnız haksızlık eden bunun dışındadır. Kötü hali iyiliğe çeviren kimse bilsin ki Ben şüphesiz bağışlarım, merhamet ederim. Elini koynuna sok, Firavun ve milletine gönderilen dokuz mucizeden biri olarak kusursuz, bembeyaz çıksın. Gerçekten onlar yoldan çıkmış bir millettir.\"",
+      "en": "Otherwise, he who wrongs, then substitutes good after evil - indeed, I am Forgiving and Merciful."
+    }
+  },
+  {
+    "ayah": 12,
+    "arabic": "وَأَدْخِلْ يَدَكَ فِى جَيْبِكَ تَخْرُجْ بَيْضَآءَ مِنْ غَيْرِ سُوٓءٍۢ ۖ فِى تِسْعِ ءَايَٰتٍ إِلَىٰ فِرْعَوْنَ وَقَوْمِهِۦٓ ۚ إِنَّهُمْ كَانُوا۟ قَوْمًۭا فَٰسِقِينَ",
+    "transliteration": "Ve edhıl yedeke fi ceybike tahruc beydae min gayri suin fi tis'ı ayatin ila fir'avne ve kavmih, innehum kanu kavmen fasikin",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/027012.mp3",
+    "translations": {
+      "tr": "\"Değneğini at!\" Musa, değneğinin yılan gibi hareketler yaptığını görünce, arkasına bakmadan dönüp kaçtı. \"Ey Musa! Korkma; Benim katımda peygamberler korkmaz; yalnız haksızlık eden bunun dışındadır. Kötü hali iyiliğe çeviren kimse bilsin ki Ben şüphesiz bağışlarım, merhamet ederim. Elini koynuna sok, Firavun ve milletine gönderilen dokuz mucizeden biri olarak kusursuz, bembeyaz çıksın. Gerçekten onlar yoldan çıkmış bir millettir.\"",
+      "en": "And put your hand into the opening of your garment [at the breast]; it will come out white without disease. [These are] among the nine signs [you will take] to Pharaoh and his people. Indeed, they have been a people defiantly disobedient.\""
+    }
+  },
+  {
+    "ayah": 13,
+    "arabic": "فَلَمَّا جَآءَتْهُمْ ءَايَٰتُنَا مُبْصِرَةًۭ قَالُوا۟ هَٰذَا سِحْرٌۭ مُّبِينٌۭ",
+    "transliteration": "Fe lemma caethum ayatuna mubsıraten kalu haza sihrun mubin",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/027013.mp3",
+    "translations": {
+      "tr": "Ayetlerimiz gözlerinin önüne serilince: \"Bu apaçık bir sihirdir\" dediler.",
+      "en": "But when there came to them Our visible signs, they said, \"This is obvious magic.\""
+    }
+  },
+  {
+    "ayah": 14,
+    "arabic": "وَجَحَدُوا۟ بِهَا وَٱسْتَيْقَنَتْهَآ أَنفُسُهُمْ ظُلْمًۭا وَعُلُوًّۭا ۚ فَٱنظُرْ كَيْفَ كَانَ عَٰقِبَةُ ٱلْمُفْسِدِينَ",
+    "transliteration": "Ve cehadu biha vesteykanetha enfusuhum zulmen ve uluvva, fenzur keyfe kane akıbetul mufsidin",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/027014.mp3",
+    "translations": {
+      "tr": "Gönülleri kesin olarak kabul ettiği halde, haksızlık ve büyüklenmelerinden ötürü onları bile bile inkar ettiler. Bozguncuların sonunun nasıl olduğuna bir bak!",
+      "en": "And they rejected them, while their [inner] selves were convinced thereof, out of injustice and haughtiness. So see how was the end of the corrupters."
+    }
+  },
+  {
+    "ayah": 15,
+    "arabic": "وَلَقَدْ ءَاتَيْنَا دَاوُۥدَ وَسُلَيْمَٰنَ عِلْمًۭا ۖ وَقَالَا ٱلْحَمْدُ لِلَّهِ ٱلَّذِى فَضَّلَنَا عَلَىٰ كَثِيرٍۢ مِّنْ عِبَادِهِ ٱلْمُؤْمِنِينَ",
+    "transliteration": "Ve lekad ateyna davude ve suleymane ilma, ve kalal hamdu lillahillezi faddalena ala kesirin min ibadihil mu'minin",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/027015.mp3",
+    "translations": {
+      "tr": "And olsun ki, Davud'a ve Süleyman'a ilim verdik. İkisi \"Bizi mümin kullarının çoğundan üstün kılan Allah'a hamdolsun\" dediler.",
+      "en": "And We had certainly given to David and Solomon knowledge, and they said, \"Praise [is due] to Allah, who has favored us over many of His believing servants.\""
+    }
+  },
+  {
+    "ayah": 16,
+    "arabic": "وَوَرِثَ سُلَيْمَٰنُ دَاوُۥدَ ۖ وَقَالَ يَٰٓأَيُّهَا ٱلنَّاسُ عُلِّمْنَا مَنطِقَ ٱلطَّيْرِ وَأُوتِينَا مِن كُلِّ شَىْءٍ ۖ إِنَّ هَٰذَا لَهُوَ ٱلْفَضْلُ ٱلْمُبِينُ",
+    "transliteration": "Ve varise suleymanu davude ve kale ya eyyuhen nasu ullimna mentıkat tayrı, ve utina min kulli şey', inne haza le huvel fadlul mubin",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/027016.mp3",
+    "translations": {
+      "tr": "Süleyman Davud'a varis oldu: \"Ey insanlar! Bize kuş dili öğretildi ve bize herşeyden bolca verildi. Doğrusu bu apaçık bir lütuftur\" dedi.",
+      "en": "And Solomon inherited David. He said, \"O people, we have been taught the language of birds, and we have been given from all things. Indeed, this is evident bounty.\""
+    }
+  },
+  {
+    "ayah": 17,
+    "arabic": "وَحُشِرَ لِسُلَيْمَٰنَ جُنُودُهُۥ مِنَ ٱلْجِنِّ وَٱلْإِنسِ وَٱلطَّيْرِ فَهُمْ يُوزَعُونَ",
+    "transliteration": "Ve huşire li suleymane cunuduhu minel cinni vel insi vet tayrı fe hum yuzeun",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/027017.mp3",
+    "translations": {
+      "tr": "Süleyman'ın cinlerden, insanlardan ve kuşlardan müteşekkil olan ordusu toplandı. Hepsi toplu olarak gidiyorlardı.",
+      "en": "And gathered for Solomon were his soldiers of the jinn and men and birds, and they were [marching] in rows."
+    }
+  },
+  {
+    "ayah": 18,
+    "arabic": "حَتَّىٰٓ إِذَآ أَتَوْا۟ عَلَىٰ وَادِ ٱلنَّمْلِ قَالَتْ نَمْلَةٌۭ يَٰٓأَيُّهَا ٱلنَّمْلُ ٱدْخُلُوا۟ مَسَٰكِنَكُمْ لَا يَحْطِمَنَّكُمْ سُلَيْمَٰنُ وَجُنُودُهُۥ وَهُمْ لَا يَشْعُرُونَ",
+    "transliteration": "Hatta iza etev ala vadin nemli kalet nemletun ya eyyuhen nemludhulu mesakinekum, la yahtımennekum suleymanu ve cunuduhu ve hum la yeş'urun",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/027018.mp3",
+    "translations": {
+      "tr": "Sonunda, karıncaların bulunduğu vadiye geldiklerinde bir dişi (kraliçe) karınca: \"Ey karıncalar! Yuvalarınıza girin, Süleyman'ın ordusu farkına varmadan sizi ezmesin\" dedi.",
+      "en": "Until, when they came upon the valley of the ants, an ant said, \"O ants, enter your dwellings that you not be crushed by Solomon and his soldiers while they perceive not.\""
+    }
+  },
+  {
+    "ayah": 19,
+    "arabic": "فَتَبَسَّمَ ضَاحِكًۭا مِّن قَوْلِهَا وَقَالَ رَبِّ أَوْزِعْنِىٓ أَنْ أَشْكُرَ نِعْمَتَكَ ٱلَّتِىٓ أَنْعَمْتَ عَلَىَّ وَعَلَىٰ وَٰلِدَىَّ وَأَنْ أَعْمَلَ صَٰلِحًۭا تَرْضَىٰهُ وَأَدْخِلْنِى بِرَحْمَتِكَ فِى عِبَادِكَ ٱلصَّٰلِحِينَ",
+    "transliteration": "Fe tebesseme dahıken min kavliha ve kale rabbi evzı'ni en eşkure ni'metekelleti en'amte aleyye ve ala valideyye ve en a'mele salihan terdahu ve edhılni bi rahmetike fi ibadikes salihin",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/027019.mp3",
+    "translations": {
+      "tr": "Süleyman, onun sözüne hafifçe güldü ve: \"Rabbim! Bana ve ana babama verdiğin nimete şükürde, hoşnut olacağın işi yapmakta beni muvaffak kıl. Rahmetinle, beni iyi kullarının arasına koy\" dedi.",
+      "en": "So [Solomon] smiled, amused at her speech, and said, \"My Lord, enable me to be grateful for Your favor which You have bestowed upon me and upon my parents and to do righteousness of which You approve. And admit me by Your mercy into [the ranks of] Your righteous servants.\""
+    }
+  },
+  {
+    "ayah": 20,
+    "arabic": "وَتَفَقَّدَ ٱلطَّيْرَ فَقَالَ مَا لِىَ لَآ أَرَى ٱلْهُدْهُدَ أَمْ كَانَ مِنَ ٱلْغَآئِبِينَ",
+    "transliteration": "Ve tefekkadat tayra fe kale maliye la eral hudhude em kane minel gaibin",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/027020.mp3",
+    "translations": {
+      "tr": "Süleyman, kuşları araştırarak: \"Hüdhüd'ü niçin göremiyorum? Yoksa kayıplarda mı? Bana apaçık bir delil getirmelidir; yoksa onu ya şiddetli bir azaba uğratırım yahut keserim\" dedi.",
+      "en": "And he took attendance of the birds and said, \"Why do I not see the hoopoe - or is he among the absent?"
+    }
+  },
+  {
+    "ayah": 21,
+    "arabic": "لَأُعَذِّبَنَّهُۥ عَذَابًۭا شَدِيدًا أَوْ لَأَا۟ذْبَحَنَّهُۥٓ أَوْ لَيَأْتِيَنِّى بِسُلْطَٰنٍۢ مُّبِينٍۢ",
+    "transliteration": "Le uazzibennehu azaben şediden ev le ezbehannehu ev le ye'tiyenni bi sultanin mubin",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/027021.mp3",
+    "translations": {
+      "tr": "Süleyman, kuşları araştırarak: \"Hüdhüd'ü niçin göremiyorum? Yoksa kayıplarda mı? Bana apaçık bir delil getirmelidir; yoksa onu ya şiddetli bir azaba uğratırım yahut keserim\" dedi.",
+      "en": "I will surely punish him with a severe punishment or slaughter him unless he brings me clear authorization.\""
+    }
+  },
+  {
+    "ayah": 22,
+    "arabic": "فَمَكَثَ غَيْرَ بَعِيدٍۢ فَقَالَ أَحَطتُ بِمَا لَمْ تُحِطْ بِهِۦ وَجِئْتُكَ مِن سَبَإٍۭ بِنَبَإٍۢ يَقِينٍ",
+    "transliteration": "Fe mekese gayre baidin fe kale ehattu bi ma lem tuhıt bihi ve ci'tuke min sebein bi nebein yakin",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/027022.mp3",
+    "translations": {
+      "tr": "Çok geçmeden Hüdhüd gelip Süleyman'a: \"Senin bilmediğin bir şeyi öğrendim. Sana Sebe'den doğru bir haber getirdim. Ora halkına hükmeden, herşeyden kendisine bolca verilen ve büyük bir tahta sahip olan bir kadın buldum; onun ve milletinin Allah'ı bırakıp güneşe secde ettiklerini gördüm. Göklerde ve yerde gizli olanları ortaya koyan, gizlediğiniz ve açıkladığınız şeyleri bilen Allah'a secde etmemeleri için şeytan, kendilerine, yaptıklarını güzel göstermiş, onları doğru yoldan alıkoymuştur. Bunun için, doğru yolu bulamazlar. O çok büyük arşın sahibi olan Allah'tan başka tanrı yoktur\" dedi.",
+      "en": "But the hoopoe stayed not long and said, \"I have encompassed [in knowledge] that which you have not encompassed, and I have come to you from Sheba with certain news."
+    }
+  },
+  {
+    "ayah": 23,
+    "arabic": "إِنِّى وَجَدتُّ ٱمْرَأَةًۭ تَمْلِكُهُمْ وَأُوتِيَتْ مِن كُلِّ شَىْءٍۢ وَلَهَا عَرْشٌ عَظِيمٌۭ",
+    "transliteration": "İnni vecedtumreeten temlikuhum ve utiyet min kulli şey'in ve leha arşun azim",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/027023.mp3",
+    "translations": {
+      "tr": "Çok geçmeden Hüdhüd gelip Süleyman'a: \"Senin bilmediğin bir şeyi öğrendim. Sana Sebe'den doğru bir haber getirdim. Ora halkına hükmeden, herşeyden kendisine bolca verilen ve büyük bir tahta sahip olan bir kadın buldum; onun ve milletinin Allah'ı bırakıp güneşe secde ettiklerini gördüm. Göklerde ve yerde gizli olanları ortaya koyan, gizlediğiniz ve açıkladığınız şeyleri bilen Allah'a secde etmemeleri için şeytan, kendilerine, yaptıklarını güzel göstermiş, onları doğru yoldan alıkoymuştur. Bunun için, doğru yolu bulamazlar. O çok büyük arşın sahibi olan Allah'tan başka tanrı yoktur\" dedi.",
+      "en": "Indeed, I found [there] a woman ruling them, and she has been given of all things, and she has a great throne."
+    }
+  },
+  {
+    "ayah": 24,
+    "arabic": "وَجَدتُّهَا وَقَوْمَهَا يَسْجُدُونَ لِلشَّمْسِ مِن دُونِ ٱللَّهِ وَزَيَّنَ لَهُمُ ٱلشَّيْطَٰنُ أَعْمَٰلَهُمْ فَصَدَّهُمْ عَنِ ٱلسَّبِيلِ فَهُمْ لَا يَهْتَدُونَ",
+    "transliteration": "Vecedtuha ve kavmeha yescudune liş şemsi min dunillahi ve zeyyene lehümuş şeytanu a'malehum fe saddehum anis sebili fe hum la yehtedun",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/027024.mp3",
+    "translations": {
+      "tr": "Çok geçmeden Hüdhüd gelip Süleyman'a: \"Senin bilmediğin bir şeyi öğrendim. Sana Sebe'den doğru bir haber getirdim. Ora halkına hükmeden, herşeyden kendisine bolca verilen ve büyük bir tahta sahip olan bir kadın buldum; onun ve milletinin Allah'ı bırakıp güneşe secde ettiklerini gördüm. Göklerde ve yerde gizli olanları ortaya koyan, gizlediğiniz ve açıkladığınız şeyleri bilen Allah'a secde etmemeleri için şeytan, kendilerine, yaptıklarını güzel göstermiş, onları doğru yoldan alıkoymuştur. Bunun için, doğru yolu bulamazlar. O çok büyük arşın sahibi olan Allah'tan başka tanrı yoktur\" dedi.",
+      "en": "I found her and her people prostrating to the sun instead of Allah, and Satan has made their deeds pleasing to them and averted them from [His] way, so they are not guided,"
+    }
+  },
+  {
+    "ayah": 25,
+    "arabic": "أَلَّا يَسْجُدُوا۟ لِلَّهِ ٱلَّذِى يُخْرِجُ ٱلْخَبْءَ فِى ٱلسَّمَٰوَٰتِ وَٱلْأَرْضِ وَيَعْلَمُ مَا تُخْفُونَ وَمَا تُعْلِنُونَ",
+    "transliteration": "Ella yescudu lillahillezi yuhriculhab'e fis semavati vel ardı ve ya'lemu ma tuhfune ve ma tu'linun",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/027025.mp3",
+    "translations": {
+      "tr": "Çok geçmeden Hüdhüd gelip Süleyman'a: \"Senin bilmediğin bir şeyi öğrendim. Sana Sebe'den doğru bir haber getirdim. Ora halkına hükmeden, herşeyden kendisine bolca verilen ve büyük bir tahta sahip olan bir kadın buldum; onun ve milletinin Allah'ı bırakıp güneşe secde ettiklerini gördüm. Göklerde ve yerde gizli olanları ortaya koyan, gizlediğiniz ve açıkladığınız şeyleri bilen Allah'a secde etmemeleri için şeytan, kendilerine, yaptıklarını güzel göstermiş, onları doğru yoldan alıkoymuştur. Bunun için, doğru yolu bulamazlar. O çok büyük arşın sahibi olan Allah'tan başka tanrı yoktur\" dedi.",
+      "en": "[And] so they do not prostrate to Allah, who brings forth what is hidden within the heavens and the earth and knows what you conceal and what you declare -"
+    }
+  },
+  {
+    "ayah": 26,
+    "arabic": "ٱللَّهُ لَآ إِلَٰهَ إِلَّا هُوَ رَبُّ ٱلْعَرْشِ ٱلْعَظِيمِ ۩",
+    "transliteration": "Allahu la ilahe illa huve rabbul arşil azim",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/027026.mp3",
+    "translations": {
+      "tr": "Çok geçmeden Hüdhüd gelip Süleyman'a: \"Senin bilmediğin bir şeyi öğrendim. Sana Sebe'den doğru bir haber getirdim. Ora halkına hükmeden, herşeyden kendisine bolca verilen ve büyük bir tahta sahip olan bir kadın buldum; onun ve milletinin Allah'ı bırakıp güneşe secde ettiklerini gördüm. Göklerde ve yerde gizli olanları ortaya koyan, gizlediğiniz ve açıkladığınız şeyleri bilen Allah'a secde etmemeleri için şeytan, kendilerine, yaptıklarını güzel göstermiş, onları doğru yoldan alıkoymuştur. Bunun için, doğru yolu bulamazlar. O çok büyük arşın sahibi olan Allah'tan başka tanrı yoktur\" dedi.",
+      "en": "Allah - there is no deity except Him, Lord of the Great Throne.\""
+    }
+  },
+  {
+    "ayah": 27,
+    "arabic": "۞ قَالَ سَنَنظُرُ أَصَدَقْتَ أَمْ كُنتَ مِنَ ٱلْكَٰذِبِينَ",
+    "transliteration": "Kale se nenzuru e sadakte em kunte minel kazibin",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/027027.mp3",
+    "translations": {
+      "tr": "Süleyman şöyle söyledi: \"Doğru mu söylüyorsun, yoksa yalancılardan mısın, bakacağız.\"",
+      "en": "[Solomon] said, \"We will see whether you were truthful or were of the liars."
+    }
+  },
+  {
+    "ayah": 28,
+    "arabic": "ٱذْهَب بِّكِتَٰبِى هَٰذَا فَأَلْقِهْ إِلَيْهِمْ ثُمَّ تَوَلَّ عَنْهُمْ فَٱنظُرْ مَاذَا يَرْجِعُونَ",
+    "transliteration": "İzheb bi kitabi haza fe elkıh ileyhim summe tevelle anhum fenzur maza yerciun",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/027028.mp3",
+    "translations": {
+      "tr": "\"Şu yazımı götür, onlara at, sonra bir yana çekil, varacakları sonuca bak.\"",
+      "en": "Take this letter of mine and deliver it to them. Then leave them and see what [answer] they will return.\""
+    }
+  },
+  {
+    "ayah": 29,
+    "arabic": "قَالَتْ يَٰٓأَيُّهَا ٱلْمَلَؤُا۟ إِنِّىٓ أُلْقِىَ إِلَىَّ كِتَٰبٌۭ كَرِيمٌ",
+    "transliteration": "Kalet ya eyyuhel meleu inni ulkıye ileyye kitabun kerim",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/027029.mp3",
+    "translations": {
+      "tr": "Sebe melikesi: \"Ey ileri gelenler! Bana, Bismillahirrahmanirrahim diye başlayan ve 'sakın bana karşı baş kaldırmayın ve teslim olarak gelin' diyen Süleyman'dan gönderilen önemli bir mektup bırakıldı\" dedi.",
+      "en": "She said, \"O eminent ones, indeed, to me has been delivered a noble letter."
+    }
+  },
+  {
+    "ayah": 30,
+    "arabic": "إِنَّهُۥ مِن سُلَيْمَٰنَ وَإِنَّهُۥ بِسْمِ ٱللَّهِ ٱلرَّحْمَٰنِ ٱلرَّحِيمِ",
+    "transliteration": "İnnehu min suleymane ve innehu bismillahir rahmanir rahim",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/027030.mp3",
+    "translations": {
+      "tr": "Sebe melikesi: \"Ey ileri gelenler! Bana, Bismillahirrahmanirrahim diye başlayan ve 'sakın bana karşı baş kaldırmayın ve teslim olarak gelin' diyen Süleyman'dan gönderilen önemli bir mektup bırakıldı\" dedi.",
+      "en": "Indeed, it is from Solomon, and indeed, it reads: 'In the name of Allah, the Entirely Merciful, the Especially Merciful,"
+    }
+  },
+  {
+    "ayah": 31,
+    "arabic": "أَلَّا تَعْلُوا۟ عَلَىَّ وَأْتُونِى مُسْلِمِينَ",
+    "transliteration": "Ella ta'lu aleyye ve'tuni muslimin",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/027031.mp3",
+    "translations": {
+      "tr": "Sebe melikesi: \"Ey ileri gelenler! Bana, Bismillahirrahmanirrahim diye başlayan ve 'sakın bana karşı baş kaldırmayın ve teslim olarak gelin' diyen Süleyman'dan gönderilen önemli bir mektup bırakıldı\" dedi.",
+      "en": "Be not haughty with me but come to me in submission [as Muslims].' \""
+    }
+  },
+  {
+    "ayah": 32,
+    "arabic": "قَالَتْ يَٰٓأَيُّهَا ٱلْمَلَؤُا۟ أَفْتُونِى فِىٓ أَمْرِى مَا كُنتُ قَاطِعَةً أَمْرًا حَتَّىٰ تَشْهَدُونِ",
+    "transliteration": "Kalet ya eyyuhel meleu eftuni fi emri, ma kuntu katıaten emren hatta teşhedun",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/027032.mp3",
+    "translations": {
+      "tr": "\"Ey ileri gelenler! Vereceğim emir hakkında bana fikrinizi söyleyin; siz benim yanımda bulunmadıkça, bir iş hakkında kesin bir hüküm vermem\" dedi.",
+      "en": "She said, \"O eminent ones, advise me in my affair. I would not decide a matter until you witness [for] me.\""
+    }
+  },
+  {
+    "ayah": 33,
+    "arabic": "قَالُوا۟ نَحْنُ أُو۟لُوا۟ قُوَّةٍۢ وَأُو۟لُوا۟ بَأْسٍۢ شَدِيدٍۢ وَٱلْأَمْرُ إِلَيْكِ فَٱنظُرِى مَاذَا تَأْمُرِينَ",
+    "transliteration": "Kalu nahnu ulu kuvvetin ve ulu be'sin şedidin vel emru ileyki fenzuri maza te'murin",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/027033.mp3",
+    "translations": {
+      "tr": "\"Biz güçlü kimseler ve zorlu savaş adamlarıyız, emir senindir, sen emretmene bak.\"",
+      "en": "They said, \"We are men of strength and of great military might, but the command is yours, so see what you will command.\""
+    }
+  },
+  {
+    "ayah": 34,
+    "arabic": "قَالَتْ إِنَّ ٱلْمُلُوكَ إِذَا دَخَلُوا۟ قَرْيَةً أَفْسَدُوهَا وَجَعَلُوٓا۟ أَعِزَّةَ أَهْلِهَآ أَذِلَّةًۭ ۖ وَكَذَٰلِكَ يَفْعَلُونَ",
+    "transliteration": "Kalet innel muluke iza dehalu karyeten efseduha ve cealu eizzete ehliha ezilleh, ve kezalike yef'alun",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/027034.mp3",
+    "translations": {
+      "tr": "Melike: \"Doğrusu hükümdarlar bir şehre girdikleri zaman orasını bozarlar, onurlu kimselerini aşağılık yaparlar. İşte böyle davranırlar. Ben onlara bir hediye göndereyim de, elçilerin ne ile döneceklerine bakayım\" dedi.",
+      "en": "She said, \"Indeed kings - when they enter a city, they ruin it and render the honored of its people humbled. And thus do they do."
+    }
+  },
+  {
+    "ayah": 35,
+    "arabic": "وَإِنِّى مُرْسِلَةٌ إِلَيْهِم بِهَدِيَّةٍۢ فَنَاظِرَةٌۢ بِمَ يَرْجِعُ ٱلْمُرْسَلُونَ",
+    "transliteration": "Ve inni mursiletun ileyhim bi hediyyetin fe nazıratun bime yerciul murselun",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/027035.mp3",
+    "translations": {
+      "tr": "Melike: \"Doğrusu hükümdarlar bir şehre girdikleri zaman orasını bozarlar, onurlu kimselerini aşağılık yaparlar. İşte böyle davranırlar. Ben onlara bir hediye göndereyim de, elçilerin ne ile döneceklerine bakayım\" dedi.",
+      "en": "But indeed, I will send to them a gift and see with what [reply] the messengers will return.\""
+    }
+  },
+  {
+    "ayah": 36,
+    "arabic": "فَلَمَّا جَآءَ سُلَيْمَٰنَ قَالَ أَتُمِدُّونَنِ بِمَالٍۢ فَمَآ ءَاتَىٰنِۦَ ٱللَّهُ خَيْرٌۭ مِّمَّآ ءَاتَىٰكُم بَلْ أَنتُم بِهَدِيَّتِكُمْ تَفْرَحُونَ",
+    "transliteration": "Fe lemma cae suleymane kale e tumidduneni bi malin fe ma ataniyallahu hayrun mimma atakum, bel entum bi hediyyetikum tefrahun",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/027036.mp3",
+    "translations": {
+      "tr": "Süleyman'a geldiklerinde: \"Bana mal ile yardım etmek mi istiyorsunuz? Allah'ın bana verdiği size verdiğinden daha iyidir. Ama belki de siz hediyenizle sevinirsiniz. Onlara dön! And olsun ki, güç yetiremeyecekleri bir ordu ile gelir onları oradan alçalmış ve küçük düşmüş olarak çıkarırız\" dedi.",
+      "en": "So when they came to Solomon, he said, \"Do you provide me with wealth? But what Allah has given me is better than what He has given you. Rather, it is you who rejoice in your gift."
+    }
+  },
+  {
+    "ayah": 37,
+    "arabic": "ٱرْجِعْ إِلَيْهِمْ فَلَنَأْتِيَنَّهُم بِجُنُودٍۢ لَّا قِبَلَ لَهُم بِهَا وَلَنُخْرِجَنَّهُم مِّنْهَآ أَذِلَّةًۭ وَهُمْ صَٰغِرُونَ",
+    "transliteration": "İrcı' ileyhim fe le ne'tiyennehum bi cunudin la kıbele lehum biha ve le nuhricennehum minha ezilleten ve hum sagırun",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/027037.mp3",
+    "translations": {
+      "tr": "Süleyman'a geldiklerinde: \"Bana mal ile yardım etmek mi istiyorsunuz? Allah'ın bana verdiği size verdiğinden daha iyidir. Ama belki de siz hediyenizle sevinirsiniz. Onlara dön! And olsun ki, güç yetiremeyecekleri bir ordu ile gelir onları oradan alçalmış ve küçük düşmüş olarak çıkarırız\" dedi.",
+      "en": "Return to them, for we will surely come to them with soldiers that they will be powerless to encounter, and we will surely expel them therefrom in humiliation, and they will be debased.\""
+    }
+  },
+  {
+    "ayah": 38,
+    "arabic": "قَالَ يَٰٓأَيُّهَا ٱلْمَلَؤُا۟ أَيُّكُمْ يَأْتِينِى بِعَرْشِهَا قَبْلَ أَن يَأْتُونِى مُسْلِمِينَ",
+    "transliteration": "Kale ya eyyuhel meleu eyyekum ye'tini bi arşiha kable en ye'tuni muslimin",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/027038.mp3",
+    "translations": {
+      "tr": "Süleyman: \"Ey cemaat! Bana teslim olmalarından önce, hanginiz o kraliçenin tahtını yanıma getirebilir?\" dedi.",
+      "en": "[Solomon] said, \"O assembly [of jinn], which of you will bring me her throne before they come to me in submission?\""
+    }
+  },
+  {
+    "ayah": 39,
+    "arabic": "قَالَ عِفْرِيتٌۭ مِّنَ ٱلْجِنِّ أَنَا۠ ءَاتِيكَ بِهِۦ قَبْلَ أَن تَقُومَ مِن مَّقَامِكَ ۖ وَإِنِّى عَلَيْهِ لَقَوِىٌّ أَمِينٌۭ",
+    "transliteration": "Kale ıfritun minel cinni ene atike bihi kable en tekume min makamik ve inni aleyhi le kaviyyun emin",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/027039.mp3",
+    "translations": {
+      "tr": "Cinlerden bir ifrit: \"Sen yerinden kalkmadan önce sana onu getiririm, buna karşı güvenilir bir güce sahibim\" dedi.",
+      "en": "A powerful one from among the jinn said, \"I will bring it to you before you rise from your place, and indeed, I am for this [task] strong and trustworthy.\""
+    }
+  },
+  {
+    "ayah": 40,
+    "arabic": "قَالَ ٱلَّذِى عِندَهُۥ عِلْمٌۭ مِّنَ ٱلْكِتَٰبِ أَنَا۠ ءَاتِيكَ بِهِۦ قَبْلَ أَن يَرْتَدَّ إِلَيْكَ طَرْفُكَ ۚ فَلَمَّا رَءَاهُ مُسْتَقِرًّا عِندَهُۥ قَالَ هَٰذَا مِن فَضْلِ رَبِّى لِيَبْلُوَنِىٓ ءَأَشْكُرُ أَمْ أَكْفُرُ ۖ وَمَن شَكَرَ فَإِنَّمَا يَشْكُرُ لِنَفْسِهِۦ ۖ وَمَن كَفَرَ فَإِنَّ رَبِّى غَنِىٌّۭ كَرِيمٌۭ",
+    "transliteration": "Kalellezi indehu ilmun minel kitabi ene atike bihi kable en yertedde ileyke tarfuk, fe lemma reahu mustekırran indehu kale haza min fadlı rabbi, li yebluveni e eşkur em ekfur, ve men şekere fe innema yeşkuru li nefsih ve men kefere fe inne rabbi ganiyyun kerim",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/027040.mp3",
+    "translations": {
+      "tr": "Kitabın bilgisine sahip olan biri: \"Gözünü açıp kapamadan ben onu sana getiririm\" dedi. Süleyman, tahtı yanına yerleşivermiş görünce: \"Bu, şükür mü edeceğim yoksa nankörlük mü edeceğim diye beni sınayan Rabbimin lütfundandır. Şükreden ancak kendisi için şükretmiş olur; fakat nankörlük eden bilsin ki Rabbim müstağnidir, kerem sahibidir\" dedi.",
+      "en": "Said one who had knowledge from the Scripture, \"I will bring it to you before your glance returns to you.\" And when [Solomon] saw it placed before him, he said, \"This is from the favor of my Lord to test me whether I will be grateful or ungrateful. And whoever is grateful - his gratitude is only for [the benefit of] himself. And whoever is ungrateful - then indeed, my Lord is Free of need and Generous.\""
+    }
+  },
+  {
+    "ayah": 41,
+    "arabic": "قَالَ نَكِّرُوا۟ لَهَا عَرْشَهَا نَنظُرْ أَتَهْتَدِىٓ أَمْ تَكُونُ مِنَ ٱلَّذِينَ لَا يَهْتَدُونَ",
+    "transliteration": "Kale nekkiru leha arşeha nenzur e tehtedi em tekunu minellezine la yehtedun",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/027041.mp3",
+    "translations": {
+      "tr": "Süleyman \"Onun tahtını tanınmaz hale getirin, bakalım tanıyabilecek mi yoksa tanıyamayacak mı?\" (yola gelecek mi, yoksa yola gelmeyenlerden mi olacak?) dedi.",
+      "en": "He said, \"Disguise for her her throne; we will see whether she will be guided [to truth] or will be of those who is not guided.\""
+    }
+  },
+  {
+    "ayah": 42,
+    "arabic": "فَلَمَّا جَآءَتْ قِيلَ أَهَٰكَذَا عَرْشُكِ ۖ قَالَتْ كَأَنَّهُۥ هُوَ ۚ وَأُوتِينَا ٱلْعِلْمَ مِن قَبْلِهَا وَكُنَّا مُسْلِمِينَ",
+    "transliteration": "Fe lemma caet kile e hakeza arşuk, kalet ke ennehu huve ve utinel ilme min kabliha ve kunna muslimin",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/027042.mp3",
+    "translations": {
+      "tr": "Melike geldiğinde \"Senin tahtın böyle miydi?\" denildi. O da \"Sanki odur, daha önce bize bilgi verilmişti ve teslim olmuştuk\" dedi.",
+      "en": "So when she arrived, it was said [to her], \"Is your throne like this?\" She said, \"[It is] as though it was it.\" [Solomon said], \"And we were given knowledge before her, and we have been Muslims [in submission to Allah]."
+    }
+  },
+  {
+    "ayah": 43,
+    "arabic": "وَصَدَّهَا مَا كَانَت تَّعْبُدُ مِن دُونِ ٱللَّهِ ۖ إِنَّهَا كَانَتْ مِن قَوْمٍۢ كَٰفِرِينَ",
+    "transliteration": "Ve saddeha ma kanet ta'budu min dunillah, inneha kanet min kavmin kafirin",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/027043.mp3",
+    "translations": {
+      "tr": "Melikeyi o zamana kadar alıkoyan, Allah'tan başka taptığı şeylerdi; çünkü kendisi inkarcı bir millettendi.",
+      "en": "And that which she was worshipping other than Allah had averted her [from submission to Him]. Indeed, she was from a disbelieving people.\""
+    }
+  },
+  {
+    "ayah": 44,
+    "arabic": "قِيلَ لَهَا ٱدْخُلِى ٱلصَّرْحَ ۖ فَلَمَّا رَأَتْهُ حَسِبَتْهُ لُجَّةًۭ وَكَشَفَتْ عَن سَاقَيْهَا ۚ قَالَ إِنَّهُۥ صَرْحٌۭ مُّمَرَّدٌۭ مِّن قَوَارِيرَ ۗ قَالَتْ رَبِّ إِنِّى ظَلَمْتُ نَفْسِى وَأَسْلَمْتُ مَعَ سُلَيْمَٰنَ لِلَّهِ رَبِّ ٱلْعَٰلَمِينَ",
+    "transliteration": "Kile lehadhulis sarh, fe lemma raethu hasibethu lucceten ve keşefet an sakayha, kale innehu sarhun mumerradun min kavarir, kalet rabbi inni zalemtu nefsi ve eslemtu mea suleymane lillahi rabbil alemin",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/027044.mp3",
+    "translations": {
+      "tr": "Ona: \"Köşke gir\" dendi; salonu görünce, onu derin bir su zannetti, eteğini çekti. Süleyman: \"Doğrusu bu camdan yapılmış mücella bir salondur\" dedi. Melike: \"Rabbim! Şüphesiz ben kendime yazık etmişim. Süleyman'la beraber, Alemlerin Rabbi olan Allah'a teslim oldum\" dedi.",
+      "en": "She was told, \"Enter the palace.\" But when she saw it, she thought it was a body of water and uncovered her shins [to wade through]. He said, \"Indeed, it is a palace [whose floor is] made smooth with glass.\" She said, \"My Lord, indeed I have wronged myself, and I submit with Solomon to Allah, Lord of the worlds.\""
+    }
+  },
+  {
+    "ayah": 45,
+    "arabic": "وَلَقَدْ أَرْسَلْنَآ إِلَىٰ ثَمُودَ أَخَاهُمْ صَٰلِحًا أَنِ ٱعْبُدُوا۟ ٱللَّهَ فَإِذَا هُمْ فَرِيقَانِ يَخْتَصِمُونَ",
+    "transliteration": "Ve lekad erselna ila semude ehahum salihan eni'budullahe fe izahum ferikani yahtesımun",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/027045.mp3",
+    "translations": {
+      "tr": "And olsun ki, Semud milletine kardeşleri Salih'i \"Allah'a kulluk ediniz\" desin diye gönderdik. Hemen birbiriyle çekişen iki zümreye ayrıldılar.",
+      "en": "And We had certainly sent to Thamud their brother Salih, [saying], \"Worship Allah,\" and at once they were two parties conflicting."
+    }
+  },
+  {
+    "ayah": 46,
+    "arabic": "قَالَ يَٰقَوْمِ لِمَ تَسْتَعْجِلُونَ بِٱلسَّيِّئَةِ قَبْلَ ٱلْحَسَنَةِ ۖ لَوْلَا تَسْتَغْفِرُونَ ٱللَّهَ لَعَلَّكُمْ تُرْحَمُونَ",
+    "transliteration": "Kale ya kavmi lime testa'cilune bis seyyieti kablel haseneh, lev la testagfirunallahe leallekum turhamun",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/027046.mp3",
+    "translations": {
+      "tr": "Salih: \"Ey milletim! Niye iyilikten önce, acele kötülük istiyorsunuz? Merhamet olunasınız diye Allah'tan mağfiret dileseniz olmaz mı?\" dedi.",
+      "en": "He said, \"O my people, why are you impatient for evil instead of good? Why do you not seek forgiveness of Allah that you may receive mercy?\""
+    }
+  },
+  {
+    "ayah": 47,
+    "arabic": "قَالُوا۟ ٱطَّيَّرْنَا بِكَ وَبِمَن مَّعَكَ ۚ قَالَ طَٰٓئِرُكُمْ عِندَ ٱللَّهِ ۖ بَلْ أَنتُمْ قَوْمٌۭ تُفْتَنُونَ",
+    "transliteration": "Kalut tayyerna bike ve bi men meak, kale tairukum indallahi bel entum kavmun tuftenun",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/027047.mp3",
+    "translations": {
+      "tr": "\"Sen ve beraberindekiler yüzünden uğursuzluğa uğradık\" dediler. Salih: \"Uğursuzluğunuz Allah katındandır; belki imtihana çekilen bir milletsiniz\" dedi.",
+      "en": "They said, \"We consider you a bad omen, you and those with you.\" He said, \"Your omen is with Allah. Rather, you are a people being tested.\""
+    }
+  },
+  {
+    "ayah": 48,
+    "arabic": "وَكَانَ فِى ٱلْمَدِينَةِ تِسْعَةُ رَهْطٍۢ يُفْسِدُونَ فِى ٱلْأَرْضِ وَلَا يُصْلِحُونَ",
+    "transliteration": "Ve kane fil medineti tis'atu rahtın yufsidune fil ardı ve la yuslihun",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/027048.mp3",
+    "translations": {
+      "tr": "O şehirde, yeryüzünde bozgunculuk yapan, düzeltmeye uğraşmayan dokuz kişi (çete) vardı.",
+      "en": "And there were in the city nine family heads causing corruption in the land and not amending [its affairs]."
+    }
+  },
+  {
+    "ayah": 49,
+    "arabic": "قَالُوا۟ تَقَاسَمُوا۟ بِٱللَّهِ لَنُبَيِّتَنَّهُۥ وَأَهْلَهُۥ ثُمَّ لَنَقُولَنَّ لِوَلِيِّهِۦ مَا شَهِدْنَا مَهْلِكَ أَهْلِهِۦ وَإِنَّا لَصَٰدِقُونَ",
+    "transliteration": "Kalu tekasemu billahi le nubeyyitennehu ve ehlehu summe le nekulenne li veliyyihi ma şehidna mehlike ehlihi ve inna le sadikun",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/027049.mp3",
+    "translations": {
+      "tr": "\"Biz gece ona ve ailesine baskın verelim, sonra da onun dostuna, ailesinin yok edilişinde bulunmadık, şüphesiz biz doğru söylüyoruz, diyelim\" diye aralarında Allah'a yemin ettiler.",
+      "en": "They said, \"Take a mutual oath by Allah that we will kill him by night, he and his family. Then we will say to his executor, 'We did not witness the destruction of his family, and indeed, we are truthful.' \""
+    }
+  },
+  {
+    "ayah": 50,
+    "arabic": "وَمَكَرُوا۟ مَكْرًۭا وَمَكَرْنَا مَكْرًۭا وَهُمْ لَا يَشْعُرُونَ",
+    "transliteration": "Ve mekeru mekran ve mekerna mekran ve hum la yeş'urun",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/027050.mp3",
+    "translations": {
+      "tr": "Onlar bir düzen kurdular. Biz farkettirmeden düzenlerini bozduk.",
+      "en": "And they planned a plan, and We planned a plan, while they perceived not."
+    }
+  },
+  {
+    "ayah": 51,
+    "arabic": "فَٱنظُرْ كَيْفَ كَانَ عَٰقِبَةُ مَكْرِهِمْ أَنَّا دَمَّرْنَٰهُمْ وَقَوْمَهُمْ أَجْمَعِينَ",
+    "transliteration": "Fenzur keyfe kane akıbetu mekrihim enna demmernahum ve kavmehum ecmein",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/027051.mp3",
+    "translations": {
+      "tr": "Hilelerinin sonunun nasıl olduğuna bir bak! Biz onları ve milletlerini, hepsini, yerle bir ettik.",
+      "en": "Then look how was the outcome of their plan - that We destroyed them and their people, all."
+    }
+  },
+  {
+    "ayah": 52,
+    "arabic": "فَتِلْكَ بُيُوتُهُمْ خَاوِيَةًۢ بِمَا ظَلَمُوٓا۟ ۗ إِنَّ فِى ذَٰلِكَ لَءَايَةًۭ لِّقَوْمٍۢ يَعْلَمُونَ",
+    "transliteration": "Fe tilke buyutuhum haviyeten bima zalemu, inne fi zalike le ayeten li kavmin ya'lemun",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/027052.mp3",
+    "translations": {
+      "tr": "İşte, haksızlıklarına karşılık çökmüş bulunan evleri! Bunda, bilen bir millet için şüphesiz, ders vardır.",
+      "en": "So those are their houses, desolate because of the wrong they had done. Indeed in that is a sign for people who know."
+    }
+  },
+  {
+    "ayah": 53,
+    "arabic": "وَأَنجَيْنَا ٱلَّذِينَ ءَامَنُوا۟ وَكَانُوا۟ يَتَّقُونَ",
+    "transliteration": "Ve enceynellezine amenu ve kanu yettekun",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/027053.mp3",
+    "translations": {
+      "tr": "İnanıp Allah'a karşı gelmekten sakınanları kurtardık.",
+      "en": "And We saved those who believed and used to fear Allah."
+    }
+  },
+  {
+    "ayah": 54,
+    "arabic": "وَلُوطًا إِذْ قَالَ لِقَوْمِهِۦٓ أَتَأْتُونَ ٱلْفَٰحِشَةَ وَأَنتُمْ تُبْصِرُونَ",
+    "transliteration": "Ve lutan iz kale li kavmihi ete'tunel fahışete ve entum tubsırun",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/027054.mp3",
+    "translations": {
+      "tr": "Lut'u da gönderdik; milletine şöyle dedi: \"Göz göre göre bir hayasızlık mı yapıyorsunuz?\"",
+      "en": "And [mention] Lot, when he said to his people, \"Do you commit immorality while you are seeing?"
+    }
+  },
+  {
+    "ayah": 55,
+    "arabic": "أَئِنَّكُمْ لَتَأْتُونَ ٱلرِّجَالَ شَهْوَةًۭ مِّن دُونِ ٱلنِّسَآءِ ۚ بَلْ أَنتُمْ قَوْمٌۭ تَجْهَلُونَ",
+    "transliteration": "E innekum le te'tuner ricale şehveten min dunin nisai, bel entum kavmun techelun",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/027055.mp3",
+    "translations": {
+      "tr": "\"Kadınları bırakıp, erkeklere mi yaklaşıyorsunuz; evet, siz cahil bir milletsiniz.\"",
+      "en": "Do you indeed approach men with desire instead of women? Rather, you are a people behaving ignorantly.\""
+    }
+  },
+  {
+    "ayah": 56,
+    "arabic": "۞ فَمَا كَانَ جَوَابَ قَوْمِهِۦٓ إِلَّآ أَن قَالُوٓا۟ أَخْرِجُوٓا۟ ءَالَ لُوطٍۢ مِّن قَرْيَتِكُمْ ۖ إِنَّهُمْ أُنَاسٌۭ يَتَطَهَّرُونَ",
+    "transliteration": "Fe ma kane cevabe kavmihi illa en kalu ahricu ale lutın min karyetikum innehum unasun yetetahherun",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/027056.mp3",
+    "translations": {
+      "tr": "Milletinin cevabı sadece: \"Lut'un ailesini kasabanızdan çıkarın, güya onlar temiz kalmaya çalışan insanlarmış\" demek oldu.",
+      "en": "But the answer of his people was not except that they said, \"Expel the family of Lot from your city. Indeed, they are people who keep themselves pure.\""
+    }
+  },
+  {
+    "ayah": 57,
+    "arabic": "فَأَنجَيْنَٰهُ وَأَهْلَهُۥٓ إِلَّا ٱمْرَأَتَهُۥ قَدَّرْنَٰهَا مِنَ ٱلْغَٰبِرِينَ",
+    "transliteration": "Fe enceynahu ve ehlehu illemreetehu kaddernaha minel gabirin",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/027057.mp3",
+    "translations": {
+      "tr": "Bunun üzerine onu ve ailesini kurtardık, yalnız karısının geride kalanlardan olmasını gerekli bulduk.",
+      "en": "So We saved him and his family, except for his wife; We destined her to be of those who remained behind."
+    }
+  },
+  {
+    "ayah": 58,
+    "arabic": "وَأَمْطَرْنَا عَلَيْهِم مَّطَرًۭا ۖ فَسَآءَ مَطَرُ ٱلْمُنذَرِينَ",
+    "transliteration": "Ve emtarna aleyhim matara, fe sae matarul munzerin",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/027058.mp3",
+    "translations": {
+      "tr": "Geride kalanların üzerlerine bir yağmur yağdırdık. Uyarılan fakat yola gelmeyenlerin yağmuru ne kötü idi!",
+      "en": "And We rained upon them a rain [of stones], and evil was the rain of those who were warned."
+    }
+  },
+  {
+    "ayah": 59,
+    "arabic": "قُلِ ٱلْحَمْدُ لِلَّهِ وَسَلَٰمٌ عَلَىٰ عِبَادِهِ ٱلَّذِينَ ٱصْطَفَىٰٓ ۗ ءَآللَّهُ خَيْرٌ أَمَّا يُشْرِكُونَ",
+    "transliteration": "Kulil hamdu lillahi ve selamun ala ibadihillezinastafa, allahu hayrun emma yuşrikun",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/027059.mp3",
+    "translations": {
+      "tr": "De ki: \"Hamd Allah'a mahsustur, seçtiği kullarına selam olsun. Allah mı daha iyidir, yoksa O'na koştukları ortaklar mı?\"",
+      "en": "Say, [O Muhammad], \"Praise be to Allah, and peace upon His servants whom He has chosen. Is Allah better or what they associate with Him?\""
+    }
+  },
+  {
+    "ayah": 60,
+    "arabic": "أَمَّنْ خَلَقَ ٱلسَّمَٰوَٰتِ وَٱلْأَرْضَ وَأَنزَلَ لَكُم مِّنَ ٱلسَّمَآءِ مَآءًۭ فَأَنۢبَتْنَا بِهِۦ حَدَآئِقَ ذَاتَ بَهْجَةٍۢ مَّا كَانَ لَكُمْ أَن تُنۢبِتُوا۟ شَجَرَهَآ ۗ أَءِلَٰهٌۭ مَّعَ ٱللَّهِ ۚ بَلْ هُمْ قَوْمٌۭ يَعْدِلُونَ",
+    "transliteration": "Emmen halakas semavati vel arda ve enzele lekum mines semai ma', fe enbetna bihi hadaika zate behceh, ma kane lekum en tunbitu şecereha, e ilahun meallah, bel hum kavmun ya'dilun",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/027060.mp3",
+    "translations": {
+      "tr": "Yoksa gökleri ve yeri yaratan, gökten size su indirip onunla, bir ağacını bile bitirmeye gücünüzün yetmediği, güzel güzel bahçeler meydana getiren mi? Allah'ın yanında başka bir tanrı mı? Hayır; onlar taptıklarını Allah'a eşit tutan bir millettir.",
+      "en": "[More precisely], is He [not best] who created the heavens and the earth and sent down for you rain from the sky, causing to grow thereby gardens of joyful beauty which you could not [otherwise] have grown the trees thereof? Is there a deity with Allah? [No], but they are a people who ascribe equals [to Him]."
+    }
+  },
+  {
+    "ayah": 61,
+    "arabic": "أَمَّن جَعَلَ ٱلْأَرْضَ قَرَارًۭا وَجَعَلَ خِلَٰلَهَآ أَنْهَٰرًۭا وَجَعَلَ لَهَا رَوَٰسِىَ وَجَعَلَ بَيْنَ ٱلْبَحْرَيْنِ حَاجِزًا ۗ أَءِلَٰهٌۭ مَّعَ ٱللَّهِ ۚ بَلْ أَكْثَرُهُمْ لَا يَعْلَمُونَ",
+    "transliteration": "Emmen cealel arda kararen ve ceale hılaleha enharen ve ceale leha revasiye ve ceale beynel bahreyni haciza, e ilahun meallah, bel ekseruhum la ya'lemun",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/027061.mp3",
+    "translations": {
+      "tr": "Yoksa yeri, yaratıklarının oturmasına elverişli kılan ve aralarında ırmaklar meydana getiren, yeryüzüne sabit dağlar yerleştiren, iki deniz arasına engel koyan mı? Allah'ın yanında başka bir tanrı mı? Hayır; çoğu bilmezler.",
+      "en": "Is He [not best] who made the earth a stable ground and placed within it rivers and made for it firmly set mountains and placed between the two seas a barrier? Is there a deity with Allah? [No], but most of them do not know."
+    }
+  },
+  {
+    "ayah": 62,
+    "arabic": "أَمَّن يُجِيبُ ٱلْمُضْطَرَّ إِذَا دَعَاهُ وَيَكْشِفُ ٱلسُّوٓءَ وَيَجْعَلُكُمْ خُلَفَآءَ ٱلْأَرْضِ ۗ أَءِلَٰهٌۭ مَّعَ ٱللَّهِ ۚ قَلِيلًۭا مَّا تَذَكَّرُونَ",
+    "transliteration": "Emmen yucibul mudtarra iza deahu ve yekşifus sue ve yec'alukum hulefael ard, e ilahun meallah, kalilen ma tezekkerun",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/027062.mp3",
+    "translations": {
+      "tr": "Yoksa, darda kalana, kendisine yakardığı zaman karşılık veren, başındaki sıkıntıyı gideren ve sizi yeryüzünün sahipleri yapan mı? Allah'ın yanında başka bir tanrı mi? Pek kıt düşünüyorsunuz.",
+      "en": "Is He [not best] who responds to the desperate one when he calls upon Him and removes evil and makes you inheritors of the earth? Is there a deity with Allah? Little do you remember."
+    }
+  },
+  {
+    "ayah": 63,
+    "arabic": "أَمَّن يَهْدِيكُمْ فِى ظُلُمَٰتِ ٱلْبَرِّ وَٱلْبَحْرِ وَمَن يُرْسِلُ ٱلرِّيَٰحَ بُشْرًۢا بَيْنَ يَدَىْ رَحْمَتِهِۦٓ ۗ أَءِلَٰهٌۭ مَّعَ ٱللَّهِ ۚ تَعَٰلَى ٱللَّهُ عَمَّا يُشْرِكُونَ",
+    "transliteration": "Emmen yehdikum fi zulumatil berri vel bahri ve men yursilur riyaha buşren beyne yedey rahmetih, e ilahun meallah, tealallahu amma yuşrikun",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/027063.mp3",
+    "translations": {
+      "tr": "Yoksa, karanın ve denizin karanlıklarında size yol bulduran, rüzgarları rahmetinin önünde müjdeci gönderen mi? Allah'ın yanında başka bir tanrı mı? Allah, koştukları eşlerden yücedir.",
+      "en": "Is He [not best] who guides you through the darknesses of the land and sea and who sends the winds as good tidings before His mercy? Is there a deity with Allah? High is Allah above whatever they associate with Him."
+    }
+  },
+  {
+    "ayah": 64,
+    "arabic": "أَمَّن يَبْدَؤُا۟ ٱلْخَلْقَ ثُمَّ يُعِيدُهُۥ وَمَن يَرْزُقُكُم مِّنَ ٱلسَّمَآءِ وَٱلْأَرْضِ ۗ أَءِلَٰهٌۭ مَّعَ ٱللَّهِ ۚ قُلْ هَاتُوا۟ بُرْهَٰنَكُمْ إِن كُنتُمْ صَٰدِقِينَ",
+    "transliteration": "Emmen yebdeul halka summe yuiduhu ve men yerzukukum mines semai vel ard, e ilahun meallah, kul hatu burhanekum in kuntum sadikin",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/027064.mp3",
+    "translations": {
+      "tr": "Yoksa, önce yaratan, sonra da yaratmayı tekrar edecek olan; size gökten ve yerden rızık veren mi? Allah'ın yanında başka bir tanrı mı? De ki: \"Eğer doğru sözlülerden iseniz, açık delilinizi getirin.\"",
+      "en": "Is He [not best] who begins creation and then repeats it and who provides for you from the heaven and earth? Is there a deity with Allah? Say, \"Produce your proof, if you should be truthful.\""
+    }
+  },
+  {
+    "ayah": 65,
+    "arabic": "قُل لَّا يَعْلَمُ مَن فِى ٱلسَّمَٰوَٰتِ وَٱلْأَرْضِ ٱلْغَيْبَ إِلَّا ٱللَّهُ ۚ وَمَا يَشْعُرُونَ أَيَّانَ يُبْعَثُونَ",
+    "transliteration": "Kul la ya'lemu men fis semavati vel ardıl gaybe illallah ve ma yeş'urune eyyane yub'asun",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/027065.mp3",
+    "translations": {
+      "tr": "De ki: \"Göklerde ve yerde gaybı Allah'tan başka bilen yoktur.\" Ne zaman diriltileceklerini de bilmezler.",
+      "en": "Say, \"None in the heavens and earth knows the unseen except Allah, and they do not perceive when they will be resurrected.\""
+    }
+  },
+  {
+    "ayah": 66,
+    "arabic": "بَلِ ٱدَّٰرَكَ عِلْمُهُمْ فِى ٱلْءَاخِرَةِ ۚ بَلْ هُمْ فِى شَكٍّۢ مِّنْهَا ۖ بَلْ هُم مِّنْهَا عَمُونَ",
+    "transliteration": "Beliddareke ilmuhum fil ahıreh, bel hum fi şekkin minha, bel hum minha amun",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/027066.mp3",
+    "translations": {
+      "tr": "Ahirete dair bilgileri yeterli midir? Hayır; ondan şüphe etmektedirler. Hayır; ona karşı kördürler.",
+      "en": "Rather, their knowledge is arrested concerning the Hereafter. Rather, they are in doubt about it. Rather, they are, concerning it, blind."
+    }
+  },
+  {
+    "ayah": 67,
+    "arabic": "وَقَالَ ٱلَّذِينَ كَفَرُوٓا۟ أَءِذَا كُنَّا تُرَٰبًۭا وَءَابَآؤُنَآ أَئِنَّا لَمُخْرَجُونَ",
+    "transliteration": "Ve kalellezine keferu e iza kunna turaben ve abauna e inna le muhracun",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/027067.mp3",
+    "translations": {
+      "tr": "İnkar edenler: \"Biz ve babalarımız toprak olduğumuzda mı, doğrusu bizler mi tekrar çıkarılacağız? Bununla biz de, daha önce babalarımız da, and olsun ki, tehdit edilmiştik. Bu, öncekilerin masallarından başka bir şey değildir\" dediler.",
+      "en": "And those who disbelieve say, \"When we have become dust as well as our forefathers, will we indeed be brought out [of the graves]?"
+    }
+  },
+  {
+    "ayah": 68,
+    "arabic": "لَقَدْ وُعِدْنَا هَٰذَا نَحْنُ وَءَابَآؤُنَا مِن قَبْلُ إِنْ هَٰذَآ إِلَّآ أَسَٰطِيرُ ٱلْأَوَّلِينَ",
+    "transliteration": "Lekad vuıdna haza nahnu ve abauna min kablu in haza illa esatirul evvelin",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/027068.mp3",
+    "translations": {
+      "tr": "İnkar edenler: \"Biz ve babalarımız toprak olduğumuzda mı, doğrusu bizler mi tekrar çıkarılacağız? Bununla biz de, daha önce babalarımız da, and olsun ki, tehdit edilmiştik. Bu, öncekilerin masallarından başka bir şey değildir\" dediler.",
+      "en": "We have been promised this, we and our forefathers, before. This is not but legends of the former peoples.\""
+    }
+  },
+  {
+    "ayah": 69,
+    "arabic": "قُلْ سِيرُوا۟ فِى ٱلْأَرْضِ فَٱنظُرُوا۟ كَيْفَ كَانَ عَٰقِبَةُ ٱلْمُجْرِمِينَ",
+    "transliteration": "Kul siru fil ardı fenzuru keyfe kane akibetul mucrimin",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/027069.mp3",
+    "translations": {
+      "tr": "De ki: \"Yeryüzünde gezin, suçluların sonunun nasıl olduğuna bir bakın.\"",
+      "en": "Say, [O Muhammad], \"Travel through the land and observe how was the end of the criminals.\""
+    }
+  },
+  {
+    "ayah": 70,
+    "arabic": "وَلَا تَحْزَنْ عَلَيْهِمْ وَلَا تَكُن فِى ضَيْقٍۢ مِّمَّا يَمْكُرُونَ",
+    "transliteration": "Ve la tahzen aleyhim ve la tekun fi daykın mimma yemkurun",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/027070.mp3",
+    "translations": {
+      "tr": "Onlara üzülme. Hilelerine karşı da sıkılma.",
+      "en": "And grieve not over them or be in distress from what they conspire."
+    }
+  },
+  {
+    "ayah": 71,
+    "arabic": "وَيَقُولُونَ مَتَىٰ هَٰذَا ٱلْوَعْدُ إِن كُنتُمْ صَٰدِقِينَ",
+    "transliteration": "Ve yekulune meta hazel va'du in kuntum sadıkin",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/027071.mp3",
+    "translations": {
+      "tr": "Onlar: \"Eğer doğru söylüyorsanız, bildirin, bu sözünüz ne zaman yerine gelecektir?\" derler.",
+      "en": "And they say, \"When is [the fulfillment of] this promise, if you should be truthful?\""
+    }
+  },
+  {
+    "ayah": 72,
+    "arabic": "قُلْ عَسَىٰٓ أَن يَكُونَ رَدِفَ لَكُم بَعْضُ ٱلَّذِى تَسْتَعْجِلُونَ",
+    "transliteration": "Kul asa en yekune radife lekum ba'dullezi testa'cilun",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/027072.mp3",
+    "translations": {
+      "tr": "De ki: \"Acele ettiğiniz şeyin bir kısmı belki hemen başınıza gelir.\"",
+      "en": "Say, \"Perhaps it is close behind you - some of that for which you are impatient."
+    }
+  },
+  {
+    "ayah": 73,
+    "arabic": "وَإِنَّ رَبَّكَ لَذُو فَضْلٍ عَلَى ٱلنَّاسِ وَلَٰكِنَّ أَكْثَرَهُمْ لَا يَشْكُرُونَ",
+    "transliteration": "Ve inne rabbeke le zu fadlın alen nasi ve lakinne ekserehum la yeşkurun",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/027073.mp3",
+    "translations": {
+      "tr": "Doğrusu Rabbin, insanlara karşı lütuf sahibidir. Fakat onların çoğu şükretmezler.",
+      "en": "And indeed, your Lord is full of bounty for the people, but most of them do not show gratitude.\""
+    }
+  },
+  {
+    "ayah": 74,
+    "arabic": "وَإِنَّ رَبَّكَ لَيَعْلَمُ مَا تُكِنُّ صُدُورُهُمْ وَمَا يُعْلِنُونَ",
+    "transliteration": "Ve inne rabbeke le ya'lemu ma tukinnu suduruhum ve ma yu'linun",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/027074.mp3",
+    "translations": {
+      "tr": "Şüphesiz Rabbin onların gönüllerinin gizlediklerini de, açığa vurduklarını da bilir.",
+      "en": "And indeed, your Lord knows what their breasts conceal and what they declare."
+    }
+  },
+  {
+    "ayah": 75,
+    "arabic": "وَمَا مِنْ غَآئِبَةٍۢ فِى ٱلسَّمَآءِ وَٱلْأَرْضِ إِلَّا فِى كِتَٰبٍۢ مُّبِينٍ",
+    "transliteration": "Ve ma min gaibetin fis semai vel ardı illa fi kitabin mubin",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/027075.mp3",
+    "translations": {
+      "tr": "Gökte ve yerde gizli hiçbir şey yoktur ki apaçık bir kitapta olmasın.",
+      "en": "And there is nothing concealed within the heaven and the earth except that it is in a clear Register."
+    }
+  },
+  {
+    "ayah": 76,
+    "arabic": "إِنَّ هَٰذَا ٱلْقُرْءَانَ يَقُصُّ عَلَىٰ بَنِىٓ إِسْرَٰٓءِيلَ أَكْثَرَ ٱلَّذِى هُمْ فِيهِ يَخْتَلِفُونَ",
+    "transliteration": "İnne hazel kur'ane yakussu ala beni israile ekserellezi hum fihi yahtelifun",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/027076.mp3",
+    "translations": {
+      "tr": "Doğrusu bu Kuran, İsrailoğullarına, ayrılığa düştükleri şeyin çoğunu anlatmaktadır.",
+      "en": "Indeed, this Qur'an relates to the Children of Israel most of that over which they disagree."
+    }
+  },
+  {
+    "ayah": 77,
+    "arabic": "وَإِنَّهُۥ لَهُدًۭى وَرَحْمَةٌۭ لِّلْمُؤْمِنِينَ",
+    "transliteration": "Ve innehu le huden ve rahmetun lil mu'minin",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/027077.mp3",
+    "translations": {
+      "tr": "Doğrusu Kuran, inananlara doğruluk rehberi ve rahmettir.",
+      "en": "And indeed, it is guidance and mercy for the believers."
+    }
+  },
+  {
+    "ayah": 78,
+    "arabic": "إِنَّ رَبَّكَ يَقْضِى بَيْنَهُم بِحُكْمِهِۦ ۚ وَهُوَ ٱلْعَزِيزُ ٱلْعَلِيمُ",
+    "transliteration": "İnne rabbeke yakdi beynehum bi hukmihi, ve huvel azizul alim",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/027078.mp3",
+    "translations": {
+      "tr": "Rabbin şüphesiz, aralarında, kendi hükmünü verecektir. O güçlüdür, bilendir.",
+      "en": "Indeed, your Lord will judge between them by His [wise] judgement. And He is the Exalted in Might, the Knowing."
+    }
+  },
+  {
+    "ayah": 79,
+    "arabic": "فَتَوَكَّلْ عَلَى ٱللَّهِ ۖ إِنَّكَ عَلَى ٱلْحَقِّ ٱلْمُبِينِ",
+    "transliteration": "Fe tevekkel alallah, inneke alel hakkıl mubin",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/027079.mp3",
+    "translations": {
+      "tr": "Allah'a güven, şüphesiz sen apaçık gerçek üzerindesin.",
+      "en": "So rely upon Allah; indeed, you are upon the clear truth."
+    }
+  },
+  {
+    "ayah": 80,
+    "arabic": "إِنَّكَ لَا تُسْمِعُ ٱلْمَوْتَىٰ وَلَا تُسْمِعُ ٱلصُّمَّ ٱلدُّعَآءَ إِذَا وَلَّوْا۟ مُدْبِرِينَ",
+    "transliteration": "İnneke la tusmiul mevta ve la tusmius summed duae iza vellev mudbirin",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/027080.mp3",
+    "translations": {
+      "tr": "Sen, ölülere şüphesiz ki işittiremezsin; dönüp giden sağırlara da çağrıyı duyuramazsın.",
+      "en": "Indeed, you will not make the dead hear, nor will you make the deaf hear the call when they have turned their backs retreating."
+    }
+  },
+  {
+    "ayah": 81,
+    "arabic": "وَمَآ أَنتَ بِهَٰدِى ٱلْعُمْىِ عَن ضَلَٰلَتِهِمْ ۖ إِن تُسْمِعُ إِلَّا مَن يُؤْمِنُ بِـَٔايَٰتِنَا فَهُم مُّسْلِمُونَ",
+    "transliteration": "Ve ma ente bi hadil umyi an dalaletihim, in tusmiu illa men yu'minu bi ayatina fe hum muslimun",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/027081.mp3",
+    "translations": {
+      "tr": "Körleri sapıklıklarından vazgeçirip doğru yola döndüremezsin; ancak ayetlerimize inananlara sen duyurabilirsin; işte onlar Müslümanlardır.",
+      "en": "And you cannot guide the blind away from their error. You will only make hear those who believe in Our verses so they are Muslims [submitting to Allah]."
+    }
+  },
+  {
+    "ayah": 82,
+    "arabic": "۞ وَإِذَا وَقَعَ ٱلْقَوْلُ عَلَيْهِمْ أَخْرَجْنَا لَهُمْ دَآبَّةًۭ مِّنَ ٱلْأَرْضِ تُكَلِّمُهُمْ أَنَّ ٱلنَّاسَ كَانُوا۟ بِـَٔايَٰتِنَا لَا يُوقِنُونَ",
+    "transliteration": "Ve iza vakaal kavlu aleyhim ahracna lehum dabbeten minel ardı tukellimuhum ennen nase kanu bi ayatina la yukınun",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/027082.mp3",
+    "translations": {
+      "tr": "Kendilerine söylenmiş olan başlarına geldiği zaman, yerden bir çeşit hayvan çıkarırız ki o, onlara, insanların ayetlerimize kesin olarak inanmadıkların söyler.",
+      "en": "And when the word befalls them, We will bring forth for them a creature from the earth speaking to them, [saying] that the people were, of Our verses, not certain [in faith]."
+    }
+  },
+  {
+    "ayah": 83,
+    "arabic": "وَيَوْمَ نَحْشُرُ مِن كُلِّ أُمَّةٍۢ فَوْجًۭا مِّمَّن يُكَذِّبُ بِـَٔايَٰتِنَا فَهُمْ يُوزَعُونَ",
+    "transliteration": "Ve yevme nahşuru min kulli ummetin fevcen mimmen yukezzibu bi ayatina fe hum yuzeun",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/027083.mp3",
+    "translations": {
+      "tr": "O gün her ümmetin ayetlerimizi yalanlayanlarını toplarız. Onlar bir arada tutulup, hesap yerine sevkedilirler.",
+      "en": "And [warn of] the Day when We will gather from every nation a company of those who deny Our signs, and they will be [driven] in rows"
+    }
+  },
+  {
+    "ayah": 84,
+    "arabic": "حَتَّىٰٓ إِذَا جَآءُو قَالَ أَكَذَّبْتُم بِـَٔايَٰتِى وَلَمْ تُحِيطُوا۟ بِهَا عِلْمًا أَمَّاذَا كُنتُمْ تَعْمَلُونَ",
+    "transliteration": "Hatta iza cau kale e kezzebtum bi ayati ve lem tuhitu biha ılmen em maza kuntum ta'melun",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/027084.mp3",
+    "translations": {
+      "tr": "Geldikleri zaman Allah: \"Ayetlerimi anlamadığınız halde yalanladınız mı? Yoksa yaptığınız neydi?\" der.",
+      "en": "Until, when they arrive [at the place of Judgement], He will say, \"Did you deny My signs while you encompassed them not in knowledge, or what [was it that] you were doing?\""
+    }
+  },
+  {
+    "ayah": 85,
+    "arabic": "وَوَقَعَ ٱلْقَوْلُ عَلَيْهِم بِمَا ظَلَمُوا۟ فَهُمْ لَا يَنطِقُونَ",
+    "transliteration": "Ve vakaal kavlu aleyhim bima zalemu fe hum la yentıkun",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/027085.mp3",
+    "translations": {
+      "tr": "Haksızlıklarından ötürü, söylenilen söz başlarına gelir. Artık konuşamaz olurlar.",
+      "en": "And the decree will befall them for the wrong they did, and they will not [be able to] speak."
+    }
+  },
+  {
+    "ayah": 86,
+    "arabic": "أَلَمْ يَرَوْا۟ أَنَّا جَعَلْنَا ٱلَّيْلَ لِيَسْكُنُوا۟ فِيهِ وَٱلنَّهَارَ مُبْصِرًا ۚ إِنَّ فِى ذَٰلِكَ لَءَايَٰتٍۢ لِّقَوْمٍۢ يُؤْمِنُونَ",
+    "transliteration": "E lem yerev enna cealnel leyle li yeskunu fihi ven nehara mubsıra, inne fi zalike le ayatin li kavmin yu'minun",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/027086.mp3",
+    "translations": {
+      "tr": "Size geceyi dinlenesiniz diye karanlık ve gündüzü çalışasınız diye aydınlık olarak yarattığımızı görmediler mi? Doğrusu bunda, inanan millet için dersler vardır.",
+      "en": "Do they not see that We made the night that they may rest therein and the day giving sight? Indeed in that are signs for a people who believe."
+    }
+  },
+  {
+    "ayah": 87,
+    "arabic": "وَيَوْمَ يُنفَخُ فِى ٱلصُّورِ فَفَزِعَ مَن فِى ٱلسَّمَٰوَٰتِ وَمَن فِى ٱلْأَرْضِ إِلَّا مَن شَآءَ ٱللَّهُ ۚ وَكُلٌّ أَتَوْهُ دَٰخِرِينَ",
+    "transliteration": "Ve yevme yunfehu fis suri fe fezia men fis semavati ve men fil ardı illa men şaallah, ve kullun etevhu dahırin",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/027087.mp3",
+    "translations": {
+      "tr": "Sura üfürüldüğü gün, Allah'ın diledikleri bir yana, göklerde olanlar da yerde olanlar da, korku içinde kalırlar. Hepsi Allah'a boyunları bükülmüş olarak gelirler.",
+      "en": "And [warn of] the Day the Horn will be blown, and whoever is in the heavens and whoever is on the earth will be terrified except whom Allah wills. And all will come to Him humbled."
+    }
+  },
+  {
+    "ayah": 88,
+    "arabic": "وَتَرَى ٱلْجِبَالَ تَحْسَبُهَا جَامِدَةًۭ وَهِىَ تَمُرُّ مَرَّ ٱلسَّحَابِ ۚ صُنْعَ ٱللَّهِ ٱلَّذِىٓ أَتْقَنَ كُلَّ شَىْءٍ ۚ إِنَّهُۥ خَبِيرٌۢ بِمَا تَفْعَلُونَ",
+    "transliteration": "Ve terel cibale tahsebuha camideten ve hiye temurru merres sehab, sun'allahillezi etkane kulle şey', innehu habirun bima tef'alun",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/027088.mp3",
+    "translations": {
+      "tr": "Dağları yerinde donmuş gibi durur görürsün, oysa onlar bulutlar gibi geçerler. Bu her şeyi sağlam tutan Allah'ın işidir. Doğrusu O, yaptıklarınızdan haberdardır.",
+      "en": "And you see the mountains, thinking them rigid, while they will pass as the passing of clouds. [It is] the work of Allah, who perfected all things. Indeed, He is Acquainted with that which you do."
+    }
+  },
+  {
+    "ayah": 89,
+    "arabic": "مَن جَآءَ بِٱلْحَسَنَةِ فَلَهُۥ خَيْرٌۭ مِّنْهَا وَهُم مِّن فَزَعٍۢ يَوْمَئِذٍ ءَامِنُونَ",
+    "transliteration": "Men cae bil haseneti fe lehu hayrun minha, ve hum min fezein yevmeizin aminun",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/027089.mp3",
+    "translations": {
+      "tr": "Kim bir iyilik getirirse, ona daha iyisi verilir. Onlar o günün korkusundan güvendedirler.",
+      "en": "Whoever comes [at Judgement] with a good deed will have better than it, and they, from the terror of that Day, will be safe."
+    }
+  },
+  {
+    "ayah": 90,
+    "arabic": "وَمَن جَآءَ بِٱلسَّيِّئَةِ فَكُبَّتْ وُجُوهُهُمْ فِى ٱلنَّارِ هَلْ تُجْزَوْنَ إِلَّا مَا كُنتُمْ تَعْمَلُونَ",
+    "transliteration": "Ve men cae bis seyyieti fe kubbet vucuhuhum fin nar, hel tuczevne illa ma kuntum ta'melun",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/027090.mp3",
+    "translations": {
+      "tr": "Kötülük getiren kimseler, yüzükoyun ateşe atılırlar. \"Yaptıklarınızdan başka bir şeyle mi cezalandırılacaksınız?\" denir.",
+      "en": "And whoever comes with an evil deed - their faces will be overturned into the Fire, [and it will be said], \"Are you recompensed except for what you used to do?\""
+    }
+  },
+  {
+    "ayah": 91,
+    "arabic": "إِنَّمَآ أُمِرْتُ أَنْ أَعْبُدَ رَبَّ هَٰذِهِ ٱلْبَلْدَةِ ٱلَّذِى حَرَّمَهَا وَلَهُۥ كُلُّ شَىْءٍۢ ۖ وَأُمِرْتُ أَنْ أَكُونَ مِنَ ٱلْمُسْلِمِينَ",
+    "transliteration": "İnnema umirtu en a'bude rabbe hazihil beldetillezi harremeha ve lehu kullu şey'in ve umırtu en ekune minel muslimin",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/027091.mp3",
+    "translations": {
+      "tr": "De ki: \"Ben, yalnız her şeyin sahibi olan ve bu kutlu kılınmış şehrin Rabbine kulluk etmekle emrolundum. Müslümanlardan olmakla ve Kuran okumakla emrolundum.\" Kim doğru yolu bulmuşsa, yalnız kendisi için bulmuş olur, kim sapıtmışsa kendine etmiş olur. De ki: \"Ben sadece, uyaranlardan biriyim.\"",
+      "en": "[Say, O Muhammad], \"I have only been commanded to worship the Lord of this city, who made it sacred and to whom [belongs] all things. And I am commanded to be of the Muslims [those who submit to Allah]"
+    }
+  },
+  {
+    "ayah": 92,
+    "arabic": "وَأَنْ أَتْلُوَا۟ ٱلْقُرْءَانَ ۖ فَمَنِ ٱهْتَدَىٰ فَإِنَّمَا يَهْتَدِى لِنَفْسِهِۦ ۖ وَمَن ضَلَّ فَقُلْ إِنَّمَآ أَنَا۠ مِنَ ٱلْمُنذِرِينَ",
+    "transliteration": "Ve en etluvel kur'an, fe menihteda fe innema yehtedi li nefsih, ve men dalle fe kul innema ene minel munzirin",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/027092.mp3",
+    "translations": {
+      "tr": "De ki: \"Ben, yalnız her şeyin sahibi olan ve bu kutlu kılınmış şehrin Rabbine kulluk etmekle emrolundum. Müslümanlardan olmakla ve Kuran okumakla emrolundum.\" Kim doğru yolu bulmuşsa, yalnız kendisi için bulmuş olur, kim sapıtmışsa kendine etmiş olur. De ki: \"Ben sadece, uyaranlardan biriyim.\"",
+      "en": "And to recite the Qur'an.\" And whoever is guided is only guided for [the benefit of] himself; and whoever strays - say, \"I am only [one] of the warners.\""
+    }
+  },
+  {
+    "ayah": 93,
+    "arabic": "وَقُلِ ٱلْحَمْدُ لِلَّهِ سَيُرِيكُمْ ءَايَٰتِهِۦ فَتَعْرِفُونَهَا ۚ وَمَا رَبُّكَ بِغَٰفِلٍ عَمَّا تَعْمَلُونَ",
+    "transliteration": "Ve kulil hamdu lillahi seyurikum ayatihi fe ta'rifuneha, ve ma rabbuke bi gafilin amma ta'melun",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/027093.mp3",
+    "translations": {
+      "tr": "De ki: \"Hamd Allah'a mahsustur. O, ayetlerini size gösterecek, siz de onları bileceksiniz.\" Rabbin yaptıklarınızdan habersiz değildir.",
+      "en": "And say, \"[All] praise is [due] to Allah. He will show you His signs, and you will recognize them. And your Lord is not unaware of what you do.\""
+    }
+  }
+]

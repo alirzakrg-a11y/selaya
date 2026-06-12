@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/widget_root"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@drawable/widget_bg"
+    android:padding="14dp">
+
+    <!-- Header: city + next prayer -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical">
+
+        <TextView
+            android:id="@+id/widget_pw_city"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Namaz Vakitleri"
+            android:textColor="#E0B250"
+            android:textSize="11sp"
+            android:textStyle="bold"
+            android:maxLines="1"
+            android:ellipsize="end" />
+
+        <TextView
+            android:id="@+id/widget_pw_next"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Akşam 19:55"
+            android:textColor="#F4F6FB"
+            android:textSize="13sp"
+            android:textStyle="bold"
+            android:maxLines="1" />
+    </LinearLayout>
+
+    <!-- Row 1 -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="horizontal"
+        android:paddingTop="6dp">
+
+        <LinearLayout android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" android:orientation="vertical" android:gravity="center">
+            <TextView android:id="@+id/widget_pw_1n" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="İmsak" android:textColor="#9AA3B8" android:textSize="12sp" android:maxLines="1" />
+            <TextView android:id="@+id/widget_pw_1t" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="03:31" android:textColor="#F4F6FB" android:textSize="18sp" android:textStyle="bold" android:maxLines="1" />
+        </LinearLayout>
+        <LinearLayout android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" android:orientation="vertical" android:gravity="center">
+            <TextView android:id="@+id/widget_pw_2n" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Güneş" android:textColor="#9AA3B8" android:textSize="12sp" android:maxLines="1" />
+            <TextView android:id="@+id/widget_pw_2t" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="05:12" android:textColor="#F4F6FB" android:textSize="18sp" android:textStyle="bold" android:maxLines="1" />
+        </LinearLayout>
+        <LinearLayout android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" android:orientation="vertical" android:gravity="center">
+            <TextView android:id="@+id/widget_pw_3n" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Öğle" android:textColor="#9AA3B8" android:textSize="12sp" android:maxLines="1" />
+            <TextView android:id="@+id/widget_pw_3t" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="12:38" android:textColor="#F4F6FB" android:textSize="18sp" android:textStyle="bold" android:maxLines="1" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <!-- Row 2 -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="horizontal">
+
+        <LinearLayout android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" android:orientation="vertical" android:gravity="center">
+            <TextView android:id="@+id/widget_pw_4n" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="İkindi" android:textColor="#9AA3B8" android:textSize="12sp" android:maxLines="1" />
+            <TextView android:id="@+id/widget_pw_4t" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="16:28" android:textColor="#F4F6FB" android:textSize="18sp" android:textStyle="bold" android:maxLines="1" />
+        </LinearLayout>
+        <LinearLayout android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" android:orientation="vertical" android:gravity="center">
+            <TextView android:id="@+id/widget_pw_5n" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Akşam" android:textColor="#9AA3B8" android:textSize="12sp" android:maxLines="1" />
+            <TextView android:id="@+id/widget_pw_5t" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="19:55" android:textColor="#F4F6FB" android:textSize="18sp" android:textStyle="bold" android:maxLines="1" />
+        </LinearLayout>
+        <LinearLayout android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" android:orientation="vertical" android:gravity="center">
+            <TextView android:id="@+id/widget_pw_6n" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Yatsı" android:textColor="#9AA3B8" android:textSize="12sp" android:maxLines="1" />
+            <TextView android:id="@+id/widget_pw_6t" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="21:26" android:textColor="#F4F6FB" android:textSize="18sp" android:textStyle="bold" android:maxLines="1" />
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>com.apple.security.application-groups</key>
+	<array>
+		<string>group.com.nida.nida</string>
+	</array>
+	<!-- NOTE: the Time Sensitive Notifications capability
+	     (com.apple.developer.usernotifications.time-sensitive) requires a PAID
+	     Apple Developer account — personal/free teams can't sign it. It is
+	     intentionally NOT declared here. The adhan code still requests
+	     InterruptionLevel.timeSensitive; iOS simply delivers it as a normal
+	     ("active") notification on free teams (no crash, no signing error). Add
+	     this entitlement + the matching Xcode capability only on a paid team. -->
+</dict>
+</plist>

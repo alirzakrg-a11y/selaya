@@ -1,0 +1,42 @@
+[
+  {
+    "ayah": 1,
+    "arabic": "لِإِيلَافِ قُرَيْشٍ",
+    "transliteration": "Li ilafi kureyş",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/106001.mp3",
+    "translations": {
+      "tr": "Kureyş'in alışkanlığı için,",
+      "en": "For the accustomed security of the Quraysh —"
+    }
+  },
+  {
+    "ayah": 2,
+    "arabic": "إِيلَافِهِمْ رِحْلَةَ الشِّتَاءِ وَالصَّيْفِ",
+    "transliteration": "İlafihim rıhleteş şitai ves sayf",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/106002.mp3",
+    "translations": {
+      "tr": "kış ve yaz yolculuğuna alışkanlıkları için.",
+      "en": "their accustomed security in the caravan of winter and summer —"
+    }
+  },
+  {
+    "ayah": 3,
+    "arabic": "فَلْيَعْبُدُوا رَبَّ هَٰذَا الْبَيْتِ",
+    "transliteration": "Fel ya'budu rabbe hazel beyt",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/106003.mp3",
+    "translations": {
+      "tr": "Bu evin (Kâbe'nin) Rabbine kulluk etsinler.",
+      "en": "let them worship the Lord of this House,"
+    }
+  },
+  {
+    "ayah": 4,
+    "arabic": "الَّذِي أَطْعَمَهُمْ مِنْ جُوعٍ وَآمَنَهُمْ مِنْ خَوْفٍ",
+    "transliteration": "Ellezi at'amehum min cuın ve amenehum min havf",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/106004.mp3",
+    "translations": {
+      "tr": "O ki, onları açlıktan doyurdu ve korkudan emin kıldı.",
+      "en": "who has fed them against hunger and made them safe from fear."
+    }
+  }
+]

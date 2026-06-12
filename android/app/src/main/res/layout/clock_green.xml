@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- İslami Yeşil digital clock (#15) — green glass + gold time. TextClock ticks
+     on its own. -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/widget_root"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:background="@drawable/widget_bg_green"
+    android:padding="12dp">
+
+    <TextClock
+        android:id="@+id/widget_cg_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:format12Hour="HH:mm"
+        android:format24Hour="HH:mm"
+        android:textColor="#E0B250"
+        android:textSize="50sp"
+        android:textStyle="bold" />
+
+    <TextClock
+        android:id="@+id/widget_cg_date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingTop="2dp"
+        android:format12Hour="d MMMM EEEE"
+        android:format24Hour="d MMMM EEEE"
+        android:textColor="#CFE0CF"
+        android:textSize="13sp"
+        android:maxLines="1" />
+</LinearLayout>

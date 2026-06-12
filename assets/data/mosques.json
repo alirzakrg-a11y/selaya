@@ -1,0 +1,10 @@
+[
+  { "id": "m1", "lat": 41.0055, "lng": 28.9769, "distanceKm": 0.4, "translations": { "tr": { "name": "Sultanahmet Camii", "address": "Fatih, İstanbul" }, "en": { "name": "Blue Mosque", "address": "Fatih, Istanbul" } } },
+  { "id": "m2", "lat": 41.0086, "lng": 28.9802, "distanceKm": 0.7, "translations": { "tr": { "name": "Ayasofya-i Kebir Camii", "address": "Fatih, İstanbul" }, "en": { "name": "Hagia Sophia Mosque", "address": "Fatih, Istanbul" } } },
+  { "id": "m3", "lat": 41.0165, "lng": 28.9641, "distanceKm": 1.9, "translations": { "tr": { "name": "Süleymaniye Camii", "address": "Fatih, İstanbul" }, "en": { "name": "Süleymaniye Mosque", "address": "Fatih, Istanbul" } } },
+  { "id": "m4", "lat": 41.0258, "lng": 28.9744, "distanceKm": 2.6, "translations": { "tr": { "name": "Fatih Camii", "address": "Fatih, İstanbul" }, "en": { "name": "Fatih Mosque", "address": "Fatih, Istanbul" } } },
+  { "id": "m5", "lat": 41.0394, "lng": 28.9486, "distanceKm": 4.1, "translations": { "tr": { "name": "Eyüp Sultan Camii", "address": "Eyüpsultan, İstanbul" }, "en": { "name": "Eyüp Sultan Mosque", "address": "Eyüpsultan, Istanbul" } } },
+  { "id": "m6", "lat": 41.0297, "lng": 28.9249, "distanceKm": 5.3, "translations": { "tr": { "name": "Mihrimah Sultan Camii", "address": "Edirnekapı, İstanbul" }, "en": { "name": "Mihrimah Sultan Mosque", "address": "Edirnekapı, Istanbul" } } },
+  { "id": "m7", "lat": 41.0512, "lng": 29.0094, "distanceKm": 6.0, "translations": { "tr": { "name": "Ortaköy Camii", "address": "Beşiktaş, İstanbul" }, "en": { "name": "Ortaköy Mosque", "address": "Beşiktaş, Istanbul" } } },
+  { "id": "m8", "lat": 41.0235, "lng": 28.9700, "distanceKm": 2.2, "translations": { "tr": { "name": "Şehzade Camii", "address": "Fatih, İstanbul" }, "en": { "name": "Şehzade Mosque", "address": "Fatih, Istanbul" } } }
+]

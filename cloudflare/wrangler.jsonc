@@ -1,0 +1,32 @@
+{
+  // SELAYA içerik API'si + yönetim paneli (tek Worker, host'a göre yönlenir)
+  //   api.selaya.app   -> herkese açık, salt-okunur manifest
+  //   panel.selaya.app -> yönetim paneli (X-Admin-Token ile korumalı)
+  "name": "selaya-api",
+  "main": "src/index.js",
+  "compatibility_date": "2026-06-01",
+
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "selaya-content",
+      "database_id": "aa261d9d-45f4-456c-bf7d-9a09edde0473"
+    }
+  ],
+
+  "r2_buckets": [
+    {
+      "binding": "CDN",
+      "bucket_name": "selaya-cdn"
+    }
+  ],
+
+  "vars": {
+    "CDN_BASE": "https://cdn.selaya.app"
+  },
+
+  "routes": [
+    { "pattern": "api.selaya.app", "custom_domain": true },
+    { "pattern": "panel.selaya.app", "custom_domain": true }
+  ]
+}

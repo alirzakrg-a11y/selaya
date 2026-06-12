@@ -1,0 +1,962 @@
+[
+  {
+    "ayah": 1,
+    "arabic": "إِذَا وَقَعَتِ ٱلْوَاقِعَةُ",
+    "transliteration": "İza ve kaatil vakıah",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/056001.mp3",
+    "translations": {
+      "tr": "Kıyamet koptuğunda kimini alçaltacak ve kimini yükseltecek olan o hadisenin yalan olmadığı ortaya çıkacaktır.",
+      "en": "When the Occurrence occurs,"
+    }
+  },
+  {
+    "ayah": 2,
+    "arabic": "لَيْسَ لِوَقْعَتِهَا كَاذِبَةٌ",
+    "transliteration": "Leyse li vak'atiha kazibeh",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/056002.mp3",
+    "translations": {
+      "tr": "Kıyamet koptuğunda kimini alçaltacak ve kimini yükseltecek olan o hadisenin yalan olmadığı ortaya çıkacaktır.",
+      "en": "There is, at its occurrence, no denial."
+    }
+  },
+  {
+    "ayah": 3,
+    "arabic": "خَافِضَةٌۭ رَّافِعَةٌ",
+    "transliteration": "Hafidatun rafiah",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/056003.mp3",
+    "translations": {
+      "tr": "Kıyamet koptuğunda kimini alçaltacak ve kimini yükseltecek olan o hadisenin yalan olmadığı ortaya çıkacaktır.",
+      "en": "It will bring down [some] and raise up [others]."
+    }
+  },
+  {
+    "ayah": 4,
+    "arabic": "إِذَا رُجَّتِ ٱلْأَرْضُ رَجًّۭا",
+    "transliteration": "İza ruccetil ardu recca",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/056004.mp3",
+    "translations": {
+      "tr": "Ey insanlar! Yer sarsıldıkça sarsıldığı, dağlar ufalandıkça ufalanıp da toz duman haline geldiği zaman, siz de üç sınıf olursunuz.",
+      "en": "When the earth is shaken with convulsion"
+    }
+  },
+  {
+    "ayah": 5,
+    "arabic": "وَبُسَّتِ ٱلْجِبَالُ بَسًّۭا",
+    "transliteration": "Ve bussetil cibalu bessa",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/056005.mp3",
+    "translations": {
+      "tr": "Ey insanlar! Yer sarsıldıkça sarsıldığı, dağlar ufalandıkça ufalanıp da toz duman haline geldiği zaman, siz de üç sınıf olursunuz.",
+      "en": "And the mountains are broken down, crumbling"
+    }
+  },
+  {
+    "ayah": 6,
+    "arabic": "فَكَانَتْ هَبَآءًۭ مُّنۢبَثًّۭا",
+    "transliteration": "Fe kanet hebaen mun bessa",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/056006.mp3",
+    "translations": {
+      "tr": "Ey insanlar! Yer sarsıldıkça sarsıldığı, dağlar ufalandıkça ufalanıp da toz duman haline geldiği zaman, siz de üç sınıf olursunuz.",
+      "en": "And become dust dispersing."
+    }
+  },
+  {
+    "ayah": 7,
+    "arabic": "وَكُنتُمْ أَزْوَٰجًۭا ثَلَٰثَةًۭ",
+    "transliteration": "Ve kuntum ezvacen selaseh",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/056007.mp3",
+    "translations": {
+      "tr": "Ey insanlar! Yer sarsıldıkça sarsıldığı, dağlar ufalandıkça ufalanıp da toz duman haline geldiği zaman, siz de üç sınıf olursunuz.",
+      "en": "And you become [of] three kinds:"
+    }
+  },
+  {
+    "ayah": 8,
+    "arabic": "فَأَصْحَٰبُ ٱلْمَيْمَنَةِ مَآ أَصْحَٰبُ ٱلْمَيْمَنَةِ",
+    "transliteration": "Fe ashabul meymeneti ma ashabul meymeneti",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/056008.mp3",
+    "translations": {
+      "tr": "İyi işler işlediklerini belirtmek için, amel defterleri sağdan verilenler; ne mutlu o sağcılara!",
+      "en": "Then the companions of the right - what are the companions of the right?"
+    }
+  },
+  {
+    "ayah": 9,
+    "arabic": "وَأَصْحَٰبُ ٱلْمَشْـَٔمَةِ مَآ أَصْحَٰبُ ٱلْمَشْـَٔمَةِ",
+    "transliteration": "Ve ashabul meş'emeti ma ashabul meş'emeti",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/056009.mp3",
+    "translations": {
+      "tr": "Kötülük işlediklerini belirtmek üzere, amel defterleri soldan verilenler; ne yazık o solculara!",
+      "en": "And the companions of the left - what are the companions of the left?"
+    }
+  },
+  {
+    "ayah": 10,
+    "arabic": "وَٱلسَّٰبِقُونَ ٱلسَّٰبِقُونَ",
+    "transliteration": "Ves sabikunes sabikun",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/056010.mp3",
+    "translations": {
+      "tr": "İyilik işlemekte önde olanlar, karşılıklarını almakta da önde olanlardır.",
+      "en": "And the forerunners, the forerunners -"
+    }
+  },
+  {
+    "ayah": 11,
+    "arabic": "أُو۟لَٰٓئِكَ ٱلْمُقَرَّبُونَ",
+    "transliteration": "Ulaikel mukarrebun",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/056011.mp3",
+    "translations": {
+      "tr": "Naim cennetlerinde Allah'a en çok yaklaştırılmış olanlar işte bunlardır.",
+      "en": "Those are the ones brought near [to Allah]"
+    }
+  },
+  {
+    "ayah": 12,
+    "arabic": "فِى جَنَّٰتِ ٱلنَّعِيمِ",
+    "transliteration": "Fi cennatin naim",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/056012.mp3",
+    "translations": {
+      "tr": "Naim cennetlerinde Allah'a en çok yaklaştırılmış olanlar işte bunlardır.",
+      "en": "In the Gardens of Pleasure,"
+    }
+  },
+  {
+    "ayah": 13,
+    "arabic": "ثُلَّةٌۭ مِّنَ ٱلْأَوَّلِينَ",
+    "transliteration": "Sulletun minel evvelin",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/056013.mp3",
+    "translations": {
+      "tr": "Onların büyük kısmı eski ümmetlerden, bir kısmı da sonrakilerdendir.",
+      "en": "A [large] company of the former peoples"
+    }
+  },
+  {
+    "ayah": 14,
+    "arabic": "وَقَلِيلٌۭ مِّنَ ٱلْءَاخِرِينَ",
+    "transliteration": "Ve kalilun minel ahirin",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/056014.mp3",
+    "translations": {
+      "tr": "Onların büyük kısmı eski ümmetlerden, bir kısmı da sonrakilerdendir.",
+      "en": "And a few of the later peoples,"
+    }
+  },
+  {
+    "ayah": 15,
+    "arabic": "عَلَىٰ سُرُرٍۢ مَّوْضُونَةٍۢ",
+    "transliteration": "Ala sururin mevdunetin",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/056015.mp3",
+    "translations": {
+      "tr": "Mücevheratla işlenmiş tahtlara karşılıklı olarak yaslanırlar.",
+      "en": "On thrones woven [with ornament],"
+    }
+  },
+  {
+    "ayah": 16,
+    "arabic": "مُّتَّكِـِٔينَ عَلَيْهَا مُتَقَٰبِلِينَ",
+    "transliteration": "Muttekiine aleyha mutekabilin",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/056016.mp3",
+    "translations": {
+      "tr": "Mücevheratla işlenmiş tahtlara karşılıklı olarak yaslanırlar.",
+      "en": "Reclining on them, facing each other."
+    }
+  },
+  {
+    "ayah": 17,
+    "arabic": "يَطُوفُ عَلَيْهِمْ وِلْدَٰنٌۭ مُّخَلَّدُونَ",
+    "transliteration": "Yetufu aleyhim vildanun muhalledun",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/056017.mp3",
+    "translations": {
+      "tr": "Ölümsüz gençler yanlarında, baş ağrısı ve dönmesi vermeyen bembeyaz bir kaynaktan doldurulmuş kaseler, ibrikler, kadehler; seçecekleri meyveler, arzulayacakları kuş eti ile dolaşırlar.",
+      "en": "There will circulate among them young boys made eternal"
+    }
+  },
+  {
+    "ayah": 18,
+    "arabic": "بِأَكْوَابٍۢ وَأَبَارِيقَ وَكَأْسٍۢ مِّن مَّعِينٍۢ",
+    "transliteration": "Bi ekvabin ve ebarika ve ke'sin min main",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/056018.mp3",
+    "translations": {
+      "tr": "Ölümsüz gençler yanlarında, baş ağrısı ve dönmesi vermeyen bembeyaz bir kaynaktan doldurulmuş kaseler, ibrikler, kadehler; seçecekleri meyveler, arzulayacakları kuş eti ile dolaşırlar.",
+      "en": "With vessels, pitchers and a cup [of wine] from a flowing spring -"
+    }
+  },
+  {
+    "ayah": 19,
+    "arabic": "لَّا يُصَدَّعُونَ عَنْهَا وَلَا يُنزِفُونَ",
+    "transliteration": "La yusaddeune anha ve la yunzifun",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/056019.mp3",
+    "translations": {
+      "tr": "Ölümsüz gençler yanlarında, baş ağrısı ve dönmesi vermeyen bembeyaz bir kaynaktan doldurulmuş kaseler, ibrikler, kadehler; seçecekleri meyveler, arzulayacakları kuş eti ile dolaşırlar.",
+      "en": "No headache will they have therefrom, nor will they be intoxicated -"
+    }
+  },
+  {
+    "ayah": 20,
+    "arabic": "وَفَٰكِهَةٍۢ مِّمَّا يَتَخَيَّرُونَ",
+    "transliteration": "Ve fakihetin mimma yetehayyerun",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/056020.mp3",
+    "translations": {
+      "tr": "Ölümsüz gençler yanlarında, baş ağrısı ve dönmesi vermeyen bembeyaz bir kaynaktan doldurulmuş kaseler, ibrikler, kadehler; seçecekleri meyveler, arzulayacakları kuş eti ile dolaşırlar.",
+      "en": "And fruit of what they select"
+    }
+  },
+  {
+    "ayah": 21,
+    "arabic": "وَلَحْمِ طَيْرٍۢ مِّمَّا يَشْتَهُونَ",
+    "transliteration": "Ve lahmi tayrin mimma yeştehun",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/056021.mp3",
+    "translations": {
+      "tr": "Ölümsüz gençler yanlarında, baş ağrısı ve dönmesi vermeyen bembeyaz bir kaynaktan doldurulmuş kaseler, ibrikler, kadehler; seçecekleri meyveler, arzulayacakları kuş eti ile dolaşırlar.",
+      "en": "And the meat of fowl, from whatever they desire."
+    }
+  },
+  {
+    "ayah": 22,
+    "arabic": "وَحُورٌ عِينٌۭ",
+    "transliteration": "Ve hurun inun",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/056022.mp3",
+    "translations": {
+      "tr": "İşlediklerine karşılık olarak, sedefteki inciler gibi ceylan gözlüler vardır. Orada boş ve günaha sokacak bir söz duymazlar.",
+      "en": "And [for them are] fair women with large, [beautiful] eyes,"
+    }
+  },
+  {
+    "ayah": 23,
+    "arabic": "كَأَمْثَٰلِ ٱللُّؤْلُؤِ ٱلْمَكْنُونِ",
+    "transliteration": "Ke emsalil lu'luil meknun",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/056023.mp3",
+    "translations": {
+      "tr": "İşlediklerine karşılık olarak, sedefteki inciler gibi ceylan gözlüler vardır. Orada boş ve günaha sokacak bir söz duymazlar.",
+      "en": "The likenesses of pearls well-protected,"
+    }
+  },
+  {
+    "ayah": 24,
+    "arabic": "جَزَآءًۢ بِمَا كَانُوا۟ يَعْمَلُونَ",
+    "transliteration": "Cezaen bi ma kanu ya'melun",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/056024.mp3",
+    "translations": {
+      "tr": "İşlediklerine karşılık olarak, sedefteki inciler gibi ceylan gözlüler vardır. Orada boş ve günaha sokacak bir söz duymazlar.",
+      "en": "As reward for what they used to do."
+    }
+  },
+  {
+    "ayah": 25,
+    "arabic": "لَا يَسْمَعُونَ فِيهَا لَغْوًۭا وَلَا تَأْثِيمًا",
+    "transliteration": "La yesmeune fiha lagven ve la te'sima",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/056025.mp3",
+    "translations": {
+      "tr": "Sadece selama karşılık selam sözü işitirler.",
+      "en": "They will not hear therein ill speech or commission of sin -"
+    }
+  },
+  {
+    "ayah": 26,
+    "arabic": "إِلَّا قِيلًۭا سَلَٰمًۭا سَلَٰمًۭا",
+    "transliteration": "İlla kilen selamen selama",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/056026.mp3",
+    "translations": {
+      "tr": "Defterleri sağdan verilenler; ne mutlu o sağcılara!",
+      "en": "Only a saying: \"Peace, peace.\""
+    }
+  },
+  {
+    "ayah": 27,
+    "arabic": "وَأَصْحَٰبُ ٱلْيَمِينِ مَآ أَصْحَٰبُ ٱلْيَمِينِ",
+    "transliteration": "Ve ashabul yemini ma ashabul yemin",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/056027.mp3",
+    "translations": {
+      "tr": "Onlar dikensiz sedir ağaçları, salkımları sarkmış muz ağaçları, uzamış gölge altında, çağlayarak akan sular kenarlarında; bitip tükenmeyen ve yasak da edilmeyen bol meyveler arasında; yüksek döşekler üzerindedirler.",
+      "en": "The companions of the right - what are the companions of the right?"
+    }
+  },
+  {
+    "ayah": 28,
+    "arabic": "فِى سِدْرٍۢ مَّخْضُودٍۢ",
+    "transliteration": "Fi sidrin mahdud",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/056028.mp3",
+    "translations": {
+      "tr": "Onlar dikensiz sedir ağaçları, salkımları sarkmış muz ağaçları, uzamış gölge altında, çağlayarak akan sular kenarlarında; bitip tükenmeyen ve yasak da edilmeyen bol meyveler arasında; yüksek döşekler üzerindedirler.",
+      "en": "[They will be] among lote trees with thorns removed"
+    }
+  },
+  {
+    "ayah": 29,
+    "arabic": "وَطَلْحٍۢ مَّنضُودٍۢ",
+    "transliteration": "Ve talhın mendud",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/056029.mp3",
+    "translations": {
+      "tr": "Onlar dikensiz sedir ağaçları, salkımları sarkmış muz ağaçları, uzamış gölge altında, çağlayarak akan sular kenarlarında; bitip tükenmeyen ve yasak da edilmeyen bol meyveler arasında; yüksek döşekler üzerindedirler.",
+      "en": "And [banana] trees layered [with fruit]"
+    }
+  },
+  {
+    "ayah": 30,
+    "arabic": "وَظِلٍّۢ مَّمْدُودٍۢ",
+    "transliteration": "Ve zıllin memdud",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/056030.mp3",
+    "translations": {
+      "tr": "Onlar dikensiz sedir ağaçları, salkımları sarkmış muz ağaçları, uzamış gölge altında, çağlayarak akan sular kenarlarında; bitip tükenmeyen ve yasak da edilmeyen bol meyveler arasında; yüksek döşekler üzerindedirler.",
+      "en": "And shade extended"
+    }
+  },
+  {
+    "ayah": 31,
+    "arabic": "وَمَآءٍۢ مَّسْكُوبٍۢ",
+    "transliteration": "Ve main meskub",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/056031.mp3",
+    "translations": {
+      "tr": "Onlar dikensiz sedir ağaçları, salkımları sarkmış muz ağaçları, uzamış gölge altında, çağlayarak akan sular kenarlarında; bitip tükenmeyen ve yasak da edilmeyen bol meyveler arasında; yüksek döşekler üzerindedirler.",
+      "en": "And water poured out"
+    }
+  },
+  {
+    "ayah": 32,
+    "arabic": "وَفَٰكِهَةٍۢ كَثِيرَةٍۢ",
+    "transliteration": "Ve fakihetin kesirah",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/056032.mp3",
+    "translations": {
+      "tr": "Onlar dikensiz sedir ağaçları, salkımları sarkmış muz ağaçları, uzamış gölge altında, çağlayarak akan sular kenarlarında; bitip tükenmeyen ve yasak da edilmeyen bol meyveler arasında; yüksek döşekler üzerindedirler.",
+      "en": "And fruit, abundant [and varied],"
+    }
+  },
+  {
+    "ayah": 33,
+    "arabic": "لَّا مَقْطُوعَةٍۢ وَلَا مَمْنُوعَةٍۢ",
+    "transliteration": "La maktuatin ve la memnuah",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/056033.mp3",
+    "translations": {
+      "tr": "Onlar dikensiz sedir ağaçları, salkımları sarkmış muz ağaçları, uzamış gölge altında, çağlayarak akan sular kenarlarında; bitip tükenmeyen ve yasak da edilmeyen bol meyveler arasında; yüksek döşekler üzerindedirler.",
+      "en": "Neither limited [to season] nor forbidden,"
+    }
+  },
+  {
+    "ayah": 34,
+    "arabic": "وَفُرُشٍۢ مَّرْفُوعَةٍ",
+    "transliteration": "Ve furuşin merfuah",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/056034.mp3",
+    "translations": {
+      "tr": "Onlar dikensiz sedir ağaçları, salkımları sarkmış muz ağaçları, uzamış gölge altında, çağlayarak akan sular kenarlarında; bitip tükenmeyen ve yasak da edilmeyen bol meyveler arasında; yüksek döşekler üzerindedirler.",
+      "en": "And [upon] beds raised high."
+    }
+  },
+  {
+    "ayah": 35,
+    "arabic": "إِنَّآ أَنشَأْنَٰهُنَّ إِنشَآءًۭ",
+    "transliteration": "İnna enşe'na hunne inşaa",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/056035.mp3",
+    "translations": {
+      "tr": "Biz ceylan gözlüleri, defterleri sağdan verilenler için yeniden yaratmışızdır; onları bakire, eşlerine düşkün ve hepsini bir yaşta kılmışızdır.",
+      "en": "Indeed, We have produced the women of Paradise in a [new] creation"
+    }
+  },
+  {
+    "ayah": 36,
+    "arabic": "فَجَعَلْنَٰهُنَّ أَبْكَارًا",
+    "transliteration": "Fe cealna hunne ebkaran",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/056036.mp3",
+    "translations": {
+      "tr": "Biz ceylan gözlüleri, defterleri sağdan verilenler için yeniden yaratmışızdır; onları bakire, eşlerine düşkün ve hepsini bir yaşta kılmışızdır.",
+      "en": "And made them virgins,"
+    }
+  },
+  {
+    "ayah": 37,
+    "arabic": "عُرُبًا أَتْرَابًۭا",
+    "transliteration": "Uruben etraba",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/056037.mp3",
+    "translations": {
+      "tr": "Biz ceylan gözlüleri, defterleri sağdan verilenler için yeniden yaratmışızdır; onları bakire, eşlerine düşkün ve hepsini bir yaşta kılmışızdır.",
+      "en": "Devoted [to their husbands] and of equal age,"
+    }
+  },
+  {
+    "ayah": 38,
+    "arabic": "لِّأَصْحَٰبِ ٱلْيَمِينِ",
+    "transliteration": "Li ashabil yemin",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/056038.mp3",
+    "translations": {
+      "tr": "Biz ceylan gözlüleri, defterleri sağdan verilenler için yeniden yaratmışızdır; onları bakire, eşlerine düşkün ve hepsini bir yaşta kılmışızdır.",
+      "en": "For the companions of the right [who are]"
+    }
+  },
+  {
+    "ayah": 39,
+    "arabic": "ثُلَّةٌۭ مِّنَ ٱلْأَوَّلِينَ",
+    "transliteration": "Sulletun minel evvelin",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/056039.mp3",
+    "translations": {
+      "tr": "Bunların bir kısmı eski ümmetlerden, bir kısmı da sonrakilerdendir.",
+      "en": "A company of the former peoples"
+    }
+  },
+  {
+    "ayah": 40,
+    "arabic": "وَثُلَّةٌۭ مِّنَ ٱلْءَاخِرِينَ",
+    "transliteration": "Ve sulletun minel ahırin",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/056040.mp3",
+    "translations": {
+      "tr": "Bunların bir kısmı eski ümmetlerden, bir kısmı da sonrakilerdendir.",
+      "en": "And a company of the later peoples."
+    }
+  },
+  {
+    "ayah": 41,
+    "arabic": "وَأَصْحَٰبُ ٱلشِّمَالِ مَآ أَصْحَٰبُ ٱلشِّمَالِ",
+    "transliteration": "Ve ashabuş şimali ma ashabuş şimal",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/056041.mp3",
+    "translations": {
+      "tr": "Defterleri soldan verilenler; ne yazık o solculara!",
+      "en": "And the companions of the left - what are the companions of the left?"
+    }
+  },
+  {
+    "ayah": 42,
+    "arabic": "فِى سَمُومٍۢ وَحَمِيمٍۢ",
+    "transliteration": "Fi semumin ve hamim",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/056042.mp3",
+    "translations": {
+      "tr": "İnsanın içine işleyen bir sıcaklık ve kaynar su içinde, serinliği ve hoşluğu olmayan kara bir dumanın gölgesinde bulunurlar.",
+      "en": "[They will be] in scorching fire and scalding water"
+    }
+  },
+  {
+    "ayah": 43,
+    "arabic": "وَظِلٍّۢ مِّن يَحْمُومٍۢ",
+    "transliteration": "Ve zıllin min yahmum",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/056043.mp3",
+    "translations": {
+      "tr": "İnsanın içine işleyen bir sıcaklık ve kaynar su içinde, serinliği ve hoşluğu olmayan kara bir dumanın gölgesinde bulunurlar.",
+      "en": "And a shade of black smoke,"
+    }
+  },
+  {
+    "ayah": 44,
+    "arabic": "لَّا بَارِدٍۢ وَلَا كَرِيمٍ",
+    "transliteration": "La baridin ve la kerim",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/056044.mp3",
+    "translations": {
+      "tr": "İnsanın içine işleyen bir sıcaklık ve kaynar su içinde, serinliği ve hoşluğu olmayan kara bir dumanın gölgesinde bulunurlar.",
+      "en": "Neither cool nor beneficial."
+    }
+  },
+  {
+    "ayah": 45,
+    "arabic": "إِنَّهُمْ كَانُوا۟ قَبْلَ ذَٰلِكَ مُتْرَفِينَ",
+    "transliteration": "İnnehum kanu kable zalike mutrefin",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/056045.mp3",
+    "translations": {
+      "tr": "Çünkü onlar, bundan önce, dünyada, nimet içinde bulunurlar iken, büyük günah işlemekte direnir dururlardı.",
+      "en": "Indeed they were, before that, indulging in affluence,"
+    }
+  },
+  {
+    "ayah": 46,
+    "arabic": "وَكَانُوا۟ يُصِرُّونَ عَلَى ٱلْحِنثِ ٱلْعَظِيمِ",
+    "transliteration": "Ve kanu yusirrune alel hınsil azim",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/056046.mp3",
+    "translations": {
+      "tr": "Çünkü onlar, bundan önce, dünyada, nimet içinde bulunurlar iken, büyük günah işlemekte direnir dururlardı.",
+      "en": "And they used to persist in the great violation,"
+    }
+  },
+  {
+    "ayah": 47,
+    "arabic": "وَكَانُوا۟ يَقُولُونَ أَئِذَا مِتْنَا وَكُنَّا تُرَابًۭا وَعِظَٰمًا أَءِنَّا لَمَبْعُوثُونَ",
+    "transliteration": "Ve kanu yekulune e iza mitna ve kunna turaben ve iza men e inna le meb'usun",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/056047.mp3",
+    "translations": {
+      "tr": "Şöyle söylerlerdi: \"Öldüğümüzde, toprak ve kemik yığını olduğumuzda mı, biz mi tekrar dirileceğiz?\"",
+      "en": "And they used to say, \"When we die and become dust and bones, are we indeed to be resurrected?"
+    }
+  },
+  {
+    "ayah": 48,
+    "arabic": "أَوَءَابَآؤُنَا ٱلْأَوَّلُونَ",
+    "transliteration": "E ve abaunel evvelun",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/056048.mp3",
+    "translations": {
+      "tr": "\"Önce gelip geçmiş babalarımız da mı?\"",
+      "en": "And our forefathers [as well]?\""
+    }
+  },
+  {
+    "ayah": 49,
+    "arabic": "قُلْ إِنَّ ٱلْأَوَّلِينَ وَٱلْءَاخِرِينَ",
+    "transliteration": "Kul innel evveline vel ahirin",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/056049.mp3",
+    "translations": {
+      "tr": "De ki: \"Şüphesiz öncekiler de, sonrakiler de belli bir günün belirli bir vaktinde toplanacaklardır.\"",
+      "en": "Say, [O Muhammad], \"Indeed, the former and the later peoples"
+    }
+  },
+  {
+    "ayah": 50,
+    "arabic": "لَمَجْمُوعُونَ إِلَىٰ مِيقَٰتِ يَوْمٍۢ مَّعْلُومٍۢ",
+    "transliteration": "Le mecmuune ila mikati yevmin ma'lum",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/056050.mp3",
+    "translations": {
+      "tr": "De ki: \"Şüphesiz öncekiler de, sonrakiler de belli bir günün belirli bir vaktinde toplanacaklardır.\"",
+      "en": "Are to be gathered together for the appointment of a known Day.\""
+    }
+  },
+  {
+    "ayah": 51,
+    "arabic": "ثُمَّ إِنَّكُمْ أَيُّهَا ٱلضَّآلُّونَ ٱلْمُكَذِّبُونَ",
+    "transliteration": "Summe innekum eyyuhed dallunel mukezzibun",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/056051.mp3",
+    "translations": {
+      "tr": "Sonra, siz ey sapıklar, yalanlayanlar!",
+      "en": "Then indeed you, O those astray [who are] deniers,"
+    }
+  },
+  {
+    "ayah": 52,
+    "arabic": "لَءَاكِلُونَ مِن شَجَرٍۢ مِّن زَقُّومٍۢ",
+    "transliteration": "Le akilune min şecerin min zakkumin",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/056052.mp3",
+    "translations": {
+      "tr": "Doğrusu bir zakkum ağacından yiyeceksiniz.",
+      "en": "Will be eating from trees of zaqqum"
+    }
+  },
+  {
+    "ayah": 53,
+    "arabic": "فَمَالِـُٔونَ مِنْهَا ٱلْبُطُونَ",
+    "transliteration": "Fe ma liune minhel butun",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/056053.mp3",
+    "translations": {
+      "tr": "Karınlarınızı onunla dolduracaksınız;",
+      "en": "And filling with it your bellies"
+    }
+  },
+  {
+    "ayah": 54,
+    "arabic": "فَشَٰرِبُونَ عَلَيْهِ مِنَ ٱلْحَمِيمِ",
+    "transliteration": "Fe şaribune aleyhi minel hamim",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/056054.mp3",
+    "translations": {
+      "tr": "Onun üzerine kaynar su içeceksiniz;",
+      "en": "And drinking on top of it from scalding water"
+    }
+  },
+  {
+    "ayah": 55,
+    "arabic": "فَشَٰرِبُونَ شُرْبَ ٱلْهِيمِ",
+    "transliteration": "Fe şaribune şurbel him",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/056055.mp3",
+    "translations": {
+      "tr": "Hem de susamış develerin suya saldırışı gibi içeceksiniz;",
+      "en": "And will drink as the drinking of thirsty camels."
+    }
+  },
+  {
+    "ayah": 56,
+    "arabic": "هَٰذَا نُزُلُهُمْ يَوْمَ ٱلدِّينِ",
+    "transliteration": "Haza nuzuluhum yevmed din",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/056056.mp3",
+    "translations": {
+      "tr": "İşte onlara, ceza günü sunulacak konukluk budur.",
+      "en": "That is their accommodation on the Day of Recompense."
+    }
+  },
+  {
+    "ayah": 57,
+    "arabic": "نَحْنُ خَلَقْنَٰكُمْ فَلَوْلَا تُصَدِّقُونَ",
+    "transliteration": "Nahnu halaknakum fe lev la tusaddikun",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/056057.mp3",
+    "translations": {
+      "tr": "Sizi yaratan Biziz; hala tasdik etmez misiniz?",
+      "en": "We have created you, so why do you not believe?"
+    }
+  },
+  {
+    "ayah": 58,
+    "arabic": "أَفَرَءَيْتُم مَّا تُمْنُونَ",
+    "transliteration": "E fe reeytum ma tumnun",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/056058.mp3",
+    "translations": {
+      "tr": "Söyleyin; akıttığınız meniden insanı yaratan siz misiniz, yoksa Biz mi yaratmaktayız?",
+      "en": "Have you seen that which you emit?"
+    }
+  },
+  {
+    "ayah": 59,
+    "arabic": "ءَأَنتُمْ تَخْلُقُونَهُۥٓ أَمْ نَحْنُ ٱلْخَٰلِقُونَ",
+    "transliteration": "E entum tahlukunehu em nahnul halikun",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/056059.mp3",
+    "translations": {
+      "tr": "Söyleyin; akıttığınız meniden insanı yaratan siz misiniz, yoksa Biz mi yaratmaktayız?",
+      "en": "Is it you who creates it, or are We the Creator?"
+    }
+  },
+  {
+    "ayah": 60,
+    "arabic": "نَحْنُ قَدَّرْنَا بَيْنَكُمُ ٱلْمَوْتَ وَمَا نَحْنُ بِمَسْبُوقِينَ",
+    "transliteration": "Nahnu kadderna beynekumul mevte ve ma nahnu bi mes- bukin",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/056060.mp3",
+    "translations": {
+      "tr": "Ölümü aranızda Biz tayin ettik; sizi ortadan kaldırıp benzerlerinizi yerinize getirmeyi, sizi bilmediğiniz şekilde var etmeyi dilesek kimse önümüze geçemez.",
+      "en": "We have decreed death among you, and We are not to be outdone"
+    }
+  },
+  {
+    "ayah": 61,
+    "arabic": "عَلَىٰٓ أَن نُّبَدِّلَ أَمْثَٰلَكُمْ وَنُنشِئَكُمْ فِى مَا لَا تَعْلَمُونَ",
+    "transliteration": "Ala en nubeddile emsalekum ve nunşiekum fi ma la ta'lemun",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/056061.mp3",
+    "translations": {
+      "tr": "Ölümü aranızda Biz tayin ettik; sizi ortadan kaldırıp benzerlerinizi yerinize getirmeyi, sizi bilmediğiniz şekilde var etmeyi dilesek kimse önümüze geçemez.",
+      "en": "In that We will change your likenesses and produce you in that [form] which you do not know."
+    }
+  },
+  {
+    "ayah": 62,
+    "arabic": "وَلَقَدْ عَلِمْتُمُ ٱلنَّشْأَةَ ٱلْأُولَىٰ فَلَوْلَا تَذَكَّرُونَ",
+    "transliteration": "Ve lekad alimtumunneş etel ula fe lev la tezekkerun",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/056062.mp3",
+    "translations": {
+      "tr": "And olsun ki, ilk yaratmayı bilirsiniz, yine de düşünmez misiniz?",
+      "en": "And you have already known the first creation, so will you not remember?"
+    }
+  },
+  {
+    "ayah": 63,
+    "arabic": "أَفَرَءَيْتُم مَّا تَحْرُثُونَ",
+    "transliteration": "E fe reeytum ma tahrusun",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/056063.mp3",
+    "translations": {
+      "tr": "Söyleyin, ektiklerinizi yerden bitirenler sizler misiniz, yoksa Biz mi bitiriyoruz?",
+      "en": "And have you seen that [seed] which you sow?"
+    }
+  },
+  {
+    "ayah": 64,
+    "arabic": "ءَأَنتُمْ تَزْرَعُونَهُۥٓ أَمْ نَحْنُ ٱلزَّٰرِعُونَ",
+    "transliteration": "E entum tezre unehu em nahnuz zariun",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/056064.mp3",
+    "translations": {
+      "tr": "Söyleyin, ektiklerinizi yerden bitirenler sizler misiniz, yoksa Biz mi bitiriyoruz?",
+      "en": "Is it you who makes it grow, or are We the grower?"
+    }
+  },
+  {
+    "ayah": 65,
+    "arabic": "لَوْ نَشَآءُ لَجَعَلْنَٰهُ حُطَٰمًۭا فَظَلْتُمْ تَفَكَّهُونَ",
+    "transliteration": "Lev neşau le cealnahu hutamen fe zaltum tefekkehun",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/056065.mp3",
+    "translations": {
+      "tr": "Dilersek Biz onu çerçöp yaparız, şaşar kalırsınız; \"Doğrusu borç altına girdik, hatta yoksun kaldık\".",
+      "en": "If We willed, We could make it [dry] debris, and you would remain in wonder,"
+    }
+  },
+  {
+    "ayah": 66,
+    "arabic": "إِنَّا لَمُغْرَمُونَ",
+    "transliteration": "İnna le mugremun",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/056066.mp3",
+    "translations": {
+      "tr": "Dilersek Biz onu çerçöp yaparız, şaşar kalırsınız; \"Doğrusu borç altına girdik, hatta yoksun kaldık\".",
+      "en": "[Saying], \"Indeed, we are [now] in debt;"
+    }
+  },
+  {
+    "ayah": 67,
+    "arabic": "بَلْ نَحْنُ مَحْرُومُونَ",
+    "transliteration": "Bel nahnu mahrumun",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/056067.mp3",
+    "translations": {
+      "tr": "Dilersek Biz onu çerçöp yaparız, şaşar kalırsınız; \"Doğrusu borç altına girdik, hatta yoksun kaldık\".",
+      "en": "Rather, we have been deprived.\""
+    }
+  },
+  {
+    "ayah": 68,
+    "arabic": "أَفَرَءَيْتُمُ ٱلْمَآءَ ٱلَّذِى تَشْرَبُونَ",
+    "transliteration": "E fe reeytumul maellezi teşrebun",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/056068.mp3",
+    "translations": {
+      "tr": "Söyleyin; içtiğiniz suyu buluttan indirenler sizler misiniz yoksa onu Biz mi indiririz?",
+      "en": "And have you seen the water that you drink?"
+    }
+  },
+  {
+    "ayah": 69,
+    "arabic": "ءَأَنتُمْ أَنزَلْتُمُوهُ مِنَ ٱلْمُزْنِ أَمْ نَحْنُ ٱلْمُنزِلُونَ",
+    "transliteration": "E entum enzeltumuhu minel muzni em nahnul munzilun",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/056069.mp3",
+    "translations": {
+      "tr": "Söyleyin; içtiğiniz suyu buluttan indirenler sizler misiniz yoksa onu Biz mi indiririz?",
+      "en": "Is it you who brought it down from the clouds, or is it We who bring it down?"
+    }
+  },
+  {
+    "ayah": 70,
+    "arabic": "لَوْ نَشَآءُ جَعَلْنَٰهُ أُجَاجًۭا فَلَوْلَا تَشْكُرُونَ",
+    "transliteration": "Lev neşau cealnahu ucacen fe levla teşkurun",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/056070.mp3",
+    "translations": {
+      "tr": "Dileseydik onu acılaştırırdık; hala şükretmez misiniz?",
+      "en": "If We willed, We could make it bitter, so why are you not grateful?"
+    }
+  },
+  {
+    "ayah": 71,
+    "arabic": "أَفَرَءَيْتُمُ ٱلنَّارَ ٱلَّتِى تُورُونَ",
+    "transliteration": "E fe reeytumun narelleti turun",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/056071.mp3",
+    "translations": {
+      "tr": "Söyleyin; yaktığınız ateşin ağacını var eden sizler misiniz, yoksa onu Biz mi var ederiz?",
+      "en": "And have you seen the fire that you ignite?"
+    }
+  },
+  {
+    "ayah": 72,
+    "arabic": "ءَأَنتُمْ أَنشَأْتُمْ شَجَرَتَهَآ أَمْ نَحْنُ ٱلْمُنشِـُٔونَ",
+    "transliteration": "E entum enşe'tum şecereteha em nahnul munşiun",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/056072.mp3",
+    "translations": {
+      "tr": "Söyleyin; yaktığınız ateşin ağacını var eden sizler misiniz, yoksa onu Biz mi var ederiz?",
+      "en": "Is it you who produced its tree, or are We the producer?"
+    }
+  },
+  {
+    "ayah": 73,
+    "arabic": "نَحْنُ جَعَلْنَٰهَا تَذْكِرَةًۭ وَمَتَٰعًۭا لِّلْمُقْوِينَ",
+    "transliteration": "Nahnu cealnaha tezkireten ve metaan lil mukvin",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/056073.mp3",
+    "translations": {
+      "tr": "Biz onu bir ibret ve çölde konaklayanlar için yararlı kıldık.",
+      "en": "We have made it a reminder and provision for the travelers,"
+    }
+  },
+  {
+    "ayah": 74,
+    "arabic": "فَسَبِّحْ بِٱسْمِ رَبِّكَ ٱلْعَظِيمِ",
+    "transliteration": "Fe sebbih bismi rabbikel azim",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/056074.mp3",
+    "translations": {
+      "tr": "Öyleyse çok büyük Rabbinin adını tesbih et.",
+      "en": "So exalt the name of your Lord, the Most Great."
+    }
+  },
+  {
+    "ayah": 75,
+    "arabic": "۞ فَلَآ أُقْسِمُ بِمَوَٰقِعِ ٱلنُّجُومِ",
+    "transliteration": "Fe la uksimu bi mevakiin nucum",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/056075.mp3",
+    "translations": {
+      "tr": "Hayır; yıldızların yerleri üzerine yemin ederim; ki bunun ne büyük yemin olduğunu bir bilseniz!",
+      "en": "Then I swear by the setting of the stars,"
+    }
+  },
+  {
+    "ayah": 76,
+    "arabic": "وَإِنَّهُۥ لَقَسَمٌۭ لَّوْ تَعْلَمُونَ عَظِيمٌ",
+    "transliteration": "Ve innehu le kasemun lev ta'lemune azim",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/056076.mp3",
+    "translations": {
+      "tr": "Hayır; yıldızların yerleri üzerine yemin ederim; ki bunun ne büyük yemin olduğunu bir bilseniz!",
+      "en": "And indeed, it is an oath - if you could know - [most] great."
+    }
+  },
+  {
+    "ayah": 77,
+    "arabic": "إِنَّهُۥ لَقُرْءَانٌۭ كَرِيمٌۭ",
+    "transliteration": "İnnehu le kur'anun kerim",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/056077.mp3",
+    "translations": {
+      "tr": "Doğrusu bu Kitap, sadece arınmış olanların dokunabileceği, saklı bir Kitap'da mevcutken Alemlerin Rabbi tarafından indirilmiş olan Kuranı Kerim'dir.",
+      "en": "Indeed, it is a noble Qur'an"
+    }
+  },
+  {
+    "ayah": 78,
+    "arabic": "فِى كِتَٰبٍۢ مَّكْنُونٍۢ",
+    "transliteration": "Fi kitabin meknun",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/056078.mp3",
+    "translations": {
+      "tr": "Doğrusu bu Kitap, sadece arınmış olanların dokunabileceği, saklı bir Kitap'da mevcutken Alemlerin Rabbi tarafından indirilmiş olan Kuranı Kerim'dir.",
+      "en": "In a Register well-protected;"
+    }
+  },
+  {
+    "ayah": 79,
+    "arabic": "لَّا يَمَسُّهُۥٓ إِلَّا ٱلْمُطَهَّرُونَ",
+    "transliteration": "La yemessuhu illel mutahherun",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/056079.mp3",
+    "translations": {
+      "tr": "Doğrusu bu Kitap, sadece arınmış olanların dokunabileceği, saklı bir Kitap'da mevcutken Alemlerin Rabbi tarafından indirilmiş olan Kuranı Kerim'dir.",
+      "en": "None touch it except the purified."
+    }
+  },
+  {
+    "ayah": 80,
+    "arabic": "تَنزِيلٌۭ مِّن رَّبِّ ٱلْعَٰلَمِينَ",
+    "transliteration": "Tenzilun min rabbil alemin",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/056080.mp3",
+    "translations": {
+      "tr": "Doğrusu bu Kitap, sadece arınmış olanların dokunabileceği, saklı bir Kitap'da mevcutken Alemlerin Rabbi tarafından indirilmiş olan Kuranı Kerim'dir.",
+      "en": "[It is] a revelation from the Lord of the worlds."
+    }
+  },
+  {
+    "ayah": 81,
+    "arabic": "أَفَبِهَٰذَا ٱلْحَدِيثِ أَنتُم مُّدْهِنُونَ",
+    "transliteration": "E fe bi hazel hadisi entum mudhinun",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/056081.mp3",
+    "translations": {
+      "tr": "Siz bu sözü mü hor görüyorsunuz?",
+      "en": "Then is it to this statement that you are indifferent"
+    }
+  },
+  {
+    "ayah": 82,
+    "arabic": "وَتَجْعَلُونَ رِزْقَكُمْ أَنَّكُمْ تُكَذِّبُونَ",
+    "transliteration": "Ve tec'alune rızkakum ennekum tukezzibun",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/056082.mp3",
+    "translations": {
+      "tr": "Rızkınıza şükredeceğiniz yere onu vereni mi yalanlıyorsunuz?",
+      "en": "And make [the thanks for] your provision that you deny [the Provider]?"
+    }
+  },
+  {
+    "ayah": 83,
+    "arabic": "فَلَوْلَآ إِذَا بَلَغَتِ ٱلْحُلْقُومَ",
+    "transliteration": "Fe lev la iza belegatil hulkume",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/056083.mp3",
+    "translations": {
+      "tr": "Kişinin canı boğaza dayanınca ve siz o zaman bakıp kalırken, Biz o kişiye sizden daha yakınızdır, ama görmezsiniz.",
+      "en": "Then why, when the soul at death reaches the throat"
+    }
+  },
+  {
+    "ayah": 84,
+    "arabic": "وَأَنتُمْ حِينَئِذٍۢ تَنظُرُونَ",
+    "transliteration": "Ve entum hine izin tenzurun",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/056084.mp3",
+    "translations": {
+      "tr": "Kişinin canı boğaza dayanınca ve siz o zaman bakıp kalırken, Biz o kişiye sizden daha yakınızdır, ama görmezsiniz.",
+      "en": "And you are at that time looking on -"
+    }
+  },
+  {
+    "ayah": 85,
+    "arabic": "وَنَحْنُ أَقْرَبُ إِلَيْهِ مِنكُمْ وَلَٰكِن لَّا تُبْصِرُونَ",
+    "transliteration": "Ve nahnu akrabu ileyhi minkum ve lakin la tubsirun",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/056085.mp3",
+    "translations": {
+      "tr": "Kişinin canı boğaza dayanınca ve siz o zaman bakıp kalırken, Biz o kişiye sizden daha yakınızdır, ama görmezsiniz.",
+      "en": "And Our angels are nearer to him than you, but you do not see -"
+    }
+  },
+  {
+    "ayah": 86,
+    "arabic": "فَلَوْلَآ إِن كُنتُمْ غَيْرَ مَدِينِينَ",
+    "transliteration": "Fe lev la in kuntum gayre medinin",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/056086.mp3",
+    "translations": {
+      "tr": "Siz dirilip yaptıklarınıza karşılık görmeyecekseniz ve eğer bu sözünüzde samimi iseniz, o çıkmak üzere olan canı geri çevirsenize!",
+      "en": "Then why do you not, if you are not to be recompensed,"
+    }
+  },
+  {
+    "ayah": 87,
+    "arabic": "تَرْجِعُونَهَآ إِن كُنتُمْ صَٰدِقِينَ",
+    "transliteration": "Terciuneha in kuntum sadikin",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/056087.mp3",
+    "translations": {
+      "tr": "Siz dirilip yaptıklarınıza karşılık görmeyecekseniz ve eğer bu sözünüzde samimi iseniz, o çıkmak üzere olan canı geri çevirsenize!",
+      "en": "Bring it back, if you should be truthful?"
+    }
+  },
+  {
+    "ayah": 88,
+    "arabic": "فَأَمَّآ إِن كَانَ مِنَ ٱلْمُقَرَّبِينَ",
+    "transliteration": "Fe emma in kane minel mukarrebine",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/056088.mp3",
+    "translations": {
+      "tr": "Eğer ölen o kişi, gözdelerden ise, rahatlık, hoşluk ve nimet cenneti onundur.",
+      "en": "And if the deceased was of those brought near to Allah,"
+    }
+  },
+  {
+    "ayah": 89,
+    "arabic": "فَرَوْحٌۭ وَرَيْحَانٌۭ وَجَنَّتُ نَعِيمٍۢ",
+    "transliteration": "Fe revhun ve reyhanun ve cennetu naim",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/056089.mp3",
+    "translations": {
+      "tr": "Eğer ölen o kişi, gözdelerden ise, rahatlık, hoşluk ve nimet cenneti onundur.",
+      "en": "Then [for him is] rest and bounty and a garden of pleasure."
+    }
+  },
+  {
+    "ayah": 90,
+    "arabic": "وَأَمَّآ إِن كَانَ مِنْ أَصْحَٰبِ ٱلْيَمِينِ",
+    "transliteration": "Ve emma in kane min ashabil yemin",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/056090.mp3",
+    "translations": {
+      "tr": "Eğer defteri sağdan verilenlerden ise,",
+      "en": "And if he was of the companions of the right,"
+    }
+  },
+  {
+    "ayah": 91,
+    "arabic": "فَسَلَٰمٌۭ لَّكَ مِنْ أَصْحَٰبِ ٱلْيَمِينِ",
+    "transliteration": "Fe selamun leke min ashabil yemin",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/056091.mp3",
+    "translations": {
+      "tr": "\"Ey sağcılardan olan kişi, sana selam olsun!\" denir.",
+      "en": "Then [the angels will say], \"Peace for you; [you are] from the companions of the right.\""
+    }
+  },
+  {
+    "ayah": 92,
+    "arabic": "وَأَمَّآ إِن كَانَ مِنَ ٱلْمُكَذِّبِينَ ٱلضَّآلِّينَ",
+    "transliteration": "Ve emma in kane minel mukezzibined dallin",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/056092.mp3",
+    "translations": {
+      "tr": "Eğer, sapık yalancılardan ise,",
+      "en": "But if he was of the deniers [who were] astray,"
+    }
+  },
+  {
+    "ayah": 93,
+    "arabic": "فَنُزُلٌۭ مِّنْ حَمِيمٍۢ",
+    "transliteration": "Fe nuzulun min hamim",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/056093.mp3",
+    "translations": {
+      "tr": "Ona kaynar sudan konukluk sunulur.",
+      "en": "Then [for him is] accommodation of scalding water"
+    }
+  },
+  {
+    "ayah": 94,
+    "arabic": "وَتَصْلِيَةُ جَحِيمٍ",
+    "transliteration": "Ve tasliyetu cahim",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/056094.mp3",
+    "translations": {
+      "tr": "Cehenneme sokulur.",
+      "en": "And burning in Hellfire"
+    }
+  },
+  {
+    "ayah": 95,
+    "arabic": "إِنَّ هَٰذَا لَهُوَ حَقُّ ٱلْيَقِينِ",
+    "transliteration": "İnne haza le huve hakkul yakin",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/056095.mp3",
+    "translations": {
+      "tr": "Doğrusu kesin gerçek budur.",
+      "en": "Indeed, this is the true certainty,"
+    }
+  },
+  {
+    "ayah": 96,
+    "arabic": "فَسَبِّحْ بِٱسْمِ رَبِّكَ ٱلْعَظِيمِ",
+    "transliteration": "Fe sebbih bismi rabbikel azim",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/056096.mp3",
+    "translations": {
+      "tr": "Öyleyse çok büyük Rabbinin adını tesbih et.",
+      "en": "So exalt the name of your Lord, the Most Great."
+    }
+  }
+]

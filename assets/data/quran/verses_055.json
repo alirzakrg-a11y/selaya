@@ -1,0 +1,782 @@
+[
+  {
+    "ayah": 1,
+    "arabic": "ٱلرَّحْمَٰنُ",
+    "transliteration": "Er rahman",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/055001.mp3",
+    "translations": {
+      "tr": "Rahman olan Allah Kuran'ı öğretti;",
+      "en": "The Most Merciful"
+    }
+  },
+  {
+    "ayah": 2,
+    "arabic": "عَلَّمَ ٱلْقُرْءَانَ",
+    "transliteration": "Allemel kur'an",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/055002.mp3",
+    "translations": {
+      "tr": "Rahman olan Allah Kuran'ı öğretti;",
+      "en": "Taught the Qur'an,"
+    }
+  },
+  {
+    "ayah": 3,
+    "arabic": "خَلَقَ ٱلْإِنسَٰنَ",
+    "transliteration": "Halakal insan",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/055003.mp3",
+    "translations": {
+      "tr": "İnsanı yarattı, ona konuşmayı öğretti.",
+      "en": "Created man,"
+    }
+  },
+  {
+    "ayah": 4,
+    "arabic": "عَلَّمَهُ ٱلْبَيَانَ",
+    "transliteration": "Allemehul beyan",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/055004.mp3",
+    "translations": {
+      "tr": "İnsanı yarattı, ona konuşmayı öğretti.",
+      "en": "[And] taught him eloquence."
+    }
+  },
+  {
+    "ayah": 5,
+    "arabic": "ٱلشَّمْسُ وَٱلْقَمَرُ بِحُسْبَانٍۢ",
+    "transliteration": "Eş şemsu vel kameru bi husban",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/055005.mp3",
+    "translations": {
+      "tr": "Güneş ve ayın hareketleri bir hesaba göredir.",
+      "en": "The sun and the moon [move] by precise calculation,"
+    }
+  },
+  {
+    "ayah": 6,
+    "arabic": "وَٱلنَّجْمُ وَٱلشَّجَرُ يَسْجُدَانِ",
+    "transliteration": "Ven necmu veş şeceru yescudan",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/055006.mp3",
+    "translations": {
+      "tr": "Bitkiler ve ağaçlar O'nun buyruğuna boyun eğerler.",
+      "en": "And the stars and trees prostrate."
+    }
+  },
+  {
+    "ayah": 7,
+    "arabic": "وَٱلسَّمَآءَ رَفَعَهَا وَوَضَعَ ٱلْمِيزَانَ",
+    "transliteration": "Ves semae refeaha ve vedaal mizan",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/055007.mp3",
+    "translations": {
+      "tr": "O, göğü yükseltmiştir; tartıyı koymuştur.",
+      "en": "And the heaven He raised and imposed the balance"
+    }
+  },
+  {
+    "ayah": 8,
+    "arabic": "أَلَّا تَطْغَوْا۟ فِى ٱلْمِيزَانِ",
+    "transliteration": "Ella tatgav fil mizan",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/055008.mp3",
+    "translations": {
+      "tr": "Artık tartıda tecavüz etmeyin.",
+      "en": "That you not transgress within the balance."
+    }
+  },
+  {
+    "ayah": 9,
+    "arabic": "وَأَقِيمُوا۟ ٱلْوَزْنَ بِٱلْقِسْطِ وَلَا تُخْسِرُوا۟ ٱلْمِيزَانَ",
+    "transliteration": "Ve ekimul vezne bil kıstı ve la tuhsırul mizan",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/055009.mp3",
+    "translations": {
+      "tr": "Tartmayı doğru yapın, tartıyı eksik tutmayın.",
+      "en": "And establish weight in justice and do not make deficient the balance."
+    }
+  },
+  {
+    "ayah": 10,
+    "arabic": "وَٱلْأَرْضَ وَضَعَهَا لِلْأَنَامِ",
+    "transliteration": "Vel arda vedaaha lil enam",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/055010.mp3",
+    "translations": {
+      "tr": "Allah, yeri yaratıkları için meydana getirmiştir.",
+      "en": "And the earth He laid [out] for the creatures."
+    }
+  },
+  {
+    "ayah": 11,
+    "arabic": "فِيهَا فَٰكِهَةٌۭ وَٱلنَّخْلُ ذَاتُ ٱلْأَكْمَامِ",
+    "transliteration": "Fiha fakihetun vennahlu zatul ekmam",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/055011.mp3",
+    "translations": {
+      "tr": "Orada meyveler, salkımlı hurma ağaçları, kabuklu taneler, güzel kokulu otlar vardır.",
+      "en": "Therein is fruit and palm trees having sheaths [of dates]"
+    }
+  },
+  {
+    "ayah": 12,
+    "arabic": "وَٱلْحَبُّ ذُو ٱلْعَصْفِ وَٱلرَّيْحَانُ",
+    "transliteration": "Vel habbu zul asfi ver reyhan",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/055012.mp3",
+    "translations": {
+      "tr": "Orada meyveler, salkımlı hurma ağaçları, kabuklu taneler, güzel kokulu otlar vardır.",
+      "en": "And grain having husks and scented plants."
+    }
+  },
+  {
+    "ayah": 13,
+    "arabic": "فَبِأَىِّ ءَالَآءِ رَبِّكُمَا تُكَذِّبَانِ",
+    "transliteration": "Fe bi eyyi alai rabbikuma tukezziban",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/055013.mp3",
+    "translations": {
+      "tr": "Ey insanlar ve cinler! Öyleyken, Rabbinizin nimetlerinden hangisini yalanlarsınız?",
+      "en": "So which of the favors of your Lord would you deny?"
+    }
+  },
+  {
+    "ayah": 14,
+    "arabic": "خَلَقَ ٱلْإِنسَٰنَ مِن صَلْصَٰلٍۢ كَٱلْفَخَّارِ",
+    "transliteration": "Halakal insane min salsalin kel fehhar",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/055014.mp3",
+    "translations": {
+      "tr": "O, insanı pişmiş çamur gibi kuru balçıktan yaratmıştır.",
+      "en": "He created man from clay like [that of] pottery."
+    }
+  },
+  {
+    "ayah": 15,
+    "arabic": "وَخَلَقَ ٱلْجَآنَّ مِن مَّارِجٍۢ مِّن نَّارٍۢ",
+    "transliteration": "Ve halakal canne min maricin min nar",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/055015.mp3",
+    "translations": {
+      "tr": "Cinleri de yalın bir alevden yaratmıştır.",
+      "en": "And He created the jinn from a smokeless flame of fire."
+    }
+  },
+  {
+    "ayah": 16,
+    "arabic": "فَبِأَىِّ ءَالَآءِ رَبِّكُمَا تُكَذِّبَانِ",
+    "transliteration": "Fe bi eyyi alai rabbikuma tukezziban",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/055016.mp3",
+    "translations": {
+      "tr": "Öyleyken; Rabbinizin nimetlerinden hangisini yalanlarsınız?",
+      "en": "So which of the favors of your Lord would you deny?"
+    }
+  },
+  {
+    "ayah": 17,
+    "arabic": "رَبُّ ٱلْمَشْرِقَيْنِ وَرَبُّ ٱلْمَغْرِبَيْنِ",
+    "transliteration": "Rabbul meşrikayni ve rabbul magribeyn",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/055017.mp3",
+    "translations": {
+      "tr": "O, iki doğunun Rabbidir, iki batının Rabbidir.",
+      "en": "[He is] Lord of the two sunrises and Lord of the two sunsets."
+    }
+  },
+  {
+    "ayah": 18,
+    "arabic": "فَبِأَىِّ ءَالَآءِ رَبِّكُمَا تُكَذِّبَانِ",
+    "transliteration": "Fe bi eyyi alai rabbikuma tukezziban",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/055018.mp3",
+    "translations": {
+      "tr": "Öyleyken, Rabbinizin nimetlerinden hangisini yalanlarsınız?",
+      "en": "So which of the favors of your Lord would you deny?"
+    }
+  },
+  {
+    "ayah": 19,
+    "arabic": "مَرَجَ ٱلْبَحْرَيْنِ يَلْتَقِيَانِ",
+    "transliteration": "Merecel bahreyni yeltekıyan",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/055019.mp3",
+    "translations": {
+      "tr": "Acı ve tatlı sulu iki denizi birbirine kavuşmamak üzere salıvermiştir.",
+      "en": "He released the two seas, meeting [side by side];"
+    }
+  },
+  {
+    "ayah": 20,
+    "arabic": "بَيْنَهُمَا بَرْزَخٌۭ لَّا يَبْغِيَانِ",
+    "transliteration": "Beynehuma berzehun la yebgıyan",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/055020.mp3",
+    "translations": {
+      "tr": "Aralarında bir engel vardır; birbirinin sınırını aşamazlar.",
+      "en": "Between them is a barrier [so] neither of them transgresses."
+    }
+  },
+  {
+    "ayah": 21,
+    "arabic": "فَبِأَىِّ ءَالَآءِ رَبِّكُمَا تُكَذِّبَانِ",
+    "transliteration": "Fe bi eyyi alai rabbikuma tukezziban",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/055021.mp3",
+    "translations": {
+      "tr": "Öyleyken, Rabbinizin nimetlerinden hangisini yalanlarsınız?",
+      "en": "So which of the favors of your Lord would you deny?"
+    }
+  },
+  {
+    "ayah": 22,
+    "arabic": "يَخْرُجُ مِنْهُمَا ٱللُّؤْلُؤُ وَٱلْمَرْجَانُ",
+    "transliteration": "Yahrucu min humel luluu vel mercan",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/055022.mp3",
+    "translations": {
+      "tr": "Bu iki denizden de inci ve mercan çıkar.",
+      "en": "From both of them emerge pearl and coral."
+    }
+  },
+  {
+    "ayah": 23,
+    "arabic": "فَبِأَىِّ ءَالَآءِ رَبِّكُمَا تُكَذِّبَانِ",
+    "transliteration": "Fe bi eyyi alai rabbikuma tukezziban",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/055023.mp3",
+    "translations": {
+      "tr": "Öyleyken Rabbinizin nimetlerinden hangisini yalanlarsınız?",
+      "en": "So which of the favors of your Lord would you deny?"
+    }
+  },
+  {
+    "ayah": 24,
+    "arabic": "وَلَهُ ٱلْجَوَارِ ٱلْمُنشَـَٔاتُ فِى ٱلْبَحْرِ كَٱلْأَعْلَٰمِ",
+    "transliteration": "Ve lehul cevaril munşeatu fil bahri kel alam",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/055024.mp3",
+    "translations": {
+      "tr": "Denizde yürüyen dağlar gibi gemiler O'nundur.",
+      "en": "And to Him belong the ships [with sails] elevated in the sea like mountains."
+    }
+  },
+  {
+    "ayah": 25,
+    "arabic": "فَبِأَىِّ ءَالَآءِ رَبِّكُمَا تُكَذِّبَانِ",
+    "transliteration": "Fe bi eyyi alai rabbikuma tukezziban",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/055025.mp3",
+    "translations": {
+      "tr": "Öyleyken Rabbinizin nimetlerinden hangisini yalanlarsınız?",
+      "en": "So which of the favors of your Lord would you deny?"
+    }
+  },
+  {
+    "ayah": 26,
+    "arabic": "كُلُّ مَنْ عَلَيْهَا فَانٍۢ",
+    "transliteration": "Kullu men aleyha fan",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/055026.mp3",
+    "translations": {
+      "tr": "Yeryüzünde bulunan her şey fanidir.",
+      "en": "Everyone upon the earth will perish,"
+    }
+  },
+  {
+    "ayah": 27,
+    "arabic": "وَيَبْقَىٰ وَجْهُ رَبِّكَ ذُو ٱلْجَلَٰلِ وَٱلْإِكْرَامِ",
+    "transliteration": "Ve yebka vechu rabbike zul celali vel ikram",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/055027.mp3",
+    "translations": {
+      "tr": "Ancak, yüce ve cömert olan Rabbinin varlığı bakidir.",
+      "en": "And there will remain the Face of your Lord, Owner of Majesty and Honor."
+    }
+  },
+  {
+    "ayah": 28,
+    "arabic": "فَبِأَىِّ ءَالَآءِ رَبِّكُمَا تُكَذِّبَانِ",
+    "transliteration": "Fe bi eyyi alai rabbikuma tukezziban",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/055028.mp3",
+    "translations": {
+      "tr": "Öyleyken Rabbinizin nimetlerinden hangisini yalanlarsınız?",
+      "en": "So which of the favors of your Lord would you deny?"
+    }
+  },
+  {
+    "ayah": 29,
+    "arabic": "يَسْـَٔلُهُۥ مَن فِى ٱلسَّمَٰوَٰتِ وَٱلْأَرْضِ ۚ كُلَّ يَوْمٍ هُوَ فِى شَأْنٍۢ",
+    "transliteration": "Yes' eluhu men fis semavati vel ard, kulle yevmin huve fi şe'nin",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/055029.mp3",
+    "translations": {
+      "tr": "Göklerde ve yerde olan kimseler her şeyi O'ndan isterler; O her an kainata tasarruf etmektedir.",
+      "en": "Whoever is within the heavens and earth asks Him; every day He is bringing about a matter."
+    }
+  },
+  {
+    "ayah": 30,
+    "arabic": "فَبِأَىِّ ءَالَآءِ رَبِّكُمَا تُكَذِّبَانِ",
+    "transliteration": "Fe bi eyyi alai rabbikuma tukezziban",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/055030.mp3",
+    "translations": {
+      "tr": "Öyleyken, Rabbinizin nimetlerinden hangisini yalanlarsınız?",
+      "en": "So which of the favors of your Lord would you deny?"
+    }
+  },
+  {
+    "ayah": 31,
+    "arabic": "سَنَفْرُغُ لَكُمْ أَيُّهَ ٱلثَّقَلَانِ",
+    "transliteration": "Se nefrugu lekum eyyuhes sekalan",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/055031.mp3",
+    "translations": {
+      "tr": "Ey insan ve cin toplulukları! Sizin de hesabınızı ele alacağız.",
+      "en": "We will attend to you, O prominent beings."
+    }
+  },
+  {
+    "ayah": 32,
+    "arabic": "فَبِأَىِّ ءَالَآءِ رَبِّكُمَا تُكَذِّبَانِ",
+    "transliteration": "Fe bi eyyi alai rabbikuma tukezziban",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/055032.mp3",
+    "translations": {
+      "tr": "Öyleyken, Rabbinizin nimetlerinden hangisini yalanlarsınız?",
+      "en": "So which of the favors of your Lord would you deny?"
+    }
+  },
+  {
+    "ayah": 33,
+    "arabic": "يَٰمَعْشَرَ ٱلْجِنِّ وَٱلْإِنسِ إِنِ ٱسْتَطَعْتُمْ أَن تَنفُذُوا۟ مِنْ أَقْطَارِ ٱلسَّمَٰوَٰتِ وَٱلْأَرْضِ فَٱنفُذُوا۟ ۚ لَا تَنفُذُونَ إِلَّا بِسُلْطَٰنٍۢ",
+    "transliteration": "Ya ma'şerel cinni vel insi inisteta'tum en tenfuzu min aktaris semavati vel ardı fenfuz, la tenfuzune illa bi sultan",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/055033.mp3",
+    "translations": {
+      "tr": "Ey cin ve insan toplulukları! Göklerin ve yerin çevresini aşıp geçmeye gücünüz yetiyorsa geçin! Ama Allah'ın verdiği bir güç olmaksızın geçemezsiniz ki!",
+      "en": "O company of jinn and mankind, if you are able to pass beyond the regions of the heavens and the earth, then pass. You will not pass except by authority [from Allah]."
+    }
+  },
+  {
+    "ayah": 34,
+    "arabic": "فَبِأَىِّ ءَالَآءِ رَبِّكُمَا تُكَذِّبَانِ",
+    "transliteration": "Fe bi eyyi alai rabbikuma tukezziban",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/055034.mp3",
+    "translations": {
+      "tr": "Öyleyken, Rabbinizin nimetlerinden hangisini yalanlarsınız?",
+      "en": "So which of the favors of your Lord would you deny?"
+    }
+  },
+  {
+    "ayah": 35,
+    "arabic": "يُرْسَلُ عَلَيْكُمَا شُوَاظٌۭ مِّن نَّارٍۢ وَنُحَاسٌۭ فَلَا تَنتَصِرَانِ",
+    "transliteration": "Yurselu aleykuma şuvazun min narin ve nuhasun fe la tentesıran",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/055035.mp3",
+    "translations": {
+      "tr": "Ey insanlar ve cinler! Üzerinize dumansız bir alev ve ateşsiz bir duman gönderilir de kurtulamazsınız.",
+      "en": "There will be sent upon you a flame of fire and smoke, and you will not defend yourselves."
+    }
+  },
+  {
+    "ayah": 36,
+    "arabic": "فَبِأَىِّ ءَالَآءِ رَبِّكُمَا تُكَذِّبَانِ",
+    "transliteration": "Fe bi eyyi alai rabbikuma tukezziban",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/055036.mp3",
+    "translations": {
+      "tr": "Öyleyken, Rabbinizin nimetlerinden hangisini yalanlarsınız?",
+      "en": "So which of the favors of your Lord would you deny?"
+    }
+  },
+  {
+    "ayah": 37,
+    "arabic": "فَإِذَا ٱنشَقَّتِ ٱلسَّمَآءُ فَكَانَتْ وَرْدَةًۭ كَٱلدِّهَانِ",
+    "transliteration": "Fe izen şakkatis semau fe kanet verdeten keddihan",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/055037.mp3",
+    "translations": {
+      "tr": "Gök yarılıp da, gül gibi kızardığı, yağ gibi eridiği zaman haliniz nice olur?",
+      "en": "And when the heaven is split open and becomes rose-colored like oil -"
+    }
+  },
+  {
+    "ayah": 38,
+    "arabic": "فَبِأَىِّ ءَالَآءِ رَبِّكُمَا تُكَذِّبَانِ",
+    "transliteration": "Fe bi eyyi alai rabbikuma tukezziban",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/055038.mp3",
+    "translations": {
+      "tr": "Öyleyken, Rabbinizin nimetlerinden hangisini yalanlarsınız?",
+      "en": "So which of the favors of your Lord would you deny? -"
+    }
+  },
+  {
+    "ayah": 39,
+    "arabic": "فَيَوْمَئِذٍۢ لَّا يُسْـَٔلُ عَن ذَنۢبِهِۦٓ إِنسٌۭ وَلَا جَآنٌّۭ",
+    "transliteration": "Fe yevme izin la yus'elu an zenbihi insun ve la cann",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/055039.mp3",
+    "translations": {
+      "tr": "O gün ne insana ve ne cine suçu sorulur.",
+      "en": "Then on that Day none will be asked about his sin among men or jinn."
+    }
+  },
+  {
+    "ayah": 40,
+    "arabic": "فَبِأَىِّ ءَالَآءِ رَبِّكُمَا تُكَذِّبَانِ",
+    "transliteration": "Fe bi eyyi alai rabbikuma tukezziban",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/055040.mp3",
+    "translations": {
+      "tr": "Öyleyken, Rabbinizin nimetlerinden hangisini yalanlarsınız?",
+      "en": "So which of the favors of your Lord would you deny?"
+    }
+  },
+  {
+    "ayah": 41,
+    "arabic": "يُعْرَفُ ٱلْمُجْرِمُونَ بِسِيمَٰهُمْ فَيُؤْخَذُ بِٱلنَّوَٰصِى وَٱلْأَقْدَامِ",
+    "transliteration": "Yu'reful mucrımune bi simahum fe yu'hazu bin nevasi vel akdam",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/055041.mp3",
+    "translations": {
+      "tr": "Suçlular simalarından tanınırlar da, alın saçlarından ve ayaklarından yakalanırlar.",
+      "en": "The criminals will be known by their marks, and they will be seized by the forelocks and the feet."
+    }
+  },
+  {
+    "ayah": 42,
+    "arabic": "فَبِأَىِّ ءَالَآءِ رَبِّكُمَا تُكَذِّبَانِ",
+    "transliteration": "Fe bi eyyi alai rabbikuma tukezziban",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/055042.mp3",
+    "translations": {
+      "tr": "Öyleyken, Rabbinizin nimetlerinden hangisini yalanlarsınız?",
+      "en": "So which of the favors of your Lord would you deny?"
+    }
+  },
+  {
+    "ayah": 43,
+    "arabic": "هَٰذِهِۦ جَهَنَّمُ ٱلَّتِى يُكَذِّبُ بِهَا ٱلْمُجْرِمُونَ",
+    "transliteration": "Hazihi cehennemulleti yukezzibu bi hel mucrimun",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/055043.mp3",
+    "translations": {
+      "tr": "İşte suçluların yalanladıkları cehennem budur.",
+      "en": "This is Hell, which the criminals deny."
+    }
+  },
+  {
+    "ayah": 44,
+    "arabic": "يَطُوفُونَ بَيْنَهَا وَبَيْنَ حَمِيمٍ ءَانٍۢ",
+    "transliteration": "Yetufune beyneha ve beyne hamimin an",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/055044.mp3",
+    "translations": {
+      "tr": "Onlar, cehennem ateşiyle kaynar su arasında dolaşır dururlar.",
+      "en": "They will go around between it and scalding water, heated [to the utmost degree]."
+    }
+  },
+  {
+    "ayah": 45,
+    "arabic": "فَبِأَىِّ ءَالَآءِ رَبِّكُمَا تُكَذِّبَانِ",
+    "transliteration": "Fe bi eyyi alai rabbikuma tukezziban",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/055045.mp3",
+    "translations": {
+      "tr": "Öyleyken, Rabbinizin nimetlerinden hangisini yalanlarsınız?",
+      "en": "So which of the favors of your Lord would you deny?"
+    }
+  },
+  {
+    "ayah": 46,
+    "arabic": "وَلِمَنْ خَافَ مَقَامَ رَبِّهِۦ جَنَّتَانِ",
+    "transliteration": "Ve li men hafe makame rabbihi cennetan",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/055046.mp3",
+    "translations": {
+      "tr": "Rabbine karşı durmaktan korkan kimseye iki cennet vardır.",
+      "en": "But for he who has feared the position of his Lord are two gardens -"
+    }
+  },
+  {
+    "ayah": 47,
+    "arabic": "فَبِأَىِّ ءَالَآءِ رَبِّكُمَا تُكَذِّبَانِ",
+    "transliteration": "Fe bi eyyi alai rabbikuma tukezziban",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/055047.mp3",
+    "translations": {
+      "tr": "Öyleyken, Rabbinizin nimetlerinden hangisini yalanlarsınız?",
+      "en": "So which of the favors of your Lord would you deny? -"
+    }
+  },
+  {
+    "ayah": 48,
+    "arabic": "ذَوَاتَآ أَفْنَانٍۢ",
+    "transliteration": "Zevata efnan",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/055048.mp3",
+    "translations": {
+      "tr": "Bu iki cennet türlü ağaçlarla doludur.",
+      "en": "Having [spreading] branches."
+    }
+  },
+  {
+    "ayah": 49,
+    "arabic": "فَبِأَىِّ ءَالَآءِ رَبِّكُمَا تُكَذِّبَانِ",
+    "transliteration": "Fe bi eyyi alai rabbikuma tukezziban",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/055049.mp3",
+    "translations": {
+      "tr": "Öyleyken, Rabbinizin nimetlerinden hangisini yalanlarsınız?",
+      "en": "So which of the favors of your Lord would you deny?"
+    }
+  },
+  {
+    "ayah": 50,
+    "arabic": "فِيهِمَا عَيْنَانِ تَجْرِيَانِ",
+    "transliteration": "Fihi ma aynani tecriyan",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/055050.mp3",
+    "translations": {
+      "tr": "Bu cennetlerden akan iki kaynak vardır.",
+      "en": "In both of them are two springs, flowing."
+    }
+  },
+  {
+    "ayah": 51,
+    "arabic": "فَبِأَىِّ ءَالَآءِ رَبِّكُمَا تُكَذِّبَانِ",
+    "transliteration": "Fe bi eyyi alai rabbikuma tukezziban",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/055051.mp3",
+    "translations": {
+      "tr": "Öyleyken, Rabbinizin nimetlerinden hangisini yalanlarsınız?",
+      "en": "So which of the favors of your Lord would you deny?"
+    }
+  },
+  {
+    "ayah": 52,
+    "arabic": "فِيهِمَا مِن كُلِّ فَٰكِهَةٍۢ زَوْجَانِ",
+    "transliteration": "Fihi ma min kulli fatihetin zevcan",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/055052.mp3",
+    "translations": {
+      "tr": "Bu cennetlerde türlü meyveden çift çift vardır.",
+      "en": "In both of them are of every fruit, two kinds."
+    }
+  },
+  {
+    "ayah": 53,
+    "arabic": "فَبِأَىِّ ءَالَآءِ رَبِّكُمَا تُكَذِّبَانِ",
+    "transliteration": "Fe bi eyyi alai rabbikuma tukezziban",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/055053.mp3",
+    "translations": {
+      "tr": "Öyleyken, Rabbinizin nimetlerinden hangisini yalanlarsınız?",
+      "en": "So which of the favors of your Lord would you deny?"
+    }
+  },
+  {
+    "ayah": 54,
+    "arabic": "مُتَّكِـِٔينَ عَلَىٰ فُرُشٍۭ بَطَآئِنُهَا مِنْ إِسْتَبْرَقٍۢ ۚ وَجَنَى ٱلْجَنَّتَيْنِ دَانٍۢ",
+    "transliteration": "Muttekiine ala furuşin betainuha min istebrak, ve cenel cenneteyni dan",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/055054.mp3",
+    "translations": {
+      "tr": "Orada, örtüleri parlak atlastan yataklara yaslanırlar; iki cennetin meyvelerini de kolayca toplarlar.",
+      "en": "[They are] reclining on beds whose linings are of silk brocade, and the fruit of the two gardens is hanging low."
+    }
+  },
+  {
+    "ayah": 55,
+    "arabic": "فَبِأَىِّ ءَالَآءِ رَبِّكُمَا تُكَذِّبَانِ",
+    "transliteration": "Fe bi eyyi alai rabbikuma tukezziban",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/055055.mp3",
+    "translations": {
+      "tr": "Öyleyken, Rabbinizin nimetlerinden hangisini yalanlarsınız?",
+      "en": "So which of the favors of your Lord would you deny?"
+    }
+  },
+  {
+    "ayah": 56,
+    "arabic": "فِيهِنَّ قَٰصِرَٰتُ ٱلطَّرْفِ لَمْ يَطْمِثْهُنَّ إِنسٌۭ قَبْلَهُمْ وَلَا جَآنٌّۭ",
+    "transliteration": "Fihinne kasiratut tarfi lem yatmishunne insun kablehum ve la cann",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/055056.mp3",
+    "translations": {
+      "tr": "Orada, bakışlarını yalnız eşlerine çevirmiş, daha önce ne insan ve ne de cinlerin dokunmuş olduğu eşler vardır.",
+      "en": "In them are women limiting [their] glances, untouched before them by man or jinni -"
+    }
+  },
+  {
+    "ayah": 57,
+    "arabic": "فَبِأَىِّ ءَالَآءِ رَبِّكُمَا تُكَذِّبَانِ",
+    "transliteration": "Fe bi eyyi alai rabbikuma tukezziban",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/055057.mp3",
+    "translations": {
+      "tr": "Öyleyken, Rabbinizin nimetlerinden hangisini yalanlarsınız?",
+      "en": "So which of the favors of your Lord would you deny? -"
+    }
+  },
+  {
+    "ayah": 58,
+    "arabic": "كَأَنَّهُنَّ ٱلْيَاقُوتُ وَٱلْمَرْجَانُ",
+    "transliteration": "Ke enne hunnel yakutu vel mercan",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/055058.mp3",
+    "translations": {
+      "tr": "Onlar yakut ve mercan gibidirler.",
+      "en": "As if they were rubies and coral."
+    }
+  },
+  {
+    "ayah": 59,
+    "arabic": "فَبِأَىِّ ءَالَآءِ رَبِّكُمَا تُكَذِّبَانِ",
+    "transliteration": "Fe bi eyyi alai rabbikuma tukezziban",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/055059.mp3",
+    "translations": {
+      "tr": "Öyleyken, Rabbinizin nimetlerinden hangisini yalanlarsınız?",
+      "en": "So which of the favors of your Lord would you deny?"
+    }
+  },
+  {
+    "ayah": 60,
+    "arabic": "هَلْ جَزَآءُ ٱلْإِحْسَٰنِ إِلَّا ٱلْإِحْسَٰنُ",
+    "transliteration": "Hel cezaul ihsani illel ihsan",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/055060.mp3",
+    "translations": {
+      "tr": "İyiliğin karşılığı ancak iyilik değil midir?",
+      "en": "Is the reward for good [anything] but good?"
+    }
+  },
+  {
+    "ayah": 61,
+    "arabic": "فَبِأَىِّ ءَالَآءِ رَبِّكُمَا تُكَذِّبَانِ",
+    "transliteration": "Fe bi eyyi alai rabbikuma tukezziban",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/055061.mp3",
+    "translations": {
+      "tr": "Öyleyken, Rabbinizin nimetlerinden hangisini yalanlarsınız?",
+      "en": "So which of the favors of your Lord would you deny?"
+    }
+  },
+  {
+    "ayah": 62,
+    "arabic": "وَمِن دُونِهِمَا جَنَّتَانِ",
+    "transliteration": "Ve min dunihima cennetan",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/055062.mp3",
+    "translations": {
+      "tr": "Bu iki cennetten başka iki cennet daha vardır.",
+      "en": "And below them both [in excellence] are two [other] gardens -"
+    }
+  },
+  {
+    "ayah": 63,
+    "arabic": "فَبِأَىِّ ءَالَآءِ رَبِّكُمَا تُكَذِّبَانِ",
+    "transliteration": "Fe bi eyyi alai rabbikuma tukezziban",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/055063.mp3",
+    "translations": {
+      "tr": "Öyleyken, Rabbinizin nimetlerinden hangisini yalanlarsınız?",
+      "en": "So which of the favors of your Lord would you deny? -"
+    }
+  },
+  {
+    "ayah": 64,
+    "arabic": "مُدْهَآمَّتَانِ",
+    "transliteration": "Mud hammetan",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/055064.mp3",
+    "translations": {
+      "tr": "Renkleri koyu yeşildir.",
+      "en": "Dark green [in color]."
+    }
+  },
+  {
+    "ayah": 65,
+    "arabic": "فَبِأَىِّ ءَالَآءِ رَبِّكُمَا تُكَذِّبَانِ",
+    "transliteration": "Fe bi eyyi alai rabbikuma tukezziban",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/055065.mp3",
+    "translations": {
+      "tr": "Öyleyken, Rabbinizin nimetlerinden hangisini yalanlarsınız?",
+      "en": "So which of the favors of your Lord would you deny?"
+    }
+  },
+  {
+    "ayah": 66,
+    "arabic": "فِيهِمَا عَيْنَانِ نَضَّاخَتَانِ",
+    "transliteration": "Fihi ma aynani neddahatan",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/055066.mp3",
+    "translations": {
+      "tr": "İkisinde de durmadan fışkıran iki kaynak vardır.",
+      "en": "In both of them are two springs, spouting."
+    }
+  },
+  {
+    "ayah": 67,
+    "arabic": "فَبِأَىِّ ءَالَآءِ رَبِّكُمَا تُكَذِّبَانِ",
+    "transliteration": "Fe bi eyyi alai rabbikuma tukezziban",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/055067.mp3",
+    "translations": {
+      "tr": "Öyleyken, Rabbinizin nimetlerinden hangisini yalanlarsınız?",
+      "en": "So which of the favors of your Lord would you deny?"
+    }
+  },
+  {
+    "ayah": 68,
+    "arabic": "فِيهِمَا فَٰكِهَةٌۭ وَنَخْلٌۭ وَرُمَّانٌۭ",
+    "transliteration": "Fihi ma fakihetun ve nahlun ve rumman",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/055068.mp3",
+    "translations": {
+      "tr": "İkisinde de türlü türlü meyveler, hurmalıklar ve nar ağaçları vardır.",
+      "en": "In both of them are fruit and palm trees and pomegranates."
+    }
+  },
+  {
+    "ayah": 69,
+    "arabic": "فَبِأَىِّ ءَالَآءِ رَبِّكُمَا تُكَذِّبَانِ",
+    "transliteration": "Fe bi eyyi alai rabbikuma tukezziban",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/055069.mp3",
+    "translations": {
+      "tr": "Öyleyken, Rabbinizin nimetlerinden hangisini yalanlarsınız?",
+      "en": "So which of the favors of your Lord would you deny?"
+    }
+  },
+  {
+    "ayah": 70,
+    "arabic": "فِيهِنَّ خَيْرَٰتٌ حِسَانٌۭ",
+    "transliteration": "Fihinne hayratun hisan",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/055070.mp3",
+    "translations": {
+      "tr": "Oralarda iyi huylu güzel kadınlar vardır.",
+      "en": "In them are good and beautiful women -"
+    }
+  },
+  {
+    "ayah": 71,
+    "arabic": "فَبِأَىِّ ءَالَآءِ رَبِّكُمَا تُكَذِّبَانِ",
+    "transliteration": "Fe bi eyyi alai rabbikuma tukezziban",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/055071.mp3",
+    "translations": {
+      "tr": "Öyleyken, Rabbinizin nimetlerinden hangisini yalanlarsınız?",
+      "en": "So which of the favors of your Lord would you deny? -"
+    }
+  },
+  {
+    "ayah": 72,
+    "arabic": "حُورٌۭ مَّقْصُورَٰتٌۭ فِى ٱلْخِيَامِ",
+    "transliteration": "Hurun maksuratun fil hiyam",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/055072.mp3",
+    "translations": {
+      "tr": "Çadırlar içinde ceylan gözlüler vardır.",
+      "en": "Fair ones reserved in pavilions -"
+    }
+  },
+  {
+    "ayah": 73,
+    "arabic": "فَبِأَىِّ ءَالَآءِ رَبِّكُمَا تُكَذِّبَانِ",
+    "transliteration": "Fe bi eyyi alai rabbikuma tukezziban",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/055073.mp3",
+    "translations": {
+      "tr": "Öyleyken, Rabbinizin nimetlerinden hangisini yalanlarsınız?",
+      "en": "So which of the favors of your Lord would you deny? -"
+    }
+  },
+  {
+    "ayah": 74,
+    "arabic": "لَمْ يَطْمِثْهُنَّ إِنسٌۭ قَبْلَهُمْ وَلَا جَآنٌّۭ",
+    "transliteration": "Lem yatmishunne insun kablehum ve la cann",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/055074.mp3",
+    "translations": {
+      "tr": "Onlara daha önce insan da, cin de dokunmamıştır.",
+      "en": "Untouched before them by man or jinni -"
+    }
+  },
+  {
+    "ayah": 75,
+    "arabic": "فَبِأَىِّ ءَالَآءِ رَبِّكُمَا تُكَذِّبَانِ",
+    "transliteration": "Fe bi eyyi alai rabbikuma tukezziban",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/055075.mp3",
+    "translations": {
+      "tr": "Öyleyken, Rabbinizin nimetlerinden hangisini yalanlarsınız?",
+      "en": "So which of the favors of your Lord would you deny? -"
+    }
+  },
+  {
+    "ayah": 76,
+    "arabic": "مُتَّكِـِٔينَ عَلَىٰ رَفْرَفٍ خُضْرٍۢ وَعَبْقَرِىٍّ حِسَانٍۢ",
+    "transliteration": "Muttekiine ala refrefin hudrin ve abkariyyin hisan",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/055076.mp3",
+    "translations": {
+      "tr": "Cennetlikler orada yeşil yastıklara ve harikulade işlemeli döşeklere yaslanırlar.",
+      "en": "Reclining on green cushions and beautiful fine carpets."
+    }
+  },
+  {
+    "ayah": 77,
+    "arabic": "فَبِأَىِّ ءَالَآءِ رَبِّكُمَا تُكَذِّبَانِ",
+    "transliteration": "Fe bi eyyi alai rabbikuma tukezziban",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/055077.mp3",
+    "translations": {
+      "tr": "Öyleyken, Rabbinizin nimetlerinden hangisini yalanlarsınız?",
+      "en": "So which of the favors of your Lord would you deny?"
+    }
+  },
+  {
+    "ayah": 78,
+    "arabic": "تَبَٰرَكَ ٱسْمُ رَبِّكَ ذِى ٱلْجَلَٰلِ وَٱلْإِكْرَامِ",
+    "transliteration": "Tebarekesmu rabbike zil celali vel ikram",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/055078.mp3",
+    "translations": {
+      "tr": "Büyük ve pek cömert olan Rabbinin adı ne yücedir!",
+      "en": "Blessed is the name of your Lord, Owner of Majesty and Honor."
+    }
+  }
+]

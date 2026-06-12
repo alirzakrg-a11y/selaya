@@ -1,0 +1,32 @@
+[
+  {
+    "ayah": 1,
+    "arabic": "وَالْعَصْرِ",
+    "transliteration": "Vel asr",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/103001.mp3",
+    "translations": {
+      "tr": "Asra (çağa) yemin olsun ki,",
+      "en": "By time,"
+    }
+  },
+  {
+    "ayah": 2,
+    "arabic": "إِنَّ الْإِنسَانَ لَفِي خُسْرٍ",
+    "transliteration": "İnnel insane le fi husr",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/103002.mp3",
+    "translations": {
+      "tr": "insan gerçekten ziyandadır.",
+      "en": "indeed, mankind is in loss,"
+    }
+  },
+  {
+    "ayah": 3,
+    "arabic": "إِلَّا الَّذِينَ آمَنُوا وَعَمِلُوا الصَّالِحَاتِ وَتَوَاصَوْا بِالْحَقِّ وَتَوَاصَوْا بِالصَّبْرِ",
+    "transliteration": "İllellezine amenu ve amilus salihati ve tevasav bil hakkı ve tevasav bis sabr",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/103003.mp3",
+    "translations": {
+      "tr": "Ancak iman edip salih amel işleyenler, birbirine hakkı ve sabrı tavsiye edenler müstesna.",
+      "en": "except those who believe, do righteous deeds, and counsel each other to truth and patience."
+    }
+  }
+]

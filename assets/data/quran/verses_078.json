@@ -1,0 +1,402 @@
+[
+  {
+    "ayah": 1,
+    "arabic": "عَمَّ يَتَسَآءَلُونَ",
+    "transliteration": "Amme yetesaelun",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/078001.mp3",
+    "translations": {
+      "tr": "Neyi soruşturuyorlar?",
+      "en": "About what are they asking one another?"
+    }
+  },
+  {
+    "ayah": 2,
+    "arabic": "عَنِ ٱلنَّبَإِ ٱلْعَظِيمِ",
+    "transliteration": "Anin nebeil azim",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/078002.mp3",
+    "translations": {
+      "tr": "Üzerinde anlaşmazlığa düştükleri, büyük bir olay olan tekrar dirilme haberini mi?",
+      "en": "About the great news -"
+    }
+  },
+  {
+    "ayah": 3,
+    "arabic": "ٱلَّذِى هُمْ فِيهِ مُخْتَلِفُونَ",
+    "transliteration": "Ellezi hum fihi muhtelifun",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/078003.mp3",
+    "translations": {
+      "tr": "Üzerinde anlaşmazlığa düştükleri, büyük bir olay olan tekrar dirilme haberini mi?",
+      "en": "That over which they are in disagreement."
+    }
+  },
+  {
+    "ayah": 4,
+    "arabic": "كَلَّا سَيَعْلَمُونَ",
+    "transliteration": "Kella se ya'lemun",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/078004.mp3",
+    "translations": {
+      "tr": "Hayır; şüphesiz görüp bileceklerdir.",
+      "en": "No! They are going to know."
+    }
+  },
+  {
+    "ayah": 5,
+    "arabic": "ثُمَّ كَلَّا سَيَعْلَمُونَ",
+    "transliteration": "Summe kella se ya'lemun",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/078005.mp3",
+    "translations": {
+      "tr": "Yine hayır; elbette görüp bileceklerdir.",
+      "en": "Then, no! They are going to know."
+    }
+  },
+  {
+    "ayah": 6,
+    "arabic": "أَلَمْ نَجْعَلِ ٱلْأَرْضَ مِهَٰدًۭا",
+    "transliteration": "E lem nec'alil arda mihada",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/078006.mp3",
+    "translations": {
+      "tr": "Biz yeryüzünü bir beşik, dağları da onun için birer direk kılmadık mı?",
+      "en": "Have We not made the earth a resting place?"
+    }
+  },
+  {
+    "ayah": 7,
+    "arabic": "وَٱلْجِبَالَ أَوْتَادًۭا",
+    "transliteration": "Vel cibale evtada",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/078007.mp3",
+    "translations": {
+      "tr": "Biz yeryüzünü bir beşik, dağları da onun için birer direk kılmadık mı?",
+      "en": "And the mountains as stakes?"
+    }
+  },
+  {
+    "ayah": 8,
+    "arabic": "وَخَلَقْنَٰكُمْ أَزْوَٰجًۭا",
+    "transliteration": "Ve halaknakum ezvaca",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/078008.mp3",
+    "translations": {
+      "tr": "Sizi çift çift yarattık;",
+      "en": "And We created you in pairs"
+    }
+  },
+  {
+    "ayah": 9,
+    "arabic": "وَجَعَلْنَا نَوْمَكُمْ سُبَاتًۭا",
+    "transliteration": "Ve cealna nevmekum subata",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/078009.mp3",
+    "translations": {
+      "tr": "Uykunuzu dinlenme vakti kıldık;",
+      "en": "And made your sleep [a means for] rest"
+    }
+  },
+  {
+    "ayah": 10,
+    "arabic": "وَجَعَلْنَا ٱلَّيْلَ لِبَاسًۭا",
+    "transliteration": "Ve cealnel leyle libasa",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/078010.mp3",
+    "translations": {
+      "tr": "Geceyi bir örtü yaptık;",
+      "en": "And made the night as clothing"
+    }
+  },
+  {
+    "ayah": 11,
+    "arabic": "وَجَعَلْنَا ٱلنَّهَارَ مَعَاشًۭا",
+    "transliteration": "Ve cealnen nehare meaşa",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/078011.mp3",
+    "translations": {
+      "tr": "Gündüzü geçimi sağlama vakti kıldık;",
+      "en": "And made the day for livelihood"
+    }
+  },
+  {
+    "ayah": 12,
+    "arabic": "وَبَنَيْنَا فَوْقَكُمْ سَبْعًۭا شِدَادًۭا",
+    "transliteration": "Ve beneyna fevkakum seb'an şidada",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/078012.mp3",
+    "translations": {
+      "tr": "Üstünüze yedi kat sağlam gök bina ettik;",
+      "en": "And constructed above you seven strong [heavens]"
+    }
+  },
+  {
+    "ayah": 13,
+    "arabic": "وَجَعَلْنَا سِرَاجًۭا وَهَّاجًۭا",
+    "transliteration": "Ve cealna siracen vehhaca",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/078013.mp3",
+    "translations": {
+      "tr": "Parlak ışık veren güneşi varettik;",
+      "en": "And made [therein] a burning lamp"
+    }
+  },
+  {
+    "ayah": 14,
+    "arabic": "وَأَنزَلْنَا مِنَ ٱلْمُعْصِرَٰتِ مَآءًۭ ثَجَّاجًۭا",
+    "transliteration": "Ve enzelna minel mu'sırati maen seccaca",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/078014.mp3",
+    "translations": {
+      "tr": "Taneler, bitkiler, ağaçları sarmaş dolaş bahçeler yetiştirmek için, yoğunlaşmış bulutlardan bol yağmur yağdırdık.",
+      "en": "And sent down, from the rain clouds, pouring water"
+    }
+  },
+  {
+    "ayah": 15,
+    "arabic": "لِّنُخْرِجَ بِهِۦ حَبًّۭا وَنَبَاتًۭا",
+    "transliteration": "Li nuhrice bihi habben ve nebata",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/078015.mp3",
+    "translations": {
+      "tr": "Taneler, bitkiler, ağaçları sarmaş dolaş bahçeler yetiştirmek için, yoğunlaşmış bulutlardan bol yağmur yağdırdık.",
+      "en": "That We may bring forth thereby grain and vegetation"
+    }
+  },
+  {
+    "ayah": 16,
+    "arabic": "وَجَنَّٰتٍ أَلْفَافًا",
+    "transliteration": "Ve cennatin elfafa",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/078016.mp3",
+    "translations": {
+      "tr": "Taneler, bitkiler, ağaçları sarmaş dolaş bahçeler yetiştirmek için, yoğunlaşmış bulutlardan bol yağmur yağdırdık.",
+      "en": "And gardens of entwined growth."
+    }
+  },
+  {
+    "ayah": 17,
+    "arabic": "إِنَّ يَوْمَ ٱلْفَصْلِ كَانَ مِيقَٰتًۭا",
+    "transliteration": "İnne yevmel faslı kane mikata",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/078017.mp3",
+    "translations": {
+      "tr": "Doğrusu, hüküm gününün vakti elbette tesbit edilmiştir.",
+      "en": "Indeed, the Day of Judgement is an appointed time -"
+    }
+  },
+  {
+    "ayah": 18,
+    "arabic": "يَوْمَ يُنفَخُ فِى ٱلصُّورِ فَتَأْتُونَ أَفْوَاجًۭا",
+    "transliteration": "Yevme yunfehu fis suri fe te'tune efvaca",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/078018.mp3",
+    "translations": {
+      "tr": "Sura üfürüldüğü gün hepiniz bölük bölük gelirsiniz.",
+      "en": "The Day the Horn is blown and you will come forth in multitudes"
+    }
+  },
+  {
+    "ayah": 19,
+    "arabic": "وَفُتِحَتِ ٱلسَّمَآءُ فَكَانَتْ أَبْوَٰبًۭا",
+    "transliteration": "Ve futihatis semau fe kanet ebvaba",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/078019.mp3",
+    "translations": {
+      "tr": "Gökler kapı kapı açılacaktır.",
+      "en": "And the heaven is opened and will become gateways"
+    }
+  },
+  {
+    "ayah": 20,
+    "arabic": "وَسُيِّرَتِ ٱلْجِبَالُ فَكَانَتْ سَرَابًا",
+    "transliteration": "Ve suyyiretil cibalu fe kanet seraba",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/078020.mp3",
+    "translations": {
+      "tr": "Dağlar yürütülüp serap olacaktır.",
+      "en": "And the mountains are removed and will be [but] a mirage."
+    }
+  },
+  {
+    "ayah": 21,
+    "arabic": "إِنَّ جَهَنَّمَ كَانَتْ مِرْصَادًۭا",
+    "transliteration": "İnne cehenneme kanet mirsada",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/078021.mp3",
+    "translations": {
+      "tr": "Cehennem, yalnız azgınları bekleyen yerdir. Dönecekleri yer orasıdır.",
+      "en": "Indeed, Hell has been lying in wait"
+    }
+  },
+  {
+    "ayah": 22,
+    "arabic": "لِّلطَّٰغِينَ مَـَٔابًۭا",
+    "transliteration": "Lit tagine meaba",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/078022.mp3",
+    "translations": {
+      "tr": "Cehennem, yalnız azgınları bekleyen yerdir. Dönecekleri yer orasıdır.",
+      "en": "For the transgressors, a place of return,"
+    }
+  },
+  {
+    "ayah": 23,
+    "arabic": "لَّٰبِثِينَ فِيهَآ أَحْقَابًۭا",
+    "transliteration": "Labisine fiha ahkaba",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/078023.mp3",
+    "translations": {
+      "tr": "Orada çağlar boyunca (nice devirler) kalacaklardır.",
+      "en": "In which they will remain for ages [unending]."
+    }
+  },
+  {
+    "ayah": 24,
+    "arabic": "لَّا يَذُوقُونَ فِيهَا بَرْدًۭا وَلَا شَرَابًا",
+    "transliteration": "La yezukune fiha berden ve la şeraba",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/078024.mp3",
+    "translations": {
+      "tr": "Orada ne serinlik ne de içilecek bir şey tatmazlar; sadece kaynar su ve irin....",
+      "en": "They will not taste therein [any] coolness or drink"
+    }
+  },
+  {
+    "ayah": 25,
+    "arabic": "إِلَّا حَمِيمًۭا وَغَسَّاقًۭا",
+    "transliteration": "İlla hamimen ve gassaka",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/078025.mp3",
+    "translations": {
+      "tr": "Orada ne serinlik ne de içilecek bir şey tatmazlar; sadece kaynar su ve irin....",
+      "en": "Except scalding water and [foul] purulence -"
+    }
+  },
+  {
+    "ayah": 26,
+    "arabic": "جَزَآءًۭ وِفَاقًا",
+    "transliteration": "Cezaen vifaka",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/078026.mp3",
+    "translations": {
+      "tr": "Orada ne serinlik ne de içilecek bir şey tatmazlar; sadece kaynar su ve irin....",
+      "en": "An appropriate recompense."
+    }
+  },
+  {
+    "ayah": 27,
+    "arabic": "إِنَّهُمْ كَانُوا۟ لَا يَرْجُونَ حِسَابًۭا",
+    "transliteration": "İnnehum kanu la yercune hısaba",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/078027.mp3",
+    "translations": {
+      "tr": "Çünkü onlar, hesaba çekileceklerini sanmazlardı.",
+      "en": "Indeed, they were not expecting an account"
+    }
+  },
+  {
+    "ayah": 28,
+    "arabic": "وَكَذَّبُوا۟ بِـَٔايَٰتِنَا كِذَّابًۭا",
+    "transliteration": "Ve kezzebu bi ayatina kizzaba",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/078028.mp3",
+    "translations": {
+      "tr": "Ayetlerimizi hep yalan sayıp dururlardı.",
+      "en": "And denied Our verses with [emphatic] denial."
+    }
+  },
+  {
+    "ayah": 29,
+    "arabic": "وَكُلَّ شَىْءٍ أَحْصَيْنَٰهُ كِتَٰبًۭا",
+    "transliteration": "Ve kulle şey'in ahsaynahu kitaba",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/078029.mp3",
+    "translations": {
+      "tr": "Biz de herşeyi yazıp saymışızdır.",
+      "en": "But all things We have enumerated in writing."
+    }
+  },
+  {
+    "ayah": 30,
+    "arabic": "فَذُوقُوا۟ فَلَن نَّزِيدَكُمْ إِلَّا عَذَابًا",
+    "transliteration": "Fe zuku felen nezidekum illa azaba",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/078030.mp3",
+    "translations": {
+      "tr": "Şöyle deriz: \"Artık tadınız, bundan böyle size azabdan başka bir şey artırmayız.\"",
+      "en": "\"So taste [the penalty], and never will We increase you except in torment.\""
+    }
+  },
+  {
+    "ayah": 31,
+    "arabic": "إِنَّ لِلْمُتَّقِينَ مَفَازًا",
+    "transliteration": "İnne lil muttekine mefaza",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/078031.mp3",
+    "translations": {
+      "tr": "Doğrusu, Allah'a karşı gelmekten sakınanlara kurtuluş, bahçeler, bağlar, yaşıtlar ve dolu kadehler vardır.",
+      "en": "Indeed, for the righteous is attainment -"
+    }
+  },
+  {
+    "ayah": 32,
+    "arabic": "حَدَآئِقَ وَأَعْنَٰبًۭا",
+    "transliteration": "Hadaika ve a'naba",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/078032.mp3",
+    "translations": {
+      "tr": "Doğrusu, Allah'a karşı gelmekten sakınanlara kurtuluş, bahçeler, bağlar, yaşıtlar ve dolu kadehler vardır.",
+      "en": "Gardens and grapevines"
+    }
+  },
+  {
+    "ayah": 33,
+    "arabic": "وَكَوَاعِبَ أَتْرَابًۭا",
+    "transliteration": "Ve kevaıbe etraba",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/078033.mp3",
+    "translations": {
+      "tr": "Doğrusu, Allah'a karşı gelmekten sakınanlara kurtuluş, bahçeler, bağlar, yaşıtlar ve dolu kadehler vardır.",
+      "en": "And full-breasted [companions] of equal age"
+    }
+  },
+  {
+    "ayah": 34,
+    "arabic": "وَكَأْسًۭا دِهَاقًۭا",
+    "transliteration": "Ve ke'sen dihaka",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/078034.mp3",
+    "translations": {
+      "tr": "Doğrusu, Allah'a karşı gelmekten sakınanlara kurtuluş, bahçeler, bağlar, yaşıtlar ve dolu kadehler vardır.",
+      "en": "And a full cup."
+    }
+  },
+  {
+    "ayah": 35,
+    "arabic": "لَّا يَسْمَعُونَ فِيهَا لَغْوًۭا وَلَا كِذَّٰبًۭا",
+    "transliteration": "La yes'meune fiha lagven ve la kizzaba",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/078035.mp3",
+    "translations": {
+      "tr": "Orada boş ve yalan söz işitmezler.",
+      "en": "No ill speech will they hear therein or any falsehood -"
+    }
+  },
+  {
+    "ayah": 36,
+    "arabic": "جَزَآءًۭ مِّن رَّبِّكَ عَطَآءً حِسَابًۭا",
+    "transliteration": "Cezaen min rabbike ataen hısaba",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/078036.mp3",
+    "translations": {
+      "tr": "Bunlar Rabbinin katından, hesabları karşılığı verilenlerdir.",
+      "en": "[As] reward from your Lord, [a generous] gift [made due by] account,"
+    }
+  },
+  {
+    "ayah": 37,
+    "arabic": "رَّبِّ ٱلسَّمَٰوَٰتِ وَٱلْأَرْضِ وَمَا بَيْنَهُمَا ٱلرَّحْمَٰنِ ۖ لَا يَمْلِكُونَ مِنْهُ خِطَابًۭا",
+    "transliteration": "Rabbis semavati vel ardı ve ma beynehumer rahmani la yemlikune minhu hitaba",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/078037.mp3",
+    "translations": {
+      "tr": "O, göklerin, yerin ve ikisi arasında olanların Rabbidir. O, önünde kimsenin konuşmayacağı Rahman olan Allah'tır.",
+      "en": "[From] the Lord of the heavens and the earth and whatever is between them, the Most Merciful. They possess not from Him [authority for] speech."
+    }
+  },
+  {
+    "ayah": 38,
+    "arabic": "يَوْمَ يَقُومُ ٱلرُّوحُ وَٱلْمَلَٰٓئِكَةُ صَفًّۭا ۖ لَّا يَتَكَلَّمُونَ إِلَّا مَنْ أَذِنَ لَهُ ٱلرَّحْمَٰنُ وَقَالَ صَوَابًۭا",
+    "transliteration": "Yevme yekumur ruhu vel melaiketu saffa, la yetekellemune illa men ezine lehur rahmanu ve kale sevaba",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/078038.mp3",
+    "translations": {
+      "tr": "Cebrail ve meleklerin dizi dizi durdukları gün, Rahman olan Allah'ın izni olmadan kimse konuşamayacaktır. Konuştuğu zaman da doğruyu söyleyecektir.",
+      "en": "The Day that the Spirit and the angels will stand in rows, they will not speak except for one whom the Most Merciful permits, and he will say what is correct."
+    }
+  },
+  {
+    "ayah": 39,
+    "arabic": "ذَٰلِكَ ٱلْيَوْمُ ٱلْحَقُّ ۖ فَمَن شَآءَ ٱتَّخَذَ إِلَىٰ رَبِّهِۦ مَـَٔابًا",
+    "transliteration": "Zalikel yevmul hakk, femen şaettehaze ila rabbihi meaba",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/078039.mp3",
+    "translations": {
+      "tr": "İşte gerçek gün budur. Dileyen kimse, Rabbine götürecek bir yol benimser.",
+      "en": "That is the True Day; so he who wills may take to his Lord a [way of] return."
+    }
+  },
+  {
+    "ayah": 40,
+    "arabic": "إِنَّآ أَنذَرْنَٰكُمْ عَذَابًۭا قَرِيبًۭا يَوْمَ يَنظُرُ ٱلْمَرْءُ مَا قَدَّمَتْ يَدَاهُ وَيَقُولُ ٱلْكَافِرُ يَٰلَيْتَنِى كُنتُ تُرَٰبًۢا",
+    "transliteration": "İnna enzernakum azaben kariba, yevme yenzurul mer'u ma kaddemet yedahu ve yekulul kafiru ya leyteni kuntu turaba",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/078040.mp3",
+    "translations": {
+      "tr": "Sizi, yakın gelecekteki bir azabla uyardık; o gün kişi elleriyle sunduğuna bakar ve inkarcı da: \"Keşke toprak olaydım\" der.",
+      "en": "Indeed, We have warned you of a near punishment on the Day when a man will observe what his hands have put forth and the disbeliever will say, \"Oh, I wish that I were dust!\""
+    }
+  }
+]

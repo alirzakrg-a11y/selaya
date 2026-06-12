@@ -1,0 +1,562 @@
+[
+  {
+    "ayah": 1,
+    "arabic": "يَٰٓأَيُّهَا ٱلْمُدَّثِّرُ",
+    "transliteration": "Ya eyyuhel muddessir",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/074001.mp3",
+    "translations": {
+      "tr": "Ey örtüye bürünen!",
+      "en": "O you who covers himself [with a garment],"
+    }
+  },
+  {
+    "ayah": 2,
+    "arabic": "قُمْ فَأَنذِرْ",
+    "transliteration": "Kum fe enzir",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/074002.mp3",
+    "translations": {
+      "tr": "Kalk da uyar.",
+      "en": "Arise and warn"
+    }
+  },
+  {
+    "ayah": 3,
+    "arabic": "وَرَبَّكَ فَكَبِّرْ",
+    "transliteration": "Ve rabbeke fe kebbir",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/074003.mp3",
+    "translations": {
+      "tr": "Rabbini yücelt.",
+      "en": "And your Lord glorify"
+    }
+  },
+  {
+    "ayah": 4,
+    "arabic": "وَثِيَابَكَ فَطَهِّرْ",
+    "transliteration": "Ve siyabeke fe tahhir",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/074004.mp3",
+    "translations": {
+      "tr": "Giydiklerini temiz tut.",
+      "en": "And your clothing purify"
+    }
+  },
+  {
+    "ayah": 5,
+    "arabic": "وَٱلرُّجْزَ فَٱهْجُرْ",
+    "transliteration": "Verrucze fehcur",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/074005.mp3",
+    "translations": {
+      "tr": "Kötü şeyleri terke devam et.",
+      "en": "And uncleanliness avoid"
+    }
+  },
+  {
+    "ayah": 6,
+    "arabic": "وَلَا تَمْنُن تَسْتَكْثِرُ",
+    "transliteration": "Ve la temnun testeksir",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/074006.mp3",
+    "translations": {
+      "tr": "Yaptığın iyiliği çok görerek başa kakma.",
+      "en": "And do not confer favor to acquire more"
+    }
+  },
+  {
+    "ayah": 7,
+    "arabic": "وَلِرَبِّكَ فَٱصْبِرْ",
+    "transliteration": "Ve li rabbike fasbir",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/074007.mp3",
+    "translations": {
+      "tr": "Rabbin için sabret.",
+      "en": "But for your Lord be patient."
+    }
+  },
+  {
+    "ayah": 8,
+    "arabic": "فَإِذَا نُقِرَ فِى ٱلنَّاقُورِ",
+    "transliteration": "Fe iza nukıre fin naku",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/074008.mp3",
+    "translations": {
+      "tr": "Sura üflendiği vakit, işte o gün, inkarcılara kolay olmayan zorlu bir gündür.",
+      "en": "And when the trumpet is blown,"
+    }
+  },
+  {
+    "ayah": 9,
+    "arabic": "فَذَٰلِكَ يَوْمَئِذٍۢ يَوْمٌ عَسِيرٌ",
+    "transliteration": "Fe zalike yevme izin yevmun asi",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/074009.mp3",
+    "translations": {
+      "tr": "Sura üflendiği vakit, işte o gün, inkarcılara kolay olmayan zorlu bir gündür.",
+      "en": "That Day will be a difficult day"
+    }
+  },
+  {
+    "ayah": 10,
+    "arabic": "عَلَى ٱلْكَٰفِرِينَ غَيْرُ يَسِيرٍۢ",
+    "transliteration": "Alel kafirine gayru yesir",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/074010.mp3",
+    "translations": {
+      "tr": "Sura üflendiği vakit, işte o gün, inkarcılara kolay olmayan zorlu bir gündür.",
+      "en": "For the disbelievers - not easy."
+    }
+  },
+  {
+    "ayah": 11,
+    "arabic": "ذَرْنِى وَمَنْ خَلَقْتُ وَحِيدًۭا",
+    "transliteration": "Zerni ve men halaktu vahida",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/074011.mp3",
+    "translations": {
+      "tr": "Tek olarak yaratıp kendisine bol bol mal, çevresinde bulunan oğullar verdiğim ve nimetleri yaydıkça yaydığım o kimseyi Bana bırak.",
+      "en": "Leave Me with the one I created alone"
+    }
+  },
+  {
+    "ayah": 12,
+    "arabic": "وَجَعَلْتُ لَهُۥ مَالًۭا مَّمْدُودًۭا",
+    "transliteration": "Ve ce'altu lehu malen memduda",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/074012.mp3",
+    "translations": {
+      "tr": "Tek olarak yaratıp kendisine bol bol mal, çevresinde bulunan oğullar verdiğim ve nimetleri yaydıkça yaydığım o kimseyi Bana bırak.",
+      "en": "And to whom I granted extensive wealth"
+    }
+  },
+  {
+    "ayah": 13,
+    "arabic": "وَبَنِينَ شُهُودًۭا",
+    "transliteration": "Ve benine şuhuda",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/074013.mp3",
+    "translations": {
+      "tr": "Tek olarak yaratıp kendisine bol bol mal, çevresinde bulunan oğullar verdiğim ve nimetleri yaydıkça yaydığım o kimseyi Bana bırak.",
+      "en": "And children present [with him]"
+    }
+  },
+  {
+    "ayah": 14,
+    "arabic": "وَمَهَّدتُّ لَهُۥ تَمْهِيدًۭا",
+    "transliteration": "Ve mehhedtu lehu temhida",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/074014.mp3",
+    "translations": {
+      "tr": "Tek olarak yaratıp kendisine bol bol mal, çevresinde bulunan oğullar verdiğim ve nimetleri yaydıkça yaydığım o kimseyi Bana bırak.",
+      "en": "And spread [everything] before him, easing [his life]."
+    }
+  },
+  {
+    "ayah": 15,
+    "arabic": "ثُمَّ يَطْمَعُ أَنْ أَزِيدَ",
+    "transliteration": "Summe yatmau en ezid",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/074015.mp3",
+    "translations": {
+      "tr": "Bir de verdiğim nimetten artırmamı umar;",
+      "en": "Then he desires that I should add more."
+    }
+  },
+  {
+    "ayah": 16,
+    "arabic": "كَلَّآ ۖ إِنَّهُۥ كَانَ لِءَايَٰتِنَا عَنِيدًۭا",
+    "transliteration": "Kella, innehu kane li ayatina anida",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/074016.mp3",
+    "translations": {
+      "tr": "Hayır; hayır; çünkü o, Bizim ayetlerimize karşı son derece inatçıdır.",
+      "en": "No! Indeed, he has been toward Our verses obstinate."
+    }
+  },
+  {
+    "ayah": 17,
+    "arabic": "سَأُرْهِقُهُۥ صَعُودًا",
+    "transliteration": "Se urhikuhu sauda",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/074017.mp3",
+    "translations": {
+      "tr": "Onu sarp bir yokuşa sardıracağım.",
+      "en": "I will cover him with arduous torment."
+    }
+  },
+  {
+    "ayah": 18,
+    "arabic": "إِنَّهُۥ فَكَّرَ وَقَدَّرَ",
+    "transliteration": "İnnehu fekkere ve kadder",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/074018.mp3",
+    "translations": {
+      "tr": "Çünkü o, düşündü, ölçtü biçti;",
+      "en": "Indeed, he thought and deliberated."
+    }
+  },
+  {
+    "ayah": 19,
+    "arabic": "فَقُتِلَ كَيْفَ قَدَّرَ",
+    "transliteration": "Fe kutile keyfe kadder",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/074019.mp3",
+    "translations": {
+      "tr": "Canı çıkası, ne biçim ölçüp biçti!",
+      "en": "So may he be destroyed [for] how he deliberated."
+    }
+  },
+  {
+    "ayah": 20,
+    "arabic": "ثُمَّ قُتِلَ كَيْفَ قَدَّرَ",
+    "transliteration": "Summe kutile keyfe kadder",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/074020.mp3",
+    "translations": {
+      "tr": "Canı çıkası; sonra yine ne biçim ölçüp biçti!",
+      "en": "Then may he be destroyed [for] how he deliberated."
+    }
+  },
+  {
+    "ayah": 21,
+    "arabic": "ثُمَّ نَظَرَ",
+    "transliteration": "Summe nazar",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/074021.mp3",
+    "translations": {
+      "tr": "Sonra baktı;",
+      "en": "Then he considered [again];"
+    }
+  },
+  {
+    "ayah": 22,
+    "arabic": "ثُمَّ عَبَسَ وَبَسَرَ",
+    "transliteration": "Summe abese ve beser",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/074022.mp3",
+    "translations": {
+      "tr": "Sonra kaşlarını çattı, suratını aştı;",
+      "en": "Then he frowned and scowled;"
+    }
+  },
+  {
+    "ayah": 23,
+    "arabic": "ثُمَّ أَدْبَرَ وَٱسْتَكْبَرَ",
+    "transliteration": "Summe edbere vestekber",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/074023.mp3",
+    "translations": {
+      "tr": "Sonra da sırt çevirip büyüklük tasladı.",
+      "en": "Then he turned back and was arrogant"
+    }
+  },
+  {
+    "ayah": 24,
+    "arabic": "فَقَالَ إِنْ هَٰذَآ إِلَّا سِحْرٌۭ يُؤْثَرُ",
+    "transliteration": "Fe kale in haza illa sihrun yu'ser",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/074024.mp3",
+    "translations": {
+      "tr": "\"Bu sadece öğretilegelen bir sihirdir. Bu Kuran yalnızca bir insan sözüdür\" dedi.",
+      "en": "And said, \"This is not but magic imitated [from others]."
+    }
+  },
+  {
+    "ayah": 25,
+    "arabic": "إِنْ هَٰذَآ إِلَّا قَوْلُ ٱلْبَشَرِ",
+    "transliteration": "İn haza illa kavlul beşer",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/074025.mp3",
+    "translations": {
+      "tr": "\"Bu sadece öğretilegelen bir sihirdir. Bu Kuran yalnızca bir insan sözüdür\" dedi.",
+      "en": "This is not but the word of a human being.\""
+    }
+  },
+  {
+    "ayah": 26,
+    "arabic": "سَأُصْلِيهِ سَقَرَ",
+    "transliteration": "Se uslihi sekar",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/074026.mp3",
+    "translations": {
+      "tr": "İşte bu adamı yakıcı bir ateşe yaslayacağım.",
+      "en": "I will drive him into Saqar."
+    }
+  },
+  {
+    "ayah": 27,
+    "arabic": "وَمَآ أَدْرَىٰكَ مَا سَقَرُ",
+    "transliteration": "Ve ma edrake ma sekar",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/074027.mp3",
+    "translations": {
+      "tr": "Yakıcı ateşin ne olduğunu sen nerden bilirsin?",
+      "en": "And what can make you know what is Saqar?"
+    }
+  },
+  {
+    "ayah": 28,
+    "arabic": "لَا تُبْقِى وَلَا تَذَرُ",
+    "transliteration": "La tubki ve la tezer",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/074028.mp3",
+    "translations": {
+      "tr": "O, ne geri bırakır ne de azabdan vazgeçer.",
+      "en": "It lets nothing remain and leaves nothing [unburned],"
+    }
+  },
+  {
+    "ayah": 29,
+    "arabic": "لَوَّاحَةٌۭ لِّلْبَشَرِ",
+    "transliteration": "Levvahatun lil beşer",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/074029.mp3",
+    "translations": {
+      "tr": "İnsanın derisini kavurur;",
+      "en": "Blackening the skins."
+    }
+  },
+  {
+    "ayah": 30,
+    "arabic": "عَلَيْهَا تِسْعَةَ عَشَرَ",
+    "transliteration": "Aleyha tis'ate aşer",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/074030.mp3",
+    "translations": {
+      "tr": "Orada ondokuz bekçi vardır.",
+      "en": "Over it are nineteen [angels]."
+    }
+  },
+  {
+    "ayah": 31,
+    "arabic": "وَمَا جَعَلْنَآ أَصْحَٰبَ ٱلنَّارِ إِلَّا مَلَٰٓئِكَةًۭ ۙ وَمَا جَعَلْنَا عِدَّتَهُمْ إِلَّا فِتْنَةًۭ لِّلَّذِينَ كَفَرُوا۟ لِيَسْتَيْقِنَ ٱلَّذِينَ أُوتُوا۟ ٱلْكِتَٰبَ وَيَزْدَادَ ٱلَّذِينَ ءَامَنُوٓا۟ إِيمَٰنًۭا ۙ وَلَا يَرْتَابَ ٱلَّذِينَ أُوتُوا۟ ٱلْكِتَٰبَ وَٱلْمُؤْمِنُونَ ۙ وَلِيَقُولَ ٱلَّذِينَ فِى قُلُوبِهِم مَّرَضٌۭ وَٱلْكَٰفِرُونَ مَاذَآ أَرَادَ ٱللَّهُ بِهَٰذَا مَثَلًۭا ۚ كَذَٰلِكَ يُضِلُّ ٱللَّهُ مَن يَشَآءُ وَيَهْدِى مَن يَشَآءُ ۚ وَمَا يَعْلَمُ جُنُودَ رَبِّكَ إِلَّا هُوَ ۚ وَمَا هِىَ إِلَّا ذِكْرَىٰ لِلْبَشَرِ",
+    "transliteration": "Ve ma cealna ashaben nari illa melaiketen ve ma cealna ıddetehum illa fitneten lillezine keferu li yesteykınellezine utul kitabe ve yezdadellezine amenu imanen ve la yertabellezine utul kitabe vel mu'minune, ve li yekulellezine fi kulubihim maradun vel kafirune maza eradallahu bi haza mesela, kezalike yudıllullahu men yeşau ve yehdi men yeşa, ve ma ya'lemu cunude rabbike illa hu, ve ma hiye illa zikra lil beşer",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/074031.mp3",
+    "translations": {
+      "tr": "Cehennemin bekçilerini yalnız meleklerden kılmışızdır. Sayılarını bildirmekle de, ancak inkar edenlerin denenmesini ve kendilerine kitap verilenlerin kesin bilgi edinmesini ve inananların da imanlarının artmasını sağladık. Kendilerine kitap verilenler ve inananlar şüpheye düşmesinler. Kalblerinde hastalık bulunanlar ve inkarcılar: \"Allah bu misalle neyi muradetti?\" desinler. İşte Allah, böylece, dilediğini saptırır, dilediğini de doğru yola eriştirir. Rabbinin ordularını kendisinden başkası bilmez. Bu, insanoğluna bir öğütten ibarettir.",
+      "en": "And We have not made the keepers of the Fire except angels. And We have not made their number except as a trial for those who disbelieve - that those who were given the Scripture will be convinced and those who have believed will increase in faith and those who were given the Scripture and the believers will not doubt and that those in whose hearts is hypocrisy and the disbelievers will say, \"What does Allah intend by this as an example?\" Thus does Allah leave astray whom He wills and guides whom He wills. And none knows the soldiers of your Lord except Him. And mention of the Fire is not but a reminder to humanity."
+    }
+  },
+  {
+    "ayah": 32,
+    "arabic": "كَلَّا وَٱلْقَمَرِ",
+    "transliteration": "Kella vel kamer",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/074032.mp3",
+    "translations": {
+      "tr": "Hayır, hayır öğüt almazlar. Aya, dönüp gelen geceye, ağarmakta olan sabaha and olsun ki, içinizden öne geçmek veya geri kalmak isteyen kimseye, insanoğlunu uyarıcı olarak anlatılan cehennem büyük olaylardan biridir.",
+      "en": "No! By the moon"
+    }
+  },
+  {
+    "ayah": 33,
+    "arabic": "وَٱلَّيْلِ إِذْ أَدْبَرَ",
+    "transliteration": "Vel leyli iz edber",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/074033.mp3",
+    "translations": {
+      "tr": "Hayır, hayır öğüt almazlar. Aya, dönüp gelen geceye, ağarmakta olan sabaha and olsun ki, içinizden öne geçmek veya geri kalmak isteyen kimseye, insanoğlunu uyarıcı olarak anlatılan cehennem büyük olaylardan biridir.",
+      "en": "And [by] the night when it departs"
+    }
+  },
+  {
+    "ayah": 34,
+    "arabic": "وَٱلصُّبْحِ إِذَآ أَسْفَرَ",
+    "transliteration": "Ves subhı iza esfer",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/074034.mp3",
+    "translations": {
+      "tr": "Hayır, hayır öğüt almazlar. Aya, dönüp gelen geceye, ağarmakta olan sabaha and olsun ki, içinizden öne geçmek veya geri kalmak isteyen kimseye, insanoğlunu uyarıcı olarak anlatılan cehennem büyük olaylardan biridir.",
+      "en": "And [by] the morning when it brightens,"
+    }
+  },
+  {
+    "ayah": 35,
+    "arabic": "إِنَّهَا لَإِحْدَى ٱلْكُبَرِ",
+    "transliteration": "İnneha le ıhdel kuber",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/074035.mp3",
+    "translations": {
+      "tr": "Hayır, hayır öğüt almazlar. Aya, dönüp gelen geceye, ağarmakta olan sabaha and olsun ki, içinizden öne geçmek veya geri kalmak isteyen kimseye, insanoğlunu uyarıcı olarak anlatılan cehennem büyük olaylardan biridir.",
+      "en": "Indeed, the Fire is of the greatest [afflictions]"
+    }
+  },
+  {
+    "ayah": 36,
+    "arabic": "نَذِيرًۭا لِّلْبَشَرِ",
+    "transliteration": "Neziren lil beşer",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/074036.mp3",
+    "translations": {
+      "tr": "Hayır, hayır öğüt almazlar. Aya, dönüp gelen geceye, ağarmakta olan sabaha and olsun ki, içinizden öne geçmek veya geri kalmak isteyen kimseye, insanoğlunu uyarıcı olarak anlatılan cehennem büyük olaylardan biridir.",
+      "en": "As a warning to humanity -"
+    }
+  },
+  {
+    "ayah": 37,
+    "arabic": "لِمَن شَآءَ مِنكُمْ أَن يَتَقَدَّمَ أَوْ يَتَأَخَّرَ",
+    "transliteration": "Li men şae minkum en yetekaddeme ev yeteahhar",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/074037.mp3",
+    "translations": {
+      "tr": "Hayır, hayır öğüt almazlar. Aya, dönüp gelen geceye, ağarmakta olan sabaha and olsun ki, içinizden öne geçmek veya geri kalmak isteyen kimseye, insanoğlunu uyarıcı olarak anlatılan cehennem büyük olaylardan biridir.",
+      "en": "To whoever wills among you to proceed or stay behind."
+    }
+  },
+  {
+    "ayah": 38,
+    "arabic": "كُلُّ نَفْسٍۭ بِمَا كَسَبَتْ رَهِينَةٌ",
+    "transliteration": "Kullu nefsin bima kesebet rehineh",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/074038.mp3",
+    "translations": {
+      "tr": "Herkes kazancına bağlı bir rehindir;",
+      "en": "Every soul, for what it has earned, will be retained"
+    }
+  },
+  {
+    "ayah": 39,
+    "arabic": "إِلَّآ أَصْحَٰبَ ٱلْيَمِينِ",
+    "transliteration": "İlla ashabel yemin",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/074039.mp3",
+    "translations": {
+      "tr": "Ancak, defteri sağdan verilenler böyle değildir; onlar cennettedirler. Suçlulara: \"Sizi bu yakıcı ateşe sürükleyen nedir?\" diye sorarlar.",
+      "en": "Except the companions of the right,"
+    }
+  },
+  {
+    "ayah": 40,
+    "arabic": "فِى جَنَّٰتٍۢ يَتَسَآءَلُونَ",
+    "transliteration": "Fi cennat, yetesaelun",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/074040.mp3",
+    "translations": {
+      "tr": "Ancak, defteri sağdan verilenler böyle değildir; onlar cennettedirler. Suçlulara: \"Sizi bu yakıcı ateşe sürükleyen nedir?\" diye sorarlar.",
+      "en": "[Who will be] in gardens, questioning each other"
+    }
+  },
+  {
+    "ayah": 41,
+    "arabic": "عَنِ ٱلْمُجْرِمِينَ",
+    "transliteration": "Anil mucrimin",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/074041.mp3",
+    "translations": {
+      "tr": "Ancak, defteri sağdan verilenler böyle değildir; onlar cennettedirler. Suçlulara: \"Sizi bu yakıcı ateşe sürükleyen nedir?\" diye sorarlar.",
+      "en": "About the criminals,"
+    }
+  },
+  {
+    "ayah": 42,
+    "arabic": "مَا سَلَكَكُمْ فِى سَقَرَ",
+    "transliteration": "Ma selekekum fi sekar",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/074042.mp3",
+    "translations": {
+      "tr": "Ancak, defteri sağdan verilenler böyle değildir; onlar cennettedirler. Suçlulara: \"Sizi bu yakıcı ateşe sürükleyen nedir?\" diye sorarlar.",
+      "en": "[And asking them], \"What put you into Saqar?\""
+    }
+  },
+  {
+    "ayah": 43,
+    "arabic": "قَالُوا۟ لَمْ نَكُ مِنَ ٱلْمُصَلِّينَ",
+    "transliteration": "Kalu lem neku minel musallin",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/074043.mp3",
+    "translations": {
+      "tr": "Onlar derler ki: \"Namaz kılanlardan değildik.\"",
+      "en": "They will say, \"We were not of those who prayed,"
+    }
+  },
+  {
+    "ayah": 44,
+    "arabic": "وَلَمْ نَكُ نُطْعِمُ ٱلْمِسْكِينَ",
+    "transliteration": "Ve lem neku nut'ımul miskin",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/074044.mp3",
+    "translations": {
+      "tr": "\"Düşkün kimseyi doyurmuyorduk.\"",
+      "en": "Nor did we used to feed the poor."
+    }
+  },
+  {
+    "ayah": 45,
+    "arabic": "وَكُنَّا نَخُوضُ مَعَ ٱلْخَآئِضِينَ",
+    "transliteration": "Ve kunna nehudu maal haidin",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/074045.mp3",
+    "translations": {
+      "tr": "\"Batıla dalanlarla biz de dalardık.\"",
+      "en": "And we used to enter into vain discourse with those who engaged [in it],"
+    }
+  },
+  {
+    "ayah": 46,
+    "arabic": "وَكُنَّا نُكَذِّبُ بِيَوْمِ ٱلدِّينِ",
+    "transliteration": "Ve kunna nukezzibu bi yevmid din",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/074046.mp3",
+    "translations": {
+      "tr": "\"Ceza gününü yalanlardık.\"",
+      "en": "And we used to deny the Day of Recompense"
+    }
+  },
+  {
+    "ayah": 47,
+    "arabic": "حَتَّىٰٓ أَتَىٰنَا ٱلْيَقِينُ",
+    "transliteration": "Hatta etanel yakin",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/074047.mp3",
+    "translations": {
+      "tr": "\"Ölüm bize o haldeyken geldi.\"",
+      "en": "Until there came to us the certainty.\""
+    }
+  },
+  {
+    "ayah": 48,
+    "arabic": "فَمَا تَنفَعُهُمْ شَفَٰعَةُ ٱلشَّٰفِعِينَ",
+    "transliteration": "Fe ma tenfeuhum şefaatuş şafiin",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/074048.mp3",
+    "translations": {
+      "tr": "Artık onlara, şefaatçilerin şefaati fayda vermez.",
+      "en": "So there will not benefit them the intercession of [any] intercessors."
+    }
+  },
+  {
+    "ayah": 49,
+    "arabic": "فَمَا لَهُمْ عَنِ ٱلتَّذْكِرَةِ مُعْرِضِينَ",
+    "transliteration": "Fe ma lehum anit tezkireti mu'rıdin",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/074049.mp3",
+    "translations": {
+      "tr": "Öyleyken, bunlara ne oluyor ki öğütten yüz çeviriyorlar?",
+      "en": "Then what is [the matter] with them that they are, from the reminder, turning away"
+    }
+  },
+  {
+    "ayah": 50,
+    "arabic": "كَأَنَّهُمْ حُمُرٌۭ مُّسْتَنفِرَةٌۭ",
+    "transliteration": "Ke ennehum humurun mustenfireth",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/074050.mp3",
+    "translations": {
+      "tr": "Aslandan ürkerek kaçan yabani merkeplere benzerler.",
+      "en": "As if they were alarmed donkeys"
+    }
+  },
+  {
+    "ayah": 51,
+    "arabic": "فَرَّتْ مِن قَسْوَرَةٍۭ",
+    "transliteration": "Ferret min kasvereh",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/074051.mp3",
+    "translations": {
+      "tr": "Aslandan ürkerek kaçan yabani merkeplere benzerler.",
+      "en": "Fleeing from a lion?"
+    }
+  },
+  {
+    "ayah": 52,
+    "arabic": "بَلْ يُرِيدُ كُلُّ ٱمْرِئٍۢ مِّنْهُمْ أَن يُؤْتَىٰ صُحُفًۭا مُّنَشَّرَةًۭ",
+    "transliteration": "Bel yuridu kullumriin minhum en yu'ta suhufen muneşşereh",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/074052.mp3",
+    "translations": {
+      "tr": "Hayır; her biri önüne açılıvermiş sahifeler verilmesini ister.",
+      "en": "Rather, every person among them desires that he would be given scriptures spread about."
+    }
+  },
+  {
+    "ayah": 53,
+    "arabic": "كَلَّا ۖ بَل لَّا يَخَافُونَ ٱلْءَاخِرَةَ",
+    "transliteration": "Kella, bel la yuhafunel ahıreh",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/074053.mp3",
+    "translations": {
+      "tr": "Hayır; daha doğrusu ahiretten korkmazlar.",
+      "en": "No! But they do not fear the Hereafter."
+    }
+  },
+  {
+    "ayah": 54,
+    "arabic": "كَلَّآ إِنَّهُۥ تَذْكِرَةٌۭ",
+    "transliteration": "Kella innehu tezkireh",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/074054.mp3",
+    "translations": {
+      "tr": "Hayır; şüphesiz bu Kuran bir öğüttür.",
+      "en": "No! Indeed, the Qur'an is a reminder"
+    }
+  },
+  {
+    "ayah": 55,
+    "arabic": "فَمَن شَآءَ ذَكَرَهُۥ",
+    "transliteration": "Fe men şae zekereh",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/074055.mp3",
+    "translations": {
+      "tr": "Dileyen kimse öğüt alır.",
+      "en": "Then whoever wills will remember it."
+    }
+  },
+  {
+    "ayah": 56,
+    "arabic": "وَمَا يَذْكُرُونَ إِلَّآ أَن يَشَآءَ ٱللَّهُ ۚ هُوَ أَهْلُ ٱلتَّقْوَىٰ وَأَهْلُ ٱلْمَغْفِرَةِ",
+    "transliteration": "Ve ma yezkurune illa en yeşaallah, huve ehlut takva ve ehlul magfireh",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/074056.mp3",
+    "translations": {
+      "tr": "Allah dilemeksizin öğüt alamazlar. O, kendisinden korkulmaya daha layıktır ve bağışlamaya daha ehildir.",
+      "en": "And they will not remember except that Allah wills. He is worthy of fear and adequate for [granting] forgiveness."
+    }
+  }
+]

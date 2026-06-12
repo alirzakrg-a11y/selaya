@@ -1,0 +1,96 @@
+﻿name: selaya
+description: "SELAYA — More Than Prayer Times. Premium Islamic lifestyle & prayer companion."
+publish_to: 'none'
+version: 1.0.132+2133
+
+environment:
+  sdk: ^3.12.0
+
+dependencies:
+  flutter:
+    sdk: flutter
+  flutter_localizations:
+    sdk: flutter
+
+  cupertino_icons: ^1.0.8
+
+  # State & routing
+  flutter_riverpod: ^3.3.1
+  go_router: ^17.2.3
+
+  # i18n  (intl pinned EXACTLY — Flutter 3.44 dictates 0.20.2)
+  easy_localization: ^3.0.8
+  intl: 0.20.2
+
+  # Persistence
+  shared_preferences: ^2.5.5
+
+  # UI / UX
+  google_fonts: ^8.1.0
+  flutter_animate: ^4.5.2
+  flutter_svg: ^2.3.0
+  cached_network_image: ^3.4.1
+  smooth_page_indicator: ^2.0.1
+  hugeicons: ^1.1.7
+
+  # Prayer / Qibla / Location
+  adhan: ^2.0.0
+  geolocator: ^14.0.2
+  geocoding: ^4.0.0
+  flutter_compass: ^0.8.1
+  vibration: ^3.1.3
+
+  # Media & utilities
+  audio_service: ^0.18.15
+  just_audio: ^0.10.5
+  audio_session: ^0.2.3
+  share_plus: ^11.0.0
+  url_launcher: ^6.3.2
+  permission_handler: ^12.0.1
+  gal: ^2.3.2
+  skeletonizer: ^2.1.3
+  hijri: ^3.0.1
+  path_provider: ^2.1.5
+  package_info_plus: ^9.0.1
+  flutter_local_notifications: ^21.0.0
+  timezone: ^0.11.0
+  flutter_timezone: ^5.1.0
+  http: ^1.6.0
+  video_player: ^2.9.2
+  flutter_tts: ^4.2.0
+  geomag: ^0.3.0
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^6.0.0
+  flutter_launcher_icons: ^0.14.4
+
+flutter_launcher_icons:
+  android: true
+  ios: true
+  remove_alpha_ios: true
+  image_path: "assets/icon/selaya_icon.png"
+  adaptive_icon_background: "#080B14"
+  adaptive_icon_foreground: "assets/icon/selaya_icon_fg.png"
+  min_sdk_android: 21
+
+flutter:
+  uses-material-design: true
+  generate: false
+
+  assets:
+    - assets/data/
+    - assets/data/quran/
+    - assets/data/mosques/
+    - assets/translations/
+    - assets/images/
+    - assets/images/wallpapers/
+    - assets/images/stories/
+    - assets/images/videolar/
+    - assets/images/guides/abdest/
+    - assets/images/guides/namaz/
+    - assets/icon/
+    - assets/branding/
+    - assets/audio/
+    - assets/audio/adhan/
+    - assets/videos/

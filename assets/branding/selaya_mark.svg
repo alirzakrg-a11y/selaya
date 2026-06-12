@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 1024 1024">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: url(#linear-gradient-2);
+      }
+
+      .cls-2 {
+        fill: #fff;
+      }
+
+      .cls-3 {
+        mask: url(#mask);
+      }
+
+      .cls-4 {
+        fill: url(#linear-gradient-3);
+      }
+
+      .cls-5 {
+        fill: url(#linear-gradient);
+      }
+    </style>
+    <mask id="mask" x="41.8" y="-3.8" width="1092.6" height="998.1" maskUnits="userSpaceOnUse">
+      <g id="crescent">
+        <circle class="cls-2" cx="525.1" cy="511" r="483.3"/>
+        <circle cx="703.7" cy="426.9" r="430.8"/>
+      </g>
+    </mask>
+    <linearGradient id="linear-gradient" x1="213.7" y1="932" x2="215" y2="930.7" gradientTransform="translate(-157258 685993) scale(736 -736)" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#f4d27a"/>
+      <stop offset=".6" stop-color="#e0b250"/>
+      <stop offset="1" stop-color="#b6862f"/>
+    </linearGradient>
+    <linearGradient id="linear-gradient-2" x1="213.5" y1="932.6" x2="215.1" y2="931" gradientTransform="translate(-43842 194235.1) scale(208 -208)" xlink:href="#linear-gradient"/>
+    <linearGradient id="linear-gradient-3" x1="213.5" y1="932.7" x2="215.1" y2="931.1" gradientTransform="translate(-30800.4 137606.6) scale(147.2 -147.2)" xlink:href="#linear-gradient"/>
+  </defs>
+  <!-- Generator: Adobe Illustrator 28.7.5, SVG Export Plug-In . SVG Version: 1.2.0 Build 176)  -->
+  <g>
+    <g id="Layer_1">
+      <g class="cls-3">
+        <circle class="cls-5" cx="525.1" cy="511" r="483.3"/>
+      </g>
+      <polygon class="cls-1" points="907.4 426.7 741.7 592.4 576 426.7 741.7 261 907.4 426.7"/>
+      <polygon class="cls-4" points="858.9 544 624.5 544 624.5 309.5 858.9 309.5 858.9 544"/>
+    </g>
+  </g>
+</svg>

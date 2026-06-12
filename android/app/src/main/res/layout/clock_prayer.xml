@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Prayer-focused clock (#15): self-ticking time, the next prayer, and a live
+     count-down (Chronometer in count-down mode, base pushed by the app). -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/widget_root"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:background="@drawable/widget_bg"
+    android:padding="14dp">
+
+    <TextClock
+        android:id="@+id/widget_cp_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:format12Hour="HH:mm"
+        android:format24Hour="HH:mm"
+        android:textColor="#F4F6FB"
+        android:textSize="46sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/widget_cp_next"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingTop="3dp"
+        android:text="Sıradaki: —"
+        android:textColor="#E0B250"
+        android:textSize="14sp"
+        android:textStyle="bold"
+        android:maxLines="1" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:paddingTop="2dp">
+
+        <TextView
+            android:id="@+id/widget_cp_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Kalan "
+            android:textColor="#9AA3B8"
+            android:textSize="13sp" />
+
+        <Chronometer
+            android:id="@+id/widget_cp_count"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:format="%s"
+            android:textColor="#F4F6FB"
+            android:textSize="14sp"
+            android:textStyle="bold" />
+    </LinearLayout>
+</LinearLayout>

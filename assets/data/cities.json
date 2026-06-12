@@ -1,0 +1,22 @@
+[
+  { "id": "istanbul", "lat": 41.0082, "lng": 28.9784, "country": "TR", "timezone": "Europe/Istanbul", "translations": { "tr": { "name": "İstanbul", "country": "Türkiye" }, "en": { "name": "Istanbul", "country": "Turkey" } } },
+  { "id": "ankara", "lat": 39.9334, "lng": 32.8597, "country": "TR", "timezone": "Europe/Istanbul", "translations": { "tr": { "name": "Ankara", "country": "Türkiye" }, "en": { "name": "Ankara", "country": "Turkey" } } },
+  { "id": "izmir", "lat": 38.4237, "lng": 27.1428, "country": "TR", "timezone": "Europe/Istanbul", "translations": { "tr": { "name": "İzmir", "country": "Türkiye" }, "en": { "name": "Izmir", "country": "Turkey" } } },
+  { "id": "iskenderun", "lat": 36.5870, "lng": 36.1730, "country": "TR", "timezone": "Europe/Istanbul", "translations": { "tr": { "name": "İskenderun", "country": "Türkiye" }, "en": { "name": "Iskenderun", "country": "Turkey" } } },
+  { "id": "bursa", "lat": 40.1885, "lng": 29.0610, "country": "TR", "timezone": "Europe/Istanbul", "translations": { "tr": { "name": "Bursa", "country": "Türkiye" }, "en": { "name": "Bursa", "country": "Turkey" } } },
+  { "id": "antalya", "lat": 36.8969, "lng": 30.7133, "country": "TR", "timezone": "Europe/Istanbul", "translations": { "tr": { "name": "Antalya", "country": "Türkiye" }, "en": { "name": "Antalya", "country": "Turkey" } } },
+  { "id": "konya", "lat": 37.8746, "lng": 32.4932, "country": "TR", "timezone": "Europe/Istanbul", "translations": { "tr": { "name": "Konya", "country": "Türkiye" }, "en": { "name": "Konya", "country": "Turkey" } } },
+  { "id": "gaziantep", "lat": 37.0662, "lng": 37.3833, "country": "TR", "timezone": "Europe/Istanbul", "translations": { "tr": { "name": "Gaziantep", "country": "Türkiye" }, "en": { "name": "Gaziantep", "country": "Turkey" } } },
+  { "id": "mecca", "lat": 21.4225, "lng": 39.8262, "country": "SA", "timezone": "Asia/Riyadh", "translations": { "tr": { "name": "Mekke", "country": "Suudi Arabistan" }, "en": { "name": "Mecca", "country": "Saudi Arabia" } } },
+  { "id": "medina", "lat": 24.5247, "lng": 39.5692, "country": "SA", "timezone": "Asia/Riyadh", "translations": { "tr": { "name": "Medine", "country": "Suudi Arabistan" }, "en": { "name": "Medina", "country": "Saudi Arabia" } } },
+  { "id": "dubai", "lat": 25.2048, "lng": 55.2708, "country": "AE", "timezone": "Asia/Dubai", "translations": { "tr": { "name": "Dubai", "country": "BAE" }, "en": { "name": "Dubai", "country": "UAE" } } },
+  { "id": "cairo", "lat": 30.0444, "lng": 31.2357, "country": "EG", "timezone": "Africa/Cairo", "translations": { "tr": { "name": "Kahire", "country": "Mısır" }, "en": { "name": "Cairo", "country": "Egypt" } } },
+  { "id": "london", "lat": 51.5074, "lng": -0.1278, "country": "GB", "timezone": "Europe/London", "translations": { "tr": { "name": "Londra", "country": "İngiltere" }, "en": { "name": "London", "country": "United Kingdom" } } },
+  { "id": "berlin", "lat": 52.5200, "lng": 13.4050, "country": "DE", "timezone": "Europe/Berlin", "translations": { "tr": { "name": "Berlin", "country": "Almanya" }, "en": { "name": "Berlin", "country": "Germany" } } },
+  { "id": "paris", "lat": 48.8566, "lng": 2.3522, "country": "FR", "timezone": "Europe/Paris", "translations": { "tr": { "name": "Paris", "country": "Fransa" }, "en": { "name": "Paris", "country": "France" } } },
+  { "id": "amsterdam", "lat": 52.3676, "lng": 4.9041, "country": "NL", "timezone": "Europe/Amsterdam", "translations": { "tr": { "name": "Amsterdam", "country": "Hollanda" }, "en": { "name": "Amsterdam", "country": "Netherlands" } } },
+  { "id": "sarajevo", "lat": 43.8563, "lng": 18.4131, "country": "BA", "timezone": "Europe/Sarajevo", "translations": { "tr": { "name": "Saraybosna", "country": "Bosna Hersek" }, "en": { "name": "Sarajevo", "country": "Bosnia" } } },
+  { "id": "newyork", "lat": 40.7128, "lng": -74.0060, "country": "US", "timezone": "America/New_York", "translations": { "tr": { "name": "New York", "country": "ABD" }, "en": { "name": "New York", "country": "USA" } } },
+  { "id": "jakarta", "lat": -6.2088, "lng": 106.8456, "country": "ID", "timezone": "Asia/Jakarta", "translations": { "tr": { "name": "Cakarta", "country": "Endonezya" }, "en": { "name": "Jakarta", "country": "Indonesia" } } },
+  { "id": "kualalumpur", "lat": 3.1390, "lng": 101.6869, "country": "MY", "timezone": "Asia/Kuala_Lumpur", "translations": { "tr": { "name": "Kuala Lumpur", "country": "Malezya" }, "en": { "name": "Kuala Lumpur", "country": "Malaysia" } } }
+]

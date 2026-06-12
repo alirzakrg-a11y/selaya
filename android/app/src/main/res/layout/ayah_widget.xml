@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/widget_root"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center_vertical"
+    android:background="@drawable/widget_bg"
+    android:padding="12dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="GÜNÜN AYETİ"
+            android:textColor="#E0B250"
+            android:textSize="9sp"
+            android:textStyle="bold"
+            android:letterSpacing="0.06"
+            android:maxLines="1" />
+
+        <TextView
+            android:id="@+id/widget_ayah_rf"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Fâtiha 1"
+            android:textColor="#E0B250"
+            android:textSize="9sp"
+            android:textStyle="bold"
+            android:maxLines="1" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingStart="5dp"
+            android:text="↻"
+            android:textColor="#7A8194"
+            android:textSize="10sp" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/widget_ayah_ar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="3dp"
+        android:text="بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ"
+        android:textColor="#F4F6FB"
+        android:textSize="15sp"
+        android:maxLines="1"
+        android:ellipsize="end"
+        android:textDirection="rtl"
+        android:gravity="end"
+        android:autoSizeTextType="uniform"
+        android:autoSizeMinTextSize="11sp"
+        android:autoSizeMaxTextSize="20sp" />
+
+    <TextView
+        android:id="@+id/widget_ayah_mn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="2dp"
+        android:text="Rahmân ve Rahîm olan Allah'ın adıyla."
+        android:textColor="#C7CEDB"
+        android:textSize="13sp"
+        android:maxLines="2"
+        android:ellipsize="end" />
+</LinearLayout>

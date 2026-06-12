@@ -1,0 +1,368 @@
+[
+  {
+    "id": "prophet_stories",
+    "iconKey": "prophets",
+    "accent": "#E0B250",
+    "cover": "assets/images/discover_prophets.jpg",
+    "translations": {
+      "tr": {
+        "title": "Peygamber Kıssaları",
+        "subtitle": "Geçmiş peygamberlerin ibret dolu hayatları"
+      },
+      "en": {
+        "title": "Stories of the Prophets",
+        "subtitle": "Lessons from the lives of the prophets"
+      }
+    },
+    "episodes": [
+      {
+        "id": "ps1",
+        "audio": "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3",
+        "durationSec": 372,
+        "cover": "assets/images/discover_prophets.jpg",
+        "translations": {
+          "tr": {
+            "title": "Hz. Âdem (a.s.)",
+            "subtitle": "İlk insan ve ilk peygamber"
+          },
+          "en": {
+            "title": "Adam (AS)",
+            "subtitle": "The first human and prophet"
+          }
+        }
+      },
+      {
+        "id": "ps2",
+        "audio": "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3",
+        "durationSec": 419,
+        "cover": "assets/images/discover_prophets.jpg",
+        "translations": {
+          "tr": {
+            "title": "Hz. Nûh (a.s.)",
+            "subtitle": "Sabrın ve tufanın hikâyesi"
+          },
+          "en": {
+            "title": "Nuh (AS)",
+            "subtitle": "A story of patience and the flood"
+          }
+        }
+      },
+      {
+        "id": "ps3",
+        "audio": "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-3.mp3",
+        "durationSec": 348,
+        "cover": "assets/images/discover_prophets.jpg",
+        "translations": {
+          "tr": {
+            "title": "Hz. İbrahim (a.s.)",
+            "subtitle": "Teslimiyetin örneği"
+          },
+          "en": {
+            "title": "Ibrahim (AS)",
+            "subtitle": "A model of submission"
+          }
+        }
+      }
+    ]
+  },
+  {
+    "id": "sleep_calm",
+    "iconKey": "moon",
+    "accent": "#7E7BF2",
+    "cover": "assets/images/inspiration_2.jpg",
+    "translations": {
+      "tr": {
+        "title": "Uyku & Huzur",
+        "subtitle": "Huzurla uykuya dalmak için sakin sesler"
+      },
+      "en": {
+        "title": "Sleep & Calm",
+        "subtitle": "Calm audio to drift into peaceful sleep"
+      }
+    },
+    "episodes": [
+      {
+        "id": "sc1",
+        "audio": "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-4.mp3",
+        "durationSec": 402,
+        "cover": "assets/images/inspiration_2.jpg",
+        "translations": {
+          "tr": {
+            "title": "Gece Tefekkürü",
+            "subtitle": "Günü huzurla kapatın"
+          },
+          "en": {
+            "title": "Night Reflection",
+            "subtitle": "Close the day in peace"
+          }
+        }
+      },
+      {
+        "id": "sc2",
+        "audio": "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-5.mp3",
+        "durationSec": 367,
+        "cover": "assets/images/inspiration_2.jpg",
+        "translations": {
+          "tr": {
+            "title": "Şükür Anı",
+            "subtitle": "Uyumadan önce şükret"
+          },
+          "en": {
+            "title": "A Moment of Gratitude",
+            "subtitle": "Be grateful before sleep"
+          }
+        }
+      }
+    ]
+  },
+  {
+    "id": "affirmations",
+    "iconKey": "sparkles",
+    "accent": "#46D08A",
+    "cover": "assets/images/inspiration_1.jpg",
+    "translations": {
+      "tr": {
+        "title": "Günlük Olumlamalar",
+        "subtitle": "Güne iman ve umutla başlayın"
+      },
+      "en": {
+        "title": "Daily Affirmations",
+        "subtitle": "Start the day with faith and hope"
+      }
+    },
+    "episodes": [
+      {
+        "id": "af1",
+        "audio": "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3",
+        "durationSec": 372,
+        "cover": "assets/images/inspiration_1.jpg",
+        "translations": {
+          "tr": {
+            "title": "Sabah Niyeti",
+            "subtitle": "Güne güzel bir niyetle başla"
+          },
+          "en": {
+            "title": "Morning Intention",
+            "subtitle": "Begin with a good intention"
+          }
+        }
+      },
+      {
+        "id": "af2",
+        "audio": "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3",
+        "durationSec": 419,
+        "cover": "assets/images/inspiration_1.jpg",
+        "translations": {
+          "tr": {
+            "title": "Tevekkül",
+            "subtitle": "Allah'a güvenmenin huzuru"
+          },
+          "en": {
+            "title": "Reliance",
+            "subtitle": "The peace of trusting Allah"
+          }
+        }
+      }
+    ]
+  },
+  {
+    "id": "wisdom",
+    "iconKey": "knowledge",
+    "accent": "#54B8E6",
+    "cover": "assets/images/stories/story_knowledge.jpg",
+    "translations": {
+      "tr": {
+        "title": "Tefekkür & Bilgelik",
+        "subtitle": "Üzerine düşünülecek hikmetli sözler"
+      },
+      "en": {
+        "title": "Reflection & Wisdom",
+        "subtitle": "Wise words to ponder upon"
+      }
+    },
+    "episodes": [
+      {
+        "id": "wi1",
+        "audio": "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-3.mp3",
+        "durationSec": 348,
+        "cover": "assets/images/stories/story_knowledge.jpg",
+        "translations": {
+          "tr": {
+            "title": "İlmin Değeri",
+            "subtitle": "Bilginin nuru"
+          },
+          "en": {
+            "title": "The Value of Knowledge",
+            "subtitle": "The light of knowledge"
+          }
+        }
+      },
+      {
+        "id": "wi2",
+        "audio": "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-4.mp3",
+        "durationSec": 402,
+        "cover": "assets/images/stories/story_knowledge.jpg",
+        "translations": {
+          "tr": {
+            "title": "Hikmet Damlaları",
+            "subtitle": "Kısa hikmetli sözler"
+          },
+          "en": {
+            "title": "Drops of Wisdom",
+            "subtitle": "Short words of wisdom"
+          }
+        }
+      }
+    ]
+  },
+  {
+    "id": "love_family",
+    "iconKey": "dua",
+    "accent": "#F2616B",
+    "cover": "assets/images/discover_children.jpg",
+    "translations": {
+      "tr": {
+        "title": "Sevgi & Aile",
+        "subtitle": "Aile bağları ve merhamet üzerine"
+      },
+      "en": {
+        "title": "Love & Family",
+        "subtitle": "On family bonds and compassion"
+      }
+    },
+    "episodes": [
+      {
+        "id": "lf1",
+        "audio": "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-5.mp3",
+        "durationSec": 367,
+        "cover": "assets/images/discover_children.jpg",
+        "translations": {
+          "tr": {
+            "title": "Anne-Baba Hakkı",
+            "subtitle": "Rızanın önemi"
+          },
+          "en": {
+            "title": "Honoring Parents",
+            "subtitle": "The importance of their pleasure"
+          }
+        }
+      },
+      {
+        "id": "lf2",
+        "audio": "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3",
+        "durationSec": 372,
+        "cover": "assets/images/discover_children.jpg",
+        "translations": {
+          "tr": {
+            "title": "Aile Huzuru",
+            "subtitle": "Yuvada merhamet"
+          },
+          "en": {
+            "title": "Family Peace",
+            "subtitle": "Mercy within the home"
+          }
+        }
+      }
+    ]
+  },
+  {
+    "id": "faith_patience",
+    "iconKey": "prayerRug",
+    "accent": "#E0B250",
+    "cover": "assets/images/stories/story_motivation.jpg",
+    "translations": {
+      "tr": {
+        "title": "İnanç & Sabır",
+        "subtitle": "Zorluklarda sabrı ve imanı güçlendirin"
+      },
+      "en": {
+        "title": "Faith & Patience",
+        "subtitle": "Strengthen faith and patience in hardship"
+      }
+    },
+    "episodes": [
+      {
+        "id": "fp1",
+        "audio": "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3",
+        "durationSec": 419,
+        "cover": "assets/images/stories/story_motivation.jpg",
+        "translations": {
+          "tr": {
+            "title": "Sabır Nedir?",
+            "subtitle": "Güzel sabrın sırrı"
+          },
+          "en": {
+            "title": "What is Patience?",
+            "subtitle": "The secret of beautiful patience"
+          }
+        }
+      },
+      {
+        "id": "fp2",
+        "audio": "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-3.mp3",
+        "durationSec": 348,
+        "cover": "assets/images/stories/story_motivation.jpg",
+        "translations": {
+          "tr": {
+            "title": "Zorlukta Umut",
+            "subtitle": "Her zorlukla bir kolaylık"
+          },
+          "en": {
+            "title": "Hope in Hardship",
+            "subtitle": "With hardship comes ease"
+          }
+        }
+      }
+    ]
+  },
+  {
+    "id": "peace_mercy",
+    "iconKey": "mosque",
+    "accent": "#9AA3B8",
+    "cover": "assets/images/stories/story_verse.jpg",
+    "translations": {
+      "tr": {
+        "title": "Barış & Merhamet",
+        "subtitle": "Gönül huzuru ve merhamet üzerine"
+      },
+      "en": {
+        "title": "Peace & Mercy",
+        "subtitle": "On inner peace and mercy"
+      }
+    },
+    "episodes": [
+      {
+        "id": "pm1",
+        "audio": "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-4.mp3",
+        "durationSec": 402,
+        "cover": "assets/images/stories/story_verse.jpg",
+        "translations": {
+          "tr": {
+            "title": "Gönül Huzuru",
+            "subtitle": "Kalbin sükûneti"
+          },
+          "en": {
+            "title": "Inner Peace",
+            "subtitle": "Tranquility of the heart"
+          }
+        }
+      },
+      {
+        "id": "pm2",
+        "audio": "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-5.mp3",
+        "durationSec": 367,
+        "cover": "assets/images/stories/story_verse.jpg",
+        "translations": {
+          "tr": {
+            "title": "Merhamet Et",
+            "subtitle": "Yeryüzündekilere merhamet"
+          },
+          "en": {
+            "title": "Be Merciful",
+            "subtitle": "Mercy to those on earth"
+          }
+        }
+      }
+    ]
+  }
+]

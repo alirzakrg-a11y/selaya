@@ -1,0 +1,293 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS"/>
+    <!-- Prayer notification scheduling (Round-7) -->
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>
+    <uses-permission android:name="android.permission.SCHEDULE_EXACT_ALARM"/>
+    <uses-permission android:name="android.permission.USE_EXACT_ALARM"/>
+    <!-- Full-screen adhan alarm (wakes the screen when a prayer comes in) -->
+    <uses-permission android:name="android.permission.USE_FULL_SCREEN_INTENT"/>
+    <!-- Wake the screen for the full-screen adhan alarm (setTurnScreenOn). -->
+    <uses-permission android:name="android.permission.WAKE_LOCK"/>
+    <!-- Exempt SELAYA from battery optimization (Doze) so background prayer alarms
+         fire on time. Justified: SELAYA is a prayer-alarm/reminder app. -->
+    <uses-permission android:name="android.permission.REQUEST_IGNORE_BATTERY_OPTIMIZATIONS"/>
+    <uses-permission android:name="android.permission.VIBRATE"/>
+    <!-- Duvar kâğıdı olarak ayarla (ana ekran / kilit ekranı) -->
+    <uses-permission android:name="android.permission.SET_WALLPAPER"/>
+    <!-- Draw the full-screen adhan alarm over other apps / from the background
+         (OEM background-activity-start exemption), like dedicated azan apps. -->
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW"/>
+    <!-- Foreground service: keep the ongoing "next prayer" notification ticking
+         (worded "kalan : X dk" body) every minute even when the app is killed. -->
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE"/>
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_SPECIAL_USE"/>
+    <!-- audio_service (#media): radio background playback + media-style notification -->
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_MEDIA_PLAYBACK"/>
+    <!-- Smart Silent (#6.2): toggle DND/ringer to mute during prayer & Friday windows -->
+    <uses-permission android:name="android.permission.ACCESS_NOTIFICATION_POLICY"/>
+    <uses-permission android:name="android.permission.READ_MEDIA_IMAGES"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" android:maxSdkVersion="32"/>
+    <application
+        android:label="SELAYA"
+        android:name="${applicationName}"
+        android:icon="@mipmap/ic_launcher">
+        <activity
+            android:name=".MainActivity"
+            android:exported="true"
+            android:launchMode="singleTask"
+            android:theme="@style/LaunchTheme"
+            android:configChanges="orientation|keyboardHidden|keyboard|screenSize|smallestScreenSize|locale|layoutDirection|fontScale|screenLayout|density|uiMode"
+            android:hardwareAccelerated="true"
+            android:windowSoftInputMode="adjustResize">
+            <!-- Specifies an Android theme to apply to this Activity as soon as
+                 the Android process has started. This theme is visible to the user
+                 while the Flutter UI initializes. After that, this theme continues
+                 to determine the Window background behind the Flutter UI. -->
+            <meta-data
+              android:name="io.flutter.embedding.android.NormalTheme"
+              android:resource="@style/NormalTheme"
+              />
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+        </activity>
+
+        <!-- SELAYA daily-hadith home-screen widget -->
+        <receiver
+            android:name=".HadithWidgetProvider"
+            android:exported="true"
+            android:label="SELAYA — Günün Hadisi">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/hadith_widget_info" />
+        </receiver>
+
+        <!-- SELAYA prayer-times home-screen widget -->
+        <receiver
+            android:name=".PrayerWidgetProvider"
+            android:exported="true"
+            android:label="SELAYA — Namaz Vakitleri">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/prayer_widget_info" />
+        </receiver>
+
+        <!-- SELAYA daily-ayah home-screen widget (tap = next verse) -->
+        <receiver
+            android:name=".AyahWidgetProvider"
+            android:exported="true"
+            android:label="SELAYA — Günün Ayeti">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/ayah_widget_info" />
+        </receiver>
+
+        <!-- SELAYA Esmaül Hüsna home-screen widget (tap = next name) -->
+        <receiver
+            android:name=".EsmaWidgetProvider"
+            android:exported="true"
+            android:label="SELAYA — Esmaül Hüsna">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/esma_widget_info" />
+        </receiver>
+
+        <!-- SELAYA Hijri-date home-screen widget -->
+        <receiver
+            android:name=".HijriWidgetProvider"
+            android:exported="true"
+            android:label="SELAYA — Hicri Tarih">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/hijri_widget_info" />
+        </receiver>
+
+        <!-- SELAYA clock widgets (#15) -->
+        <receiver
+            android:name=".ClockMinimalWidgetProvider"
+            android:exported="true"
+            android:label="SELAYA — Dijital Saat">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/clock_minimal_info" />
+        </receiver>
+
+        <receiver
+            android:name=".ClockGreenWidgetProvider"
+            android:exported="true"
+            android:label="SELAYA — İslami Yeşil Saat">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/clock_green_info" />
+        </receiver>
+
+        <receiver
+            android:name=".ClockPrayerWidgetProvider"
+            android:exported="true"
+            android:label="SELAYA — Namaz Saati">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/clock_prayer_info" />
+        </receiver>
+
+        <!-- flutter_local_notifications: scheduled prayer notifications + reboot reschedule -->
+        <receiver
+            android:exported="false"
+            android:name="com.dexterous.flutterlocalnotifications.ScheduledNotificationReceiver" />
+        <receiver
+            android:exported="false"
+            android:name="com.dexterous.flutterlocalnotifications.ScheduledNotificationBootReceiver">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED"/>
+                <action android:name="android.intent.action.MY_PACKAGE_REPLACED"/>
+                <action android:name="android.intent.action.QUICKBOOT_POWERON" />
+                <action android:name="com.htc.intent.action.QUICKBOOT_POWERON"/>
+            </intent-filter>
+        </receiver>
+
+        <!-- Smart Silent (#6.2): AlarmManager fires this to mute/restore the ringer -->
+        <receiver
+            android:name=".SmartSilentReceiver"
+            android:exported="false" />
+
+        <!-- Reschedule prayer alarms + refresh the ongoing notification when the
+             clock, timezone or locale changes (dedicated azan apps do this too,
+             so a manual time/zone change doesn't leave alarms misaligned). -->
+        <receiver
+            android:name=".TimeChangeReceiver"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="android.intent.action.TIME_SET"/>
+                <action android:name="android.intent.action.TIMEZONE_CHANGED"/>
+                <action android:name="android.intent.action.LOCALE_CHANGED"/>
+            </intent-filter>
+        </receiver>
+
+        <!-- Keeps the persistent "next prayer" notification (id 2000) counting
+             down live every minute even when the app is killed. specialUse: it
+             is a user-facing persistent prayer-time status, not a category that
+             fits dataSync/mediaPlayback/etc. -->
+        <service
+            android:name=".PrayerOngoingService"
+            android:exported="false"
+            android:foregroundServiceType="specialUse">
+            <property
+                android:name="android.app.PROPERTY_SPECIAL_USE_FGS_SUBTYPE"
+                android:value="persistent_next_prayer_countdown" />
+        </service>
+
+        <!-- ⑨ Ezanı durdurulabilir şekilde çalan servis: Tam Ekran Alarm KAPALI
+             iken ezan, kanal sesi yerine bu servisin MediaPlayer'ı ile çalınır →
+             "Durdur" sesi gerçekten keser (Samsung'da kanal sesi durmuyordu). -->
+        <service
+            android:name=".AdhanPlayerService"
+            android:exported="false"
+            android:foregroundServiceType="specialUse">
+            <property
+                android:name="android.app.PROPERTY_SPECIAL_USE_FGS_SUBTYPE"
+                android:value="adhan_alarm_playback" />
+        </service>
+
+        <!-- ⑨ Ezan alarm tetikleyici: AlarmManager bir namaz vaktinde bunu
+             tetikler → AdhanPlayerService'i başlatır (uygulama ölü olsa bile,
+             alarm-muafiyeti). BOOT'ta prefs'ten yeniden kurar.
+             NOT: exported=true yalnız TEST broadcast'ı için geçici (sonra false). -->
+        <receiver
+            android:name=".AdhanAlarmReceiver"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED"/>
+                <action android:name="android.intent.action.QUICKBOOT_POWERON"/>
+                <action android:name="android.intent.action.MY_PACKAGE_REPLACED"/>
+            </intent-filter>
+        </receiver>
+
+        <!-- audio_service: radio background playback + media notification (lock
+             screen / YouTube-Music-style controls when the app is backgrounded) -->
+        <service
+            android:name="com.ryanheise.audioservice.AudioService"
+            android:foregroundServiceType="mediaPlayback"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.media.browse.MediaBrowserService" />
+            </intent-filter>
+        </service>
+        <receiver
+            android:name="com.ryanheise.audioservice.MediaButtonReceiver"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MEDIA_BUTTON" />
+            </intent-filter>
+        </receiver>
+
+        <!-- FileProvider for direct image share to WhatsApp / Instagram / Facebook -->
+        <provider
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="${applicationId}.selayashare"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/selaya_file_paths" />
+        </provider>
+
+        <!-- Don't delete the meta-data below.
+             This is used by the Flutter tool to generate GeneratedPluginRegistrant.java -->
+        <meta-data
+            android:name="flutterEmbedding"
+            android:value="2" />
+    </application>
+    <!-- Required to query activities that can process text, see:
+         https://developer.android.com/training/package-visibility and
+         https://developer.android.com/reference/android/content/Intent#ACTION_PROCESS_TEXT.
+
+         In particular, this is used by the Flutter engine in io.flutter.plugin.text.ProcessTextPlugin. -->
+    <queries>
+        <intent>
+            <action android:name="android.intent.action.PROCESS_TEXT"/>
+            <data android:mimeType="text/plain"/>
+        </intent>
+        <!-- flutter_tts: discover the device text-to-speech engine on Android 11+ -->
+        <intent>
+            <action android:name="android.intent.action.TTS_SERVICE"/>
+        </intent>
+        <!-- Direct-share targets (package visibility on Android 11+) -->
+        <package android:name="com.whatsapp"/>
+        <package android:name="com.whatsapp.w4b"/>
+        <package android:name="com.instagram.android"/>
+        <package android:name="com.facebook.katana"/>
+        <!-- Map apps for mosque directions -->
+        <intent>
+            <action android:name="android.intent.action.VIEW"/>
+            <data android:scheme="geo"/>
+        </intent>
+    </queries>
+</manifest>

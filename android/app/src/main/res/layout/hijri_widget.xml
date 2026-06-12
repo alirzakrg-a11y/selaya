@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/widget_root"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal"
+    android:gravity="center_vertical"
+    android:background="@drawable/widget_bg"
+    android:padding="14dp">
+
+    <!-- Left: label + hijri date -->
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="HİCRİ TAKVİM"
+            android:textColor="#E0B250"
+            android:textSize="10sp"
+            android:textStyle="bold"
+            android:letterSpacing="0.08" />
+
+        <TextView
+            android:id="@+id/widget_hijri_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingTop="2dp"
+            android:text="14 Zilhicce 1447"
+            android:textColor="#F4F6FB"
+            android:textSize="23sp"
+            android:textStyle="bold"
+            android:maxLines="1" />
+    </LinearLayout>
+
+    <!-- Right: gregorian + optional religious day -->
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="end">
+
+        <TextView
+            android:id="@+id/widget_hijri_greg"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="31 Mayıs 2026"
+            android:textColor="#9AA3B8"
+            android:textSize="12sp"
+            android:maxLines="1"
+            android:gravity="end" />
+
+        <TextView
+            android:id="@+id/widget_hijri_event"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingTop="2dp"
+            android:text=""
+            android:textColor="#E0B250"
+            android:textSize="11sp"
+            android:maxLines="1"
+            android:ellipsize="end"
+            android:gravity="end" />
+    </LinearLayout>
+</LinearLayout>

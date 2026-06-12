@@ -1,0 +1,3857 @@
+[
+  {
+    "id": "ins01",
+    "type": "verse",
+    "reference": "Ra'd 28",
+    "image": "assets/images/wallpapers/wp_mosque_1.jpg",
+    "arabic": "أَلَا بِذِكْرِ اللَّهِ تَطْمَئِنُّ الْقُلُوبُ",
+    "translations": {
+      "tr": {
+        "text": "Bilesiniz ki kalpler ancak Allah'ı anmakla huzur bulur."
+      },
+      "en": {
+        "text": "Verily, in the remembrance of Allah do hearts find rest."
+      }
+    }
+  },
+  {
+    "id": "ins02",
+    "type": "verse",
+    "reference": "İnşirah 5-6",
+    "image": "assets/images/wallpapers/wp_night_1.jpg",
+    "arabic": "فَإِنَّ مَعَ الْعُسْرِ يُسْرًا",
+    "translations": {
+      "tr": {
+        "text": "Şüphesiz her zorlukla beraber bir kolaylık vardır."
+      },
+      "en": {
+        "text": "Indeed, with hardship comes ease."
+      }
+    }
+  },
+  {
+    "id": "ins03",
+    "type": "hadith",
+    "reference": "Tirmizî",
+    "image": "assets/images/wallpapers/wp_calligraphy_1.jpg",
+    "arabic": "خَيْرُكُمْ مَنْ تَعَلَّمَ الْقُرْآنَ وَعَلَّمَهُ",
+    "translations": {
+      "tr": {
+        "text": "En hayırlınız Kur'an'ı öğrenen ve öğretendir."
+      },
+      "en": {
+        "text": "The best of you are those who learn the Quran and teach it."
+      }
+    }
+  },
+  {
+    "id": "ins04",
+    "type": "verse",
+    "reference": "Bakara 286",
+    "image": "assets/images/wallpapers/wp_kaaba_1.jpg",
+    "arabic": "لَا يُكَلِّفُ اللَّهُ نَفْسًا إِلَّا وُسْعَهَا",
+    "translations": {
+      "tr": {
+        "text": "Allah hiç kimseye gücünün üstünde bir şey yüklemez."
+      },
+      "en": {
+        "text": "Allah does not burden a soul beyond its capacity."
+      }
+    }
+  },
+  {
+    "id": "ins05",
+    "type": "dua",
+    "reference": "Tâhâ 25-26",
+    "image": "assets/images/wallpapers/wp_nabawi_1.jpg",
+    "arabic": "رَبِّ اشْرَحْ لِي صَدْرِي وَيَسِّرْ لِي أَمْرِي",
+    "translations": {
+      "tr": {
+        "text": "Rabbim! Göğsümü genişlet ve işimi kolaylaştır."
+      },
+      "en": {
+        "text": "My Lord, expand for me my chest and ease my task for me."
+      }
+    }
+  },
+  {
+    "id": "ins06",
+    "type": "verse",
+    "reference": "Zümer 53",
+    "image": "assets/images/wallpapers/wp_ramadan_1.jpg",
+    "arabic": "لَا تَقْنَطُوا مِنْ رَحْمَةِ اللَّهِ",
+    "translations": {
+      "tr": {
+        "text": "Allah'ın rahmetinden ümidinizi kesmeyin."
+      },
+      "en": {
+        "text": "Do not despair of the mercy of Allah."
+      }
+    }
+  },
+  {
+    "id": "ins07",
+    "type": "hadith",
+    "reference": "Buhârî",
+    "image": "assets/images/wallpapers/wp_mosque_2.jpg",
+    "arabic": "تَبَسُّمُكَ فِي وَجْهِ أَخِيكَ صَدَقَةٌ",
+    "translations": {
+      "tr": {
+        "text": "Kardeşinin yüzüne tebessüm etmen sadakadır."
+      },
+      "en": {
+        "text": "Smiling at your brother is an act of charity."
+      }
+    }
+  },
+  {
+    "id": "ins08",
+    "type": "verse",
+    "reference": "Talâk 3",
+    "image": "assets/images/wallpapers/wp_night_2.jpg",
+    "arabic": "وَمَنْ يَتَوَكَّلْ عَلَى اللَّهِ فَهُوَ حَسْبُهُ",
+    "translations": {
+      "tr": {
+        "text": "Kim Allah'a tevekkül ederse, O ona yeter."
+      },
+      "en": {
+        "text": "Whoever relies upon Allah — then He is sufficient for him."
+      }
+    }
+  },
+  {
+    "id": "ins09",
+    "type": "verse",
+    "reference": "Âl-i İmrân 139",
+    "image": "assets/images/wallpapers/wp_calligraphy_2.jpg",
+    "arabic": "وَلَا تَهِنُوا وَلَا تَحْزَنُوا وَأَنْتُمُ الْأَعْلَوْنَ",
+    "translations": {
+      "tr": {
+        "text": "Gevşemeyin, üzülmeyin; eğer inanmışsanız üstün olan sizsiniz."
+      },
+      "en": {
+        "text": "Do not weaken and do not grieve, for you will be superior if you are believers."
+      }
+    }
+  },
+  {
+    "id": "ins10",
+    "type": "dua",
+    "reference": "Furkân 74",
+    "image": "assets/images/wallpapers/wp_nabawi_2.jpg",
+    "arabic": "رَبَّنَا هَبْ لَنَا مِنْ أَزْوَاجِنَا وَذُرِّيَّاتِنَا قُرَّةَ أَعْيُنٍ",
+    "translations": {
+      "tr": {
+        "text": "Rabbimiz! Eşlerimizi ve çocuklarımızı bize göz aydınlığı kıl."
+      },
+      "en": {
+        "text": "Our Lord, grant us from our spouses and offspring comfort to our eyes."
+      }
+    }
+  },
+  {
+    "id": "ins11",
+    "type": "hadith",
+    "reference": "Müslim",
+    "image": "assets/images/wallpapers/wp_kaaba_2.jpg",
+    "arabic": "الدُّعَاءُ هُوَ الْعِبَادَةُ",
+    "translations": {
+      "tr": {
+        "text": "Dua ibadetin ta kendisidir."
+      },
+      "en": {
+        "text": "Supplication is the essence of worship."
+      }
+    }
+  },
+  {
+    "id": "ins12",
+    "type": "verse",
+    "reference": "Duhâ 5",
+    "image": "assets/images/wallpapers/wp_kaaba_3.jpg",
+    "arabic": "وَلَسَوْفَ يُعْطِيكَ رَبُّكَ فَتَرْضَىٰ",
+    "translations": {
+      "tr": {
+        "text": "Rabbin sana verecek ve sen de hoşnut olacaksın."
+      },
+      "en": {
+        "text": "And your Lord is going to give you, and you will be satisfied."
+      }
+    }
+  },
+  {
+    "id": "ins13",
+    "type": "verse",
+    "reference": "Bakara 152",
+    "image": "assets/images/wallpapers/wp_mosque_3.jpg",
+    "arabic": "فَاذْكُرُونِي أَذْكُرْكُمْ",
+    "translations": {
+      "tr": {
+        "text": "Öyleyse siz beni anın ki ben de sizi anayım."
+      },
+      "en": {
+        "text": "So remember Me; I will remember you."
+      }
+    }
+  },
+  {
+    "id": "ins14",
+    "type": "verse",
+    "reference": "Bakara 153",
+    "image": "assets/images/wallpapers/wp_ramadan_2.jpg",
+    "arabic": "إِنَّ اللَّهَ مَعَ الصَّابِرِينَ",
+    "translations": {
+      "tr": {
+        "text": "Şüphesiz Allah sabredenlerle beraberdir."
+      },
+      "en": {
+        "text": "Indeed, Allah is with the patient."
+      }
+    }
+  },
+  {
+    "id": "ins15",
+    "type": "verse",
+    "reference": "İbrâhim 7",
+    "image": "assets/images/wallpapers/wp_mosque_1.jpg",
+    "arabic": "لَئِنْ شَكَرْتُمْ لَأَزِيدَنَّكُمْ",
+    "translations": {
+      "tr": {
+        "text": "Andolsun, şükrederseniz elbette size (nimetimi) artırırım."
+      },
+      "en": {
+        "text": "If you are grateful, I will surely increase you in favor."
+      }
+    }
+  },
+  {
+    "id": "ins16",
+    "type": "verse",
+    "reference": "Ankebût 69",
+    "image": "assets/images/wallpapers/wp_night_1.jpg",
+    "arabic": "وَالَّذِينَ جَاهَدُوا فِينَا لَنَهْدِيَنَّهُمْ سُبُلَنَا",
+    "translations": {
+      "tr": {
+        "text": "Bizim uğrumuzda gayret edenleri elbette yollarımıza eriştiririz."
+      },
+      "en": {
+        "text": "Those who strive for Us — We will surely guide them to Our ways."
+      }
+    }
+  },
+  {
+    "id": "ins17",
+    "type": "dua",
+    "reference": "Mü'min 60",
+    "image": "assets/images/wallpapers/wp_kaaba_1.jpg",
+    "arabic": "ادْعُونِي أَسْتَجِبْ لَكُمْ",
+    "translations": {
+      "tr": {
+        "text": "Bana dua edin, size karşılık vereyim."
+      },
+      "en": {
+        "text": "Call upon Me; I will respond to you."
+      }
+    }
+  },
+  {
+    "id": "ins18",
+    "type": "verse",
+    "reference": "Hucurât 13",
+    "image": "assets/images/wallpapers/wp_calligraphy_1.jpg",
+    "arabic": "إِنَّ أَكْرَمَكُمْ عِنْدَ اللَّهِ أَتْقَاكُمْ",
+    "translations": {
+      "tr": {
+        "text": "Allah katında en değerliniz, O'na karşı gelmekten en çok sakınanınızdır."
+      },
+      "en": {
+        "text": "Indeed, the most noble of you in the sight of Allah is the most righteous of you."
+      }
+    }
+  },
+  {
+    "id": "ins19",
+    "type": "verse",
+    "reference": "İsrâ 23",
+    "image": "assets/images/wallpapers/wp_nabawi_1.jpg",
+    "arabic": "وَبِالْوَالِدَيْنِ إِحْسَانًا",
+    "translations": {
+      "tr": {
+        "text": "Ana babaya iyilik edin."
+      },
+      "en": {
+        "text": "And to parents, good treatment."
+      }
+    }
+  },
+  {
+    "id": "ins20",
+    "type": "dua",
+    "reference": "Bakara 201",
+    "image": "assets/images/wallpapers/wp_ramadan_1.jpg",
+    "arabic": "رَبَّنَا آتِنَا فِي الدُّنْيَا حَسَنَةً وَفِي الْآخِرَةِ حَسَنَةً وَقِنَا عَذَابَ النَّارِ",
+    "translations": {
+      "tr": {
+        "text": "Rabbimiz! Bize dünyada da iyilik ver, ahirette de iyilik ver ve bizi ateş azabından koru."
+      },
+      "en": {
+        "text": "Our Lord, give us good in this world and good in the Hereafter, and protect us from the punishment of the Fire."
+      }
+    }
+  },
+  {
+    "id": "ins21",
+    "type": "dua",
+    "reference": "Âl-i İmrân 8",
+    "image": "assets/images/wallpapers/wp_mosque_2.jpg",
+    "arabic": "رَبَّنَا لَا تُزِغْ قُلُوبَنَا بَعْدَ إِذْ هَدَيْتَنَا",
+    "translations": {
+      "tr": {
+        "text": "Rabbimiz! Bizi hidayete erdirdikten sonra kalplerimizi eğriltme."
+      },
+      "en": {
+        "text": "Our Lord, let not our hearts deviate after You have guided us."
+      }
+    }
+  },
+  {
+    "id": "ins22",
+    "type": "hadith",
+    "reference": "Müslim",
+    "image": "assets/images/wallpapers/wp_night_2.jpg",
+    "arabic": "الدِّينُ النَّصِيحَةُ",
+    "translations": {
+      "tr": {
+        "text": "Din nasihattir (samimiyettir)."
+      },
+      "en": {
+        "text": "Religion is sincerity (sincere counsel)."
+      }
+    }
+  },
+  {
+    "id": "ins23",
+    "type": "hadith",
+    "reference": "Buhârî & Müslim",
+    "image": "assets/images/wallpapers/wp_calligraphy_2.jpg",
+    "arabic": "مَنْ لَا يَرْحَمُ النَّاسَ لَا يَرْحَمُهُ اللَّهُ",
+    "translations": {
+      "tr": {
+        "text": "İnsanlara merhamet etmeyene Allah da merhamet etmez."
+      },
+      "en": {
+        "text": "Allah does not show mercy to the one who does not show mercy to people."
+      }
+    }
+  },
+  {
+    "id": "ins24",
+    "type": "hadith",
+    "reference": "Müslim",
+    "image": "assets/images/wallpapers/wp_nabawi_2.jpg",
+    "arabic": "إِنَّ اللَّهَ جَمِيلٌ يُحِبُّ الْجَمَالَ",
+    "translations": {
+      "tr": {
+        "text": "Şüphesiz Allah güzeldir, güzelliği sever."
+      },
+      "en": {
+        "text": "Indeed, Allah is beautiful and loves beauty."
+      }
+    }
+  },
+  {
+    "id": "ins25",
+    "type": "verse",
+    "reference": "Ra'd 11",
+    "image": "assets/images/wallpapers/wp_kaaba_2.jpg",
+    "arabic": "إِنَّ اللَّهَ لَا يُغَيِّرُ مَا بِقَوْمٍ حَتَّىٰ يُغَيِّرُوا مَا بِأَنْفُسِهِمْ",
+    "translations": {
+      "tr": {
+        "text": "Bir toplum kendini değiştirmedikçe Allah onların durumunu değiştirmez."
+      },
+      "en": {
+        "text": "Indeed, Allah will not change the condition of a people until they change what is in themselves."
+      }
+    }
+  },
+  {
+    "id": "ins26",
+    "type": "verse",
+    "reference": "Nahl 128",
+    "image": "assets/images/wallpapers/wp_kaaba_3.jpg",
+    "arabic": "إِنَّ اللَّهَ مَعَ الَّذِينَ اتَّقَوْا وَالَّذِينَ هُمْ مُحْسِنُونَ",
+    "translations": {
+      "tr": {
+        "text": "Şüphesiz Allah, kendisine karşı gelmekten sakınanlar ve iyilik yapanlarla beraberdir."
+      },
+      "en": {
+        "text": "Indeed, Allah is with those who fear Him and those who do good."
+      }
+    }
+  },
+  {
+    "id": "ins27",
+    "type": "dua",
+    "reference": "Enbiyâ 87",
+    "image": "assets/images/wallpapers/wp_mosque_3.jpg",
+    "arabic": "لَا إِلَٰهَ إِلَّا أَنْتَ سُبْحَانَكَ إِنِّي كُنْتُ مِنَ الظَّالِمِينَ",
+    "translations": {
+      "tr": {
+        "text": "Senden başka ilah yoktur. Seni tenzih ederim. Gerçekten ben zalimlerden oldum."
+      },
+      "en": {
+        "text": "There is no deity except You; exalted are You. Indeed, I have been of the wrongdoers."
+      }
+    }
+  },
+  {
+    "id": "ins28",
+    "type": "verse",
+    "reference": "Talâk 2-3",
+    "image": "assets/images/wallpapers/wp_ramadan_2.jpg",
+    "arabic": "وَمَنْ يَتَّقِ اللَّهَ يَجْعَلْ لَهُ مَخْرَجًا",
+    "translations": {
+      "tr": {
+        "text": "Kim Allah'a karşı gelmekten sakınırsa, Allah ona bir çıkış yolu açar."
+      },
+      "en": {
+        "text": "And whoever fears Allah — He will make for him a way out."
+      }
+    }
+  },
+  {
+    "id": "ins29",
+    "type": "hadith",
+    "reference": "Buhârî & Müslim",
+    "image": "assets/images/wallpapers/wp_mosque_1.jpg",
+    "arabic": "الْكَلِمَةُ الطَّيِّبَةُ صَدَقَةٌ",
+    "translations": {
+      "tr": {
+        "text": "Güzel söz sadakadır."
+      },
+      "en": {
+        "text": "A good word is charity."
+      }
+    }
+  },
+  {
+    "id": "ins30",
+    "type": "hadith",
+    "reference": "Müslim",
+    "image": "assets/images/wallpapers/wp_night_1.jpg",
+    "arabic": "مَنْ دَلَّ عَلَىٰ خَيْرٍ فَلَهُ مِثْلُ أَجْرِ فَاعِلِهِ",
+    "translations": {
+      "tr": {
+        "text": "Bir hayra vesile olan, onu yapan gibi sevap kazanır."
+      },
+      "en": {
+        "text": "Whoever guides someone to good has a reward like that of the one who does it."
+      }
+    }
+  },
+  {
+    "id": "ins_v1",
+    "type": "verse",
+    "reference": "İnşirah 6",
+    "image": "assets/images/wallpapers/wp_mosque_1.jpg",
+    "arabic": "إِنَّ مَعَ الْعُسْرِ يُسْرًا",
+    "translations": {
+      "tr": {
+        "text": "Şüphesiz güçlükle beraber bir kolaylık vardır."
+      },
+      "en": {
+        "text": "Verily, with hardship comes ease."
+      }
+    }
+  },
+  {
+    "id": "ins_v2",
+    "type": "verse",
+    "reference": "Bakara 152",
+    "image": "assets/images/wallpapers/wp_kaaba_1.jpg",
+    "arabic": "فَاذْكُرُونِي أَذْكُرْكُمْ",
+    "translations": {
+      "tr": {
+        "text": "Öyleyse beni anın, ben de sizi anayım."
+      },
+      "en": {
+        "text": "So remember Me; I will remember you."
+      }
+    }
+  },
+  {
+    "id": "ins_v3",
+    "type": "verse",
+    "reference": "Zümer 53",
+    "image": "assets/images/wallpapers/wp_nabawi_1.jpg",
+    "arabic": "لَا تَقْنَطُوا مِنْ رَحْمَةِ اللَّهِ",
+    "translations": {
+      "tr": {
+        "text": "Allah'ın rahmetinden ümidinizi kesmeyin."
+      },
+      "en": {
+        "text": "Do not despair of the mercy of Allah."
+      }
+    }
+  },
+  {
+    "id": "ins_v4",
+    "type": "verse",
+    "reference": "Talâk 3",
+    "image": "assets/images/wallpapers/wp_night_1.jpg",
+    "arabic": "وَمَنْ يَتَوَكَّلْ عَلَى اللَّهِ فَهُوَ حَسْبُهُ",
+    "translations": {
+      "tr": {
+        "text": "Kim Allah'a tevekkül ederse, O ona yeter."
+      },
+      "en": {
+        "text": "Whoever puts their trust in Allah, He is sufficient for them."
+      }
+    }
+  },
+  {
+    "id": "ins_v5",
+    "type": "verse",
+    "reference": "Ra'd 11",
+    "image": "assets/images/wallpapers/wp_mosque_1.jpg",
+    "arabic": "إِنَّ اللَّهَ لَا يُغَيِّرُ مَا بِقَوْمٍ حَتَّى يُغَيِّرُوا مَا بِأَنْفُسِهِمْ",
+    "translations": {
+      "tr": {
+        "text": "Bir toplum kendilerindekini değiştirmedikçe Allah onlarda bulunanı değiştirmez."
+      },
+      "en": {
+        "text": "Allah does not change a people's state until they change what is in themselves."
+      }
+    }
+  },
+  {
+    "id": "ins_v6",
+    "type": "verse",
+    "reference": "Bakara 286",
+    "image": "assets/images/wallpapers/wp_kaaba_1.jpg",
+    "arabic": "لَا يُكَلِّفُ اللَّهُ نَفْسًا إِلَّا وُسْعَهَا",
+    "translations": {
+      "tr": {
+        "text": "Allah hiç kimseye gücünün üstünde bir şey yüklemez."
+      },
+      "en": {
+        "text": "Allah does not burden a soul beyond its capacity."
+      }
+    }
+  },
+  {
+    "id": "ins_v7",
+    "type": "verse",
+    "reference": "Âl-i İmrân 139",
+    "image": "assets/images/wallpapers/wp_nabawi_1.jpg",
+    "arabic": "وَلَا تَهِنُوا وَلَا تَحْزَنُوا",
+    "translations": {
+      "tr": {
+        "text": "Gevşemeyin, üzülmeyin."
+      },
+      "en": {
+        "text": "Do not lose heart, nor fall into despair."
+      }
+    }
+  },
+  {
+    "id": "ins_v8",
+    "type": "verse",
+    "reference": "İbrâhim 7",
+    "image": "assets/images/wallpapers/wp_night_1.jpg",
+    "arabic": "لَئِنْ شَكَرْتُمْ لَأَزِيدَنَّكُمْ",
+    "translations": {
+      "tr": {
+        "text": "Şükrederseniz, elbette size daha çok veririm."
+      },
+      "en": {
+        "text": "If you are grateful, I will surely increase you."
+      }
+    }
+  },
+  {
+    "id": "ins_v9",
+    "type": "verse",
+    "reference": "Bakara 45",
+    "image": "assets/images/wallpapers/wp_mosque_1.jpg",
+    "arabic": "وَاسْتَعِينُوا بِالصَّبْرِ وَالصَّلَاةِ",
+    "translations": {
+      "tr": {
+        "text": "Sabır ve namazla yardım isteyin."
+      },
+      "en": {
+        "text": "Seek help through patience and prayer."
+      }
+    }
+  },
+  {
+    "id": "ins_v10",
+    "type": "verse",
+    "reference": "Nahl 128",
+    "image": "assets/images/wallpapers/wp_kaaba_1.jpg",
+    "arabic": "إِنَّ اللَّهَ مَعَ الَّذِينَ اتَّقَوْا",
+    "translations": {
+      "tr": {
+        "text": "Şüphesiz Allah, takvâ sahipleriyle beraberdir."
+      },
+      "en": {
+        "text": "Indeed, Allah is with those who are mindful of Him."
+      }
+    }
+  },
+  {
+    "id": "insv_1_5",
+    "type": "verse",
+    "reference": "Fâtiha 5",
+    "image": "",
+    "arabic": "إِيَّاكَ نَعْبُدُ وَإِيَّاكَ نَسْتَعِينُ",
+    "translations": {
+      "tr": {
+        "text": "Yalnız sana kulluk eder, yalnız senden yardım dileriz."
+      },
+      "en": {
+        "text": "You alone we worship, and You alone we ask for help."
+      }
+    }
+  },
+  {
+    "id": "insv_2_45",
+    "type": "verse",
+    "reference": "Bakara 45",
+    "image": "",
+    "arabic": "وَٱسْتَعِينُوا۟ بِٱلصَّبْرِ وَٱلصَّلَوٰةِ ۚ وَإِنَّهَا لَكَبِيرَةٌ إِلَّا عَلَى ٱلْخَٰشِعِينَ",
+    "translations": {
+      "tr": {
+        "text": "Sabır ve namazla Allah'a sığınıp yardım isteyin; Rablerine kavuşacaklarını ve Ona döneceklerini umanlar ve huşu duyanlardan başkasına namaz elbette ağır gelir."
+      },
+      "en": {
+        "text": "And seek help through patience and prayer, and indeed, it is difficult except for the humbly submissive [to Allah]"
+      }
+    }
+  },
+  {
+    "id": "insv_2_110",
+    "type": "verse",
+    "reference": "Bakara 110",
+    "image": "",
+    "arabic": "وَأَقِيمُوا۟ ٱلصَّلَوٰةَ وَءَاتُوا۟ ٱلزَّكَوٰةَ ۚ وَمَا تُقَدِّمُوا۟ لِأَنفُسِكُم مِّنْ خَيْرٍۢ تَجِدُوهُ عِندَ ٱللَّهِ ۗ إِنَّ ٱللَّهَ بِمَا تَعْمَلُونَ بَصِيرٌۭ",
+    "translations": {
+      "tr": {
+        "text": "Namazı kılın, zekatı verin, kendiniz için önden gönderdiğiniz her hayrı Allah katında bulacaksınız. Allah yaptıklarınızı şüphesiz görür."
+      },
+      "en": {
+        "text": "And establish prayer and give zakah, and whatever good you put forward for yourselves - you will find it with Allah. Indeed, Allah of what you do, is Seeing."
+      }
+    }
+  },
+  {
+    "id": "insv_2_152",
+    "type": "verse",
+    "reference": "Bakara 152",
+    "image": "",
+    "arabic": "فَٱذْكُرُونِىٓ أَذْكُرْكُمْ وَٱشْكُرُوا۟ لِى وَلَا تَكْفُرُونِ",
+    "translations": {
+      "tr": {
+        "text": "Artık Beni anın, Ben de sizi anayım; Bana şükredin, nankörlük etmeyin."
+      },
+      "en": {
+        "text": "So remember Me; I will remember you. And be grateful to Me and do not deny Me."
+      }
+    }
+  },
+  {
+    "id": "insv_2_153",
+    "type": "verse",
+    "reference": "Bakara 153",
+    "image": "",
+    "arabic": "يَٰٓأَيُّهَا ٱلَّذِينَ ءَامَنُوا۟ ٱسْتَعِينُوا۟ بِٱلصَّبْرِ وَٱلصَّلَوٰةِ ۚ إِنَّ ٱللَّهَ مَعَ ٱلصَّٰبِرِينَ",
+    "translations": {
+      "tr": {
+        "text": "Ey İnananlar! Sabır ve namazla yardım dileyin. Allah, muhakkak ki sabredenlerle beraberdir."
+      },
+      "en": {
+        "text": "O you who have believed, seek help through patience and prayer. Indeed, Allah is with the patient."
+      }
+    }
+  },
+  {
+    "id": "insv_2_155",
+    "type": "verse",
+    "reference": "Bakara 155",
+    "image": "",
+    "arabic": "وَلَنَبْلُوَنَّكُم بِشَىْءٍۢ مِّنَ ٱلْخَوْفِ وَٱلْجُوعِ وَنَقْصٍۢ مِّنَ ٱلْأَمْوَٰلِ وَٱلْأَنفُسِ وَٱلثَّمَرَٰتِ ۗ وَبَشِّرِ ٱلصَّٰبِرِينَ",
+    "translations": {
+      "tr": {
+        "text": "Muhakkak sizi biraz korku, biraz açlık ve mallardan, canlardan, ürünlerden biraz eksiltmekle deneriz, sabredenleri müjdele."
+      },
+      "en": {
+        "text": "And We will surely test you with something of fear and hunger and a loss of wealth and lives and fruits, but give good tidings to the patient,"
+      }
+    }
+  },
+  {
+    "id": "insv_2_156",
+    "type": "verse",
+    "reference": "Bakara 156",
+    "image": "",
+    "arabic": "ٱلَّذِينَ إِذَآ أَصَٰبَتْهُم مُّصِيبَةٌۭ قَالُوٓا۟ إِنَّا لِلَّهِ وَإِنَّآ إِلَيْهِ رَٰجِعُونَ",
+    "translations": {
+      "tr": {
+        "text": "Onlara bir musibet geldiğinde: \"Biz Allah'ınız ve elbette O'na döneceğiz\" derler."
+      },
+      "en": {
+        "text": "Who, when disaster strikes them, say, \"Indeed we belong to Allah, and indeed to Him we will return.\""
+      }
+    }
+  },
+  {
+    "id": "insv_2_186",
+    "type": "verse",
+    "reference": "Bakara 186",
+    "image": "",
+    "arabic": "وَإِذَا سَأَلَكَ عِبَادِى عَنِّى فَإِنِّى قَرِيبٌ ۖ أُجِيبُ دَعْوَةَ ٱلدَّاعِ إِذَا دَعَانِ ۖ فَلْيَسْتَجِيبُوا۟ لِى وَلْيُؤْمِنُوا۟ بِى لَعَلَّهُمْ يَرْشُدُونَ",
+    "translations": {
+      "tr": {
+        "text": "Kullarım sana Beni sorarlarsa, bilsinler ki Ben, şüphesiz onlara yakınım. Benden isteyenin, dua ettiğinde duasını kabul ederim. Artık onlar da davetimi kabul edip Bana inansınlar ki doğru yolda yürüyenlerden olsunlar."
+      },
+      "en": {
+        "text": "And when My servants ask you, [O Muhammad], concerning Me - indeed I am near. I respond to the invocation of the supplicant when he calls upon Me. So let them respond to Me [by obedience] and believe in Me that they may be [rightly] guided."
+      }
+    }
+  },
+  {
+    "id": "insv_2_195",
+    "type": "verse",
+    "reference": "Bakara 195",
+    "image": "",
+    "arabic": "وَأَنفِقُوا۟ فِى سَبِيلِ ٱللَّهِ وَلَا تُلْقُوا۟ بِأَيْدِيكُمْ إِلَى ٱلتَّهْلُكَةِ ۛ وَأَحْسِنُوٓا۟ ۛ إِنَّ ٱللَّهَ يُحِبُّ ٱلْمُحْسِنِينَ",
+    "translations": {
+      "tr": {
+        "text": "Allah yolunda sarf edin, kendinizi kendi elinizle tehlikeye atmayın, işlerinizi iyi yapın. Şüphesiz Allah iyi iş yapanları sever."
+      },
+      "en": {
+        "text": "And spend in the way of Allah and do not throw [yourselves] with your [own] hands into destruction [by refraining]. And do good; indeed, Allah loves the doers of good."
+      }
+    }
+  },
+  {
+    "id": "insv_2_201",
+    "type": "verse",
+    "reference": "Bakara 201",
+    "image": "",
+    "arabic": "وَمِنْهُم مَّن يَقُولُ رَبَّنَآ ءَاتِنَا فِى ٱلدُّنْيَا حَسَنَةًۭ وَفِى ٱلْءَاخِرَةِ حَسَنَةًۭ وَقِنَا عَذَابَ ٱلنَّارِ",
+    "translations": {
+      "tr": {
+        "text": "\"Rabbimiz! Bize dünyada iyiyi, ahirette de iyiyi ver, bizi ateşin azabından koru\" diyenler vardır."
+      },
+      "en": {
+        "text": "But among them is he who says, \"Our Lord, give us in this world [that which is] good and in the Hereafter [that which is] good and protect us from the punishment of the Fire.\""
+      }
+    }
+  },
+  {
+    "id": "insv_2_216",
+    "type": "verse",
+    "reference": "Bakara 216",
+    "image": "",
+    "arabic": "كُتِبَ عَلَيْكُمُ ٱلْقِتَالُ وَهُوَ كُرْهٌۭ لَّكُمْ ۖ وَعَسَىٰٓ أَن تَكْرَهُوا۟ شَيْـًۭٔا وَهُوَ خَيْرٌۭ لَّكُمْ ۖ وَعَسَىٰٓ أَن تُحِبُّوا۟ شَيْـًۭٔا وَهُوَ شَرٌّۭ لَّكُمْ ۗ وَٱللَّهُ يَعْلَمُ وَأَنتُمْ لَا تَعْلَمُونَ",
+    "translations": {
+      "tr": {
+        "text": "Savaş, hoşunuza gitmediği halde size farz kılındı. İhtimal ki hoşlanmadığınız şey sizin iyiliğinizedir ve ihtimal ki sevdiğiniz bir şey sizin kötülüğünüzedir. Siz bilmezsiniz, Allah bilir."
+      },
+      "en": {
+        "text": "Fighting has been enjoined upon you while it is hateful to you. But perhaps you hate a thing and it is good for you; and perhaps you love a thing and it is bad for you. And Allah Knows, while you know not."
+      }
+    }
+  },
+  {
+    "id": "insv_2_222",
+    "type": "verse",
+    "reference": "Bakara 222",
+    "image": "",
+    "arabic": "وَيَسْـَٔلُونَكَ عَنِ ٱلْمَحِيضِ ۖ قُلْ هُوَ أَذًۭى فَٱعْتَزِلُوا۟ ٱلنِّسَآءَ فِى ٱلْمَحِيضِ ۖ وَلَا تَقْرَبُوهُنَّ حَتَّىٰ يَطْهُرْنَ ۖ فَإِذَا تَطَهَّرْنَ فَأْتُوهُنَّ مِنْ حَيْثُ أَمَرَكُمُ ٱللَّهُ ۚ إِنَّ ٱللَّهَ يُحِبُّ ٱلتَّوَّٰبِينَ وَيُحِبُّ ٱلْمُتَطَهِّرِينَ",
+    "translations": {
+      "tr": {
+        "text": "Sana, kadınların aybaşı hali hakkında da sorarlar, de ki: \"O bir ezadır (rahatsızlıktır)\". Aybaşı halinde iken kadınlardan el çekin, temizlenmelerine kadar onlara yaklaşmayın. Temizlendikleri zaman, Allah'ın size buyurduğu yoldan yaklaşın. Allah şüphesiz daima tevbe edenleri sever, temizlenenleri de sever."
+      },
+      "en": {
+        "text": "And they ask you about menstruation. Say, \"It is harm, so keep away from wives during menstruation. And do not approach them until they are pure. And when they have purified themselves, then come to them from where Allah has ordained for you. Indeed, Allah loves those who are constantly repentant and loves those who purify themselves.\""
+      }
+    }
+  },
+  {
+    "id": "insv_2_286",
+    "type": "verse",
+    "reference": "Bakara 286",
+    "image": "",
+    "arabic": "لَا يُكَلِّفُ ٱللَّهُ نَفْسًا إِلَّا وُسْعَهَا ۚ لَهَا مَا كَسَبَتْ وَعَلَيْهَا مَا ٱكْتَسَبَتْ ۗ رَبَّنَا لَا تُؤَاخِذْنَآ إِن نَّسِينَآ أَوْ أَخْطَأْنَا ۚ رَبَّنَا وَلَا تَحْمِلْ عَلَيْنَآ إِصْرًۭا كَمَا حَمَلْتَهُۥ عَلَى ٱلَّذِينَ مِن قَبْلِنَا ۚ رَبَّنَا وَلَا تُحَمِّلْنَا مَا لَا طَاقَةَ لَنَا بِهِۦ ۖ وَٱعْفُ عَنَّا وَٱغْفِرْ لَنَا وَٱرْحَمْنَآ ۚ أَنتَ مَوْلَىٰنَا فَٱنصُرْنَا عَلَى ٱلْقَوْمِ ٱلْكَٰفِرِينَ",
+    "translations": {
+      "tr": {
+        "text": "Allah kişiye ancak gücünün yeteceği kadar yükler; kazandığı iyilik lehine, ettiği kötülük de aleyhinedir. Rabbimiz! Eğer unutacak veya yanılacak olursak bizi sorumlu tutma. Rabbimiz bizden öncekilere yüklediğin gibi, bize de ağır yük yükleme. Rabbimiz! Bize gücümüzün yetmeyeceği şeyi taşıtma, bizi affet, bizi bağışla, bize acı. Sen Mevlamızsın, kafirlere karşı bize yardım et."
+      },
+      "en": {
+        "text": "Allah does not charge a soul except [with that within] its capacity. It will have [the consequence of] what [good] it has gained, and it will bear [the consequence of] what [evil] it has earned. \"Our Lord, do not impose blame upon us if we have forgotten or erred. Our Lord, and lay not upon us a burden like that which You laid upon those before us. Our Lord, and burden us not with that which we have no ability to bear. And pardon us; and forgive us; and have mercy upon us. You are our protector, so give us victory over the disbelieving people.\""
+      }
+    }
+  },
+  {
+    "id": "insv_3_8",
+    "type": "verse",
+    "reference": "Âl-i İmrân 8",
+    "image": "",
+    "arabic": "رَبَّنَا لَا تُزِغْ قُلُوبَنَا بَعْدَ إِذْ هَدَيْتَنَا وَهَبْ لَنَا مِن لَّدُنكَ رَحْمَةً ۚ إِنَّكَ أَنتَ ٱلْوَهَّابُ",
+    "translations": {
+      "tr": {
+        "text": "Rabbimiz! Bizi doğru yola erdirdikten sonra kalblerimizi eğriltme, katından bize rahmet bağışla; şüphesiz Sen sonsuz bağışta bulunansın."
+      },
+      "en": {
+        "text": "[Who say], \"Our Lord, let not our hearts deviate after You have guided us and grant us from Yourself mercy. Indeed, You are the Bestower."
+      }
+    }
+  },
+  {
+    "id": "insv_3_26",
+    "type": "verse",
+    "reference": "Âl-i İmrân 26",
+    "image": "",
+    "arabic": "قُلِ ٱللَّهُمَّ مَٰلِكَ ٱلْمُلْكِ تُؤْتِى ٱلْمُلْكَ مَن تَشَآءُ وَتَنزِعُ ٱلْمُلْكَ مِمَّن تَشَآءُ وَتُعِزُّ مَن تَشَآءُ وَتُذِلُّ مَن تَشَآءُ ۖ بِيَدِكَ ٱلْخَيْرُ ۖ إِنَّكَ عَلَىٰ كُلِّ شَىْءٍۢ قَدِيرٌۭ",
+    "translations": {
+      "tr": {
+        "text": "De ki: \"Mülkün sahibi olan Allah'ım! Mülkü dilediğine verirsin; dilediğinden çekip alırsın; dilediğini aziz kılar, dilediğini alçaltırsın; iyilik elindedir. Doğrusu Sen, her şeye Kadir'sin."
+      },
+      "en": {
+        "text": "Say, \"O Allah, Owner of Sovereignty, You give sovereignty to whom You will and You take sovereignty away from whom You will. You honor whom You will and You humble whom You will. In Your hand is [all] good. Indeed, You are over all things competent."
+      }
+    }
+  },
+  {
+    "id": "insv_3_31",
+    "type": "verse",
+    "reference": "Âl-i İmrân 31",
+    "image": "",
+    "arabic": "قُلْ إِن كُنتُمْ تُحِبُّونَ ٱللَّهَ فَٱتَّبِعُونِى يُحْبِبْكُمُ ٱللَّهُ وَيَغْفِرْ لَكُمْ ذُنُوبَكُمْ ۗ وَٱللَّهُ غَفُورٌۭ رَّحِيمٌۭ",
+    "translations": {
+      "tr": {
+        "text": "De ki: \"Allah'ı seviyorsanız bana uyun. Allah da sizi sevsin ve günahlarınızı bağışlasın. Allah affeder ve merhamet eder\"."
+      },
+      "en": {
+        "text": "Say, [O Muhammad], \"If you should love Allah, then follow me, [so] Allah will love you and forgive you your sins. And Allah is Forgiving and Merciful.\""
+      }
+    }
+  },
+  {
+    "id": "insv_3_103",
+    "type": "verse",
+    "reference": "Âl-i İmrân 103",
+    "image": "",
+    "arabic": "وَٱعْتَصِمُوا۟ بِحَبْلِ ٱللَّهِ جَمِيعًۭا وَلَا تَفَرَّقُوا۟ ۚ وَٱذْكُرُوا۟ نِعْمَتَ ٱللَّهِ عَلَيْكُمْ إِذْ كُنتُمْ أَعْدَآءًۭ فَأَلَّفَ بَيْنَ قُلُوبِكُمْ فَأَصْبَحْتُم بِنِعْمَتِهِۦٓ إِخْوَٰنًۭا وَكُنتُمْ عَلَىٰ شَفَا حُفْرَةٍۢ مِّنَ ٱلنَّارِ فَأَنقَذَكُم مِّنْهَا ۗ كَذَٰلِكَ يُبَيِّنُ ٱللَّهُ لَكُمْ ءَايَٰتِهِۦ لَعَلَّكُمْ تَهْتَدُونَ",
+    "translations": {
+      "tr": {
+        "text": "Toptan Allah'ın ipine sarılın, ayrılmayın. Allah'ın size olan nimetini anın: Düşmandınız, kalblerinizin arasını uzlaştırdı da onun nimeti sayesinde kardeş oldunuz. Bir ateş çukurunun kenarında idiniz, sizi oradan kurtardı. Allah, doğru yola erişesiniz diye size böylece ayetlerini açıklar."
+      },
+      "en": {
+        "text": "And hold firmly to the rope of Allah all together and do not become divided. And remember the favor of Allah upon you - when you were enemies and He brought your hearts together and you became, by His favor, brothers. And you were on the edge of a pit of the Fire, and He saved you from it. Thus does Allah make clear to you His verses that you may be guided."
+      }
+    }
+  },
+  {
+    "id": "insv_3_104",
+    "type": "verse",
+    "reference": "Âl-i İmrân 104",
+    "image": "",
+    "arabic": "وَلْتَكُن مِّنكُمْ أُمَّةٌۭ يَدْعُونَ إِلَى ٱلْخَيْرِ وَيَأْمُرُونَ بِٱلْمَعْرُوفِ وَيَنْهَوْنَ عَنِ ٱلْمُنكَرِ ۚ وَأُو۟لَٰٓئِكَ هُمُ ٱلْمُفْلِحُونَ",
+    "translations": {
+      "tr": {
+        "text": "Sizden, iyiye çağıran, doğruluğu emreden ve fenalıktan meneden bir cemaat olsun. İşte başarıya erişenler yalnız onlardır."
+      },
+      "en": {
+        "text": "And let there be [arising] from you a nation inviting to [all that is] good, enjoining what is right and forbidding what is wrong, and those will be the successful."
+      }
+    }
+  },
+  {
+    "id": "insv_3_134",
+    "type": "verse",
+    "reference": "Âl-i İmrân 134",
+    "image": "",
+    "arabic": "ٱلَّذِينَ يُنفِقُونَ فِى ٱلسَّرَّآءِ وَٱلضَّرَّآءِ وَٱلْكَٰظِمِينَ ٱلْغَيْظَ وَٱلْعَافِينَ عَنِ ٱلنَّاسِ ۗ وَٱللَّهُ يُحِبُّ ٱلْمُحْسِنِينَ",
+    "translations": {
+      "tr": {
+        "text": "Onlar bollukta ve darlıkta sarfederler, öfkelerini yenerler, insanların kusurlarını affederler. Allah iyilik yapanları sever."
+      },
+      "en": {
+        "text": "Who spend [in the cause of Allah] during ease and hardship and who restrain anger and who pardon the people - and Allah loves the doers of good;"
+      }
+    }
+  },
+  {
+    "id": "insv_3_139",
+    "type": "verse",
+    "reference": "Âl-i İmrân 139",
+    "image": "",
+    "arabic": "وَلَا تَهِنُوا۟ وَلَا تَحْزَنُوا۟ وَأَنتُمُ ٱلْأَعْلَوْنَ إِن كُنتُم مُّؤْمِنِينَ",
+    "translations": {
+      "tr": {
+        "text": "Gevşemeyin, üzülmeyin, inanmışsanız, mutlaka siz en üstünsünüzdür."
+      },
+      "en": {
+        "text": "So do not weaken and do not grieve, and you will be superior if you are [true] believers."
+      }
+    }
+  },
+  {
+    "id": "insv_3_146",
+    "type": "verse",
+    "reference": "Âl-i İmrân 146",
+    "image": "",
+    "arabic": "وَكَأَيِّن مِّن نَّبِىٍّۢ قَٰتَلَ مَعَهُۥ رِبِّيُّونَ كَثِيرٌۭ فَمَا وَهَنُوا۟ لِمَآ أَصَابَهُمْ فِى سَبِيلِ ٱللَّهِ وَمَا ضَعُفُوا۟ وَمَا ٱسْتَكَانُوا۟ ۗ وَٱللَّهُ يُحِبُّ ٱلصَّٰبِرِينَ",
+    "translations": {
+      "tr": {
+        "text": "Nice peygamberlerin yanında Rabbe kul olmuş pek çok kimse savaşmıştır. Allah yolunda başlarına gelenlerden ötürü gevşememişler, yılmamışlar ve boyun eğmemişlerdi. Allah, sabredenleri sever."
+      },
+      "en": {
+        "text": "And how many a prophet [fought and] with him fought many religious scholars. But they never lost assurance due to what afflicted them in the cause of Allah, nor did they weaken or submit. And Allah loves the steadfast."
+      }
+    }
+  },
+  {
+    "id": "insv_3_159",
+    "type": "verse",
+    "reference": "Âl-i İmrân 159",
+    "image": "",
+    "arabic": "فَبِمَا رَحْمَةٍۢ مِّنَ ٱللَّهِ لِنتَ لَهُمْ ۖ وَلَوْ كُنتَ فَظًّا غَلِيظَ ٱلْقَلْبِ لَٱنفَضُّوا۟ مِنْ حَوْلِكَ ۖ فَٱعْفُ عَنْهُمْ وَٱسْتَغْفِرْ لَهُمْ وَشَاوِرْهُمْ فِى ٱلْأَمْرِ ۖ فَإِذَا عَزَمْتَ فَتَوَكَّلْ عَلَى ٱللَّهِ ۚ إِنَّ ٱللَّهَ يُحِبُّ ٱلْمُتَوَكِّلِينَ",
+    "translations": {
+      "tr": {
+        "text": "Allah'ın rahmetinden dolayı, sen onlara karşı yumuşak davrandın. Eğer kaba ve katı kalbli olsaydın, şüphesiz etrafından dağılır giderlerdi. Onları affet, onlara mağfiret dile, iş hakkında onlara danış, fakat karar verdin mi Allah'a güven, doğrusu Allah güvenenleri sever."
+      },
+      "en": {
+        "text": "So by mercy from Allah, [O Muhammad], you were lenient with them. And if you had been rude [in speech] and harsh in heart, they would have disbanded from about you. So pardon them and ask forgiveness for them and consult them in the matter. And when you have decided, then rely upon Allah. Indeed, Allah loves those who rely [upon Him]."
+      }
+    }
+  },
+  {
+    "id": "insv_3_160",
+    "type": "verse",
+    "reference": "Âl-i İmrân 160",
+    "image": "",
+    "arabic": "إِن يَنصُرْكُمُ ٱللَّهُ فَلَا غَالِبَ لَكُمْ ۖ وَإِن يَخْذُلْكُمْ فَمَن ذَا ٱلَّذِى يَنصُرُكُم مِّنۢ بَعْدِهِۦ ۗ وَعَلَى ٱللَّهِ فَلْيَتَوَكَّلِ ٱلْمُؤْمِنُونَ",
+    "translations": {
+      "tr": {
+        "text": "Allah size yardım ederse, sizi yenecek yoktur; eğer sizi yardımsız bırakıverirse, O'ndan başka size yardım edecek kimdir? İnananlar yalnız Allah'a güvensinler."
+      },
+      "en": {
+        "text": "If Allah should aid you, no one can overcome you; but if He should forsake you, who is there that can aid you after Him? And upon Allah let the believers rely."
+      }
+    }
+  },
+  {
+    "id": "insv_3_173",
+    "type": "verse",
+    "reference": "Âl-i İmrân 173",
+    "image": "",
+    "arabic": "ٱلَّذِينَ قَالَ لَهُمُ ٱلنَّاسُ إِنَّ ٱلنَّاسَ قَدْ جَمَعُوا۟ لَكُمْ فَٱخْشَوْهُمْ فَزَادَهُمْ إِيمَٰنًۭا وَقَالُوا۟ حَسْبُنَا ٱللَّهُ وَنِعْمَ ٱلْوَكِيلُ",
+    "translations": {
+      "tr": {
+        "text": "İnsanlar onlara: \"Düşmanınız olan insanlar size karşı bir ordu topladılar, onlardan korkun\" dediler. Bu, onların imanını artırdı da: \"Allah bize yeter. O ne güzel Vekil'dir\" dediler."
+      },
+      "en": {
+        "text": "Those to whom hypocrites said, \"Indeed, the people have gathered against you, so fear them.\" But it [merely] increased them in faith, and they said, \"Sufficient for us is Allah, and [He is] the best Disposer of affairs.\""
+      }
+    }
+  },
+  {
+    "id": "insv_3_185",
+    "type": "verse",
+    "reference": "Âl-i İmrân 185",
+    "image": "",
+    "arabic": "كُلُّ نَفْسٍۢ ذَآئِقَةُ ٱلْمَوْتِ ۗ وَإِنَّمَا تُوَفَّوْنَ أُجُورَكُمْ يَوْمَ ٱلْقِيَٰمَةِ ۖ فَمَن زُحْزِحَ عَنِ ٱلنَّارِ وَأُدْخِلَ ٱلْجَنَّةَ فَقَدْ فَازَ ۗ وَمَا ٱلْحَيَوٰةُ ٱلدُّنْيَآ إِلَّا مَتَٰعُ ٱلْغُرُورِ",
+    "translations": {
+      "tr": {
+        "text": "Her insan ölümü tadacaktır. Kıyamet günü, ecirleriniz size mutlaka ödenecektir. Ateşten uzaklaştırılıp cennete sokulan kimse artık kurtulmuştur. Dünya hayatı, zaten, sadece aldatıcı bir geçinmeden ibarettir."
+      },
+      "en": {
+        "text": "Every soul will taste death, and you will only be given your [full] compensation on the Day of Resurrection. So he who is drawn away from the Fire and admitted to Paradise has attained [his desire]. And what is the life of this world except the enjoyment of delusion."
+      }
+    }
+  },
+  {
+    "id": "insv_3_200",
+    "type": "verse",
+    "reference": "Âl-i İmrân 200",
+    "image": "",
+    "arabic": "يَٰٓأَيُّهَا ٱلَّذِينَ ءَامَنُوا۟ ٱصْبِرُوا۟ وَصَابِرُوا۟ وَرَابِطُوا۟ وَٱتَّقُوا۟ ٱللَّهَ لَعَلَّكُمْ تُفْلِحُونَ",
+    "translations": {
+      "tr": {
+        "text": "Ey İnananlar! Sabredin, düşmanlarınızdan daha sabırlı olun, cihada hazır bulunun, Allah'a karşı gelmekten sakının ki başarıya erişebilesiniz."
+      },
+      "en": {
+        "text": "O you who have believed, persevere and endure and remain stationed and fear Allah that you may be successful."
+      }
+    }
+  },
+  {
+    "id": "insv_4_36",
+    "type": "verse",
+    "reference": "Nisâ 36",
+    "image": "",
+    "arabic": "۞ وَٱعْبُدُوا۟ ٱللَّهَ وَلَا تُشْرِكُوا۟ بِهِۦ شَيْـًۭٔا ۖ وَبِٱلْوَٰلِدَيْنِ إِحْسَٰنًۭا وَبِذِى ٱلْقُرْبَىٰ وَٱلْيَتَٰمَىٰ وَٱلْمَسَٰكِينِ وَٱلْجَارِ ذِى ٱلْقُرْبَىٰ وَٱلْجَارِ ٱلْجُنُبِ وَٱلصَّاحِبِ بِٱلْجَنۢبِ وَٱبْنِ ٱلسَّبِيلِ وَمَا مَلَكَتْ أَيْمَٰنُكُمْ ۗ إِنَّ ٱللَّهَ لَا يُحِبُّ مَن كَانَ مُخْتَالًۭا فَخُورًا",
+    "translations": {
+      "tr": {
+        "text": "Allah'a kulluk edin, O'na bir şeyi ortak koşmayın. Ana babaya, yakınlara, yetimlere, düşkünlere, yakın komşuya, uzak komşuya, yanınızdaki arkadaşa, yolcuya ve elinizin altında bulunan kimselere iyilik edin. Allah, kendini beğenip öğünenleri elbette sevmez."
+      },
+      "en": {
+        "text": "Worship Allah and associate nothing with Him, and to parents do good, and to relatives, orphans, the needy, the near neighbor, the neighbor farther away, the companion at your side, the traveler, and those whom your right hands possess. Indeed, Allah does not like those who are self-deluding and boastful."
+      }
+    }
+  },
+  {
+    "id": "insv_4_58",
+    "type": "verse",
+    "reference": "Nisâ 58",
+    "image": "",
+    "arabic": "۞ إِنَّ ٱللَّهَ يَأْمُرُكُمْ أَن تُؤَدُّوا۟ ٱلْأَمَٰنَٰتِ إِلَىٰٓ أَهْلِهَا وَإِذَا حَكَمْتُم بَيْنَ ٱلنَّاسِ أَن تَحْكُمُوا۟ بِٱلْعَدْلِ ۚ إِنَّ ٱللَّهَ نِعِمَّا يَعِظُكُم بِهِۦٓ ۗ إِنَّ ٱللَّهَ كَانَ سَمِيعًۢا بَصِيرًۭا",
+    "translations": {
+      "tr": {
+        "text": "Hiç şüphesiz Allah size, emanetleri ehline teslim etmenizi ve insanlar arasında hükmettiğiniz zaman adaletle hükmetmenizi emreder. Allah size ne güzel öğüt veriyor. Şüphesiz Allah işitir ve görür."
+      },
+      "en": {
+        "text": "Indeed, Allah commands you to render trusts to whom they are due and when you judge between people to judge with justice. Excellent is that which Allah instructs you. Indeed, Allah is ever Hearing and Seeing."
+      }
+    }
+  },
+  {
+    "id": "insv_4_86",
+    "type": "verse",
+    "reference": "Nisâ 86",
+    "image": "",
+    "arabic": "وَإِذَا حُيِّيتُم بِتَحِيَّةٍۢ فَحَيُّوا۟ بِأَحْسَنَ مِنْهَآ أَوْ رُدُّوهَآ ۗ إِنَّ ٱللَّهَ كَانَ عَلَىٰ كُلِّ شَىْءٍ حَسِيبًا",
+    "translations": {
+      "tr": {
+        "text": "Size bir selam verildiği zaman, ondan daha iyisiyle selam verin veya ayniyle mukabele edin. Allah her şeyin hesabını gereği gibi yapandır."
+      },
+      "en": {
+        "text": "And when you are greeted with a greeting, greet [in return] with one better than it or [at least] return it [in a like manner]. Indeed, Allah is ever, over all things, an Accountant."
+      }
+    }
+  },
+  {
+    "id": "insv_4_103",
+    "type": "verse",
+    "reference": "Nisâ 103",
+    "image": "",
+    "arabic": "فَإِذَا قَضَيْتُمُ ٱلصَّلَوٰةَ فَٱذْكُرُوا۟ ٱللَّهَ قِيَٰمًۭا وَقُعُودًۭا وَعَلَىٰ جُنُوبِكُمْ ۚ فَإِذَا ٱطْمَأْنَنتُمْ فَأَقِيمُوا۟ ٱلصَّلَوٰةَ ۚ إِنَّ ٱلصَّلَوٰةَ كَانَتْ عَلَى ٱلْمُؤْمِنِينَ كِتَٰبًۭا مَّوْقُوتًۭا",
+    "translations": {
+      "tr": {
+        "text": "Namazı kıldıktan başka, Allah'ı ayakta iken, otururken, yan yatarken de anın. Emniyete kavuştuğunuzda, namazı gereğince kılın. Namaz şüphesiz, inananlara belirli vakitlerde farz kılınmıştır."
+      },
+      "en": {
+        "text": "And when you have completed the prayer, remember Allah standing, sitting, or [lying] on your sides. But when you become secure, re-establish [regular] prayer. Indeed, prayer has been decreed upon the believers a decree of specified times."
+      }
+    }
+  },
+  {
+    "id": "insv_4_110",
+    "type": "verse",
+    "reference": "Nisâ 110",
+    "image": "",
+    "arabic": "وَمَن يَعْمَلْ سُوٓءًا أَوْ يَظْلِمْ نَفْسَهُۥ ثُمَّ يَسْتَغْفِرِ ٱللَّهَ يَجِدِ ٱللَّهَ غَفُورًۭا رَّحِيمًۭا",
+    "translations": {
+      "tr": {
+        "text": "Kim kötülük işler veya kendine yazık eder de sonra Allah'tan bağışlanma dilerse, Allah'ı mağfiret ve merhamet sahibi olarak bulur."
+      },
+      "en": {
+        "text": "And whoever does a wrong or wrongs himself but then seeks forgiveness of Allah will find Allah Forgiving and Merciful."
+      }
+    }
+  },
+  {
+    "id": "insv_4_147",
+    "type": "verse",
+    "reference": "Nisâ 147",
+    "image": "",
+    "arabic": "مَّا يَفْعَلُ ٱللَّهُ بِعَذَابِكُمْ إِن شَكَرْتُمْ وَءَامَنتُمْ ۚ وَكَانَ ٱللَّهُ شَاكِرًا عَلِيمًۭا",
+    "translations": {
+      "tr": {
+        "text": "Şükreder ve inanırsanız, Allah size niçin azabetsin? Allah şükrün karşılığını verir ve bilir."
+      },
+      "en": {
+        "text": "What would Allah do with your punishment if you are grateful and believe? And ever is Allah Appreciative and Knowing."
+      }
+    }
+  },
+  {
+    "id": "insv_5_8",
+    "type": "verse",
+    "reference": "Mâide 8",
+    "image": "",
+    "arabic": "يَٰٓأَيُّهَا ٱلَّذِينَ ءَامَنُوا۟ كُونُوا۟ قَوَّٰمِينَ لِلَّهِ شُهَدَآءَ بِٱلْقِسْطِ ۖ وَلَا يَجْرِمَنَّكُمْ شَنَـَٔانُ قَوْمٍ عَلَىٰٓ أَلَّا تَعْدِلُوا۟ ۚ ٱعْدِلُوا۟ هُوَ أَقْرَبُ لِلتَّقْوَىٰ ۖ وَٱتَّقُوا۟ ٱللَّهَ ۚ إِنَّ ٱللَّهَ خَبِيرٌۢ بِمَا تَعْمَلُونَ",
+    "translations": {
+      "tr": {
+        "text": "Ey İnananlar! Allah için adaleti ayakta tutup gözeten şahidler olun. Bir topluluğa olan öfkeniz sizi adaletsizliğe sürüklemesin; adil olun; bu, Allah'a karşı gelmekten sakınmaya daha yakındır. Allah'tan sakının, doğrusu Allah işlediklerinizden Haberdar'dır."
+      },
+      "en": {
+        "text": "O you who have believed, be persistently standing firm for Allah, witnesses in justice, and do not let the hatred of a people prevent you from being just. Be just; that is nearer to righteousness. And fear Allah; indeed, Allah is Acquainted with what you do."
+      }
+    }
+  },
+  {
+    "id": "insv_5_16",
+    "type": "verse",
+    "reference": "Mâide 16",
+    "image": "",
+    "arabic": "يَهْدِى بِهِ ٱللَّهُ مَنِ ٱتَّبَعَ رِضْوَٰنَهُۥ سُبُلَ ٱلسَّلَٰمِ وَيُخْرِجُهُم مِّنَ ٱلظُّلُمَٰتِ إِلَى ٱلنُّورِ بِإِذْنِهِۦ وَيَهْدِيهِمْ إِلَىٰ صِرَٰطٍۢ مُّسْتَقِيمٍۢ",
+    "translations": {
+      "tr": {
+        "text": "Allah, rızasını gözetenleri onunla, selamet yollarına eriştirir ve onları, izni ile, karanlıklardan aydınlığa çıkarır. Onları doğru yola iletir."
+      },
+      "en": {
+        "text": "By which Allah guides those who pursue His pleasure to the ways of peace and brings them out from darknesses into the light, by His permission, and guides them to a straight path."
+      }
+    }
+  },
+  {
+    "id": "insv_6_17",
+    "type": "verse",
+    "reference": "En'âm 17",
+    "image": "",
+    "arabic": "وَإِن يَمْسَسْكَ ٱللَّهُ بِضُرٍّۢ فَلَا كَاشِفَ لَهُۥٓ إِلَّا هُوَ ۖ وَإِن يَمْسَسْكَ بِخَيْرٍۢ فَهُوَ عَلَىٰ كُلِّ شَىْءٍۢ قَدِيرٌۭ",
+    "translations": {
+      "tr": {
+        "text": "Allah sana bir sıkıntı verirse, O'ndan başkası gideremez. Sana bir iyilik verirse başkası onu engelleyemez. O, her şeye Kadir'dir."
+      },
+      "en": {
+        "text": "And if Allah should touch you with adversity, there is no remover of it except Him. And if He touches you with good - then He is over all things competent."
+      }
+    }
+  },
+  {
+    "id": "insv_6_59",
+    "type": "verse",
+    "reference": "En'âm 59",
+    "image": "",
+    "arabic": "۞ وَعِندَهُۥ مَفَاتِحُ ٱلْغَيْبِ لَا يَعْلَمُهَآ إِلَّا هُوَ ۚ وَيَعْلَمُ مَا فِى ٱلْبَرِّ وَٱلْبَحْرِ ۚ وَمَا تَسْقُطُ مِن وَرَقَةٍ إِلَّا يَعْلَمُهَا وَلَا حَبَّةٍۢ فِى ظُلُمَٰتِ ٱلْأَرْضِ وَلَا رَطْبٍۢ وَلَا يَابِسٍ إِلَّا فِى كِتَٰبٍۢ مُّبِينٍۢ",
+    "translations": {
+      "tr": {
+        "text": "Gaybın anahtarları O'nun katındadır, onları ancak O bilir. Karada ve denizde olanı bilir. Düşen yaprağı, yerin karanlıklarında olan taneyi, yaşı kuruyu ki apaçık Kitap'tadır ancak O bilir."
+      },
+      "en": {
+        "text": "And with Him are the keys of the unseen; none knows them except Him. And He knows what is on the land and in the sea. Not a leaf falls but that He knows it. And no grain is there within the darknesses of the earth and no moist or dry [thing] but that it is [written] in a clear record."
+      }
+    }
+  },
+  {
+    "id": "insv_6_102",
+    "type": "verse",
+    "reference": "En'âm 102",
+    "image": "",
+    "arabic": "ذَٰلِكُمُ ٱللَّهُ رَبُّكُمْ ۖ لَآ إِلَٰهَ إِلَّا هُوَ ۖ خَٰلِقُ كُلِّ شَىْءٍۢ فَٱعْبُدُوهُ ۚ وَهُوَ عَلَىٰ كُلِّ شَىْءٍۢ وَكِيلٌۭ",
+    "translations": {
+      "tr": {
+        "text": "İşte Rabbiniz, Allah budur. O'ndan başka tanrı yoktur, her şeyin yaratanıdır. Öyleyse O'na kulluk edin; O her şeye de vekildir."
+      },
+      "en": {
+        "text": "That is Allah, your Lord; there is no deity except Him, the Creator of all things, so worship Him. And He is Disposer of all things."
+      }
+    }
+  },
+  {
+    "id": "insv_6_162",
+    "type": "verse",
+    "reference": "En'âm 162",
+    "image": "",
+    "arabic": "قُلْ إِنَّ صَلَاتِى وَنُسُكِى وَمَحْيَاىَ وَمَمَاتِى لِلَّهِ رَبِّ ٱلْعَٰلَمِينَ",
+    "translations": {
+      "tr": {
+        "text": "De ki: \"Namazım, ibadetlerim, hayatım ve ölümüm, alemlerin Rabbi Allah içindir."
+      },
+      "en": {
+        "text": "Say, \"Indeed, my prayer, my rites of sacrifice, my living and my dying are for Allah, Lord of the worlds."
+      }
+    }
+  },
+  {
+    "id": "insv_7_23",
+    "type": "verse",
+    "reference": "A'râf 23",
+    "image": "",
+    "arabic": "قَالَا رَبَّنَا ظَلَمْنَآ أَنفُسَنَا وَإِن لَّمْ تَغْفِرْ لَنَا وَتَرْحَمْنَا لَنَكُونَنَّ مِنَ ٱلْخَٰسِرِينَ",
+    "translations": {
+      "tr": {
+        "text": "Her ikisi, \"Rabbimiz! Kendimize yazık ettik; bizi bağışlamaz ve bize merhamet etmezsen biz kaybedenlerden oluruz\" dediler."
+      },
+      "en": {
+        "text": "They said, \"Our Lord, we have wronged ourselves, and if You do not forgive us and have mercy upon us, we will surely be among the losers.\""
+      }
+    }
+  },
+  {
+    "id": "insv_7_55",
+    "type": "verse",
+    "reference": "A'râf 55",
+    "image": "",
+    "arabic": "ٱدْعُوا۟ رَبَّكُمْ تَضَرُّعًۭا وَخُفْيَةً ۚ إِنَّهُۥ لَا يُحِبُّ ٱلْمُعْتَدِينَ",
+    "translations": {
+      "tr": {
+        "text": "Rabbinize gönülden ve gizlice yalvarın. Doğrusu O aşırı gidenleri sevmez."
+      },
+      "en": {
+        "text": "Call upon your Lord in humility and privately; indeed, He does not like transgressors."
+      }
+    }
+  },
+  {
+    "id": "insv_7_56",
+    "type": "verse",
+    "reference": "A'râf 56",
+    "image": "",
+    "arabic": "وَلَا تُفْسِدُوا۟ فِى ٱلْأَرْضِ بَعْدَ إِصْلَٰحِهَا وَٱدْعُوهُ خَوْفًۭا وَطَمَعًا ۚ إِنَّ رَحْمَتَ ٱللَّهِ قَرِيبٌۭ مِّنَ ٱلْمُحْسِنِينَ",
+    "translations": {
+      "tr": {
+        "text": "Düzeltilmişken, yeryüzünde bozgunculuk yapmayın. Allah'a korkarak ve umutla yalvarın. Doğrusu Allah'ın rahmeti iyi davrananlara yakındır."
+      },
+      "en": {
+        "text": "And cause not corruption upon the earth after its reformation. And invoke Him in fear and aspiration. Indeed, the mercy of Allah is near to the doers of good."
+      }
+    }
+  },
+  {
+    "id": "insv_7_128",
+    "type": "verse",
+    "reference": "A'râf 128",
+    "image": "",
+    "arabic": "قَالَ مُوسَىٰ لِقَوْمِهِ ٱسْتَعِينُوا۟ بِٱللَّهِ وَٱصْبِرُوٓا۟ ۖ إِنَّ ٱلْأَرْضَ لِلَّهِ يُورِثُهَا مَن يَشَآءُ مِنْ عِبَادِهِۦ ۖ وَٱلْعَٰقِبَةُ لِلْمُتَّقِينَ",
+    "translations": {
+      "tr": {
+        "text": "Musa milletine: \"Allah'tan yardım dileyin ve sabredin; yeryüzü şüphesiz Allah'ındır, kullarından dilediğini ona mirasçı kılar; sonuç Allah'a karşı gelmekten sakınanlarındır\" dedi."
+      },
+      "en": {
+        "text": "Said Moses to his people, \"Seek help through Allah and be patient. Indeed, the earth belongs to Allah. He causes to inherit it whom He wills of His servants. And the [best] outcome is for the righteous.\""
+      }
+    }
+  },
+  {
+    "id": "insv_7_180",
+    "type": "verse",
+    "reference": "A'râf 180",
+    "image": "",
+    "arabic": "وَلِلَّهِ ٱلْأَسْمَآءُ ٱلْحُسْنَىٰ فَٱدْعُوهُ بِهَا ۖ وَذَرُوا۟ ٱلَّذِينَ يُلْحِدُونَ فِىٓ أَسْمَٰٓئِهِۦ ۚ سَيُجْزَوْنَ مَا كَانُوا۟ يَعْمَلُونَ",
+    "translations": {
+      "tr": {
+        "text": "En güzel isimler Allah'ındır, O'na o isimlerle dua edin, O'nun isimleri konusunda eğriliğe sapanları bırakın. Onlar yaptıklarının cezasını göreceklerdir."
+      },
+      "en": {
+        "text": "And to Allah belong the best names, so invoke Him by them. And leave [the company of] those who practice deviation concerning His names. They will be recompensed for what they have been doing."
+      }
+    }
+  },
+  {
+    "id": "insv_7_199",
+    "type": "verse",
+    "reference": "A'râf 199",
+    "image": "",
+    "arabic": "خُذِ ٱلْعَفْوَ وَأْمُرْ بِٱلْعُرْفِ وَأَعْرِضْ عَنِ ٱلْجَٰهِلِينَ",
+    "translations": {
+      "tr": {
+        "text": "Sen af yolunu tut, bağışla, uygun olanı emret, bilgisizlere aldırış etme."
+      },
+      "en": {
+        "text": "Take what is given freely, enjoin what is good, and turn away from the ignorant."
+      }
+    }
+  },
+  {
+    "id": "insv_8_2",
+    "type": "verse",
+    "reference": "Enfâl 2",
+    "image": "",
+    "arabic": "إِنَّمَا ٱلْمُؤْمِنُونَ ٱلَّذِينَ إِذَا ذُكِرَ ٱللَّهُ وَجِلَتْ قُلُوبُهُمْ وَإِذَا تُلِيَتْ عَلَيْهِمْ ءَايَٰتُهُۥ زَادَتْهُمْ إِيمَٰنًۭا وَعَلَىٰ رَبِّهِمْ يَتَوَكَّلُونَ",
+    "translations": {
+      "tr": {
+        "text": "İnananlar ancak, o kimselerdir ki Allah anıldığı zaman kalbleri titrer, ayetleri okunduğu zaman bu onların imanlarını artırır. Ve Rablerine güvenirler; namaz kılarlar; kendilerine verdiğimiz rızıktan yerli yerince sarf ederler."
+      },
+      "en": {
+        "text": "The believers are only those who, when Allah is mentioned, their hearts become fearful, and when His verses are recited to them, it increases them in faith; and upon their Lord they rely -"
+      }
+    }
+  },
+  {
+    "id": "insv_8_46",
+    "type": "verse",
+    "reference": "Enfâl 46",
+    "image": "",
+    "arabic": "وَأَطِيعُوا۟ ٱللَّهَ وَرَسُولَهُۥ وَلَا تَنَٰزَعُوا۟ فَتَفْشَلُوا۟ وَتَذْهَبَ رِيحُكُمْ ۖ وَٱصْبِرُوٓا۟ ۚ إِنَّ ٱللَّهَ مَعَ ٱلصَّٰبِرِينَ",
+    "translations": {
+      "tr": {
+        "text": "Allah'a ve Peygamberine itaat edin; çekişmeyin, yoksa korkar başarısızlığa düşersiniz ve kuvvetiniz gider. Sabredin, doğrusu Allah sabredenlerle beraberdir."
+      },
+      "en": {
+        "text": "And obey Allah and His Messenger, and do not dispute and [thus] lose courage and [then] your strength would depart; and be patient. Indeed, Allah is with the patient."
+      }
+    }
+  },
+  {
+    "id": "insv_9_40",
+    "type": "verse",
+    "reference": "Tevbe 40",
+    "image": "",
+    "arabic": "إِلَّا تَنصُرُوهُ فَقَدْ نَصَرَهُ ٱللَّهُ إِذْ أَخْرَجَهُ ٱلَّذِينَ كَفَرُوا۟ ثَانِىَ ٱثْنَيْنِ إِذْ هُمَا فِى ٱلْغَارِ إِذْ يَقُولُ لِصَٰحِبِهِۦ لَا تَحْزَنْ إِنَّ ٱللَّهَ مَعَنَا ۖ فَأَنزَلَ ٱللَّهُ سَكِينَتَهُۥ عَلَيْهِ وَأَيَّدَهُۥ بِجُنُودٍۢ لَّمْ تَرَوْهَا وَجَعَلَ كَلِمَةَ ٱلَّذِينَ كَفَرُوا۟ ٱلسُّفْلَىٰ ۗ وَكَلِمَةُ ٱللَّهِ هِىَ ٱلْعُلْيَا ۗ وَٱللَّهُ عَزِيزٌ حَكِيمٌ",
+    "translations": {
+      "tr": {
+        "text": "Ona (Muhammed'e) yardım etmezseniz, bilin ki, inkar edenler onu Mekke'den çıkardıklarında mağarada bulunan iki kişiden biri olarak Allah ona yardım etmişti. Arkadaşına (Ebu Bekir'e) \"Üzülme, Allah bizimledir\" diyordu; Allah da ona güven vermiş, görmediğiniz askerlerle onu desteklemiş, inkar edenlerin sözünü alçaltmıştı. Ancak Allah'ın sözü yücedir. Allah güçlüdür, hakimdir."
+      },
+      "en": {
+        "text": "If you do not aid the Prophet - Allah has already aided him when those who disbelieved had driven him out [of Makkah] as one of two, when they were in the cave and he said to his companion, \"Do not grieve; indeed Allah is with us.\" And Allah sent down his tranquillity upon him and supported him with angels you did not see and made the word of those who disbelieved the lowest, while the word of Allah - that is the highest. And Allah is Exalted in Might and Wise."
+      }
+    }
+  },
+  {
+    "id": "insv_9_51",
+    "type": "verse",
+    "reference": "Tevbe 51",
+    "image": "",
+    "arabic": "قُل لَّن يُصِيبَنَآ إِلَّا مَا كَتَبَ ٱللَّهُ لَنَا هُوَ مَوْلَىٰنَا ۚ وَعَلَى ٱللَّهِ فَلْيَتَوَكَّلِ ٱلْمُؤْمِنُونَ",
+    "translations": {
+      "tr": {
+        "text": "De ki: \"Allah'ın bize yazdığından başkası başımıza gelmez. O bizim Mevlamızdır, inananlar Allah'a güvensin.\""
+      },
+      "en": {
+        "text": "Say, \"Never will we be struck except by what Allah has decreed for us; He is our protector.\" And upon Allah let the believers rely."
+      }
+    }
+  },
+  {
+    "id": "insv_9_129",
+    "type": "verse",
+    "reference": "Tevbe 129",
+    "image": "",
+    "arabic": "فَإِن تَوَلَّوْا۟ فَقُلْ حَسْبِىَ ٱللَّهُ لَآ إِلَٰهَ إِلَّا هُوَ ۖ عَلَيْهِ تَوَكَّلْتُ ۖ وَهُوَ رَبُّ ٱلْعَرْشِ ٱلْعَظِيمِ",
+    "translations": {
+      "tr": {
+        "text": "Eğer yüz çevirirlerse de ki: \"Allah bana yeter; O'ndan başka tanrı yoktur, yalnız O'na güveniyorum; O büyük arşın Rabbidir.\""
+      },
+      "en": {
+        "text": "But if they turn away, [O Muhammad], say, \"Sufficient for me is Allah; there is no deity except Him. On Him I have relied, and He is the Lord of the Great Throne.\""
+      }
+    }
+  },
+  {
+    "id": "insv_10_57",
+    "type": "verse",
+    "reference": "Yûnus 57",
+    "image": "",
+    "arabic": "يَٰٓأَيُّهَا ٱلنَّاسُ قَدْ جَآءَتْكُم مَّوْعِظَةٌۭ مِّن رَّبِّكُمْ وَشِفَآءٌۭ لِّمَا فِى ٱلصُّدُورِ وَهُدًۭى وَرَحْمَةٌۭ لِّلْمُؤْمِنِينَ",
+    "translations": {
+      "tr": {
+        "text": "Ey insanlar! Rabbinizden size bir öğüt ve kalblerde olana şifa, inananlara doğruyu gösteren bir rehber ve rahmet gelmiştir."
+      },
+      "en": {
+        "text": "O mankind, there has to come to you instruction from your Lord and healing for what is in the breasts and guidance and mercy for the believers."
+      }
+    }
+  },
+  {
+    "id": "insv_10_62",
+    "type": "verse",
+    "reference": "Yûnus 62",
+    "image": "",
+    "arabic": "أَلَآ إِنَّ أَوْلِيَآءَ ٱللَّهِ لَا خَوْفٌ عَلَيْهِمْ وَلَا هُمْ يَحْزَنُونَ",
+    "translations": {
+      "tr": {
+        "text": "İyi bilin ki, Allah'ın dostlarına korku yoktur, onlar üzülmeyeceklerdir."
+      },
+      "en": {
+        "text": "Unquestionably, [for] the allies of Allah there will be no fear concerning them, nor will they grieve"
+      }
+    }
+  },
+  {
+    "id": "insv_10_107",
+    "type": "verse",
+    "reference": "Yûnus 107",
+    "image": "",
+    "arabic": "وَإِن يَمْسَسْكَ ٱللَّهُ بِضُرٍّۢ فَلَا كَاشِفَ لَهُۥٓ إِلَّا هُوَ ۖ وَإِن يُرِدْكَ بِخَيْرٍۢ فَلَا رَآدَّ لِفَضْلِهِۦ ۚ يُصِيبُ بِهِۦ مَن يَشَآءُ مِنْ عِبَادِهِۦ ۚ وَهُوَ ٱلْغَفُورُ ٱلرَّحِيمُ",
+    "translations": {
+      "tr": {
+        "text": "Allah sana bir sıkıntı verirse, onu O'ndan başkası gideremez. Sana bir iyilik dilerse O'nun nimetini engelleyecek yoktur. O'nu kullarından dilediğine verir. O, bağışlayandır, merhametlidir."
+      },
+      "en": {
+        "text": "And if Allah should touch you with adversity, there is no remover of it except Him; and if He intends for you good, then there is no repeller of His bounty. He causes it to reach whom He wills of His servants. And He is the Forgiving, the Merciful"
+      }
+    }
+  },
+  {
+    "id": "insv_11_6",
+    "type": "verse",
+    "reference": "Hûd 6",
+    "image": "",
+    "arabic": "۞ وَمَا مِن دَآبَّةٍۢ فِى ٱلْأَرْضِ إِلَّا عَلَى ٱللَّهِ رِزْقُهَا وَيَعْلَمُ مُسْتَقَرَّهَا وَمُسْتَوْدَعَهَا ۚ كُلٌّۭ فِى كِتَٰبٍۢ مُّبِينٍۢ",
+    "translations": {
+      "tr": {
+        "text": "Yeryüzünde yaşayan bütün canlıların rızkı ancak Allah'a aittir. O, canlıları babaların sulbünde kararlaşmış ve anaların rahminde kararlaşmakta iken de bilir. Her şey apaçık bir Kitaptadır."
+      },
+      "en": {
+        "text": "And there is no creature on earth but that upon Allah is its provision, and He knows its place of dwelling and place of storage. All is in a clear register."
+      }
+    }
+  },
+  {
+    "id": "insv_11_88",
+    "type": "verse",
+    "reference": "Hûd 88",
+    "image": "",
+    "arabic": "قَالَ يَٰقَوْمِ أَرَءَيْتُمْ إِن كُنتُ عَلَىٰ بَيِّنَةٍۢ مِّن رَّبِّى وَرَزَقَنِى مِنْهُ رِزْقًا حَسَنًۭا ۚ وَمَآ أُرِيدُ أَنْ أُخَالِفَكُمْ إِلَىٰ مَآ أَنْهَىٰكُمْ عَنْهُ ۚ إِنْ أُرِيدُ إِلَّا ٱلْإِصْلَٰحَ مَا ٱسْتَطَعْتُ ۚ وَمَا تَوْفِيقِىٓ إِلَّا بِٱللَّهِ ۚ عَلَيْهِ تَوَكَّلْتُ وَإِلَيْهِ أُنِيبُ",
+    "translations": {
+      "tr": {
+        "text": "\"Ey Milletim! Rabbimden benim bir belgem olduğu ve bana güzel bir rızık da verdiği halde, O'na karşı gelebilir miyim? Söylesenize! Size yasak ettiğim şeylerde, aykırı hareket etmek istemem; gücümün yettiği kadar ıslah etmekten başka bir dileğim yoktur. Başarım ancak Allah'tandır, O'na güvendim; O'na yöneliyorum\" dedi."
+      },
+      "en": {
+        "text": "He said, \"O my people, have you considered: if I am upon clear evidence from my Lord and He has provided me with a good provision from Him...? And I do not intend to differ from you in that which I have forbidden you; I only intend reform as much as I am able. And my success is not but through Allah. Upon him I have relied, and to Him I return."
+      }
+    }
+  },
+  {
+    "id": "insv_11_115",
+    "type": "verse",
+    "reference": "Hûd 115",
+    "image": "",
+    "arabic": "وَٱصْبِرْ فَإِنَّ ٱللَّهَ لَا يُضِيعُ أَجْرَ ٱلْمُحْسِنِينَ",
+    "translations": {
+      "tr": {
+        "text": "Sabret, Allah iyi davrananların ecrini elbette zayi etmez."
+      },
+      "en": {
+        "text": "And be patient, for indeed, Allah does not allow to be lost the reward of those who do good."
+      }
+    }
+  },
+  {
+    "id": "insv_12_64",
+    "type": "verse",
+    "reference": "Yûsuf 64",
+    "image": "",
+    "arabic": "قَالَ هَلْ ءَامَنُكُمْ عَلَيْهِ إِلَّا كَمَآ أَمِنتُكُمْ عَلَىٰٓ أَخِيهِ مِن قَبْلُ ۖ فَٱللَّهُ خَيْرٌ حَٰفِظًۭا ۖ وَهُوَ أَرْحَمُ ٱلرَّٰحِمِينَ",
+    "translations": {
+      "tr": {
+        "text": "\"Daha önce kardeşini size emanet ettiğim gibi, şimdi onu emanet eder miyim? Ama Allah en iyi koruyandır, O merhametlilerin merhametlisidir\" dedi."
+      },
+      "en": {
+        "text": "He said, \"Should I entrust you with him except [under coercion] as I entrusted you with his brother before? But Allah is the best guardian, and He is the most merciful of the merciful.\""
+      }
+    }
+  },
+  {
+    "id": "insv_12_86",
+    "type": "verse",
+    "reference": "Yûsuf 86",
+    "image": "",
+    "arabic": "قَالَ إِنَّمَآ أَشْكُوا۟ بَثِّى وَحُزْنِىٓ إِلَى ٱللَّهِ وَأَعْلَمُ مِنَ ٱللَّهِ مَا لَا تَعْلَمُونَ",
+    "translations": {
+      "tr": {
+        "text": "Yakup: \"Ben üzüntü ve tasamı yalnız Allah'a açarım. Allah katından, sizin bilmediklerinizi bilirim\" dedi."
+      },
+      "en": {
+        "text": "He said, \"I only complain of my suffering and my grief to Allah, and I know from Allah that which you do not know."
+      }
+    }
+  },
+  {
+    "id": "insv_12_87",
+    "type": "verse",
+    "reference": "Yûsuf 87",
+    "image": "",
+    "arabic": "يَٰبَنِىَّ ٱذْهَبُوا۟ فَتَحَسَّسُوا۟ مِن يُوسُفَ وَأَخِيهِ وَلَا تَا۟يْـَٔسُوا۟ مِن رَّوْحِ ٱللَّهِ ۖ إِنَّهُۥ لَا يَا۟يْـَٔسُ مِن رَّوْحِ ٱللَّهِ إِلَّا ٱلْقَوْمُ ٱلْكَٰفِرُونَ",
+    "translations": {
+      "tr": {
+        "text": "\"Ey Oğullarım! Gidin, Yusuf'u ve kardeşini arayın. Allah'ın rahmetinden ümidinizi kesmeyin; doğrusu kafirlerden başkası Allah'ın rahmetinden ümidini kesmez.\""
+      },
+      "en": {
+        "text": "O my sons, go and find out about Joseph and his brother and despair not of relief from Allah. Indeed, no one despairs of relief from Allah except the disbelieving people.\""
+      }
+    }
+  },
+  {
+    "id": "insv_13_11",
+    "type": "verse",
+    "reference": "Ra'd 11",
+    "image": "",
+    "arabic": "لَهُۥ مُعَقِّبَٰتٌۭ مِّنۢ بَيْنِ يَدَيْهِ وَمِنْ خَلْفِهِۦ يَحْفَظُونَهُۥ مِنْ أَمْرِ ٱللَّهِ ۗ إِنَّ ٱللَّهَ لَا يُغَيِّرُ مَا بِقَوْمٍ حَتَّىٰ يُغَيِّرُوا۟ مَا بِأَنفُسِهِمْ ۗ وَإِذَآ أَرَادَ ٱللَّهُ بِقَوْمٍۢ سُوٓءًۭا فَلَا مَرَدَّ لَهُۥ ۚ وَمَا لَهُم مِّن دُونِهِۦ مِن وَالٍ",
+    "translations": {
+      "tr": {
+        "text": "Ardında ve önünde insanoğlunu takip edenler vardır; Allah'ın emriyle onu gözetirler. Bir millet kendini bozmadıkça Allah onların durumunu değiştirmez. Allah bir milletin fenalığını dileyince artık onun önüne geçilmez. Onlar için Allah'tan başka hamide bulunmaz."
+      },
+      "en": {
+        "text": "For each one are successive [angels] before and behind him who protect him by the decree of Allah. Indeed, Allah will not change the condition of a people until they change what is in themselves. And when Allah intends for a people ill, there is no repelling it. And there is not for them besides Him any patron."
+      }
+    }
+  },
+  {
+    "id": "insv_13_28",
+    "type": "verse",
+    "reference": "Ra'd 28",
+    "image": "",
+    "arabic": "ٱلَّذِينَ ءَامَنُوا۟ وَتَطْمَئِنُّ قُلُوبُهُم بِذِكْرِ ٱللَّهِ ۗ أَلَا بِذِكْرِ ٱللَّهِ تَطْمَئِنُّ ٱلْقُلُوبُ",
+    "translations": {
+      "tr": {
+        "text": "Onlar inanmışlar, kalbleri Allah'ı anmakla huzura kavuşmuştur. Dikkat edin, kalbler ancak Allah'ı anmakla huzura kavuşur."
+      },
+      "en": {
+        "text": "Those who have believed and whose hearts are assured by the remembrance of Allah. Unquestionably, by the remembrance of Allah hearts are assured.\""
+      }
+    }
+  },
+  {
+    "id": "insv_14_7",
+    "type": "verse",
+    "reference": "İbrâhîm 7",
+    "image": "",
+    "arabic": "وَإِذْ تَأَذَّنَ رَبُّكُمْ لَئِن شَكَرْتُمْ لَأَزِيدَنَّكُمْ ۖ وَلَئِن كَفَرْتُمْ إِنَّ عَذَابِى لَشَدِيدٌۭ",
+    "translations": {
+      "tr": {
+        "text": "Rabbiniz: \"Şükrederseniz and olsun ki, size karşılığını artıracağım; nankörlük ederseniz bilin ki azabım pek çetindir\" diye bildirmişti."
+      },
+      "en": {
+        "text": "And [remember] when your Lord proclaimed, 'If you are grateful, I will surely increase you [in favor]; but if you deny, indeed, My punishment is severe.' \""
+      }
+    }
+  },
+  {
+    "id": "insv_14_34",
+    "type": "verse",
+    "reference": "İbrâhîm 34",
+    "image": "",
+    "arabic": "وَءَاتَىٰكُم مِّن كُلِّ مَا سَأَلْتُمُوهُ ۚ وَإِن تَعُدُّوا۟ نِعْمَتَ ٱللَّهِ لَا تُحْصُوهَآ ۗ إِنَّ ٱلْإِنسَٰنَ لَظَلُومٌۭ كَفَّارٌۭ",
+    "translations": {
+      "tr": {
+        "text": "Kendisinden isteyebileceğiniz her şeyi size vermiştir. Allah'ın nimetini sayacak olsanız bitiremezsiniz. Doğrusu insan pek zalim ve çok nankördür."
+      },
+      "en": {
+        "text": "And He gave you from all you asked of Him. And if you should count the favor of Allah, you could not enumerate them. Indeed, mankind is [generally] most unjust and ungrateful."
+      }
+    }
+  },
+  {
+    "id": "insv_14_40",
+    "type": "verse",
+    "reference": "İbrâhîm 40",
+    "image": "",
+    "arabic": "رَبِّ ٱجْعَلْنِى مُقِيمَ ٱلصَّلَوٰةِ وَمِن ذُرِّيَّتِى ۚ رَبَّنَا وَتَقَبَّلْ دُعَآءِ",
+    "translations": {
+      "tr": {
+        "text": "\"Rabbim! Beni ve çocuklarımı namaz kılanlardan eyle. Rabbimiz! Duamı kabul buyur.\""
+      },
+      "en": {
+        "text": "My Lord, make me an establisher of prayer, and [many] from my descendants. Our Lord, and accept my supplication."
+      }
+    }
+  },
+  {
+    "id": "insv_15_49",
+    "type": "verse",
+    "reference": "Hicr 49",
+    "image": "",
+    "arabic": "۞ نَبِّئْ عِبَادِىٓ أَنِّىٓ أَنَا ٱلْغَفُورُ ٱلرَّحِيمُ",
+    "translations": {
+      "tr": {
+        "text": "Kullarıma Benim bağışlayan, merhamet eden olduğumu, azabımın can yakıcı bir azap olduğunu haber ver."
+      },
+      "en": {
+        "text": "[O Muhammad], inform My servants that it is I who am the Forgiving, the Merciful."
+      }
+    }
+  },
+  {
+    "id": "insv_15_98",
+    "type": "verse",
+    "reference": "Hicr 98",
+    "image": "",
+    "arabic": "فَسَبِّحْ بِحَمْدِ رَبِّكَ وَكُن مِّنَ ٱلسَّٰجِدِينَ",
+    "translations": {
+      "tr": {
+        "text": "Rabbini hamd ile an, secde edenlerden ol ve ölünceye kadar Rabbine kulluk et."
+      },
+      "en": {
+        "text": "So exalt [Allah] with praise of your Lord and be of those who prostrate [to Him]."
+      }
+    }
+  },
+  {
+    "id": "insv_16_18",
+    "type": "verse",
+    "reference": "Nahl 18",
+    "image": "",
+    "arabic": "وَإِن تَعُدُّوا۟ نِعْمَةَ ٱللَّهِ لَا تُحْصُوهَآ ۗ إِنَّ ٱللَّهَ لَغَفُورٌۭ رَّحِيمٌۭ",
+    "translations": {
+      "tr": {
+        "text": "Allah'ın verdiği nimetleri sayacak olsanız bitiremezsiniz; doğrusu Allah bağışlar, merhamet eder."
+      },
+      "en": {
+        "text": "And if you should count the favors of Allah, you could not enumerate them. Indeed, Allah is Forgiving and Merciful."
+      }
+    }
+  },
+  {
+    "id": "insv_16_90",
+    "type": "verse",
+    "reference": "Nahl 90",
+    "image": "",
+    "arabic": "۞ إِنَّ ٱللَّهَ يَأْمُرُ بِٱلْعَدْلِ وَٱلْإِحْسَٰنِ وَإِيتَآئِ ذِى ٱلْقُرْبَىٰ وَيَنْهَىٰ عَنِ ٱلْفَحْشَآءِ وَٱلْمُنكَرِ وَٱلْبَغْىِ ۚ يَعِظُكُمْ لَعَلَّكُمْ تَذَكَّرُونَ",
+    "translations": {
+      "tr": {
+        "text": "Allah şüphesiz adaleti, iyilik yapmayı, yakınlara bakmayı emreder; hayasızlığı, fenalığı ve haddi aşmayı yasak eder. Tutasınız diye size öğüt verir."
+      },
+      "en": {
+        "text": "Indeed, Allah orders justice and good conduct and giving to relatives and forbids immorality and bad conduct and oppression. He admonishes you that perhaps you will be reminded."
+      }
+    }
+  },
+  {
+    "id": "insv_16_97",
+    "type": "verse",
+    "reference": "Nahl 97",
+    "image": "",
+    "arabic": "مَنْ عَمِلَ صَٰلِحًۭا مِّن ذَكَرٍ أَوْ أُنثَىٰ وَهُوَ مُؤْمِنٌۭ فَلَنُحْيِيَنَّهُۥ حَيَوٰةًۭ طَيِّبَةًۭ ۖ وَلَنَجْزِيَنَّهُمْ أَجْرَهُم بِأَحْسَنِ مَا كَانُوا۟ يَعْمَلُونَ",
+    "translations": {
+      "tr": {
+        "text": "Kadın, erkek, inanmış olarak kim iyi iş işlerse, ona hoş bir hayat yaşatacağız. Ecirlerini yaptıklarından daha güzeli ile ödeyeceğiz."
+      },
+      "en": {
+        "text": "Whoever does righteousness, whether male or female, while he is a believer - We will surely cause him to live a good life, and We will surely give them their reward [in the Hereafter] according to the best of what they used to do."
+      }
+    }
+  },
+  {
+    "id": "insv_16_125",
+    "type": "verse",
+    "reference": "Nahl 125",
+    "image": "",
+    "arabic": "ٱدْعُ إِلَىٰ سَبِيلِ رَبِّكَ بِٱلْحِكْمَةِ وَٱلْمَوْعِظَةِ ٱلْحَسَنَةِ ۖ وَجَٰدِلْهُم بِٱلَّتِى هِىَ أَحْسَنُ ۚ إِنَّ رَبَّكَ هُوَ أَعْلَمُ بِمَن ضَلَّ عَن سَبِيلِهِۦ ۖ وَهُوَ أَعْلَمُ بِٱلْمُهْتَدِينَ",
+    "translations": {
+      "tr": {
+        "text": "Rabbinin yoluna, hikmetle, güzel öğütle çağır; onlarla en güzel şekilde tartış; doğrusu Rabbin, kendi yolundan sapanları daha iyi bilir. O, doğru yolda olanları da en iyi bilir."
+      },
+      "en": {
+        "text": "Invite to the way of your Lord with wisdom and good instruction, and argue with them in a way that is best. Indeed, your Lord is most knowing of who has strayed from His way, and He is most knowing of who is [rightly] guided."
+      }
+    }
+  },
+  {
+    "id": "insv_16_128",
+    "type": "verse",
+    "reference": "Nahl 128",
+    "image": "",
+    "arabic": "إِنَّ ٱللَّهَ مَعَ ٱلَّذِينَ ٱتَّقَوا۟ وَّٱلَّذِينَ هُم مُّحْسِنُونَ",
+    "translations": {
+      "tr": {
+        "text": "Allah şüphesiz sakınanlarla ve iyilik yapanlarla beraberdir."
+      },
+      "en": {
+        "text": "Indeed, Allah is with those who fear Him and those who are doers of good."
+      }
+    }
+  },
+  {
+    "id": "insv_17_23",
+    "type": "verse",
+    "reference": "İsrâ 23",
+    "image": "",
+    "arabic": "۞ وَقَضَىٰ رَبُّكَ أَلَّا تَعْبُدُوٓا۟ إِلَّآ إِيَّاهُ وَبِٱلْوَٰلِدَيْنِ إِحْسَٰنًا ۚ إِمَّا يَبْلُغَنَّ عِندَكَ ٱلْكِبَرَ أَحَدُهُمَآ أَوْ كِلَاهُمَا فَلَا تَقُل لَّهُمَآ أُفٍّۢ وَلَا تَنْهَرْهُمَا وَقُل لَّهُمَا قَوْلًۭا كَرِيمًۭا",
+    "translations": {
+      "tr": {
+        "text": "Rabbin, yalnız Kendisine tapmanızı ve ana babaya iyilik etmeyi buyurmuştur. Eğer ikisinden biri veya her ikisi, senin yanında iken ihtiyarlayacak olursa, onlara karşı \"Öf\" bile demeyesin, onları azarlamayasın. İkisine de hep tatlı söz söyleyesin."
+      },
+      "en": {
+        "text": "And your Lord has decreed that you not worship except Him, and to parents, good treatment. Whether one or both of them reach old age [while] with you, say not to them [so much as], \"uff,\" and do not repel them but speak to them a noble word."
+      }
+    }
+  },
+  {
+    "id": "insv_17_24",
+    "type": "verse",
+    "reference": "İsrâ 24",
+    "image": "",
+    "arabic": "وَٱخْفِضْ لَهُمَا جَنَاحَ ٱلذُّلِّ مِنَ ٱلرَّحْمَةِ وَقُل رَّبِّ ٱرْحَمْهُمَا كَمَا رَبَّيَانِى صَغِيرًۭا",
+    "translations": {
+      "tr": {
+        "text": "Onlara acıyarak alçak gönüllülük kanatlarını ger ve: \"Rabbim! Küçükken beni yetiştirdikleri gibi sen de onlara merhamet et!\" de."
+      },
+      "en": {
+        "text": "And lower to them the wing of humility out of mercy and say, \"My Lord, have mercy upon them as they brought me up [when I was] small.\""
+      }
+    }
+  },
+  {
+    "id": "insv_17_37",
+    "type": "verse",
+    "reference": "İsrâ 37",
+    "image": "",
+    "arabic": "وَلَا تَمْشِ فِى ٱلْأَرْضِ مَرَحًا ۖ إِنَّكَ لَن تَخْرِقَ ٱلْأَرْضَ وَلَن تَبْلُغَ ٱلْجِبَالَ طُولًۭا",
+    "translations": {
+      "tr": {
+        "text": "Yeryüzünde böbürlenerek yürüme, çünkü sen ne yeri delebilir ve ne de boyca dağlara ulaşabilirsin."
+      },
+      "en": {
+        "text": "And do not walk upon the earth exultantly. Indeed, you will never tear the earth [apart], and you will never reach the mountains in height."
+      }
+    }
+  },
+  {
+    "id": "insv_17_44",
+    "type": "verse",
+    "reference": "İsrâ 44",
+    "image": "",
+    "arabic": "تُسَبِّحُ لَهُ ٱلسَّمَٰوَٰتُ ٱلسَّبْعُ وَٱلْأَرْضُ وَمَن فِيهِنَّ ۚ وَإِن مِّن شَىْءٍ إِلَّا يُسَبِّحُ بِحَمْدِهِۦ وَلَٰكِن لَّا تَفْقَهُونَ تَسْبِيحَهُمْ ۗ إِنَّهُۥ كَانَ حَلِيمًا غَفُورًۭا",
+    "translations": {
+      "tr": {
+        "text": "Yedi gök, yer ve bunlarda bulunanlar O'nu tesbih eder; O'nu hamd ile tesbih etmeyen hiçbir şey yoktur; fakat siz onların tesbihlerini anlamazsınız. Doğrusu O Halim olandır, Bağışlayan'dır."
+      },
+      "en": {
+        "text": "The seven heavens and the earth and whatever is in them exalt Him. And there is not a thing except that it exalts [Allah] by His praise, but you do not understand their [way of] exalting. Indeed, He is ever Forbearing and Forgiving."
+      }
+    }
+  },
+  {
+    "id": "insv_17_70",
+    "type": "verse",
+    "reference": "İsrâ 70",
+    "image": "",
+    "arabic": "۞ وَلَقَدْ كَرَّمْنَا بَنِىٓ ءَادَمَ وَحَمَلْنَٰهُمْ فِى ٱلْبَرِّ وَٱلْبَحْرِ وَرَزَقْنَٰهُم مِّنَ ٱلطَّيِّبَٰتِ وَفَضَّلْنَٰهُمْ عَلَىٰ كَثِيرٍۢ مِّمَّنْ خَلَقْنَا تَفْضِيلًۭا",
+    "translations": {
+      "tr": {
+        "text": "And olsun ki, biz insanoğullarını şerefli kıldık, onların karada ve denizde gezmesini sağladık, temiz şeylerle onları rızıklandırdık, yaratıklarımızın pek çoğundan üstün kıldık."
+      },
+      "en": {
+        "text": "And We have certainly honored the children of Adam and carried them on the land and sea and provided for them of the good things and preferred them over much of what We have created, with [definite] preference."
+      }
+    }
+  },
+  {
+    "id": "insv_17_80",
+    "type": "verse",
+    "reference": "İsrâ 80",
+    "image": "",
+    "arabic": "وَقُل رَّبِّ أَدْخِلْنِى مُدْخَلَ صِدْقٍۢ وَأَخْرِجْنِى مُخْرَجَ صِدْقٍۢ وَٱجْعَل لِّى مِن لَّدُنكَ سُلْطَٰنًۭا نَّصِيرًۭا",
+    "translations": {
+      "tr": {
+        "text": "De ki: \"Rabbim! Beni dahil edeceğin yere hoşnutluk ve esenlikle dahil et; çıkaracağın yerden de hoşnutluk ve esenlikle çıkar. Katından beni destekleyecek bir kuvvet ver.\""
+      },
+      "en": {
+        "text": "And say, \"My Lord, cause me to enter a sound entrance and to exit a sound exit and grant me from Yourself a supporting authority.\""
+      }
+    }
+  },
+  {
+    "id": "insv_17_82",
+    "type": "verse",
+    "reference": "İsrâ 82",
+    "image": "",
+    "arabic": "وَنُنَزِّلُ مِنَ ٱلْقُرْءَانِ مَا هُوَ شِفَآءٌۭ وَرَحْمَةٌۭ لِّلْمُؤْمِنِينَ ۙ وَلَا يَزِيدُ ٱلظَّٰلِمِينَ إِلَّا خَسَارًۭا",
+    "translations": {
+      "tr": {
+        "text": "Kuran'dan inananlara rahmet ve şifa olan şeyler indiriyoruz. O, zalimlerin ise sadece kaybını artırır."
+      },
+      "en": {
+        "text": "And We send down of the Qur'an that which is healing and mercy for the believers, but it does not increase the wrongdoers except in loss."
+      }
+    }
+  },
+  {
+    "id": "insv_17_110",
+    "type": "verse",
+    "reference": "İsrâ 110",
+    "image": "",
+    "arabic": "قُلِ ٱدْعُوا۟ ٱللَّهَ أَوِ ٱدْعُوا۟ ٱلرَّحْمَٰنَ ۖ أَيًّۭا مَّا تَدْعُوا۟ فَلَهُ ٱلْأَسْمَآءُ ٱلْحُسْنَىٰ ۚ وَلَا تَجْهَرْ بِصَلَاتِكَ وَلَا تُخَافِتْ بِهَا وَٱبْتَغِ بَيْنَ ذَٰلِكَ سَبِيلًۭا",
+    "translations": {
+      "tr": {
+        "text": "De ki: \"İster Allah deyin, ister Rahman deyin, hangisini derseniz deyin, en güzel isimler O'nundur.\" Namaz kılarken sesini yükseltme, gizli de okuma, ikisi ortasında bir yol tut."
+      },
+      "en": {
+        "text": "Say, \"Call upon Allah or call upon the Most Merciful. Whichever [name] you call - to Him belong the best names.\" And do not recite [too] loudly in your prayer or [too] quietly but seek between that an [intermediate] way."
+      }
+    }
+  },
+  {
+    "id": "insv_18_10",
+    "type": "verse",
+    "reference": "Kehf 10",
+    "image": "",
+    "arabic": "إِذْ أَوَى ٱلْفِتْيَةُ إِلَى ٱلْكَهْفِ فَقَالُوا۟ رَبَّنَآ ءَاتِنَا مِن لَّدُنكَ رَحْمَةًۭ وَهَيِّئْ لَنَا مِنْ أَمْرِنَا رَشَدًۭا",
+    "translations": {
+      "tr": {
+        "text": "Birkaç genç mağaraya sığınmış: \"Rabbimiz! Katından bize rahmet ver ve işimizde doğruyu göster, bizi başarılı kıl\" demişlerdi."
+      },
+      "en": {
+        "text": "[Mention] when the youths retreated to the cave and said, \"Our Lord, grant us from Yourself mercy and prepare for us from our affair right guidance.\""
+      }
+    }
+  },
+  {
+    "id": "insv_18_46",
+    "type": "verse",
+    "reference": "Kehf 46",
+    "image": "",
+    "arabic": "ٱلْمَالُ وَٱلْبَنُونَ زِينَةُ ٱلْحَيَوٰةِ ٱلدُّنْيَا ۖ وَٱلْبَٰقِيَٰتُ ٱلصَّٰلِحَٰتُ خَيْرٌ عِندَ رَبِّكَ ثَوَابًۭا وَخَيْرٌ أَمَلًۭا",
+    "translations": {
+      "tr": {
+        "text": "Mal ve oğullar, dünya hayatının süsüdür. Ama baki kalacak yararlı işler, sevab olarak da, emel olarak da, Rabbinin katında daha hayırlıdır."
+      },
+      "en": {
+        "text": "Wealth and children are [but] adornment of the worldly life. But the enduring good deeds are better to your Lord for reward and better for [one's] hope."
+      }
+    }
+  },
+  {
+    "id": "insv_18_107",
+    "type": "verse",
+    "reference": "Kehf 107",
+    "image": "",
+    "arabic": "إِنَّ ٱلَّذِينَ ءَامَنُوا۟ وَعَمِلُوا۟ ٱلصَّٰلِحَٰتِ كَانَتْ لَهُمْ جَنَّٰتُ ٱلْفِرْدَوْسِ نُزُلًا",
+    "translations": {
+      "tr": {
+        "text": "Ama inanıp yararlı iş işleyenlerin konakları Firdevs cennetleridir."
+      },
+      "en": {
+        "text": "Indeed, those who have believed and done righteous deeds - they will have the Gardens of Paradise as a lodging,"
+      }
+    }
+  },
+  {
+    "id": "insv_18_110",
+    "type": "verse",
+    "reference": "Kehf 110",
+    "image": "",
+    "arabic": "قُلْ إِنَّمَآ أَنَا۠ بَشَرٌۭ مِّثْلُكُمْ يُوحَىٰٓ إِلَىَّ أَنَّمَآ إِلَٰهُكُمْ إِلَٰهٌۭ وَٰحِدٌۭ ۖ فَمَن كَانَ يَرْجُوا۟ لِقَآءَ رَبِّهِۦ فَلْيَعْمَلْ عَمَلًۭا صَٰلِحًۭا وَلَا يُشْرِكْ بِعِبَادَةِ رَبِّهِۦٓ أَحَدًۢا",
+    "translations": {
+      "tr": {
+        "text": "De ki: \"Ben de ancak sizin gibi bir insanım; ancak bana tanrınızın tek bir Tanrı olduğu vahyolunuyor. Rabbine kavuşmayı uman kimse yararlı iş işleşin ve Rabbine kullukta hiç ortak koşmasın.\""
+      },
+      "en": {
+        "text": "Say, \"I am only a man like you, to whom has been revealed that your god is one God. So whoever would hope for the meeting with his Lord - let him do righteous work and not associate in the worship of his Lord anyone.\""
+      }
+    }
+  },
+  {
+    "id": "insv_19_96",
+    "type": "verse",
+    "reference": "Meryem 96",
+    "image": "",
+    "arabic": "إِنَّ ٱلَّذِينَ ءَامَنُوا۟ وَعَمِلُوا۟ ٱلصَّٰلِحَٰتِ سَيَجْعَلُ لَهُمُ ٱلرَّحْمَٰنُ وُدًّۭا",
+    "translations": {
+      "tr": {
+        "text": "İnanıp yararlı iş işleyenleri Rahman sevgili kılacaktır."
+      },
+      "en": {
+        "text": "Indeed, those who have believed and done righteous deeds - the Most Merciful will appoint for them affection."
+      }
+    }
+  },
+  {
+    "id": "insv_20_14",
+    "type": "verse",
+    "reference": "Tâhâ 14",
+    "image": "",
+    "arabic": "إِنَّنِىٓ أَنَا ٱللَّهُ لَآ إِلَٰهَ إِلَّآ أَنَا۠ فَٱعْبُدْنِى وَأَقِمِ ٱلصَّلَوٰةَ لِذِكْرِىٓ",
+    "translations": {
+      "tr": {
+        "text": "\"Şüphesiz Ben Allah'ım, Benden başka tanrı yoktur; Bana kulluk et; Beni anmak için namaz kıl.\""
+      },
+      "en": {
+        "text": "Indeed, I am Allah. There is no deity except Me, so worship Me and establish prayer for My remembrance."
+      }
+    }
+  },
+  {
+    "id": "insv_20_25",
+    "type": "verse",
+    "reference": "Tâhâ 25",
+    "image": "",
+    "arabic": "قَالَ رَبِّ ٱشْرَحْ لِى صَدْرِى",
+    "translations": {
+      "tr": {
+        "text": "Musa: \"Rabbim! Göğsümü genişlet, işimi kolaylaştır, dilimin düğümünü çöz ki sözümü iyi anlasınlar. Ailemden kardeşim Harun'u bana vezir yap, beni onunla destekle, onu görevimde ortak kıl ki Seni daha çok tesbih edelim ve çokça analım. Şüphesiz Sen bizi görmektesin\" dedi."
+      },
+      "en": {
+        "text": "[Moses] said, \"My Lord, expand for me my breast [with assurance]"
+      }
+    }
+  },
+  {
+    "id": "insv_20_46",
+    "type": "verse",
+    "reference": "Tâhâ 46",
+    "image": "",
+    "arabic": "قَالَ لَا تَخَافَآ ۖ إِنَّنِى مَعَكُمَآ أَسْمَعُ وَأَرَىٰ",
+    "translations": {
+      "tr": {
+        "text": "Allah: Korkmayın, dedi; Ben sizinle beraberim; görür ve işitirim. Ona gidin şöyle söyleyin: \"Doğrusu biz senin Rabbinin elçileriyiz. İsrailoğullarını bizimle beraber gönder, onlara azabetme; Rabbinden sana bir mucize getirdik; selam, doğru yolda gidene olsun! Doğrusu bize, yalanlayıp sırt çevirene azap edileceği vahyolundu.\""
+      },
+      "en": {
+        "text": "[Allah] said, \"Fear not. Indeed, I am with you both; I hear and I see."
+      }
+    }
+  },
+  {
+    "id": "insv_20_114",
+    "type": "verse",
+    "reference": "Tâhâ 114",
+    "image": "",
+    "arabic": "فَتَعَٰلَى ٱللَّهُ ٱلْمَلِكُ ٱلْحَقُّ ۗ وَلَا تَعْجَلْ بِٱلْقُرْءَانِ مِن قَبْلِ أَن يُقْضَىٰٓ إِلَيْكَ وَحْيُهُۥ ۖ وَقُل رَّبِّ زِدْنِى عِلْمًۭا",
+    "translations": {
+      "tr": {
+        "text": "Gerçek hükümdar olan Allah Yüce'dir. Kuran sana vahyedilirken, vahy bitmezden önce, unutmamak için, tekrarda acele edip durma, \"Rabbim! ilmimi artır\" de."
+      },
+      "en": {
+        "text": "So high [above all] is Allah, the Sovereign, the Truth. And, [O Muhammad], do not hasten with [recitation of] the Qur'an before its revelation is completed to you, and say, \"My Lord, increase me in knowledge.\""
+      }
+    }
+  },
+  {
+    "id": "insv_21_35",
+    "type": "verse",
+    "reference": "Enbiyâ 35",
+    "image": "",
+    "arabic": "كُلُّ نَفْسٍۢ ذَآئِقَةُ ٱلْمَوْتِ ۗ وَنَبْلُوكُم بِٱلشَّرِّ وَٱلْخَيْرِ فِتْنَةًۭ ۖ وَإِلَيْنَا تُرْجَعُونَ",
+    "translations": {
+      "tr": {
+        "text": "Her can ölümü tadacaktır. Bir imtihan olarak size iyilik ve kötülük veririz. Sonunda Bize dönersiniz."
+      },
+      "en": {
+        "text": "Every soul will taste death. And We test you with evil and with good as trial; and to Us you will be returned."
+      }
+    }
+  },
+  {
+    "id": "insv_21_87",
+    "type": "verse",
+    "reference": "Enbiyâ 87",
+    "image": "",
+    "arabic": "وَذَا ٱلنُّونِ إِذ ذَّهَبَ مُغَٰضِبًۭا فَظَنَّ أَن لَّن نَّقْدِرَ عَلَيْهِ فَنَادَىٰ فِى ٱلظُّلُمَٰتِ أَن لَّآ إِلَٰهَ إِلَّآ أَنتَ سُبْحَٰنَكَ إِنِّى كُنتُ مِنَ ٱلظَّٰلِمِينَ",
+    "translations": {
+      "tr": {
+        "text": "Zünnun (Balık Sahibi; Yunus) hakkında söylediğimizi de an. O, öfkelenerek giderken, kendisini sıkıntıya sokmayacağımızı sanmıştı; fakat sonunda karanlıklar içinde: \"Senden başka tanrı yoktur, Sen münezzehsin, doğrusu ben haksızlık edenlerdenim\" diye seslenmişti."
+      },
+      "en": {
+        "text": "And [mention] the man of the fish, when he went off in anger and thought that We would not decree [anything] upon him. And he called out within the darknesses, \"There is no deity except You; exalted are You. Indeed, I have been of the wrongdoers.\""
+      }
+    }
+  },
+  {
+    "id": "insv_21_107",
+    "type": "verse",
+    "reference": "Enbiyâ 107",
+    "image": "",
+    "arabic": "وَمَآ أَرْسَلْنَٰكَ إِلَّا رَحْمَةًۭ لِّلْعَٰلَمِينَ",
+    "translations": {
+      "tr": {
+        "text": "Biz seni ancak alemlere rahmet olarak gönderdik."
+      },
+      "en": {
+        "text": "And We have not sent you, [O Muhammad], except as a mercy to the worlds."
+      }
+    }
+  },
+  {
+    "id": "insv_22_46",
+    "type": "verse",
+    "reference": "Hac 46",
+    "image": "",
+    "arabic": "أَفَلَمْ يَسِيرُوا۟ فِى ٱلْأَرْضِ فَتَكُونَ لَهُمْ قُلُوبٌۭ يَعْقِلُونَ بِهَآ أَوْ ءَاذَانٌۭ يَسْمَعُونَ بِهَا ۖ فَإِنَّهَا لَا تَعْمَى ٱلْأَبْصَٰرُ وَلَٰكِن تَعْمَى ٱلْقُلُوبُ ٱلَّتِى فِى ٱلصُّدُورِ",
+    "translations": {
+      "tr": {
+        "text": "Yeryüzünde dolaşmıyorlar mı ki, orada olanları akledecek kalbleri, işitecek kulakları olsun. Ama yalnız gözler kör olmaz, fakat göğüslerde olan kalbler de körleşir."
+      },
+      "en": {
+        "text": "So have they not traveled through the earth and have hearts by which to reason and ears by which to hear? For indeed, it is not eyes that are blinded, but blinded are the hearts which are within the breasts."
+      }
+    }
+  },
+  {
+    "id": "insv_22_77",
+    "type": "verse",
+    "reference": "Hac 77",
+    "image": "",
+    "arabic": "يَٰٓأَيُّهَا ٱلَّذِينَ ءَامَنُوا۟ ٱرْكَعُوا۟ وَٱسْجُدُوا۟ وَٱعْبُدُوا۟ رَبَّكُمْ وَٱفْعَلُوا۟ ٱلْخَيْرَ لَعَلَّكُمْ تُفْلِحُونَ ۩",
+    "translations": {
+      "tr": {
+        "text": "Ey inananlar! Rüku edin, secdeye varın, Rabbiniz'e kulluk edin, iyilik yapın ki saadete erişesiniz."
+      },
+      "en": {
+        "text": "O you who have believed, bow and prostrate and worship your Lord and do good - that you may succeed."
+      }
+    }
+  },
+  {
+    "id": "insv_23_1",
+    "type": "verse",
+    "reference": "Mü'minûn 1",
+    "image": "",
+    "arabic": "قَدْ أَفْلَحَ ٱلْمُؤْمِنُونَ",
+    "translations": {
+      "tr": {
+        "text": "Müminler saadete ermişlerdir."
+      },
+      "en": {
+        "text": "Certainly will the believers have succeeded:"
+      }
+    }
+  },
+  {
+    "id": "insv_23_60",
+    "type": "verse",
+    "reference": "Mü'minûn 60",
+    "image": "",
+    "arabic": "وَٱلَّذِينَ يُؤْتُونَ مَآ ءَاتَوا۟ وَّقُلُوبُهُمْ وَجِلَةٌ أَنَّهُمْ إِلَىٰ رَبِّهِمْ رَٰجِعُونَ",
+    "translations": {
+      "tr": {
+        "text": "Rablerinden korkarak titreyenler, Rablerinin ayetlerine inananlar, Rablerine eş koşmayanlar, Rablerine dönecekleri için kalbleri ürpererek vermeleri gerekeni verenler, işte onlar iyi işlerde yarış ederler, o uğurda ileri geçerler."
+      },
+      "en": {
+        "text": "And they who give what they give while their hearts are fearful because they will be returning to their Lord -"
+      }
+    }
+  },
+  {
+    "id": "insv_23_118",
+    "type": "verse",
+    "reference": "Mü'minûn 118",
+    "image": "",
+    "arabic": "وَقُل رَّبِّ ٱغْفِرْ وَٱرْحَمْ وَأَنتَ خَيْرُ ٱلرَّٰحِمِينَ",
+    "translations": {
+      "tr": {
+        "text": "De ki: \"Rabbim! Bağışla, merhamet et, Sen merhamet edenlerin en hayırlısısın.\""
+      },
+      "en": {
+        "text": "And, [O Muhammad], say, \"My Lord, forgive and have mercy, and You are the best of the merciful.\""
+      }
+    }
+  },
+  {
+    "id": "insv_24_52",
+    "type": "verse",
+    "reference": "Nûr 52",
+    "image": "",
+    "arabic": "وَمَن يُطِعِ ٱللَّهَ وَرَسُولَهُۥ وَيَخْشَ ٱللَّهَ وَيَتَّقْهِ فَأُو۟لَٰٓئِكَ هُمُ ٱلْفَآئِزُونَ",
+    "translations": {
+      "tr": {
+        "text": "Allah'a ve Peygambere itaat eden, Allah'tan korkan ve O'ndan sakınan kimseler, işte onlar kurtulanlardır."
+      },
+      "en": {
+        "text": "And whoever obeys Allah and His Messenger and fears Allah and is conscious of Him - it is those who are the attainers."
+      }
+    }
+  },
+  {
+    "id": "insv_25_63",
+    "type": "verse",
+    "reference": "Furkân 63",
+    "image": "",
+    "arabic": "وَعِبَادُ ٱلرَّحْمَٰنِ ٱلَّذِينَ يَمْشُونَ عَلَى ٱلْأَرْضِ هَوْنًۭا وَإِذَا خَاطَبَهُمُ ٱلْجَٰهِلُونَ قَالُوا۟ سَلَٰمًۭا",
+    "translations": {
+      "tr": {
+        "text": "Rahman'ın kulları yeryüzünde mütevazı yürürler. Bilgisizler kendilerine takıldıkları zaman onlara güzel ve yumuşak söz söylerler."
+      },
+      "en": {
+        "text": "And the servants of the Most Merciful are those who walk upon the earth easily, and when the ignorant address them [harshly], they say [words of] peace,"
+      }
+    }
+  },
+  {
+    "id": "insv_25_70",
+    "type": "verse",
+    "reference": "Furkân 70",
+    "image": "",
+    "arabic": "إِلَّا مَن تَابَ وَءَامَنَ وَعَمِلَ عَمَلًۭا صَٰلِحًۭا فَأُو۟لَٰٓئِكَ يُبَدِّلُ ٱللَّهُ سَيِّـَٔاتِهِمْ حَسَنَٰتٍۢ ۗ وَكَانَ ٱللَّهُ غَفُورًۭا رَّحِيمًۭا",
+    "translations": {
+      "tr": {
+        "text": "Ancak tevbe eden, inanıp yararlı iş işleyenlerin, işte Allah onların kötülüklerini iyiliklere çevirir. Allah bağışlar ve merhamet eder."
+      },
+      "en": {
+        "text": "Except for those who repent, believe and do righteous work. For them Allah will replace their evil deeds with good. And ever is Allah Forgiving and Merciful."
+      }
+    }
+  },
+  {
+    "id": "insv_25_74",
+    "type": "verse",
+    "reference": "Furkân 74",
+    "image": "",
+    "arabic": "وَٱلَّذِينَ يَقُولُونَ رَبَّنَا هَبْ لَنَا مِنْ أَزْوَٰجِنَا وَذُرِّيَّٰتِنَا قُرَّةَ أَعْيُنٍۢ وَٱجْعَلْنَا لِلْمُتَّقِينَ إِمَامًا",
+    "translations": {
+      "tr": {
+        "text": "Onlar: \"Rabbimiz! Bize eşlerimizden ve çocuklarımızdan gözümüzün aydınlığı olacak insanlar ihsan et ve bizi, Allah'a karşı gelmekten sakınanlara önder yap\" derler."
+      },
+      "en": {
+        "text": "And those who say, \"Our Lord, grant us from among our wives and offspring comfort to our eyes and make us an example for the righteous.\""
+      }
+    }
+  },
+  {
+    "id": "insv_27_62",
+    "type": "verse",
+    "reference": "Neml 62",
+    "image": "",
+    "arabic": "أَمَّن يُجِيبُ ٱلْمُضْطَرَّ إِذَا دَعَاهُ وَيَكْشِفُ ٱلسُّوٓءَ وَيَجْعَلُكُمْ خُلَفَآءَ ٱلْأَرْضِ ۗ أَءِلَٰهٌۭ مَّعَ ٱللَّهِ ۚ قَلِيلًۭا مَّا تَذَكَّرُونَ",
+    "translations": {
+      "tr": {
+        "text": "Yoksa, darda kalana, kendisine yakardığı zaman karşılık veren, başındaki sıkıntıyı gideren ve sizi yeryüzünün sahipleri yapan mı? Allah'ın yanında başka bir tanrı mi? Pek kıt düşünüyorsunuz."
+      },
+      "en": {
+        "text": "Is He [not best] who responds to the desperate one when he calls upon Him and removes evil and makes you inheritors of the earth? Is there a deity with Allah? Little do you remember."
+      }
+    }
+  },
+  {
+    "id": "insv_28_56",
+    "type": "verse",
+    "reference": "Kasas 56",
+    "image": "",
+    "arabic": "إِنَّكَ لَا تَهْدِى مَنْ أَحْبَبْتَ وَلَٰكِنَّ ٱللَّهَ يَهْدِى مَن يَشَآءُ ۚ وَهُوَ أَعْلَمُ بِٱلْمُهْتَدِينَ",
+    "translations": {
+      "tr": {
+        "text": "Sen, sevdiğini doğru yola eriştiremezsin, ama Allah, dilediğini doğru yola eriştirir. Doğru yola girecekleri en iyi O bilir."
+      },
+      "en": {
+        "text": "Indeed, [O Muhammad], you do not guide whom you like, but Allah guides whom He wills. And He is most knowing of the [rightly] guided."
+      }
+    }
+  },
+  {
+    "id": "insv_28_77",
+    "type": "verse",
+    "reference": "Kasas 77",
+    "image": "",
+    "arabic": "وَٱبْتَغِ فِيمَآ ءَاتَىٰكَ ٱللَّهُ ٱلدَّارَ ٱلْءَاخِرَةَ ۖ وَلَا تَنسَ نَصِيبَكَ مِنَ ٱلدُّنْيَا ۖ وَأَحْسِن كَمَآ أَحْسَنَ ٱللَّهُ إِلَيْكَ ۖ وَلَا تَبْغِ ٱلْفَسَادَ فِى ٱلْأَرْضِ ۖ إِنَّ ٱللَّهَ لَا يُحِبُّ ٱلْمُفْسِدِينَ",
+    "translations": {
+      "tr": {
+        "text": "Karun, Musa'nın milletindendi; ama onlara karşı azdı. Biz ona, anahtarlarını güçlü bir topluluğun zor taşıdığı hazineler vermiştik. Milleti ona: \"Böbürlenme, Allah şüphesiz ki böbürlenenleri sevmez. Allah'ın sana verdiği şeylerde, ahiret yurdunu gözet, dünyadaki payını da unutma; Allah'ın sana yaptığı iyilik gibi, sen de iyilik yap; yeryüzünde bozgunculuk isteme; doğrusu Allah bozguncuları sevmez\" demişlerdi."
+      },
+      "en": {
+        "text": "But seek, through that which Allah has given you, the home of the Hereafter; and [yet], do not forget your share of the world. And do good as Allah has done good to you. And desire not corruption in the land. Indeed, Allah does not like corrupters.\""
+      }
+    }
+  },
+  {
+    "id": "insv_29_2",
+    "type": "verse",
+    "reference": "Ankebût 2",
+    "image": "",
+    "arabic": "أَحَسِبَ ٱلنَّاسُ أَن يُتْرَكُوٓا۟ أَن يَقُولُوٓا۟ ءَامَنَّا وَهُمْ لَا يُفْتَنُونَ",
+    "translations": {
+      "tr": {
+        "text": "And olsun, biz kendilerinden öncekileri de denemişken, insanlar, \"İnandık\" deyince, denenmeden bırakılacaklarını mı sanırlar? Allah elbette doğruları ortaya koyacak ve elbette yalancıları da ortaya çıkaracaktır."
+      },
+      "en": {
+        "text": "Do the people think that they will be left to say, \"We believe\" and they will not be tried?"
+      }
+    }
+  },
+  {
+    "id": "insv_29_45",
+    "type": "verse",
+    "reference": "Ankebût 45",
+    "image": "",
+    "arabic": "ٱتْلُ مَآ أُوحِىَ إِلَيْكَ مِنَ ٱلْكِتَٰبِ وَأَقِمِ ٱلصَّلَوٰةَ ۖ إِنَّ ٱلصَّلَوٰةَ تَنْهَىٰ عَنِ ٱلْفَحْشَآءِ وَٱلْمُنكَرِ ۗ وَلَذِكْرُ ٱللَّهِ أَكْبَرُ ۗ وَٱللَّهُ يَعْلَمُ مَا تَصْنَعُونَ",
+    "translations": {
+      "tr": {
+        "text": "Kitap'tan sana vahyolunanı oku; namaz kıl; muhakkak ki namaz hayasızlıktan ve fenalıktan alıkor; Allah'ı anmak en büyük şeydir! Allah Yaptıklarınızı bilir."
+      },
+      "en": {
+        "text": "Recite, [O Muhammad], what has been revealed to you of the Book and establish prayer. Indeed, prayer prohibits immorality and wrongdoing, and the remembrance of Allah is greater. And Allah knows that which you do."
+      }
+    }
+  },
+  {
+    "id": "insv_29_69",
+    "type": "verse",
+    "reference": "Ankebût 69",
+    "image": "",
+    "arabic": "وَٱلَّذِينَ جَٰهَدُوا۟ فِينَا لَنَهْدِيَنَّهُمْ سُبُلَنَا ۚ وَإِنَّ ٱللَّهَ لَمَعَ ٱلْمُحْسِنِينَ",
+    "translations": {
+      "tr": {
+        "text": "Ama Bizim uğrumuzda cihat edenleri elbette yollarımıza eriştireceğiz. Allah şüphesiz, iyi davrananlarla beraberdir."
+      },
+      "en": {
+        "text": "And those who strive for Us - We will surely guide them to Our ways. And indeed, Allah is with the doers of good."
+      }
+    }
+  },
+  {
+    "id": "insv_30_21",
+    "type": "verse",
+    "reference": "Rûm 21",
+    "image": "",
+    "arabic": "وَمِنْ ءَايَٰتِهِۦٓ أَنْ خَلَقَ لَكُم مِّنْ أَنفُسِكُمْ أَزْوَٰجًۭا لِّتَسْكُنُوٓا۟ إِلَيْهَا وَجَعَلَ بَيْنَكُم مَّوَدَّةًۭ وَرَحْمَةً ۚ إِنَّ فِى ذَٰلِكَ لَءَايَٰتٍۢ لِّقَوْمٍۢ يَتَفَكَّرُونَ",
+    "translations": {
+      "tr": {
+        "text": "İçinizden, kendileriyle huzura kavuşacağınız eşler yaratıp; aranızda muhabbet ve rahmet var etmesi, O'nun varlığının belgelerindendir. Bunlarda, düşünen millet için dersler vardır."
+      },
+      "en": {
+        "text": "And of His signs is that He created for you from yourselves mates that you may find tranquillity in them; and He placed between you affection and mercy. Indeed in that are signs for a people who give thought."
+      }
+    }
+  },
+  {
+    "id": "insv_30_60",
+    "type": "verse",
+    "reference": "Rûm 60",
+    "image": "",
+    "arabic": "فَٱصْبِرْ إِنَّ وَعْدَ ٱللَّهِ حَقٌّۭ ۖ وَلَا يَسْتَخِفَّنَّكَ ٱلَّذِينَ لَا يُوقِنُونَ",
+    "translations": {
+      "tr": {
+        "text": "Sabret ki, Allah'ın sözü şüphesiz gerçektir. Kesin olarak inanmayanlar seni hafife almasınlar."
+      },
+      "en": {
+        "text": "So be patient. Indeed, the promise of Allah is truth. And let them not disquiet you who are not certain [in faith]."
+      }
+    }
+  },
+  {
+    "id": "insv_31_17",
+    "type": "verse",
+    "reference": "Lokmân 17",
+    "image": "",
+    "arabic": "يَٰبُنَىَّ أَقِمِ ٱلصَّلَوٰةَ وَأْمُرْ بِٱلْمَعْرُوفِ وَٱنْهَ عَنِ ٱلْمُنكَرِ وَٱصْبِرْ عَلَىٰ مَآ أَصَابَكَ ۖ إِنَّ ذَٰلِكَ مِنْ عَزْمِ ٱلْأُمُورِ",
+    "translations": {
+      "tr": {
+        "text": "\"Ey oğulcuğum! Namazı kıl, uygun olanı buyurup fenalığı önle, başına gelene sabret; doğrusu bunlar, azmedilmeğe değer işlerdir.\""
+      },
+      "en": {
+        "text": "O my son, establish prayer, enjoin what is right, forbid what is wrong, and be patient over what befalls you. Indeed, [all] that is of the matters [requiring] determination."
+      }
+    }
+  },
+  {
+    "id": "insv_31_18",
+    "type": "verse",
+    "reference": "Lokmân 18",
+    "image": "",
+    "arabic": "وَلَا تُصَعِّرْ خَدَّكَ لِلنَّاسِ وَلَا تَمْشِ فِى ٱلْأَرْضِ مَرَحًا ۖ إِنَّ ٱللَّهَ لَا يُحِبُّ كُلَّ مُخْتَالٍۢ فَخُورٍۢ",
+    "translations": {
+      "tr": {
+        "text": "\"İnsanları küçümseyip yüz çevirme, yeryüzünde böbürlenerek yürüme; Allah, kendini beğenip övünen hiç kimseyi şüphesiz ki sevmez.\""
+      },
+      "en": {
+        "text": "And do not turn your cheek [in contempt] toward people and do not walk through the earth exultantly. Indeed, Allah does not like everyone self-deluded and boastful."
+      }
+    }
+  },
+  {
+    "id": "insv_31_19",
+    "type": "verse",
+    "reference": "Lokmân 19",
+    "image": "",
+    "arabic": "وَٱقْصِدْ فِى مَشْيِكَ وَٱغْضُضْ مِن صَوْتِكَ ۚ إِنَّ أَنكَرَ ٱلْأَصْوَٰتِ لَصَوْتُ ٱلْحَمِيرِ",
+    "translations": {
+      "tr": {
+        "text": "\"Yürüyüşünde tabii ol; sesini kıs. Seslerin en çirkini şüphesiz merkeblerin sesidir.\""
+      },
+      "en": {
+        "text": "And be moderate in your pace and lower your voice; indeed, the most disagreeable of sounds is the voice of donkeys.\""
+      }
+    }
+  },
+  {
+    "id": "insv_33_21",
+    "type": "verse",
+    "reference": "Ahzâb 21",
+    "image": "",
+    "arabic": "لَّقَدْ كَانَ لَكُمْ فِى رَسُولِ ٱللَّهِ أُسْوَةٌ حَسَنَةٌۭ لِّمَن كَانَ يَرْجُوا۟ ٱللَّهَ وَٱلْيَوْمَ ٱلْءَاخِرَ وَذَكَرَ ٱللَّهَ كَثِيرًۭا",
+    "translations": {
+      "tr": {
+        "text": "Ey inananlar! And olsun ki, sizin için, Allah'a ve ahiret gününe kavuşmayı umanlar ve Allah'ı çok anan kimseler için Resulullah (Allah'ın Elçisi) en güzel örnektir."
+      },
+      "en": {
+        "text": "There has certainly been for you in the Messenger of Allah an excellent pattern for anyone whose hope is in Allah and the Last Day and [who] remembers Allah often."
+      }
+    }
+  },
+  {
+    "id": "insv_33_35",
+    "type": "verse",
+    "reference": "Ahzâb 35",
+    "image": "",
+    "arabic": "إِنَّ ٱلْمُسْلِمِينَ وَٱلْمُسْلِمَٰتِ وَٱلْمُؤْمِنِينَ وَٱلْمُؤْمِنَٰتِ وَٱلْقَٰنِتِينَ وَٱلْقَٰنِتَٰتِ وَٱلصَّٰدِقِينَ وَٱلصَّٰدِقَٰتِ وَٱلصَّٰبِرِينَ وَٱلصَّٰبِرَٰتِ وَٱلْخَٰشِعِينَ وَٱلْخَٰشِعَٰتِ وَٱلْمُتَصَدِّقِينَ وَٱلْمُتَصَدِّقَٰتِ وَٱلصَّٰٓئِمِينَ وَٱلصَّٰٓئِمَٰتِ وَٱلْحَٰفِظِينَ فُرُوجَهُمْ وَٱلْحَٰفِظَٰتِ وَٱلذَّٰكِرِينَ ٱللَّهَ كَثِيرًۭا وَٱلذَّٰكِرَٰتِ أَعَدَّ ٱللَّهُ لَهُم مَّغْفِرَةًۭ وَأَجْرًا عَظِيمًۭا",
+    "translations": {
+      "tr": {
+        "text": "Doğrusu erkek ve kadın müslümanlar, erkek ve kadın müminler, boyun eğen erkekler ve kadınlar, doğru sözlü erkekler ve kadınlar, sabırlı erkekler ve kadınlar, gönülden bağlanan erkekler ve kadınlar, sadaka veren erkekler ve kadınlar, oruç tutan erkekler ve kadınlar iffetlerini koruyan erkekler ve kadınlar, Allah'ı çok anan erkekler ve kadınlar, işte Allah bunların hepsine mağfiret ve büyük ecir hazırlamıştır."
+      },
+      "en": {
+        "text": "Indeed, the Muslim men and Muslim women, the believing men and believing women, the obedient men and obedient women, the truthful men and truthful women, the patient men and patient women, the humble men and humble women, the charitable men and charitable women, the fasting men and fasting women, the men who guard their private parts and the women who do so, and the men who remember Allah often and the women who do so - for them Allah has prepared forgiveness and a great reward."
+      }
+    }
+  },
+  {
+    "id": "insv_33_41",
+    "type": "verse",
+    "reference": "Ahzâb 41",
+    "image": "",
+    "arabic": "يَٰٓأَيُّهَا ٱلَّذِينَ ءَامَنُوا۟ ٱذْكُرُوا۟ ٱللَّهَ ذِكْرًۭا كَثِيرًۭا",
+    "translations": {
+      "tr": {
+        "text": "Ey inananlar! Allah'ı çok anın."
+      },
+      "en": {
+        "text": "O you who have believed, remember Allah with much remembrance"
+      }
+    }
+  },
+  {
+    "id": "insv_33_56",
+    "type": "verse",
+    "reference": "Ahzâb 56",
+    "image": "",
+    "arabic": "إِنَّ ٱللَّهَ وَمَلَٰٓئِكَتَهُۥ يُصَلُّونَ عَلَى ٱلنَّبِىِّ ۚ يَٰٓأَيُّهَا ٱلَّذِينَ ءَامَنُوا۟ صَلُّوا۟ عَلَيْهِ وَسَلِّمُوا۟ تَسْلِيمًا",
+    "translations": {
+      "tr": {
+        "text": "Şüphesiz Allah ve melekleri Peygamberi överler: Ey inananlar! Siz de onu övün, ona salat ve selam getirin."
+      },
+      "en": {
+        "text": "Indeed, Allah confers blessing upon the Prophet, and His angels [ask Him to do so]. O you who have believed, ask [Allah to confer] blessing upon him and ask [Allah to grant him] peace."
+      }
+    }
+  },
+  {
+    "id": "insv_33_70",
+    "type": "verse",
+    "reference": "Ahzâb 70",
+    "image": "",
+    "arabic": "يَٰٓأَيُّهَا ٱلَّذِينَ ءَامَنُوا۟ ٱتَّقُوا۟ ٱللَّهَ وَقُولُوا۟ قَوْلًۭا سَدِيدًۭا",
+    "translations": {
+      "tr": {
+        "text": "Ey inananlar! Allah'tan sakının, dürüst söz söyleyin de Allah işlerinizi kendinize yararlı kılsın ve günahlarınızı size bağışlasın. Kim Allah'a ve Peygamber'ine itaat ederse, şüphesiz büyük bir kurtuluşa ermiş olur."
+      },
+      "en": {
+        "text": "O you who have believed, fear Allah and speak words of appropriate justice."
+      }
+    }
+  },
+  {
+    "id": "insv_35_2",
+    "type": "verse",
+    "reference": "Fâtır 2",
+    "image": "",
+    "arabic": "مَّا يَفْتَحِ ٱللَّهُ لِلنَّاسِ مِن رَّحْمَةٍۢ فَلَا مُمْسِكَ لَهَا ۖ وَمَا يُمْسِكْ فَلَا مُرْسِلَ لَهُۥ مِنۢ بَعْدِهِۦ ۚ وَهُوَ ٱلْعَزِيزُ ٱلْحَكِيمُ",
+    "translations": {
+      "tr": {
+        "text": "Allah'ın insanlara verdiği rahmeti önleyebilecek yoktur. O'nun önlediğini de ardından salıverecek yoktur. O, güçlü'dür, Hakim'dir."
+      },
+      "en": {
+        "text": "Whatever Allah grants to people of mercy - none can withhold it; and whatever He withholds - none can release it thereafter. And He is the Exalted in Might, the Wise."
+      }
+    }
+  },
+  {
+    "id": "insv_35_15",
+    "type": "verse",
+    "reference": "Fâtır 15",
+    "image": "",
+    "arabic": "۞ يَٰٓأَيُّهَا ٱلنَّاسُ أَنتُمُ ٱلْفُقَرَآءُ إِلَى ٱللَّهِ ۖ وَٱللَّهُ هُوَ ٱلْغَنِىُّ ٱلْحَمِيدُ",
+    "translations": {
+      "tr": {
+        "text": "Ey insanlar! Siz Allah'a muhtaçsınız, Allah ise müstağnidir, övülmeğe layık olandır."
+      },
+      "en": {
+        "text": "O mankind, you are those in need of Allah, while Allah is the Free of need, the Praiseworthy."
+      }
+    }
+  },
+  {
+    "id": "insv_35_28",
+    "type": "verse",
+    "reference": "Fâtır 28",
+    "image": "",
+    "arabic": "وَمِنَ ٱلنَّاسِ وَٱلدَّوَآبِّ وَٱلْأَنْعَٰمِ مُخْتَلِفٌ أَلْوَٰنُهُۥ كَذَٰلِكَ ۗ إِنَّمَا يَخْشَى ٱللَّهَ مِنْ عِبَادِهِ ٱلْعُلَمَٰٓؤُا۟ ۗ إِنَّ ٱللَّهَ عَزِيزٌ غَفُورٌ",
+    "translations": {
+      "tr": {
+        "text": "İnsanlar, yerde yürüyenler ve davarlar da böyle türlü türlü renktedirler. Allah'ın kulları arasında O'ndan korkan, ancak bilginlerdir. Doğrusu Allah güçlüdür, bağışlayandır."
+      },
+      "en": {
+        "text": "And among people and moving creatures and grazing livestock are various colors similarly. Only those fear Allah, from among His servants, who have knowledge. Indeed, Allah is Exalted in Might and Forgiving."
+      }
+    }
+  },
+  {
+    "id": "insv_36_58",
+    "type": "verse",
+    "reference": "Yâsîn 58",
+    "image": "",
+    "arabic": "سَلَٰمٌۭ قَوْلًۭا مِّن رَّبٍّۢ رَّحِيمٍۢ",
+    "translations": {
+      "tr": {
+        "text": "Merhametli olan Rab katından onlara selam vardır."
+      },
+      "en": {
+        "text": "[And] \"Peace,\" a word from a Merciful Lord."
+      }
+    }
+  },
+  {
+    "id": "insv_36_82",
+    "type": "verse",
+    "reference": "Yâsîn 82",
+    "image": "",
+    "arabic": "إِنَّمَآ أَمْرُهُۥٓ إِذَآ أَرَادَ شَيْـًٔا أَن يَقُولَ لَهُۥ كُن فَيَكُونُ",
+    "translations": {
+      "tr": {
+        "text": "Bir şeyi dilediği zaman, O'nun buyruğu sadece, o şeye \"Ol\" demektir, hemen olur."
+      },
+      "en": {
+        "text": "His command is only when He intends a thing that He says to it, \"Be,\" and it is."
+      }
+    }
+  },
+  {
+    "id": "insv_37_100",
+    "type": "verse",
+    "reference": "Sâffât 100",
+    "image": "",
+    "arabic": "رَبِّ هَبْ لِى مِنَ ٱلصَّٰلِحِينَ",
+    "translations": {
+      "tr": {
+        "text": "\"Rabbim! Bana iyilerden olacak bir çocuk ver\" diye yalvardı."
+      },
+      "en": {
+        "text": "My Lord, grant me [a child] from among the righteous.\""
+      }
+    }
+  },
+  {
+    "id": "insv_39_9",
+    "type": "verse",
+    "reference": "Zümer 9",
+    "image": "",
+    "arabic": "أَمَّنْ هُوَ قَٰنِتٌ ءَانَآءَ ٱلَّيْلِ سَاجِدًۭا وَقَآئِمًۭا يَحْذَرُ ٱلْءَاخِرَةَ وَيَرْجُوا۟ رَحْمَةَ رَبِّهِۦ ۗ قُلْ هَلْ يَسْتَوِى ٱلَّذِينَ يَعْلَمُونَ وَٱلَّذِينَ لَا يَعْلَمُونَ ۗ إِنَّمَا يَتَذَكَّرُ أُو۟لُوا۟ ٱلْأَلْبَٰبِ",
+    "translations": {
+      "tr": {
+        "text": "Geceleyin secde ederek ve ayakta durarak boyun büken, ahiretten çekinen, Rabbinin rahmetini dileyen kimse inkar eden kimse gibi olur mu? De ki: \"Bilenlerle bilmeyenler bir olur mu? Doğrusu ancak akıl sahipleri öğüt alırlar.\""
+      },
+      "en": {
+        "text": "Is one who is devoutly obedient during periods of the night, prostrating and standing [in prayer], fearing the Hereafter and hoping for the mercy of his Lord, [like one who does not]? Say, \"Are those who know equal to those who do not know?\" Only they will remember [who are] people of understanding."
+      }
+    }
+  },
+  {
+    "id": "insv_39_10",
+    "type": "verse",
+    "reference": "Zümer 10",
+    "image": "",
+    "arabic": "قُلْ يَٰعِبَادِ ٱلَّذِينَ ءَامَنُوا۟ ٱتَّقُوا۟ رَبَّكُمْ ۚ لِلَّذِينَ أَحْسَنُوا۟ فِى هَٰذِهِ ٱلدُّنْيَا حَسَنَةٌۭ ۗ وَأَرْضُ ٱللَّهِ وَٰسِعَةٌ ۗ إِنَّمَا يُوَفَّى ٱلصَّٰبِرُونَ أَجْرَهُم بِغَيْرِ حِسَابٍۢ",
+    "translations": {
+      "tr": {
+        "text": "Şöyle de: \"Ey inanan kullarım! Rabbinize karşı gelmekten sakının; bu dünyada iyilik yapanlara iyilik vardır. Allah'ın yarattığı yeryüzü geniştir. Yalnız sabredenlere, ecirleri sonsuz olarak ödenecektir.\""
+      },
+      "en": {
+        "text": "Say, \"O My servants who have believed, fear your Lord. For those who do good in this world is good, and the earth of Allah is spacious. Indeed, the patient will be given their reward without account.\""
+      }
+    }
+  },
+  {
+    "id": "insv_39_53",
+    "type": "verse",
+    "reference": "Zümer 53",
+    "image": "",
+    "arabic": "۞ قُلْ يَٰعِبَادِىَ ٱلَّذِينَ أَسْرَفُوا۟ عَلَىٰٓ أَنفُسِهِمْ لَا تَقْنَطُوا۟ مِن رَّحْمَةِ ٱللَّهِ ۚ إِنَّ ٱللَّهَ يَغْفِرُ ٱلذُّنُوبَ جَمِيعًا ۚ إِنَّهُۥ هُوَ ٱلْغَفُورُ ٱلرَّحِيمُ",
+    "translations": {
+      "tr": {
+        "text": "De ki: \"Ey kendilerine kötülük edip aşırı giden kullarım! Allah'ın rahmetinden umudunuzu kesmeyin. Doğrusu Allah günahların hepsini bağışlar. Çünkü O, bağışlayandır, merhametlidir.\""
+      },
+      "en": {
+        "text": "Say, \"O My servants who have transgressed against themselves [by sinning], do not despair of the mercy of Allah. Indeed, Allah forgives all sins. Indeed, it is He who is the Forgiving, the Merciful.\""
+      }
+    }
+  },
+  {
+    "id": "insv_40_60",
+    "type": "verse",
+    "reference": "Gâfir 60",
+    "image": "",
+    "arabic": "وَقَالَ رَبُّكُمُ ٱدْعُونِىٓ أَسْتَجِبْ لَكُمْ ۚ إِنَّ ٱلَّذِينَ يَسْتَكْبِرُونَ عَنْ عِبَادَتِى سَيَدْخُلُونَ جَهَنَّمَ دَاخِرِينَ",
+    "translations": {
+      "tr": {
+        "text": "Rabbiniz: \"Bana dua edin ki duanıza icabet edeyim. Bana kulluk etmeyi büyüklüklerine yediremeyenler alçalmış olarak cehenneme gireceklerdir\" buyurmuştur."
+      },
+      "en": {
+        "text": "And your Lord says, \"Call upon Me; I will respond to you.\" Indeed, those who disdain My worship will enter Hell [rendered] contemptible."
+      }
+    }
+  },
+  {
+    "id": "insv_41_30",
+    "type": "verse",
+    "reference": "Fussilet 30",
+    "image": "",
+    "arabic": "إِنَّ ٱلَّذِينَ قَالُوا۟ رَبُّنَا ٱللَّهُ ثُمَّ ٱسْتَقَٰمُوا۟ تَتَنَزَّلُ عَلَيْهِمُ ٱلْمَلَٰٓئِكَةُ أَلَّا تَخَافُوا۟ وَلَا تَحْزَنُوا۟ وَأَبْشِرُوا۟ بِٱلْجَنَّةِ ٱلَّتِى كُنتُمْ تُوعَدُونَ",
+    "translations": {
+      "tr": {
+        "text": "\"Rabbimiz Allah'tır\" deyip sonra da doğrulukta devam edenler, onları, melekler, ölümleri anında: \"Korkmayınız, üzülmeyiniz, size söz verilen cennetle sevinin, biz dünya hayatında da, ahirette de size dostuz. Burada, canlarınızın çektiği, umduğunuz şeyler, bağışlayan ve acıyan Allah katından bir ziyafet olarak size sunulur\" diyerek inerler."
+      },
+      "en": {
+        "text": "Indeed, those who have said, \"Our Lord is Allah \" and then remained on a right course - the angels will descend upon them, [saying], \"Do not fear and do not grieve but receive good tidings of Paradise, which you were promised."
+      }
+    }
+  },
+  {
+    "id": "insv_41_34",
+    "type": "verse",
+    "reference": "Fussilet 34",
+    "image": "",
+    "arabic": "وَلَا تَسْتَوِى ٱلْحَسَنَةُ وَلَا ٱلسَّيِّئَةُ ۚ ٱدْفَعْ بِٱلَّتِى هِىَ أَحْسَنُ فَإِذَا ٱلَّذِى بَيْنَكَ وَبَيْنَهُۥ عَدَٰوَةٌۭ كَأَنَّهُۥ وَلِىٌّ حَمِيمٌۭ",
+    "translations": {
+      "tr": {
+        "text": "İyilik ve fenalık bir değildir. Ey inanan kişi: Sen, fenalığı en güzel şekilde sav; o zaman, seninle arasında düşmanlık bulunan kişinin yakın bir dost gibi olduğunu görürsün."
+      },
+      "en": {
+        "text": "And not equal are the good deed and the bad. Repel [evil] by that [deed] which is better; and thereupon the one whom between you and him is enmity [will become] as though he was a devoted friend."
+      }
+    }
+  },
+  {
+    "id": "insv_42_30",
+    "type": "verse",
+    "reference": "Şûrâ 30",
+    "image": "",
+    "arabic": "وَمَآ أَصَٰبَكُم مِّن مُّصِيبَةٍۢ فَبِمَا كَسَبَتْ أَيْدِيكُمْ وَيَعْفُوا۟ عَن كَثِيرٍۢ",
+    "translations": {
+      "tr": {
+        "text": "Başınıza gelen herhangi bir musibet ellerinizle işlediklerinizden ötürüdür. O, yine de çoğunu affeder."
+      },
+      "en": {
+        "text": "And whatever strikes you of disaster - it is for what your hands have earned; but He pardons much."
+      }
+    }
+  },
+  {
+    "id": "insv_42_36",
+    "type": "verse",
+    "reference": "Şûrâ 36",
+    "image": "",
+    "arabic": "فَمَآ أُوتِيتُم مِّن شَىْءٍۢ فَمَتَٰعُ ٱلْحَيَوٰةِ ٱلدُّنْيَا ۖ وَمَا عِندَ ٱللَّهِ خَيْرٌۭ وَأَبْقَىٰ لِلَّذِينَ ءَامَنُوا۟ وَعَلَىٰ رَبِّهِمْ يَتَوَكَّلُونَ",
+    "translations": {
+      "tr": {
+        "text": "Size verilen herhangi bir şey, sadece dünya hayatının bir geçimliğidir. Allah katında olan; inanıp Rablerine güvenen, büyük günahlardan ve hayasızlıklardan çekinen, öfkelendiklerinde bile bağışlayanlar, Rablerinin çağrısına cevap verenler ve namaz kılanlar için daha iyi ve daha süreklidir. Onların işleri aralarında danışma iledir. Kendilerine verdiğimiz rızıktan da sarfederler."
+      },
+      "en": {
+        "text": "So whatever thing you have been given - it is but [for] enjoyment of the worldly life. But what is with Allah is better and more lasting for those who have believed and upon their Lord rely"
+      }
+    }
+  },
+  {
+    "id": "insv_42_40",
+    "type": "verse",
+    "reference": "Şûrâ 40",
+    "image": "",
+    "arabic": "وَجَزَٰٓؤُا۟ سَيِّئَةٍۢ سَيِّئَةٌۭ مِّثْلُهَا ۖ فَمَنْ عَفَا وَأَصْلَحَ فَأَجْرُهُۥ عَلَى ٱللَّهِ ۚ إِنَّهُۥ لَا يُحِبُّ ٱلظَّٰلِمِينَ",
+    "translations": {
+      "tr": {
+        "text": "Bir kötülüğün karşılığı, aynı şekilde bir kötülüktür. Ama kim affeder ve barışırsa, onun ecri Allah'a aittir. Doğrusu O, zulmedenleri sevmez."
+      },
+      "en": {
+        "text": "And the retribution for an evil act is an evil one like it, but whoever pardons and makes reconciliation - his reward is [due] from Allah. Indeed, He does not like wrongdoers."
+      }
+    }
+  },
+  {
+    "id": "insv_47_7",
+    "type": "verse",
+    "reference": "Muhammed 7",
+    "image": "",
+    "arabic": "يَٰٓأَيُّهَا ٱلَّذِينَ ءَامَنُوٓا۟ إِن تَنصُرُوا۟ ٱللَّهَ يَنصُرْكُمْ وَيُثَبِّتْ أَقْدَامَكُمْ",
+    "translations": {
+      "tr": {
+        "text": "Ey inananlar! Siz Allah'ın dinine yardım ederseniz, O da size yardım eder, ayaklarınızı savaşta sabit kılar."
+      },
+      "en": {
+        "text": "O you who have believed, if you support Allah, He will support you and plant firmly your feet."
+      }
+    }
+  },
+  {
+    "id": "insv_48_4",
+    "type": "verse",
+    "reference": "Fetih 4",
+    "image": "",
+    "arabic": "هُوَ ٱلَّذِىٓ أَنزَلَ ٱلسَّكِينَةَ فِى قُلُوبِ ٱلْمُؤْمِنِينَ لِيَزْدَادُوٓا۟ إِيمَٰنًۭا مَّعَ إِيمَٰنِهِمْ ۗ وَلِلَّهِ جُنُودُ ٱلسَّمَٰوَٰتِ وَٱلْأَرْضِ ۚ وَكَانَ ٱللَّهُ عَلِيمًا حَكِيمًۭا",
+    "translations": {
+      "tr": {
+        "text": "İnananların, imanlarını kat kat artırmaları için, kalblerine güven indiren O'dur. Göklerdeki ve yerdeki ordular Allah'ındır. Allah bilendir, Hakim olandır."
+      },
+      "en": {
+        "text": "It is He who sent down tranquillity into the hearts of the believers that they would increase in faith along with their [present] faith. And to Allah belong the soldiers of the heavens and the earth, and ever is Allah Knowing and Wise."
+      }
+    }
+  },
+  {
+    "id": "insv_49_10",
+    "type": "verse",
+    "reference": "Hucurât 10",
+    "image": "",
+    "arabic": "إِنَّمَا ٱلْمُؤْمِنُونَ إِخْوَةٌۭ فَأَصْلِحُوا۟ بَيْنَ أَخَوَيْكُمْ ۚ وَٱتَّقُوا۟ ٱللَّهَ لَعَلَّكُمْ تُرْحَمُونَ",
+    "translations": {
+      "tr": {
+        "text": "Şüphesiz müminler birbiri ile kardeştirler; öyle ise dargın olan kardeşlerinizin arasını düzeltin; Allah'tan sakının ki size acısın."
+      },
+      "en": {
+        "text": "The believers are but brothers, so make settlement between your brothers. And fear Allah that you may receive mercy."
+      }
+    }
+  },
+  {
+    "id": "insv_49_12",
+    "type": "verse",
+    "reference": "Hucurât 12",
+    "image": "",
+    "arabic": "يَٰٓأَيُّهَا ٱلَّذِينَ ءَامَنُوا۟ ٱجْتَنِبُوا۟ كَثِيرًۭا مِّنَ ٱلظَّنِّ إِنَّ بَعْضَ ٱلظَّنِّ إِثْمٌۭ ۖ وَلَا تَجَسَّسُوا۟ وَلَا يَغْتَب بَّعْضُكُم بَعْضًا ۚ أَيُحِبُّ أَحَدُكُمْ أَن يَأْكُلَ لَحْمَ أَخِيهِ مَيْتًۭا فَكَرِهْتُمُوهُ ۚ وَٱتَّقُوا۟ ٱللَّهَ ۚ إِنَّ ٱللَّهَ تَوَّابٌۭ رَّحِيمٌۭ",
+    "translations": {
+      "tr": {
+        "text": "Ey inananlar! Zannın çoğundan sakının, zira zannın bir kısmı günahtır. Birbirinizin suçunu araştırmayın; kimse kimseyi çekiştirmesin; hangi biriniz ölü kardeşinin etini yemekten hoşlanır? Ondan tiksinirsiniz; Allah'tan sakının, şüphesiz Allah tevbeleri daima kabul edendir, acıyandır."
+      },
+      "en": {
+        "text": "O you who have believed, avoid much [negative] assumption. Indeed, some assumption is sin. And do not spy or backbite each other. Would one of you like to eat the flesh of his brother when dead? You would detest it. And fear Allah; indeed, Allah is Accepting of repentance and Merciful."
+      }
+    }
+  },
+  {
+    "id": "insv_49_13",
+    "type": "verse",
+    "reference": "Hucurât 13",
+    "image": "",
+    "arabic": "يَٰٓأَيُّهَا ٱلنَّاسُ إِنَّا خَلَقْنَٰكُم مِّن ذَكَرٍۢ وَأُنثَىٰ وَجَعَلْنَٰكُمْ شُعُوبًۭا وَقَبَآئِلَ لِتَعَارَفُوٓا۟ ۚ إِنَّ أَكْرَمَكُمْ عِندَ ٱللَّهِ أَتْقَىٰكُمْ ۚ إِنَّ ٱللَّهَ عَلِيمٌ خَبِيرٌۭ",
+    "translations": {
+      "tr": {
+        "text": "Ey insanlar! Doğrusu Biz sizleri bir erkekle bir dişiden yarattık. Sizi milletler ve kabileler haline koyduk ki birbirinizi kolayca tanıyasınız. Şüphesiz, Allah katında en değerliniz, O'na karşı gelmekten en çok sakınanızdır. Allah bilendir, haberdardır."
+      },
+      "en": {
+        "text": "O mankind, indeed We have created you from male and female and made you peoples and tribes that you may know one another. Indeed, the most noble of you in the sight of Allah is the most righteous of you. Indeed, Allah is Knowing and Acquainted."
+      }
+    }
+  },
+  {
+    "id": "insv_50_16",
+    "type": "verse",
+    "reference": "Kâf 16",
+    "image": "",
+    "arabic": "وَلَقَدْ خَلَقْنَا ٱلْإِنسَٰنَ وَنَعْلَمُ مَا تُوَسْوِسُ بِهِۦ نَفْسُهُۥ ۖ وَنَحْنُ أَقْرَبُ إِلَيْهِ مِنْ حَبْلِ ٱلْوَرِيدِ",
+    "translations": {
+      "tr": {
+        "text": "And olsun ki insanı Biz yarattık; nefsinin kendisine fısıldadıklarını biliriz; Biz ona şah damarından daha yakınız."
+      },
+      "en": {
+        "text": "And We have already created man and know what his soul whispers to him, and We are closer to him than [his] jugular vein"
+      }
+    }
+  },
+  {
+    "id": "insv_51_55",
+    "type": "verse",
+    "reference": "Zâriyât 55",
+    "image": "",
+    "arabic": "وَذَكِّرْ فَإِنَّ ٱلذِّكْرَىٰ تَنفَعُ ٱلْمُؤْمِنِينَ",
+    "translations": {
+      "tr": {
+        "text": "Öğüt ver; doğrusu öğüt inananlara fayda verir."
+      },
+      "en": {
+        "text": "And remind, for indeed, the reminder benefits the believers."
+      }
+    }
+  },
+  {
+    "id": "insv_51_56",
+    "type": "verse",
+    "reference": "Zâriyât 56",
+    "image": "",
+    "arabic": "وَمَا خَلَقْتُ ٱلْجِنَّ وَٱلْإِنسَ إِلَّا لِيَعْبُدُونِ",
+    "translations": {
+      "tr": {
+        "text": "Cinleri ve insanları ancak Bana kulluk etmeleri için yaratmışımdır."
+      },
+      "en": {
+        "text": "And I did not create the jinn and mankind except to worship Me."
+      }
+    }
+  },
+  {
+    "id": "insv_53_39",
+    "type": "verse",
+    "reference": "Necm 39",
+    "image": "",
+    "arabic": "وَأَن لَّيْسَ لِلْإِنسَٰنِ إِلَّا مَا سَعَىٰ",
+    "translations": {
+      "tr": {
+        "text": "İnsan ancak çalıştığına erişir."
+      },
+      "en": {
+        "text": "And that there is not for man except that [good] for which he strives"
+      }
+    }
+  },
+  {
+    "id": "insv_54_17",
+    "type": "verse",
+    "reference": "Kamer 17",
+    "image": "",
+    "arabic": "وَلَقَدْ يَسَّرْنَا ٱلْقُرْءَانَ لِلذِّكْرِ فَهَلْ مِن مُّدَّكِرٍۢ",
+    "translations": {
+      "tr": {
+        "text": "And olsun ki Kuran'ı, öğüt olsun diye kolaylaştırdık; öğüt alan yok mudur?"
+      },
+      "en": {
+        "text": "And We have certainly made the Qur'an easy for remembrance, so is there any who will remember?"
+      }
+    }
+  },
+  {
+    "id": "insv_55_26",
+    "type": "verse",
+    "reference": "Rahmân 26",
+    "image": "",
+    "arabic": "كُلُّ مَنْ عَلَيْهَا فَانٍۢ",
+    "translations": {
+      "tr": {
+        "text": "Yeryüzünde bulunan her şey fanidir."
+      },
+      "en": {
+        "text": "Everyone upon the earth will perish,"
+      }
+    }
+  },
+  {
+    "id": "insv_55_60",
+    "type": "verse",
+    "reference": "Rahmân 60",
+    "image": "",
+    "arabic": "هَلْ جَزَآءُ ٱلْإِحْسَٰنِ إِلَّا ٱلْإِحْسَٰنُ",
+    "translations": {
+      "tr": {
+        "text": "İyiliğin karşılığı ancak iyilik değil midir?"
+      },
+      "en": {
+        "text": "Is the reward for good [anything] but good?"
+      }
+    }
+  },
+  {
+    "id": "insv_57_16",
+    "type": "verse",
+    "reference": "Hadîd 16",
+    "image": "",
+    "arabic": "۞ أَلَمْ يَأْنِ لِلَّذِينَ ءَامَنُوٓا۟ أَن تَخْشَعَ قُلُوبُهُمْ لِذِكْرِ ٱللَّهِ وَمَا نَزَلَ مِنَ ٱلْحَقِّ وَلَا يَكُونُوا۟ كَٱلَّذِينَ أُوتُوا۟ ٱلْكِتَٰبَ مِن قَبْلُ فَطَالَ عَلَيْهِمُ ٱلْأَمَدُ فَقَسَتْ قُلُوبُهُمْ ۖ وَكَثِيرٌۭ مِّنْهُمْ فَٰسِقُونَ",
+    "translations": {
+      "tr": {
+        "text": "İnananların gönüllerinin Allah'ı anması ve O'ndan inen gerçeğe içten bağlanması zamanı daha gelmedi mi? Onlar, daha önce kendilerine kitap verilenler gibi olmasınlar; onların üzerinden uzun zaman geçti de kalbleri katılaştı; çoğu, yoldan çıkmış kimselerdir."
+      },
+      "en": {
+        "text": "Has the time not come for those who have believed that their hearts should become humbly submissive at the remembrance of Allah and what has come down of the truth? And let them not be like those who were given the Scripture before, and a long period passed over them, so their hearts hardened; and many of them are defiantly disobedient."
+      }
+    }
+  },
+  {
+    "id": "insv_57_20",
+    "type": "verse",
+    "reference": "Hadîd 20",
+    "image": "",
+    "arabic": "ٱعْلَمُوٓا۟ أَنَّمَا ٱلْحَيَوٰةُ ٱلدُّنْيَا لَعِبٌۭ وَلَهْوٌۭ وَزِينَةٌۭ وَتَفَاخُرٌۢ بَيْنَكُمْ وَتَكَاثُرٌۭ فِى ٱلْأَمْوَٰلِ وَٱلْأَوْلَٰدِ ۖ كَمَثَلِ غَيْثٍ أَعْجَبَ ٱلْكُفَّارَ نَبَاتُهُۥ ثُمَّ يَهِيجُ فَتَرَىٰهُ مُصْفَرًّۭا ثُمَّ يَكُونُ حُطَٰمًۭا ۖ وَفِى ٱلْءَاخِرَةِ عَذَابٌۭ شَدِيدٌۭ وَمَغْفِرَةٌۭ مِّنَ ٱللَّهِ وَرِضْوَٰنٌۭ ۚ وَمَا ٱلْحَيَوٰةُ ٱلدُّنْيَآ إِلَّا مَتَٰعُ ٱلْغُرُورِ",
+    "translations": {
+      "tr": {
+        "text": "Bilin ki, dünya hayatı oyun, oyalanma, süslenme, aranızda övünme ve daha çok mal ve çocuk sahibi olmaktan ibarettir. Bu, yağmurun bitirdiği, ekicilerin de hoşuna giden bir bitkiye benzer; sonra kurur, sapsarı olduğu görülür, sonra çerçöp olur. Ahirette çetin azap da vardır. Allah'ın hoşnudluğu ve bağışlaması da vardır; dünya hayatı ise sadece aldatıcı bir geçinmedir."
+      },
+      "en": {
+        "text": "Know that the life of this world is but amusement and diversion and adornment and boasting to one another and competition in increase of wealth and children - like the example of a rain whose [resulting] plant growth pleases the tillers; then it dries and you see it turned yellow; then it becomes [scattered] debris. And in the Hereafter is severe punishment and forgiveness from Allah and approval. And what is the worldly life except the enjoyment of delusion."
+      }
+    }
+  },
+  {
+    "id": "insv_58_11",
+    "type": "verse",
+    "reference": "Mücâdele 11",
+    "image": "",
+    "arabic": "يَٰٓأَيُّهَا ٱلَّذِينَ ءَامَنُوٓا۟ إِذَا قِيلَ لَكُمْ تَفَسَّحُوا۟ فِى ٱلْمَجَٰلِسِ فَٱفْسَحُوا۟ يَفْسَحِ ٱللَّهُ لَكُمْ ۖ وَإِذَا قِيلَ ٱنشُزُوا۟ فَٱنشُزُوا۟ يَرْفَعِ ٱللَّهُ ٱلَّذِينَ ءَامَنُوا۟ مِنكُمْ وَٱلَّذِينَ أُوتُوا۟ ٱلْعِلْمَ دَرَجَٰتٍۢ ۚ وَٱللَّهُ بِمَا تَعْمَلُونَ خَبِيرٌۭ",
+    "translations": {
+      "tr": {
+        "text": "Ey inananlar! Toplantılarda, size, \"Yer açın\" denince yer açın ki Allah da size genişlik versin; \"Kalkın\" denildiği zaman da hemen kalkın ki, Allah, içinizden inanmış olanları ve kendilerine ilim verilenleri derecelerle yükseltsin. Allah işlediklerinizden haberdardır."
+      },
+      "en": {
+        "text": "O you who have believed, when you are told, \"Space yourselves\" in assemblies, then make space; Allah will make space for you. And when you are told, \"Arise,\" then arise; Allah will raise those who have believed among you and those who were given knowledge, by degrees. And Allah is Acquainted with what you do."
+      }
+    }
+  },
+  {
+    "id": "insv_59_18",
+    "type": "verse",
+    "reference": "Haşr 18",
+    "image": "",
+    "arabic": "يَٰٓأَيُّهَا ٱلَّذِينَ ءَامَنُوا۟ ٱتَّقُوا۟ ٱللَّهَ وَلْتَنظُرْ نَفْسٌۭ مَّا قَدَّمَتْ لِغَدٍۢ ۖ وَٱتَّقُوا۟ ٱللَّهَ ۚ إِنَّ ٱللَّهَ خَبِيرٌۢ بِمَا تَعْمَلُونَ",
+    "translations": {
+      "tr": {
+        "text": "Ey inananlar! Allah'tan sakının; herkes yarına ne hazırladığına baksın; Allah'tan sakının, çünkü Allah işlediklerinizden haberdardır."
+      },
+      "en": {
+        "text": "O you who have believed, fear Allah. And let every soul look to what it has put forth for tomorrow - and fear Allah. Indeed, Allah is Acquainted with what you do."
+      }
+    }
+  },
+  {
+    "id": "insv_61_2",
+    "type": "verse",
+    "reference": "Saff 2",
+    "image": "",
+    "arabic": "يَٰٓأَيُّهَا ٱلَّذِينَ ءَامَنُوا۟ لِمَ تَقُولُونَ مَا لَا تَفْعَلُونَ",
+    "translations": {
+      "tr": {
+        "text": "Ey inananlar! Yapmayacağınız şeyi niçin söylersiniz?"
+      },
+      "en": {
+        "text": "O you who have believed, why do you say what you do not do?"
+      }
+    }
+  },
+  {
+    "id": "insv_62_10",
+    "type": "verse",
+    "reference": "Cuma 10",
+    "image": "",
+    "arabic": "فَإِذَا قُضِيَتِ ٱلصَّلَوٰةُ فَٱنتَشِرُوا۟ فِى ٱلْأَرْضِ وَٱبْتَغُوا۟ مِن فَضْلِ ٱللَّهِ وَٱذْكُرُوا۟ ٱللَّهَ كَثِيرًۭا لَّعَلَّكُمْ تُفْلِحُونَ",
+    "translations": {
+      "tr": {
+        "text": "Namaz bitince yeryüzüne yayılın; Allah'ın lütfundan rızık isteyin; Allah'ı çok anın ki saadete erişesiniz."
+      },
+      "en": {
+        "text": "And when the prayer has been concluded, disperse within the land and seek from the bounty of Allah, and remember Allah often that you may succeed."
+      }
+    }
+  },
+  {
+    "id": "insv_64_11",
+    "type": "verse",
+    "reference": "Teğâbün 11",
+    "image": "",
+    "arabic": "مَآ أَصَابَ مِن مُّصِيبَةٍ إِلَّا بِإِذْنِ ٱللَّهِ ۗ وَمَن يُؤْمِنۢ بِٱللَّهِ يَهْدِ قَلْبَهُۥ ۚ وَٱللَّهُ بِكُلِّ شَىْءٍ عَلِيمٌۭ",
+    "translations": {
+      "tr": {
+        "text": "Başa gelen hiçbir musibet Allah'ın izni olmaksızın olamaz; Allah'a kim inanırsa onun gönlünü doğruya yöneltir. Allah herşeyi bilendir."
+      },
+      "en": {
+        "text": "No disaster strikes except by permission of Allah. And whoever believes in Allah - He will guide his heart. And Allah is Knowing of all things."
+      }
+    }
+  },
+  {
+    "id": "insv_65_2",
+    "type": "verse",
+    "reference": "Talâk 2",
+    "image": "",
+    "arabic": "فَإِذَا بَلَغْنَ أَجَلَهُنَّ فَأَمْسِكُوهُنَّ بِمَعْرُوفٍ أَوْ فَارِقُوهُنَّ بِمَعْرُوفٍۢ وَأَشْهِدُوا۟ ذَوَىْ عَدْلٍۢ مِّنكُمْ وَأَقِيمُوا۟ ٱلشَّهَٰدَةَ لِلَّهِ ۚ ذَٰلِكُمْ يُوعَظُ بِهِۦ مَن كَانَ يُؤْمِنُ بِٱللَّهِ وَٱلْيَوْمِ ٱلْءَاخِرِ ۚ وَمَن يَتَّقِ ٱللَّهَ يَجْعَل لَّهُۥ مَخْرَجًۭا",
+    "translations": {
+      "tr": {
+        "text": "Kadınların iddet süreleri biteceğinde, onları ya uygun bir şekilde alıkoyun, ya da onlardan ayrılın; içinizden de iki adil şahit getirin; şahidliği Allah için yapın; işte bu, Allah'a ve ahiret gününe inanan kimseye verilen öğüttür. Allah, kendisine karşı gelmekten sakınan kimseye kurtuluş yolu sağlar, ona beklemediği yerden rızık verir. Allah'a güvenen kimseye O yeter. Allah, buyruğunu yerine getirendir. Allah her şey için bir ölçü var etmiştir."
+      },
+      "en": {
+        "text": "And when they have [nearly] fulfilled their term, either retain them according to acceptable terms or part with them according to acceptable terms. And bring to witness two just men from among you and establish the testimony for [the acceptance of] Allah. That is instructed to whoever should believe in Allah and the Last day. And whoever fears Allah - He will make for him a way out"
+      }
+    }
+  },
+  {
+    "id": "insv_66_8",
+    "type": "verse",
+    "reference": "Tahrîm 8",
+    "image": "",
+    "arabic": "يَٰٓأَيُّهَا ٱلَّذِينَ ءَامَنُوا۟ تُوبُوٓا۟ إِلَى ٱللَّهِ تَوْبَةًۭ نَّصُوحًا عَسَىٰ رَبُّكُمْ أَن يُكَفِّرَ عَنكُمْ سَيِّـَٔاتِكُمْ وَيُدْخِلَكُمْ جَنَّٰتٍۢ تَجْرِى مِن تَحْتِهَا ٱلْأَنْهَٰرُ يَوْمَ لَا يُخْزِى ٱللَّهُ ٱلنَّبِىَّ وَٱلَّذِينَ ءَامَنُوا۟ مَعَهُۥ ۖ نُورُهُمْ يَسْعَىٰ بَيْنَ أَيْدِيهِمْ وَبِأَيْمَٰنِهِمْ يَقُولُونَ رَبَّنَآ أَتْمِمْ لَنَا نُورَنَا وَٱغْفِرْ لَنَآ ۖ إِنَّكَ عَلَىٰ كُلِّ شَىْءٍۢ قَدِيرٌۭ",
+    "translations": {
+      "tr": {
+        "text": "Ey inananlar! Yürekten tevbe ederek Allah'a dönün ki, Rabbiniz kötülüklerinizi örtsün, sizi, içlerinden ırmaklar akan cennetlere koysun. Allah'ın Peygamberini ve onunla beraber olan müminleri utandırmayacağı o gün, ışıkları önlerinde ve defterleri sağlarından verilmiş olarak yürürler ve: \"Rabbimiz! Işığımızı tamamla, bizi bağışla, doğrusu Sen herşeye Kadir'sin\" derler."
+      },
+      "en": {
+        "text": "O you who have believed, repent to Allah with sincere repentance. Perhaps your Lord will remove from you your misdeeds and admit you into gardens beneath which rivers flow [on] the Day when Allah will not disgrace the Prophet and those who believed with him. Their light will proceed before them and on their right; they will say, \"Our Lord, perfect for us our light and forgive us. Indeed, You are over all things competent.\""
+      }
+    }
+  },
+  {
+    "id": "insv_67_2",
+    "type": "verse",
+    "reference": "Mülk 2",
+    "image": "",
+    "arabic": "ٱلَّذِى خَلَقَ ٱلْمَوْتَ وَٱلْحَيَوٰةَ لِيَبْلُوَكُمْ أَيُّكُمْ أَحْسَنُ عَمَلًۭا ۚ وَهُوَ ٱلْعَزِيزُ ٱلْغَفُورُ",
+    "translations": {
+      "tr": {
+        "text": "Hanginizin daha iyi iş işlediğini belirtmek için, ölümü ve dirimi (hayatı) yaratan O'dur. O, güçlüdür, bağışlayandır."
+      },
+      "en": {
+        "text": "[He] who created death and life to test you [as to] which of you is best in deed - and He is the Exalted in Might, the Forgiving -"
+      }
+    }
+  },
+  {
+    "id": "insv_67_15",
+    "type": "verse",
+    "reference": "Mülk 15",
+    "image": "",
+    "arabic": "هُوَ ٱلَّذِى جَعَلَ لَكُمُ ٱلْأَرْضَ ذَلُولًۭا فَٱمْشُوا۟ فِى مَنَاكِبِهَا وَكُلُوا۟ مِن رِّزْقِهِۦ ۖ وَإِلَيْهِ ٱلنُّشُورُ",
+    "translations": {
+      "tr": {
+        "text": "Yeryüzünü, size boyun eğdiren O'dur; öyleyse yerin sırtlarında dolaşın, Allah'ın verdiği rızıktan yiyin; sonunda dönüş O'nadır."
+      },
+      "en": {
+        "text": "It is He who made the earth tame for you - so walk among its slopes and eat of His provision - and to Him is the resurrection."
+      }
+    }
+  },
+  {
+    "id": "insv_68_4",
+    "type": "verse",
+    "reference": "Kalem 4",
+    "image": "",
+    "arabic": "وَإِنَّكَ لَعَلَىٰ خُلُقٍ عَظِيمٍۢ",
+    "translations": {
+      "tr": {
+        "text": "Şüphesiz sen büyük bir ahlaka sahipsindir."
+      },
+      "en": {
+        "text": "And indeed, you are of a great moral character."
+      }
+    }
+  },
+  {
+    "id": "insv_71_10",
+    "type": "verse",
+    "reference": "Nûh 10",
+    "image": "",
+    "arabic": "فَقُلْتُ ٱسْتَغْفِرُوا۟ رَبَّكُمْ إِنَّهُۥ كَانَ غَفَّارًۭا",
+    "translations": {
+      "tr": {
+        "text": "Dedim ki: \"Rabbinizden bağışlanma dileyin; doğrusu O, çok bağışlayandır. Size gökten bol bol yağmur indirsin.\""
+      },
+      "en": {
+        "text": "And said, 'Ask forgiveness of your Lord. Indeed, He is ever a Perpetual Forgiver."
+      }
+    }
+  },
+  {
+    "id": "insv_73_8",
+    "type": "verse",
+    "reference": "Müzzemmil 8",
+    "image": "",
+    "arabic": "وَٱذْكُرِ ٱسْمَ رَبِّكَ وَتَبَتَّلْ إِلَيْهِ تَبْتِيلًۭا",
+    "translations": {
+      "tr": {
+        "text": "Rabbinin adını an; herşeyi bırakıp yalnız O'na yönel,"
+      },
+      "en": {
+        "text": "And remember the name of your Lord and devote yourself to Him with [complete] devotion."
+      }
+    }
+  },
+  {
+    "id": "insv_76_8",
+    "type": "verse",
+    "reference": "İnsân 8",
+    "image": "",
+    "arabic": "وَيُطْعِمُونَ ٱلطَّعَامَ عَلَىٰ حُبِّهِۦ مِسْكِينًۭا وَيَتِيمًۭا وَأَسِيرًا",
+    "translations": {
+      "tr": {
+        "text": "Onlar içleri çektiği halde, yiyeceği yoksula, öksüze ve esire yedirirler."
+      },
+      "en": {
+        "text": "And they give food in spite of love for it to the needy, the orphan, and the captive,"
+      }
+    }
+  },
+  {
+    "id": "insv_87_14",
+    "type": "verse",
+    "reference": "A'lâ 14",
+    "image": "",
+    "arabic": "قَدْ أَفْلَحَ مَن تَزَكَّىٰ",
+    "translations": {
+      "tr": {
+        "text": "Arınmış olan, Rabbinin adını anıp namaz kılan, saadete erişecektir."
+      },
+      "en": {
+        "text": "He has certainly succeeded who purifies himself"
+      }
+    }
+  },
+  {
+    "id": "insv_89_27",
+    "type": "verse",
+    "reference": "Fecr 27",
+    "image": "",
+    "arabic": "يَٰٓأَيَّتُهَا ٱلنَّفْسُ ٱلْمُطْمَئِنَّةُ",
+    "translations": {
+      "tr": {
+        "text": "Ey huzur içinde olan can!"
+      },
+      "en": {
+        "text": "[To the righteous it will be said], \"O reassured soul,"
+      }
+    }
+  },
+  {
+    "id": "insv_90_17",
+    "type": "verse",
+    "reference": "Beled 17",
+    "image": "",
+    "arabic": "ثُمَّ كَانَ مِنَ ٱلَّذِينَ ءَامَنُوا۟ وَتَوَاصَوْا۟ بِٱلصَّبْرِ وَتَوَاصَوْا۟ بِٱلْمَرْحَمَةِ",
+    "translations": {
+      "tr": {
+        "text": "Sonra, inanıp birbirlerine sabır tavsiye edenlerden, merhametlilerden olmayı tavsiye edenlerden olmaktır."
+      },
+      "en": {
+        "text": "And then being among those who believed and advised one another to patience and advised one another to compassion."
+      }
+    }
+  },
+  {
+    "id": "insv_93_3",
+    "type": "verse",
+    "reference": "Duhâ 3",
+    "image": "",
+    "arabic": "مَا وَدَّعَكَ رَبُّكَ وَمَا قَلَىٰ",
+    "translations": {
+      "tr": {
+        "text": "Rabbin seni ne bıraktı ve ne de sana darıldı."
+      },
+      "en": {
+        "text": "Your Lord has not taken leave of you, [O Muhammad], nor has He detested [you]."
+      }
+    }
+  },
+  {
+    "id": "insv_93_11",
+    "type": "verse",
+    "reference": "Duhâ 11",
+    "image": "",
+    "arabic": "وَأَمَّا بِنِعْمَةِ رَبِّكَ فَحَدِّثْ",
+    "translations": {
+      "tr": {
+        "text": "Yalnızca Rabbinin nimetini anlat."
+      },
+      "en": {
+        "text": "But as for the favor of your Lord, report [it]."
+      }
+    }
+  },
+  {
+    "id": "insv_94_5",
+    "type": "verse",
+    "reference": "İnşirâh 5",
+    "image": "",
+    "arabic": "فَإِنَّ مَعَ ٱلْعُسْرِ يُسْرًا",
+    "translations": {
+      "tr": {
+        "text": "Elbette güçlükle beraber şüphesiz bir kolaylık vardır."
+      },
+      "en": {
+        "text": "For indeed, with hardship [will be] ease."
+      }
+    }
+  },
+  {
+    "id": "insv_94_7",
+    "type": "verse",
+    "reference": "İnşirâh 7",
+    "image": "",
+    "arabic": "فَإِذَا فَرَغْتَ فَٱنصَبْ",
+    "translations": {
+      "tr": {
+        "text": "Öyleyse, bir işi bitirince diğerine giriş;"
+      },
+      "en": {
+        "text": "So when you have finished [your duties], then stand up [for worship]."
+      }
+    }
+  },
+  {
+    "id": "insv_96_1",
+    "type": "verse",
+    "reference": "Alak 1",
+    "image": "",
+    "arabic": "ٱقْرَأْ بِٱسْمِ رَبِّكَ ٱلَّذِى خَلَقَ",
+    "translations": {
+      "tr": {
+        "text": "Yaratan Rabbinin adıyla oku!"
+      },
+      "en": {
+        "text": "Recite in the name of your Lord who created -"
+      }
+    }
+  },
+  {
+    "id": "insv_97_3",
+    "type": "verse",
+    "reference": "Kadir 3",
+    "image": "",
+    "arabic": "لَيْلَةُ الْقَدْرِ خَيْرٌ مِنْ أَلْفِ شَهْرٍ",
+    "translations": {
+      "tr": {
+        "text": "Kadir gecesi bin aydan daha hayırlıdır."
+      },
+      "en": {
+        "text": "The Night of Decree is better than a thousand months."
+      }
+    }
+  },
+  {
+    "id": "insv_99_7",
+    "type": "verse",
+    "reference": "Zilzâl 7",
+    "image": "",
+    "arabic": "فَمَن يَعْمَلْ مِثْقَالَ ذَرَّةٍ خَيْرًۭا يَرَهُۥ",
+    "translations": {
+      "tr": {
+        "text": "Kim zerre kadar iyilik yapmışsa onu görür."
+      },
+      "en": {
+        "text": "So whoever does an atom's weight of good will see it,"
+      }
+    }
+  },
+  {
+    "id": "insv_103_1",
+    "type": "verse",
+    "reference": "Asr 1",
+    "image": "",
+    "arabic": "وَالْعَصْرِ",
+    "translations": {
+      "tr": {
+        "text": "Asra (çağa) yemin olsun ki,"
+      },
+      "en": {
+        "text": "By time,"
+      }
+    }
+  },
+  {
+    "id": "insv_108_1",
+    "type": "verse",
+    "reference": "Kevser 1",
+    "image": "",
+    "arabic": "إِنَّا أَعْطَيْنَاكَ الْكَوْثَرَ",
+    "translations": {
+      "tr": {
+        "text": "Şüphesiz biz sana Kevser'i verdik."
+      },
+      "en": {
+        "text": "Indeed, We have granted you al-Kawthar."
+      }
+    }
+  },
+  {
+    "id": "insv_110_3",
+    "type": "verse",
+    "reference": "Nasr 3",
+    "image": "",
+    "arabic": "فَسَبِّحْ بِحَمْدِ رَبِّكَ وَاسْتَغْفِرْهُ إِنَّهُ كَانَ تَوَّابًا",
+    "translations": {
+      "tr": {
+        "text": "Rabbini hamd ile tesbih et ve O'ndan bağışlanma dile. Çünkü O, tövbeleri çok kabul edendir."
+      },
+      "en": {
+        "text": "then exalt Him with praise of your Lord and ask His forgiveness. Indeed, He is ever Accepting of repentance."
+      }
+    }
+  },
+  {
+    "id": "insv_112_1",
+    "type": "verse",
+    "reference": "İhlâs 1",
+    "image": "",
+    "arabic": "قُلْ هُوَ ٱللَّهُ أَحَدٌ",
+    "translations": {
+      "tr": {
+        "text": "De ki: O Allah bir tektir."
+      },
+      "en": {
+        "text": "Say, \"He is Allah, [who is] One,"
+      }
+    }
+  },
+  {
+    "id": "insv_114_1",
+    "type": "verse",
+    "reference": "Nâs 1",
+    "image": "",
+    "arabic": "قُلْ أَعُوذُ بِرَبِّ النَّاسِ",
+    "translations": {
+      "tr": {
+        "text": "De ki: İnsanların Rabbine sığınırım,"
+      },
+      "en": {
+        "text": "Say, I seek refuge in the Lord of mankind,"
+      }
+    }
+  },
+  {
+    "id": "insh_1",
+    "type": "hadith",
+    "reference": "Buhârî & Müslim",
+    "image": "",
+    "arabic": "",
+    "translations": {
+      "tr": {
+        "text": "Kolaylaştırınız, zorlaştırmayınız; müjdeleyiniz, nefret ettirmeyiniz."
+      },
+      "en": {
+        "text": "Make things easy, do not make them difficult; give glad tidings, do not repel people."
+      }
+    }
+  },
+  {
+    "id": "insh_2",
+    "type": "hadith",
+    "reference": "Buhârî & Müslim",
+    "image": "",
+    "arabic": "",
+    "translations": {
+      "tr": {
+        "text": "Müslüman, elinden ve dilinden Müslümanların güvende olduğu kimsedir."
+      },
+      "en": {
+        "text": "The Muslim is the one from whose tongue and hand the Muslims are safe."
+      }
+    }
+  },
+  {
+    "id": "insh_3",
+    "type": "hadith",
+    "reference": "Buhârî",
+    "image": "",
+    "arabic": "",
+    "translations": {
+      "tr": {
+        "text": "Sizin en hayırlınız, Kur'an'ı öğrenen ve öğretendir."
+      },
+      "en": {
+        "text": "The best of you are those who learn the Quran and teach it."
+      }
+    }
+  },
+  {
+    "id": "insh_4",
+    "type": "hadith",
+    "reference": "Müslim",
+    "image": "",
+    "arabic": "",
+    "translations": {
+      "tr": {
+        "text": "Temizlik imanın yarısıdır."
+      },
+      "en": {
+        "text": "Cleanliness is half of faith."
+      }
+    }
+  },
+  {
+    "id": "insh_5",
+    "type": "hadith",
+    "reference": "Buhârî & Müslim",
+    "image": "",
+    "arabic": "",
+    "translations": {
+      "tr": {
+        "text": "Kim Allah'a ve ahiret gününe inanıyorsa ya hayır söylesin ya da sussun."
+      },
+      "en": {
+        "text": "Whoever believes in Allah and the Last Day should speak good or remain silent."
+      }
+    }
+  },
+  {
+    "id": "insh_6",
+    "type": "hadith",
+    "reference": "Buhârî & Müslim",
+    "image": "",
+    "arabic": "",
+    "translations": {
+      "tr": {
+        "text": "Güçlü kimse, güreşte yenen değil; öfke anında kendine hâkim olandır."
+      },
+      "en": {
+        "text": "The strong is not the one who overcomes in wrestling, but the one who controls himself when angry."
+      }
+    }
+  },
+  {
+    "id": "insh_7",
+    "type": "hadith",
+    "reference": "Buhârî & Müslim",
+    "image": "",
+    "arabic": "",
+    "translations": {
+      "tr": {
+        "text": "Kendisi için istediğini kardeşi için de istemedikçe hiçbiriniz gerçek anlamda iman etmiş olmaz."
+      },
+      "en": {
+        "text": "None of you truly believes until he loves for his brother what he loves for himself."
+      }
+    }
+  },
+  {
+    "id": "insh_8",
+    "type": "hadith",
+    "reference": "Müslim",
+    "image": "",
+    "arabic": "",
+    "translations": {
+      "tr": {
+        "text": "Allah sizin suretlerinize ve mallarınıza değil, kalplerinize ve amellerinize bakar."
+      },
+      "en": {
+        "text": "Allah does not look at your appearance or wealth, but at your hearts and deeds."
+      }
+    }
+  },
+  {
+    "id": "insh_9",
+    "type": "hadith",
+    "reference": "Müslim",
+    "image": "",
+    "arabic": "",
+    "translations": {
+      "tr": {
+        "text": "Din samimiyettir."
+      },
+      "en": {
+        "text": "The religion is sincerity."
+      }
+    }
+  },
+  {
+    "id": "insh_10",
+    "type": "hadith",
+    "reference": "Buhârî & Müslim",
+    "image": "",
+    "arabic": "",
+    "translations": {
+      "tr": {
+        "text": "İnsanlara merhamet etmeyene Allah merhamet etmez."
+      },
+      "en": {
+        "text": "Allah does not show mercy to the one who shows no mercy to people."
+      }
+    }
+  },
+  {
+    "id": "insh_11",
+    "type": "hadith",
+    "reference": "Buhârî & Müslim",
+    "image": "",
+    "arabic": "",
+    "translations": {
+      "tr": {
+        "text": "Veren el, alan elden üstündür."
+      },
+      "en": {
+        "text": "The upper (giving) hand is better than the lower (receiving) hand."
+      }
+    }
+  },
+  {
+    "id": "insh_12",
+    "type": "hadith",
+    "reference": "Nesâî",
+    "image": "",
+    "arabic": "",
+    "translations": {
+      "tr": {
+        "text": "Cennet annelerin ayakları altındadır."
+      },
+      "en": {
+        "text": "Paradise lies at the feet of mothers."
+      }
+    }
+  },
+  {
+    "id": "insh_13",
+    "type": "hadith",
+    "reference": "Buhârî & Müslim",
+    "image": "",
+    "arabic": "",
+    "translations": {
+      "tr": {
+        "text": "Bir hurmanın yarısıyla da olsa ateşten korunun."
+      },
+      "en": {
+        "text": "Protect yourselves from the Fire, even with half a date in charity."
+      }
+    }
+  },
+  {
+    "id": "insh_14",
+    "type": "hadith",
+    "reference": "Buhârî & Müslim",
+    "image": "",
+    "arabic": "",
+    "translations": {
+      "tr": {
+        "text": "Mümin, bir delikten iki defa ısırılmaz."
+      },
+      "en": {
+        "text": "The believer is not stung from the same hole twice."
+      }
+    }
+  },
+  {
+    "id": "insh_15",
+    "type": "hadith",
+    "reference": "Buhârî",
+    "image": "",
+    "arabic": "",
+    "translations": {
+      "tr": {
+        "text": "Hiç kimse el emeğinden daha hayırlı bir yemek yememiştir."
+      },
+      "en": {
+        "text": "No one eats better food than that which he earns by his own hands."
+      }
+    }
+  },
+  {
+    "id": "insh_16",
+    "type": "hadith",
+    "reference": "Buhârî & Müslim",
+    "image": "",
+    "arabic": "",
+    "translations": {
+      "tr": {
+        "text": "Allah katında amellerin en sevimlisi, az da olsa devamlı olanıdır."
+      },
+      "en": {
+        "text": "The most beloved deeds to Allah are the most consistent, even if small."
+      }
+    }
+  },
+  {
+    "id": "insh_17",
+    "type": "hadith",
+    "reference": "Müslim",
+    "image": "",
+    "arabic": "",
+    "translations": {
+      "tr": {
+        "text": "Kim bir hayra vesile olursa, onu yapan kadar sevap kazanır."
+      },
+      "en": {
+        "text": "Whoever guides someone to goodness has a reward like the one who does it."
+      }
+    }
+  },
+  {
+    "id": "insh_18",
+    "type": "hadith",
+    "reference": "Buhârî",
+    "image": "",
+    "arabic": "",
+    "translations": {
+      "tr": {
+        "text": "İki nimet vardır ki insanların çoğu bunlarda aldanmıştır: Sağlık ve boş vakit."
+      },
+      "en": {
+        "text": "There are two blessings most people are deceived about: health and free time."
+      }
+    }
+  },
+  {
+    "id": "insh_19",
+    "type": "hadith",
+    "reference": "Müslim",
+    "image": "",
+    "arabic": "",
+    "translations": {
+      "tr": {
+        "text": "Kul, kardeşinin yardımında olduğu sürece Allah da onun yardımındadır."
+      },
+      "en": {
+        "text": "Allah helps His servant as long as the servant helps his brother."
+      }
+    }
+  },
+  {
+    "id": "insh_20",
+    "type": "hadith",
+    "reference": "Buhârî & Müslim",
+    "image": "",
+    "arabic": "",
+    "translations": {
+      "tr": {
+        "text": "Zenginlik mal çokluğu değil, gönül tokluğudur."
+      },
+      "en": {
+        "text": "Richness is not having many possessions; richness is contentment of the soul."
+      }
+    }
+  },
+  {
+    "id": "insh_21",
+    "type": "hadith",
+    "reference": "Müslim",
+    "image": "",
+    "arabic": "",
+    "translations": {
+      "tr": {
+        "text": "Kim bir kötülük görürse eliyle düzeltsin; gücü yetmezse diliyle; ona da gücü yetmezse kalbiyle buğzetsin."
+      },
+      "en": {
+        "text": "Whoever sees an evil, let him change it with his hand; if unable, with his tongue; if unable, with his heart."
+      }
+    }
+  },
+  {
+    "id": "insh_22",
+    "type": "hadith",
+    "reference": "Müslim",
+    "image": "",
+    "arabic": "",
+    "translations": {
+      "tr": {
+        "text": "Sadaka malı eksiltmez."
+      },
+      "en": {
+        "text": "Charity does not decrease wealth."
+      }
+    }
+  },
+  {
+    "id": "insh_23",
+    "type": "hadith",
+    "reference": "Tirmizî",
+    "image": "",
+    "arabic": "",
+    "translations": {
+      "tr": {
+        "text": "Kardeşine tebessüm etmen sadakadır."
+      },
+      "en": {
+        "text": "Smiling at your brother is charity."
+      }
+    }
+  },
+  {
+    "id": "insh_24",
+    "type": "hadith",
+    "reference": "Müslim",
+    "image": "",
+    "arabic": "",
+    "translations": {
+      "tr": {
+        "text": "Selamı aranızda yayınız."
+      },
+      "en": {
+        "text": "Spread the greeting of peace among you."
+      }
+    }
+  },
+  {
+    "id": "insh_25",
+    "type": "hadith",
+    "reference": "Hâkim",
+    "image": "",
+    "arabic": "",
+    "translations": {
+      "tr": {
+        "text": "Komşusu açken tok yatan bizden değildir."
+      },
+      "en": {
+        "text": "He is not of us who sleeps full while his neighbour is hungry."
+      }
+    }
+  },
+  {
+    "id": "insh_26",
+    "type": "hadith",
+    "reference": "İbn Mâce",
+    "image": "",
+    "arabic": "",
+    "translations": {
+      "tr": {
+        "text": "İlim öğrenmek her Müslümana farzdır."
+      },
+      "en": {
+        "text": "Seeking knowledge is an obligation upon every Muslim."
+      }
+    }
+  },
+  {
+    "id": "insh_27",
+    "type": "hadith",
+    "reference": "Müslim",
+    "image": "",
+    "arabic": "",
+    "translations": {
+      "tr": {
+        "text": "Kim ilim için yola çıkarsa Allah ona cennet yolunu kolaylaştırır."
+      },
+      "en": {
+        "text": "Whoever travels a path seeking knowledge, Allah makes easy for him a path to Paradise."
+      }
+    }
+  },
+  {
+    "id": "insh_28",
+    "type": "hadith",
+    "reference": "Buhârî",
+    "image": "",
+    "arabic": "",
+    "translations": {
+      "tr": {
+        "text": "Dünyada bir garip ya da bir yolcu gibi ol."
+      },
+      "en": {
+        "text": "Be in this world as if you were a stranger or a traveller."
+      }
+    }
+  },
+  {
+    "id": "insh_29",
+    "type": "hadith",
+    "reference": "Buhârî & Müslim",
+    "image": "",
+    "arabic": "",
+    "translations": {
+      "tr": {
+        "text": "İman yetmiş küsur şubedir; hayâ da imandan bir şubedir."
+      },
+      "en": {
+        "text": "Faith has seventy-odd branches, and modesty is a branch of faith."
+      }
+    }
+  },
+  {
+    "id": "insh_30",
+    "type": "hadith",
+    "reference": "Müslim",
+    "image": "",
+    "arabic": "",
+    "translations": {
+      "tr": {
+        "text": "Birbirinize haset etmeyin, birbirinize sırt çevirmeyin; ey Allah'ın kulları, kardeş olun."
+      },
+      "en": {
+        "text": "Do not envy one another, do not turn away from one another; O servants of Allah, be brothers."
+      }
+    }
+  },
+  {
+    "id": "insd_2_250",
+    "type": "dua",
+    "reference": "Bakara 250",
+    "image": "",
+    "arabic": "وَلَمَّا بَرَزُوا۟ لِجَالُوتَ وَجُنُودِهِۦ قَالُوا۟ رَبَّنَآ أَفْرِغْ عَلَيْنَا صَبْرًۭا وَثَبِّتْ أَقْدَامَنَا وَٱنصُرْنَا عَلَى ٱلْقَوْمِ ٱلْكَٰفِرِينَ",
+    "translations": {
+      "tr": {
+        "text": "Calut ve ordusuna karşı çıktıklarında, \"Rabbimiz! Bize sabır ver, sebatımızı artır, inkar eden millete karşı bize yardım et\" dediler."
+      },
+      "en": {
+        "text": "And when they went forth to [face] Goliath and his soldiers, they said, \"Our Lord, pour upon us patience and plant firmly our feet and give us victory over the disbelieving people.\""
+      }
+    }
+  },
+  {
+    "id": "insd_3_16",
+    "type": "dua",
+    "reference": "Âl-i İmrân 16",
+    "image": "",
+    "arabic": "ٱلَّذِينَ يَقُولُونَ رَبَّنَآ إِنَّنَآ ءَامَنَّا فَٱغْفِرْ لَنَا ذُنُوبَنَا وَقِنَا عَذَابَ ٱلنَّارِ",
+    "translations": {
+      "tr": {
+        "text": "Onlar ki, \"Rabbimiz! Biz şüphesiz inandık, bunun için günahlarımızı bize bağışla ve bizi ateşin azabından koru\" diyen, sabreden, doğru olan, gönülden kulluk eden, hayra sarfeden ve seher vakitlerinde bağışlanma dileyenlerdir."
+      },
+      "en": {
+        "text": "Those who say, \"Our Lord, indeed we have believed, so forgive us our sins and protect us from the punishment of the Fire,\""
+      }
+    }
+  },
+  {
+    "id": "insd_3_147",
+    "type": "dua",
+    "reference": "Âl-i İmrân 147",
+    "image": "",
+    "arabic": "وَمَا كَانَ قَوْلَهُمْ إِلَّآ أَن قَالُوا۟ رَبَّنَا ٱغْفِرْ لَنَا ذُنُوبَنَا وَإِسْرَافَنَا فِىٓ أَمْرِنَا وَثَبِّتْ أَقْدَامَنَا وَٱنصُرْنَا عَلَى ٱلْقَوْمِ ٱلْكَٰفِرِينَ",
+    "translations": {
+      "tr": {
+        "text": "Dedikleri ancak şu idi: \"Rabbimiz! Günahlarımızı, işimizdeki aşırılıklarımızı bize bağışla, sebatımızı arttır, inkarcı topluluğa karşı bize yardım et\"."
+      },
+      "en": {
+        "text": "And their words were not but that they said, \"Our Lord, forgive us our sins and the excess [committed] in our affairs and plant firmly our feet and give us victory over the disbelieving people.\""
+      }
+    }
+  },
+  {
+    "id": "insd_3_191",
+    "type": "dua",
+    "reference": "Âl-i İmrân 191",
+    "image": "",
+    "arabic": "ٱلَّذِينَ يَذْكُرُونَ ٱللَّهَ قِيَٰمًۭا وَقُعُودًۭا وَعَلَىٰ جُنُوبِهِمْ وَيَتَفَكَّرُونَ فِى خَلْقِ ٱلسَّمَٰوَٰتِ وَٱلْأَرْضِ رَبَّنَا مَا خَلَقْتَ هَٰذَا بَٰطِلًۭا سُبْحَٰنَكَ فَقِنَا عَذَابَ ٱلنَّارِ",
+    "translations": {
+      "tr": {
+        "text": "Onlar ayakta iken, otururken, yan yatarken Allah'ı anarlar; göklerin ve yerin yaratılışını düşünürler: \"Rabbimiz! Sen bunu boşuna yaratmadın, Sen münezzehsin. Bizi ateşin azabından koru\""
+      },
+      "en": {
+        "text": "Who remember Allah while standing or sitting or [lying] on their sides and give thought to the creation of the heavens and the earth, [saying], \"Our Lord, You did not create this aimlessly; exalted are You [above such a thing]; then protect us from the punishment of the Fire."
+      }
+    }
+  },
+  {
+    "id": "insd_3_193",
+    "type": "dua",
+    "reference": "Âl-i İmrân 193",
+    "image": "",
+    "arabic": "رَّبَّنَآ إِنَّنَا سَمِعْنَا مُنَادِيًۭا يُنَادِى لِلْإِيمَٰنِ أَنْ ءَامِنُوا۟ بِرَبِّكُمْ فَـَٔامَنَّا ۚ رَبَّنَا فَٱغْفِرْ لَنَا ذُنُوبَنَا وَكَفِّرْ عَنَّا سَيِّـَٔاتِنَا وَتَوَفَّنَا مَعَ ٱلْأَبْرَارِ",
+    "translations": {
+      "tr": {
+        "text": "\"Rabbimiz! Doğrusu biz Rabbinize inanın diye inanmaya çağıran bir çağırıcıyı işittik de iman ettik. Rabbimiz! Günahlarımızı bize bağışla, kötülüklerimizi ört, canımızi iyilerle beraber al\"."
+      },
+      "en": {
+        "text": "Our Lord, indeed we have heard a caller calling to faith, [saying], 'Believe in your Lord,' and we have believed. Our Lord, so forgive us our sins and remove from us our misdeeds and cause us to die with the righteous."
+      }
+    }
+  },
+  {
+    "id": "insd_7_126",
+    "type": "dua",
+    "reference": "A'râf 126",
+    "image": "",
+    "arabic": "وَمَا تَنقِمُ مِنَّآ إِلَّآ أَنْ ءَامَنَّا بِـَٔايَٰتِ رَبِّنَا لَمَّا جَآءَتْنَا ۚ رَبَّنَآ أَفْرِغْ عَلَيْنَا صَبْرًۭا وَتَوَفَّنَا مُسْلِمِينَ",
+    "translations": {
+      "tr": {
+        "text": "Onlar da: \"Doğrusu biz ancak Rabbimize döneriz. Rabbimizin ayetleri gelince, onlara inanmamızdan ötürü bizden öç alıyorsun. Rabbimiz! Bize sabır ver ve canımızı müslim olarak al\" dediler."
+      },
+      "en": {
+        "text": "And you do not resent us except because we believed in the signs of our Lord when they came to us. Our Lord, pour upon us patience and let us die as Muslims [in submission to You].\""
+      }
+    }
+  },
+  {
+    "id": "insd_10_85",
+    "type": "dua",
+    "reference": "Yûnus 85",
+    "image": "",
+    "arabic": "فَقَالُوا۟ عَلَى ٱللَّهِ تَوَكَّلْنَا رَبَّنَا لَا تَجْعَلْنَا فِتْنَةًۭ لِّلْقَوْمِ ٱلظَّٰلِمِينَ",
+    "translations": {
+      "tr": {
+        "text": "\"Allah'a güvendik; Ey Rabbimiz! Zalim bir millet ile bizi sınama, rahmetinle bizi kafirlerden kurtar\" dediler."
+      },
+      "en": {
+        "text": "So they said, \"Upon Allah do we rely. Our Lord, make us not [objects of] trial for the wrongdoing people"
+      }
+    }
+  },
+  {
+    "id": "insd_12_101",
+    "type": "dua",
+    "reference": "Yûsuf 101",
+    "image": "",
+    "arabic": "۞ رَبِّ قَدْ ءَاتَيْتَنِى مِنَ ٱلْمُلْكِ وَعَلَّمْتَنِى مِن تَأْوِيلِ ٱلْأَحَادِيثِ ۚ فَاطِرَ ٱلسَّمَٰوَٰتِ وَٱلْأَرْضِ أَنتَ وَلِىِّۦ فِى ٱلدُّنْيَا وَٱلْءَاخِرَةِ ۖ تَوَفَّنِى مُسْلِمًۭا وَأَلْحِقْنِى بِٱلصَّٰلِحِينَ",
+    "translations": {
+      "tr": {
+        "text": "\"Rabbim! Bana hükümranlık verdin, rüyaların yorumunu öğrettin. Ey göklerin ve yerin yaradanı! Dünya ve ahirette işlerimi yoluna koyan sensin; benim canımı müslüman olarak al ve beni iyilere kat.\""
+      },
+      "en": {
+        "text": "My Lord, You have given me [something] of sovereignty and taught me of the interpretation of dreams. Creator of the heavens and earth, You are my protector in this world and in the Hereafter. Cause me to die a Muslim and join me with the righteous.\""
+      }
+    }
+  },
+  {
+    "id": "insd_14_41",
+    "type": "dua",
+    "reference": "İbrâhîm 41",
+    "image": "",
+    "arabic": "رَبَّنَا ٱغْفِرْ لِى وَلِوَٰلِدَىَّ وَلِلْمُؤْمِنِينَ يَوْمَ يَقُومُ ٱلْحِسَابُ",
+    "translations": {
+      "tr": {
+        "text": "\"Rabbimiz! Hesap görülecek günde, beni, anamı babamı ve inananları bağışla.\""
+      },
+      "en": {
+        "text": "Our Lord, forgive me and my parents and the believers the Day the account is established.\""
+      }
+    }
+  },
+  {
+    "id": "insd_21_89",
+    "type": "dua",
+    "reference": "Enbiyâ 89",
+    "image": "",
+    "arabic": "وَزَكَرِيَّآ إِذْ نَادَىٰ رَبَّهُۥ رَبِّ لَا تَذَرْنِى فَرْدًۭا وَأَنتَ خَيْرُ ٱلْوَٰرِثِينَ",
+    "translations": {
+      "tr": {
+        "text": "Zekeriya da: \"Rabbim! Beni tek Başıma bırakma, Sen varislerin en hayırlısısın\" diye nida etmişti."
+      },
+      "en": {
+        "text": "And [mention] Zechariah, when he called to his Lord, \"My Lord, do not leave me alone [with no heir], while you are the best of inheritors.\""
+      }
+    }
+  },
+  {
+    "id": "insd_27_19",
+    "type": "dua",
+    "reference": "Neml 19",
+    "image": "",
+    "arabic": "فَتَبَسَّمَ ضَاحِكًۭا مِّن قَوْلِهَا وَقَالَ رَبِّ أَوْزِعْنِىٓ أَنْ أَشْكُرَ نِعْمَتَكَ ٱلَّتِىٓ أَنْعَمْتَ عَلَىَّ وَعَلَىٰ وَٰلِدَىَّ وَأَنْ أَعْمَلَ صَٰلِحًۭا تَرْضَىٰهُ وَأَدْخِلْنِى بِرَحْمَتِكَ فِى عِبَادِكَ ٱلصَّٰلِحِينَ",
+    "translations": {
+      "tr": {
+        "text": "Süleyman, onun sözüne hafifçe güldü ve: \"Rabbim! Bana ve ana babama verdiğin nimete şükürde, hoşnut olacağın işi yapmakta beni muvaffak kıl. Rahmetinle, beni iyi kullarının arasına koy\" dedi."
+      },
+      "en": {
+        "text": "So [Solomon] smiled, amused at her speech, and said, \"My Lord, enable me to be grateful for Your favor which You have bestowed upon me and upon my parents and to do righteousness of which You approve. And admit me by Your mercy into [the ranks of] Your righteous servants.\""
+      }
+    }
+  },
+  {
+    "id": "insd_28_24",
+    "type": "dua",
+    "reference": "Kasas 24",
+    "image": "",
+    "arabic": "فَسَقَىٰ لَهُمَا ثُمَّ تَوَلَّىٰٓ إِلَى ٱلظِّلِّ فَقَالَ رَبِّ إِنِّى لِمَآ أَنزَلْتَ إِلَىَّ مِنْ خَيْرٍۢ فَقِيرٌۭ",
+    "translations": {
+      "tr": {
+        "text": "Musa onların davarlarını suladı. Sonra gölgeye çekildi: \"Rabbim! Doğrusu bana indireceğin hayra muhtacım\" dedi."
+      },
+      "en": {
+        "text": "So he watered [their flocks] for them; then he went back to the shade and said, \"My Lord, indeed I am, for whatever good You would send down to me, in need.\""
+      }
+    }
+  },
+  {
+    "id": "insd_40_8",
+    "type": "dua",
+    "reference": "Gâfir 8",
+    "image": "",
+    "arabic": "رَبَّنَا وَأَدْخِلْهُمْ جَنَّٰتِ عَدْنٍ ٱلَّتِى وَعَدتَّهُمْ وَمَن صَلَحَ مِنْ ءَابَآئِهِمْ وَأَزْوَٰجِهِمْ وَذُرِّيَّٰتِهِمْ ۚ إِنَّكَ أَنتَ ٱلْعَزِيزُ ٱلْحَكِيمُ",
+    "translations": {
+      "tr": {
+        "text": "\"Rabbimiz! Müminleri ve babalarından, eşlerinden, soylarından iyi olanları, kendilerine söz verdiğin Adn cennetlerine koy; şüphesiz güçlü olan, Hakim olan ancak Sensin\""
+      },
+      "en": {
+        "text": "Our Lord, and admit them to gardens of perpetual residence which You have promised them and whoever was righteous among their fathers, their spouses and their offspring. Indeed, it is You who is the Exalted in Might, the Wise."
+      }
+    }
+  },
+  {
+    "id": "insd_59_10",
+    "type": "dua",
+    "reference": "Haşr 10",
+    "image": "",
+    "arabic": "وَٱلَّذِينَ جَآءُو مِنۢ بَعْدِهِمْ يَقُولُونَ رَبَّنَا ٱغْفِرْ لَنَا وَلِإِخْوَٰنِنَا ٱلَّذِينَ سَبَقُونَا بِٱلْإِيمَٰنِ وَلَا تَجْعَلْ فِى قُلُوبِنَا غِلًّۭا لِّلَّذِينَ ءَامَنُوا۟ رَبَّنَآ إِنَّكَ رَءُوفٌۭ رَّحِيمٌ",
+    "translations": {
+      "tr": {
+        "text": "Onlardan sonra gelenler: \"Rabbimiz! Bizi ve bizden önce inanmış olan kardeşlerimizi bağışla; kalbimizde müminlere karşı kin bırakma; Rabbimiz! Şüphesiz Sen şefkatlisin, merhametlisin\" derler."
+      },
+      "en": {
+        "text": "And [there is a share for] those who came after them, saying, \"Our Lord, forgive us and our brothers who preceded us in faith and put not in our hearts [any] resentment toward those who have believed. Our Lord, indeed You are Kind and Merciful.\""
+      }
+    }
+  },
+  {
+    "id": "insd_3_38",
+    "type": "dua",
+    "reference": "Âl-i İmrân 38",
+    "image": "",
+    "arabic": "هُنَالِكَ دَعَا زَكَرِيَّا رَبَّهُۥ ۖ قَالَ رَبِّ هَبْ لِى مِن لَّدُنكَ ذُرِّيَّةًۭ طَيِّبَةً ۖ إِنَّكَ سَمِيعُ ٱلدُّعَآءِ",
+    "translations": {
+      "tr": {
+        "text": "Orada Zekeriya Rabbine dua etti: \"Ya Rabbi! Bana kendi katından temiz bir soy bahşet, doğrusu Sen duayı işitirsin\"."
+      },
+      "en": {
+        "text": "At that, Zechariah called upon his Lord, saying, \"My Lord, grant me from Yourself a good offspring. Indeed, You are the Hearer of supplication.\""
+      }
+    }
+  }
+]

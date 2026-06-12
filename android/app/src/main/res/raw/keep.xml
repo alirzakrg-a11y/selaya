@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- The adhan/chime sounds are referenced only by name at runtime
+     (RawResourceAndroidNotificationSound → Resources.getIdentifier), so the
+     resource shrinker can't tell they're used. Force-keep every raw resource so
+     prayer notifications can find their sound and actually schedule. -->
+<resources xmlns:tools="http://schemas.android.com/tools"
+    tools:keep="@raw/*" />

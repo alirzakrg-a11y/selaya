@@ -1,0 +1,372 @@
+[
+  {
+    "ayah": 1,
+    "arabic": "حمٓ",
+    "transliteration": "Ha mim",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/045001.mp3",
+    "translations": {
+      "tr": "Ha, Mim.",
+      "en": "Ha, Meem."
+    }
+  },
+  {
+    "ayah": 2,
+    "arabic": "تَنزِيلُ ٱلْكِتَٰبِ مِنَ ٱللَّهِ ٱلْعَزِيزِ ٱلْحَكِيمِ",
+    "transliteration": "Tenzilul kitabi minallahil azizil hakim",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/045002.mp3",
+    "translations": {
+      "tr": "Kitap'ın indirilmesi, güçlü ve Hakim olan Allah katındandır.",
+      "en": "The revelation of the Book is from Allah, the Exalted in Might, the Wise."
+    }
+  },
+  {
+    "ayah": 3,
+    "arabic": "إِنَّ فِى ٱلسَّمَٰوَٰتِ وَٱلْأَرْضِ لَءَايَٰتٍۢ لِّلْمُؤْمِنِينَ",
+    "transliteration": "İnne fis semavati vel ardı le ayatin lil mu'minin",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/045003.mp3",
+    "translations": {
+      "tr": "Göklerde ve yerde inananlara nice dersler vardır.",
+      "en": "Indeed, within the heavens and earth are signs for the believers."
+    }
+  },
+  {
+    "ayah": 4,
+    "arabic": "وَفِى خَلْقِكُمْ وَمَا يَبُثُّ مِن دَآبَّةٍ ءَايَٰتٌۭ لِّقَوْمٍۢ يُوقِنُونَ",
+    "transliteration": "Ve fi halkıkum ve ma yebussu min dabbetin ayatun li kavmin yukınun",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/045004.mp3",
+    "translations": {
+      "tr": "Ey insanlar! Sizin yaratılmanızda ve canlıların yeryüzünde yayılmasında, kesin olarak inanan kimseler için ibretler vardır.",
+      "en": "And in the creation of yourselves and what He disperses of moving creatures are signs for people who are certain [in faith]."
+    }
+  },
+  {
+    "ayah": 5,
+    "arabic": "وَٱخْتِلَٰفِ ٱلَّيْلِ وَٱلنَّهَارِ وَمَآ أَنزَلَ ٱللَّهُ مِنَ ٱلسَّمَآءِ مِن رِّزْقٍۢ فَأَحْيَا بِهِ ٱلْأَرْضَ بَعْدَ مَوْتِهَا وَتَصْرِيفِ ٱلرِّيَٰحِ ءَايَٰتٌۭ لِّقَوْمٍۢ يَعْقِلُونَ",
+    "transliteration": "Vahtilafil leyli ven nehari ve ma enzelallahu mines semai min rızkın fe ahya bihil arda ba'de mevtiha ve tasrifir riyahı ayatun li kavmin ya'kılun",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/045005.mp3",
+    "translations": {
+      "tr": "Gece ile gündüzün birbiri ardından gelmesinde, gökten, Allah'ın rızık vermek için yağmur indirip, yeri onunla, ölümünden sonra diriltmesinde, rüzgarları yönetmesinde, akleden kimseler için dersler vardır.",
+      "en": "And [in] the alternation of night and day and [in] what Allah sends down from the sky of provision and gives life thereby to the earth after its lifelessness and [in His] directing of the winds are signs for a people who reason."
+    }
+  },
+  {
+    "ayah": 6,
+    "arabic": "تِلْكَ ءَايَٰتُ ٱللَّهِ نَتْلُوهَا عَلَيْكَ بِٱلْحَقِّ ۖ فَبِأَىِّ حَدِيثٍۭ بَعْدَ ٱللَّهِ وَءَايَٰتِهِۦ يُؤْمِنُونَ",
+    "transliteration": "Tilke ayatullahi netluha aleyke bil hakk, fe bi eyyi hadisin ba'dallahi ve ayatihi yu'minun",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/045006.mp3",
+    "translations": {
+      "tr": "İşte sana gerçek olarak anlattığımız bunlar, Allah'ın varlığının delilleridir. Artık Allah'tan ve O'nun delillerinden sonra hangi söze inanırlar?",
+      "en": "These are the verses of Allah which We recite to you in truth. Then in what statement after Allah and His verses will they believe?"
+    }
+  },
+  {
+    "ayah": 7,
+    "arabic": "وَيْلٌۭ لِّكُلِّ أَفَّاكٍ أَثِيمٍۢ",
+    "transliteration": "Veylun li kulli effakin esim",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/045007.mp3",
+    "translations": {
+      "tr": "Kendine okunan Allah'ın ayetlerini dinleyip, sonra, onları hiç duymamış gibi büyüklük taslamakta direnen, yalancı ve günahkar kişinin vay haline! Ona can yakıcı bir azap müjdele.",
+      "en": "Woe to every sinful liar"
+    }
+  },
+  {
+    "ayah": 8,
+    "arabic": "يَسْمَعُ ءَايَٰتِ ٱللَّهِ تُتْلَىٰ عَلَيْهِ ثُمَّ يُصِرُّ مُسْتَكْبِرًۭا كَأَن لَّمْ يَسْمَعْهَا ۖ فَبَشِّرْهُ بِعَذَابٍ أَلِيمٍۢ",
+    "transliteration": "Yesmeu ayatillahi tutla aleyhi summe yusırru mustekbiren ke en lem yesma'ha, fe beşşirhu bi azabin elim",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/045008.mp3",
+    "translations": {
+      "tr": "Kendine okunan Allah'ın ayetlerini dinleyip, sonra, onları hiç duymamış gibi büyüklük taslamakta direnen, yalancı ve günahkar kişinin vay haline! Ona can yakıcı bir azap müjdele.",
+      "en": "Who hears the verses of Allah recited to him, then persists arrogantly as if he had not heard them. So give him tidings of a painful punishment."
+    }
+  },
+  {
+    "ayah": 9,
+    "arabic": "وَإِذَا عَلِمَ مِنْ ءَايَٰتِنَا شَيْـًٔا ٱتَّخَذَهَا هُزُوًا ۚ أُو۟لَٰٓئِكَ لَهُمْ عَذَابٌۭ مُّهِينٌۭ",
+    "transliteration": "Ve iza alime min ayatina şey'enittehazeha huzuva, ulaike lehum azabun muhin",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/045009.mp3",
+    "translations": {
+      "tr": "Ayetlerimizden bir şey öğrendiğinde onu alaya alır. İşte bunlara alçaltıcı bir azap ve ardından da cehennem vardır. Kazandıkları şeyler de, Allah'ı bırakıp edindikleri dostlar da onlara bir fayda vermez. Büyük azap onlaradır.",
+      "en": "And when he knows anything of Our verses, he takes them in ridicule. Those will have a humiliating punishment."
+    }
+  },
+  {
+    "ayah": 10,
+    "arabic": "مِّن وَرَآئِهِمْ جَهَنَّمُ ۖ وَلَا يُغْنِى عَنْهُم مَّا كَسَبُوا۟ شَيْـًۭٔا وَلَا مَا ٱتَّخَذُوا۟ مِن دُونِ ٱللَّهِ أَوْلِيَآءَ ۖ وَلَهُمْ عَذَابٌ عَظِيمٌ",
+    "transliteration": "Min veraihim cehennem, ve la yugni anhum ma kesebu şey'en ve la mattehazu min dunillahi evliyae, ve lehum azabun azim",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/045010.mp3",
+    "translations": {
+      "tr": "Ayetlerimizden bir şey öğrendiğinde onu alaya alır. İşte bunlara alçaltıcı bir azap ve ardından da cehennem vardır. Kazandıkları şeyler de, Allah'ı bırakıp edindikleri dostlar da onlara bir fayda vermez. Büyük azap onlaradır.",
+      "en": "Before them is Hell, and what they had earned will not avail them at all nor what they had taken besides Allah as allies. And they will have a great punishment."
+    }
+  },
+  {
+    "ayah": 11,
+    "arabic": "هَٰذَا هُدًۭى ۖ وَٱلَّذِينَ كَفَرُوا۟ بِـَٔايَٰتِ رَبِّهِمْ لَهُمْ عَذَابٌۭ مِّن رِّجْزٍ أَلِيمٌ",
+    "transliteration": "Haza huda, vellezine keferu bi ayati rabbihim lehum azabun min riczin elim",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/045011.mp3",
+    "translations": {
+      "tr": "İşte bu Kuran doğruluk rehberidir. Rablerinin ayetlerini inkar edenlere, onlara, tiksindiren, can yakan bir azap vardır.",
+      "en": "This [Qur'an] is guidance. And those who have disbelieved in the verses of their Lord will have a painful punishment of foul nature."
+    }
+  },
+  {
+    "ayah": 12,
+    "arabic": "۞ ٱللَّهُ ٱلَّذِى سَخَّرَ لَكُمُ ٱلْبَحْرَ لِتَجْرِىَ ٱلْفُلْكُ فِيهِ بِأَمْرِهِۦ وَلِتَبْتَغُوا۟ مِن فَضْلِهِۦ وَلَعَلَّكُمْ تَشْكُرُونَ",
+    "transliteration": "Allahullezi sahhare lekumul bahre li tecriyel fulku fihi bi emrihi ve li tehtegu min fadlihi ve leallekum teşkurun",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/045012.mp3",
+    "translations": {
+      "tr": "Emri gereğince denizde yüzmek üzere gemileri, lütfedip verdiği rızkı aramanız için denizi buyruğunuz altına veren Allah'tır, belki artık şükredersiniz.",
+      "en": "It is Allah who subjected to you the sea so that ships may sail upon it by His command and that you may seek of His bounty; and perhaps you will be grateful."
+    }
+  },
+  {
+    "ayah": 13,
+    "arabic": "وَسَخَّرَ لَكُم مَّا فِى ٱلسَّمَٰوَٰتِ وَمَا فِى ٱلْأَرْضِ جَمِيعًۭا مِّنْهُ ۚ إِنَّ فِى ذَٰلِكَ لَءَايَٰتٍۢ لِّقَوْمٍۢ يَتَفَكَّرُونَ",
+    "transliteration": "Ve sahhare lekum ma fis semavati ve ma fil ardı cemian minh, inne fi zalike le ayatin li kavmin yetefekkerun",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/045013.mp3",
+    "translations": {
+      "tr": "Göklerde olanları, yerde olanları, hepsini sizin buyruğunuz altına vermiştir. Doğrusu bunlarda, düşünen kimseler için dersler vardır.",
+      "en": "And He has subjected to you whatever is in the heavens and whatever is on the earth - all from Him. Indeed in that are signs for a people who give thought."
+    }
+  },
+  {
+    "ayah": 14,
+    "arabic": "قُل لِّلَّذِينَ ءَامَنُوا۟ يَغْفِرُوا۟ لِلَّذِينَ لَا يَرْجُونَ أَيَّامَ ٱللَّهِ لِيَجْزِىَ قَوْمًۢا بِمَا كَانُوا۟ يَكْسِبُونَ",
+    "transliteration": "Kul lillezine amenu yagfiru lillezine la yercune eyyamallahi li yecziye kavmen bi ma kanu yeksibun",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/045014.mp3",
+    "translations": {
+      "tr": "İnanmışlara de ki: Allah'ın bir milleti yaptıklarına karşılık cezalandıracağı günlerin geleceğini ummayanları şimdilik bağışlasınlar.",
+      "en": "Say, [O Muhammad], to those who have believed that they [should] forgive those who expect not the days of Allah so that He may recompense a people for what they used to earn."
+    }
+  },
+  {
+    "ayah": 15,
+    "arabic": "مَنْ عَمِلَ صَٰلِحًۭا فَلِنَفْسِهِۦ ۖ وَمَنْ أَسَآءَ فَعَلَيْهَا ۖ ثُمَّ إِلَىٰ رَبِّكُمْ تُرْجَعُونَ",
+    "transliteration": "Men amile salihan fe li nefsih, ve men esae fe aleyha summe ila rabbikum turceun",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/045015.mp3",
+    "translations": {
+      "tr": "Kim yararlı iş işlerse kendinedir; kim kötülük yaparsa kendi aleyhinedir. Sonra Rabbinize döndürülürsünüz.",
+      "en": "Whoever does a good deed - it is for himself; and whoever does evil - it is against the self. Then to your Lord you will be returned."
+    }
+  },
+  {
+    "ayah": 16,
+    "arabic": "وَلَقَدْ ءَاتَيْنَا بَنِىٓ إِسْرَٰٓءِيلَ ٱلْكِتَٰبَ وَٱلْحُكْمَ وَٱلنُّبُوَّةَ وَرَزَقْنَٰهُم مِّنَ ٱلطَّيِّبَٰتِ وَفَضَّلْنَٰهُمْ عَلَى ٱلْعَٰلَمِينَ",
+    "transliteration": "Ve lekad ateyna beni israilel kitabe vel hukme ven nubuvvete ve rezaknahum minet tayyibati ve faddalnahum alel alemin",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/045016.mp3",
+    "translations": {
+      "tr": "And olsun ki Biz, İsrailoğullarına Kitap, hüküm ve peygamberlik verdik; onları temiz şeylerle rızıklandırdık; onları dünyalara üstün kıldık.",
+      "en": "And We did certainly give the Children of Israel the Scripture and judgement and prophethood, and We provided them with good things and preferred them over the worlds."
+    }
+  },
+  {
+    "ayah": 17,
+    "arabic": "وَءَاتَيْنَٰهُم بَيِّنَٰتٍۢ مِّنَ ٱلْأَمْرِ ۖ فَمَا ٱخْتَلَفُوٓا۟ إِلَّا مِنۢ بَعْدِ مَا جَآءَهُمُ ٱلْعِلْمُ بَغْيًۢا بَيْنَهُمْ ۚ إِنَّ رَبَّكَ يَقْضِى بَيْنَهُمْ يَوْمَ ٱلْقِيَٰمَةِ فِيمَا كَانُوا۟ فِيهِ يَخْتَلِفُونَ",
+    "transliteration": "Ve ateynahum beyyinatin minel emr, fe mahtelefu illa min ba'di ma caehumul ilmu bagyen beynehum, inne rabbeke yakdi beynehum yevmel kıyameti fi ma kanu fihi yahtelifun",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/045017.mp3",
+    "translations": {
+      "tr": "Din konusunda, onlara belgeler verdik; ancak, kendilerine ilim geldikten sonra birbirini çekememezlikten ayrılığa düştüler. Rabbin kıyamet günü, ayrılığa düştükleri şeyler hakkında şüphesiz aralarında hükmedecektir.",
+      "en": "And We gave them clear proofs of the matter [of religion]. And they did not differ except after knowledge had come to them - out of jealous animosity between themselves. Indeed, your Lord will judge between them on the Day of Resurrection concerning that over which they used to differ."
+    }
+  },
+  {
+    "ayah": 18,
+    "arabic": "ثُمَّ جَعَلْنَٰكَ عَلَىٰ شَرِيعَةٍۢ مِّنَ ٱلْأَمْرِ فَٱتَّبِعْهَا وَلَا تَتَّبِعْ أَهْوَآءَ ٱلَّذِينَ لَا يَعْلَمُونَ",
+    "transliteration": "Summe cealnake ala şeriatin minel emri fettebi' ha ve la tettebi' ehvaellezine la ya'lemun",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/045018.mp3",
+    "translations": {
+      "tr": "Sonra seni de din konusunda bir şeriat sahibi kıldık, ona uy; bilmeyenlerin heveslerine uyma.",
+      "en": "Then We put you, [O Muhammad], on an ordained way concerning the matter [of religion]; so follow it and do not follow the inclinations of those who do not know."
+    }
+  },
+  {
+    "ayah": 19,
+    "arabic": "إِنَّهُمْ لَن يُغْنُوا۟ عَنكَ مِنَ ٱللَّهِ شَيْـًۭٔا ۚ وَإِنَّ ٱلظَّٰلِمِينَ بَعْضُهُمْ أَوْلِيَآءُ بَعْضٍۢ ۖ وَٱللَّهُ وَلِىُّ ٱلْمُتَّقِينَ",
+    "transliteration": "İnnehum len yugnu anke minallahi şey'a, ve innez zalimine ba'duhum evliyau ba'd, vallahu veliyyul muttekin",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/045019.mp3",
+    "translations": {
+      "tr": "Şüphesiz onlar, seni Allah'tan müstağni kılamazlar. Doğrusu zalimler birbirlerinin dostudurlar. Sakınanların dostu ise Allah'tır.",
+      "en": "Indeed, they will never avail you against Allah at all. And indeed, the wrongdoers are allies of one another; but Allah is the protector of the righteous."
+    }
+  },
+  {
+    "ayah": 20,
+    "arabic": "هَٰذَا بَصَٰٓئِرُ لِلنَّاسِ وَهُدًۭى وَرَحْمَةٌۭ لِّقَوْمٍۢ يُوقِنُونَ",
+    "transliteration": "Haza basairu lin nasi ve huden ve rahmetun li kavmin yukınun",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/045020.mp3",
+    "translations": {
+      "tr": "Bu Kuran, insanlar için açık belgeler; kesin olarak inanan millet için doğruluk rehberi ve rahmettir.",
+      "en": "This [Qur'an] is enlightenment for mankind and guidance and mercy for a people who are certain [in faith]."
+    }
+  },
+  {
+    "ayah": 21,
+    "arabic": "أَمْ حَسِبَ ٱلَّذِينَ ٱجْتَرَحُوا۟ ٱلسَّيِّـَٔاتِ أَن نَّجْعَلَهُمْ كَٱلَّذِينَ ءَامَنُوا۟ وَعَمِلُوا۟ ٱلصَّٰلِحَٰتِ سَوَآءًۭ مَّحْيَاهُمْ وَمَمَاتُهُمْ ۚ سَآءَ مَا يَحْكُمُونَ",
+    "transliteration": "Em hasibellezinecterahus seyyiati en nec'alehum kellezine amenu ve amilus salihati sevaen mahyahum ve mematuhum, sae ma yahkumun",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/045021.mp3",
+    "translations": {
+      "tr": "Yoksa, kötülük işleyen kimseler, ölümlerinde ve diriliklerinde kendilerini, inanıp yararlı iş işleyen kimseler ile bir mi tutacağımızı sandılar? Ne kötü hüküm veriyorlar!",
+      "en": "Or do those who commit evils think We will make them like those who have believed and done righteous deeds - [make them] equal in their life and their death? Evil is that which they judge."
+    }
+  },
+  {
+    "ayah": 22,
+    "arabic": "وَخَلَقَ ٱللَّهُ ٱلسَّمَٰوَٰتِ وَٱلْأَرْضَ بِٱلْحَقِّ وَلِتُجْزَىٰ كُلُّ نَفْسٍۭ بِمَا كَسَبَتْ وَهُمْ لَا يُظْلَمُونَ",
+    "transliteration": "Ve halakallahus semavati vel arda bil hakkı ve li tucza kullu nefsin bima kesebet ve hum la yuzlemun",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/045022.mp3",
+    "translations": {
+      "tr": "Allah gökleri ve yeri gerçekle yaratmıştır; her cana, kazandığının karşılığı verilir, onlara zulmedilmez.",
+      "en": "And Allah created the heavens and earth in truth and so that every soul may be recompensed for what it has earned, and they will not be wronged."
+    }
+  },
+  {
+    "ayah": 23,
+    "arabic": "أَفَرَءَيْتَ مَنِ ٱتَّخَذَ إِلَٰهَهُۥ هَوَىٰهُ وَأَضَلَّهُ ٱللَّهُ عَلَىٰ عِلْمٍۢ وَخَتَمَ عَلَىٰ سَمْعِهِۦ وَقَلْبِهِۦ وَجَعَلَ عَلَىٰ بَصَرِهِۦ غِشَٰوَةًۭ فَمَن يَهْدِيهِ مِنۢ بَعْدِ ٱللَّهِ ۚ أَفَلَا تَذَكَّرُونَ",
+    "transliteration": "E fe reeyte menittehaze ilahehu hevahu ve edallehullahu ala ilmin ve hateme ala sem'ihi ve kalbihi ve ceale ala basarihi gışaveh, fe men yehdihi min ba'dillah, e fe la tezekkerun",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/045023.mp3",
+    "translations": {
+      "tr": "Heva ve hevesini tanrı edinen, bilgisi olduğu halde Allah'ın şaşırttığı, kulağını ve kalbini mühürlediği, gözünü perdelediği kimseyi gördün mü? Onu Allah'tan başka kim doğru yola eriştirebilir? Ey insanlar! Anlamaz mısınız?",
+      "en": "Have you seen he who has taken as his god his [own] desire, and Allah has sent him astray due to knowledge and has set a seal upon his hearing and his heart and put over his vision a veil? So who will guide him after Allah? Then will you not be reminded?"
+    }
+  },
+  {
+    "ayah": 24,
+    "arabic": "وَقَالُوا۟ مَا هِىَ إِلَّا حَيَاتُنَا ٱلدُّنْيَا نَمُوتُ وَنَحْيَا وَمَا يُهْلِكُنَآ إِلَّا ٱلدَّهْرُ ۚ وَمَا لَهُم بِذَٰلِكَ مِنْ عِلْمٍ ۖ إِنْ هُمْ إِلَّا يَظُنُّونَ",
+    "transliteration": "Ve kalu ma hiye illa hayatuned dunya nemutu ve nahya ve ma yuhlikuna illed dehr, ve ma lehum bi zalike min ilm, in hum illa yezunnun",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/045024.mp3",
+    "translations": {
+      "tr": "\"Hayat, ancak bu dünyadaki hayatımızdır. Ölürüz ve yaşarız; bizi ancak zamanın geçişi yokluğa sürükler\" derler. Onların bu hususta bir bilgisi yoktur, sadece böyle sanırlar.",
+      "en": "And they say, \"There is not but our worldly life; we die and live, and nothing destroys us except time.\" And they have of that no knowledge; they are only assuming."
+    }
+  },
+  {
+    "ayah": 25,
+    "arabic": "وَإِذَا تُتْلَىٰ عَلَيْهِمْ ءَايَٰتُنَا بَيِّنَٰتٍۢ مَّا كَانَ حُجَّتَهُمْ إِلَّآ أَن قَالُوا۟ ٱئْتُوا۟ بِـَٔابَآئِنَآ إِن كُنتُمْ صَٰدِقِينَ",
+    "transliteration": "Ve iza tutla aleyhim ayatuna beyyinatin ma kane huccetehum illa en kalu'tu bi abaina in kuntum sadıkin",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/045025.mp3",
+    "translations": {
+      "tr": "Ayetlerimiz onlara açıkça okunduğu zaman, delilleri yalnızca: \"Doğru sözlü iseniz babalarımızı getirin bakalım\" demek olur.",
+      "en": "And when Our verses are recited to them as clear evidences, their argument is only that they say, \"Bring [back] our forefathers, if you should be truthful.\""
+    }
+  },
+  {
+    "ayah": 26,
+    "arabic": "قُلِ ٱللَّهُ يُحْيِيكُمْ ثُمَّ يُمِيتُكُمْ ثُمَّ يَجْمَعُكُمْ إِلَىٰ يَوْمِ ٱلْقِيَٰمَةِ لَا رَيْبَ فِيهِ وَلَٰكِنَّ أَكْثَرَ ٱلنَّاسِ لَا يَعْلَمُونَ",
+    "transliteration": "Kulillahu yuhyikum summe yumitukum summe yecmeukum ila yevmil kıyameti la reybe fihi ve lakinne ekseren nasi la ya'lemun",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/045026.mp3",
+    "translations": {
+      "tr": "De ki: \"Sizi Allah diriltir, sonra öldürür, sonra sizi şüphe götürmeyen kıyamet gününde toplar. Ama insanların çoğu bilmezler.\"",
+      "en": "Say, \"Allah causes you to live, then causes you to die; then He will assemble you for the Day of Resurrection, about which there is no doubt, but most of the people do not know.\""
+    }
+  },
+  {
+    "ayah": 27,
+    "arabic": "وَلِلَّهِ مُلْكُ ٱلسَّمَٰوَٰتِ وَٱلْأَرْضِ ۚ وَيَوْمَ تَقُومُ ٱلسَّاعَةُ يَوْمَئِذٍۢ يَخْسَرُ ٱلْمُبْطِلُونَ",
+    "transliteration": "Ve lillahi mulkus semavati vel ard, ve yevme tekumus saatu yevme izin yahserul mubtılun",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/045027.mp3",
+    "translations": {
+      "tr": "Göklerin ve yerin hükümranlığı Allah'ındır. Kıyamet kopacağı gün, işte o gün, batıl sözlere uymuş olanlar hüsranda kalırlar.",
+      "en": "And to Allah belongs the dominion of the heavens and the earth. And the Day the Hour appears - that Day the falsifiers will lose."
+    }
+  },
+  {
+    "ayah": 28,
+    "arabic": "وَتَرَىٰ كُلَّ أُمَّةٍۢ جَاثِيَةًۭ ۚ كُلُّ أُمَّةٍۢ تُدْعَىٰٓ إِلَىٰ كِتَٰبِهَا ٱلْيَوْمَ تُجْزَوْنَ مَا كُنتُمْ تَعْمَلُونَ",
+    "transliteration": "Ve tera kulle ummetin casiyeh, kullu ummetin tud'a ila kitabiha, el yevme tuczevne ma kuntum ta'melun",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/045028.mp3",
+    "translations": {
+      "tr": "Her ümmeti diz üstü çökmüş olarak görürsün. Her ümmet kitabına çağrılır. Onlara denir ki: \"Bugün, size işlediğinizin karşılığı verilecektir.\"",
+      "en": "And you will see every nation kneeling [from fear]. Every nation will be called to its record [and told], \"Today you will be recompensed for what you used to do."
+    }
+  },
+  {
+    "ayah": 29,
+    "arabic": "هَٰذَا كِتَٰبُنَا يَنطِقُ عَلَيْكُم بِٱلْحَقِّ ۚ إِنَّا كُنَّا نَسْتَنسِخُ مَا كُنتُمْ تَعْمَلُونَ",
+    "transliteration": "Haza kitabuna yentıku aleykum bil hakk, inna kunna nestensihu ma kuntum ta'melun",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/045029.mp3",
+    "translations": {
+      "tr": "\"Bu kitabımız gerçekten sizin aleyhinize konuşur. Biz yaptıklarınızı şüphesiz bir bir kaydediyorduk.\"",
+      "en": "This, Our record, speaks about you in truth. Indeed, We were having transcribed whatever you used to do.\""
+    }
+  },
+  {
+    "ayah": 30,
+    "arabic": "فَأَمَّا ٱلَّذِينَ ءَامَنُوا۟ وَعَمِلُوا۟ ٱلصَّٰلِحَٰتِ فَيُدْخِلُهُمْ رَبُّهُمْ فِى رَحْمَتِهِۦ ۚ ذَٰلِكَ هُوَ ٱلْفَوْزُ ٱلْمُبِينُ",
+    "transliteration": "Fe emmellezine amenu ve amilus salihati fe yudhıluhum rabbuhum fi rahmetih, zalike huvel fevzul mubin",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/045030.mp3",
+    "translations": {
+      "tr": "İnanıp, yararlı iş işleyenlere gelince, Rableri onları rahmetine garkeder. İşte bu, apaçık kurtuluştur.",
+      "en": "So as for those who believed and did righteous deeds, their Lord will admit them into His mercy. That is what is the clear attainment."
+    }
+  },
+  {
+    "ayah": 31,
+    "arabic": "وَأَمَّا ٱلَّذِينَ كَفَرُوٓا۟ أَفَلَمْ تَكُنْ ءَايَٰتِى تُتْلَىٰ عَلَيْكُمْ فَٱسْتَكْبَرْتُمْ وَكُنتُمْ قَوْمًۭا مُّجْرِمِينَ",
+    "transliteration": "Ve emmellezine keferu, e fe lem tekun ayati tutla aleykum festekbertum ve kuntum kavmen mucrimin",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/045031.mp3",
+    "translations": {
+      "tr": "Ama, inkar eden kimselere denir ki: \"Ayetlerim size okunmuş, siz de büyüklenip suçlu bir millet olmuştunuz değil mi?\"",
+      "en": "But as for those who disbelieved, [it will be said], \"Were not Our verses recited to you, but you were arrogant and became a people of criminals?"
+    }
+  },
+  {
+    "ayah": 32,
+    "arabic": "وَإِذَا قِيلَ إِنَّ وَعْدَ ٱللَّهِ حَقٌّۭ وَٱلسَّاعَةُ لَا رَيْبَ فِيهَا قُلْتُم مَّا نَدْرِى مَا ٱلسَّاعَةُ إِن نَّظُنُّ إِلَّا ظَنًّۭا وَمَا نَحْنُ بِمُسْتَيْقِنِينَ",
+    "transliteration": "Ve iza kile inne va'dallahi hakkun ves saatu la reybe fiha kultum ma nedri mes saatu in nezunnu illa zannen ve ma nahnu bi musteykınin",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/045032.mp3",
+    "translations": {
+      "tr": "\"Doğrusu Allah'ın verdiği söz gerçektir, kıyamet saati şüphe götürmez\" dendiği zaman: \"Kıyametin ne olduğunu bilmiyoruz, yalnız yoktur sanıyoruz, buna dair kesin bir bilgi elde etmiş değiliz\" derdiniz.",
+      "en": "And when it was said, 'Indeed, the promise of Allah is truth and the Hour [is coming] - no doubt about it,' you said, 'We know not what is the Hour. We assume only assumption, and we are not convinced.' \""
+    }
+  },
+  {
+    "ayah": 33,
+    "arabic": "وَبَدَا لَهُمْ سَيِّـَٔاتُ مَا عَمِلُوا۟ وَحَاقَ بِهِم مَّا كَانُوا۟ بِهِۦ يَسْتَهْزِءُونَ",
+    "transliteration": "Ve beda lehum seyyiatu ma amilu ve haka bihim ma kanu bihi yestehziun",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/045033.mp3",
+    "translations": {
+      "tr": "İşledikleri kötülükler kendilerine belli oldu ve onları, alaya aldıkları şeyler kuşatıp mahvetti.",
+      "en": "And the evil consequences of what they did will appear to them, and they will be enveloped by what they used to ridicule."
+    }
+  },
+  {
+    "ayah": 34,
+    "arabic": "وَقِيلَ ٱلْيَوْمَ نَنسَىٰكُمْ كَمَا نَسِيتُمْ لِقَآءَ يَوْمِكُمْ هَٰذَا وَمَأْوَىٰكُمُ ٱلنَّارُ وَمَا لَكُم مِّن نَّٰصِرِينَ",
+    "transliteration": "Ve kilel yevme nensakum kema nesitum likae yevmikum haza ve me'vakumun naru ve ma lekum min nasırin",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/045034.mp3",
+    "translations": {
+      "tr": "Onlara denir ki: \"Bugüne kavuşacağınızı unuttuğunuz gibi Biz de sizi unuttuk; varacağınız yer ateştir, yardımcılarınız da yoktur.\"",
+      "en": "And it will be said, \"Today We will forget you as you forgot the meeting of this Day of yours, and your refuge is the Fire, and for you there are no helpers."
+    }
+  },
+  {
+    "ayah": 35,
+    "arabic": "ذَٰلِكُم بِأَنَّكُمُ ٱتَّخَذْتُمْ ءَايَٰتِ ٱللَّهِ هُزُوًۭا وَغَرَّتْكُمُ ٱلْحَيَوٰةُ ٱلدُّنْيَا ۚ فَٱلْيَوْمَ لَا يُخْرَجُونَ مِنْهَا وَلَا هُمْ يُسْتَعْتَبُونَ",
+    "transliteration": "Zalikum bi ennekumuttehaztum ayatillahi huzuven ve garretkumul hayatud dunya, fel yevme la yuhrecune minha ve la hum yusta'tebun",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/045035.mp3",
+    "translations": {
+      "tr": "\"Bu, Allah'ın ayetlerini alaya almanızdan ve dünya hayatının sizi aldatmış olmasından ötürüdür.\" O gün, ne oradan çıkarılırlar ve ne de özürleri dinlenir.",
+      "en": "That is because you took the verses of Allah in ridicule, and worldly life deluded you.\" So that Day they will not be removed from it, nor will they be asked to appease [Allah]."
+    }
+  },
+  {
+    "ayah": 36,
+    "arabic": "فَلِلَّهِ ٱلْحَمْدُ رَبِّ ٱلسَّمَٰوَٰتِ وَرَبِّ ٱلْأَرْضِ رَبِّ ٱلْعَٰلَمِينَ",
+    "transliteration": "Fe lillahil hamdu rabbis semavati ve rabbil ardı rabbil alemin",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/045036.mp3",
+    "translations": {
+      "tr": "Övülmek, göklerin Rabbi, yerin Rabbi ve alemlerin Rabbi olan Allah içindir.",
+      "en": "Then, to Allah belongs [all] praise - Lord of the heavens and Lord of the earth, Lord of the worlds."
+    }
+  },
+  {
+    "ayah": 37,
+    "arabic": "وَلَهُ ٱلْكِبْرِيَآءُ فِى ٱلسَّمَٰوَٰتِ وَٱلْأَرْضِ ۖ وَهُوَ ٱلْعَزِيزُ ٱلْحَكِيمُ",
+    "transliteration": "Ve lehul kibriyau fis semavati vel ard, ve huvel azizul hakim",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/045037.mp3",
+    "translations": {
+      "tr": "Göklerde ve yerde azamet O'nundur, O, güçlüdür, Hakim'dir.",
+      "en": "And to Him belongs [all] grandeur within the heavens and the earth, and He is the Exalted in Might, the Wise."
+    }
+  }
+]

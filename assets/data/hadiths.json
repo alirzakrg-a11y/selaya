@@ -1,0 +1,1562 @@
+[
+  {
+    "id": "h01",
+    "collection": "Buhârî & Müslim",
+    "narrator": "Ömer b. Hattâb (r.a.)",
+    "grade": "sahih",
+    "arabic": "إِنَّمَا الْأَعْمَالُ بِالنِّيَّاتِ",
+    "translations": {
+      "tr": {
+        "text": "Ameller ancak niyetlere göredir. Herkese niyet ettiği şey vardır."
+      },
+      "en": {
+        "text": "Actions are but by intentions, and every person shall have what they intended."
+      }
+    }
+  },
+  {
+    "id": "h02",
+    "collection": "Buhârî & Müslim",
+    "narrator": "Enes b. Mâlik (r.a.)",
+    "grade": "sahih",
+    "arabic": "لَا يُؤْمِنُ أَحَدُكُمْ حَتَّى يُحِبَّ لِأَخِيهِ مَا يُحِبُّ لِنَفْسِهِ",
+    "translations": {
+      "tr": {
+        "text": "Sizden biri, kendisi için istediğini kardeşi için de istemedikçe (kâmil manada) iman etmiş olmaz."
+      },
+      "en": {
+        "text": "None of you truly believes until he loves for his brother what he loves for himself."
+      }
+    }
+  },
+  {
+    "id": "h03",
+    "collection": "Tirmizî",
+    "narrator": "Ebû Hüreyre (r.a.)",
+    "grade": "hasen",
+    "arabic": "مِنْ حُسْنِ إِسْلَامِ الْمَرْءِ تَرْكُهُ مَا لَا يَعْنِيهِ",
+    "translations": {
+      "tr": {
+        "text": "Kişinin kendisini ilgilendirmeyen şeyleri terk etmesi, Müslümanlığının güzelliğindendir."
+      },
+      "en": {
+        "text": "Part of the perfection of one's Islam is leaving that which does not concern him."
+      }
+    }
+  },
+  {
+    "id": "h04",
+    "collection": "Buhârî",
+    "narrator": "Abdullah b. Amr (r.a.)",
+    "grade": "sahih",
+    "arabic": "الْمُسْلِمُ مَنْ سَلِمَ الْمُسْلِمُونَ مِنْ لِسَانِهِ وَيَدِهِ",
+    "translations": {
+      "tr": {
+        "text": "Müslüman, dilinden ve elinden diğer Müslümanların güvende olduğu kimsedir."
+      },
+      "en": {
+        "text": "The Muslim is the one from whose tongue and hand the Muslims are safe."
+      }
+    }
+  },
+  {
+    "id": "h05",
+    "collection": "Müslim",
+    "narrator": "Ebû Mâlik el-Eş'arî (r.a.)",
+    "grade": "sahih",
+    "arabic": "الطُّهُورُ شَطْرُ الْإِيمَانِ",
+    "translations": {
+      "tr": {
+        "text": "Temizlik imanın yarısıdır."
+      },
+      "en": {
+        "text": "Cleanliness is half of faith."
+      }
+    }
+  },
+  {
+    "id": "h06",
+    "collection": "Tirmizî",
+    "narrator": "Ebû Zer (r.a.)",
+    "grade": "hasen",
+    "arabic": "اتَّقِ اللَّهَ حَيْثُمَا كُنْتَ وَأَتْبِعِ السَّيِّئَةَ الْحَسَنَةَ تَمْحُهَا",
+    "translations": {
+      "tr": {
+        "text": "Nerede olursan ol Allah'tan kork; kötülüğün ardından iyilik yap ki onu silsin."
+      },
+      "en": {
+        "text": "Fear Allah wherever you are, and follow a bad deed with a good one to wipe it out."
+      }
+    }
+  },
+  {
+    "id": "h07",
+    "collection": "Buhârî & Müslim",
+    "narrator": "Ebû Hüreyre (r.a.)",
+    "grade": "sahih",
+    "arabic": "مَنْ كَانَ يُؤْمِنُ بِاللَّهِ وَالْيَوْمِ الْآخِرِ فَلْيَقُلْ خَيْرًا أَوْ لِيَصْمُتْ",
+    "translations": {
+      "tr": {
+        "text": "Kim Allah'a ve ahiret gününe iman ediyorsa ya hayır söylesin ya da sussun."
+      },
+      "en": {
+        "text": "Whoever believes in Allah and the Last Day, let him speak good or remain silent."
+      }
+    }
+  },
+  {
+    "id": "h08",
+    "collection": "Tirmizî",
+    "narrator": "Ebû Hüreyre (r.a.)",
+    "grade": "hasen",
+    "arabic": "أَكْمَلُ الْمُؤْمِنِينَ إِيمَانًا أَحْسَنُهُمْ خُلُقًا",
+    "translations": {
+      "tr": {
+        "text": "Müminlerin iman bakımından en olgunu, ahlâkı en güzel olanıdır."
+      },
+      "en": {
+        "text": "The most complete of believers in faith is the one with the best character."
+      }
+    }
+  },
+  {
+    "id": "h09",
+    "collection": "Müslim",
+    "narrator": "Ebû Hüreyre (r.a.)",
+    "grade": "sahih",
+    "arabic": "مَنْ نَفَّسَ عَنْ مُؤْمِنٍ كُرْبَةً نَفَّسَ اللَّهُ عَنْهُ كُرْبَةً مِنْ كُرَبِ يَوْمِ الْقِيَامَةِ",
+    "translations": {
+      "tr": {
+        "text": "Kim bir mümini bir sıkıntıdan kurtarırsa, Allah da onu kıyamet gününün sıkıntılarından kurtarır."
+      },
+      "en": {
+        "text": "Whoever relieves a believer's distress, Allah will relieve his distress on the Day of Resurrection."
+      }
+    }
+  },
+  {
+    "id": "h10",
+    "collection": "Buhârî & Müslim",
+    "narrator": "Âişe (r.anhâ)",
+    "grade": "sahih",
+    "arabic": "أَحَبُّ الْأَعْمَالِ إِلَى اللَّهِ أَدْوَمُهَا وَإِنْ قَلَّ",
+    "translations": {
+      "tr": {
+        "text": "Allah'a amellerin en sevimlisi, az da olsa devamlı olanıdır."
+      },
+      "en": {
+        "text": "The most beloved deeds to Allah are the most constant, even if small."
+      }
+    }
+  },
+  {
+    "id": "h11",
+    "collection": "Tirmizî",
+    "narrator": "Enes b. Mâlik (r.a.)",
+    "grade": "hasen",
+    "arabic": "كُلُّ بَنِي آدَمَ خَطَّاءٌ وَخَيْرُ الْخَطَّائِينَ التَّوَّابُونَ",
+    "translations": {
+      "tr": {
+        "text": "Her âdemoğlu hata eder; hata edenlerin en hayırlısı tövbe edenlerdir."
+      },
+      "en": {
+        "text": "Every son of Adam errs, and the best of those who err are those who repent."
+      }
+    }
+  },
+  {
+    "id": "h12",
+    "collection": "Buhârî & Müslim",
+    "narrator": "Ebû Mûsâ (r.a.)",
+    "grade": "sahih",
+    "arabic": "مَثَلُ الَّذِي يَذْكُرُ رَبَّهُ وَالَّذِي لَا يَذْكُرُ مَثَلُ الْحَيِّ وَالْمَيِّتِ",
+    "translations": {
+      "tr": {
+        "text": "Rabbini zikreden ile zikretmeyenin durumu, diri ile ölünün durumu gibidir."
+      },
+      "en": {
+        "text": "The likeness of one who remembers his Lord and one who does not is like the living and the dead."
+      }
+    }
+  },
+  {
+    "id": "h13",
+    "collection": "Buhârî & Müslim",
+    "narrator": "Ebû Hüreyre (r.a.)",
+    "grade": "sahih",
+    "arabic": "مَنْ كَانَ يُؤْمِنُ بِاللَّهِ وَالْيَوْمِ الْآخِرِ فَلْيُكْرِمْ ضَيْفَهُ",
+    "translations": {
+      "tr": {
+        "text": "Kim Allah'a ve ahiret gününe iman ediyorsa misafirine ikram etsin."
+      },
+      "en": {
+        "text": "Whoever believes in Allah and the Last Day, let him honor his guest."
+      }
+    }
+  },
+  {
+    "id": "h14",
+    "collection": "Müslim",
+    "narrator": "Ebû Hüreyre (r.a.)",
+    "grade": "sahih",
+    "arabic": "إِنَّ اللَّهَ لَا يَنْظُرُ إِلَىٰ صُوَرِكُمْ وَأَمْوَالِكُمْ وَلَٰكِنْ يَنْظُرُ إِلَىٰ قُلُوبِكُمْ وَأَعْمَالِكُمْ",
+    "translations": {
+      "tr": {
+        "text": "Allah sizin sûretlerinize ve mallarınıza değil, kalplerinize ve amellerinize bakar."
+      },
+      "en": {
+        "text": "Allah does not look at your appearances or your wealth, but He looks at your hearts and your deeds."
+      }
+    }
+  },
+  {
+    "id": "h15",
+    "collection": "Müslim",
+    "narrator": "Ebû Hüreyre (r.a.)",
+    "grade": "sahih",
+    "arabic": "مَنْ غَشَّنَا فَلَيْسَ مِنَّا",
+    "translations": {
+      "tr": {
+        "text": "Bizi aldatan bizden değildir."
+      },
+      "en": {
+        "text": "Whoever deceives us is not one of us."
+      }
+    }
+  },
+  {
+    "id": "h16",
+    "collection": "Buhârî & Müslim",
+    "narrator": "Adî b. Hâtim (r.a.)",
+    "grade": "sahih",
+    "arabic": "اتَّقُوا النَّارَ وَلَوْ بِشِقِّ تَمْرَةٍ",
+    "translations": {
+      "tr": {
+        "text": "Yarım hurma ile de olsa kendinizi ateşten koruyun."
+      },
+      "en": {
+        "text": "Guard yourselves against the Fire, even with half a date (given in charity)."
+      }
+    }
+  },
+  {
+    "id": "h17",
+    "collection": "Müslim",
+    "narrator": "Ebû Hüreyre (r.a.)",
+    "grade": "sahih",
+    "arabic": "الْحَيَاءُ لَا يَأْتِي إِلَّا بِخَيْرٍ",
+    "translations": {
+      "tr": {
+        "text": "Hayâ ancak hayır getirir."
+      },
+      "en": {
+        "text": "Modesty brings nothing but good."
+      }
+    }
+  },
+  {
+    "id": "h18",
+    "collection": "Tirmizî",
+    "narrator": "Ebû Hüreyre (r.a.)",
+    "grade": "hasen",
+    "arabic": "مَنْ لَا يَشْكُرُ النَّاسَ لَا يَشْكُرُ اللَّهَ",
+    "translations": {
+      "tr": {
+        "text": "İnsanlara teşekkür etmeyen, Allah'a şükretmemiş olur."
+      },
+      "en": {
+        "text": "Whoever does not thank people has not thanked Allah."
+      }
+    }
+  },
+  {
+    "id": "h19",
+    "collection": "Buhârî",
+    "narrator": "Abdullah b. Amr (r.a.)",
+    "grade": "sahih",
+    "arabic": "بَلِّغُوا عَنِّي وَلَوْ آيَةً",
+    "translations": {
+      "tr": {
+        "text": "Benden bir âyet de olsa (insanlara) ulaştırın."
+      },
+      "en": {
+        "text": "Convey from me, even if it is a single verse."
+      }
+    }
+  },
+  {
+    "id": "h20",
+    "collection": "Müslim",
+    "narrator": "Ebû Hüreyre (r.a.)",
+    "grade": "sahih",
+    "arabic": "إِذَا مَاتَ الْإِنْسَانُ انْقَطَعَ عَنْهُ عَمَلُهُ إِلَّا مِنْ ثَلَاثٍ",
+    "translations": {
+      "tr": {
+        "text": "İnsan ölünce ameli kesilir; ancak üç şey hariç: sadaka-i câriye, faydalanılan ilim ve kendisine dua eden hayırlı evlat."
+      },
+      "en": {
+        "text": "When a person dies, his deeds end except for three: ongoing charity, beneficial knowledge, or a righteous child who prays for him."
+      }
+    }
+  },
+  {
+    "id": "h21",
+    "collection": "Buhârî",
+    "narrator": "Ebû Hüreyre (r.a.)",
+    "grade": "sahih",
+    "arabic": "مَنْ سَلَكَ طَرِيقًا يَلْتَمِسُ فِيهِ عِلْمًا سَهَّلَ اللَّهُ لَهُ طَرِيقًا إِلَى الْجَنَّةِ",
+    "translations": {
+      "tr": {
+        "text": "Kim ilim öğrenmek için bir yola girerse, Allah ona cennetin yolunu kolaylaştırır."
+      },
+      "en": {
+        "text": "Whoever travels a path seeking knowledge, Allah makes easy for him a path to Paradise."
+      }
+    }
+  },
+  {
+    "id": "h22",
+    "collection": "Buhârî & Müslim",
+    "narrator": "Ebû Hüreyre (r.a.)",
+    "grade": "sahih",
+    "arabic": "لَيْسَ الشَّدِيدُ بِالصُّرَعَةِ إِنَّمَا الشَّدِيدُ الَّذِي يَمْلِكُ نَفْسَهُ عِنْدَ الْغَضَبِ",
+    "translations": {
+      "tr": {
+        "text": "Yiğit, güreşte rakibini yenen değildir; asıl yiğit, öfke anında kendine hâkim olandır."
+      },
+      "en": {
+        "text": "The strong man is not the good wrestler; the strong man is the one who controls himself when angry."
+      }
+    }
+  },
+  {
+    "id": "h23",
+    "collection": "Tirmizî",
+    "narrator": "Câbir b. Abdullah (r.a.)",
+    "grade": "hasen",
+    "arabic": "تَبَسُّمُكَ فِي وَجْهِ أَخِيكَ لَكَ صَدَقَةٌ",
+    "translations": {
+      "tr": {
+        "text": "Kardeşinin yüzüne gülümsemen senin için bir sadakadır."
+      },
+      "en": {
+        "text": "Your smiling in the face of your brother is charity for you."
+      }
+    }
+  },
+  {
+    "id": "h24",
+    "collection": "Buhârî & Müslim",
+    "narrator": "Ebû Hüreyre (r.a.)",
+    "grade": "sahih",
+    "arabic": "الْحَجُّ الْمَبْرُورُ لَيْسَ لَهُ جَزَاءٌ إِلَّا الْجَنَّةُ",
+    "translations": {
+      "tr": {
+        "text": "Makbul haccın karşılığı ancak cennettir."
+      },
+      "en": {
+        "text": "An accepted Hajj has no reward except Paradise."
+      }
+    }
+  },
+  {
+    "id": "h_x1",
+    "collection": "Buhârî",
+    "narrator": "",
+    "grade": "sahih",
+    "arabic": "إِنَّ الدِّينَ يُسْرٌ",
+    "translations": {
+      "tr": {
+        "text": "Din kolaylıktır."
+      },
+      "en": {
+        "text": "The religion is ease."
+      }
+    }
+  },
+  {
+    "id": "h_x2",
+    "collection": "Müslim",
+    "narrator": "",
+    "grade": "sahih",
+    "arabic": "الطُّهُورُ شَطْرُ الْإِيمَانِ",
+    "translations": {
+      "tr": {
+        "text": "Temizlik imanın yarısıdır."
+      },
+      "en": {
+        "text": "Cleanliness is half of faith."
+      }
+    }
+  },
+  {
+    "id": "h_x3",
+    "collection": "Buhârî",
+    "narrator": "",
+    "grade": "sahih",
+    "arabic": "الْمُسْلِمُ مَنْ سَلِمَ الْمُسْلِمُونَ مِنْ لِسَانِهِ وَيَدِهِ",
+    "translations": {
+      "tr": {
+        "text": "Müslüman, dilinden ve elinden Müslümanların selamette olduğu kimsedir."
+      },
+      "en": {
+        "text": "A Muslim is one from whose tongue and hand other Muslims are safe."
+      }
+    }
+  },
+  {
+    "id": "h_x4",
+    "collection": "Buhârî & Müslim",
+    "narrator": "",
+    "grade": "sahih",
+    "arabic": "لَا يُؤْمِنُ أَحَدُكُمْ حَتَّى يُحِبَّ لِأَخِيهِ مَا يُحِبُّ لِنَفْسِهِ",
+    "translations": {
+      "tr": {
+        "text": "Sizden biriniz kendisi için sevdiğini kardeşi için de sevmedikçe iman etmiş olmaz."
+      },
+      "en": {
+        "text": "None of you truly believes until he loves for his brother what he loves for himself."
+      }
+    }
+  },
+  {
+    "id": "h_x5",
+    "collection": "Buhârî & Müslim",
+    "narrator": "",
+    "grade": "sahih",
+    "arabic": "أَحَبُّ الْأَعْمَالِ إِلَى اللَّهِ أَدْوَمُهَا وَإِنْ قَلَّ",
+    "translations": {
+      "tr": {
+        "text": "Allah'a en sevimli amel, az da olsa devamlı olanıdır."
+      },
+      "en": {
+        "text": "The most beloved deeds to Allah are the most consistent, even if small."
+      }
+    }
+  },
+  {
+    "id": "h_x6",
+    "collection": "Tirmizî",
+    "narrator": "",
+    "grade": "sahih",
+    "arabic": "تَبَسُّمُكَ فِي وَجْهِ أَخِيكَ صَدَقَةٌ",
+    "translations": {
+      "tr": {
+        "text": "Kardeşinin yüzüne gülümsemen sadakadır."
+      },
+      "en": {
+        "text": "Your smile to your brother is charity."
+      }
+    }
+  },
+  {
+    "id": "h_x7",
+    "collection": "Taberânî",
+    "narrator": "",
+    "grade": "sahih",
+    "arabic": "خَيْرُ النَّاسِ أَنْفَعُهُمْ لِلنَّاسِ",
+    "translations": {
+      "tr": {
+        "text": "İnsanların en hayırlısı, insanlara en faydalı olanıdır."
+      },
+      "en": {
+        "text": "The best of people are those most beneficial to people."
+      }
+    }
+  },
+  {
+    "id": "h_x8",
+    "collection": "Buhârî & Müslim",
+    "narrator": "",
+    "grade": "sahih",
+    "arabic": "الْيَدُ الْعُلْيَا خَيْرٌ مِنَ الْيَدِ السُّفْلَى",
+    "translations": {
+      "tr": {
+        "text": "Veren el, alan elden hayırlıdır."
+      },
+      "en": {
+        "text": "The upper (giving) hand is better than the lower (receiving) hand."
+      }
+    }
+  },
+  {
+    "id": "h_x9",
+    "collection": "Buhârî & Müslim",
+    "narrator": "",
+    "grade": "sahih",
+    "arabic": "مَنْ كَانَ يُؤْمِنُ بِاللَّهِ وَالْيَوْمِ الْآخِرِ فَلْيَقُلْ خَيْرًا أَوْ لِيَصْمُتْ",
+    "translations": {
+      "tr": {
+        "text": "Allah'a ve ahiret gününe iman eden ya hayır söylesin ya sussun."
+      },
+      "en": {
+        "text": "Whoever believes in Allah and the Last Day, let him speak good or remain silent."
+      }
+    }
+  },
+  {
+    "id": "h_x10",
+    "collection": "Buhârî & Müslim",
+    "narrator": "",
+    "grade": "sahih",
+    "arabic": "لَيْسَ الشَّدِيدُ بِالصُّرَعَةِ، إِنَّمَا الشَّدِيدُ الَّذِي يَمْلِكُ نَفْسَهُ عِنْدَ الْغَضَبِ",
+    "translations": {
+      "tr": {
+        "text": "Yiğit, güreşte yenen değildir; asıl yiğit öfke anında kendine hâkim olandır."
+      },
+      "en": {
+        "text": "The strong one is not the wrestler; the strong one is he who controls himself in anger."
+      }
+    }
+  },
+  {
+    "id": "hh_1",
+    "collection": "Buhârî & Müslim",
+    "narrator": "",
+    "grade": "sahih",
+    "arabic": "",
+    "translations": {
+      "tr": {
+        "text": "Kolaylaştırınız, zorlaştırmayınız; müjdeleyiniz, nefret ettirmeyiniz."
+      },
+      "en": {
+        "text": "Make things easy, do not make them difficult; give glad tidings, do not repel people."
+      }
+    }
+  },
+  {
+    "id": "hh_2",
+    "collection": "Buhârî & Müslim",
+    "narrator": "",
+    "grade": "sahih",
+    "arabic": "",
+    "translations": {
+      "tr": {
+        "text": "Müslüman, elinden ve dilinden Müslümanların güvende olduğu kimsedir."
+      },
+      "en": {
+        "text": "The Muslim is the one from whose tongue and hand the Muslims are safe."
+      }
+    }
+  },
+  {
+    "id": "hh_3",
+    "collection": "Buhârî",
+    "narrator": "",
+    "grade": "sahih",
+    "arabic": "",
+    "translations": {
+      "tr": {
+        "text": "Sizin en hayırlınız, Kur'an'ı öğrenen ve öğretendir."
+      },
+      "en": {
+        "text": "The best of you are those who learn the Quran and teach it."
+      }
+    }
+  },
+  {
+    "id": "hh_5",
+    "collection": "Buhârî & Müslim",
+    "narrator": "",
+    "grade": "sahih",
+    "arabic": "",
+    "translations": {
+      "tr": {
+        "text": "Kim Allah'a ve ahiret gününe inanıyorsa ya hayır söylesin ya da sussun."
+      },
+      "en": {
+        "text": "Whoever believes in Allah and the Last Day should speak good or remain silent."
+      }
+    }
+  },
+  {
+    "id": "hh_6",
+    "collection": "Buhârî & Müslim",
+    "narrator": "",
+    "grade": "sahih",
+    "arabic": "",
+    "translations": {
+      "tr": {
+        "text": "Güçlü kimse, güreşte yenen değil; öfke anında kendine hâkim olandır."
+      },
+      "en": {
+        "text": "The strong is not the one who overcomes in wrestling, but the one who controls himself when angry."
+      }
+    }
+  },
+  {
+    "id": "hh_7",
+    "collection": "Buhârî & Müslim",
+    "narrator": "",
+    "grade": "sahih",
+    "arabic": "",
+    "translations": {
+      "tr": {
+        "text": "Kendisi için istediğini kardeşi için de istemedikçe hiçbiriniz gerçek anlamda iman etmiş olmaz."
+      },
+      "en": {
+        "text": "None of you truly believes until he loves for his brother what he loves for himself."
+      }
+    }
+  },
+  {
+    "id": "hh_8",
+    "collection": "Müslim",
+    "narrator": "",
+    "grade": "sahih",
+    "arabic": "",
+    "translations": {
+      "tr": {
+        "text": "Allah sizin suretlerinize ve mallarınıza değil, kalplerinize ve amellerinize bakar."
+      },
+      "en": {
+        "text": "Allah does not look at your appearance or wealth, but at your hearts and deeds."
+      }
+    }
+  },
+  {
+    "id": "hh_9",
+    "collection": "Müslim",
+    "narrator": "",
+    "grade": "sahih",
+    "arabic": "",
+    "translations": {
+      "tr": {
+        "text": "Din samimiyettir."
+      },
+      "en": {
+        "text": "The religion is sincerity."
+      }
+    }
+  },
+  {
+    "id": "hh_10",
+    "collection": "Buhârî & Müslim",
+    "narrator": "",
+    "grade": "sahih",
+    "arabic": "",
+    "translations": {
+      "tr": {
+        "text": "İnsanlara merhamet etmeyene Allah merhamet etmez."
+      },
+      "en": {
+        "text": "Allah does not show mercy to the one who shows no mercy to people."
+      }
+    }
+  },
+  {
+    "id": "hh_11",
+    "collection": "Buhârî & Müslim",
+    "narrator": "",
+    "grade": "sahih",
+    "arabic": "",
+    "translations": {
+      "tr": {
+        "text": "Veren el, alan elden üstündür."
+      },
+      "en": {
+        "text": "The upper (giving) hand is better than the lower (receiving) hand."
+      }
+    }
+  },
+  {
+    "id": "hh_12",
+    "collection": "Nesâî",
+    "narrator": "",
+    "grade": "sahih",
+    "arabic": "",
+    "translations": {
+      "tr": {
+        "text": "Cennet annelerin ayakları altındadır."
+      },
+      "en": {
+        "text": "Paradise lies at the feet of mothers."
+      }
+    }
+  },
+  {
+    "id": "hh_13",
+    "collection": "Buhârî & Müslim",
+    "narrator": "",
+    "grade": "sahih",
+    "arabic": "",
+    "translations": {
+      "tr": {
+        "text": "Bir hurmanın yarısıyla da olsa ateşten korunun."
+      },
+      "en": {
+        "text": "Protect yourselves from the Fire, even with half a date in charity."
+      }
+    }
+  },
+  {
+    "id": "hh_14",
+    "collection": "Buhârî & Müslim",
+    "narrator": "",
+    "grade": "sahih",
+    "arabic": "",
+    "translations": {
+      "tr": {
+        "text": "Mümin, bir delikten iki defa ısırılmaz."
+      },
+      "en": {
+        "text": "The believer is not stung from the same hole twice."
+      }
+    }
+  },
+  {
+    "id": "hh_15",
+    "collection": "Buhârî",
+    "narrator": "",
+    "grade": "sahih",
+    "arabic": "",
+    "translations": {
+      "tr": {
+        "text": "Hiç kimse el emeğinden daha hayırlı bir yemek yememiştir."
+      },
+      "en": {
+        "text": "No one eats better food than that which he earns by his own hands."
+      }
+    }
+  },
+  {
+    "id": "hh_16",
+    "collection": "Buhârî & Müslim",
+    "narrator": "",
+    "grade": "sahih",
+    "arabic": "",
+    "translations": {
+      "tr": {
+        "text": "Allah katında amellerin en sevimlisi, az da olsa devamlı olanıdır."
+      },
+      "en": {
+        "text": "The most beloved deeds to Allah are the most consistent, even if small."
+      }
+    }
+  },
+  {
+    "id": "hh_17",
+    "collection": "Müslim",
+    "narrator": "",
+    "grade": "sahih",
+    "arabic": "",
+    "translations": {
+      "tr": {
+        "text": "Kim bir hayra vesile olursa, onu yapan kadar sevap kazanır."
+      },
+      "en": {
+        "text": "Whoever guides someone to goodness has a reward like the one who does it."
+      }
+    }
+  },
+  {
+    "id": "hh_18",
+    "collection": "Buhârî",
+    "narrator": "",
+    "grade": "sahih",
+    "arabic": "",
+    "translations": {
+      "tr": {
+        "text": "İki nimet vardır ki insanların çoğu bunlarda aldanmıştır: Sağlık ve boş vakit."
+      },
+      "en": {
+        "text": "There are two blessings most people are deceived about: health and free time."
+      }
+    }
+  },
+  {
+    "id": "hh_19",
+    "collection": "Müslim",
+    "narrator": "",
+    "grade": "sahih",
+    "arabic": "",
+    "translations": {
+      "tr": {
+        "text": "Kul, kardeşinin yardımında olduğu sürece Allah da onun yardımındadır."
+      },
+      "en": {
+        "text": "Allah helps His servant as long as the servant helps his brother."
+      }
+    }
+  },
+  {
+    "id": "hh_20",
+    "collection": "Buhârî & Müslim",
+    "narrator": "",
+    "grade": "sahih",
+    "arabic": "",
+    "translations": {
+      "tr": {
+        "text": "Zenginlik mal çokluğu değil, gönül tokluğudur."
+      },
+      "en": {
+        "text": "Richness is not having many possessions; richness is contentment of the soul."
+      }
+    }
+  },
+  {
+    "id": "hh_21",
+    "collection": "Müslim",
+    "narrator": "",
+    "grade": "sahih",
+    "arabic": "",
+    "translations": {
+      "tr": {
+        "text": "Kim bir kötülük görürse eliyle düzeltsin; gücü yetmezse diliyle; ona da gücü yetmezse kalbiyle buğzetsin."
+      },
+      "en": {
+        "text": "Whoever sees an evil, let him change it with his hand; if unable, with his tongue; if unable, with his heart."
+      }
+    }
+  },
+  {
+    "id": "hh_22",
+    "collection": "Müslim",
+    "narrator": "",
+    "grade": "sahih",
+    "arabic": "",
+    "translations": {
+      "tr": {
+        "text": "Sadaka malı eksiltmez."
+      },
+      "en": {
+        "text": "Charity does not decrease wealth."
+      }
+    }
+  },
+  {
+    "id": "hh_23",
+    "collection": "Tirmizî",
+    "narrator": "",
+    "grade": "sahih",
+    "arabic": "",
+    "translations": {
+      "tr": {
+        "text": "Kardeşine tebessüm etmen sadakadır."
+      },
+      "en": {
+        "text": "Smiling at your brother is charity."
+      }
+    }
+  },
+  {
+    "id": "hh_24",
+    "collection": "Müslim",
+    "narrator": "",
+    "grade": "sahih",
+    "arabic": "",
+    "translations": {
+      "tr": {
+        "text": "Selamı aranızda yayınız."
+      },
+      "en": {
+        "text": "Spread the greeting of peace among you."
+      }
+    }
+  },
+  {
+    "id": "hh_25",
+    "collection": "Hâkim",
+    "narrator": "",
+    "grade": "sahih",
+    "arabic": "",
+    "translations": {
+      "tr": {
+        "text": "Komşusu açken tok yatan bizden değildir."
+      },
+      "en": {
+        "text": "He is not of us who sleeps full while his neighbour is hungry."
+      }
+    }
+  },
+  {
+    "id": "hh_26",
+    "collection": "İbn Mâce",
+    "narrator": "",
+    "grade": "sahih",
+    "arabic": "",
+    "translations": {
+      "tr": {
+        "text": "İlim öğrenmek her Müslümana farzdır."
+      },
+      "en": {
+        "text": "Seeking knowledge is an obligation upon every Muslim."
+      }
+    }
+  },
+  {
+    "id": "hh_27",
+    "collection": "Müslim",
+    "narrator": "",
+    "grade": "sahih",
+    "arabic": "",
+    "translations": {
+      "tr": {
+        "text": "Kim ilim için yola çıkarsa Allah ona cennet yolunu kolaylaştırır."
+      },
+      "en": {
+        "text": "Whoever travels a path seeking knowledge, Allah makes easy for him a path to Paradise."
+      }
+    }
+  },
+  {
+    "id": "hh_28",
+    "collection": "Buhârî",
+    "narrator": "",
+    "grade": "sahih",
+    "arabic": "",
+    "translations": {
+      "tr": {
+        "text": "Dünyada bir garip ya da bir yolcu gibi ol."
+      },
+      "en": {
+        "text": "Be in this world as if you were a stranger or a traveller."
+      }
+    }
+  },
+  {
+    "id": "hh_29",
+    "collection": "Buhârî & Müslim",
+    "narrator": "",
+    "grade": "sahih",
+    "arabic": "",
+    "translations": {
+      "tr": {
+        "text": "İman yetmiş küsur şubedir; hayâ da imandan bir şubedir."
+      },
+      "en": {
+        "text": "Faith has seventy-odd branches, and modesty is a branch of faith."
+      }
+    }
+  },
+  {
+    "id": "hh_30",
+    "collection": "Müslim",
+    "narrator": "",
+    "grade": "sahih",
+    "arabic": "",
+    "translations": {
+      "tr": {
+        "text": "Birbirinize haset etmeyin, birbirinize sırt çevirmeyin; ey Allah'ın kulları, kardeş olun."
+      },
+      "en": {
+        "text": "Do not envy one another, do not turn away from one another; O servants of Allah, be brothers."
+      }
+    }
+  },
+  {
+    "id": "hh_31",
+    "collection": "Müslim",
+    "narrator": "",
+    "grade": "sahih",
+    "arabic": "",
+    "translations": {
+      "tr": {
+        "text": "Kim Allah için alçak gönüllü olursa, Allah onu yüceltir."
+      },
+      "en": {
+        "text": "Whoever humbles himself for Allah, Allah raises him."
+      }
+    }
+  },
+  {
+    "id": "hh_32",
+    "collection": "Buhârî & Müslim",
+    "narrator": "",
+    "grade": "sahih",
+    "arabic": "",
+    "translations": {
+      "tr": {
+        "text": "Güzel söz sadakadır."
+      },
+      "en": {
+        "text": "A good word is charity."
+      }
+    }
+  },
+  {
+    "id": "hh_33",
+    "collection": "Ebû Dâvûd",
+    "narrator": "",
+    "grade": "sahih",
+    "arabic": "",
+    "translations": {
+      "tr": {
+        "text": "Mümin müminin aynasıdır."
+      },
+      "en": {
+        "text": "The believer is the mirror of the believer."
+      }
+    }
+  },
+  {
+    "id": "hh_34",
+    "collection": "Buhârî & Müslim",
+    "narrator": "",
+    "grade": "sahih",
+    "arabic": "",
+    "translations": {
+      "tr": {
+        "text": "Müminler birbirini sevmede bir vücut gibidir; bir organ rahatsız olunca diğerleri de uykusuz kalır."
+      },
+      "en": {
+        "text": "The believers in their mutual love are like one body; when a limb aches, the whole body responds."
+      }
+    }
+  },
+  {
+    "id": "hh_35",
+    "collection": "Müslim",
+    "narrator": "",
+    "grade": "sahih",
+    "arabic": "",
+    "translations": {
+      "tr": {
+        "text": "Kim bir Müslümanın dünya sıkıntılarından birini giderirse, Allah da onun kıyamet sıkıntılarından birini giderir."
+      },
+      "en": {
+        "text": "Whoever relieves a believer of a hardship in this world, Allah will relieve him of a hardship on the Day of Resurrection."
+      }
+    }
+  },
+  {
+    "id": "hh_36",
+    "collection": "Buhârî & Müslim",
+    "narrator": "",
+    "grade": "sahih",
+    "arabic": "",
+    "translations": {
+      "tr": {
+        "text": "Amellerin en faziletlisi, vaktinde kılınan namazdır."
+      },
+      "en": {
+        "text": "The best of deeds is the prayer at its proper time."
+      }
+    }
+  },
+  {
+    "id": "hh_37",
+    "collection": "Müslim",
+    "narrator": "",
+    "grade": "sahih",
+    "arabic": "",
+    "translations": {
+      "tr": {
+        "text": "Üzerine güneş doğan en hayırlı gün cuma günüdür."
+      },
+      "en": {
+        "text": "The best day on which the sun rises is Friday."
+      }
+    }
+  },
+  {
+    "id": "hh_38",
+    "collection": "Buhârî & Müslim",
+    "narrator": "",
+    "grade": "sahih",
+    "arabic": "",
+    "translations": {
+      "tr": {
+        "text": "Ramazan ayı girdiğinde cennet kapıları açılır."
+      },
+      "en": {
+        "text": "When Ramadan begins, the gates of Paradise are opened."
+      }
+    }
+  },
+  {
+    "id": "hh_39",
+    "collection": "Buhârî & Müslim",
+    "narrator": "",
+    "grade": "sahih",
+    "arabic": "",
+    "translations": {
+      "tr": {
+        "text": "Oruç kalkandır."
+      },
+      "en": {
+        "text": "Fasting is a shield."
+      }
+    }
+  },
+  {
+    "id": "hh_40",
+    "collection": "Buhârî",
+    "narrator": "",
+    "grade": "sahih",
+    "arabic": "",
+    "translations": {
+      "tr": {
+        "text": "Kadir gecesini Ramazan'ın son on gününün tek gecelerinde arayın."
+      },
+      "en": {
+        "text": "Seek Laylat al-Qadr in the odd nights of the last ten days of Ramadan."
+      }
+    }
+  },
+  {
+    "id": "hh_41",
+    "collection": "Buhârî & Müslim",
+    "narrator": "",
+    "grade": "sahih",
+    "arabic": "",
+    "translations": {
+      "tr": {
+        "text": "Kim inanarak ve sevabını umarak Ramazan orucunu tutarsa geçmiş günahları bağışlanır."
+      },
+      "en": {
+        "text": "Whoever fasts Ramadan with faith and hope of reward, his past sins are forgiven."
+      }
+    }
+  },
+  {
+    "id": "hh_42",
+    "collection": "Nesâî",
+    "narrator": "",
+    "grade": "sahih",
+    "arabic": "",
+    "translations": {
+      "tr": {
+        "text": "Misvak ağzı temizler, Rabbi razı eder."
+      },
+      "en": {
+        "text": "The miswak purifies the mouth and pleases the Lord."
+      }
+    }
+  },
+  {
+    "id": "hh_43",
+    "collection": "Müslim",
+    "narrator": "",
+    "grade": "sahih",
+    "arabic": "",
+    "translations": {
+      "tr": {
+        "text": "Allah güzeldir, güzeli sever."
+      },
+      "en": {
+        "text": "Allah is beautiful and loves beauty."
+      }
+    }
+  },
+  {
+    "id": "hh_44",
+    "collection": "Müslim",
+    "narrator": "",
+    "grade": "sahih",
+    "arabic": "",
+    "translations": {
+      "tr": {
+        "text": "Kibir, hakkı kabul etmemek ve insanları küçük görmektir."
+      },
+      "en": {
+        "text": "Arrogance is rejecting the truth and looking down on people."
+      }
+    }
+  },
+  {
+    "id": "hh_46",
+    "collection": "Müslim",
+    "narrator": "",
+    "grade": "sahih",
+    "arabic": "",
+    "translations": {
+      "tr": {
+        "text": "Allah'a en sevimli yerler mescitlerdir."
+      },
+      "en": {
+        "text": "The most beloved places to Allah are the mosques."
+      }
+    }
+  },
+  {
+    "id": "hh_47",
+    "collection": "Müslim",
+    "narrator": "",
+    "grade": "sahih",
+    "arabic": "",
+    "translations": {
+      "tr": {
+        "text": "Sabah namazını kılan, Allah'ın himayesindedir."
+      },
+      "en": {
+        "text": "Whoever prays the dawn prayer is under the protection of Allah."
+      }
+    }
+  },
+  {
+    "id": "hh_48",
+    "collection": "Müslim",
+    "narrator": "",
+    "grade": "sahih",
+    "arabic": "",
+    "translations": {
+      "tr": {
+        "text": "Yatsı ve sabah namazını cemaatle kılan, geceyi ibadetle geçirmiş gibidir."
+      },
+      "en": {
+        "text": "Whoever prays Isha and Fajr in congregation is as if he spent the whole night in prayer."
+      }
+    }
+  },
+  {
+    "id": "hh_49",
+    "collection": "Tirmizî",
+    "narrator": "",
+    "grade": "sahih",
+    "arabic": "",
+    "translations": {
+      "tr": {
+        "text": "Dua ibadettir."
+      },
+      "en": {
+        "text": "Supplication is worship itself."
+      }
+    }
+  },
+  {
+    "id": "hh_50",
+    "collection": "Ebû Dâvûd & Tirmizî",
+    "narrator": "",
+    "grade": "sahih",
+    "arabic": "",
+    "translations": {
+      "tr": {
+        "text": "Rabbiniz hayâ sahibidir; kulu el açınca onu boş çevirmekten hayâ eder."
+      },
+      "en": {
+        "text": "Your Lord is shy and generous; He is shy to turn away empty the hands raised to Him."
+      }
+    }
+  },
+  {
+    "id": "hh_51",
+    "collection": "Tirmizî",
+    "narrator": "",
+    "grade": "sahih",
+    "arabic": "",
+    "translations": {
+      "tr": {
+        "text": "Kıyamet günü müminin terazisinde güzel ahlaktan daha ağır bir şey yoktur."
+      },
+      "en": {
+        "text": "Nothing is heavier on the believer's scale on the Day of Judgement than good character."
+      }
+    }
+  },
+  {
+    "id": "hh_52",
+    "collection": "Ahmed",
+    "narrator": "",
+    "grade": "sahih",
+    "arabic": "",
+    "translations": {
+      "tr": {
+        "text": "Ben güzel ahlakı tamamlamak için gönderildim."
+      },
+      "en": {
+        "text": "I was sent only to perfect noble character."
+      }
+    }
+  },
+  {
+    "id": "hh_53",
+    "collection": "Buhârî & Müslim",
+    "narrator": "",
+    "grade": "sahih",
+    "arabic": "",
+    "translations": {
+      "tr": {
+        "text": "Sizin en hayırlınız, ahlakı en güzel olanınızdır."
+      },
+      "en": {
+        "text": "The best of you are those with the best character."
+      }
+    }
+  },
+  {
+    "id": "hh_54",
+    "collection": "Tirmizî",
+    "narrator": "",
+    "grade": "sahih",
+    "arabic": "",
+    "translations": {
+      "tr": {
+        "text": "Dilin Allah'ın zikriyle ıslak kalsın."
+      },
+      "en": {
+        "text": "Keep your tongue moist with the remembrance of Allah."
+      }
+    }
+  },
+  {
+    "id": "hh_55",
+    "collection": "Müslim",
+    "narrator": "",
+    "grade": "sahih",
+    "arabic": "",
+    "translations": {
+      "tr": {
+        "text": "Kim bana bir defa salavat getirirse, Allah ona on defa rahmet eder."
+      },
+      "en": {
+        "text": "Whoever sends blessings upon me once, Allah sends blessings upon him tenfold."
+      }
+    }
+  },
+  {
+    "id": "hh_56",
+    "collection": "Müslim",
+    "narrator": "",
+    "grade": "sahih",
+    "arabic": "",
+    "translations": {
+      "tr": {
+        "text": "Sözlerin en hayırlısı Allah'ın kitabı, yolların en hayırlısı Muhammed'in yoludur."
+      },
+      "en": {
+        "text": "The best speech is the Book of Allah, and the best guidance is the guidance of Muhammad."
+      }
+    }
+  },
+  {
+    "id": "hh_57",
+    "collection": "Buhârî & Müslim",
+    "narrator": "",
+    "grade": "sahih",
+    "arabic": "",
+    "translations": {
+      "tr": {
+        "text": "Münafığın alameti üçtür: Konuşunca yalan söyler, söz verince sözünde durmaz, emanet edilince ihanet eder."
+      },
+      "en": {
+        "text": "The signs of a hypocrite are three: he lies when he speaks, breaks his promises, and betrays trusts."
+      }
+    }
+  },
+  {
+    "id": "hh_58",
+    "collection": "Taberânî",
+    "narrator": "",
+    "grade": "sahih",
+    "arabic": "",
+    "translations": {
+      "tr": {
+        "text": "İnsanların en hayırlısı, insanlara en faydalı olandır."
+      },
+      "en": {
+        "text": "The best of people are those most beneficial to people."
+      }
+    }
+  },
+  {
+    "id": "hh_59",
+    "collection": "Müslim",
+    "narrator": "",
+    "grade": "sahih",
+    "arabic": "",
+    "translations": {
+      "tr": {
+        "text": "Hasta ziyaret eden, dönünceye kadar cennet bahçesindedir."
+      },
+      "en": {
+        "text": "The visitor of the sick is in a garden of Paradise until he returns."
+      }
+    }
+  },
+  {
+    "id": "hh_60",
+    "collection": "Tirmizî",
+    "narrator": "",
+    "grade": "sahih",
+    "arabic": "",
+    "translations": {
+      "tr": {
+        "text": "Küçüğümüze merhamet etmeyen, büyüğümüze saygı göstermeyen bizden değildir."
+      },
+      "en": {
+        "text": "He is not of us who shows no mercy to our young and no respect to our elders."
+      }
+    }
+  },
+  {
+    "id": "hh_61",
+    "collection": "Tirmizî",
+    "narrator": "",
+    "grade": "sahih",
+    "arabic": "",
+    "translations": {
+      "tr": {
+        "text": "Hiçbir baba evladına güzel edepten daha üstün bir hediye vermemiştir."
+      },
+      "en": {
+        "text": "No father gives his child a better gift than good manners."
+      }
+    }
+  },
+  {
+    "id": "hh_62",
+    "collection": "Tirmizî",
+    "narrator": "",
+    "grade": "sahih",
+    "arabic": "",
+    "translations": {
+      "tr": {
+        "text": "Allah'ın rızası anne-babanın rızasındadır."
+      },
+      "en": {
+        "text": "The pleasure of Allah is in the pleasure of the parents."
+      }
+    }
+  },
+  {
+    "id": "hh_63",
+    "collection": "Müslim",
+    "narrator": "",
+    "grade": "sahih",
+    "arabic": "",
+    "translations": {
+      "tr": {
+        "text": "Büyük günahlardan kaçınıldıkça beş vakit namaz, aradaki günahlara kefarettir."
+      },
+      "en": {
+        "text": "The five prayers expiate the sins between them, so long as major sins are avoided."
+      }
+    }
+  },
+  {
+    "id": "hh_64",
+    "collection": "Buhârî & Müslim",
+    "narrator": "",
+    "grade": "sahih",
+    "arabic": "",
+    "translations": {
+      "tr": {
+        "text": "İki söz vardır; dile hafif, terazide ağır, Rahman'a sevimlidir: Sübhânallâhi ve bihamdihî, sübhânallâhi'l-azîm."
+      },
+      "en": {
+        "text": "Two phrases light on the tongue, heavy on the scale, beloved to the Most Merciful: SubhanAllahi wa bihamdihi, SubhanAllahil-Azim."
+      }
+    }
+  },
+  {
+    "id": "hh_65",
+    "collection": "Buhârî & Müslim",
+    "narrator": "",
+    "grade": "sahih",
+    "arabic": "",
+    "translations": {
+      "tr": {
+        "text": "Lâ havle ve lâ kuvvete illâ billâh, cennet hazinelerinden bir hazinedir."
+      },
+      "en": {
+        "text": "La hawla wa la quwwata illa billah is a treasure from the treasures of Paradise."
+      }
+    }
+  },
+  {
+    "id": "hh_66",
+    "collection": "Buhârî & Müslim",
+    "narrator": "",
+    "grade": "sahih",
+    "arabic": "",
+    "translations": {
+      "tr": {
+        "text": "Kim günde yüz defa \"Sübhânallâhi ve bihamdihî\" derse, hataları deniz köpüğü kadar olsa bile bağışlanır."
+      },
+      "en": {
+        "text": "Whoever says \"SubhanAllahi wa bihamdihi\" a hundred times a day, his sins are forgiven even if like the foam of the sea."
+      }
+    }
+  },
+  {
+    "id": "hh_67",
+    "collection": "Tirmizî",
+    "narrator": "",
+    "grade": "sahih",
+    "arabic": "",
+    "translations": {
+      "tr": {
+        "text": "Sadakanın en faziletlisi Ramazan'da verilendir."
+      },
+      "en": {
+        "text": "The best charity is that given in Ramadan."
+      }
+    }
+  },
+  {
+    "id": "hh_68",
+    "collection": "Buhârî",
+    "narrator": "",
+    "grade": "sahih",
+    "arabic": "",
+    "translations": {
+      "tr": {
+        "text": "Ben ve yetimi himaye eden, cennette böyle yan yanayız."
+      },
+      "en": {
+        "text": "I and the guardian of the orphan will be together in Paradise like this."
+      }
+    }
+  },
+  {
+    "id": "hh_69",
+    "collection": "Buhârî & Müslim",
+    "narrator": "",
+    "grade": "sahih",
+    "arabic": "",
+    "translations": {
+      "tr": {
+        "text": "Dul ve yoksula yardım eden, Allah yolunda cihad eden gibidir."
+      },
+      "en": {
+        "text": "The one who helps widows and the poor is like the one who strives in the way of Allah."
+      }
+    }
+  },
+  {
+    "id": "hh_70",
+    "collection": "Müslim",
+    "narrator": "",
+    "grade": "sahih",
+    "arabic": "",
+    "translations": {
+      "tr": {
+        "text": "Yumuşaklık bir şeyde bulunursa onu güzelleştirir."
+      },
+      "en": {
+        "text": "Gentleness is not found in anything except that it beautifies it."
+      }
+    }
+  },
+  {
+    "id": "hh_71",
+    "collection": "Müslim",
+    "narrator": "",
+    "grade": "sahih",
+    "arabic": "",
+    "translations": {
+      "tr": {
+        "text": "Allah refîktir, yumuşaklığı sever."
+      },
+      "en": {
+        "text": "Allah is gentle and loves gentleness."
+      }
+    }
+  },
+  {
+    "id": "hh_72",
+    "collection": "Buhârî",
+    "narrator": "",
+    "grade": "sahih",
+    "arabic": "",
+    "translations": {
+      "tr": {
+        "text": "Öfkelenme!"
+      },
+      "en": {
+        "text": "Do not get angry."
+      }
+    }
+  }
+]

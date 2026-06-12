@@ -1,0 +1,622 @@
+[
+  {
+    "ayah": 1,
+    "arabic": "وَٱلنَّجْمِ إِذَا هَوَىٰ",
+    "transliteration": "Ven necmi iza heva",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/053001.mp3",
+    "translations": {
+      "tr": "Batmakta olan yıldıza and olsun ki,",
+      "en": "By the star when it descends,"
+    }
+  },
+  {
+    "ayah": 2,
+    "arabic": "مَا ضَلَّ صَاحِبُكُمْ وَمَا غَوَىٰ",
+    "transliteration": "Ma dalle sahıbukum ve ma gava",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/053002.mp3",
+    "translations": {
+      "tr": "Arkadaşınız (Muhammed) sapmamış ve azmamıştır.",
+      "en": "Your companion [Muhammad] has not strayed, nor has he erred,"
+    }
+  },
+  {
+    "ayah": 3,
+    "arabic": "وَمَا يَنطِقُ عَنِ ٱلْهَوَىٰٓ",
+    "transliteration": "Ve ma yentıku anil heva",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/053003.mp3",
+    "translations": {
+      "tr": "O, kendiliğinden konuşmamaktadır.",
+      "en": "Nor does he speak from [his own] inclination."
+    }
+  },
+  {
+    "ayah": 4,
+    "arabic": "إِنْ هُوَ إِلَّا وَحْىٌۭ يُوحَىٰ",
+    "transliteration": "İn huve illa vahyun yuha",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/053004.mp3",
+    "translations": {
+      "tr": "Onun konuşması ancak, bildirilen bir vahy iledir.",
+      "en": "It is not but a revelation revealed,"
+    }
+  },
+  {
+    "ayah": 5,
+    "arabic": "عَلَّمَهُۥ شَدِيدُ ٱلْقُوَىٰ",
+    "transliteration": "Allemehu şedidul kuva",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/053005.mp3",
+    "translations": {
+      "tr": "Ona, çetin kuvvetlere sahip ve güçlü olan Cebrail öğretmiştir; en yüksek ufukta iken doğruluvermiş.",
+      "en": "Taught to him by one intense in strength -"
+    }
+  },
+  {
+    "ayah": 6,
+    "arabic": "ذُو مِرَّةٍۢ فَٱسْتَوَىٰ",
+    "transliteration": "Zu mirreh, festeva",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/053006.mp3",
+    "translations": {
+      "tr": "Ona, çetin kuvvetlere sahip ve güçlü olan Cebrail öğretmiştir; en yüksek ufukta iken doğruluvermiş.",
+      "en": "One of soundness. And he rose to [his] true form"
+    }
+  },
+  {
+    "ayah": 7,
+    "arabic": "وَهُوَ بِٱلْأُفُقِ ٱلْأَعْلَىٰ",
+    "transliteration": "Ve huve bil ufukil a'la",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/053007.mp3",
+    "translations": {
+      "tr": "Ona, çetin kuvvetlere sahip ve güçlü olan Cebrail öğretmiştir; en yüksek ufukta iken doğruluvermiş.",
+      "en": "While he was in the higher [part of the] horizon."
+    }
+  },
+  {
+    "ayah": 8,
+    "arabic": "ثُمَّ دَنَا فَتَدَلَّىٰ",
+    "transliteration": "Summe dena fe tedella",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/053008.mp3",
+    "translations": {
+      "tr": "Sonra yaklaşmış ve inmiştir.",
+      "en": "Then he approached and descended"
+    }
+  },
+  {
+    "ayah": 9,
+    "arabic": "فَكَانَ قَابَ قَوْسَيْنِ أَوْ أَدْنَىٰ",
+    "transliteration": "Fe kane kabe kavseyni ev edna",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/053009.mp3",
+    "translations": {
+      "tr": "Araları iki yay aralığı kadar veya daha da yakın oldu.",
+      "en": "And was at a distance of two bow lengths or nearer."
+    }
+  },
+  {
+    "ayah": 10,
+    "arabic": "فَأَوْحَىٰٓ إِلَىٰ عَبْدِهِۦ مَآ أَوْحَىٰ",
+    "transliteration": "Fe evha ila abdihi ma evha",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/053010.mp3",
+    "translations": {
+      "tr": "Allah o anda kuluna vahyedeceğini etti.",
+      "en": "And he revealed to His Servant what he revealed."
+    }
+  },
+  {
+    "ayah": 11,
+    "arabic": "مَا كَذَبَ ٱلْفُؤَادُ مَا رَأَىٰٓ",
+    "transliteration": "Ma kezebel fuadu ma rea",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/053011.mp3",
+    "translations": {
+      "tr": "Gözünün gördüğünü gönlü yalanlamadı.",
+      "en": "The heart did not lie [about] what it saw."
+    }
+  },
+  {
+    "ayah": 12,
+    "arabic": "أَفَتُمَٰرُونَهُۥ عَلَىٰ مَا يَرَىٰ",
+    "transliteration": "E fe tumar runehu ala ma yera",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/053012.mp3",
+    "translations": {
+      "tr": "Ey inkarcılar! Onun gördüğü şey hakkında kendisi ile tartışır mısınız?",
+      "en": "So will you dispute with him over what he saw?"
+    }
+  },
+  {
+    "ayah": 13,
+    "arabic": "وَلَقَدْ رَءَاهُ نَزْلَةً أُخْرَىٰ",
+    "transliteration": "Ve lekad reahu nezleten uhra",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/053013.mp3",
+    "translations": {
+      "tr": "And olsun ki o, Cebrail'i sınırın sonunda başka bir inişinde de görmüştür.",
+      "en": "And he certainly saw him in another descent"
+    }
+  },
+  {
+    "ayah": 14,
+    "arabic": "عِندَ سِدْرَةِ ٱلْمُنتَهَىٰ",
+    "transliteration": "İnde sidretil munteha",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/053014.mp3",
+    "translations": {
+      "tr": "And olsun ki o, Cebrail'i sınırın sonunda başka bir inişinde de görmüştür.",
+      "en": "At the Lote Tree of the Utmost Boundary -"
+    }
+  },
+  {
+    "ayah": 15,
+    "arabic": "عِندَهَا جَنَّةُ ٱلْمَأْوَىٰٓ",
+    "transliteration": "İndeha cennetul me'va",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/053015.mp3",
+    "translations": {
+      "tr": "Orada Me'va cenneti vardır.",
+      "en": "Near it is the Garden of Refuge -"
+    }
+  },
+  {
+    "ayah": 16,
+    "arabic": "إِذْ يَغْشَى ٱلسِّدْرَةَ مَا يَغْشَىٰ",
+    "transliteration": "İz yagşes sidrete ma yagşa",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/053016.mp3",
+    "translations": {
+      "tr": "Sidre'yi bürüyen bürüyordu.",
+      "en": "When there covered the Lote Tree that which covered [it]."
+    }
+  },
+  {
+    "ayah": 17,
+    "arabic": "مَا زَاغَ ٱلْبَصَرُ وَمَا طَغَىٰ",
+    "transliteration": "Ma zagal basaru ve ma tega",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/053017.mp3",
+    "translations": {
+      "tr": "Gözü oradan ne kaydı ve ne de onu aştı.",
+      "en": "The sight [of the Prophet] did not swerve, nor did it transgress [its limit]."
+    }
+  },
+  {
+    "ayah": 18,
+    "arabic": "لَقَدْ رَأَىٰ مِنْ ءَايَٰتِ رَبِّهِ ٱلْكُبْرَىٰٓ",
+    "transliteration": "Lekad rea min ayati rabbihil kubra",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/053018.mp3",
+    "translations": {
+      "tr": "And olsun ki Rabbinin varlığının büyük delillerini gördü.",
+      "en": "He certainly saw of the greatest signs of his Lord."
+    }
+  },
+  {
+    "ayah": 19,
+    "arabic": "أَفَرَءَيْتُمُ ٱللَّٰتَ وَٱلْعُزَّىٰ",
+    "transliteration": "E fe reeytumul late vel uzza",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/053019.mp3",
+    "translations": {
+      "tr": "Ey inkarcılar! Şimdi Lat, Uzza ve bundan başka üçüncüleri olan Menat'ın ne olduğunu söyler misiniz?",
+      "en": "So have you considered al-Lat and al-'Uzza?"
+    }
+  },
+  {
+    "ayah": 20,
+    "arabic": "وَمَنَوٰةَ ٱلثَّالِثَةَ ٱلْأُخْرَىٰٓ",
+    "transliteration": "Ve menates salisetel uhra",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/053020.mp3",
+    "translations": {
+      "tr": "Ey inkarcılar! Şimdi Lat, Uzza ve bundan başka üçüncüleri olan Menat'ın ne olduğunu söyler misiniz?",
+      "en": "And Manat, the third - the other one?"
+    }
+  },
+  {
+    "ayah": 21,
+    "arabic": "أَلَكُمُ ٱلذَّكَرُ وَلَهُ ٱلْأُنثَىٰ",
+    "transliteration": "E lekumuz zekeru ve lehul unsa",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/053021.mp3",
+    "translations": {
+      "tr": "Demek erkekler sizin, dişiler Allah'ın mı?",
+      "en": "Is the male for you and for Him the female?"
+    }
+  },
+  {
+    "ayah": 22,
+    "arabic": "تِلْكَ إِذًۭا قِسْمَةٌۭ ضِيزَىٰٓ",
+    "transliteration": "Tilke izen kısmetun diza",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/053022.mp3",
+    "translations": {
+      "tr": "Öyleyse bu haksız bir paylaşma;",
+      "en": "That, then, is an unjust division."
+    }
+  },
+  {
+    "ayah": 23,
+    "arabic": "إِنْ هِىَ إِلَّآ أَسْمَآءٌۭ سَمَّيْتُمُوهَآ أَنتُمْ وَءَابَآؤُكُم مَّآ أَنزَلَ ٱللَّهُ بِهَا مِن سُلْطَٰنٍ ۚ إِن يَتَّبِعُونَ إِلَّا ٱلظَّنَّ وَمَا تَهْوَى ٱلْأَنفُسُ ۖ وَلَقَدْ جَآءَهُم مِّن رَّبِّهِمُ ٱلْهُدَىٰٓ",
+    "transliteration": "İn hiye illa esmaun semmeytumuha entum ve abaukum ma enzelallahu biha min sultan, in yettebiune illez zanne ve ma tehvel enfus, ve lekad caehum min rabbihimul huda",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/053023.mp3",
+    "translations": {
+      "tr": "Bunlar sizin ve babalarınızın taktığı adlardan başka bir şey değildir. Allah onları destekleyen bir delil indirmemiştir. Onlar sadece sanıya ve canlarının istediğine uymaktadırlar. Oysa onlara Rablerinden and olsun ki doğruluk rehberi gelmiştir.",
+      "en": "They are not but [mere] names you have named them - you and your forefathers - for which Allah has sent down no authority. They follow not except assumption and what [their] souls desire, and there has already come to them from their Lord guidance."
+    }
+  },
+  {
+    "ayah": 24,
+    "arabic": "أَمْ لِلْإِنسَٰنِ مَا تَمَنَّىٰ",
+    "transliteration": "Em lil insani ma temenna",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/053024.mp3",
+    "translations": {
+      "tr": "Yoksa, her umduğu şey insanın mıdır?",
+      "en": "Or is there for man whatever he wishes?"
+    }
+  },
+  {
+    "ayah": 25,
+    "arabic": "فَلِلَّهِ ٱلْءَاخِرَةُ وَٱلْأُولَىٰ",
+    "transliteration": "Fe lillahil ahiretu vel ula",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/053025.mp3",
+    "translations": {
+      "tr": "Hayatın ilki de sonu da Allah'ındır.",
+      "en": "Rather, to Allah belongs the Hereafter and the first [life]."
+    }
+  },
+  {
+    "ayah": 26,
+    "arabic": "۞ وَكَم مِّن مَّلَكٍۢ فِى ٱلسَّمَٰوَٰتِ لَا تُغْنِى شَفَٰعَتُهُمْ شَيْـًٔا إِلَّا مِنۢ بَعْدِ أَن يَأْذَنَ ٱللَّهُ لِمَن يَشَآءُ وَيَرْضَىٰٓ",
+    "transliteration": "Ve kem min melekin fis semavati la tugni şefaatuhum şey'en illa min ba'di en ye'zenallahu limen yeşau ve yerda",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/053026.mp3",
+    "translations": {
+      "tr": "Allah, dilediğine ve hoşnut olduğuna izin vermedikçe, göklerde bulunan nice meleklerin şefaati bir şeye yaramaz.",
+      "en": "And how many angels there are in the heavens whose intercession will not avail at all except [only] after Allah has permitted [it] to whom He wills and approves."
+    }
+  },
+  {
+    "ayah": 27,
+    "arabic": "إِنَّ ٱلَّذِينَ لَا يُؤْمِنُونَ بِٱلْءَاخِرَةِ لَيُسَمُّونَ ٱلْمَلَٰٓئِكَةَ تَسْمِيَةَ ٱلْأُنثَىٰ",
+    "transliteration": "İnnellezine la yu'minune bil ahireti le yusemmunel melaikete tesmiyetel unsa",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/053027.mp3",
+    "translations": {
+      "tr": "Doğrusu ahirete inanmayanlar, meleklere \"dişi\" adını takarlar.",
+      "en": "Indeed, those who do not believe in the Hereafter name the angels female names,"
+    }
+  },
+  {
+    "ayah": 28,
+    "arabic": "وَمَا لَهُم بِهِۦ مِنْ عِلْمٍ ۖ إِن يَتَّبِعُونَ إِلَّا ٱلظَّنَّ ۖ وَإِنَّ ٱلظَّنَّ لَا يُغْنِى مِنَ ٱلْحَقِّ شَيْـًۭٔا",
+    "transliteration": "Ve ma lehum bihi min ilm, in yettebiune illez zann, ve innez zanne la yugni minel hakkı şey'a",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/053028.mp3",
+    "translations": {
+      "tr": "Oysa onların bu hususta bir bilgileri yoktur, sadece sanıya uyarlar. Sanı ise şüphesiz gerçeği ifade etmez.",
+      "en": "And they have thereof no knowledge. They follow not except assumption, and indeed, assumption avails not against the truth at all."
+    }
+  },
+  {
+    "ayah": 29,
+    "arabic": "فَأَعْرِضْ عَن مَّن تَوَلَّىٰ عَن ذِكْرِنَا وَلَمْ يُرِدْ إِلَّا ٱلْحَيَوٰةَ ٱلدُّنْيَا",
+    "transliteration": "Fe a'rıd an men tevella an zikrina ve lem yurid illel hayated dunya",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/053029.mp3",
+    "translations": {
+      "tr": "Bizi anmaktan yüz çevirenlere ve dünya hayatından başka bir şey istemeyenlere aldırma.",
+      "en": "So turn away from whoever turns his back on Our message and desires not except the worldly life."
+    }
+  },
+  {
+    "ayah": 30,
+    "arabic": "ذَٰلِكَ مَبْلَغُهُم مِّنَ ٱلْعِلْمِ ۚ إِنَّ رَبَّكَ هُوَ أَعْلَمُ بِمَن ضَلَّ عَن سَبِيلِهِۦ وَهُوَ أَعْلَمُ بِمَنِ ٱهْتَدَىٰ",
+    "transliteration": "Zalike mebleguhum minel ilm, inne rabbeke huve a'lemu bi men dalle an sebilihi ve huve a'lemu bi menihteda",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/053030.mp3",
+    "translations": {
+      "tr": "Bu onların ulaştıkları bilginin seviyesini gösterir. Doğrusu Rabbin yolundan sapmış olanı pek iyi bilir, doğru yolda olanı da çok iyi bilir.",
+      "en": "That is their sum of knowledge. Indeed, your Lord is most knowing of who strays from His way, and He is most knowing of who is guided."
+    }
+  },
+  {
+    "ayah": 31,
+    "arabic": "وَلِلَّهِ مَا فِى ٱلسَّمَٰوَٰتِ وَمَا فِى ٱلْأَرْضِ لِيَجْزِىَ ٱلَّذِينَ أَسَٰٓـُٔوا۟ بِمَا عَمِلُوا۟ وَيَجْزِىَ ٱلَّذِينَ أَحْسَنُوا۟ بِٱلْحُسْنَى",
+    "transliteration": "Ve lillahi ma fis semavati ve ma fil ardı li yecziyellezine esau bima amilu ve yecziyellezine ahsenu bil husna",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/053031.mp3",
+    "translations": {
+      "tr": "Göklerde olanlar ve yerde olanlar Allah'ındır ki O, kötülük yapanlara işlerinin karşılığını verir; iyi davrananlara, ufak tefek kabahatleri bir yana büyük günahlardan ve hayasızlıklardan kaçınanlara işlediklerinden daha iyisiyle karşılığını verir. Doğrusu Rabbinin bağışı boldur. Sizi yerden var ederken ve siz annelerinizin karınlarında cenin halinde iken sizleri çok iyi bilen O'dur. Kendinizi temize çıkarmayın. O, sakınanı çok iyi bilir.",
+      "en": "And to Allah belongs whatever is in the heavens and whatever is in the earth - that He may recompense those who do evil with [the penalty of] what they have done and recompense those who do good with the best [reward] -"
+    }
+  },
+  {
+    "ayah": 32,
+    "arabic": "ٱلَّذِينَ يَجْتَنِبُونَ كَبَٰٓئِرَ ٱلْإِثْمِ وَٱلْفَوَٰحِشَ إِلَّا ٱللَّمَمَ ۚ إِنَّ رَبَّكَ وَٰسِعُ ٱلْمَغْفِرَةِ ۚ هُوَ أَعْلَمُ بِكُمْ إِذْ أَنشَأَكُم مِّنَ ٱلْأَرْضِ وَإِذْ أَنتُمْ أَجِنَّةٌۭ فِى بُطُونِ أُمَّهَٰتِكُمْ ۖ فَلَا تُزَكُّوٓا۟ أَنفُسَكُمْ ۖ هُوَ أَعْلَمُ بِمَنِ ٱتَّقَىٰٓ",
+    "transliteration": "Ellezine yectenibune kebairel ismi vel fevahışe illâ-llemem, inne rabbeke vasiul magfireh, huve a'lemu bikum iz enşeekum minel ardı ve iz entum e cinnetun fi butuni ummehatikum, fe la tuzekku enfusekum, huve a'lemu bi menitteka",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/053032.mp3",
+    "translations": {
+      "tr": "Göklerde olanlar ve yerde olanlar Allah'ındır ki O, kötülük yapanlara işlerinin karşılığını verir; iyi davrananlara, ufak tefek kabahatleri bir yana büyük günahlardan ve hayasızlıklardan kaçınanlara işlediklerinden daha iyisiyle karşılığını verir. Doğrusu Rabbinin bağışı boldur. Sizi yerden var ederken ve siz annelerinizin karınlarında cenin halinde iken sizleri çok iyi bilen O'dur. Kendinizi temize çıkarmayın. O, sakınanı çok iyi bilir.",
+      "en": "Those who avoid the major sins and immoralities, only [committing] slight ones. Indeed, your Lord is vast in forgiveness. He was most knowing of you when He produced you from the earth and when you were fetuses in the wombs of your mothers. So do not claim yourselves to be pure; He is most knowing of who fears Him."
+    }
+  },
+  {
+    "ayah": 33,
+    "arabic": "أَفَرَءَيْتَ ٱلَّذِى تَوَلَّىٰ",
+    "transliteration": "E fe re'eytellezi tevella",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/053033.mp3",
+    "translations": {
+      "tr": "Yüz çevireni ve malından biraz verip sonra vermemekte direneni gördün mü?\"",
+      "en": "Have you seen the one who turned away"
+    }
+  },
+  {
+    "ayah": 34,
+    "arabic": "وَأَعْطَىٰ قَلِيلًۭا وَأَكْدَىٰٓ",
+    "transliteration": "Ve a'ta kalilen ve ekda",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/053034.mp3",
+    "translations": {
+      "tr": "Yüz çevireni ve malından biraz verip sonra vermemekte direneni gördün mü?\"",
+      "en": "And gave a little and [then] refrained?"
+    }
+  },
+  {
+    "ayah": 35,
+    "arabic": "أَعِندَهُۥ عِلْمُ ٱلْغَيْبِ فَهُوَ يَرَىٰٓ",
+    "transliteration": "E indehu ilmul gaybi fe huve yera",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/053035.mp3",
+    "translations": {
+      "tr": "Görülmeyenin ilmi yanında da o mu görüyor?",
+      "en": "Does he have knowledge of the unseen, so he sees?"
+    }
+  },
+  {
+    "ayah": 36,
+    "arabic": "أَمْ لَمْ يُنَبَّأْ بِمَا فِى صُحُفِ مُوسَىٰ",
+    "transliteration": "Em lem yunebbe' bima fi suhufi musa",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/053036.mp3",
+    "translations": {
+      "tr": "Yoksa Musa'nın ve sözünü yerine getiren İbrahim'in kitablarında olanlar kendisine bildirilmedi mi ki?",
+      "en": "Or has he not been informed of what was in the scriptures of Moses"
+    }
+  },
+  {
+    "ayah": 37,
+    "arabic": "وَإِبْرَٰهِيمَ ٱلَّذِى وَفَّىٰٓ",
+    "transliteration": "Ve ibrahimellezi veffa",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/053037.mp3",
+    "translations": {
+      "tr": "Yoksa Musa'nın ve sözünü yerine getiren İbrahim'in kitablarında olanlar kendisine bildirilmedi mi ki?",
+      "en": "And [of] Abraham, who fulfilled [his obligations] -"
+    }
+  },
+  {
+    "ayah": 38,
+    "arabic": "أَلَّا تَزِرُ وَازِرَةٌۭ وِزْرَ أُخْرَىٰ",
+    "transliteration": "Ella teziru vaziretun vizre uhra",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/053038.mp3",
+    "translations": {
+      "tr": "Hiç bir günahkar başkasının günah yükünü yüklenmez;",
+      "en": "That no bearer of burdens will bear the burden of another"
+    }
+  },
+  {
+    "ayah": 39,
+    "arabic": "وَأَن لَّيْسَ لِلْإِنسَٰنِ إِلَّا مَا سَعَىٰ",
+    "transliteration": "Ve en leyse lil insani illa ma sea",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/053039.mp3",
+    "translations": {
+      "tr": "İnsan ancak çalıştığına erişir.",
+      "en": "And that there is not for man except that [good] for which he strives"
+    }
+  },
+  {
+    "ayah": 40,
+    "arabic": "وَأَنَّ سَعْيَهُۥ سَوْفَ يُرَىٰ",
+    "transliteration": "Ve enne sa'yehu sevfe yura",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/053040.mp3",
+    "translations": {
+      "tr": "Onun çalışması şüphesiz görülecektir.",
+      "en": "And that his effort is going to be seen -"
+    }
+  },
+  {
+    "ayah": 41,
+    "arabic": "ثُمَّ يُجْزَىٰهُ ٱلْجَزَآءَ ٱلْأَوْفَىٰ",
+    "transliteration": "Summe yuczahul cezael evfa",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/053041.mp3",
+    "translations": {
+      "tr": "Sonra ona karşılığı eksiksiz verilecektir.",
+      "en": "Then he will be recompensed for it with the fullest recompense"
+    }
+  },
+  {
+    "ayah": 42,
+    "arabic": "وَأَنَّ إِلَىٰ رَبِّكَ ٱلْمُنتَهَىٰ",
+    "transliteration": "Ve enne ila rabbikel munteha",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/053042.mp3",
+    "translations": {
+      "tr": "Doğrusu son varış Rabbinedir.",
+      "en": "And that to your Lord is the finality"
+    }
+  },
+  {
+    "ayah": 43,
+    "arabic": "وَأَنَّهُۥ هُوَ أَضْحَكَ وَأَبْكَىٰ",
+    "transliteration": "Ve ennehu huve adhake ve ebka",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/053043.mp3",
+    "translations": {
+      "tr": "Doğrusu, güldüren de ağlatan da O'dur.",
+      "en": "And that it is He who makes [one] laugh and weep"
+    }
+  },
+  {
+    "ayah": 44,
+    "arabic": "وَأَنَّهُۥ هُوَ أَمَاتَ وَأَحْيَا",
+    "transliteration": "Ve ennehu huve emate ve ahya",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/053044.mp3",
+    "translations": {
+      "tr": "Doğrusu dirilten de öldüren de O'dur.",
+      "en": "And that it is He who causes death and gives life"
+    }
+  },
+  {
+    "ayah": 45,
+    "arabic": "وَأَنَّهُۥ خَلَقَ ٱلزَّوْجَيْنِ ٱلذَّكَرَ وَٱلْأُنثَىٰ",
+    "transliteration": "Ve ennehu halakaz zevceyniz zekere vel unsa",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/053045.mp3",
+    "translations": {
+      "tr": "Doğrusu, atıldığında meniden erkek ve dişiyi, iki çifti yaratan O'dur.",
+      "en": "And that He creates the two mates - the male and female -"
+    }
+  },
+  {
+    "ayah": 46,
+    "arabic": "مِن نُّطْفَةٍ إِذَا تُمْنَىٰ",
+    "transliteration": "Min nutfetin iza tumna",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/053046.mp3",
+    "translations": {
+      "tr": "Doğrusu, atıldığında meniden erkek ve dişiyi, iki çifti yaratan O'dur.",
+      "en": "From a sperm-drop when it is emitted"
+    }
+  },
+  {
+    "ayah": 47,
+    "arabic": "وَأَنَّ عَلَيْهِ ٱلنَّشْأَةَ ٱلْأُخْرَىٰ",
+    "transliteration": "Ve enne aleyhin neş'etel uhra",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/053047.mp3",
+    "translations": {
+      "tr": "Doğrusu ölümden sonra tekrar dirilten de O'dur.",
+      "en": "And that [incumbent] upon Him is the next creation"
+    }
+  },
+  {
+    "ayah": 48,
+    "arabic": "وَأَنَّهُۥ هُوَ أَغْنَىٰ وَأَقْنَىٰ",
+    "transliteration": "Ve ennehu huve agna ve akna",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/053048.mp3",
+    "translations": {
+      "tr": "Doğrusu zengin eden de varlıklı kılan da O'dur.",
+      "en": "And that it is He who enriches and suffices"
+    }
+  },
+  {
+    "ayah": 49,
+    "arabic": "وَأَنَّهُۥ هُوَ رَبُّ ٱلشِّعْرَىٰ",
+    "transliteration": "Ve ennehu huve rabbuş şı'ra",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/053049.mp3",
+    "translations": {
+      "tr": "Doğrusu Şira yıldızının Rabbi O'dur.",
+      "en": "And that it is He who is the Lord of Sirius"
+    }
+  },
+  {
+    "ayah": 50,
+    "arabic": "وَأَنَّهُۥٓ أَهْلَكَ عَادًا ٱلْأُولَىٰ",
+    "transliteration": "Ve ennehu ehleke adenil ula",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/053050.mp3",
+    "translations": {
+      "tr": "İlk Ad milletini, Semud milletini yok edip geri bırakmayan O'dur.",
+      "en": "And that He destroyed the first [people of] 'Aad"
+    }
+  },
+  {
+    "ayah": 51,
+    "arabic": "وَثَمُودَا۟ فَمَآ أَبْقَىٰ",
+    "transliteration": "Ve semude fema ebka",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/053051.mp3",
+    "translations": {
+      "tr": "İlk Ad milletini, Semud milletini yok edip geri bırakmayan O'dur.",
+      "en": "And Thamud - and He did not spare [them] -"
+    }
+  },
+  {
+    "ayah": 52,
+    "arabic": "وَقَوْمَ نُوحٍۢ مِّن قَبْلُ ۖ إِنَّهُمْ كَانُوا۟ هُمْ أَظْلَمَ وَأَطْغَىٰ",
+    "transliteration": "Ve kavme nuhın min kabl, innehum kanu hum azleme ve atga",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/053052.mp3",
+    "translations": {
+      "tr": "Daha önce de Nuh milletini yok eden O'dur; çünkü onlar çok zalim ve pek taşkın kimselerdi.",
+      "en": "And the people of Noah before. Indeed, it was they who were [even] more unjust and oppressing."
+    }
+  },
+  {
+    "ayah": 53,
+    "arabic": "وَٱلْمُؤْتَفِكَةَ أَهْوَىٰ",
+    "transliteration": "Vel mu'tefikete ehva",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/053053.mp3",
+    "translations": {
+      "tr": "Lut milletinin kasabalarını yere batıran, onları gömdükçe gömen O'dur.",
+      "en": "And the overturned towns He hurled down"
+    }
+  },
+  {
+    "ayah": 54,
+    "arabic": "فَغَشَّىٰهَا مَا غَشَّىٰ",
+    "transliteration": "Fe gaşşaha ma gaşşa",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/053054.mp3",
+    "translations": {
+      "tr": "Lut milletinin kasabalarını yere batıran, onları gömdükçe gömen O'dur.",
+      "en": "And covered them by that which He covered."
+    }
+  },
+  {
+    "ayah": 55,
+    "arabic": "فَبِأَىِّ ءَالَآءِ رَبِّكَ تَتَمَارَىٰ",
+    "transliteration": "Fe bi eyyi alai rabbike tetemara",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/053055.mp3",
+    "translations": {
+      "tr": "Ey kişi! Rabbinin hangi nimetinden şüpheye düşersin?",
+      "en": "Then which of the favors of your Lord do you doubt?"
+    }
+  },
+  {
+    "ayah": 56,
+    "arabic": "هَٰذَا نَذِيرٌۭ مِّنَ ٱلنُّذُرِ ٱلْأُولَىٰٓ",
+    "transliteration": "Haza nezirun minen nuzuril ula",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/053056.mp3",
+    "translations": {
+      "tr": "İşte ilk uyaranlar gibi bu da bir uyarandır.",
+      "en": "This [Prophet] is a warner like the former warners."
+    }
+  },
+  {
+    "ayah": 57,
+    "arabic": "أَزِفَتِ ٱلْءَازِفَةُ",
+    "transliteration": "Ezifetil azifeh",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/053057.mp3",
+    "translations": {
+      "tr": "Kıyamet yaklaştıkça yaklaşmıştır.",
+      "en": "The Approaching Day has approached."
+    }
+  },
+  {
+    "ayah": 58,
+    "arabic": "لَيْسَ لَهَا مِن دُونِ ٱللَّهِ كَاشِفَةٌ",
+    "transliteration": "Leyse leha min dunillahi kaşifeh",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/053058.mp3",
+    "translations": {
+      "tr": "Onu Allah'tan başka ortaya koyacak yoktur.",
+      "en": "Of it, [from those] besides Allah, there is no remover."
+    }
+  },
+  {
+    "ayah": 59,
+    "arabic": "أَفَمِنْ هَٰذَا ٱلْحَدِيثِ تَعْجَبُونَ",
+    "transliteration": "E fe min hazel hadisi ta'cebun",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/053059.mp3",
+    "translations": {
+      "tr": "Bu söze mi şaşıyorsunuz?",
+      "en": "Then at this statement do you wonder?"
+    }
+  },
+  {
+    "ayah": 60,
+    "arabic": "وَتَضْحَكُونَ وَلَا تَبْكُونَ",
+    "transliteration": "Ve tedhakune ve la tebkun",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/053060.mp3",
+    "translations": {
+      "tr": "Gülüyorsunuz... Ağlamıyorsunuz.",
+      "en": "And you laugh and do not weep"
+    }
+  },
+  {
+    "ayah": 61,
+    "arabic": "وَأَنتُمْ سَٰمِدُونَ",
+    "transliteration": "Ve entum samidun",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/053061.mp3",
+    "translations": {
+      "tr": "Habersiz oyalanmaktasınız.",
+      "en": "While you are proudly sporting?"
+    }
+  },
+  {
+    "ayah": 62,
+    "arabic": "فَٱسْجُدُوا۟ لِلَّهِ وَٱعْبُدُوا۟ ۩",
+    "transliteration": "Fescudu lillahi va'budu",
+    "audio": "https://everyayah.com/data/Alafasy_128kbps/053062.mp3",
+    "translations": {
+      "tr": "Artık secdeye varın, Allah'a kulluk edin.",
+      "en": "So prostrate to Allah and worship [Him]."
+    }
+  }
+]
