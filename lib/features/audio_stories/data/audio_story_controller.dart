@@ -34,6 +34,10 @@ class AudioStoryController extends Notifier<AudioStoryState> {
   @override
   AudioStoryState build() {
     final sub = _h.player.playerStateStream.listen((s) {
+      // Paylaşılan player'da BAŞKA kaynak (Kur'an) çalıyorken hikâye durumu
+      // güncellenmesin — quran_audio_controller'daki guard'ın aynısı. Yoksa
+      // Kur'an çalarken playing/loading buraya da sahte yansıyordu.
+      if (_h.mode != 'story') return;
       state = state.copyWith(
         playing: s.playing,
         loading: s.processingState == ProcessingState.loading ||
@@ -42,12 +46,9 @@ class AudioStoryController extends Notifier<AudioStoryState> {
       // 🏁 Son bölüm bitti (kuyruk sonu) → durdur + temizle → mini gizlenir.
       // Kur'an'dan farklı: hikâyede albümler arası otomatik geçiş YOK, düz
       // bitiş. just_audio 'completed'da playing=true bıraktığından temizlemezsek
-      // mini "play" ikonuyla takılı kalırdı. Mode şartı: paylaşılan player'da
-      // Kur'an çalıyorken (bayat current ile) onun sure geçişini söndürmeyelim.
-      // Son şart: araya yeni liste yüklemesi girdiyse (player artık completed
-      // değil) dokunma.
-      if (_h.mode == 'story' &&
-          s.processingState == ProcessingState.completed &&
+      // mini "play" ikonuyla takılı kalırdı. Son şart: araya yeni liste
+      // yüklemesi girdiyse (player artık completed değil) dokunma.
+      if (s.processingState == ProcessingState.completed &&
           state.current != null &&
           _h.player.processingState == ProcessingState.completed) {
         stop();
@@ -80,6 +81,15 @@ class AudioStoryController extends Notifier<AudioStoryState> {
   Future<void> stop() async {
     await _h.stop();
     state = state.copyWith(clear: true, playing: false, loading: false);
+  }
+
+  /// Paylaşılan player'a BAŞKA kaynak (Kur'an) geçince / tamamen durunca bayat
+  /// durumumuzu sıfırlar — player'a DOKUNMAZ (yeni kaynağı o çalıyor olabilir).
+  /// app.dart'taki tek onModeChanged bağı çağırır.
+  void clearStale() {
+    if (state.current != null || state.playing || state.loading) {
+      state = const AudioStoryState();
+    }
   }
 
   Future<void> next() => _h.skipToNext();

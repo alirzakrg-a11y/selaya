@@ -131,6 +131,15 @@ class QuranAudioController extends Notifier<QuranAudioState> {
     state = state.copyWith(clear: true, playing: false, loading: false);
   }
 
+  /// Paylaşılan player'a BAŞKA kaynak (hikâye) geçince / tamamen durunca bayat
+  /// durumumuzu sıfırlar — player'a DOKUNMAZ (yeni kaynağı o çalıyor olabilir).
+  /// app.dart'taki tek onModeChanged bağı çağırır.
+  void clearStale() {
+    if (state.surahNumber != null || state.playing || state.loading) {
+      state = const QuranAudioState();
+    }
+  }
+
   Future<void> jumpTo(int index) => _h.player.seek(Duration.zero, index: index);
 
   /// ⏭ Sıradaki ayet — kuyruğun SONUNDAYSA sıradaki sureye geçer (manuel,

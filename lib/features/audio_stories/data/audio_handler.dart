@@ -30,10 +30,15 @@ class MediaTrack {
 class AppAudioHandler extends BaseAudioHandler with SeekHandler {
   final AudioPlayer player = AudioPlayer();
 
-  /// 'story' (bölüm listesi çalıyor) | 'idle' (boşta).
+  /// 'story' (bölüm listesi çalıyor) | 'quran' | 'idle' (boşta).
   String mode = 'idle';
   List<MediaTrack> tracks = const [];
   String album = '';
+
+  /// Mode değişiminin TEK bildirim noktası (app.dart bağlar): yeni kaynak
+  /// çalmaya başlayınca / tamamen durunca önceki modun controller'ı bayat
+  /// durumunu temizler. Salt bildirim — çalma mantığına etkisi yok.
+  void Function(String newMode)? onModeChanged;
 
   static const _procMap = {
     ProcessingState.idle: AudioProcessingState.idle,
@@ -75,9 +80,11 @@ class AppAudioHandler extends BaseAudioHandler with SeekHandler {
   Future<void> playPlaylist(List<MediaTrack> list,
       {String albumTitle = '', int startIndex = 0, String mode = 'story'}) async {
     if (list.isEmpty) return;
+    final prevMode = this.mode;
     this.mode = mode;
     tracks = list;
     album = albumTitle;
+    if (prevMode != mode) onModeChanged?.call(mode);
     final idx = startIndex.clamp(0, list.length - 1);
     // DÜZ AKIŞ (AudioSource.uri) — kanıtlanmış yol. LockCachingAudioSource
     // DENENDİ ve GERİ ALINDI: Kur'an ses proxy'miz (api.selaya.app) range
@@ -118,10 +125,14 @@ class AppAudioHandler extends BaseAudioHandler with SeekHandler {
   Future<void> stop() async {
     await player.stop();
     tracks = const [];
+    final prevMode = mode;
     mode = 'idle';
     mediaItem.add(null);
     playbackState.add(playbackState.value.copyWith(
         processingState: AudioProcessingState.idle, playing: false));
+    // Bildirimden gelen Durdur dahil her duruşta haber ver → controller'lar
+    // bayat durum bırakmasın.
+    if (prevMode != 'idle') onModeChanged?.call('idle');
   }
 }
 
