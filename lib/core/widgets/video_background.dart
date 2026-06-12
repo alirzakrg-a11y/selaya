@@ -1,5 +1,6 @@
 import 'dart:math';
 
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:video_player/video_player.dart';
 
@@ -34,12 +35,38 @@ class _VideoBackgroundState extends State<VideoBackground> {
   bool _ready = false;
   int _index = 0;
   bool _advancing = false;
+  ValueListenable<bool>? _tickerMode;
 
   @override
   void initState() {
     super.initState();
     _index = _startIndex ??= Random().nextInt(_videos.length);
     _load(_index);
+  }
+
+  // PERF: ekran görünmezken (başka sekme — IndexedStack offstage — ya da
+  // üstüne tam sayfa açılınca Navigator alttakini söndürür) video DURUR;
+  // görünür olunca devam eder. Eskiden arka planda sürekli decode + her
+  // karede tam ekran kompozisyon = gezinirken takılmanın ana kaynağıydı.
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    final tm = TickerMode.getNotifier(context);
+    if (!identical(tm, _tickerMode)) {
+      _tickerMode?.removeListener(_onTickerModeChanged);
+      _tickerMode = tm..addListener(_onTickerModeChanged);
+      _onTickerModeChanged();
+    }
+  }
+
+  void _onTickerModeChanged() {
+    final c = _controller;
+    if (c == null || !c.value.isInitialized || !mounted) return;
+    if (_tickerMode?.value ?? true) {
+      if (!c.value.isPlaying) c.play();
+    } else {
+      if (c.value.isPlaying) c.pause();
+    }
   }
 
   Future<void> _load(int index) async {
@@ -49,7 +76,8 @@ class _VideoBackgroundState extends State<VideoBackground> {
       await controller.setLooping(false); // advance to the next clip manually
       await controller.setVolume(0);
       controller.addListener(_onTick);
-      await controller.play();
+      // Görünmez sekmede klip değişimi olursa oynatmadan bekle.
+      if (_tickerMode?.value ?? true) await controller.play();
       if (!mounted) {
         await controller.dispose();
         return;
@@ -69,6 +97,9 @@ class _VideoBackgroundState extends State<VideoBackground> {
 
   /// Advance to the next clip once the current one reaches its end.
   void _onTick() {
+    // Duraklatılmışken (görünmez) "sonda + oynamıyor" koşulu yanlışlıkla
+    // klip ilerletmesin.
+    if (!(_tickerMode?.value ?? true)) return;
     final c = _controller;
     if (c == null || !c.value.isInitialized || _advancing) return;
     final dur = c.value.duration;
@@ -83,6 +114,7 @@ class _VideoBackgroundState extends State<VideoBackground> {
 
   @override
   void dispose() {
+    _tickerMode?.removeListener(_onTickerModeChanged);
     _controller?.removeListener(_onTick);
     _controller?.dispose();
     super.dispose();

@@ -2,6 +2,7 @@ import 'dart:async';
 import 'dart:io';
 
 import 'package:easy_localization/easy_localization.dart' hide TextDirection;
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
@@ -843,6 +844,7 @@ class _AutoCarouselState extends State<_AutoCarousel> {
   late final PageController _pc;
   Timer? _timer;
   double _page = 0;
+  ValueListenable<bool>? _tickerMode;
 
   @override
   void initState() {
@@ -856,8 +858,33 @@ class _AutoCarouselState extends State<_AutoCarousel> {
     _start();
   }
 
+  // PERF: ekran görünmezken (başka sekme / üstte tam sayfa) 4 sn'lik otomatik
+  // dönüş timer'ı DURUR — eskiden arka planda da kayma animasyonu tetikleyip
+  // boşuna frame ürettiriyordu; görünür olunca kaldığı yerden devam eder.
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    final tm = TickerMode.getNotifier(context);
+    if (!identical(tm, _tickerMode)) {
+      _tickerMode?.removeListener(_onTickerModeChanged);
+      _tickerMode = tm..addListener(_onTickerModeChanged);
+      _onTickerModeChanged();
+    }
+  }
+
+  void _onTickerModeChanged() {
+    if (!mounted) return;
+    if (_tickerMode?.value ?? true) {
+      if (_timer == null) _start();
+    } else {
+      _timer?.cancel();
+      _timer = null;
+    }
+  }
+
   void _start() {
     _timer?.cancel();
+    _timer = null;
     if (widget.itemCount <= 1) return;
     _timer = Timer.periodic(const Duration(seconds: 4), (_) {
       if (!mounted || !_pc.hasClients) return;
@@ -869,6 +896,7 @@ class _AutoCarouselState extends State<_AutoCarousel> {
 
   @override
   void dispose() {
+    _tickerMode?.removeListener(_onTickerModeChanged);
     _timer?.cancel();
     _pc.dispose();
     super.dispose();
