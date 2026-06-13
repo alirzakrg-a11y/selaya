@@ -96,7 +96,7 @@ class HomeLayoutController extends Notifier<HomeLayout> {
 
   Future<void> reorder(int oldIndex, int newIndex) async {
     final order = [...state.order];
-    if (newIndex > oldIndex) newIndex -= 1;
+    // newIndex ayari YOK: onReorderItem (yeni API) indeksi zaten dusurulmus verir.
     final item = order.removeAt(oldIndex);
     order.insert(newIndex, item);
     await _persist(HomeLayout(order, state.hidden));

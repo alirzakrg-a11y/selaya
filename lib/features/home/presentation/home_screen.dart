@@ -846,7 +846,7 @@ class _AutoCarouselState extends State<_AutoCarousel> {
   late final PageController _pc;
   Timer? _timer;
   double _page = 0;
-  ValueListenable<bool>? _tickerMode;
+  ValueListenable<TickerModeData>? _tickerMode;
 
   @override
   void initState() {
@@ -866,7 +866,7 @@ class _AutoCarouselState extends State<_AutoCarousel> {
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
-    final tm = TickerMode.getNotifier(context);
+    final tm = TickerMode.getValuesNotifier(context);
     if (!identical(tm, _tickerMode)) {
       _tickerMode?.removeListener(_onTickerModeChanged);
       _tickerMode = tm..addListener(_onTickerModeChanged);
@@ -876,7 +876,7 @@ class _AutoCarouselState extends State<_AutoCarousel> {
 
   void _onTickerModeChanged() {
     if (!mounted) return;
-    if (_tickerMode?.value ?? true) {
+    if (_tickerMode?.value.enabled ?? true) {
       if (_timer == null) _start();
     } else {
       _timer?.cancel();

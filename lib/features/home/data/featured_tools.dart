@@ -116,7 +116,7 @@ class FeaturedToolsController extends Notifier<FeaturedTools> {
 
   Future<void> reorder(int oldIndex, int newIndex) async {
     final order = [...state.order];
-    if (newIndex > oldIndex) newIndex -= 1;
+    // newIndex ayari YOK: onReorderItem (yeni API) indeksi zaten dusurulmus verir.
     order.insert(newIndex, order.removeAt(oldIndex));
     await _persist(FeaturedTools(order, state.hidden));
   }

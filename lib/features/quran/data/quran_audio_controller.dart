@@ -175,7 +175,7 @@ class QuranAudioController extends Notifier<QuranAudioState> {
   Stream<Duration> get positionStream => _h.player.positionStream;
   Stream<Duration?> get durationStream => _h.player.durationStream;
 
-  /// Çalan parçanın AYET numarası ('<sure>_<ayet>' kimliğinden) — kumandada
+  /// Çalan parçanın AYET numarası (`<sure>_<ayet>` kimliğinden) — kumandada
   /// "N. ayet okunuyor" göstermek için. Çözülemezse null.
   int? get currentAyahNumber {
     final i = _h.player.currentIndex;

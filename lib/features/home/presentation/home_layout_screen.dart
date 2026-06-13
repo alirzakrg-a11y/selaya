@@ -62,7 +62,9 @@ class HomeLayoutScreen extends ConsumerWidget {
               padding: const EdgeInsets.fromLTRB(
                   AppSpacing.base, 0, AppSpacing.base, AppSpacing.xxxl),
               itemCount: layout.order.length,
-              onReorder: ctrl.reorder,
+              // onReorderItem: yeni API newIndex'i kaldırılan öğe için ZATEN
+              // ayarlar — controller'daki eski `newIndex -= 1` düzeltmesi kalktı.
+              onReorderItem: ctrl.reorder,
               itemBuilder: (context, i) {
                 final key = layout.order[i];
                 final visible = layout.isVisible(key);

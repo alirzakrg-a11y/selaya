@@ -35,7 +35,7 @@ class _VideoBackgroundState extends State<VideoBackground> {
   bool _ready = false;
   int _index = 0;
   bool _advancing = false;
-  ValueListenable<bool>? _tickerMode;
+  ValueListenable<TickerModeData>? _tickerMode;
 
   @override
   void initState() {
@@ -51,7 +51,7 @@ class _VideoBackgroundState extends State<VideoBackground> {
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
-    final tm = TickerMode.getNotifier(context);
+    final tm = TickerMode.getValuesNotifier(context);
     if (!identical(tm, _tickerMode)) {
       _tickerMode?.removeListener(_onTickerModeChanged);
       _tickerMode = tm..addListener(_onTickerModeChanged);
@@ -62,7 +62,7 @@ class _VideoBackgroundState extends State<VideoBackground> {
   void _onTickerModeChanged() {
     final c = _controller;
     if (c == null || !c.value.isInitialized || !mounted) return;
-    if (_tickerMode?.value ?? true) {
+    if (_tickerMode?.value.enabled ?? true) {
       if (!c.value.isPlaying) c.play();
     } else {
       if (c.value.isPlaying) c.pause();
@@ -84,7 +84,7 @@ class _VideoBackgroundState extends State<VideoBackground> {
       await controller.setVolume(0);
       controller.addListener(_onTick);
       // Görünmez sekmede klip değişimi olursa oynatmadan bekle.
-      if (_tickerMode?.value ?? true) await controller.play();
+      if (_tickerMode?.value.enabled ?? true) await controller.play();
       if (!mounted) {
         await controller.dispose();
         return;
@@ -106,7 +106,7 @@ class _VideoBackgroundState extends State<VideoBackground> {
   void _onTick() {
     // Duraklatılmışken (görünmez) "sonda + oynamıyor" koşulu yanlışlıkla
     // klip ilerletmesin.
-    if (!(_tickerMode?.value ?? true)) return;
+    if (!(_tickerMode?.value.enabled ?? true)) return;
     final c = _controller;
     if (c == null || !c.value.isInitialized || _advancing) return;
     final dur = c.value.duration;
