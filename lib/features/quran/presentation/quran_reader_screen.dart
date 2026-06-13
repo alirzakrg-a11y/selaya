@@ -354,6 +354,11 @@ class _QuranReaderScreenState extends ConsumerState<QuranReaderScreen> {
     // yoksa çalar bar kayboluyor, sayfa eski surede "takılı" görünüyordu.
     ref.listen<QuranAudioState>(quranAudioControllerProvider, (prev, next) {
       if (!mounted) return;
+      // Sayfa GÖRÜNMÜYORKEN (başka sekme aktif → IndexedStack offstage, veya
+      // üstte opak route var) navigasyon YAPMA — yoksa her otomatik sure
+      // geçişi kullanıcıyı gezindiği sekmeden Kur'an okuyucusuna geri çeker.
+      // Görünür olunca aşağıdaki _wasActive bloğu sayfayı doğru sureye taşır.
+      if (!TickerMode.getValuesNotifier(context).value.enabled) return;
       if (prev?.surahNumber == widget.surahNumber &&
           next.surahNumber != null &&
           next.surahNumber != widget.surahNumber) {
@@ -366,13 +371,18 @@ class _QuranReaderScreenState extends ConsumerState<QuranReaderScreen> {
     final isPlaying = active && st.playing;
     final currentAyah = active ? _currentAyah : null;
 
-    // Sure geçişi bu sayfa ÖRTÜLÜYKEN (now-playing açıkken) olursa ref.listen
-    // anı kaçırabilir → görünür olunca yakala: bu sure çalıyordu ama artık
-    // başka sure çalıyorsa sayfayı ona taşı.
+    // TickerMode'a BAĞIMLILIK: sayfa offstage'den görünür hâle gelince rebuild
+    // tetiklenir → aşağıdaki yakalama bloğu tam o anda çalışır.
+    final pageVisible = TickerMode.valuesOf(context).enabled;
+
+    // Sure geçişi bu sayfa ÖRTÜLÜYKEN (now-playing açık / başka sekmedeyken)
+    // olursa ref.listen bilerek atlar → görünür olunca yakala: bu sure
+    // çalıyordu ama artık başka sure çalıyorsa sayfayı ona taşı.
     if (active) {
       _wasActive = true;
     } else if (_wasActive &&
         st.surahNumber != null &&
+        pageVisible &&
         (ModalRoute.of(context)?.isCurrent ?? true)) {
       _wasActive = false;
       final target = st.surahNumber;
