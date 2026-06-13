@@ -74,16 +74,22 @@ class AppAudioHandler extends BaseAudioHandler with SeekHandler {
         MediaControl.skipToNext,
       ],
       androidCompactActionIndices: const [0, 1, 3],
+      // MediaAction.seek → bildirimde İLERLEME/SEEK çubuğunu etkinleştirir.
+      // Bu olmadan Android konum metaverisini çubuk olarak çizmez → "pasif"
+      // görünür (BUG-2). copyWith updateTime'ı otomatik now() yapar → Android
+      // arka planda position'ı updatePosition + (now-updateTime)*speed ile
+      // KENDİSİ enterpolasyonla ilerletir (yeni event gelmese de).
+      systemActions: const {MediaAction.seek},
       processingState: _procMap[player.processingState]!,
       playing: playing,
-      // KONUM bildir → bildirim ilerleme çubuğu hareket etsin (eskiden yoktu
-      // → çubuk pasif kalıyordu). audio_service bunlar arasında interpolasyon
-      // yapar; her playbackEvent'te güncellenmesi yeterli.
       updatePosition: player.position,
       bufferedPosition: player.bufferedPosition,
       speed: player.speed,
     ));
   }
+
+  @override
+  Future<void> seek(Duration position) => player.seek(position);
 
   @override
   Future<void> skipToNext() => player.seekToNext();
@@ -138,10 +144,15 @@ class AppAudioHandler extends BaseAudioHandler with SeekHandler {
 
   @override
   Future<void> stop() async {
-    await player.stop();
-    tracks = const [];
+    // mode'u player.stop()'tan ÖNCE 'idle' yap: stop sırasında gelen
+    // playerState/completed event'lerini controller'ların mode-guard'ı ERKEN
+    // döndürsün → stop anında "sıradaki sureyi yükle" yarışı + state churn
+    // OLMASIN (BUG-1 donma savunması). Eski sıra: önce stop, mode hâlâ 'quran'
+    // → son ayette completed gelirse stop yerine N+1 yüklenebiliyordu.
     final prevMode = mode;
     mode = 'idle';
+    tracks = const [];
+    await player.stop();
     mediaItem.add(null);
     playbackState.add(playbackState.value.copyWith(
         processingState: AudioProcessingState.idle, playing: false));

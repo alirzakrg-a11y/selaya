@@ -13,6 +13,8 @@ import android.media.MediaPlayer
 import android.os.Build
 import android.os.IBinder
 import android.os.PowerManager
+import android.os.Vibrator
+import android.os.VibratorManager
 import androidx.core.app.NotificationCompat
 
 /**
@@ -29,6 +31,25 @@ import androidx.core.app.NotificationCompat
 class AdhanPlayerService : Service() {
     private var player: MediaPlayer? = null
     private var label: String = "Namaz"
+
+    private val vibrator: Vibrator by lazy {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+            (getSystemService(Context.VIBRATOR_MANAGER_SERVICE) as VibratorManager)
+                .defaultVibrator
+        } else {
+            @Suppress("DEPRECATION")
+            (getSystemService(Context.VIBRATOR_SERVICE) as Vibrator)
+        }
+    }
+
+    /** Uygulamanın TÜM titreşimini keser. Tam-ekran alarm ekranı (Flutter
+     *  `vibration` paketi) ezan boyunca SONSUZ titreşim başlatıyor; FGS süreci
+     *  canlı tuttuğu için app recents'ten kaydırılınca Flutter dispose'u
+     *  çalışmayıp titreşim sürüyordu. `vibrator.cancel()` aynı app token'ındaki
+     *  o titreşimi de iptal eder → tek ortak durdurma noktası. (BUG-3) */
+    private fun stopVibration() {
+        try { vibrator.cancel() } catch (_: Exception) {}
+    }
 
     override fun onBind(intent: Intent?): IBinder? = null
 
@@ -92,6 +113,7 @@ class AdhanPlayerService : Service() {
     }
 
     private fun stopEverything(lingering: Boolean) {
+        stopVibration() // sesle BİRLİKTE titreşimi de kes (BUG-3)
         try { player?.let { if (it.isPlaying) it.stop() } } catch (_: Exception) {}
         try { player?.release() } catch (_: Exception) {}
         player = null
@@ -128,7 +150,16 @@ class AdhanPlayerService : Service() {
         try { nm.notify(LINGER_ID, n) } catch (_: Exception) {}
     }
 
+    /** App recents'ten kaydırılınca (görev kaldırılır): ezanı + titreşimi
+     *  TAMAMEN durdur. FGS aksi halde süreci canlı tutar → Flutter titreşimi
+     *  sürerdi (ses bitse bile titreşim devam — BUG-3'ün senaryosu). */
+    override fun onTaskRemoved(rootIntent: Intent?) {
+        stopEverything(lingering = false)
+        super.onTaskRemoved(rootIntent)
+    }
+
     override fun onDestroy() {
+        stopVibration() // her kapanışta titreşim de kesin dursun (BUG-3)
         try { player?.release() } catch (_: Exception) {}
         player = null
         super.onDestroy()
