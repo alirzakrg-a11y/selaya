@@ -218,8 +218,7 @@
 
         <!-- ⑨ Ezan alarm tetikleyici: AlarmManager bir namaz vaktinde bunu
              tetikler → AdhanPlayerService'i başlatır (uygulama ölü olsa bile,
-             alarm-muafiyeti). BOOT'ta prefs'ten yeniden kurar.
-             NOT: exported=true yalnız TEST broadcast'ı için geçici (sonra false). -->
+             alarm-muafiyeti). BOOT'ta prefs'ten yeniden kurar. -->
         <receiver
             android:name=".AdhanAlarmReceiver"
             android:exported="false">

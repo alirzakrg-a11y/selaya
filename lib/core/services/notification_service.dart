@@ -37,9 +37,27 @@ void _dispatchAdhanPayload(String? payload) {
 /// native servisindir ve Kapat'ı native ACTION_STOP'tur (bg isolate'e hiç
 /// uğramaz). Valid entry-point so taps never crash.
 @pragma('vm:entry-point')
-void _onBgNotificationResponse(NotificationResponse response) {
+void _onBgNotificationResponse(NotificationResponse response) async {
   if (response.actionId != 'stop_adhan') return;
   final plugin = FlutterLocalNotificationsPlugin();
+  // Yalnız AKTİF namaz bildirimlerini iptal et (kanal sesi bildirimle birlikte
+  // kesilir) — eskiden 700 id körlemesine taranıyordu. getActiveNotifications
+  // bg isolate'te başarısız olursa eski blok-süpürmeye düşülür (güvence).
+  try {
+    final android = plugin.resolvePlatformSpecificImplementation<
+        AndroidFlutterLocalNotificationsPlugin>();
+    final active = await android?.getActiveNotifications();
+    if (active != null) {
+      for (final n in active) {
+        final id = n.id;
+        if (id == null) continue;
+        if ((id >= 3000 && id < 3700) || id == 9998) {
+          await plugin.cancel(id: id);
+        }
+      }
+      return;
+    }
+  } catch (_) {}
   for (var i = 3000; i < 3700; i++) {
     plugin.cancel(id: i);
   }
