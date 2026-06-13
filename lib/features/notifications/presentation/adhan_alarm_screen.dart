@@ -49,11 +49,19 @@ class _AdhanAlarmScreenState extends ConsumerState<AdhanAlarmScreen>
     _pulse = AnimationController(
         vsync: this, duration: const Duration(milliseconds: 1400))
       ..repeat(reverse: true);
-    // Titreşim ayarı açıksa ezan boyunca ~3 sn süren güçlü titreşim (0.8 sn ara
-    // ile tekrarlar). Sessiz görsel bildirimde kanal titreşimi yok → ekran
-    // kendi titretir.
+    // Titreşim ayarı açıksa SINIRLI titreşim (~30 sn buzz/dur), sonra
+    // KENDİLİĞİNDEN durur. ÖNCEDEN repeat:0 (SONSUZ) idi → Kapat/dispose/native
+    // iptali herhangi bir nedenle çalışmazsa (FGS süreci canlı tutarken app
+    // recents'ten atılınca Flutter dispose ÇALIŞMIYOR) titreşim dakikalarca
+    // sürüyordu (kullanıcı: "10 dk titreşim"). repeat:-1 = deseni BİR KEZ çal,
+    // bitince DUR → hiçbir iptale bağlı kalmadan kendi kendine biter.
     if (prayerVibration) {
-      Vibration.vibrate(pattern: const [0, 3000, 800], repeat: 0);
+      final pattern = <int>[0];
+      for (var i = 0; i < 12; i++) {
+        pattern.add(1800); // 1.8 sn titre
+        pattern.add(700); //  0.7 sn dur
+      }
+      Vibration.vibrate(pattern: pattern, repeat: -1);
     }
   }
 
