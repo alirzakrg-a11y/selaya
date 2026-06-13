@@ -217,28 +217,36 @@ class _AdhanWatcher extends ConsumerStatefulWidget {
 class _AdhanWatcherState extends ConsumerState<_AdhanWatcher> {
   DateTime? _prev;
 
-  @override
-  Widget build(BuildContext context) {
-    final now = ref.watch(clockProvider).value;
-    final view = ref.watch(prayerViewProvider).value;
-    final config = ref.watch(prayerNotificationProvider);
-    final fullScreen = ref.watch(fullScreenAdhanProvider);
-    if (now != null && view != null && fullScreen) {
-      final prev = _prev;
-      _prev = now;
-      if (prev != null && now.isAfter(prev)) {
-        for (final slot in PrayerSlot.values) {
-          if (!config.alarmFor(slot).atTime) continue;
-          final t = view.today.timeOf(slot);
-          final crossed = t.isAfter(prev) && !t.isAfter(now);
-          // Ignore stale crossings after a long background gap (resume).
-          if (crossed && now.difference(t).inSeconds.abs() < 90) {
-            WidgetsBinding.instance
-                .addPostFrameCallback((_) => adhanAlarmSlot.value = slot.index);
-          }
+  /// Saat her saniye tikinde: ezan vakti geçişini kontrol et, geçtiyse tam
+  /// ekran alarmı tetikle. WATCH DEĞİL LISTEN ile — bu widget TÜM uygulamayı
+  /// sarıyor; `ref.watch(clockProvider)` ile her saniye TÜM ağacı + kök
+  /// ProviderScope'u kirletip her ekranda gereksiz rebuild yapıyordu. Yan-etki
+  /// listener'da; widget ağacı yeniden çizilmez. Diğer provider'lar `read`
+  /// (tik anındaki güncel değer yeterli — anlık görünürlük gerekmez).
+  void _onTick(DateTime? now) {
+    final view = ref.read(prayerViewProvider).value;
+    final config = ref.read(prayerNotificationProvider);
+    final fullScreen = ref.read(fullScreenAdhanProvider);
+    final prev = _prev;
+    _prev = now;
+    if (now == null || view == null || !fullScreen) return;
+    if (prev != null && now.isAfter(prev)) {
+      for (final slot in PrayerSlot.values) {
+        if (!config.alarmFor(slot).atTime) continue;
+        final t = view.today.timeOf(slot);
+        final crossed = t.isAfter(prev) && !t.isAfter(now);
+        // Ignore stale crossings after a long background gap (resume).
+        if (crossed && now.difference(t).inSeconds.abs() < 90) {
+          WidgetsBinding.instance
+              .addPostFrameCallback((_) => adhanAlarmSlot.value = slot.index);
         }
       }
     }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    ref.listen(clockProvider, (_, next) => _onTick(next.value));
     return widget.child;
   }
 }
