@@ -82,10 +82,17 @@ final routerProvider = Provider<GoRouter>((ref) {
               routes: [
                 GoRoute(
                     path: 'reader/:surah',
-                    builder: (_, s) => QuranReaderScreen(
-                        surahNumber:
-                            int.tryParse(s.pathParameters['surah'] ?? '1') ??
-                                1)),
+                    builder: (_, s) {
+                      final n =
+                          int.tryParse(s.pathParameters['surah'] ?? '1') ?? 1;
+                      // Sure-bazlı key ŞART: go ile sure değişince go_router
+                      // aynı page'i günceller ve State korunurdu — _surahNavLock
+                      // açık kalıp "sonraki sure" geçişini öldürüyordu (eski
+                      // pushReplacement her seferinde taze State kuruyordu; bu
+                      // key o davranışın birebir karşılığı, sure de baştan açılır).
+                      return QuranReaderScreen(
+                          key: ValueKey('quran-reader-$n'), surahNumber: n);
+                    }),
                 GoRoute(
                     path: 'yasin',
                     builder: (_, _) =>
