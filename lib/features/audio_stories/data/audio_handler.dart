@@ -126,13 +126,22 @@ class AppAudioHandler extends BaseAudioHandler with SeekHandler {
   void _setTrackMediaItem(int? i) {
     if (i == null || i < 0 || i >= tracks.length) return;
     final t = tracks[i];
+    // Süre: içerik modelinde varsa ondan; yoksa oynatıcının O AN bildiği
+    // süreden (player.duration). ÖNEMLİ — null'a SABİTLEME (BUG-2 kökü):
+    // ayet değişiminde durationStream yeni parçanın süresini currentIndexStream'
+    // den (→ buradan) ÖNCE yayınlayabiliyor. null yazarsak o süre kayboluyor ve
+    // parça boyunca bir daha emit gelmediğinden bildirim metaverisinde
+    // METADATA_KEY_DURATION 0 kalıyor → Android medya bildiriminde ilerleme/seek
+    // çubuğu HİÇ çıkmıyor (uygulama içi çizgi çalışsa bile — o canlı stream
+    // okur). player.duration o yarışta doğru süreyi verir; henüz bilinmiyorsa
+    // durationStream dinleyicisi yüklenince tamamlar.
     mediaItem.add(MediaItem(
       id: t.id,
       title: t.title,
       album: album.isNotEmpty ? album : 'Sesli Hikâye',
       artist: 'SELAYA',
       artUri: t.artUri.isNotEmpty ? Uri.tryParse(t.artUri) : null,
-      duration: t.durationSec > 0 ? Duration(seconds: t.durationSec) : null,
+      duration: t.durationSec > 0 ? Duration(seconds: t.durationSec) : player.duration,
     ));
   }
 
