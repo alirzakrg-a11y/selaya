@@ -7,8 +7,10 @@ import '../../../../core/theme/app_colors.dart';
 import '../../../../core/theme/app_icons.dart';
 import '../../../../core/theme/app_spacing.dart';
 import '../../../../core/theme/app_typography.dart';
+import '../../../../core/data/content_providers.dart';
+import '../../../../core/models/content.dart';
 import '../../../../core/utils/formatters.dart';
-import '../../../../core/widgets/video_background.dart';
+import '../../../../core/widgets/rotating_image_background.dart';
 import '../../data/prayer_repository.dart';
 import '../../domain/prayer.dart';
 
@@ -24,6 +26,13 @@ class NextPrayerCard extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final lang = context.langCode;
     final viewAsync = ref.watch(prayerViewProvider);
+    // Arka plan: panel/CDN wallpaper'larından ilk 3 ücretsiz görsel (videonun
+    // YERİNE — eski telefonlarda sürekli video decode takılma yapıyordu).
+    // gridImage = ≤560px hafif önizleme; boşsa hero_mosque.jpg yerel fallback.
+    final wps = ref.watch(wallpapersProvider).value ?? const <Wallpaper>[];
+    final bgImages = [
+      for (final w in wps.where((w) => !w.premium).take(3)) w.gridImage,
+    ];
 
     return AspectRatio(
       // Kompakt: üst/alt boşluk azaltıldı (kullanıcı isteği).
@@ -33,8 +42,10 @@ class NextPrayerCard extends ConsumerWidget {
         child: Stack(
           fit: StackFit.expand,
           children: [
-            const VideoBackground(
-                fallbackImage: 'assets/images/hero_mosque.jpg'),
+            RotatingImageBackground(
+              images: bgImages,
+              fallback: 'assets/images/hero_mosque.jpg',
+            ),
             const DecoratedBox(
               decoration: BoxDecoration(
                 gradient: LinearGradient(

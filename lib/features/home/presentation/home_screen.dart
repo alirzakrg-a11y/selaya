@@ -2,7 +2,6 @@ import 'dart:async';
 import 'dart:io';
 
 import 'package:easy_localization/easy_localization.dart' hide TextDirection;
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
@@ -844,62 +843,23 @@ class _AutoCarousel extends StatefulWidget {
 
 class _AutoCarouselState extends State<_AutoCarousel> {
   late final PageController _pc;
-  Timer? _timer;
   double _page = 0;
-  ValueListenable<TickerModeData>? _tickerMode;
 
   @override
   void initState() {
     super.initState();
+    // OTOMATİK DÖNÜŞ KALDIRILDI (kullanıcı isteği: ana ekran animasyonları) —
+    // artık yalnız parmakla kaydırılan vitrin. Timer/TickerMode mantığı kalktı.
     _pc = PageController(viewportFraction: 0.74)
       ..addListener(() {
         if (_pc.hasClients && _pc.page != null) {
           setState(() => _page = _pc.page!);
         }
       });
-    _start();
-  }
-
-  // PERF: ekran görünmezken (başka sekme / üstte tam sayfa) 4 sn'lik otomatik
-  // dönüş timer'ı DURUR — eskiden arka planda da kayma animasyonu tetikleyip
-  // boşuna frame ürettiriyordu; görünür olunca kaldığı yerden devam eder.
-  @override
-  void didChangeDependencies() {
-    super.didChangeDependencies();
-    final tm = TickerMode.getValuesNotifier(context);
-    if (!identical(tm, _tickerMode)) {
-      _tickerMode?.removeListener(_onTickerModeChanged);
-      _tickerMode = tm..addListener(_onTickerModeChanged);
-      _onTickerModeChanged();
-    }
-  }
-
-  void _onTickerModeChanged() {
-    if (!mounted) return;
-    if (_tickerMode?.value.enabled ?? true) {
-      if (_timer == null) _start();
-    } else {
-      _timer?.cancel();
-      _timer = null;
-    }
-  }
-
-  void _start() {
-    _timer?.cancel();
-    _timer = null;
-    if (widget.itemCount <= 1) return;
-    _timer = Timer.periodic(const Duration(seconds: 4), (_) {
-      if (!mounted || !_pc.hasClients) return;
-      final next = ((_pc.page ?? 0).round() + 1) % widget.itemCount;
-      _pc.animateToPage(next,
-          duration: const Duration(milliseconds: 550), curve: Curves.easeInOut);
-    });
   }
 
   @override
   void dispose() {
-    _tickerMode?.removeListener(_onTickerModeChanged);
-    _timer?.cancel();
     _pc.dispose();
     super.dispose();
   }
@@ -908,27 +868,22 @@ class _AutoCarouselState extends State<_AutoCarousel> {
   Widget build(BuildContext context) {
     return SizedBox(
       height: widget.height,
-      child: NotificationListener<ScrollNotification>(
-        onNotification: (n) {
-          // Kullanıcı parmağıyla kaydırınca otomatik sayacı yeniden başlat.
-          if (n is UserScrollNotification) _start();
-          return false;
+      child: PageView.builder(
+        controller: _pc,
+        itemCount: widget.itemCount,
+        itemBuilder: (context, i) {
+          // Merkezdeki kart tam boy, komşular hafif küçük — yalnız parmak
+          // kaydırırken (idle'da statik); otomatik tetikleyici yok.
+          final delta = (_page - i).abs().clamp(0.0, 1.0);
+          final scale = 1.0 - delta * 0.16;
+          return Transform.scale(
+            scale: scale,
+            child: Opacity(
+              opacity: 1.0 - delta * 0.4,
+              child: widget.builder(context, i),
+            ),
+          );
         },
-        child: PageView.builder(
-          controller: _pc,
-          itemCount: widget.itemCount,
-          itemBuilder: (context, i) {
-            final delta = (_page - i).abs().clamp(0.0, 1.0);
-            final scale = 1.0 - delta * 0.16; // merkez 1.0 · komşu ~0.84
-            return Transform.scale(
-              scale: scale,
-              child: Opacity(
-                opacity: 1.0 - delta * 0.4,
-                child: widget.builder(context, i),
-              ),
-            );
-          },
-        ),
       ),
     );
   }
@@ -1316,8 +1271,7 @@ class _GaugeCarouselState extends State<_GaugeCarousel> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             for (var i = 0; i < 3; i++)
-              AnimatedContainer(
-                duration: const Duration(milliseconds: 200),
+              Container(
                 margin: const EdgeInsets.symmetric(horizontal: 3),
                 width: _page == i ? 18 : 6,
                 height: 6,

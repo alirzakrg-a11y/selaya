@@ -1,6 +1,5 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../../core/theme/app_colors.dart';
@@ -31,17 +30,14 @@ class PrayerStrip extends ConsumerWidget {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              // Açılışta vakitler soldan sağa tek tek belirir (hafif yukarı
-              // kayarak) — kısa, bir kerelik giriş animasyonu.
+              // STATİK — giriş animasyonu kaldırıldı (kullanıcı isteği: eski
+              // telefonlarda akıcılık için vakit ekranı animasyonları kalktı).
               for (var i = 0; i < PrayerSlot.values.length; i++)
                 _SlotCell(
                   slot: PrayerSlot.values[i],
                   time: t.timeOf(PrayerSlot.values[i]),
                   active: PrayerSlot.values[i] == active,
-                )
-                    .animate(delay: (60 * i).ms)
-                    .fadeIn(duration: 320.ms, curve: Curves.easeOut)
-                    .moveY(begin: 10, end: 0, curve: Curves.easeOutCubic),
+                ),
             ],
           ),
         );

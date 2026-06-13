@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_animate/flutter_animate.dart';
 
 import '../theme/app_colors.dart';
 
-/// The circular gold icon badge used by the home & "More" feature grids, with a
-/// subtle, staggered pop-in animation so the grids feel alive as they appear.
-/// [index] staggers each badge so they don't all animate in unison.
+/// The circular gold icon badge used by the home & "More" feature grids.
+/// STATİK (animasyonsuz) — kullanıcı isteği: eski telefonlarda akıcılık için
+/// ana ekran/vakit ekranı animasyonları kaldırıldı. [index] artık kullanılmıyor
+/// ama imza korunuyor (çağıranlar değişmesin).
 class FeatureIcon extends StatelessWidget {
   final IconData icon;
   final int index;
@@ -27,20 +27,6 @@ class FeatureIcon extends StatelessWidget {
       // stays in the badge background); light themes keep the coloured glyph.
       child: Icon(icon, color: c.isDark ? c.textPrimary : c.gold, size: size),
     );
-    // TEK-SEFERLİK "pop-in" — ızgara belirince canlı görünür, sonra STATİK.
-    // ÖNCEDEN repeat(reverse:true) ile SONSUZ "nefes"ti → "Daha Fazla" gibi
-    // ikon-dolu (ve tembel OLMAYAN) listelerde görünen/görünmeyen TÜM ikonlar
-    // sürekli 60fps çizilip her karede tüm ekranı invalidate ediyordu →
-    // kaydırırken KİLİTLENME. fadeIn/scaleXY paint-only (relayout yok) ve
-    // animasyon bitince çizim DURUR → ekran boşa düşebilir.
-    return badge
-        .animate()
-        .fadeIn(duration: 250.ms, delay: ((index % 8) * 35).ms)
-        .scaleXY(
-          begin: 0.85,
-          end: 1.0,
-          duration: 300.ms,
-          curve: Curves.easeOutBack,
-        );
+    return badge;
   }
 }
