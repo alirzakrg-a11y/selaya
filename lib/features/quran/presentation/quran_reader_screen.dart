@@ -43,6 +43,7 @@ class _QuranReaderScreenState extends ConsumerState<QuranReaderScreen> {
   int? _currentAyah;
   bool _wasActive = false; // bu sure çalıyordu (örtülü geçiş yakalama için)
   double _endOverscroll = 0; // alt uçta birikmiş aşırı-kaydırma (sonraki sure)
+  double _startOverscroll = 0; // üst uçta birikmiş aşırı-kaydırma (önceki sure)
   bool _surahNavLock = false;
   // Ayet numaraları (ses listesi sırasında) — index → doğru ayet eşlemesi.
   List<int> _audibleAyahs = const [];
@@ -448,7 +449,10 @@ class _QuranReaderScreenState extends ConsumerState<QuranReaderScreen> {
         // aşırı-kaydırma) veya alttaki karta dokununca SONRAKİ sureye akar.
         data: (list) => NotificationListener<ScrollNotification>(
           onNotification: (n) {
-            if (n is ScrollStartNotification) _endOverscroll = 0;
+            if (n is ScrollStartNotification) {
+              _endOverscroll = 0;
+              _startOverscroll = 0;
+            }
             if (n is OverscrollNotification &&
                 n.overscroll > 0 &&
                 n.metrics.pixels >= n.metrics.maxScrollExtent) {
@@ -457,12 +461,34 @@ class _QuranReaderScreenState extends ConsumerState<QuranReaderScreen> {
                 _goToSurah(widget.surahNumber + 1);
               }
             }
+            // Üst uçtan fazladan çekince ÖNCEKİ sureye (başından) geç —
+            // alttaki mekanizmanın simetriği. Fâtiha'da (sure 1) kapalı.
+            if (n is OverscrollNotification &&
+                n.overscroll < 0 &&
+                widget.surahNumber > 1 &&
+                n.metrics.pixels <= n.metrics.minScrollExtent) {
+              _startOverscroll += -n.overscroll;
+              if (_startOverscroll > 90) {
+                _goToSurah(widget.surahNumber - 1);
+              }
+            }
             return false;
           },
           child: ListView(
           padding: const EdgeInsets.fromLTRB(
               AppSpacing.base, AppSpacing.sm, AppSpacing.base, AppSpacing.xxxl),
           children: [
+            // Üstte "Önceki Sure" ipucu kartı — dokun ya da üstten fazladan
+            // çek (alttaki "Sonraki Sure" ile aynı tasarım dili; sure 1'de yok).
+            if (widget.surahNumber > 1) ...[
+              _PrevSurahCard(
+                surahs: surahs,
+                prev: widget.surahNumber - 1,
+                lang: lang,
+                onTap: () => _goToSurah(widget.surahNumber - 1),
+              ),
+              const Gap.base(),
+            ],
             if (surah != null)
               _SurahHeader(
                 surah: surah,
@@ -517,6 +543,56 @@ class _QuranReaderScreenState extends ConsumerState<QuranReaderScreen> {
           ],
         ),
         ),
+      ),
+    );
+  }
+}
+
+/// Sayfa başındaki "Önceki Sure" kartı — dokun ya da üstten fazladan çek.
+/// Önceki sure her zaman BAŞINDAN açılır.
+class _PrevSurahCard extends StatelessWidget {
+  final List<Surah> surahs;
+  final int prev;
+  final String lang;
+  final VoidCallback onTap;
+  const _PrevSurahCard(
+      {required this.surahs,
+      required this.prev,
+      required this.lang,
+      required this.onTap});
+
+  @override
+  Widget build(BuildContext context) {
+    final c = context.colors;
+    final m = surahs.where((s) => s.number == prev);
+    final s = m.isEmpty ? null : m.first;
+    return SelayaCard(
+      onTap: onTap,
+      padding: const EdgeInsets.symmetric(
+          horizontal: AppSpacing.base, vertical: AppSpacing.md),
+      child: Row(
+        children: [
+          Icon(Icons.swipe_down_rounded, color: c.gold, size: 22),
+          const Gap.md(),
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(lang == 'tr' ? 'Önceki Sure' : 'Previous Surah',
+                    style: Theme.of(context)
+                        .textTheme
+                        .labelSmall
+                        ?.copyWith(color: c.textTertiary)),
+                Text(s?.name(lang) ?? 'Sure $prev',
+                    style: Theme.of(context)
+                        .textTheme
+                        .titleMedium
+                        ?.copyWith(color: c.gold, fontWeight: FontWeight.w800)),
+              ],
+            ),
+          ),
+          Icon(Icons.arrow_back_rounded, color: c.gold),
+        ],
       ),
     );
   }
@@ -598,12 +674,48 @@ class _QuranTransport extends StatelessWidget {
     return InstantSwipe(
       onUp: () => openQuranNowPlaying(context),
       child: Container(
-      padding: const EdgeInsets.symmetric(
-          horizontal: AppSpacing.sm, vertical: AppSpacing.sm),
       decoration: BoxDecoration(
         color: c.surface,
         border: Border(top: BorderSide(color: c.border)),
       ),
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          // İnce İLERLEME çizgisi — çalan ayetin konumu (global mini'dekiyle
+          // aynı). Eskiden bu barda HİÇ yoktu; "Sureyi Oku" ile başlatınca
+          // çizgisiz görünüyordu (kullanıcı bunu 'geç çıkıyor' diye bildirdi —
+          // gördüğü çizgi okuyucudan çıkınca beliren mini'nindi).
+          StreamBuilder<Duration?>(
+            stream: ctrl.durationStream,
+            builder: (context, dSnap) {
+              final total = dSnap.data ?? Duration.zero;
+              return StreamBuilder<Duration>(
+                stream: ctrl.positionStream,
+                builder: (context, pSnap) {
+                  final pos = pSnap.data ?? Duration.zero;
+                  final f = total.inMilliseconds == 0
+                      ? 0.0
+                      : (pos.inMilliseconds / total.inMilliseconds)
+                          .clamp(0.0, 1.0);
+                  return SizedBox(
+                    height: 3,
+                    width: double.infinity,
+                    child: ColoredBox(
+                      color: c.border.withValues(alpha: 0.5),
+                      child: FractionallySizedBox(
+                        alignment: Alignment.centerLeft,
+                        widthFactor: f,
+                        child: ColoredBox(color: c.gold),
+                      ),
+                    ),
+                  );
+                },
+              );
+            },
+          ),
+          Padding(
+      padding: const EdgeInsets.symmetric(
+          horizontal: AppSpacing.sm, vertical: AppSpacing.sm),
       child: Row(
         children: [
           const Gap.sm(),
@@ -689,6 +801,9 @@ class _QuranTransport extends StatelessWidget {
             color: c.textSecondary,
             icon: const Icon(Icons.stop_circle_outlined),
             onPressed: ctrl.stop,
+          ),
+        ],
+      ),
           ),
         ],
       ),
