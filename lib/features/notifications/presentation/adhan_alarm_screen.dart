@@ -174,50 +174,62 @@ class _AdhanAlarmScreenState extends ConsumerState<AdhanAlarmScreen>
                   const Spacer(),
 
                   // ── Center: pulsing prayer emblem ─────────────────────────
-                  AnimatedBuilder(
-                    animation: _pulse,
-                    builder: (context, _) {
-                      final t = _pulse.value;
-                      return SizedBox(
-                        width: 220,
-                        height: 220,
-                        child: Stack(
-                          alignment: Alignment.center,
-                          children: [
-                            for (final scale in [1.0, 0.78])
-                              Container(
-                                width: 220 * (scale + t * 0.12),
-                                height: 220 * (scale + t * 0.12),
-                                decoration: BoxDecoration(
-                                  shape: BoxShape.circle,
-                                  color: c.gold.withValues(
-                                      alpha: 0.06 + (1 - scale) * 0.05),
-                                ),
-                              ),
-                            Container(
-                              width: 132,
-                              height: 132,
-                              decoration: BoxDecoration(
-                                shape: BoxShape.circle,
-                                gradient: LinearGradient(
-                                  begin: Alignment.topLeft,
-                                  end: Alignment.bottomRight,
-                                  colors: [c.goldBright, c.goldDeep],
-                                ),
-                                boxShadow: [
-                                  BoxShadow(
-                                    color: c.gold.withValues(alpha: 0.4),
-                                    blurRadius: 30,
-                                    spreadRadius: 4,
-                                  ),
+                  // PERF: yalnız saydam halkalar pulse'lanır (ucuz). Gradyan +
+                  // BLUR gölgeli merkez amblem AnimatedBuilder'ın DIŞINDA →
+                  // pahalı blur (blurRadius 30) her karede DEĞİL bir kez çizilir;
+                  // RepaintBoundary pulse'ı ekranın geri kalanından yalıtır.
+                  // (Ezan boyunca 60fps blur-repaint = "ezan okunurken donma".)
+                  RepaintBoundary(
+                    child: SizedBox(
+                      width: 220,
+                      height: 220,
+                      child: Stack(
+                        alignment: Alignment.center,
+                        children: [
+                          AnimatedBuilder(
+                            animation: _pulse,
+                            builder: (context, _) {
+                              final t = _pulse.value;
+                              return Stack(
+                                alignment: Alignment.center,
+                                children: [
+                                  for (final scale in [1.0, 0.78])
+                                    Container(
+                                      width: 220 * (scale + t * 0.12),
+                                      height: 220 * (scale + t * 0.12),
+                                      decoration: BoxDecoration(
+                                        shape: BoxShape.circle,
+                                        color: c.gold.withValues(
+                                            alpha: 0.06 + (1 - scale) * 0.05),
+                                      ),
+                                    ),
                                 ],
+                              );
+                            },
+                          ),
+                          Container(
+                            width: 132,
+                            height: 132,
+                            decoration: BoxDecoration(
+                              shape: BoxShape.circle,
+                              gradient: LinearGradient(
+                                begin: Alignment.topLeft,
+                                end: Alignment.bottomRight,
+                                colors: [c.goldBright, c.goldDeep],
                               ),
-                              child: Icon(_slot.icon, size: 60, color: c.bg),
+                              boxShadow: [
+                                BoxShadow(
+                                  color: c.gold.withValues(alpha: 0.4),
+                                  blurRadius: 30,
+                                  spreadRadius: 4,
+                                ),
+                              ],
                             ),
-                          ],
-                        ),
-                      );
-                    },
+                            child: Icon(_slot.icon, size: 60, color: c.bg),
+                          ),
+                        ],
+                      ),
+                    ),
                   ),
 
                   const SizedBox(height: 28),

@@ -99,7 +99,14 @@ class AudioStoryController extends Notifier<AudioStoryState> {
 
   int get currentIndex => _h.player.currentIndex ?? 0;
   Stream<int?> get currentIndexStream => _h.player.currentIndexStream;
-  Stream<Duration> get positionStream => _h.player.positionStream;
+
+  /// İlerleme/seek konumu — 200ms throttle (Kur'an kontrolcüsüyle aynı; kısa
+  /// parçalarda just_audio'nun 16ms/60fps varsayılanı sürekli-çizim yapıyordu).
+  Stream<Duration> get positionStream => _h.player.createPositionStream(
+        steps: 200,
+        minPeriod: const Duration(milliseconds: 200),
+        maxPeriod: const Duration(milliseconds: 200),
+      );
   Stream<Duration?> get durationStream => _h.player.durationStream;
 
   /// Bu controller story modunda mı (mini-player görünürlüğü için).

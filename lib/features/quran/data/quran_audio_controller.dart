@@ -172,7 +172,18 @@ class QuranAudioController extends Notifier<QuranAudioState> {
 
   int get currentIndex => _h.player.currentIndex ?? 0;
   Stream<int?> get currentIndexStream => _h.player.currentIndexStream;
-  Stream<Duration> get positionStream => _h.player.positionStream;
+
+  /// İlerleme çizgisi/seek konumu — THROTTLE'LI. just_audio'nun varsayılan
+  /// `positionStream`'i KISA parçalarda (her ayet ayrı parça!) 16ms'de bir
+  /// (≈60fps) tetikliyordu → ses çalarken ilerleme çizgisi/seek bar sürekli
+  /// yeniden çizilip uygulamayı kesintisiz max-framerate çizime pinliyordu
+  /// ("ezan/Yâsîn okunurken donma"). 200ms sabit periyot = 5fps: ilerleme
+  /// görsel olarak akıcı, sürekli-çizim yükü kalkar.
+  Stream<Duration> get positionStream => _h.player.createPositionStream(
+        steps: 200,
+        minPeriod: const Duration(milliseconds: 200),
+        maxPeriod: const Duration(milliseconds: 200),
+      );
   Stream<Duration?> get durationStream => _h.player.durationStream;
 
   /// Çalan parçanın AYET numarası (`<sure>_<ayet>` kimliğinden) — kumandada
