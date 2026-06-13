@@ -171,8 +171,18 @@ Dil, tema (koyu/açık/oto), renk teması, AMOLED, yazı boyutu, konum, hesaplam
 namaz sorusu, kadın özel modu, sürüm rozeti (gerçek PackageInfo).
 
 ### AI Asistan (`features/ai_assistant`)
-"SELAYA AI" — dini soru-cevap asistanı (kaynaklı cevaplar). LLM tabanlı; istek/yanıt
-mantığı bu modülde (anahtarlar koda gömülü DEĞİL, sunucu/Worker üzerinden gider).
+"SELAYA AI" — dini soru-cevap. **DİKKAT: LLM/üretken model DEĞİL.** Hiçbir AI
+sağlayıcısına (OpenAI/Anthropic/Gemini/Workers AI…) bağlanmaz; API çağrısı/anahtar
+YOK. Tamamen **çevrimdışı, kurallı SSS eşleştirici**:
+- Kaynak: **pakete gömülü `assets/data/ai_qa.json`** (`aiQaProvider`) — önceden
+  yazılmış `AiQa` çiftleri (TR/EN soru + anahtar kelime + cevap + Kur'an/hadis/Diyanet
+  kaynak referansları).
+- `_bestMatch()`: yazılan metni yerel **anahtar-kelime puanlamasıyla** eşleştirir
+  (Türkçe sadeleştirme + token skoru); eşik üstündeyse hazır cevabı, yoksa yönlendirici
+  mesajı döner.
+- 750ms "düşünme" gecikmesi + yazıyor noktaları → yalnızca **"AI hissi"** (kozmetik).
+> Gerçek bir LLM istenirse: cevap üretimini bir Worker uç noktasına (api.selaya.app)
+> taşıyıp anahtarı sunucuda tutmak gerekir — şu an böyle bir bağlantı YOK.
 
 ---
 
