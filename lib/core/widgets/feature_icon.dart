@@ -27,16 +27,20 @@ class FeatureIcon extends StatelessWidget {
       // stays in the badge background); light themes keep the coloured glyph.
       child: Icon(icon, color: c.isDark ? c.textPrimary : c.gold, size: size),
     );
-    // Continuous, gentle "breathing" pulse — the duration is varied per icon so
-    // the badges drift out of sync for an organic feel. Subtle (≤6%) and
-    // transform-only, so it's cheap to keep running.
+    // TEK-SEFERLİK "pop-in" — ızgara belirince canlı görünür, sonra STATİK.
+    // ÖNCEDEN repeat(reverse:true) ile SONSUZ "nefes"ti → "Daha Fazla" gibi
+    // ikon-dolu (ve tembel OLMAYAN) listelerde görünen/görünmeyen TÜM ikonlar
+    // sürekli 60fps çizilip her karede tüm ekranı invalidate ediyordu →
+    // kaydırırken KİLİTLENME. fadeIn/scaleXY paint-only (relayout yok) ve
+    // animasyon bitince çizim DURUR → ekran boşa düşebilir.
     return badge
-        .animate(onPlay: (controller) => controller.repeat(reverse: true))
+        .animate()
+        .fadeIn(duration: 250.ms, delay: ((index % 8) * 35).ms)
         .scaleXY(
-          begin: 1.0,
-          end: 1.06,
-          duration: (1900 + (index % 6) * 180).ms,
-          curve: Curves.easeInOut,
+          begin: 0.85,
+          end: 1.0,
+          duration: 300.ms,
+          curve: Curves.easeOutBack,
         );
   }
 }

@@ -70,17 +70,13 @@ class _SlotCell extends StatelessWidget {
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-          // Aktif vaktin ikonu yumuşakça nabız atar (sürekli, hafif); diğerleri
-          // sabit. İkonlar büyütüldü (18 → 24).
-          active
-              ? Icon(slot.icon, size: 24, color: c.goldBright)
-                  .animate(onPlay: (a) => a.repeat(reverse: true))
-                  .scale(
-                      begin: const Offset(1, 1),
-                      end: const Offset(1.18, 1.18),
-                      duration: 900.ms,
-                      curve: Curves.easeInOut)
-              : Icon(slot.icon, size: 24, color: c.textTertiary),
+          // Aktif vakit ikonu büyük + parlak altın (vurgu yeterli). ÖNCEDEN
+          // sürekli nabız atıyordu (repeat scale); flutter_animate ticker'ı
+          // widget yok olunca sızıp SONSUZA dek tick atıyordu (ana Dart thread'i
+          // görünmez kare olmadan yakıyor + birikiyor). Nabız KALDIRILDI; aktif
+          // ikon yine de büyük/parlak renkle ayrışıyor.
+          Icon(slot.icon,
+              size: 24, color: active ? c.goldBright : c.textTertiary),
           const SizedBox(height: 6),
           Text(
             slot.labelKey.tr(),
