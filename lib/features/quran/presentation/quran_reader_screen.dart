@@ -42,6 +42,9 @@ class QuranReaderScreen extends ConsumerStatefulWidget {
 
 class _QuranReaderScreenState extends ConsumerState<QuranReaderScreen> {
   final Map<int, GlobalKey> _keys = {};
+  // ListView.builder tembel → uzaktaki ayet kartı kurulu olmayabilir; çalan
+  // ayete atlamak (ensureVisible boşa düştüğünde) için tahmini ofset kaydırması.
+  final ScrollController _scrollCtrl = ScrollController();
   StreamSubscription<int?>? _idxSub;
   int? _currentAyah;
   bool _wasActive = false; // bu sure çalıyordu (örtülü geçiş yakalama için)
@@ -114,6 +117,7 @@ class _QuranReaderScreenState extends ConsumerState<QuranReaderScreen> {
   @override
   void dispose() {
     _idxSub?.cancel();
+    _scrollCtrl.dispose();
     super.dispose();
   }
 
@@ -134,7 +138,27 @@ class _QuranReaderScreenState extends ConsumerState<QuranReaderScreen> {
           duration: const Duration(milliseconds: 350),
           alignment: 0.25,
           curve: Curves.easeInOut);
+      return;
     }
+    // Tembel listede hedef kart henüz KURULU değil (görünümden uzakta — örn.
+    // sure zaten ileri bir ayette çalarken okuyucu yeni açıldı). ensureVisible
+    // boşa düşer → ayet sırasından tahmini piksel ofsetine atla (kart o civarda
+    // kurulur), sonraki karede ensureVisible'la ince ayar yap. Tahmin tutmasa
+    // bile bir sonraki ayet geçişinde yakın olduğundan kendini düzeltir.
+    if (!_scrollCtrl.hasClients) return;
+    const leadEst = 540.0; // önceki-sure kartı + başlık + besmele kabası
+    const avgVerse = 340.0; // ortalama ayet kartı yüksekliği (kaba tahmin)
+    final target = (leadEst + (ayah - 1) * avgVerse)
+        .clamp(0.0, _scrollCtrl.position.maxScrollExtent);
+    _scrollCtrl.jumpTo(target);
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      if (!mounted) return;
+      final ctx2 = _keys[ayah]?.currentContext;
+      if (ctx2 != null) {
+        Scrollable.ensureVisible(ctx2,
+            duration: const Duration(milliseconds: 200), alignment: 0.25);
+      }
+    });
   }
 
   /// Kapak görselini günlük duvar kâğıtlarından seçer (sure no'ya göre sabit).
@@ -547,6 +571,7 @@ class _QuranReaderScreenState extends ConsumerState<QuranReaderScreen> {
                 ),
             ];
             return ListView.builder(
+              controller: _scrollCtrl,
               // ensureVisible (çalan ayete kaydırma) hedef kartın KURULMUŞ
               // olmasını ister → ekran altındaki birkaç ayeti önden kur ki
               // ardışık oynatmada takip kopmasın.
