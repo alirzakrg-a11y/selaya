@@ -54,6 +54,17 @@ bool miniHiddenForLocation(String location) =>
 bool isShellLocation(String location) =>
     _shellLocations.any((p) => location == p || location.startsWith('$p/'));
 
+/// Konum Kur'an bölümünde mi? (Kur'an sekmesi + okuyucu + Yâsîn + Mushaf —
+/// hepsi `/quran` altında nested.) KULLANICI İSTEĞİ: Kur'an mini-player'ı
+/// SADECE bu ekranlarda görünsün; Ana Sayfa/Vakitler/Kıble/Akış/Daha Fazla'da
+/// ses çalarken bile HİÇ render edilmesin → o sekmelerde mini'nin çizim yükü
+/// (kapak + 5fps ilerleme çizgisi, her tab'ın üstünde global katman) tamamen
+/// kalkar. "Komple donma"nın kökü buydu; eklemek (RepaintBoundary) değil,
+/// KALDIRMAK çözüm. Ses arka planda audio_service ile devam eder; kumanda
+/// bildirimde. Tekrar Kur'an sekmesine gelince mini geri görünür.
+bool isQuranSectionLocation(String location) =>
+    location == Routes.quran || location.startsWith('${Routes.quran}/');
+
 /// Rotayı doğru şekilde açar: kabuk-altı hedefe `go` (doğru sekmeye geçer,
 /// alt menü görünür kalır — başka sekmeden/push'lu sayfadan da çalışır),
 /// tam ekran hedefe `push`. Menü/kart gibi genel açıcılar bunu kullanır.

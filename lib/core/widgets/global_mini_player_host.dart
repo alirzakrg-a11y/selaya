@@ -72,8 +72,15 @@ class GlobalMiniPlayerOverlay extends ConsumerWidget {
         final bottom = isShellLocation(location)
             ? navBarHeight.value
             : MediaQuery.viewPaddingOf(context).bottom;
-        final hideQuranMini =
-            playingSurah != null && quranReaderSurah(location) == playingSurah;
+        // Kur'an mini'si SADECE Kur'an bölümünde (sekme + okuyucu + Yâsîn +
+        // Mushaf) görünür → Ana Sayfa/Vakitler/Kıble/Akış/Daha Fazla'da ses
+        // çalarken bile HİÇ render edilmez (kullanıcı isteği + "komple donma"
+        // fix'i: her sekmenin üstündeki global çizim yükünü kaldır; ses
+        // audio_service ile arka planda devam eder, kumanda bildirimde). Ayrıca
+        // okuyucu çalan sureyi gösterirken kendi kumandası çıktığından orada da
+        // gizli (çift kumanda olmasın).
+        final hideQuranMini = !isQuranSectionLocation(location) ||
+            (playingSurah != null && quranReaderSurah(location) == playingSurah);
         return Align(
           alignment: Alignment.bottomCenter,
           child: Padding(
