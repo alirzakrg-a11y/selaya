@@ -70,7 +70,14 @@ class _VideoBackgroundState extends State<VideoBackground> {
   }
 
   Future<void> _load(int index) async {
-    final controller = VideoPlayerController.asset(_videos[index]);
+    // mixWithOthers ŞART: video_player varsayılanı SES ODAĞI (audio focus)
+    // ister — video sessiz (volume 0) olsa bile! Ana sayfaya her dönüşte bu
+    // arka plan videosu odağı kapıp ÇALAN KUR'AN/HİKÂYEYİ DURDURUYORDU
+    // (kullanıcı raporu). Dekoratif sessiz video odağa hiç karışmamalı.
+    final controller = VideoPlayerController.asset(
+      _videos[index],
+      videoPlayerOptions: VideoPlayerOptions(mixWithOthers: true),
+    );
     try {
       await controller.initialize();
       await controller.setLooping(false); // advance to the next clip manually
