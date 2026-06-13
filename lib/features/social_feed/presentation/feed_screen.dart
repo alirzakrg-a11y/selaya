@@ -9,6 +9,7 @@ import '../../../core/localization/localized_text.dart';
 import '../../../core/models/content.dart';
 import '../../../core/services/gallery_service.dart';
 import '../../../core/services/share_service.dart';
+import '../../audio_stories/data/audio_handler.dart';
 import '../../../core/theme/app_colors.dart';
 import '../../../core/theme/app_icons.dart';
 import '../../../core/theme/app_spacing.dart';
@@ -138,7 +139,10 @@ class _FeedPageState extends ConsumerState<_FeedPage> {
       controller.addListener(_onValue);
       if (!mounted) return;
       setState(() => _ready = true);
-      if (widget.active) controller.play();
+      if (widget.active) {
+        controller.play();
+        _silenceQuran();
+      }
     } catch (_) {
       // Keep the poster showing if the clip fails to load.
     }
@@ -170,9 +174,17 @@ class _FeedPageState extends ConsumerState<_FeedPage> {
       c
         ..seekTo(Duration.zero)
         ..play();
+      _silenceQuran();
     } else if (!widget.active && old.active) {
       c.pause();
     }
+  }
+
+  /// Akış videosu SESLİ çalınca arka plandaki Kur'an/Yâsîn/sesli hikâye sesini
+  /// DURAKLAT — çift ses olmasın (kullanıcı: "videolara girince Kur'an sussun").
+  /// Video SESSİZ ise (muted) dokunma → kullanıcı Kur'an dinlemeye devam eder.
+  void _silenceQuran() {
+    if (!_muted) ref.read(audioHandlerProvider).pause();
   }
 
   @override
@@ -192,6 +204,7 @@ class _FeedPageState extends ConsumerState<_FeedPage> {
       } else {
         c.play();
         _paused = false;
+        _silenceQuran();
       }
     });
   }
@@ -203,6 +216,10 @@ class _FeedPageState extends ConsumerState<_FeedPage> {
       _muted = !_muted;
       c.setVolume(_muted ? 0 : 1);
     });
+    // Sesi AÇINCA (video artık sesli) arka plandaki Kur'an'ı duraklat.
+    if (!_muted && c.value.isPlaying) {
+      ref.read(audioHandlerProvider).pause();
+    }
   }
 
   /// Shares the actual video file so any app (WhatsApp, Instagram, Telegram…)

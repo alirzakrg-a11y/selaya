@@ -53,6 +53,15 @@ class AppAudioHandler extends BaseAudioHandler with SeekHandler {
     player.playbackEventStream.listen((_) => _broadcast());
     // Bölüm değişince bildirimdeki başlık/kapak güncellensin.
     player.currentIndexStream.listen(_setTrackMediaItem);
+    // Parça YÜKLENİNCE gerçek süreyi bildirime yaz → bildirim ilerleme çubuğu
+    // çalışsın. Kur'an/Yâsîn parçalarının durationSec'i 0 (CDN sesi); süre
+    // yalnız oynatıcı yükleyince bilinir, bu yüzden burada güncelleniyor.
+    player.durationStream.listen((d) {
+      final m = mediaItem.value;
+      if (m != null && d != null && d > Duration.zero && m.duration != d) {
+        mediaItem.add(m.copyWith(duration: d));
+      }
+    });
   }
 
   void _broadcast() {
@@ -67,6 +76,12 @@ class AppAudioHandler extends BaseAudioHandler with SeekHandler {
       androidCompactActionIndices: const [0, 1, 3],
       processingState: _procMap[player.processingState]!,
       playing: playing,
+      // KONUM bildir → bildirim ilerleme çubuğu hareket etsin (eskiden yoktu
+      // → çubuk pasif kalıyordu). audio_service bunlar arasında interpolasyon
+      // yapar; her playbackEvent'te güncellenmesi yeterli.
+      updatePosition: player.position,
+      bufferedPosition: player.bufferedPosition,
+      speed: player.speed,
     ));
   }
 

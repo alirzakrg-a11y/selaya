@@ -12,6 +12,7 @@ import '../../../core/theme/app_spacing.dart';
 import '../../../core/theme/app_typography.dart';
 import '../../../core/widgets/app_image.dart';
 import '../../../core/widgets/states.dart';
+import '../../audio_stories/data/audio_handler.dart';
 
 /// Route wrapper: loads stories then shows the immersive player.
 class StoryViewerScreen extends ConsumerWidget {
@@ -34,16 +35,16 @@ class StoryViewerScreen extends ConsumerWidget {
   }
 }
 
-class StoryPlayer extends StatefulWidget {
+class StoryPlayer extends ConsumerStatefulWidget {
   final List<Story> stories;
   final int startIndex;
   const StoryPlayer({super.key, required this.stories, required this.startIndex});
 
   @override
-  State<StoryPlayer> createState() => _StoryPlayerState();
+  ConsumerState<StoryPlayer> createState() => _StoryPlayerState();
 }
 
-class _StoryPlayerState extends State<StoryPlayer>
+class _StoryPlayerState extends ConsumerState<StoryPlayer>
     with SingleTickerProviderStateMixin {
   late final PageController _pageController;
   late final AnimationController _progress;
@@ -101,6 +102,9 @@ class _StoryPlayerState extends State<StoryPlayer>
       ctrl
         ..setLooping(false)
         ..play();
+      // Video hikâye SESLİ çalar → arka plandaki Kur'an/Yâsîn'i duraklat (çift
+      // ses olmasın; akış videosundaki ile aynı kural).
+      ref.read(audioHandlerProvider).pause();
       _progress.duration = ctrl.value.duration > Duration.zero
           ? ctrl.value.duration
           : const Duration(seconds: 15);
