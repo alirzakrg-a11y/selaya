@@ -216,10 +216,13 @@ class AdhanPlayerService : Service() {
     }
 
     companion object {
-        const val NOTIF_ID = 3100
-        // Temizlik aralıkları 3000-3699 (namaz bloğu) + 5000+ (özel günler) →
-        // kalıcı "ezan okundu" kaydı bunların DIŞINDA olmalı ki reschedule /
-        // "Kapat" / tam-ekran kapanışı onu silmesin.
+        // 4100: namaz bloğunun (3000-3699) ve özel günlerin (5000+) DIŞINDA —
+        // Dart'ın blok-süpürme iptalleri (cancelActivePrayerSounds / bg Durdur)
+        // bu FGS bildirimiyle itişmesin. (Eskiden 3100'dü: bloğun içindeydi;
+        // FGS koruması fiilen kurtarıyordu ama tasarım kirliydi.)
+        const val NOTIF_ID = 4100
+        // Kalıcı "ezan okundu" kaydı da aynı şekilde blokların DIŞINDA ki
+        // reschedule / "Kapat" / tam-ekran kapanışı onu silmesin.
         const val LINGER_ID = 4333
         const val CHANNEL = "selaya_adhan_player"
         const val PREFS = "selaya_widget"
