@@ -2,6 +2,9 @@ import 'dart:async';
 
 import 'package:easy_localization/easy_localization.dart' hide TextDirection;
 import 'package:flutter/material.dart';
+// ScrollCacheExtent (ListView.builder'da çalan ayete kaydırma için ön-kurulan
+// alan) yalnız rendering katmanında — material.dart yeniden ihraç etmiyor.
+import 'package:flutter/rendering.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
@@ -484,74 +487,93 @@ class _QuranReaderScreenState extends ConsumerState<QuranReaderScreen> {
             }
             return false;
           },
-          child: ListView(
-          padding: const EdgeInsets.fromLTRB(
-              AppSpacing.base, AppSpacing.sm, AppSpacing.base, AppSpacing.xxxl),
-          children: [
-            // Üstte "Önceki Sure" ipucu kartı — dokun ya da üstten fazladan
-            // çek (alttaki "Sonraki Sure" ile aynı tasarım dili; sure 1'de yok).
-            if (widget.surahNumber > 1) ...[
-              _PrevSurahCard(
-                surahs: surahs,
-                prev: widget.surahNumber - 1,
-                lang: lang,
-                onTap: () => _goToSurah(widget.surahNumber - 1),
-              ),
-              const Gap.base(),
-            ],
-            if (surah != null)
-              _SurahHeader(
-                surah: surah,
-                lang: lang,
-                playing: isPlaying,
-                onListen: list.isEmpty
-                    ? null
-                    : () => _toggleSurah(list, surah.name(lang)),
-                onListenFromStart: list.isEmpty
-                    ? null
-                    : () => _listenFromStart(list, surah.name(lang)),
-              ),
-            const Gap.base(),
-            if (widget.surahNumber != 1 && widget.surahNumber != 9)
-              Padding(
-                padding: const EdgeInsets.symmetric(vertical: AppSpacing.md),
-                child: Text(_bismillah,
-                    textAlign: TextAlign.center,
-                    textDirection: TextDirection.rtl,
-                    style: AppTypography.arabic(fontSize: 26, color: c.gold)),
-              ),
-            if (list.isEmpty)
-              Padding(
-                padding: const EdgeInsets.only(top: AppSpacing.xl),
-                child: SelayaEmpty(
-                  icon: AppIcons.book,
-                  message: lang == 'tr'
-                      ? 'Bu surenin tam metni yakında eklenecek.\nSık okunan kısa sureler (Fâtiha, Kadir, Fil–Nâs arası) hazır.'
-                      : 'Full text for this surah is coming soon.\nCommon short surahs (Al-Fatiha, Al-Qadr, Al-Fil–An-Nas) are ready.',
+          child: Builder(builder: (context) {
+            // PERF: Eskiden ListView(children:[...]) TÜM ayetleri (Bakara 286,
+            // Yâsîn 83) açılışta kurar + her ayet değişiminde setState hepsini
+            // YENİDEN çizerdi → "okunurken donma". Artık ListView.builder:
+            // başlık/kartlar leading, ayetler ARADA lazy, sonraki-sure trailing
+            // → yalnız görünen ~6 kart kurulur/yeniden çizilir.
+            final leading = <Widget>[
+              // Üstte "Önceki Sure" ipucu kartı — dokun ya da üstten fazladan
+              // çek (alttaki "Sonraki Sure" ile aynı dil; sure 1'de yok).
+              if (widget.surahNumber > 1) ...[
+                _PrevSurahCard(
+                  surahs: surahs,
+                  prev: widget.surahNumber - 1,
+                  lang: lang,
+                  onTap: () => _goToSurah(widget.surahNumber - 1),
                 ),
-              ),
-            for (var i = 0; i < list.length; i++)
-              _VerseTile(
-                key: _keys.putIfAbsent(list[i].ayah, () => GlobalKey()),
-                verse: list[i],
-                lang: lang,
-                playing: currentAyah == list[i].ayah,
-                onPlay: () => _playAyah(list, i, surah?.name(lang) ?? 'Sure'),
-                // Karta dokun → bu ayetten popup açılır (oradan tüm
-                // sureler ◀▶ ile gezilebilir + Oku ile çalınabilir).
-                onTap: () => _openVersesPopup(
-                    list, surah?.name(lang) ?? 'Sure', lang,
-                    startIndex: i),
-              ),
-            if (widget.surahNumber < 114)
-              _NextSurahCard(
-                surahs: surahs,
-                next: widget.surahNumber + 1,
-                lang: lang,
-                onTap: () => _goToSurah(widget.surahNumber + 1),
-              ),
-          ],
-        ),
+                const Gap.base(),
+              ],
+              if (surah != null)
+                _SurahHeader(
+                  surah: surah,
+                  lang: lang,
+                  playing: isPlaying,
+                  onListen: list.isEmpty
+                      ? null
+                      : () => _toggleSurah(list, surah.name(lang)),
+                  onListenFromStart: list.isEmpty
+                      ? null
+                      : () => _listenFromStart(list, surah.name(lang)),
+                ),
+              const Gap.base(),
+              if (widget.surahNumber != 1 && widget.surahNumber != 9)
+                Padding(
+                  padding: const EdgeInsets.symmetric(vertical: AppSpacing.md),
+                  child: Text(_bismillah,
+                      textAlign: TextAlign.center,
+                      textDirection: TextDirection.rtl,
+                      style: AppTypography.arabic(fontSize: 26, color: c.gold)),
+                ),
+              if (list.isEmpty)
+                Padding(
+                  padding: const EdgeInsets.only(top: AppSpacing.xl),
+                  child: SelayaEmpty(
+                    icon: AppIcons.book,
+                    message: lang == 'tr'
+                        ? 'Bu surenin tam metni yakında eklenecek.\nSık okunan kısa sureler (Fâtiha, Kadir, Fil–Nâs arası) hazır.'
+                        : 'Full text for this surah is coming soon.\nCommon short surahs (Al-Fatiha, Al-Qadr, Al-Fil–An-Nas) are ready.',
+                  ),
+                ),
+            ];
+            final trailing = <Widget>[
+              if (widget.surahNumber < 114)
+                _NextSurahCard(
+                  surahs: surahs,
+                  next: widget.surahNumber + 1,
+                  lang: lang,
+                  onTap: () => _goToSurah(widget.surahNumber + 1),
+                ),
+            ];
+            return ListView.builder(
+              // ensureVisible (çalan ayete kaydırma) hedef kartın KURULMUŞ
+              // olmasını ister → ekran altındaki birkaç ayeti önden kur ki
+              // ardışık oynatmada takip kopmasın.
+              scrollCacheExtent: const ScrollCacheExtent.pixels(1200),
+              padding: const EdgeInsets.fromLTRB(AppSpacing.base, AppSpacing.sm,
+                  AppSpacing.base, AppSpacing.xxxl),
+              itemCount: leading.length + list.length + trailing.length,
+              itemBuilder: (context, i) {
+                if (i < leading.length) return leading[i];
+                final vi = i - leading.length;
+                if (vi >= list.length) return trailing[vi - list.length];
+                final v = list[vi];
+                return _VerseTile(
+                  key: _keys.putIfAbsent(v.ayah, () => GlobalKey()),
+                  verse: v,
+                  lang: lang,
+                  playing: currentAyah == v.ayah,
+                  onPlay: () => _playAyah(list, vi, surah?.name(lang) ?? 'Sure'),
+                  // Karta dokun → bu ayetten popup açılır (oradan tüm sureler
+                  // ◀▶ ile gezilebilir + Oku ile çalınabilir).
+                  onTap: () => _openVersesPopup(
+                      list, surah?.name(lang) ?? 'Sure', lang,
+                      startIndex: vi),
+                );
+              },
+            );
+          }),
         ),
       ),
     );
