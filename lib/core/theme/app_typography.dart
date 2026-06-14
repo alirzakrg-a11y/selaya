@@ -1,14 +1,24 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 /// Typography system.
 /// UI font: Plus Jakarta Sans (premium geometric sans, full Turkish glyphs).
 /// Arabic/Quran font: Amiri.
+///
+/// PERF (kullanıcı 2026-06-14 "ilk açılışta + her yerde donuyor"): fontlar artık
+/// `google_fonts` ile ÇALIŞMA ANINDA İNTERNETTEN çekilmiyor — `assets/fonts/`
+/// içinde PAKETLİ (yerel). Eskiden ilk kullanımda font indirilene kadar metin
+/// yedek fontla çiziliyor, font gelince asenkron değişip tüm ekran yeniden
+/// yerleşiyordu; Amiri (Arapça) ayrıca ilk Kur'an açılışında yükleniyordu =
+/// "ilk açılış + Kur'an + her yerde donma". Yerel font = ağ yok, anında çizim.
 abstract final class AppTypography {
+  static const _ui = 'PlusJakartaSans';
+  static const _arabic = 'Amiri';
+
   static TextTheme textTheme(Color primary, Color secondary) {
     TextStyle s(double size, FontWeight w, Color c,
             {double? height, double? spacing}) =>
-        GoogleFonts.plusJakartaSans(
+        TextStyle(
+          fontFamily: _ui,
           fontSize: size,
           fontWeight: w,
           color: c,
@@ -42,7 +52,8 @@ abstract final class AppTypography {
     double height = 1.95,
     FontWeight weight = FontWeight.w400,
   }) =>
-      GoogleFonts.amiri(
+      TextStyle(
+        fontFamily: _arabic,
         fontSize: fontSize,
         color: color,
         height: height,
@@ -50,8 +61,8 @@ abstract final class AppTypography {
       );
 
   /// Big tabular-figure countdown style.
-  static TextStyle countdown(Color color, {double fontSize = 44}) =>
-      GoogleFonts.plusJakartaSans(
+  static TextStyle countdown(Color color, {double fontSize = 44}) => TextStyle(
+        fontFamily: _ui,
         fontSize: fontSize,
         fontWeight: FontWeight.w700,
         color: color,

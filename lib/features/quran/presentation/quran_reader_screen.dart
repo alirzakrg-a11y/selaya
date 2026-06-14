@@ -585,8 +585,11 @@ class _QuranReaderScreenState extends ConsumerState<QuranReaderScreen> {
               controller: _scrollCtrl,
               // ensureVisible (çalan ayete kaydırma) hedef kartın KURULMUŞ
               // olmasını ister → ekran altındaki birkaç ayeti önden kur ki
-              // ardışık oynatmada takip kopmasın.
-              scrollCacheExtent: const ScrollCacheExtent.pixels(1200),
+              // ardışık oynatmada takip kopmasın. AMA 1200 fazlaydı: her fling'de
+              // ekran DIŞINDA ~4 ağır Arapça kart kurup boyuyordu = kaydırma
+              // donması (kullanıcı 2026-06-14). 500'e indirildi; çalan ayet
+              // kurulu değilse zaten _ensureVisible jumpTo-tahmin'le yakalıyor.
+              scrollCacheExtent: const ScrollCacheExtent.pixels(500),
               padding: const EdgeInsets.fromLTRB(AppSpacing.base, AppSpacing.sm,
                   AppSpacing.base, AppSpacing.xxxl),
               itemCount: leading.length + list.length + trailing.length,
