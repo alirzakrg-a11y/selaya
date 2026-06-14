@@ -19,7 +19,6 @@ import '../../../core/theme/app_icons.dart';
 import '../../../core/theme/app_spacing.dart';
 import '../../../core/theme/app_typography.dart';
 import '../../../core/widgets/content_detail_dialog.dart';
-import '../../../core/widgets/instant_swipe.dart';
 import '../../../core/widgets/selaya_card.dart';
 import '../../../core/widgets/selaya_scaffold.dart';
 import '../../../core/widgets/states.dart';
@@ -372,6 +371,9 @@ class _QuranReaderScreenState extends ConsumerState<QuranReaderScreen> {
     final matches = surahs.where((s) => s.number == widget.surahNumber);
     final surah = matches.isEmpty ? null : matches.first;
     final versesAsync = ref.watch(versesProvider(widget.surahNumber));
+    // Alt bar her zaman görünür (çalmasa da) → ◀▶ ile sure gezinti + play/pause.
+    // Play, ses verisi yüklenince etkinleşir.
+    final versesList = versesAsync.value ?? const <Verse>[];
     final c = context.colors;
 
     // Bu sayfanın suresi çalarken ses BAŞKA bir sureye geçtiyse (otomatik
@@ -421,14 +423,25 @@ class _QuranReaderScreenState extends ConsumerState<QuranReaderScreen> {
     return SelayaScaffold(
       title: surah?.name(lang) ?? 'quran.title'.tr(),
       showBack: true,
-      bottomBar: active
-          ? _QuranTransport(
-              surahName: surah?.name(lang) ?? 'quran.title'.tr(),
-              playing: isPlaying,
-              loading: st.loading,
-              ctrl: _ctrl,
-            )
-          : null,
+      // Sade alt bar (medya-tarzı kumanda DEĞİL): ◀ önceki sure | play/pause
+      // (etrafında sure ilerleme halkası) | ▶ sonraki sure. Hep görünür.
+      bottomBar: _QuranReaderBar(
+        playing: isPlaying,
+        loading: st.loading,
+        active: active,
+        ctrl: _ctrl,
+        surahNumber: widget.surahNumber,
+        canPlay: versesList.any((v) => v.audio != null),
+        onPlayPause: versesList.isEmpty
+            ? null
+            : () => _toggleSurah(versesList, surah?.name(lang) ?? 'Sure'),
+        onPrevSurah: widget.surahNumber > 1
+            ? () => _goToSurah(widget.surahNumber - 1)
+            : null,
+        onNextSurah: widget.surahNumber < 114
+            ? () => _goToSurah(widget.surahNumber + 1)
+            : null,
+      ),
       actions: [
         // ❤️ Favori — sure favorisi (Kur'an listesindeki kalple AYNI kayıt;
         // Beğendiklerim'in "Sureler" bölümüne düşer). Yâsîn dahil her surede.
@@ -702,167 +715,188 @@ class _NextSurahCard extends StatelessWidget {
   }
 }
 
-/// Okuyucunun altında, bu sure çalarken görünen kumanda barı (önceki / oynat-
-/// duraklat / sonraki / durdur). Arka plan + bildirim handler'dan; bu bar
-/// okuyucudayken pratik kontrol sağlar.
-class _QuranTransport extends StatelessWidget {
-  final String surahName;
+/// Okuyucunun altında HEP görünen sade bar (medya-tarzı kumanda DEĞİL —
+/// kullanıcı 2026-06-14: "ses yönetim kumandasını komple kaldır, yerine bar:
+/// play/pause"): ◀ önceki sure | play/pause (etrafında SURE ilerleme halkası —
+/// "ne kadar kaldığı") | ▶ sonraki sure. Halka yalnız bu sure çalarken dolar.
+class _QuranReaderBar extends StatelessWidget {
   final bool playing;
   final bool loading;
+  final bool active;
   final QuranAudioController ctrl;
-  const _QuranTransport({
-    required this.surahName,
+  final int surahNumber;
+  final bool canPlay;
+  final VoidCallback? onPlayPause;
+  final VoidCallback? onPrevSurah;
+  final VoidCallback? onNextSurah;
+  const _QuranReaderBar({
     required this.playing,
     required this.loading,
+    required this.active,
     required this.ctrl,
+    required this.surahNumber,
+    required this.canPlay,
+    this.onPlayPause,
+    this.onPrevSurah,
+    this.onNextSurah,
   });
 
   @override
   Widget build(BuildContext context) {
     final c = context.colors;
-    final cover = Container(
-      color: c.surfaceAlt,
-      alignment: Alignment.center,
-      child: Icon(Icons.queue_music_rounded, color: c.gold, size: 20),
-    );
-    // Tam-ekran now-playing KALDIRILDI → bar sadece play/stop + ilerleme
-    // gösterir; yukarı-çek/dokun ile genişleme yok (sade oynatıcı).
-    return InstantSwipe(
-      onUp: () {},
-      child: Container(
+    final tr = context.langCode == 'tr';
+    // SelayaBottomNav (kabuk tab barı) bu barın ALTINDA → sistem alt-inset'ini o
+    // karşılar; burada SafeArea gerekmez (eski _QuranTransport de kullanmazdı).
+    return Container(
       decoration: BoxDecoration(
         color: c.surface,
         border: Border(top: BorderSide(color: c.border)),
       ),
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
+      child: Padding(
+        padding: const EdgeInsets.symmetric(
+            horizontal: AppSpacing.lg, vertical: AppSpacing.xs),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            _NavBtn(
+              icon: Icons.skip_previous_rounded,
+              label: tr ? 'Önceki sure' : 'Prev surah',
+              onTap: onPrevSurah,
+            ),
+            _PlayPauseRing(
+              playing: playing,
+              loading: loading,
+              active: active,
+              ctrl: ctrl,
+              onTap: canPlay ? onPlayPause : null,
+            ),
+            _NavBtn(
+              icon: Icons.skip_next_rounded,
+              label: tr ? 'Sonraki sure' : 'Next surah',
+              onTap: onNextSurah,
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+/// Alt bardaki sure-gezinti düğmesi (◀ önceki / ▶ sonraki). Sınırlarda (1/114)
+/// devre dışı → soluk.
+class _NavBtn extends StatelessWidget {
+  final IconData icon;
+  final String label;
+  final VoidCallback? onTap;
+  const _NavBtn({required this.icon, required this.label, this.onTap});
+
+  @override
+  Widget build(BuildContext context) {
+    final c = context.colors;
+    final color =
+        onTap != null ? c.gold : c.textTertiary.withValues(alpha: 0.4);
+    return InkWell(
+      onTap: onTap,
+      borderRadius: BorderRadius.circular(12),
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Icon(icon, color: color, size: 26),
+            const SizedBox(height: 2),
+            Text(label,
+                style: Theme.of(context)
+                    .textTheme
+                    .labelSmall
+                    ?.copyWith(color: color)),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+/// Ortadaki play/pause + ETRAFINDA dönen SURE ilerleme halkası ("ne kadar
+/// kaldığı"). Halka yalnız bu sure aktifken (çalarken) dolar; yüklenirken dönen
+/// belirsiz halka. Ses verisi yoksa düğme soluk/pasif.
+class _PlayPauseRing extends StatelessWidget {
+  final bool playing;
+  final bool loading;
+  final bool active;
+  final QuranAudioController ctrl;
+  final VoidCallback? onTap;
+  const _PlayPauseRing({
+    required this.playing,
+    required this.loading,
+    required this.active,
+    required this.ctrl,
+    this.onTap,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    final c = context.colors;
+    final enabled = onTap != null;
+    return SizedBox(
+      width: 64,
+      height: 64,
+      child: Stack(
+        alignment: Alignment.center,
         children: [
-          // İnce İLERLEME çizgisi — çalan ayetin konumu (global mini'dekiyle
-          // aynı). Eskiden bu barda HİÇ yoktu; "Sureyi Oku" ile başlatınca
-          // çizgisiz görünüyordu (kullanıcı bunu 'geç çıkıyor' diye bildirdi —
-          // gördüğü çizgi okuyucudan çıkınca beliren mini'nindi).
-          StreamBuilder<Duration?>(
-            stream: ctrl.durationStream,
-            builder: (context, dSnap) {
-              final total = dSnap.data ?? Duration.zero;
-              return StreamBuilder<Duration>(
-                stream: ctrl.positionStream,
-                builder: (context, pSnap) {
-                  final pos = pSnap.data ?? Duration.zero;
-                  final f = total.inMilliseconds == 0
-                      ? 0.0
-                      : (pos.inMilliseconds / total.inMilliseconds)
-                          .clamp(0.0, 1.0);
-                  return SizedBox(
-                    height: 3,
-                    width: double.infinity,
-                    child: ColoredBox(
-                      color: c.border.withValues(alpha: 0.5),
-                      child: FractionallySizedBox(
-                        alignment: Alignment.centerLeft,
-                        widthFactor: f,
-                        child: ColoredBox(color: c.gold),
-                      ),
-                    ),
+          if (active)
+            Positioned.fill(
+              child: StreamBuilder<int?>(
+                stream: ctrl.currentIndexStream,
+                builder: (context, idxSnap) {
+                  final n = ctrl.tracks.length;
+                  final idx = (idxSnap.data ?? ctrl.currentIndex)
+                      .clamp(0, n > 0 ? n - 1 : 0);
+                  return StreamBuilder<Duration?>(
+                    stream: ctrl.durationStream,
+                    builder: (context, durSnap) {
+                      return StreamBuilder<Duration>(
+                        stream: ctrl.positionStream,
+                        builder: (context, posSnap) {
+                          final dur = durSnap.data ?? Duration.zero;
+                          final pos = posSnap.data ?? Duration.zero;
+                          final frac = dur.inMilliseconds > 0
+                              ? pos.inMilliseconds / dur.inMilliseconds
+                              : 0.0;
+                          // Sure ilerlemesi: (çalan ayet + ayet içi oran)/toplam.
+                          final progress =
+                              n > 0 ? ((idx + frac) / n).clamp(0.0, 1.0) : null;
+                          return CircularProgressIndicator(
+                            value: loading ? null : progress,
+                            strokeWidth: 3,
+                            color: c.gold,
+                            backgroundColor: c.gold.withValues(alpha: 0.16),
+                          );
+                        },
+                      );
+                    },
                   );
                 },
-              );
-            },
-          ),
-          Padding(
-      padding: const EdgeInsets.symmetric(
-          horizontal: AppSpacing.sm, vertical: AppSpacing.sm),
-      child: Row(
-        children: [
-          const Gap.sm(),
-          // Albüm kapağı (duvar kâğıdı) — okuma ekranı kumandasında da görünsün
-          // (ana ekrandaki global mini-player'da zaten vardı).
-          ClipRRect(
-            borderRadius: BorderRadius.circular(10),
-            child: SizedBox(
-              width: 42,
-              height: 42,
-              child: ctrl.art.isNotEmpty
-                  ? Image.network(ctrl.art,
-                      fit: BoxFit.cover, errorBuilder: (_, _, _) => cover)
-                  : cover,
+              ),
             ),
-          ),
-          const Gap.sm(),
-          Expanded(
-            child: GestureDetector(
-              behavior: HitTestBehavior.opaque,
-              onTap: null,
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  Text(surahName,
-                      maxLines: 1,
-                      overflow: TextOverflow.ellipsis,
-                      style: Theme.of(context).textTheme.titleSmall),
-                  Row(
-                    children: [
-                      Icon(Icons.queue_music_rounded,
-                          size: 13, color: c.textTertiary),
-                      const SizedBox(width: 4),
-                      Flexible(
-                        // Canlı "kaçıncı ayet": parça değiştikçe kendiliğinden
-                        // güncellenir; çözülemezse eski "Sıradaki ayetler".
-                        child: StreamBuilder<int?>(
-                          stream: ctrl.currentIndexStream,
-                          builder: (context, _) {
-                            final a = ctrl.currentAyahNumber;
-                            final tr = context.langCode == 'tr';
-                            final sub = loading
-                                ? 'common.loading'.tr()
-                                : a == null
-                                    ? 'quran.queue'.tr()
-                                    : (tr ? '$a. ayet okunuyor' : 'Verse $a');
-                            return Text(sub,
-                                maxLines: 1,
-                                overflow: TextOverflow.ellipsis,
-                                style: Theme.of(context)
-                                    .textTheme
-                                    .bodySmall
-                                    ?.copyWith(color: c.textTertiary));
-                          },
-                        ),
-                      ),
-                    ],
-                  ),
-                ],
+          Material(
+            color: enabled ? c.gold : c.gold.withValues(alpha: 0.14),
+            shape: const CircleBorder(),
+            child: InkWell(
+              customBorder: const CircleBorder(),
+              onTap: onTap,
+              child: SizedBox(
+                width: 52,
+                height: 52,
+                child: Icon(
+                  playing ? Icons.pause_rounded : Icons.play_arrow_rounded,
+                  color: enabled ? c.bg : c.gold.withValues(alpha: 0.5),
+                  size: 30,
+                ),
               ),
             ),
           ),
-          IconButton(
-            color: c.textSecondary,
-            icon: const Icon(Icons.skip_previous_rounded),
-            onPressed: ctrl.previous,
-          ),
-          IconButton(
-            iconSize: 42,
-            color: c.gold,
-            icon: Icon(playing
-                ? Icons.pause_circle_filled_rounded
-                : Icons.play_circle_fill_rounded),
-            onPressed: ctrl.toggle,
-          ),
-          IconButton(
-            color: c.textSecondary,
-            icon: const Icon(Icons.skip_next_rounded),
-            onPressed: ctrl.next,
-          ),
-          IconButton(
-            color: c.textSecondary,
-            icon: const Icon(Icons.stop_circle_outlined),
-            onPressed: ctrl.stop,
-          ),
         ],
-      ),
-          ),
-        ],
-      ),
       ),
     );
   }

@@ -2,6 +2,7 @@ import 'package:audio_session/audio_session.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:just_audio/just_audio.dart';
 
+import 'quran_download_service.dart';
 import 'quran_tracks.dart';
 
 /// Çalan sure durumu.
@@ -98,7 +99,12 @@ class QuranAudioController extends Notifier<QuranAudioState> {
   Future<void> play(int surahNumber, String surahName, List<MediaTrack> tracks,
       int index) async {
     if (tracks.isEmpty) return;
-    _tracks = tracks;
+    // Sure İNDİRİLMİŞSE yerel dosyalardan çal (offline, veri/akış yok); değilse
+    // CDN url'leri. İndirme servisi çözer.
+    final resolved = ref
+        .read(quranDownloadProvider.notifier)
+        .resolveTracks(surahNumber, tracks);
+    _tracks = resolved;
     state = state.copyWith(
         surahNumber: surahNumber,
         surahName: surahName,
@@ -106,7 +112,9 @@ class QuranAudioController extends Notifier<QuranAudioState> {
         playing: true);
     // DÜZ AKIŞ (AudioSource.uri) — kanıtlanmış yol; Kur'an ses proxy'si range
     // istemediğinden LockCaching denenip geri alınmıştı (bazı cihazlarda susuyor).
-    final sources = [for (final t in tracks) AudioSource.uri(Uri.parse(t.url))];
+    final sources = [
+      for (final t in resolved) AudioSource.uri(Uri.parse(t.url))
+    ];
     try {
       final session = await AudioSession.instance;
       await session.configure(const AudioSessionConfiguration.music());

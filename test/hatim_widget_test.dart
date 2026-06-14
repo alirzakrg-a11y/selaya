@@ -4,7 +4,6 @@ import 'package:intl/date_symbol_data_local.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:selaya/core/di/providers.dart';
-import 'package:selaya/features/audio_stories/data/audio_handler.dart';
 import 'package:selaya/features/hatim/domain/hatim_session.dart';
 import 'package:selaya/features/hatim/presentation/hatim_screen.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -12,10 +11,8 @@ import 'package:shared_preferences/shared_preferences.dart';
 Widget _app(SharedPreferences prefs) => ProviderScope(
       overrides: [
         sharedPreferencesProvider.overrideWithValue(prefs),
-        // Ses katmanına dokunan provider'lar için güvenli varsayılan. (Mini
-        // çalarlar artık SelayaScaffold'da değil, app.dart'taki global
-        // overlay'de — bu test ağacında hiç mount edilmezler.)
-        audioHandlerProvider.overrideWithValue(AppAudioHandler()),
+        // Medya oynatıcı/audio_service KALDIRILDI (2026-06-14) → ses handler
+        // override'ı yok; Hatim ekranı ses katmanına dokunmaz.
       ],
       child: MaterialApp(
         // 'en' → DefaultMaterialLocalizations destekler (AppBar gereği).

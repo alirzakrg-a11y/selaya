@@ -15,6 +15,7 @@ import '../../../core/widgets/selaya_card.dart';
 import '../../../core/widgets/selaya_scaffold.dart';
 import '../../../core/widgets/states.dart';
 import '../data/quran_audio_controller.dart';
+import '../data/quran_download_service.dart';
 import '../data/quran_favorites.dart';
 import '../data/quran_tracks.dart';
 
@@ -49,6 +50,10 @@ class _QuranScreenState extends ConsumerState<QuranScreen> {
       await ref
           .read(quranAudioControllerProvider.notifier)
           .play(s.number, s.name(lang), tracks, 0);
+      // Çalmayı LİSTEDE değil OKUYUCUDA yönet: liste artık indirme-only, üstünde
+      // dur/duraklat kumandası yok. Çalar çalmaz okuyucuya geç → alt bardan
+      // (play/pause + ◀▶) kontrol edilir.
+      if (mounted) context.go('${Routes.quranReader}/${s.number}');
     } catch (_) {
       if (mounted) context.go('${Routes.quranReader}/${s.number}');
     }
@@ -277,7 +282,7 @@ class _SurahList extends StatelessWidget {
   }
 }
 
-class _SurahTile extends ConsumerWidget {
+class _SurahTile extends StatelessWidget {
   final Surah surah;
   final String lang;
   final bool fav;
@@ -288,29 +293,9 @@ class _SurahTile extends ConsumerWidget {
       required this.fav,
       required this.onFav});
 
-  /// Sureyi sade oynatıcıda çalar (ayet seslerini hazırlayıp). Sesli veri yoksa
-  /// sessizce çıkar (buton "play"de kalır; okumak için satıra dokunulur).
-  Future<void> _play(WidgetRef ref) async {
-    try {
-      final verses = await ref.read(versesProvider(surah.number).future);
-      final tracks = buildQuranTracks(
-          surah.number, surah.name(lang), verses, quranWallpaperArt(ref, surah.number));
-      if (tracks.isEmpty) return;
-      await ref
-          .read(quranAudioControllerProvider.notifier)
-          .play(surah.number, surah.name(lang), tracks, 0);
-    } catch (_) {}
-  }
-
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  Widget build(BuildContext context) {
     final c = context.colors;
-    // SADECE bu surenin çalma/yüklenme durumunu izle (select) → liste başka
-    // sure çalınca yeniden çizilmesin.
-    final playing = ref.watch(quranAudioControllerProvider
-        .select((s) => s.surahNumber == surah.number && s.playing));
-    final loading = ref.watch(quranAudioControllerProvider
-        .select((s) => s.surahNumber == surah.number && s.loading));
     return SelayaCard(
       onTap: () => context.go('${Routes.quranReader}/${surah.number}'),
       padding: const EdgeInsets.symmetric(
@@ -371,98 +356,147 @@ class _SurahTile extends ConsumerWidget {
             ),
           ),
           const Gap.sm(),
-          // ▶/⏹ sade oynatıcı kumandası + sure ilerleme halkası.
-          _PlayStopRing(
-            playing: playing,
-            loading: loading,
-            onPlay: () => _play(ref),
-            onStop: () => ref.read(quranAudioControllerProvider.notifier).stop(),
-          ),
+          // ⬇ OFFLINE indirme (liste = indirme; çalma okuyucuda). İndirilince ✓.
+          _DownloadButton(surah: surah, lang: lang),
         ],
       ),
     );
   }
 }
 
-/// Sure satırındaki TEK kumanda: ▶ (çal) → ⏹ (dur). Çalarken butonun ETRAFINDA
-/// sure ilerlemesini gösteren halka döner. Yüklenirken belirsiz (dönen) halka.
-/// Karmaşık mini-player/bildirim YERİNE bu — kullanıcı isteği "sadece play+stop".
-class _PlayStopRing extends ConsumerWidget {
-  final bool playing;
-  final bool loading;
-  final VoidCallback onPlay;
-  final VoidCallback onStop;
-  const _PlayStopRing(
-      {required this.playing,
-      required this.loading,
-      required this.onPlay,
-      required this.onStop});
+/// Sure satırındaki TEK buton: ⬇ (offline indir) → indirilirken % + dolan halka
+/// → ✓ (indirildi). Liste ekranında ÇALMA YOK (kullanıcı 2026-06-14: "bu
+/// sayfalardan play'i kaldır, girince sadece play olsun") — çalma yalnız
+/// okuyucuda. İndirme ONAY ister (kullanıcı yanlışlıkla basıp veri harcamasın);
+/// ✓'e dokununca silme onayı. En çok 6 sure tutulur (servis eskisini siler).
+class _DownloadButton extends ConsumerWidget {
+  final Surah surah;
+  final String lang;
+  const _DownloadButton({required this.surah, required this.lang});
+
+  Future<void> _confirmDownload(BuildContext context, WidgetRef ref) async {
+    final tr = lang == 'tr';
+    final ok = await showDialog<bool>(
+      context: context,
+      builder: (ctx) => AlertDialog(
+        title: Text(tr ? 'Offline indir' : 'Download offline'),
+        content: Text(tr
+            ? '"${surah.name(lang)}" suresinin ${surah.ayahCount} ayeti cihaza indirilsin mi? Sonra internetsiz dinleyebilirsin (en çok 6 sure saklanır).'
+            : 'Download all ${surah.ayahCount} verses of "${surah.name(lang)}" for offline listening? (Up to 6 surahs are kept.)'),
+        actions: [
+          TextButton(
+              onPressed: () => Navigator.pop(ctx, false),
+              child: Text(tr ? 'Vazgeç' : 'Cancel')),
+          FilledButton(
+              onPressed: () => Navigator.pop(ctx, true),
+              child: Text(tr ? 'İndir' : 'Download')),
+        ],
+      ),
+    );
+    if (ok != true || !context.mounted) return;
+    try {
+      final verses = await ref.read(versesProvider(surah.number).future);
+      final tracks = buildQuranTracks(surah.number, surah.name(lang), verses,
+          quranWallpaperArt(ref, surah.number));
+      if (tracks.isEmpty || !context.mounted) return;
+      final evicted = await ref
+          .read(quranDownloadProvider.notifier)
+          .download(surah.number, tracks);
+      if (evicted != null && context.mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+          content: Text(tr
+              ? 'Depolama hafif kalsın diye en eski offline sure silindi (en çok 6).'
+              : 'Removed the oldest offline surah to save space (max 6).'),
+        ));
+      }
+    } catch (_) {}
+  }
+
+  Future<void> _confirmRemove(BuildContext context, WidgetRef ref) async {
+    final tr = lang == 'tr';
+    final ok = await showDialog<bool>(
+      context: context,
+      builder: (ctx) => AlertDialog(
+        title: Text(tr ? 'Offline kaydı sil' : 'Remove download'),
+        content: Text(tr
+            ? '"${surah.name(lang)}" cihazdan silinsin mi? İstediğinde tekrar indirebilirsin.'
+            : 'Remove the offline copy of "${surah.name(lang)}"? You can download it again anytime.'),
+        actions: [
+          TextButton(
+              onPressed: () => Navigator.pop(ctx, false),
+              child: Text(tr ? 'Vazgeç' : 'Cancel')),
+          FilledButton(
+              onPressed: () => Navigator.pop(ctx, true),
+              child: Text(tr ? 'Sil' : 'Remove')),
+        ],
+      ),
+    );
+    if (ok != true || !context.mounted) return;
+    await ref.read(quranDownloadProvider.notifier).remove(surah.number);
+  }
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final c = context.colors;
-    final ctrl = ref.read(quranAudioControllerProvider.notifier);
-    final active = playing || loading;
-    return SizedBox(
-      width: 46,
-      height: 46,
-      child: Stack(
-        alignment: Alignment.center,
-        children: [
-          if (active)
+    final downloaded = ref.watch(quranDownloadProvider
+        .select((s) => s.downloaded.contains(surah.number)));
+    final progress = ref.watch(
+        quranDownloadProvider.select((s) => s.progress[surah.number]));
+
+    // İndiriliyor → yüzde + dolan halka (bitince ✓ olur).
+    if (progress != null) {
+      return SizedBox(
+        width: 46,
+        height: 46,
+        child: Stack(
+          alignment: Alignment.center,
+          children: [
             Positioned.fill(
-              child: StreamBuilder<int?>(
-                stream: ctrl.currentIndexStream,
-                builder: (context, idxSnap) {
-                  final n = ctrl.tracks.length;
-                  final idx = (idxSnap.data ?? ctrl.currentIndex)
-                      .clamp(0, n > 0 ? n - 1 : 0);
-                  return StreamBuilder<Duration?>(
-                    stream: ctrl.durationStream,
-                    builder: (context, durSnap) {
-                      return StreamBuilder<Duration>(
-                        stream: ctrl.positionStream,
-                        builder: (context, posSnap) {
-                          final dur = durSnap.data ?? Duration.zero;
-                          final pos = posSnap.data ?? Duration.zero;
-                          final frac = dur.inMilliseconds > 0
-                              ? pos.inMilliseconds / dur.inMilliseconds
-                              : 0.0;
-                          // Sure ilerlemesi: (çalan ayet + ayet içi oran) / toplam.
-                          final progress = n > 0
-                              ? ((idx + frac) / n).clamp(0.0, 1.0)
-                              : null;
-                          return CircularProgressIndicator(
-                            value: loading ? null : progress,
-                            strokeWidth: 2.5,
-                            color: c.gold,
-                            backgroundColor: c.gold.withValues(alpha: 0.16),
-                          );
-                        },
-                      );
-                    },
-                  );
-                },
-              ),
-            ),
-          Material(
-            color: active ? c.gold : c.gold.withValues(alpha: 0.14),
-            shape: const CircleBorder(),
-            child: InkWell(
-              customBorder: const CircleBorder(),
-              onTap: active ? onStop : onPlay,
-              child: SizedBox(
-                width: 38,
-                height: 38,
-                child: Icon(
-                  active ? Icons.stop_rounded : Icons.play_arrow_rounded,
-                  color: active ? c.bg : c.gold,
-                  size: 22,
+              child: Padding(
+                padding: const EdgeInsets.all(3),
+                child: CircularProgressIndicator(
+                  value: progress <= 0 ? null : progress,
+                  strokeWidth: 2.5,
+                  color: c.gold,
+                  backgroundColor: c.gold.withValues(alpha: 0.16),
                 ),
               ),
             ),
+            Text('${(progress * 100).round()}',
+                style: Theme.of(context).textTheme.labelSmall?.copyWith(
+                    color: c.gold, fontWeight: FontWeight.w700)),
+          ],
+        ),
+      );
+    }
+
+    // İndirildi → dolu altın daire + ✓ (dokun → silme onayı). Değilse → açık
+    // daire + ⬇ (dokun → indirme onayı).
+    return SizedBox(
+      width: 46,
+      height: 46,
+      child: Center(
+        child: Material(
+          color: downloaded ? c.gold : c.gold.withValues(alpha: 0.14),
+          shape: const CircleBorder(),
+          child: InkWell(
+            customBorder: const CircleBorder(),
+            onTap: () => downloaded
+                ? _confirmRemove(context, ref)
+                : _confirmDownload(context, ref),
+            child: SizedBox(
+              width: 38,
+              height: 38,
+              child: Icon(
+                downloaded
+                    ? Icons.download_done_rounded
+                    : Icons.download_rounded,
+                color: downloaded ? c.bg : c.gold,
+                size: 22,
+              ),
+            ),
           ),
-        ],
+        ),
       ),
     );
   }
