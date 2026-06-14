@@ -42,7 +42,9 @@ import '../data/featured_tools.dart';
 /// bölümler — 'videos' (video kapakları) ve 'wallpaper' (duvar kâğıdı görselleri)
 /// — çıkarıldı; 'gaugeCarousel' artık sadece geri-sayım (pusula/gösterge yok).
 const _homeSections = <String>[
-  'storyRail',
+  // 'storyRail' ana ekrandan çıkarıldı (2026-06-14): yatay dairesel görsel
+  // şeridi, hızlı dikey fling'de en pahalı parça (antialias clip + ağ görseli).
+  // Hikâyeler zaten Akış sekmesinde duruyor.
   'religiousDay',
   'gaugeCarousel',
   'prayerStrip',
