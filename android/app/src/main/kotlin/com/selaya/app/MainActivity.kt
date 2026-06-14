@@ -55,6 +55,25 @@ class MainActivity : FlutterActivity() {
         try {
             val lp = window.attributes
             lp.preferredRefreshRate = 60f
+            // SERT KILIT: Samsung "Hareket akıcılığı = Adaptive", HIZLI KAYDIRMADA
+            // (yüksek hareket) ekranı 120Hz'e boost edip yukarıdaki soft 60Hz
+            // isteğini aşıyordu → her ekranda hızlı fling'de donma. preferredDisplay
+            // ModeId ile 60Hz MODUNU sabitle: sistem bunu daha katı uygular,
+            // hareket sırasında bile 120'ye çıkamaz.
+            val disp = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+                display
+            } else {
+                @Suppress("DEPRECATION") windowManager.defaultDisplay
+            }
+            val cur = disp?.mode
+            if (cur != null) {
+                val mode60 = disp.supportedModes.firstOrNull { m ->
+                    m.physicalWidth == cur.physicalWidth &&
+                        m.physicalHeight == cur.physicalHeight &&
+                        m.refreshRate >= 59f && m.refreshRate <= 61f
+                }
+                if (mode60 != null) lp.preferredDisplayModeId = mode60.modeId
+            }
             window.attributes = lp
         } catch (_: Exception) {}
     }
