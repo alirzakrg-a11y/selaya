@@ -49,9 +49,9 @@ const _homeSections = <String>[
   'storyRail',
   'gaugeCarousel',
   'prayerStrip',
-  'nearestMosque',
+  'featured', // Öne Çıkanlar vakit şeridinin hemen altında (kullanıcı isteği)
   'media',
-  'featured',
+  // 'nearestMosque' ana ekrandan KALDIRILDI (2026-06-14).
 ];
 
 class HomeScreen extends ConsumerStatefulWidget {
@@ -95,10 +95,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
               // (videos/wallpaper) ve saniyelik gösterge karuseli çıkarıldı →
               // çok hızlı kaydırmada takılma azalır.
               for (final k in _homeSections) ..._section(context, k),
-              const Padding(
-                padding: AppSpacing.screen,
-                child: _IdeaCard(),
-              ),
+              // _IdeaCard ("Bizi geliştir") KALDIRILDI (kullanıcı 2026-06-14).
             ],
           ),
         ),
@@ -1338,60 +1335,6 @@ class _DailyFact extends StatelessWidget {
                     .bodySmall
                     ?.copyWith(color: c.textSecondary, height: 1.4)),
           ),
-        ],
-      ),
-    );
-  }
-}
-
-/// "Help us improve — share your idea" card → opens the user's mail client.
-class _IdeaCard extends StatelessWidget {
-  const _IdeaCard();
-
-  Future<void> _shareIdea() async {
-    final uri = Uri.parse(
-        'mailto:destek@selayaapp.com?subject=${Uri.encodeComponent('SELAYA — Görüş & Öneri')}');
-    try {
-      await launchUrl(uri, mode: LaunchMode.externalApplication);
-    } catch (_) {}
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    final c = context.colors;
-    return SelayaCard(
-      gradient: LinearGradient(colors: [
-        c.gold.withValues(alpha: 0.14),
-        c.surfaceAlt,
-      ]),
-      onTap: _shareIdea,
-      child: Row(
-        children: [
-          Container(
-            padding: const EdgeInsets.all(11),
-            decoration: BoxDecoration(
-                shape: BoxShape.circle, color: c.gold.withValues(alpha: 0.18)),
-            child: Icon(AppIcons.sparkles, color: c.gold, size: 22),
-          ),
-          const Gap.md(),
-          Expanded(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text('home.shareIdeaTitle'.tr(),
-                    style: Theme.of(context)
-                        .textTheme
-                        .titleSmall
-                        ?.copyWith(color: c.gold, fontWeight: FontWeight.w700)),
-                Text('home.shareIdeaDesc'.tr(),
-                    style: Theme.of(context)
-                        .textTheme
-                        .bodySmall
-                        ?.copyWith(color: c.textSecondary)),
-              ],
-            ),
-          ),
-          Icon(AppIcons.forward, size: 16, color: c.textTertiary),
         ],
       ),
     );

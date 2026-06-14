@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -10,9 +12,13 @@ import '../../../../core/theme/app_typography.dart';
 import '../../../../core/data/content_providers.dart';
 import '../../../../core/models/content.dart';
 import '../../../../core/utils/formatters.dart';
-import '../../../../core/widgets/rotating_image_background.dart';
+import '../../../../core/widgets/app_image.dart';
 import '../../data/prayer_repository.dart';
 import '../../domain/prayer.dart';
+
+/// Sayaç kartı arka planı için OTURUM başına SABİT rastgele seed → her uygulama
+/// açılışında FARKLI tek görsel; rebuild'lerde DEĞİŞMEZ (geçiş/titreme yok).
+final _heroBgSeedProvider = Provider<int>((ref) => Random().nextInt(1 << 30));
 
 /// Large hero card: city, date, hijri date, next prayer + live countdown + progress.
 ///
@@ -30,9 +36,11 @@ class NextPrayerCard extends ConsumerWidget {
     // YERİNE — eski telefonlarda sürekli video decode takılma yapıyordu).
     // gridImage = ≤560px hafif önizleme; boşsa hero_mosque.jpg yerel fallback.
     final wps = ref.watch(wallpapersProvider).value ?? const <Wallpaper>[];
-    final bgImages = [
-      for (final w in wps.where((w) => !w.premium).take(3)) w.gridImage,
-    ];
+    // Dönen/geçişli arka plan KALDIRILDI (kullanıcı 2026-06-14): her açılışta
+    // SABİT rastgele TEK ücretsiz görsel — statik, geçiş yok, boşa kare üretmez.
+    final free = [for (final w in wps.where((w) => !w.premium)) w.gridImage];
+    final heroBg =
+        free.isEmpty ? '' : free[ref.watch(_heroBgSeedProvider) % free.length];
 
     return AspectRatio(
       // Daha kompakt (kullanıcı 2026-06-14 "sayacı küçültebilirsin"): kart
@@ -43,10 +51,11 @@ class NextPrayerCard extends ConsumerWidget {
         child: Stack(
           fit: StackFit.expand,
           children: [
-            RotatingImageBackground(
-              images: bgImages,
-              fallback: 'assets/images/hero_mosque.jpg',
-            ),
+            // Statik tek görsel (dönüş/cross-fade YOK).
+            heroBg.isEmpty
+                ? Image.asset('assets/images/hero_mosque.jpg',
+                    fit: BoxFit.cover)
+                : AppImage.cdn(heroBg, fit: BoxFit.cover, memWidth: 720),
             const DecoratedBox(
               decoration: BoxDecoration(
                 gradient: LinearGradient(
