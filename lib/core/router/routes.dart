@@ -52,5 +52,6 @@ abstract final class Routes {
   static const widgetsGallery = '/widgets';
   static const homeLayout = '/home-layout'; // ana ekranı düzenle
   static const featuredEdit = '/featured-edit'; // öne çıkanlar içeriği
+  static const media = '/media'; // Medya hub (duvar kâğıdı/video/tebrik kısayolu)
   static const adhanAlarm = '/adhan-alarm'; // /:slot — full-screen adhan alarm
 }

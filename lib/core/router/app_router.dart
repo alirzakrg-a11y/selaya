@@ -23,6 +23,7 @@ import '../../features/home/presentation/featured_grid_screen.dart';
 import '../../features/home/presentation/home_layout_screen.dart';
 import '../../features/home/presentation/home_screen.dart';
 import '../../features/ibadah_tracking/presentation/tracking_screen.dart';
+import '../../features/media/presentation/media_screen.dart';
 import '../../features/kaza_tracking/presentation/kaza_screen.dart';
 import '../../features/liked/presentation/liked_screen.dart';
 import '../../features/more/presentation/more_screen.dart';
@@ -165,6 +166,7 @@ final routerProvider = Provider<GoRouter>((ref) {
       fs(Routes.widgetsGallery, (_, _) => const WidgetsGalleryScreen()),
       fs(Routes.homeLayout, (_, _) => const HomeLayoutScreen()),
       fs(Routes.featuredEdit, (_, _) => const FeaturedGridScreen()),
+      fs(Routes.media, (_, _) => const MediaScreen()),
       fs('${Routes.adhanAlarm}/:slot', (_, s) => AdhanAlarmScreen(
             slotIndex: int.tryParse(s.pathParameters['slot'] ?? '0') ?? 0,
           )),

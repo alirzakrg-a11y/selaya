@@ -48,7 +48,7 @@ const _homeSections = <String>[
   'prayerStrip',
   'nearestMosque',
   'featured',
-  'quickPair',
+  'media',
   'dailyTasks',
   'verseOfDay',
   'hadithOfDay',
@@ -152,6 +152,13 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
           ),
           const Gap.lg(),
         ];
+      case 'media':
+        // Tek "Medya" kartı → ayrı Medya sayfası (duvar kâğıdı/video/tebrik
+        // kısayolları). Ana ekrandan o 3 bölüm çıkarıldı, burada toplandı.
+        return const [
+          Padding(padding: AppSpacing.screen, child: _MediaCard()),
+          Gap.lg(),
+        ];
       case 'dailyTasks':
         return [
           SectionHeader(title: 'tasks.title'.tr()),
@@ -212,6 +219,55 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
       default:
         return const [];
     }
+  }
+}
+
+/// Ana ekrandaki tek "Medya" kartı → ayrı Medya sayfası (duvar kâğıdı / video /
+/// tebrik kartı kısayolları). Ana ekran sade kalsın diye o 3 bölüm tek karta
+/// toplandı (kullanıcı isteği 2026-06-14).
+class _MediaCard extends StatelessWidget {
+  const _MediaCard();
+  @override
+  Widget build(BuildContext context) {
+    final c = context.colors;
+    final tr = context.langCode == 'tr';
+    return SelayaCard(
+      onTap: () => context.push(Routes.media),
+      child: Row(
+        children: [
+          Container(
+            padding: const EdgeInsets.all(11),
+            decoration: BoxDecoration(
+                shape: BoxShape.circle, color: c.gold.withValues(alpha: 0.14)),
+            child: Icon(Icons.perm_media_rounded, color: c.gold, size: 22),
+          ),
+          const Gap.md(),
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(tr ? 'Medya' : 'Media',
+                    style: Theme.of(context)
+                        .textTheme
+                        .titleMedium
+                        ?.copyWith(fontWeight: FontWeight.w700)),
+                Text(
+                    tr
+                        ? 'Duvar kâğıtları, videolar, tebrik kartları'
+                        : 'Wallpapers, videos, greeting cards',
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                    style: Theme.of(context)
+                        .textTheme
+                        .bodySmall
+                        ?.copyWith(color: c.textTertiary)),
+              ],
+            ),
+          ),
+          Icon(Icons.chevron_right_rounded, color: c.textTertiary),
+        ],
+      ),
+    );
   }
 }
 
