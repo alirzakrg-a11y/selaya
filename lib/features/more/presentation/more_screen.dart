@@ -68,8 +68,8 @@ class MoreScreen extends ConsumerWidget {
     _Section('more.secCustomize', [
       _Entry(AppIcons.wallpaper, 'wallpapers.title', Routes.wallpapers),
       _Entry(AppIcons.tune, 'widgetsGallery.title', Routes.widgetsGallery),
-      _Entry(Icons.dashboard_customize_rounded, 'homeLayout.title',
-          Routes.homeLayout),
+      // "Ana ekranı düzenle" KALDIRILDI (2026-06-14) — ana ekran artık sabit
+      // hafif düzen (kişiselleştirme yok).
     ]),
     _Section('more.secApp', [
       _Entry(AppIcons.settings, 'settings.title', Routes.settings),

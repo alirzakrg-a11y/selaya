@@ -33,13 +33,29 @@ import '../../social_feed/data/video_thumbs.dart';
 import '../../prayer_times/data/prayer_repository.dart';
 import '../../ibadah_tracking/data/prayer_checkin.dart';
 import '../../prayer_times/presentation/widgets/next_prayer_card.dart';
-import '../../prayer_times/presentation/widgets/prayer_clock_dial.dart';
 import '../../prayer_times/presentation/widgets/prayer_strip.dart';
-import '../../prayer_times/presentation/widgets/prayer_timeline_gauge.dart';
 import '../../stories/presentation/story_rail.dart';
 import '../../weather/data/weather_service.dart';
 import '../data/featured_tools.dart';
-import '../data/home_layout_controller.dart';
+
+/// SABİT hafif ana-ekran bölüm sırası (kişiselleştirme KALDIRILDI). Ağır görsel
+/// bölümler — 'videos' (video kapakları) ve 'wallpaper' (duvar kâğıdı görselleri)
+/// — çıkarıldı; 'gaugeCarousel' artık sadece geri-sayım (pusula/gösterge yok).
+const _homeSections = <String>[
+  'storyRail',
+  'religiousDay',
+  'gaugeCarousel',
+  'prayerStrip',
+  'nearestMosque',
+  'featured',
+  'quickPair',
+  'dailyTasks',
+  'verseOfDay',
+  'hadithOfDay',
+  'dailyDua',
+  'widgetPromo',
+  'ai',
+];
 
 class HomeScreen extends ConsumerStatefulWidget {
   const HomeScreen({super.key});
@@ -77,9 +93,11 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
               const _HomeHeader(),
               const _LocationWarningBanner(),
               const Gap.md(),
-              // Tüm bölümler kullanıcı sırasına/gizlemesine göre (header hariç).
-              for (final k in ref.watch(homeLayoutProvider).visible)
-                ..._section(context, k),
+              // SABİT HAFİF DÜZEN (kullanıcı 2026-06-14: "ana ekranı azalt,
+              // düzeni kaldır"): kişiselleştirme kaldırıldı; ağır görsel bölümler
+              // (videos/wallpaper) ve saniyelik gösterge karuseli çıkarıldı →
+              // çok hızlı kaydırmada takılma azalır.
+              for (final k in _homeSections) ..._section(context, k),
               const Padding(
                 padding: AppSpacing.screen,
                 child: _IdeaCard(),
@@ -100,8 +118,11 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
       case 'religiousDay':
         return const [_ReligiousDayCard()];
       case 'gaugeCarousel':
+        // Saniyede çizen pusula + zaman göstergesi karuseli (PageView) KALDIRILDI
+        // — çok hızlı kaydırmada her saniye bir kareyi ağırlaştırıyordu. Yalnız
+        // büyük geri-sayım kartı kalır.
         return const [
-          Padding(padding: AppSpacing.screen, child: _GaugeCarousel()),
+          Padding(padding: AppSpacing.screen, child: NextPrayerCard()),
           Gap.md(),
         ];
       case 'prayerStrip':
@@ -627,8 +648,9 @@ class _DailyContentCard extends StatelessWidget {
       child: Stack(
         children: [
           // memWidth: degrade altındaki dekoratif arka plan — tam çözünürlük
-          // decode etmek RAM/jank israfı (perf turu 2).
-          Positioned.fill(child: AppImage.cdn(backgroundImage, memWidth: 720)),
+          // decode etmek RAM/jank israfı. 720→480 (perf turu 3, hızlı kaydırma):
+          // kart genişliğine yeter, doku yüklemesi ~yarıya iner.
+          Positioned.fill(child: AppImage.cdn(backgroundImage, memWidth: 480)),
           const Positioned.fill(
             child: DecoratedBox(
               decoration: BoxDecoration(
@@ -1175,60 +1197,9 @@ class _SeeMoreButton extends StatelessWidget {
 
 /// Swipeable gauge: page 0 = next-prayer countdown card, page 1 = 24h radial
 /// dial — matching the PDF's "swipe to change the indicator" request.
-class _GaugeCarousel extends StatefulWidget {
-  const _GaugeCarousel();
-  @override
-  State<_GaugeCarousel> createState() => _GaugeCarouselState();
-}
-
-class _GaugeCarouselState extends State<_GaugeCarousel> {
-  final _controller = PageController();
-  int _page = 0;
-
-  @override
-  void dispose() {
-    _controller.dispose();
-    super.dispose();
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    final c = context.colors;
-    return Column(
-      children: [
-        SizedBox(
-          // Kompakt — geri sayım kartının üst/alt boşluğu en aza indirildi.
-          height: 218,
-          child: PageView(
-            controller: _controller,
-            onPageChanged: (i) => setState(() => _page = i),
-            children: const [
-              Center(child: NextPrayerCard()),
-              Center(child: PrayerClockDial()),
-              Center(child: PrayerTimelineGauge()),
-            ],
-          ),
-        ),
-        const Gap.sm(),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            for (var i = 0; i < 3; i++)
-              Container(
-                margin: const EdgeInsets.symmetric(horizontal: 3),
-                width: _page == i ? 18 : 6,
-                height: 6,
-                decoration: BoxDecoration(
-                  color: _page == i ? c.gold : c.border,
-                  borderRadius: BorderRadius.circular(99),
-                ),
-              ),
-          ],
-        ),
-      ],
-    );
-  }
-}
+// _GaugeCarousel (PageView: geri-sayım + pusula + zaman göstergesi) KALDIRILDI
+// (2026-06-14) — saniyede çizen pusula/gösterge çok hızlı kaydırmada takılma
+// yapıyordu. Ana ekranda artık yalnız NextPrayerCard (geri-sayım) gösterilir.
 
 /// "Add SELAYA to your home screen" promo (replaces the old premium upsell).
 class _WidgetPromoCard extends StatelessWidget {
