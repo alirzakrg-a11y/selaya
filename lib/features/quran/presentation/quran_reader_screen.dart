@@ -43,7 +43,11 @@ class _QuranReaderScreenState extends ConsumerState<QuranReaderScreen> {
   // ayete atlamak (ensureVisible boşa düştüğünde) için tahmini ofset kaydırması.
   final ScrollController _scrollCtrl = ScrollController();
   StreamSubscription<int?>? _idxSub;
-  int? _currentAyah;
+  // Çalan ayet — ValueNotifier (setState DEĞİL): değişince TÜM ekranı (app bar,
+  // alt bar, liste yapısı) değil, yalnız görünen ayet kartlarını yeniden kurar
+  // (Abdulkadir ipucu 2026-06-14: "liste elemanı için en üstteki StatefulWidget
+  // setState'ini çağırma" → oynatmada ayet geçişi donması). Kök fix.
+  final ValueNotifier<int?> _currentAyah = ValueNotifier<int?>(null);
   bool _wasActive = false; // bu sure çalıyordu (örtülü geçiş yakalama için)
   double _endOverscroll = 0; // alt uçta birikmiş aşırı-kaydırma (sonraki sure)
   double _startOverscroll = 0; // üst uçta birikmiş aşırı-kaydırma (önceki sure)
@@ -75,7 +79,7 @@ class _QuranReaderScreenState extends ConsumerState<QuranReaderScreen> {
       if (_audibleAyahs.isEmpty) _adoptControllerQueue();
       if (idx >= _audibleAyahs.length) return;
       final ayah = _audibleAyahs[idx];
-      setState(() => _currentAyah = ayah);
+      _currentAyah.value = ayah; // setState YOK → tüm ekran rebuild olmaz
       _ensureVisible(ayah);
     });
     // Sayfa açıldığında bu sure ZATEN çalıyorsa (otomatik geçiş sonrası
@@ -104,9 +108,11 @@ class _QuranReaderScreenState extends ConsumerState<QuranReaderScreen> {
     _tracks = List.of(ts);
     final idx = _ctrl.currentIndex;
     if (idx >= 0 && idx < _audibleAyahs.length) {
-      setState(() => _currentAyah = _audibleAyahs[idx]);
+      _currentAyah.value = _audibleAyahs[idx];
       WidgetsBinding.instance.addPostFrameCallback((_) {
-        if (mounted && _currentAyah != null) _ensureVisible(_currentAyah!);
+        if (mounted && _currentAyah.value != null) {
+          _ensureVisible(_currentAyah.value!);
+        }
       });
     }
   }
@@ -115,6 +121,7 @@ class _QuranReaderScreenState extends ConsumerState<QuranReaderScreen> {
   void dispose() {
     _idxSub?.cancel();
     _scrollCtrl.dispose();
+    _currentAyah.dispose();
     super.dispose();
   }
 
@@ -322,8 +329,8 @@ class _QuranReaderScreenState extends ConsumerState<QuranReaderScreen> {
         ),
     ];
     final initial = startIndex ??
-        (mine && _currentAyah != null
-            ? verses.indexWhere((v) => v.ayah == _currentAyah)
+        (mine && _currentAyah.value != null
+            ? verses.indexWhere((v) => v.ayah == _currentAyah.value)
             : 0);
     showContentDetail(
       context,
@@ -396,7 +403,6 @@ class _QuranReaderScreenState extends ConsumerState<QuranReaderScreen> {
     final st = ref.watch(quranAudioControllerProvider);
     final active = st.surahNumber == widget.surahNumber;
     final isPlaying = active && st.playing;
-    final currentAyah = active ? _currentAyah : null;
 
     // TickerMode'a BAĞIMLILIK: sayfa offstage'den görünür hâle gelince rebuild
     // tetiklenir → aşağıdaki yakalama bloğu tam o anda çalışır.
@@ -598,17 +604,23 @@ class _QuranReaderScreenState extends ConsumerState<QuranReaderScreen> {
                 final vi = i - leading.length;
                 if (vi >= list.length) return trailing[vi - list.length];
                 final v = list[vi];
-                return _VerseTile(
-                  key: _keys.putIfAbsent(v.ayah, () => GlobalKey()),
-                  verse: v,
-                  lang: lang,
-                  playing: currentAyah == v.ayah,
-                  onPlay: () => _playAyah(list, vi, surah?.name(lang) ?? 'Sure'),
-                  // Karta dokun → bu ayetten popup açılır (oradan tüm sureler
-                  // ◀▶ ile gezilebilir + Oku ile çalınabilir).
-                  onTap: () => _openVersesPopup(
-                      list, surah?.name(lang) ?? 'Sure', lang,
-                      startIndex: vi),
+                // Çalan-ayet vurgusu YALNIZ bu kartlarda dinlenir → ayet
+                // değişince app bar/alt bar/liste yapısı değil, sadece görünen
+                // ~6 kart yeniden kurulur (oynatma akıcı; setState yok).
+                return ValueListenableBuilder<int?>(
+                  valueListenable: _currentAyah,
+                  builder: (context, cur, _) => _VerseTile(
+                    key: _keys.putIfAbsent(v.ayah, () => GlobalKey()),
+                    verse: v,
+                    lang: lang,
+                    playing: active && cur == v.ayah,
+                    onPlay: () =>
+                        _playAyah(list, vi, surah?.name(lang) ?? 'Sure'),
+                    // Karta dokun → bu ayetten popup (tüm sureler ◀▶ + Oku).
+                    onTap: () => _openVersesPopup(
+                        list, surah?.name(lang) ?? 'Sure', lang,
+                        startIndex: vi),
+                  ),
                 );
               },
             );
