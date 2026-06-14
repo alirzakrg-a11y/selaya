@@ -1,19 +1,7 @@
-import java.io.FileInputStream
-import java.util.Properties
-
 plugins {
     id("com.android.application")
     // The Flutter Gradle Plugin must be applied after the Android and Kotlin Gradle plugins.
     id("dev.flutter.flutter-gradle-plugin")
-}
-
-// Release imza bilgileri: android/key.properties (GITIGNORE'lu — gizli, repoya
-// GİRMEZ). Dosya yoksa (CI / başka geliştirici) release, debug imzaya düşer ki
-// `flutter run --release` yine çalışsın. Play'e .aab İÇİN bu dosya gerekli.
-val keystoreProperties = Properties()
-val keystorePropertiesFile = rootProject.file("key.properties")
-if (keystorePropertiesFile.exists()) {
-    keystoreProperties.load(FileInputStream(keystorePropertiesFile))
 }
 
 android {
@@ -45,25 +33,11 @@ android {
         versionName = flutter.versionName
     }
 
-    signingConfigs {
-        create("release") {
-            if (keystorePropertiesFile.exists()) {
-                keyAlias = keystoreProperties["keyAlias"] as String
-                keyPassword = keystoreProperties["keyPassword"] as String
-                storeFile = file(keystoreProperties["storeFile"] as String)
-                storePassword = keystoreProperties["storePassword"] as String
-            }
-        }
-    }
-
     buildTypes {
         release {
-            // İMZA: key.properties varsa release keystore (Play .aab için);
-            // yoksa debug (lokal `flutter run --release` çalışsın).
-            signingConfig = if (keystorePropertiesFile.exists())
-                signingConfigs.getByName("release")
-            else
-                signingConfigs.getByName("debug")
+            // TODO: Add your own signing config for the release build.
+            // Signing with the debug keys for now, so `flutter run --release` works.
+            signingConfig = signingConfigs.getByName("debug")
             // Do NOT shrink resources: the adhan sounds in res/raw are referenced
             // only by name (RawResourceAndroidNotificationSound → getIdentifier),
             // so the resource shrinker can't see they're used and strips them —

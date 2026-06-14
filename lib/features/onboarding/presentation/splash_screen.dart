@@ -1,6 +1,5 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
@@ -54,7 +53,9 @@ class _SplashScreenState extends ConsumerState<SplashScreen> {
   }
 
   Future<void> _go() async {
-    await Future<void>.delayed(const Duration(milliseconds: 1600));
+    // Animasyon kaldırıldığından bekleme kısaldı (1600→600ms): sade logo kısa
+    // görünür, hızlıca ana ekrana geçer.
+    await Future<void>.delayed(const Duration(milliseconds: 600));
     if (!mounted) return;
     final seen =
         ref.read(sharedPreferencesProvider).getBool(PrefKeys.onboardingSeen) ?? false;
@@ -71,16 +72,10 @@ class _SplashScreenState extends ConsumerState<SplashScreen> {
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
-              const SelayaLogo(size: 150)
-                  .animate()
-                  .fadeIn(duration: 800.ms)
-                  .scale(
-                      begin: const Offset(0.6, 0.6),
-                      end: const Offset(1, 1),
-                      duration: 900.ms,
-                      curve: Curves.easeOutBack)
-                  .then(delay: 150.ms)
-                  .shimmer(duration: 1500.ms, color: Colors.white),
+              // Animasyon İPTAL (kullanıcı 2026-06-14): fade/scale/shimmer, soğuk
+              // ilk açılışta kekeme görünüp "donma" hissini artırıyordu → sade,
+              // statik logo + slogan.
+              const SelayaLogo(size: 150),
               const SizedBox(height: 12),
               Text(
                 'common.slogan'.tr(),
@@ -88,7 +83,7 @@ class _SplashScreenState extends ConsumerState<SplashScreen> {
                     color: context.colors.textSecondary,
                     letterSpacing: 1,
                     fontSize: 13),
-              ).animate().fadeIn(delay: 500.ms, duration: 700.ms),
+              ),
             ],
           ),
         ),
