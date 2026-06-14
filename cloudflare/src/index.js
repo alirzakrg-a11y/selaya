@@ -362,45 +362,7 @@ export default {
           return json({ ok: true, id, key, url: env.CDN_BASE + '/' + key });
         }
 
-        // sesli hikâye oluştur: 1 kapak + N bölüm (ses) -> tek kategori kaydı
-        if (request.method === 'POST' && path === '/api/audio-story') {
-          const form = await request.formData();
-          const title = (form.get('title') || '').toString().trim();
-          const subtitle = (form.get('subtitle') || '').toString();
-          const cover = form.get('cover');
-          const audios = form.getAll('ep_audio');
-          const titles = form.getAll('ep_title');
-          const subs = form.getAll('ep_sub');
-          const durs = form.getAll('ep_dur');
-          if (!title || !cover || typeof cover === 'string' || audios.length === 0) {
-            return json({ ok: false, error: 'title_cover_episodes_required' }, { status: 400 });
-          }
-          const catId = crypto.randomUUID();
-          const dir = 'uploads/audio_stories/' + catId + '/';
-          const coverKey = dir + 'cover.' + extOf(cover.name, 'webp');
-          await putFile(env, coverKey, cover);
-          const episodes = [];
-          for (let i = 0; i < audios.length; i++) {
-            const a = audios[i];
-            if (!a || typeof a === 'string') continue;
-            const k = dir + 'ep' + i + '.' + extOf(a.name, 'mp3');
-            await putFile(env, k, a);
-            episodes.push({
-              audio: env.CDN_BASE + '/' + k,
-              title: (titles[i] || ('Bölüm ' + (i + 1))).toString(),
-              subtitle: (subs[i] || '').toString(),
-              durationSec: parseInt(durs[i] || '0', 10) || 0,
-            });
-          }
-          if (episodes.length === 0) return json({ ok: false, error: 'no_episodes' }, { status: 400 });
-          const now = Date.now();
-          await env.DB.prepare(
-            'INSERT INTO content_items (id, collection, kind, key, title, subtitle, extra, sort, active, created_at, updated_at) ' +
-            'VALUES (?,?,?,?,?,?,?,?,1,?,?)'
-          ).bind(catId, 'audio_stories', 'audio', coverKey, title, subtitle,
-                 JSON.stringify({ episodes }), 0, now, now).run();
-          return json({ ok: true, id: catId, episodes: episodes.length });
-        }
+        // (Sesli hikâye upload endpoint KALDIRILDI — medya oynatıcı silindi.)
 
         // var olan R2 anahtarından (veya dış-URL'li extra ile) içerik kaydı oluştur
         if (request.method === 'POST' && path === '/api/items') {
@@ -609,22 +571,6 @@ const PANEL_HTML = `<!doctype html>
 
     <!-- ============ İÇERİK ============ -->
     <div id="viewContent">
-      <!-- Sesli Hikâye (yalnız "Sesli Hikâyeler" sekmesinde görünür) -->
-      <div class="card hide" id="audioBuilder">
-        <h3>🎧 Sesli Hikâye Oluştur</h3>
-        <p class="hint">Kapak + başlık seç, altına bölümleri (ses + başlık + açıklama) ekle. Uygulamada tek "albüm" olur; çalarken kapak albüm kapağı olur.</p>
-        <label>Kapak görseli</label>
-        <input id="asCover" type="file" accept="image/*">
-        <label>Başlık</label>
-        <input id="asTitle" placeholder="Örn: Peygamber Kıssaları">
-        <label>Açıklama (opsiyonel)</label>
-        <input id="asSub" placeholder="Kısa açıklama">
-        <label>Bölümler</label>
-        <div id="asEpisodes"></div>
-        <button class="ghost" type="button" onclick="addEpisodeRow()" style="margin-top:6px">+ Bölüm ekle</button>
-        <div style="margin-top:14px"><button onclick="saveAudioStory()">Sesli Hikâyeyi Kaydet</button> <span id="asStatus" class="muted"></span></div>
-      </div>
-
       <!-- Yükle (seçili kategoriye) -->
       <div class="card" id="uploadForm">
         <h3 id="uploadTitle">İçerik Ekle</h3>
@@ -823,14 +769,10 @@ const PANEL_HTML = `<!doctype html>
     ['viewNotify','viewStats','viewText'].forEach(function(v){ var e = el(v); if (e) e.classList.add('hide'); });
     setActiveNav(document.querySelector('.cat-nav[data-cat="' + col + '"]'));
     el('pageTitle').textContent = catLabel(col);
-    var isAudio = (col === 'audio_stories');
-    el('audioBuilder').classList.toggle('hide', !isAudio);
-    el('uploadForm').classList.toggle('hide', isAudio);
-    if (!isAudio){
-      var sel = el('upCollection'); if (sel) sel.value = col;
-      onCollectionChange();
-      el('uploadTitle').textContent = catLabel(col) + ' ekle';
-    }
+    el('uploadForm').classList.remove('hide');
+    var sel = el('upCollection'); if (sel) sel.value = col;
+    onCollectionChange();
+    el('uploadTitle').textContent = catLabel(col) + ' ekle';
     renderCat();
     toggleSidebar(false);
   }
@@ -1099,23 +1041,7 @@ const PANEL_HTML = `<!doctype html>
       var col = currentCat;
       var arr = ALL_ITEMS.filter(function(it){ return it.collection === col; });
       var inner = '';
-      if (col === 'audio_stories') {
-        arr.forEach(function(it){
-          var ex = {}; try { ex = JSON.parse(it.extra || '{}'); } catch (e) {}
-          var eps = ex.episodes || [];
-          var epHtml = eps.map(function(e, k){
-            return '<div style="margin:5px 0"><div class="muted">' + esc(e.title || ('Bölüm ' + (k + 1))) +
-              (e.subtitle ? ' — ' + esc(e.subtitle) : '') +
-              '</div><audio controls preload="none" src="' + esc(e.audio) + '" style="width:100%;height:34px"></audio></div>';
-          }).join('');
-          inner += '<div class="item" draggable="true" data-id="' + esc(it.id) + '" style="align-items:flex-start"><span class="grip" title="Sürükle">⠿</span><img src="' + CDN + '/' + it.key + '" loading="lazy">' +
-            '<div class="meta"><b>' + esc(it.title || '') + '</b><span class="muted">' + eps.length + ' bölüm' + (it.size ? ' · ' + fmtSize(it.size) : '') + '</span>' + epHtml + '</div>' +
-            '<button class="ghost" data-act="edit" data-id="' + esc(it.id) + '" data-col="audio_stories" data-kind="audio" data-title="' + esc(it.title || '') + '" data-sub="' + esc(it.subtitle || '') + '" data-active="1" data-sort="' + (it.sort || 0) + '">Düzenle</button>' +
-            '<button class="ghost" data-act="replace" data-id="' + esc(it.id) + '">Kapak</button>' +
-            '<button class="danger" data-act="del" data-id="' + esc(it.id) + '">Sil</button></div>';
-        });
-      } else {
-        arr.forEach(function(it){
+      arr.forEach(function(it){
           var u = CDN + '/' + it.key;
           var prev = it.kind === 'video' ? '<video src="' + u + '" muted></video>'
             : it.kind === 'audio' ? '<div class="ph">♪</div>'
@@ -1129,7 +1055,6 @@ const PANEL_HTML = `<!doctype html>
             '<button class="danger" data-act="del" data-id="' + esc(it.id) + '">Sil</button>' +
             '</div>';
         });
-      }
       var sy = window.scrollY;
       el('list').innerHTML = inner || '<p class="muted">Bu kategoride henüz içerik yok. Yukarıdan ekleyebilirsin.</p>';
       requestAnimationFrame(function(){ window.scrollTo(0, sy); });
@@ -1260,65 +1185,7 @@ const PANEL_HTML = `<!doctype html>
     }).catch(function(e){ el('nStatus').textContent = 'Hata: ' + e; });
   }
 
-  // --- Sesli Hikâye builder (kapak + N bölüm) ---
-  function addEpisodeRow(){
-    var wrap = el('asEpisodes');
-    var i = wrap.children.length;
-    var div = document.createElement('div');
-    div.className = 'eprow';
-    div.style.cssText = 'border:1px solid var(--line);border-radius:10px;padding:10px;margin-bottom:8px';
-    div.innerHTML = '<div class="muted" style="margin-bottom:6px">Bölüm ' + (i + 1) + '</div>' +
-      '<input type="file" accept="audio/*" class="ep-audio" style="width:100%;margin-bottom:6px">' +
-      '<input type="text" class="ep-title" placeholder="Başlık (örn: Gönül Huzuru)" style="width:100%;margin-bottom:6px">' +
-      '<input type="text" class="ep-sub" placeholder="Açıklama (örn: Kalbin sükûneti)" style="width:100%">';
-    var ai = div.querySelector('.ep-audio');
-    ai.addEventListener('change', function(){
-      var f = ai.files[0]; if (!f) return;
-      var a = document.createElement('audio');
-      a.preload = 'metadata';
-      a.onloadedmetadata = function(){ div.setAttribute('data-dur', Math.round(a.duration || 0)); };
-      a.src = URL.createObjectURL(f);
-    });
-    wrap.appendChild(div);
-  }
-  addEpisodeRow(); addEpisodeRow(); addEpisodeRow();
-
-  async function saveAudioStory(){
-    var cover = el('asCover').files[0];
-    var title = val('asTitle').trim();
-    if (!cover){ toast('Kapak görseli seç'); return; }
-    if (!title){ toast('Başlık gir'); return; }
-    el('asStatus').textContent = 'Hazırlanıyor...';
-    var fd = new FormData();
-    var cw = await toWebp(cover, 1280, 0.85);
-    fd.append('cover', cw);
-    fd.append('title', title);
-    fd.append('subtitle', val('asSub'));
-    var rows = el('asEpisodes').querySelectorAll('.eprow');
-    var n = 0;
-    for (var r = 0; r < rows.length; r++){
-      var af = rows[r].querySelector('.ep-audio').files[0];
-      if (!af) continue;
-      var at = rows[r].querySelector('.ep-title').value || ('Bölüm ' + (r + 1));
-      var asub = rows[r].querySelector('.ep-sub').value || '';
-      var adur = rows[r].getAttribute('data-dur') || '0';
-      fd.append('ep_audio', af);
-      fd.append('ep_title', at);
-      fd.append('ep_sub', asub);
-      fd.append('ep_dur', adur);
-      n++;
-    }
-    if (n === 0){ el('asStatus').textContent = 'En az 1 ses dosyası ekle'; return; }
-    el('asStatus').textContent = n + ' bölüm yükleniyor...';
-    api('audio-story', { method:'POST', body: fd }).then(function(res){
-      if (res.j && res.j.ok){
-        el('asStatus').innerHTML = '<span class="ok">Kaydedildi ✓ (' + res.j.episodes + ' bölüm)</span>';
-        el('asCover').value=''; el('asTitle').value=''; el('asSub').value=''; el('asEpisodes').innerHTML='';
-        addEpisodeRow(); addEpisodeRow(); addEpisodeRow();
-        loadItems();
-      } else { el('asStatus').textContent = 'Hata: ' + ((res.j && res.j.error) || res.status); }
-    }).catch(function(e){ el('asStatus').textContent = 'Hata: ' + e; });
-  }
+  // (Sesli Hikâye builder JS KALDIRILDI — medya oynatıcı silindi.)
 
   // event delegation (içerik + bildirim sil/gizle)
   document.addEventListener('click', function(e){
