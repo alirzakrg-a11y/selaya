@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'dart:convert';
 
+import 'package:flutter/foundation.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:http/http.dart' as http;
 
@@ -53,36 +54,48 @@ class OverpassService {
             )
             .timeout(const Duration(seconds: 30));
         if (resp.statusCode != 200) continue;
-        final data = jsonDecode(resp.body) as Map<String, dynamic>;
-        final elements = (data['elements'] as List?) ?? const [];
-        final out = <NearbyMosque>[];
-        final seen = <String>{};
-        for (final e in elements) {
-          final m = (e as Map).cast<String, dynamic>();
-          final tags = (m['tags'] as Map?)?.cast<String, dynamic>() ?? const {};
-          double? la, lo;
-          if (m['lat'] != null) {
-            la = (m['lat'] as num).toDouble();
-            lo = (m['lon'] as num).toDouble();
-          } else if (m['center'] is Map) {
-            la = ((m['center'] as Map)['lat'] as num).toDouble();
-            lo = ((m['center'] as Map)['lon'] as num).toDouble();
-          }
-          if (la == null || lo == null) continue;
-          final name =
-              (tags['name'] ?? tags['name:tr'] ?? 'Cami').toString();
-          final key = '${la.toStringAsFixed(5)},${lo.toStringAsFixed(5)}';
-          if (!seen.add(key)) continue;
-          out.add(NearbyMosque(name, la, lo, distanceKm(pos, LatLng(la, lo))));
-        }
-        out.sort((a, b) => a.distanceKm.compareTo(b.distanceKm));
-        return out;
+        // JSON çözme + 150 elemana kadar mesafe hesabı ANA İZOLATTA donmaya yol
+        // açıyordu (ilk açılışta "en yakın cami" yüklenirken — kullanıcı bildirdi
+        // 2026-06-14) → isolate'te (compute) çöz, ana thread bloklanmasın.
+        return await compute(
+            _parseOverpassMosques, (resp.body, pos.latitude, pos.longitude));
       } catch (_) {
         continue; // try next mirror
       }
     }
     return const [];
   }
+}
+
+/// Overpass yanıtını (JSON) isolate'te çözer: jsonDecode + 150 elemana kadar
+/// ayrıştırma/mesafe/sıralama ana thread'i bloklamasın (ilk-açılış donması).
+/// Arg: (yanıt gövdesi, kullanıcı enlem, kullanıcı boylam).
+List<NearbyMosque> _parseOverpassMosques((String, double, double) arg) {
+  final (body, lat, lng) = arg;
+  final pos = LatLng(lat, lng);
+  final data = jsonDecode(body) as Map<String, dynamic>;
+  final elements = (data['elements'] as List?) ?? const [];
+  final out = <NearbyMosque>[];
+  final seen = <String>{};
+  for (final e in elements) {
+    final m = (e as Map).cast<String, dynamic>();
+    final tags = (m['tags'] as Map?)?.cast<String, dynamic>() ?? const {};
+    double? la, lo;
+    if (m['lat'] != null) {
+      la = (m['lat'] as num).toDouble();
+      lo = (m['lon'] as num).toDouble();
+    } else if (m['center'] is Map) {
+      la = ((m['center'] as Map)['lat'] as num).toDouble();
+      lo = ((m['center'] as Map)['lon'] as num).toDouble();
+    }
+    if (la == null || lo == null) continue;
+    final name = (tags['name'] ?? tags['name:tr'] ?? 'Cami').toString();
+    final key = '${la.toStringAsFixed(5)},${lo.toStringAsFixed(5)}';
+    if (!seen.add(key)) continue;
+    out.add(NearbyMosque(name, la, lo, distanceKm(pos, LatLng(la, lo))));
+  }
+  out.sort((a, b) => a.distanceKm.compareTo(b.distanceKm));
+  return out;
 }
 
 final overpassServiceProvider =
