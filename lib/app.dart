@@ -35,7 +35,8 @@ class _SelayaAppState extends ConsumerState<SelayaApp> with WidgetsBindingObserv
     WidgetsBinding.instance.addObserver(this);
     // Reschedule prayer notifications + refresh home-screen widgets once the
     // first frame (and localisation) is ready; safe no-op without permission.
-    WidgetsBinding.instance.addPostFrameCallback((_) => _syncBackground());
+    WidgetsBinding.instance
+        .addPostFrameCallback((_) => _syncBackground(coldStart: true));
     // Surface the full-screen adhan alarm when requested (notification tap /
     // full-screen intent / launch, and the in-app watcher below).
     adhanAlarmSlot.addListener(_onAlarmRequested);
@@ -57,7 +58,23 @@ class _SelayaAppState extends ConsumerState<SelayaApp> with WidgetsBindingObserv
     }
   }
 
-  void _syncBackground() {
+  void _syncBackground({bool coldStart = false}) {
+    // SOĞUK AÇILIŞ "açar açmaz donma" KÖKÜ: ağır arka-plan işleri (7 günlük
+    // bildirim yeniden kurulumu = ~100 platform çağrısı + vakit hesabı, ağ
+    // tazeleme, ana-ekran widget güncelleme) ilk render'la AYNI ANDA koşup ana
+    // thread'i tıkıyordu. Soğuk açılışta önce arayüz otursun → 3 sn sonra yap.
+    // Tek istisna: bekleyen ezan alarmı (notification'dan açıldıysa) HEMEN.
+    if (coldStart) {
+      _checkPendingAdhan();
+      Future.delayed(const Duration(seconds: 3), () {
+        if (mounted) _runBackgroundSync();
+      });
+      return;
+    }
+    _runBackgroundSync();
+  }
+
+  void _runBackgroundSync() {
     _reschedule();
     // Resmî çevrimiçi vakitler her dönüşte tazelik bekçisinden geçer: 12 saatte
     // bir / kapsama 14 günün altına düşünce yeni ay çekilir → vakitler süresiz

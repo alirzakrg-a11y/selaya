@@ -27,13 +27,36 @@ import java.io.File
 class MainActivity : FlutterActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        applyPreferred60Hz()
         handleAdhanIntent(intent)
+    }
+
+    override fun onResume() {
+        super.onResume()
+        applyPreferred60Hz()
     }
 
     override fun onNewIntent(intent: Intent) {
         super.onNewIntent(intent)
         setIntent(intent)
         handleAdhanIntent(intent)
+    }
+
+    /**
+     * KAYDIRMA DONMASI KÖKÜ (ölçümle bulundu): cihaz ekranı 120Hz → kare bütçesi
+     * 8.3ms. İçeriğin ağır kareleri (görsel doku yüklemesi vb.) ara sıra bunu
+     * aşıp kare düşürüyor → "donma" hissi (CPU dolmadan; sorun kare bütçesi).
+     * Profil: 60Hz'de (16.6ms bütçe) raster ~%33, UI ~%7 — yani içerik 60Hz'e
+     * RAHAT sığıyor, akıcı. Okuma/içerik uygulaması için 60Hz görsel olarak
+     * yeterli. SELAYA ön plandayken 60Hz iste (sistem, ekran 60Hz modunu
+     * destekliyorsa uygular); uygulamadan çıkınca cihaz 120Hz'e geri döner.
+     */
+    private fun applyPreferred60Hz() {
+        try {
+            val lp = window.attributes
+            lp.preferredRefreshRate = 60f
+            window.attributes = lp
+        } catch (_: Exception) {}
     }
 
     /** When launched/resumed by an at-time adhan notification (tap or full-screen
