@@ -248,48 +248,7 @@ final dhikrPresetsProvider = FutureProvider<List<DhikrPreset>>((ref) => ref
     .watch(assetJsonLoaderProvider)
     .loadModels('$_data/dhikr_presets.json', DhikrPreset.fromJson));
 
-/// Paketteki sesli hikâye kategorileri + panelden eklenenler.
-/// Her panel öğesi, kendi kapağı/başlığı/açıklamasıyla tek bölümlük bir kategori olur.
-final audioStoriesProvider = FutureProvider<List<AudioStoryCategory>>((ref) async {
-  // Sadece panelde mevcut sesli hikâyeler — paketteki gömülü demo içerik
-  // (Peygamber Kıssaları vb.) artık gösterilmez (kullanıcı isteği).
-  final extras = ref.watch(collectionProvider('audio_stories'));
-  final cats = <AudioStoryCategory>[];
-  for (final c in extras) {
-    final eps = (c.extra?['episodes'] as List?) ?? const [];
-    if (c.url.isEmpty || eps.isEmpty) continue;
-    final cover = c.url;
-    final t = c.title ?? 'Sesli Hikâye';
-    final sub = c.subtitle ?? '';
-    final episodes = <AudioEpisode>[];
-    for (var i = 0; i < eps.length; i++) {
-      final e = eps[i];
-      if (e is! Map) continue;
-      final audioUrl = (e['audio'] ?? '').toString();
-      if (audioUrl.isEmpty) continue;
-      final et = (e['title'] ?? 'Bölüm ${i + 1}').toString();
-      final esub = (e['subtitle'] ?? '').toString();
-      final edur = (e['durationSec'] is num) ? (e['durationSec'] as num).toInt() : 0;
-      episodes.add(AudioEpisode('${c.id}_$i', audioUrl, edur, cover, {
-        'tr': {'title': et, 'subtitle': esub},
-        'en': {'title': et, 'subtitle': esub},
-      }));
-    }
-    if (episodes.isEmpty) continue;
-    cats.insert(0, AudioStoryCategory(
-      c.id,
-      'prophets',
-      '#E0B250',
-      cover,
-      episodes,
-      {
-        'tr': {'title': t, 'subtitle': sub},
-        'en': {'title': t, 'subtitle': sub},
-      },
-    ));
-  }
-  return cats;
-});
+// (Sesli hikâye / audio_stories provider'ı KALDIRILDI — özellik silindi.)
 
 final greetingTemplatesProvider =
     FutureProvider<List<GreetingOccasion>>((ref) async {

@@ -1,10 +1,7 @@
+import 'package:audio_session/audio_session.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:intl/intl.dart';
 import 'package:just_audio/just_audio.dart';
 
-import '../../../core/data/content_providers.dart';
-import '../../../core/models/content.dart';
-import '../../audio_stories/data/audio_handler.dart';
 import 'quran_tracks.dart';
 
 /// Çalan sure durumu.
@@ -35,172 +32,127 @@ class QuranAudioState {
       );
 }
 
-/// Kuran/Yâsîn sesli okumasını sesli-hikâyelerle **aynı** [AppAudioHandler]
-/// (audio_service) üzerinden çalar → arka plan oynatma + bildirim kumandası +
-/// mini-player. Aynı paylaşılan player; aynı anda ya hikâye ya Kuran çalar.
+/// Kur'an/Yâsîn sesli okuması — KENDİ sade just_audio oynatıcısı.
+///
+/// Kullanıcı isteği (2026-06-14): player'ı baştan SADE kur. audio_service
+/// KULLANILMAZ → medya BİLDİRİMİ YOK, global mini YOK, arka plan/kilit-ekranı
+/// kumandası YOK. Yalnız: ÇAL / DUR. Sure bitince (son ayet tamamlanınca)
+/// KENDİLİĞİNDEN DURUR — sıradaki sureye GEÇMEZ ("başka bir şey yapma"). Kumanda
+/// doğrudan sure listesindeki butonda (play/stop + dolan halka). Aynı anda ya
+/// Kur'an ya sesli hikâye çalar: Kur'an başlayınca hikâye durdurulur, hikâye
+/// başlayınca [clearStale] ile Kur'an durur (app.dart onModeChanged bağlar).
 class QuranAudioController extends Notifier<QuranAudioState> {
-  AppAudioHandler get _h => ref.read(audioHandlerProvider);
+  final AudioPlayer _player = AudioPlayer();
+  List<MediaTrack> _tracks = const [];
 
   @override
   QuranAudioState build() {
-    final sub = _h.player.playerStateStream.listen((s) {
-      if (_h.mode != 'quran') return;
+    final sub = _player.playerStateStream.listen((s) {
+      if (state.surahNumber == null) return;
       state = state.copyWith(
         playing: s.playing,
         loading: s.processingState == ProcessingState.loading ||
             s.processingState == ProcessingState.buffering,
       );
-      // 🔁 Sure bitince OTOMATİK sıradaki sureye geç → Yâsîn/Kur'an kesintisiz okuma.
-      if (s.processingState == ProcessingState.completed) {
-        _advanceToNextSurah();
-      }
+      // Sure bitti → DUR (sıradaki sureye geçme — sade play/stop). just_audio
+      // 'completed'da playing=true bıraktığından temizlemezsek buton "çalıyor"
+      // gibi takılı kalır; stop() state'i sıfırlar → buton "play"e döner.
+      if (s.processingState == ProcessingState.completed) stop();
     });
     ref.onDispose(sub.cancel);
+    ref.onDispose(_player.dispose);
     return const QuranAudioState();
   }
 
-  bool _advancing = false;
+  List<MediaTrack> get tracks => _tracks;
+  String get art => _tracks.isNotEmpty ? _tracks.first.artUri : '';
+  bool get isQuranMode => state.surahNumber != null;
+  int get currentIndex => _player.currentIndex ?? 0;
+  Stream<int?> get currentIndexStream => _player.currentIndexStream;
 
-  /// Çalan sure bitince sıradaki sureyi (N+1) yükleyip çalar — kesintisiz okuma.
-  /// Nâs (114) bitince stop() ile temizler (mini gizlenir). `completed` olayı
-  /// arka arkaya birden çok gelebilir → [_advancing] kilidi çift geçişi önler.
-  Future<void> _advanceToNextSurah() async {
-    if (_advancing) return;
-    _advancing = true;
-    try {
-      await _doAdvance();
-    } finally {
-      _advancing = false;
-    }
+  /// İlerleme — THROTTLE'LI (200ms = 5fps). just_audio'nun varsayılan
+  /// `positionStream`'i kısa ayet parçalarında ~16ms'de bir tetikleyip okuyucu/
+  /// liste halkasını sürekli yeniden çizerek donmaya yol açıyordu.
+  Stream<Duration> get positionStream => _player.createPositionStream(
+        steps: 200,
+        minPeriod: const Duration(milliseconds: 200),
+        maxPeriod: const Duration(milliseconds: 200),
+      );
+  Stream<Duration?> get durationStream => _player.durationStream;
+
+  /// Bu sure ŞU AN çalıyor mu (liste butonu için).
+  bool isPlayingSurah(int surahNumber) =>
+      state.surahNumber == surahNumber && state.playing;
+
+  /// Çalan parçanın AYET numarası (`<sure>_<ayet>` kimliğinden) — okuyucu vurgusu
+  /// için. Çözülemezse null.
+  int? get currentAyahNumber {
+    final i = _player.currentIndex;
+    if (i == null || i < 0 || i >= _tracks.length) return null;
+    final p = _tracks[i].id.split('_');
+    return p.length >= 2 ? int.tryParse(p.last) : null;
   }
 
-  /// Tüm "kuyruk sonu" yolları buradan geçer: otomatik (completed event'i →
-  /// [_advanceToNextSurah]) ve manuel (son ayette ⏭ → [next]); sona seek de
-  /// completed üretip ilk yola düşer.
-  Future<void> _doAdvance() async {
-    final cur = state.surahNumber;
-    if (cur == null) return;
-    if (cur >= 114) {
-      // Nâs bitti → ilerlenecek sure yok. just_audio 'completed'da playing=true
-      // bıraktığından temizlemezsek mini "play" ikonuyla takılı kalır; stop()
-      // handler'ı idle'a alır + state'i sıfırlar → mini kendiliğinden gizlenir.
-      await stop();
-      return;
-    }
-    await _loadSurah(cur + 1, fromStart: true);
-  }
-
-  /// [target] suresini yükleyip çalar. [fromStart]=true → 1. ayet; false → SON
-  /// sesli ayet (geri tuşuyla önceki surenin sonuna inmek için).
-  Future<void> _loadSurah(int target, {required bool fromStart}) async {
-    if (target < 1 || target > 114) return;
-    final surahs = ref.read(surahsProvider).value ?? const <Surah>[];
-    var name = 'Sure $target';
-    for (final x in surahs) {
-      if (x.number == target) {
-        name = x.name(Intl.getCurrentLocale());
-        break;
-      }
-    }
-    try {
-      final verses = await ref.read(versesProvider(target).future);
-      final tracks = buildQuranTracks(target, name, verses, art);
-      if (tracks.isNotEmpty) {
-        await play(target, name, tracks, fromStart ? 0 : tracks.length - 1);
-      }
-    } catch (_) {}
-  }
-
+  /// Sureyi (ayet parça listesi) [index]'ten çalar. Çalan sesli hikâye varsa
+  /// durdurur (tek ses kuralı).
   Future<void> play(int surahNumber, String surahName, List<MediaTrack> tracks,
       int index) async {
+    if (tracks.isEmpty) return;
+    _tracks = tracks;
     state = state.copyWith(
         surahNumber: surahNumber,
         surahName: surahName,
         loading: true,
         playing: true);
-    await _h.playPlaylist(tracks,
-        albumTitle: surahName, startIndex: index, mode: 'quran');
+    // DÜZ AKIŞ (AudioSource.uri) — kanıtlanmış yol; Kur'an ses proxy'si range
+    // istemediğinden LockCaching denenip geri alınmıştı (bazı cihazlarda susuyor).
+    final sources = [for (final t in tracks) AudioSource.uri(Uri.parse(t.url))];
+    try {
+      final session = await AudioSession.instance;
+      await session.configure(const AudioSessionConfiguration.music());
+      await _player.setAudioSources(sources,
+          initialIndex: index.clamp(0, tracks.length - 1));
+      await _player.play();
+    } catch (_) {}
   }
 
-  Future<void> toggle() async {
-    _h.player.playing ? await _h.pause() : await _h.play();
-  }
+  Future<void> toggle() async =>
+      _player.playing ? _player.pause() : _player.play();
 
   Future<void> stop() async {
-    await _h.stop();
-    state = state.copyWith(clear: true, playing: false, loading: false);
+    _tracks = const [];
+    await _player.stop();
+    state = const QuranAudioState();
   }
 
-  /// Paylaşılan player'a BAŞKA kaynak (hikâye) geçince / tamamen durunca bayat
-  /// durumumuzu sıfırlar — player'a DOKUNMAZ (yeni kaynağı o çalıyor olabilir).
-  /// app.dart'taki tek onModeChanged bağı çağırır.
+  Future<void> seek(Duration pos) => _player.seek(pos);
+  Future<void> jumpTo(int index) => _player.seek(Duration.zero, index: index);
+
+  /// ⏭ Sıradaki ayet (sure içinde). Son ayette no-op (sure sonunda durur).
+  Future<void> next() async {
+    final i = _player.currentIndex ?? 0;
+    if (i < _tracks.length - 1) await _player.seekToNext();
+  }
+
+  /// ⏮ Önceki ayet (sure içinde). İlk ayette başa sarar.
+  Future<void> previous() async {
+    final i = _player.currentIndex ?? 0;
+    if (i > 0) {
+      await _player.seekToPrevious();
+    } else {
+      await _player.seek(Duration.zero);
+    }
+  }
+
+  /// Sesli hikâye çalmaya başlayınca (app.dart onModeChanged) Kur'an'ı durdurup
+  /// bayat durumu temizler — player'a değil kendi sesimize dokunur.
   void clearStale() {
     if (state.surahNumber != null || state.playing || state.loading) {
+      _tracks = const [];
+      _player.stop();
       state = const QuranAudioState();
     }
   }
-
-  Future<void> jumpTo(int index) => _h.player.seek(Duration.zero, index: index);
-
-  /// ⏭ Sıradaki ayet — kuyruğun SONUNDAYSA sıradaki sureye geçer (manuel,
-  /// otomatik geçişi beklemeden). 114'ün son ayetinde okumayı bitirir (stop).
-  Future<void> next() async {
-    final i = _h.player.currentIndex ?? 0;
-    if (i < _h.tracks.length - 1) {
-      await _h.skipToNext();
-    } else {
-      await _doAdvance();
-    }
-  }
-
-  /// ⏮ Önceki ayet — kuyruğun BAŞINDAYSA önceki surenin son ayetine iner
-  /// (Fâtiha'da başa sarar).
-  Future<void> previous() async {
-    final i = _h.player.currentIndex ?? 0;
-    if (i > 0) {
-      await _h.skipToPrevious();
-    } else {
-      final cur = state.surahNumber ?? 1;
-      if (cur > 1) {
-        await _loadSurah(cur - 1, fromStart: false);
-      } else {
-        await _h.player.seek(Duration.zero);
-      }
-    }
-  }
-  Future<void> seek(Duration pos) => _h.player.seek(pos);
-
-  int get currentIndex => _h.player.currentIndex ?? 0;
-  Stream<int?> get currentIndexStream => _h.player.currentIndexStream;
-
-  /// İlerleme çizgisi/seek konumu — THROTTLE'LI. just_audio'nun varsayılan
-  /// `positionStream`'i KISA parçalarda (her ayet ayrı parça!) 16ms'de bir
-  /// (≈60fps) tetikliyordu → ses çalarken ilerleme çizgisi/seek bar sürekli
-  /// yeniden çizilip uygulamayı kesintisiz max-framerate çizime pinliyordu
-  /// ("ezan/Yâsîn okunurken donma"). 200ms sabit periyot = 5fps: ilerleme
-  /// görsel olarak akıcı, sürekli-çizim yükü kalkar.
-  Stream<Duration> get positionStream => _h.player.createPositionStream(
-        steps: 200,
-        minPeriod: const Duration(milliseconds: 200),
-        maxPeriod: const Duration(milliseconds: 200),
-      );
-  Stream<Duration?> get durationStream => _h.player.durationStream;
-
-  /// Çalan parçanın AYET numarası (`<sure>_<ayet>` kimliğinden) — kumandada
-  /// "N. ayet okunuyor" göstermek için. Çözülemezse null.
-  int? get currentAyahNumber {
-    final i = _h.player.currentIndex;
-    final t = _h.tracks;
-    if (i == null || i < 0 || i >= t.length) return null;
-    final p = t[i].id.split('_');
-    return p.length >= 2 ? int.tryParse(p.last) : null;
-  }
-
-  /// Çalan listedeki parçalar (now-playing kuyruğu) + kapak (duvar kâğıdı URL).
-  List<MediaTrack> get tracks => _h.tracks;
-  String get art => _h.tracks.isNotEmpty ? _h.tracks.first.artUri : '';
-
-  bool get isQuranMode => _h.mode == 'quran';
 }
 
 final quranAudioControllerProvider =

@@ -62,7 +62,6 @@ class MoreScreen extends ConsumerWidget {
     ]),
     _Section('more.secDiscover', [
       _Entry(Icons.favorite_rounded, 'liked.title', Routes.liked),
-      _Entry(AppIcons.headphones, 'audioStories.title', Routes.audioStories),
       _Entry(AppIcons.play, 'akis.reels', Routes.feed),
       _Entry(AppIcons.card, 'greetings.title', Routes.greetings),
     ]),

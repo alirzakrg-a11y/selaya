@@ -1,7 +1,7 @@
 ﻿name: selaya
 description: "SELAYA — More Than Prayer Times. Premium Islamic lifestyle & prayer companion."
 publish_to: 'none'
-version: 1.0.147+2148
+version: 1.0.149+2150
 
 environment:
   sdk: ^3.12.0
@@ -40,8 +40,8 @@ dependencies:
   flutter_compass: ^0.8.1
   vibration: ^3.1.3
 
-  # Media & utilities
-  audio_service: ^0.18.15
+  # Media & utilities (audio_service KALDIRILDI — medya oynatıcı/bildirim yok;
+  # Kur'an sesi sade just_audio + audio_session ile uygulama içinde çalar)
   just_audio: ^0.10.5
   audio_session: ^0.2.3
   share_plus: ^11.0.0

@@ -9,7 +9,7 @@ import '../../../core/localization/localized_text.dart';
 import '../../../core/models/content.dart';
 import '../../../core/services/gallery_service.dart';
 import '../../../core/services/share_service.dart';
-import '../../audio_stories/data/audio_handler.dart';
+import '../../quran/data/quran_audio_controller.dart';
 import '../../../core/theme/app_colors.dart';
 import '../../../core/theme/app_icons.dart';
 import '../../../core/theme/app_spacing.dart';
@@ -184,7 +184,7 @@ class _FeedPageState extends ConsumerState<_FeedPage> {
   /// DURAKLAT — çift ses olmasın (kullanıcı: "videolara girince Kur'an sussun").
   /// Video SESSİZ ise (muted) dokunma → kullanıcı Kur'an dinlemeye devam eder.
   void _silenceQuran() {
-    if (!_muted) ref.read(audioHandlerProvider).pause();
+    if (!_muted) ref.read(quranAudioControllerProvider.notifier).stop();
   }
 
   @override
@@ -218,7 +218,7 @@ class _FeedPageState extends ConsumerState<_FeedPage> {
     });
     // Sesi AÇINCA (video artık sesli) arka plandaki Kur'an'ı duraklat.
     if (!_muted && c.value.isPlaying) {
-      ref.read(audioHandlerProvider).pause();
+      ref.read(quranAudioControllerProvider.notifier).stop();
     }
   }
 

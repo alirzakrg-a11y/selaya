@@ -1,4 +1,3 @@
-import 'package:audio_service/audio_service.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -11,7 +10,6 @@ import 'package:timezone/data/latest_all.dart' as tzdata;
 import 'app.dart';
 import 'core/di/providers.dart';
 import 'features/notifications/domain/prayer_notification_settings.dart';
-import 'features/audio_stories/data/audio_handler.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -76,30 +74,13 @@ Future<void> main() async {
   // yansıdığından doğru kanalın oluşması için gerekli).
   prayerVibration = prefs.getBool(PrefKeys.notifVibration) ?? true;
 
-  // Arka plan ses oynatma + medya bildirimi (audio_service) — sesli hikâyeler
-  // için. Init başarısız olursa app açılışı bloke olmasın diye sarıldı; o durumda
-  // yalnızca arka plan bildirimi gider, oynatma değil.
-  AppAudioHandler audioHandler;
-  try {
-    audioHandler = await AudioService.init(
-      builder: () => AppAudioHandler(),
-      config: const AudioServiceConfig(
-        androidNotificationChannelId: 'com.selaya.app.media',
-        androidNotificationChannelName: 'SELAYA Medya',
-        androidNotificationOngoing: true,
-        androidStopForegroundOnPause: true,
-      ),
-    );
-  } catch (e, s) {
-    audioServiceError = '$e\n$s'.split('\n').take(4).join('\n');
-    audioHandler = AppAudioHandler();
-  }
-
+  // Medya oynatıcı / audio_service KALDIRILDI (2026-06-14). Kur'an sesi sade
+  // just_audio ile uygulama içinde çalar (bildirim/arka plan servisi YOK);
+  // sesli sohbet özelliği tamamen silindi.
   runApp(
     ProviderScope(
       overrides: [
         sharedPreferencesProvider.overrideWithValue(prefs),
-        audioHandlerProvider.overrideWithValue(audioHandler),
       ],
       child: EasyLocalization(
         supportedLocales: const [Locale('tr'), Locale('en')],

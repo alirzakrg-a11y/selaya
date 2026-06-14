@@ -171,11 +171,6 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
           Padding(padding: AppSpacing.screen, child: _QuickPair()),
           Gap.lg(),
         ];
-      case 'audioStories':
-        return const [
-          Padding(padding: AppSpacing.screen, child: _AudioStoriesCard()),
-          Gap.lg(),
-        ];
       case 'wallpaper':
         return [
           SectionHeader(
@@ -210,17 +205,6 @@ class _QuickPair extends StatelessWidget {
     // Stack, intrinsic yükseklik sorgusunda çöküp tüm ana ekranı boşaltır.
     return Row(
       children: [
-        Expanded(
-          child: _QuickCard(
-            icon: AppIcons.headphones,
-            title: 'audioStories.title'.tr(),
-            desc: isTr
-                ? 'Huzur veren İslami hikâyeler'
-                : 'Soothing Islamic stories',
-            onTap: () => context.push(Routes.audioStories),
-          ),
-        ),
-        const Gap.md(),
         Expanded(
           child: _QuickCard(
             icon: AppIcons.card,
@@ -1064,47 +1048,6 @@ class _AiCard extends StatelessWidget {
   }
 }
 
-/// "Sesli Hikâyeler" promo card on the home feed → opens the audio stories list.
-class _AudioStoriesCard extends StatelessWidget {
-  const _AudioStoriesCard();
-
-  @override
-  Widget build(BuildContext context) {
-    final c = context.colors;
-    return SelayaCard(
-      onTap: () => context.push(Routes.audioStories),
-      child: Row(
-        children: [
-          Container(
-            padding: const EdgeInsets.all(11),
-            decoration: BoxDecoration(
-                shape: BoxShape.circle, color: c.gold.withValues(alpha: 0.14)),
-            child: Icon(AppIcons.headphones, color: c.gold, size: 22),
-          ),
-          const Gap.md(),
-          Expanded(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text('audioStories.title'.tr(),
-                    style: Theme.of(context)
-                        .textTheme
-                        .titleSmall
-                        ?.copyWith(fontWeight: FontWeight.w700)),
-                Text('home.audioStoriesDesc'.tr(),
-                    style: Theme.of(context)
-                        .textTheme
-                        .bodySmall
-                        ?.copyWith(color: c.textSecondary)),
-              ],
-            ),
-          ),
-          Icon(AppIcons.forward, size: 16, color: c.textTertiary),
-        ],
-      ),
-    );
-  }
-}
 
 class _DailyWallpaper extends ConsumerWidget {
   const _DailyWallpaper();

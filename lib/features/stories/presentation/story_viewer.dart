@@ -12,7 +12,7 @@ import '../../../core/theme/app_spacing.dart';
 import '../../../core/theme/app_typography.dart';
 import '../../../core/widgets/app_image.dart';
 import '../../../core/widgets/states.dart';
-import '../../audio_stories/data/audio_handler.dart';
+import '../../quran/data/quran_audio_controller.dart';
 
 /// Route wrapper: loads stories then shows the immersive player.
 class StoryViewerScreen extends ConsumerWidget {
@@ -104,7 +104,7 @@ class _StoryPlayerState extends ConsumerState<StoryPlayer>
         ..play();
       // Video hikâye SESLİ çalar → arka plandaki Kur'an/Yâsîn'i duraklat (çift
       // ses olmasın; akış videosundaki ile aynı kural).
-      ref.read(audioHandlerProvider).pause();
+      ref.read(quranAudioControllerProvider.notifier).stop();
       _progress.duration = ctrl.value.duration > Duration.zero
           ? ctrl.value.duration
           : const Duration(seconds: 15);

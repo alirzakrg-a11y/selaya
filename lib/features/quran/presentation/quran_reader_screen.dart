@@ -23,12 +23,10 @@ import '../../../core/widgets/instant_swipe.dart';
 import '../../../core/widgets/selaya_card.dart';
 import '../../../core/widgets/selaya_scaffold.dart';
 import '../../../core/widgets/states.dart';
-import '../../audio_stories/data/audio_handler.dart';
 import '../data/mushaf_meta.dart';
 import '../data/quran_favorites.dart';
 import '../data/quran_audio_controller.dart';
 import '../data/quran_tracks.dart';
-import 'quran_now_playing.dart';
 
 const _bismillah = 'بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ';
 
@@ -727,9 +725,10 @@ class _QuranTransport extends StatelessWidget {
       alignment: Alignment.center,
       child: Icon(Icons.queue_music_rounded, color: c.gold, size: 20),
     );
-    // Barın TAMAMI yukarı çekilebilir + ANINDA tepki (parmak kalkmadan açılır).
+    // Tam-ekran now-playing KALDIRILDI → bar sadece play/stop + ilerleme
+    // gösterir; yukarı-çek/dokun ile genişleme yok (sade oynatıcı).
     return InstantSwipe(
-      onUp: () => openQuranNowPlaying(context),
+      onUp: () {},
       child: Container(
       decoration: BoxDecoration(
         color: c.surface,
@@ -793,7 +792,7 @@ class _QuranTransport extends StatelessWidget {
           Expanded(
             child: GestureDetector(
               behavior: HitTestBehavior.opaque,
-              onTap: () => openQuranNowPlaying(context),
+              onTap: null,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisSize: MainAxisSize.min,

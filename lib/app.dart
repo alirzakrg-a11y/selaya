@@ -12,12 +12,7 @@ import 'core/services/permissions_controller.dart';
 import 'core/services/widget_service.dart';
 import 'core/services/widget_updater.dart';
 import 'core/theme/app_theme.dart';
-import 'core/widgets/global_mini_player_host.dart';
-import 'core/widgets/mini_player_chrome.dart';
-import 'features/audio_stories/data/audio_handler.dart';
-import 'features/audio_stories/data/audio_story_controller.dart';
 import 'features/auth/data/sync_service.dart';
-import 'features/quran/data/quran_audio_controller.dart';
 import 'features/notifications/data/prayer_notification_controller.dart';
 import 'features/notifications/data/prayer_scheduler.dart';
 import 'features/notifications/data/special_notifications.dart';
@@ -38,17 +33,6 @@ class _SelayaAppState extends ConsumerState<SelayaApp> with WidgetsBindingObserv
   void initState() {
     super.initState();
     WidgetsBinding.instance.addObserver(this);
-    // 🎚️ Kaynak değişiminde KARŞI tarafın bayat durumunu TEK noktadan temizle:
-    // Kur'an başlarken hikâye durumu (ve tersi); bildirimdeki Durdur dahil her
-    // tam duruşta (mode→idle) iki taraf da. Player'a dokunmaz, salt state.
-    ref.read(audioHandlerProvider).onModeChanged = (newMode) {
-      if (newMode != 'quran') {
-        ref.read(quranAudioControllerProvider.notifier).clearStale();
-      }
-      if (newMode != 'story') {
-        ref.read(audioStoryControllerProvider.notifier).clearStale();
-      }
-    };
     // Reschedule prayer notifications + refresh home-screen widgets once the
     // first frame (and localisation) is ready; safe no-op without permission.
     WidgetsBinding.instance.addPostFrameCallback((_) => _syncBackground());
@@ -166,36 +150,10 @@ class _SelayaAppState extends ConsumerState<SelayaApp> with WidgetsBindingObserv
         child: MediaQuery.withClampedTextScaling(
           minScaleFactor: 0.9,
           maxScaleFactor: 1.35,
-          child: _AdhanWatcher(
-            // 🎛️ Global mini çalarlar root Navigator'ın da ÜSTÜNDE — kabuk +
-            // push'lanan tüm detay rotalarında TEK instance görünür (sekme
-            // başına kopya yok, state hep korunur). Konum/gizleme kuralları:
-            // GlobalMiniPlayerOverlay (mini_player_chrome.dart'taki rota seti).
-            child: Stack(
-              children: [
-                // Mini görünürken sayfa içeriği o kadar alttan KISALIR — en
-                // alttaki öğe mini arkasında kalmaz: padding.bottom'a mini
-                // yüksekliği eklenir, SelayaScaffold'ların SafeArea'sı uygular.
-                // Kendi alt barı olan Scaffold'lar (okuyucu) bu padding'i zaten
-                // kaldırır; kabuk sekmelerinin muadili _MainShell'de.
-                ValueListenableBuilder<double>(
-                  valueListenable: miniPlayerHeight,
-                  child: child ?? const SizedBox.shrink(),
-                  builder: (context, miniH, routerChild) {
-                    if (miniH <= 0) return routerChild!;
-                    final mq = MediaQuery.of(context);
-                    return MediaQuery(
-                      data: mq.copyWith(
-                          padding: mq.padding
-                              .copyWith(bottom: mq.padding.bottom + miniH)),
-                      child: routerChild!,
-                    );
-                  },
-                ),
-                const Positioned.fill(child: GlobalMiniPlayerOverlay()),
-              ],
-            ),
-          ),
+          // Global mini çalar / medya oynatıcı KALDIRILDI (2026-06-14). Kur'an
+          // sade liste play/stop kullanır; sesli sohbet özelliği tamamen
+          // silindi → alttan içerik kısaltması/overlay gerekmez.
+          child: _AdhanWatcher(child: child ?? const SizedBox.shrink()),
         ),
       ),
     );

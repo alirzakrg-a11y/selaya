@@ -38,7 +38,6 @@ abstract final class Routes {
   static const premium = '/premium';
   static const citySelect = '/city-select';
   static const notificationSettings = '/notification-settings';
-  static const audioStories = '/audio-stories';
   static const fasting = '/fasting';
   static const greetings = '/greetings';
   static const yasin = '/quran/yasin'; // kabuk-altı Yâsîn kısayolu

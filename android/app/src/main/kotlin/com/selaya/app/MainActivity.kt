@@ -18,13 +18,13 @@ import android.provider.Settings
 import android.view.WindowManager
 import androidx.core.content.ContextCompat
 import androidx.core.content.FileProvider
-import com.ryanheise.audioservice.AudioServiceActivity
+import io.flutter.embedding.android.FlutterActivity
 import io.flutter.embedding.engine.FlutterEngine
 import io.flutter.plugin.common.MethodCall
 import io.flutter.plugin.common.MethodChannel
 import java.io.File
 
-class MainActivity : AudioServiceActivity() {
+class MainActivity : FlutterActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         handleAdhanIntent(intent)
