@@ -304,17 +304,6 @@ export default {
           await Promise.all(results.map(async (r) => {
             let total = 0;
             try { const h = await env.CDN.head(r.key); if (h) total += h.size; } catch (e) {}
-            if (r.collection === 'audio_stories' && r.extra) {
-              try {
-                const eps = (JSON.parse(r.extra).episodes) || [];
-                await Promise.all(eps.map(async (e) => {
-                  const k = (e.audio || '').replace(env.CDN_BASE + '/', '');
-                  if (k && k.indexOf('http') !== 0) {
-                    try { const h = await env.CDN.head(k); if (h) total += h.size; } catch (_) {}
-                  }
-                }));
-              } catch (_) {}
-            }
             r.size = total;
           }));
           return json({ ok: true, cdn: env.CDN_BASE, items: results });
@@ -779,9 +768,8 @@ const PANEL_HTML = `<!doctype html>
   ];
   var LABELS = {}; var DESCS = {};
   COLLS.forEach(function(c){ LABELS[c[0]] = c[1]; DESCS[c[0]] = c[2]; });
-  // Builder ile yönetildiği için açılır menüde yok ama liste başlığında görünsün:
-  LABELS['audio_stories'] = 'Sesli Hikâyeler';
-  var CAT_ICONS = { wallpapers:'🖼️', feed:'🎬', inspiration:'✨', stories:'📖', greeting:'💌', bg_videos:'🎞️', guide_abdest:'🕌', guide_namaz:'🧎', audio_stories:'🎧' };
+  // (Sesli Hikâyeler / audio_stories KALDIRILDI — medya oynatıcı silindi.)
+  var CAT_ICONS = { wallpapers:'🖼️', feed:'🎬', inspiration:'✨', stories:'📖', greeting:'💌', bg_videos:'🎞️', guide_abdest:'🕌', guide_namaz:'🧎' };
   var currentCat = 'wallpapers'; var ALL_ITEMS = []; var firstLoad = true;
 
   (function initSelect(){
@@ -789,7 +777,7 @@ const PANEL_HTML = `<!doctype html>
     sel.innerHTML = COLLS.map(function(c){ return '<option value="' + c[0] + '">' + c[1] + '</option>'; }).join('');
     document.getElementById('catNav').innerHTML = COLLS.map(function(c){
       return '<div class="nav-item cat-nav" data-cat="' + c[0] + '" onclick="showCat(this.dataset.cat)">' + (CAT_ICONS[c[0]] || '📁') + ' ' + c[1] + '</div>';
-    }).join('') + '<div class="nav-item cat-nav" data-cat="audio_stories" onclick="showCat(this.dataset.cat)">🎧 Sesli Hikâyeler</div>';
+    }).join('');
     onCollectionChange();
   })();
 
