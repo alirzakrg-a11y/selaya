@@ -38,21 +38,12 @@ import '../../stories/presentation/story_rail.dart';
 import '../../weather/data/weather_service.dart';
 import '../data/featured_tools.dart';
 
-/// SABİT hafif ana-ekran bölüm sırası (kişiselleştirme KALDIRILDI). Ağır görsel
-/// bölümler — 'videos' (video kapakları) ve 'wallpaper' (duvar kâğıdı görselleri)
-/// — çıkarıldı; 'gaugeCarousel' artık sadece geri-sayım (pusula/gösterge yok).
-// MİNİMAL "TEK SAYFA" ana ekran (kullanıcı 2026-06-14): açılınca tek ekrana
-// sığan sade görünüm — üstte küçük hikâye şeridi, sayaç, vakit şeridi. Günün
-// ayeti/hadisi/duası + günlük görev/widget/ai KALDIRILDI (içerik zaten Akış'ta;
-// araçlara alt menü/Daha Fazla'dan gidilir). Öne Çıkanlar fold altında kalır.
-const _homeSections = <String>[
-  'storyRail',
-  'gaugeCarousel',
-  'prayerStrip',
-  'featured', // Öne Çıkanlar vakit şeridinin hemen altında (kullanıcı isteği)
-  'media',
-  // 'nearestMosque' ana ekrandan KALDIRILDI (2026-06-14).
-];
+// MİNİMAL "TEK SAYFA" ana ekran (kullanıcı 2026-06-14 "sığdır tüm herşeyi"):
+// kaydırmasız Column — hikâye şeridi, sayaç, vakit şeridi sabit; "Öne Çıkanlar"
+// ızgarası Expanded ile kalan boşluğu DOLDURUR (kendi yüksekliğine göre kare
+// oranını hesaplar) → her cihazda taşmadan/kesilmeden tek ekrana oturur. Bölüm
+// sırası artık doğrudan build()'de; eski opsiyonel bölümler (_section switch'i)
+// korunur ama yalnız storyRail/gaugeCarousel/prayerStrip/media kullanılır.
 
 class HomeScreen extends ConsumerStatefulWidget {
   const HomeScreen({super.key});
@@ -84,23 +75,37 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
       body: GeometricBackground(
         child: SafeArea(
           bottom: false,
-          child: ListView(
-            // TEK SAYFA (kullanıcı 2026-06-14 "ne aşağı ne yukarı"): kaydırma
-            // KAPALI — ana ekran tek ekrana sığan sabit pano; taşarsa kesilir
-            // (araçlara alt menü/Daha Fazla'dan gidilir).
-            physics: const NeverScrollableScrollPhysics(),
+          // TEK SAYFA (kullanıcı 2026-06-14 "sığdır tüm herşeyi"): kaydırmasız
+          // Column — sabit bölümler doğal boyda; "Öne Çıkanlar" ızgarası kalan
+          // boşluğu Expanded ile DOLDURUR → hiçbir şey kesilmeden tek ekrana
+          // oturur (araçların tamamına alt menü/Daha Fazla'dan gidilir).
+          child: Padding(
             padding: const EdgeInsets.only(bottom: AppSpacing.sm),
-            children: [
-              const _HomeHeader(),
-              const _LocationWarningBanner(),
-              const Gap.md(),
-              // SABİT HAFİF DÜZEN (kullanıcı 2026-06-14: "ana ekranı azalt,
-              // düzeni kaldır"): kişiselleştirme kaldırıldı; ağır görsel bölümler
-              // (videos/wallpaper) ve saniyelik gösterge karuseli çıkarıldı →
-              // çok hızlı kaydırmada takılma azalır.
-              for (final k in _homeSections) ..._section(context, k),
-              // _IdeaCard ("Bizi geliştir") KALDIRILDI (kullanıcı 2026-06-14).
-            ],
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: [
+                const _HomeHeader(),
+                const _LocationWarningBanner(),
+                const Gap.sm(),
+                ..._section(context, 'storyRail'),
+                ..._section(context, 'gaugeCarousel'),
+                ..._section(context, 'prayerStrip'),
+                SectionHeader(
+                  title: 'home.featured'.tr(),
+                  onSeeAll: () => context.push(Routes.more),
+                ),
+                // Kalan tüm boşluğu doldurur — ızgara satır sayısına göre kare
+                // oranını kendi içinde hesaplar (kaydırmasız, taşmasız).
+                Expanded(
+                  child: Padding(
+                    padding: AppSpacing.screen,
+                    child: const _FeaturedGrid(),
+                  ),
+                ),
+                const Gap.sm(),
+                ..._section(context, 'media'),
+              ],
+            ),
           ),
         ),
       ),
@@ -121,7 +126,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
         // büyük geri-sayım kartı kalır.
         return const [
           Padding(padding: AppSpacing.screen, child: NextPrayerCard()),
-          Gap.md(),
+          Gap.sm(),
         ];
       case 'prayerStrip':
         return [
@@ -133,7 +138,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
               child: const PrayerStrip(),
             ),
           ),
-          const Gap.md(),
+          const Gap.sm(),
         ];
       case 'nearestMosque':
         return const [
@@ -155,7 +160,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
         // kısayolları). Ana ekrandan o 3 bölüm çıkarıldı, burada toplandı.
         return const [
           Padding(padding: AppSpacing.screen, child: _MediaCard()),
-          Gap.lg(),
+          Gap.sm(),
         ];
       case 'dailyTasks':
         return [
@@ -1186,41 +1191,56 @@ class _FeaturedGrid extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final keys = ref.watch(featuredToolsProvider).visible;
-    // Cells grow taller with the user's font scale so labels never overflow.
-    final scale = MediaQuery.textScalerOf(context).scale(1.0).clamp(1.0, 1.45);
-    return GridView.count(
-      crossAxisCount: 4,
-      shrinkWrap: true,
-      physics: const NeverScrollableScrollPhysics(),
-      mainAxisSpacing: AppSpacing.sm,
-      crossAxisSpacing: AppSpacing.sm,
-      childAspectRatio: 0.80 / scale,
-      children: [
-        for (final (i, key) in keys.indexed)
-          if (featuredTools[key] != null)
-            SelayaCard(
-              onTap: () => openRoute(context, featuredTools[key]!.route),
-              borderRadius: AppRadius.rMd,
-              padding: const EdgeInsets.symmetric(horizontal: 3, vertical: 8),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  FeatureIcon(featuredTools[key]!.icon,
-                      index: i, size: 19, padding: 9),
-                  const Gap.xs(),
-                  Flexible(
-                    child: Text(featuredTools[key]!.labelKey.tr(),
-                        maxLines: 2,
-                        textAlign: TextAlign.center,
-                        overflow: TextOverflow.ellipsis,
-                        style: Theme.of(context).textTheme.labelSmall),
-                  ),
-                ],
+    // Yalnız kurulabilir araçlar (satır sayısı doğru çıksın diye önceden süz).
+    final keys = [
+      for (final k in ref.watch(featuredToolsProvider).visible)
+        if (featuredTools[k] != null) k
+    ];
+    if (keys.isEmpty) return const SizedBox.shrink();
+    return LayoutBuilder(
+      builder: (context, box) {
+        const cols = 4;
+        const gap = AppSpacing.xs;
+        final rows = (keys.length / cols).ceil().clamp(1, 99);
+        final cellW = (box.maxWidth - (cols - 1) * gap) / cols;
+        // Expanded içinde maxHeight SONLU → ızgara kalan boşluğu TAM doldurur
+        // (kaydırmasız, taşmasız). Sınırsız bağlamda (ör. test) kareye düşer.
+        final cellH = box.maxHeight.isFinite
+            ? (box.maxHeight - (rows - 1) * gap) / rows
+            : cellW / 1.05;
+        final aspect = cellH <= 0 ? 1.0 : cellW / cellH;
+        return GridView.count(
+          crossAxisCount: cols,
+          physics: const NeverScrollableScrollPhysics(),
+          mainAxisSpacing: gap,
+          crossAxisSpacing: gap,
+          childAspectRatio: aspect,
+          children: [
+            for (final (i, key) in keys.indexed)
+              SelayaCard(
+                onTap: () => openRoute(context, featuredTools[key]!.route),
+                borderRadius: AppRadius.rMd,
+                padding: const EdgeInsets.symmetric(horizontal: 3, vertical: 6),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    FeatureIcon(featuredTools[key]!.icon,
+                        index: i, size: 19, padding: 9),
+                    const Gap.xs(),
+                    Flexible(
+                      child: Text(featuredTools[key]!.labelKey.tr(),
+                          maxLines: 2,
+                          textAlign: TextAlign.center,
+                          overflow: TextOverflow.ellipsis,
+                          style: Theme.of(context).textTheme.labelSmall),
+                    ),
+                  ],
+                ),
               ),
-            ),
-      ],
+          ],
+        );
+      },
     );
   }
 }

@@ -43,9 +43,10 @@ class NextPrayerCard extends ConsumerWidget {
         free.isEmpty ? '' : free[ref.watch(_heroBgSeedProvider) % free.length];
 
     return AspectRatio(
-      // Daha kompakt (kullanıcı 2026-06-14 "sayacı küçültebilirsin"): kart
-      // alçaltıldı (16/9.6 → 16/8.6) ki ana ekran tek sayfaya yaklaşsın.
-      aspectRatio: 16 / 8.6,
+      // Daha kompakt (kullanıcı 2026-06-14 "sayacı küçültebilirsin" / "sığdır"):
+      // kart alçaltıldı (16/9.6 → 16/8.6 → 16/8.0) ki "Öne Çıkanlar" ızgarasına
+      // tek sayfada daha çok yer kalsın.
+      aspectRatio: 16 / 8.0,
       child: ClipRRect(
         borderRadius: AppRadius.rXl,
         child: Stack(
