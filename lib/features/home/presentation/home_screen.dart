@@ -41,22 +41,17 @@ import '../data/featured_tools.dart';
 /// SABİT hafif ana-ekran bölüm sırası (kişiselleştirme KALDIRILDI). Ağır görsel
 /// bölümler — 'videos' (video kapakları) ve 'wallpaper' (duvar kâğıdı görselleri)
 /// — çıkarıldı; 'gaugeCarousel' artık sadece geri-sayım (pusula/gösterge yok).
+// MİNİMAL "TEK SAYFA" ana ekran (kullanıcı 2026-06-14): açılınca tek ekrana
+// sığan sade görünüm — üstte küçük hikâye şeridi, sayaç, vakit şeridi. Günün
+// ayeti/hadisi/duası + günlük görev/widget/ai KALDIRILDI (içerik zaten Akış'ta;
+// araçlara alt menü/Daha Fazla'dan gidilir). Öne Çıkanlar fold altında kalır.
 const _homeSections = <String>[
-  // 'storyRail' ana ekrandan çıkarıldı (2026-06-14): yatay dairesel görsel
-  // şeridi, hızlı dikey fling'de en pahalı parça (antialias clip + ağ görseli).
-  // Hikâyeler zaten Akış sekmesinde duruyor.
-  'religiousDay',
+  'storyRail',
   'gaugeCarousel',
   'prayerStrip',
   'nearestMosque',
-  'featured',
   'media',
-  'dailyTasks',
-  'verseOfDay',
-  'hadithOfDay',
-  'dailyDua',
-  'widgetPromo',
-  'ai',
+  'featured',
 ];
 
 class HomeScreen extends ConsumerStatefulWidget {

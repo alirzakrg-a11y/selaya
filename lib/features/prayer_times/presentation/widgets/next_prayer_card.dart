@@ -35,8 +35,9 @@ class NextPrayerCard extends ConsumerWidget {
     ];
 
     return AspectRatio(
-      // Kompakt: üst/alt boşluk azaltıldı (kullanıcı isteği).
-      aspectRatio: 16 / 9.6,
+      // Daha kompakt (kullanıcı 2026-06-14 "sayacı küçültebilirsin"): kart
+      // alçaltıldı (16/9.6 → 16/8.6) ki ana ekran tek sayfaya yaklaşsın.
+      aspectRatio: 16 / 8.6,
       child: ClipRRect(
         borderRadius: AppRadius.rXl,
         child: Stack(
@@ -172,9 +173,9 @@ class _CountdownAndProgress extends ConsumerWidget {
         children: [
           Text(
             formatCountdown(remaining),
-            style: AppTypography.countdown(Colors.white, fontSize: 46),
+            style: AppTypography.countdown(Colors.white, fontSize: 40),
           ),
-          const Gap.sm(),
+          const Gap.xs(),
           ClipRRect(
             borderRadius: BorderRadius.circular(99),
             child: LinearProgressIndicator(

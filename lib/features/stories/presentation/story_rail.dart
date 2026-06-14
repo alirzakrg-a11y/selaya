@@ -42,12 +42,13 @@ class StoryRail extends ConsumerWidget {
     final lang = context.langCode;
 
     return SizedBox(
-      height: 104,
+      // Daireler küçültüldü (kullanıcı 2026-06-14): 104→82 yükseklik.
+      height: 82,
       child: ListView.separated(
         scrollDirection: Axis.horizontal,
         padding: const EdgeInsets.symmetric(horizontal: AppSpacing.base),
         itemCount: stories.length,
-        separatorBuilder: (_, _) => const Gap.md(),
+        separatorBuilder: (_, _) => const Gap.sm(),
         itemBuilder: (context, i) {
           final s = stories[i];
           return _StoryAvatar(
@@ -74,12 +75,12 @@ class _StoryAvatar extends StatelessWidget {
     return GestureDetector(
       onTap: onTap,
       child: SizedBox(
-        width: 74,
+        width: 58,
         child: Column(
           children: [
             SizedBox(
-              width: 68,
-              height: 68,
+              width: 50,
+              height: 50,
               child: Stack(
                 alignment: Alignment.center,
                 children: [
@@ -90,8 +91,8 @@ class _StoryAvatar extends StatelessWidget {
                   // birikiyor = "inanılmaz donma"). Dönüş kaldırıldı; renkli
                   // halka kalıyor (SweepGradient'in açısı sabit).
                   Container(
-                    width: 68,
-                    height: 68,
+                    width: 50,
+                    height: 50,
                     decoration: BoxDecoration(
                       shape: BoxShape.circle,
                       gradient: SweepGradient(colors: [...ring, ring.first]),
@@ -99,17 +100,17 @@ class _StoryAvatar extends StatelessWidget {
                   ),
                   // Avatar — sabit (dönmez).
                   Container(
-                    width: 62,
-                    height: 62,
-                    padding: const EdgeInsets.all(2.5),
+                    width: 45,
+                    height: 45,
+                    padding: const EdgeInsets.all(2),
                     decoration:
                         BoxDecoration(shape: BoxShape.circle, color: c.bg),
                     child: ClipOval(
                       child: AppImage.cdn(
                         story.cover,
                         fit: BoxFit.cover,
-                        // 62px avatar — küçük decode (RAM + ilk kaydırma jank'ı).
-                        memWidth: 160,
+                        // 45px avatar — küçük decode (RAM + kaydırma jank'ı).
+                        memWidth: 110,
                         fallbackColors: [
                           ring[0].withValues(alpha: 0.35),
                           ring[1].withValues(alpha: 0.15),
