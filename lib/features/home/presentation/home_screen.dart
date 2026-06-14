@@ -85,7 +85,11 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
         child: SafeArea(
           bottom: false,
           child: ListView(
-            padding: const EdgeInsets.only(bottom: AppSpacing.xxxl),
+            // TEK SAYFA (kullanıcı 2026-06-14 "ne aşağı ne yukarı"): kaydırma
+            // KAPALI — ana ekran tek ekrana sığan sabit pano; taşarsa kesilir
+            // (araçlara alt menü/Daha Fazla'dan gidilir).
+            physics: const NeverScrollableScrollPhysics(),
+            padding: const EdgeInsets.only(bottom: AppSpacing.sm),
             children: [
               const _HomeHeader(),
               const _LocationWarningBanner(),

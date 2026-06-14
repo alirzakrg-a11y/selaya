@@ -133,7 +133,13 @@ class _HijriDate extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final now = ref.watch(clockProvider).value ?? DateTime.now();
+    // Görünmüyorken (başka sekme → offstage) saniyelik saati İZLEME → sayaç/tarih
+    // arka planda boşuna saniyede bir rebuild olmasın (kullanıcı 2026-06-14:
+    // "diğer sayfalara geçince sayaç dursun, sadece ana sayfada"). Görünür olunca
+    // canlı saate döner.
+    final now = TickerMode.valuesOf(context).enabled
+        ? (ref.watch(clockProvider).value ?? DateTime.now())
+        : DateTime.now();
     return Text(
       formatHijri(now, context.langCode,
           offsetDays: ref.watch(hijriOffsetProvider)),
@@ -148,7 +154,13 @@ class _GregorianDate extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final now = ref.watch(clockProvider).value ?? DateTime.now();
+    // Görünmüyorken (başka sekme → offstage) saniyelik saati İZLEME → sayaç/tarih
+    // arka planda boşuna saniyede bir rebuild olmasın (kullanıcı 2026-06-14:
+    // "diğer sayfalara geçince sayaç dursun, sadece ana sayfada"). Görünür olunca
+    // canlı saate döner.
+    final now = TickerMode.valuesOf(context).enabled
+        ? (ref.watch(clockProvider).value ?? DateTime.now())
+        : DateTime.now();
     return Text(
       formatGregorian(now, context.langCode),
       style: const TextStyle(color: Colors.white60, fontSize: 12),
@@ -164,7 +176,13 @@ class _CountdownAndProgress extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final now = ref.watch(clockProvider).value ?? DateTime.now();
+    // Görünmüyorken (başka sekme → offstage) saniyelik saati İZLEME → sayaç/tarih
+    // arka planda boşuna saniyede bir rebuild olmasın (kullanıcı 2026-06-14:
+    // "diğer sayfalara geçince sayaç dursun, sadece ana sayfada"). Görünür olunca
+    // canlı saate döner.
+    final now = TickerMode.valuesOf(context).enabled
+        ? (ref.watch(clockProvider).value ?? DateTime.now())
+        : DateTime.now();
     var remaining = v.remaining(now);
     // ⑥ Sonraki vakit GEÇTİYSE görünüm bayatlamıştır (provider nextTime'ı
     // saniyede bir değil, yalnız şehir/yöntem değişince hesaplar) → yeniden
