@@ -563,7 +563,6 @@ class _NotificationPrefsPage extends ConsumerWidget {
     final lang = context.langCode;
     final alerts = ref.watch(prayerAlertsProvider);
     final ongoing = ref.watch(ongoingNotificationProvider);
-    final fullScreen = ref.watch(fullScreenAdhanProvider);
     final ayah = ref.watch(dailyAyahNotifProvider);
     final hadith = ref.watch(dailyHadithNotifProvider);
     final vibration = ref.watch(notifVibrationProvider);
@@ -605,15 +604,6 @@ class _NotificationPrefsPage extends ConsumerWidget {
             value: ongoing,
             onChanged: (v) =>
                 ref.read(ongoingNotificationProvider.notifier).set(v),
-          ),
-          const Gap.md(),
-          _PrefToggleCard(
-            icon: Icons.alarm_on_rounded,
-            title: 'onboarding.prefFullScreenTitle'.tr(),
-            desc: 'onboarding.prefFullScreenDesc'.tr(),
-            value: fullScreen,
-            onChanged: (v) =>
-                ref.read(fullScreenAdhanProvider.notifier).set(v),
           ),
           const Gap.md(),
           _PrefToggleCard(

@@ -16,8 +16,6 @@ import '../../../core/theme/app_typography.dart';
 import '../../../core/widgets/app_image.dart';
 import '../../../core/widgets/selaya_card.dart';
 import '../../../core/widgets/selaya_scaffold.dart';
-import '../../audio_stories/data/audio_story_controller.dart';
-import '../../audio_stories/presentation/audio_story_now_playing.dart';
 import '../../quran/data/quran_favorites.dart';
 import '../../wallpapers/presentation/wallpapers_screen.dart';
 
@@ -80,22 +78,11 @@ class LikedScreen extends ConsumerWidget {
     final likedWalls = [
       for (final w in walls) if (liked.contains('wallpaper:${w.id}')) w
     ];
-    // Beğenilen sesli hikâye bölümleri ('story:{katId}:{i}') — kategori +
-    // bölüm indeksine çözülür; silinen içerik otomatik düşer.
-    final cats = ref.watch(audioStoriesProvider).value ??
-        const <AudioStoryCategory>[];
-    final likedEpisodes = <({AudioStoryCategory cat, int index})>[
-      for (final cat in cats)
-        for (var i = 0; i < cat.episodes.length; i++)
-          if (liked.contains('story:${cat.id}:$i')) (cat: cat, index: i),
-    ];
-
     final total = verses.length +
         hadithItems.length +
         duaItems.length +
         vids.length +
         likedWalls.length +
-        likedEpisodes.length +
         likedSurahs.length;
 
     return SelayaScaffold(
@@ -119,22 +106,6 @@ class LikedScreen extends ConsumerWidget {
                       icon: Icons.menu_book_rounded,
                       onTap: () =>
                           context.push('${Routes.quranReader}/${s.number}'),
-                    ),
-                  const Gap.lg(),
-                ],
-                if (likedEpisodes.isNotEmpty) ...[
-                  _SectionTitle('liked.stories'.tr(), likedEpisodes.length),
-                  for (final e in likedEpisodes)
-                    _MediaCard(
-                      image: e.cat.cover,
-                      title: e.cat.episodes[e.index].title(lang),
-                      icon: Icons.headphones_rounded,
-                      onTap: () {
-                        ref
-                            .read(audioStoryControllerProvider.notifier)
-                            .play(e.cat, e.index, lang);
-                        openAudioStoryNowPlaying(context);
-                      },
                     ),
                   const Gap.lg(),
                 ],

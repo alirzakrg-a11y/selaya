@@ -82,7 +82,7 @@ class PrayerScheduler {
       sound: sound,
       atTime: true,
       stopLabel: 'notif.adhanStop'.tr(),
-      alarmSlot: PrayerSlot.imsak, // full-screen intent + adhan payload
+      alarmSlot: null, // tam ekran ezan KALDIRILDI — ses native serviste çalar
     );
     return true;
   }

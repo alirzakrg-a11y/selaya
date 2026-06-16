@@ -40,7 +40,6 @@ const homeSectionLabels = {
   'videos': 'home.videos',
   'ai': 'home.askSelayaTitle',
   'quickPair': 'home.quickPair',
-  'audioStories': 'audioStories.title',
   'wallpaper': 'home.dailyWallpaper',
   'widgetPromo': 'home.addWidgetTitle',
 };

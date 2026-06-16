@@ -5,8 +5,6 @@ import 'package:go_router/go_router.dart';
 import '../../features/ai_assistant/presentation/ai_screen.dart';
 import '../../features/akis/presentation/akis_screen.dart';
 import '../../features/asma_ul_husna/presentation/asma_screen.dart';
-import '../../features/audio_stories/presentation/audio_player_screen.dart';
-import '../../features/audio_stories/presentation/audio_stories_screen.dart';
 import '../../features/auth/presentation/account_screen.dart';
 import '../../features/auth/presentation/auth_screen.dart';
 import '../../features/calendar/presentation/calendar_screen.dart';
@@ -126,7 +124,6 @@ final routerProvider = Provider<GoRouter>((ref) {
       fs(Routes.imsakiye, (_, _) => const ImsakiyeScreen()),
       fs(Routes.notificationSettings,
           (_, _) => const NotificationSettingsScreen()),
-      fs(Routes.audioStories, (_, _) => const AudioStoriesScreen()),
       fs(Routes.fasting, (_, _) => const FastingScreen()),
       fs(Routes.greetings, (_, _) => const GreetingComposerScreen()),
       fs(Routes.kaza, (_, _) => const KazaScreen()),
@@ -147,10 +144,6 @@ final routerProvider = Provider<GoRouter>((ref) {
       fs(Routes.yasin, (_, _) => const QuranReaderScreen(surahNumber: 36)),
       fs('${Routes.adhanAlarm}/:slot', (_, s) => AdhanAlarmScreen(
             slotIndex: int.tryParse(s.pathParameters['slot'] ?? '0') ?? 0,
-          )),
-      fs('${Routes.audioStories}/player/:cat/:index', (_, s) => AudioPlayerScreen(
-            categoryId: s.pathParameters['cat'] ?? '',
-            initialIndex: int.tryParse(s.pathParameters['index'] ?? '0') ?? 0,
           )),
     ],
   );

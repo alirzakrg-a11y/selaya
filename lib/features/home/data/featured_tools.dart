@@ -24,8 +24,6 @@ const featuredTools = <String, FeaturedTool>{
   'quran': FeaturedTool(AppIcons.quran, 'quran.title', Routes.quran),
   'dhikr': FeaturedTool(AppIcons.tasbih, 'dhikr.title', Routes.dhikr),
   'ai': FeaturedTool(AppIcons.aiMagic, 'ai.title', Routes.ai),
-  'audioStories': FeaturedTool(
-      AppIcons.headphones, 'audioStories.title', Routes.audioStories),
   'wallpaper':
       FeaturedTool(AppIcons.wallpaper, 'wallpapers.title', Routes.wallpapers),
   'kaza': FeaturedTool(AppIcons.history, 'kaza.title', Routes.kaza),
@@ -49,7 +47,7 @@ const featuredTools = <String, FeaturedTool>{
 const featuredToolKeys = [
   // Öne Çıkanlar — kullanıcının istediği görünür 12 (4x3):
   'dhikr', 'imsakiye', 'quran', 'yasin', 'duas', 'asma',
-  'tracking', 'kaza', 'mosques', 'audioStories', 'wallpaper', 'calendar',
+  'tracking', 'kaza', 'mosques', 'wallpaper', 'calendar',
   // Gerisi (varsayılan gizli — Daha Fazla'da görünür):
   'hatim', 'ai', 'greetings', 'qibla', 'fasting', 'tasks', 'widgets',
   'abdest', 'namaz',

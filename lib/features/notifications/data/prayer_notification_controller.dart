@@ -89,9 +89,10 @@ final ongoingNotificationProvider =
 /// without the full-screen takeover.
 class FullScreenAdhanController extends Notifier<bool> {
   @override
-  bool build() =>
-      ref.read(sharedPreferencesProvider).getBool(PrefKeys.fullScreenAdhan) ??
-      false; // varsayılan KAPALI — kullanıcı isterse açar (ilk kurulumda seçili değil)
+  // Tam ekran ezan KALDIRILDI (kullanıcı 2026-06-15) — provider KALICI KAPALI:
+  // eski kullanıcının pref'i true olsa bile full-screen takeover AÇILMAZ. Ezan
+  // sesi native serviste çalmaya devam eder (full-screen'den bağımsız).
+  bool build() => false;
 
   Future<void> set(bool value) async {
     await ref

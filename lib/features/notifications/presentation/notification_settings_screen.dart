@@ -136,26 +136,7 @@ class _NotificationSettingsScreenState
       .read(permissionsControllerProvider.notifier)
       .requestFullScreenIntent();
 
-  /// Tam ekran alarm açılırken izin yoksa uyar; kabul ederse izin sayfasını aç.
-  Future<void> _warnFullScreenPermission() async {
-    if (!mounted) return;
-    final grant = await showDialog<bool>(
-      context: context,
-      builder: (_) => AlertDialog(
-        title: Text('notif.fullScreenPerm'.tr()),
-        content: Text('notif.fullScreenAlarmNeedsPerm'.tr()),
-        actions: [
-          TextButton(
-              onPressed: () => Navigator.pop(context, false),
-              child: Text('common.later'.tr())),
-          FilledButton(
-              onPressed: () => Navigator.pop(context, true),
-              child: Text('notif.grant'.tr())),
-        ],
-      ),
-    );
-    if (grant == true) await _requestFullScreen();
-  }
+  // _warnFullScreenPermission KALDIRILDI — tam ekran ezan kaldırıldı.
 
   Widget _testChip(String label, Future<bool> Function() fire) =>
       OutlinedButton(onPressed: () => _runTest(fire), child: Text(label));
@@ -282,33 +263,8 @@ class _NotificationSettingsScreenState
                     await _reschedule();
                   },
                 ),
-                _SpecialToggle(
-                  icon: Icons.fullscreen_rounded,
-                  label: 'notif.fullScreenAlarm'.tr(),
-                  desc: 'notif.fullScreenAlarmDesc'.tr(),
-                  value: ref.watch(fullScreenAdhanProvider),
-                  onChanged: (v) async {
-                    await ref.read(fullScreenAdhanProvider.notifier).set(v);
-                    await _reschedule();
-                    // Açarken izni kontrol et — yoksa ekran kilitliyken alarm tam
-                    // ekran açılamaz; kullanıcıyı uyar + izin sayfasını öner.
-                    if (v &&
-                        Platform.isAndroid &&
-                        !ref
-                            .read(permissionsControllerProvider)
-                            .fullScreenIntent) {
-                      await _warnFullScreenPermission();
-                    }
-                  },
-                ),
-                // Tam ekran açıkken: ekran KİLİTLİYKEN gerçekten çalışıp
-                // çalışmayacağını net göster — izin var → yeşil ✓, yok → amber
-                // uyarı + "İzin Ver". (Tam ekran alarmın tek anlamı kilitliyken.)
-                if (Platform.isAndroid && ref.watch(fullScreenAdhanProvider))
-                  _FullScreenLockStatus(
-                    granted: perms.fullScreenIntent,
-                    onGrant: _requestFullScreen,
-                  ),
+                // Tam ekran ezan ayarı KALDIRILDI (kullanıcı 2026-06-15) — full
+                // screen takeover yok; ezan sesi normal bildirim/native ile çalar.
                 ListTile(
                   contentPadding: EdgeInsets.zero,
                   leading: _refreshing
@@ -1075,71 +1031,7 @@ class _DelayPicker extends StatelessWidget {
 /// açılamayacağını net gösterir: izin varsa yeşil onay, yoksa amber uyarı +
 /// "İzin Ver" (dokun → sistem izin sayfası). Tam ekran alarmın tek anlamı
 /// kilitliyken çalışması olduğundan bu durum her zaman görünür.
-class _FullScreenLockStatus extends StatelessWidget {
-  final bool granted;
-  final VoidCallback onGrant;
-  const _FullScreenLockStatus({required this.granted, required this.onGrant});
-
-  static const _amber = Color(0xFFD9A441);
-
-  @override
-  Widget build(BuildContext context) {
-    final c = context.colors;
-    if (granted) {
-      return Padding(
-        padding: const EdgeInsets.only(left: 32, bottom: AppSpacing.sm),
-        child: Row(
-          children: [
-            Icon(Icons.lock_open_rounded, size: 15, color: c.success),
-            const SizedBox(width: 6),
-            Expanded(
-              child: Text('notif.fullScreenLockOk'.tr(),
-                  style: TextStyle(
-                      color: c.success,
-                      fontSize: 12,
-                      fontWeight: FontWeight.w600)),
-            ),
-          ],
-        ),
-      );
-    }
-    return Padding(
-      padding: const EdgeInsets.only(left: 32, bottom: AppSpacing.sm),
-      child: InkWell(
-        onTap: onGrant,
-        borderRadius: BorderRadius.circular(10),
-        child: Container(
-          padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 8),
-          decoration: BoxDecoration(
-            color: _amber.withValues(alpha: 0.12),
-            borderRadius: BorderRadius.circular(10),
-            border: Border.all(color: _amber.withValues(alpha: 0.45)),
-          ),
-          child: Row(
-            children: [
-              const Icon(Icons.warning_amber_rounded, size: 16, color: _amber),
-              const SizedBox(width: 8),
-              Expanded(
-                child: Text('notif.fullScreenLockWarn'.tr(),
-                    style: const TextStyle(
-                        color: _amber,
-                        fontSize: 12,
-                        fontWeight: FontWeight.w600)),
-              ),
-              const SizedBox(width: 6),
-              Text('notif.grant'.tr(),
-                  style: const TextStyle(
-                      color: _amber,
-                      fontSize: 12,
-                      fontWeight: FontWeight.w800,
-                      decoration: TextDecoration.underline)),
-            ],
-          ),
-        ),
-      ),
-    );
-  }
-}
+// _FullScreenLockStatus KALDIRILDI — tam ekran ezan kaldırıldı.
 
 /// İzinler kartı — açılır/kapanır; başlıkta durum rozeti. Eksik KRİTİK izin
 /// (pil optimizasyonu hariç) varsa amber ⚠, hepsi tamamsa yeşil ✓. Kullanıcı
