@@ -73,6 +73,18 @@ Future<void> _cacheQuranTrack(MediaTrack t) async {
   } catch (_) {}
 }
 
+/// true = bu surenin TÜM ayet sesleri telefonda cache'li → çevrimdışı çalar.
+/// (UI'ın "internet yok, indirilmemiş" bilgisi vermesi için — kullanıcı 2026-06-15.)
+Future<bool> quranTracksCached(List<MediaTrack> list) async {
+  if (list.isEmpty) return false;
+  final dir = await _quranAudioDir();
+  for (final t in list) {
+    final f = _quranCacheFile(dir, t);
+    if (!await f.exists() || await f.length() <= 1024) return false;
+  }
+  return true;
+}
+
 /// audio_service handler — bir sesli-hikâye çalma listesini (bölümler) arka
 /// planda oynatır ve medya bildirimini (kilit ekranı / YouTube-Music tarzı
 /// kumanda) yönetir. Tek paylaşılan player.

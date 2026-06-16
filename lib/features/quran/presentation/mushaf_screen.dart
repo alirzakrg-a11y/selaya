@@ -324,6 +324,15 @@ class _MushafScreenState extends ConsumerState<MushafScreen>
                 : 'Audio for this surah is coming soon.')));
         return;
       }
+      // Çevrimdışı + indirilmemiş → bilgi ver (kullanıcı 2026-06-15).
+      if (!await ctrl.canPlay(tracks)) {
+        if (!mounted) return;
+        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+            content: Text(context.langCode == 'tr'
+                ? 'İnternet yok — bu sure henüz indirilmedi. Bir kez internetliyken dinlersen sonrasında çevrimdışı çalar.'
+                : "No internet — this surah isn't downloaded yet.")));
+        return;
+      }
       await ctrl.play(surahNo, surahName, tracks, 0);
     } catch (_) {}
   }

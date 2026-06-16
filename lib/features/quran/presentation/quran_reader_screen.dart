@@ -194,6 +194,16 @@ class _QuranReaderScreenState extends ConsumerState<QuranReaderScreen> {
     if (_isActiveSurah) {
       await _ctrl.toggle();
     } else {
+      // Çevrimdışı + indirilmemiş → sessizce takılma, KULLANICIYI BİLGİLENDİR
+      // (kullanıcı 2026-06-15: "internet yoksa da bilgi versin").
+      if (!await _ctrl.canPlay(_tracks)) {
+        if (!mounted) return;
+        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+            content: Text(context.langCode == 'tr'
+                ? 'İnternet yok — bu sure henüz indirilmedi. Bir kez internetliyken dinlersen sonrasında çevrimdışı çalar.'
+                : "No internet — this surah isn't downloaded yet. Listen once online and it plays offline afterwards.")));
+        return;
+      }
       // Bulunduğun yerden başla: görünen ilk ayetten itibaren oku (sesi
       // olmayan ayetse sonraki sesliye yuvarlanır). Baştan isteyen için
       // başlıktaki küçük "Baştan" düğmesi var.

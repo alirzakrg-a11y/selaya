@@ -1,7 +1,9 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:http/http.dart' as http;
 import 'package:intl/intl.dart';
 import 'package:just_audio/just_audio.dart';
 
+import '../../../core/config/cdn.dart';
 import '../../../core/data/content_providers.dart';
 import '../../../core/models/content.dart';
 import '../../audio_stories/data/audio_handler.dart';
@@ -172,6 +174,25 @@ class QuranAudioController extends Notifier<QuranAudioState> {
   String get art => _h.tracks.isNotEmpty ? _h.tracks.first.artUri : '';
 
   bool get isQuranMode => _h.mode == 'quran';
+
+  /// Çevrimdışıyken İNDİRİLMEMİŞ sure çalınamaz → UI'ın "internet yok" bilgisi
+  /// vermesi için (kullanıcı 2026-06-15). true = çalınabilir (cache'li VEYA
+  /// internet var); false = çevrimdışı + cache yok → çalma, kullanıcıyı bilgilendir.
+  Future<bool> canPlay(List<MediaTrack> tracks) async {
+    if (await quranTracksCached(tracks)) return true; // yerel → her zaman çalar
+    return _hasNetwork();
+  }
+
+  Future<bool> _hasNetwork() async {
+    try {
+      final r = await http
+          .get(Uri.parse('${SelayaCdn.apiBase}/health'))
+          .timeout(const Duration(seconds: 4));
+      return r.statusCode == 200;
+    } catch (_) {
+      return false; // çevrimdışı (anında SocketException) → false
+    }
+  }
 }
 
 final quranAudioControllerProvider =
