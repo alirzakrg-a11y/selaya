@@ -1,10 +1,10 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../../core/data/content_providers.dart';
+import '../../../core/data/manifest_service.dart';
 import '../../../core/di/providers.dart';
 import '../../../core/localization/localized_text.dart';
 import '../../../core/router/routes.dart';
@@ -54,41 +54,59 @@ class _SplashScreenState extends ConsumerState<SplashScreen> {
   }
 
   Future<void> _go() async {
-    await Future<void>.delayed(const Duration(milliseconds: 1600));
+    // İLK AÇILIŞ "DOLMA" SÜRECİ (kullanıcı 2026-06-15): panel/manifest içeriği
+    // GELENE KADAR splash'te bekle → ana ekran DOLU açılsın; "açılıp sonradan
+    // içerik dolarken donma"/pop-in olmasın. Yavaş/çevrimdışı ağda takılmamak
+    // için en fazla 6 sn bekle (o sürede gelmezse önbellek/paket yedeğiyle yine
+    // de geç). Sonraki açılışlarda manifest ÖNBELLEKTEN anında gelir → splash
+    // kısa kalır (alttaki min 1.2 sn yüzünden ekran çakmaz).
+    final minSplash = Future<void>.delayed(const Duration(milliseconds: 1200));
+    Future<void> loadContent() async {
+      try {
+        await ref
+            .read(manifestProvider.future)
+            .timeout(const Duration(seconds: 6));
+      } catch (_) {/* zaman aşımı/çevrimdışı → yedek devrede, yine de geç */}
+    }
+
+    await Future.wait([minSplash, loadContent()]);
     if (!mounted) return;
     final seen =
-        ref.read(sharedPreferencesProvider).getBool(PrefKeys.onboardingSeen) ?? false;
+        ref.read(sharedPreferencesProvider).getBool(PrefKeys.onboardingSeen) ??
+            false;
     context.go(seen ? Routes.home : Routes.intro);
   }
 
   @override
   Widget build(BuildContext context) {
+    final c = context.colors;
     return Scaffold(
-      backgroundColor: context.colors.bg,
+      backgroundColor: c.bg,
       body: GeometricBackground(
         patternOpacity: 0.07,
         child: Center(
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
-              const SelayaLogo(size: 150)
-                  .animate()
-                  .fadeIn(duration: 800.ms)
-                  .scale(
-                      begin: const Offset(0.6, 0.6),
-                      end: const Offset(1, 1),
-                      duration: 900.ms,
-                      curve: Curves.easeOutBack)
-                  .then(delay: 150.ms)
-                  .shimmer(duration: 1500.ms, color: Colors.white),
+              // Animasyon kaldırıldı (kullanıcı 2026-06-15 "açılışta donmasın"):
+              // soğuk ilk açılışta fade/scale/shimmer kekeme görünüp donma
+              // hissini artırıyordu → sade statik logo + slogan.
+              const SelayaLogo(size: 150),
               const SizedBox(height: 12),
               Text(
                 'common.slogan'.tr(),
                 style: TextStyle(
-                    color: context.colors.textSecondary,
-                    letterSpacing: 1,
-                    fontSize: 13),
-              ).animate().fadeIn(delay: 500.ms, duration: 700.ms),
+                    color: c.textSecondary, letterSpacing: 1, fontSize: 13),
+              ),
+              const SizedBox(height: 32),
+              // "Dolma" göstergesi: panel içeriği yüklenirken döner; içerik hazır
+              // olunca (veya 6 sn dolunca) splash kapanıp ana ekran açılır.
+              SizedBox(
+                width: 22,
+                height: 22,
+                child: CircularProgressIndicator(
+                    strokeWidth: 2, color: c.gold.withValues(alpha: 0.8)),
+              ),
             ],
           ),
         ),

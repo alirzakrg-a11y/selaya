@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
@@ -84,7 +83,11 @@ class _StoryAvatar extends StatelessWidget {
               child: Stack(
                 alignment: Alignment.center,
                 children: [
-                  // Dönen renkli gradyan halka — Instagram gibi sürekli döner.
+                  // Renkli gradyan halka — STATİK (kullanıcı 2026-06-15: "akış
+                  // animasyonunda donma"). ÖNCEDEN sonsuz dönüyordu (repeat
+                  // rotate); flutter_animate ticker'ı widget görünür kaldıkça
+                  // sürekli tick atıp ana thread'i yakıyordu (akış + ana ekran
+                  // donması). Dönüş kaldırıldı; renkli halka kalır.
                   Container(
                     width: 68,
                     height: 68,
@@ -92,9 +95,7 @@ class _StoryAvatar extends StatelessWidget {
                       shape: BoxShape.circle,
                       gradient: SweepGradient(colors: [...ring, ring.first]),
                     ),
-                  )
-                      .animate(onPlay: (ctrl) => ctrl.repeat())
-                      .rotate(begin: 0, end: 1, duration: 6000.ms),
+                  ),
                   // Avatar — sabit (dönmez).
                   Container(
                     width: 62,
