@@ -28,5 +28,16 @@
   "routes": [
     { "pattern": "api.selaya.app", "custom_domain": true },
     { "pattern": "panel.selaya.app", "custom_domain": true }
+  ],
+
+  // Kötüye kullanıma karşı IP başına ses isteği tavanı (kullanıcı 2026-06-15):
+  // 60 sn'de 240 istek/IP. Normal dinleme (üstelik telefon cache'iyle tekrar
+  // dinleme = 0 istek) bunun ÇOK altında; scriptli istek seli 429 ile durur.
+  "ratelimits": [
+    {
+      "name": "AUDIO_RL",
+      "namespace_id": "1001",
+      "simple": { "limit": 240, "period": 60 }
+    }
   ]
 }

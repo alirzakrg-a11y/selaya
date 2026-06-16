@@ -1,7 +1,12 @@
+import 'dart:async';
+import 'dart:io';
+
 import 'package:audio_service/audio_service.dart';
 import 'package:audio_session/audio_session.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:http/http.dart' as http;
 import 'package:just_audio/just_audio.dart';
+import 'package:path_provider/path_provider.dart';
 
 /// Set in main() when `AudioService.init` fails — then the background media
 /// notification is unavailable (playback falls back to a plain player).
@@ -22,6 +27,50 @@ class MediaTrack {
     this.artUri = '',
     this.durationSec = 0,
   });
+}
+
+// ─── Kur'an sesi YEREL CACHE (kullanıcı 2026-06-15) ──────────────────────────
+// İlk dinleyişte her ayet mp3'ü telefona kaydedilir; sonraki dinleyişler YEREL
+// dosyadan çalar → 0 ağ / 0 veri / 0 Cloudflare isteği. everyayah proxy'si HTTP
+// range desteklemediğinden LockCachingAudioSource yerine basit "tam dosya indir".
+Directory? _quranAudioCacheDir;
+Future<Directory> _quranAudioDir() async {
+  final cached = _quranAudioCacheDir;
+  if (cached != null) return cached;
+  final base = await getApplicationSupportDirectory();
+  final d = Directory('${base.path}/quran_audio');
+  if (!await d.exists()) await d.create(recursive: true);
+  return _quranAudioCacheDir = d;
+}
+
+File _quranCacheFile(Directory dir, MediaTrack t) => File(
+    '${dir.path}/${t.id.replaceAll(RegExp(r'[^0-9A-Za-z_]'), '_')}.mp3');
+
+/// Çalma listesini çözer: yereli olan ayet dosyadan (ağ YOK), olmayan ağdan akar.
+Future<List<AudioSource>> _resolveQuranSources(List<MediaTrack> list) async {
+  final dir = await _quranAudioDir();
+  return Future.wait(list.map((t) async {
+    final f = _quranCacheFile(dir, t);
+    if (await f.exists() && await f.length() > 1024) {
+      return AudioSource.uri(Uri.file(f.path));
+    }
+    return AudioSource.uri(Uri.parse(t.url));
+  }));
+}
+
+/// Tek ayeti (çalarken) arka planda indirir — yalnız henüz yoksa. Tek-tek
+/// indirildiğinden toplu istek patlaması (thundering herd) olmaz; rate-limit'i
+/// de zorlamaz.
+Future<void> _cacheQuranTrack(MediaTrack t) async {
+  try {
+    final dir = await _quranAudioDir();
+    final f = _quranCacheFile(dir, t);
+    if (await f.exists() && await f.length() > 1024) return;
+    final resp = await http.get(Uri.parse(t.url));
+    if (resp.statusCode == 200 && resp.bodyBytes.length > 1024) {
+      await f.writeAsBytes(resp.bodyBytes, flush: true);
+    }
+  } catch (_) {}
 }
 
 /// audio_service handler — bir sesli-hikâye çalma listesini (bölümler) arka
@@ -47,7 +96,14 @@ class AppAudioHandler extends BaseAudioHandler with SeekHandler {
     player.playerStateStream.listen((_) => _broadcast());
     player.playbackEventStream.listen((_) => _broadcast());
     // Bölüm değişince bildirimdeki başlık/kapak güncellensin.
-    player.currentIndexStream.listen(_setTrackMediaItem);
+    player.currentIndexStream.listen((i) {
+      _setTrackMediaItem(i);
+      // Çalan ayeti arka planda telefona indir → sonraki dinleyiş yerelden
+      // (0 ağ/veri/Cloudflare isteği). Sadece Kur'an modunda.
+      if (mode == 'quran' && i != null && i >= 0 && i < tracks.length) {
+        unawaited(_cacheQuranTrack(tracks[i]));
+      }
+    });
   }
 
   void _broadcast() {
@@ -79,11 +135,13 @@ class AppAudioHandler extends BaseAudioHandler with SeekHandler {
     tracks = list;
     album = albumTitle;
     final idx = startIndex.clamp(0, list.length - 1);
-    // DÜZ AKIŞ (AudioSource.uri) — kanıtlanmış yol. LockCachingAudioSource
-    // DENENDİ ve GERİ ALINDI: Kur'an ses proxy'miz (api.selaya.app) range
-    // isteklerini desteklemediğinden bazı cihazlarda sesi tamamen susturuyordu.
-    // Veri tasarrufu zaten sunucu tarafında (edge 30 gün önbellek) sağlanıyor.
-    final sources = [for (final t in list) AudioSource.uri(Uri.parse(t.url))];
+    // Kur'an modunda YEREL CACHE: kaydedilmiş ayet dosyadan (ağ YOK), olmayan
+    // ağdan akar + çalarken arka planda indirilir → SONRAKİ dinleyiş 0 ağ/veri/
+    // Cloudflare isteği. (Hikâye/diğer modlar düz akış.) LockCachingAudioSource
+    // değil — everyayah proxy range desteklemiyor; bu yüzden "tam dosya indir".
+    final sources = mode == 'quran'
+        ? await _resolveQuranSources(list)
+        : [for (final t in list) AudioSource.uri(Uri.parse(t.url))];
     try {
       // Medyayı her zaman MEDYA akışında çal — alarm ezanı oturumu alarm akışına
       // almış olabilir; burada geri medyaya çekiyoruz (Kuran/sesli hikâye sesi).

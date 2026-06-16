@@ -168,6 +168,15 @@ export default {
           if (surah < 1 || surah > 114 || ayah < 1 || ayah > 286) {
             return json({ ok: false, error: 'bad_ref' }, { status: 400 });
           }
+          // IP başına ses isteği tavanı (kötüye kullanım / fatura koruması).
+          // Binding yoksa (eski deploy) sessizce atlar — güvenli.
+          if (env.AUDIO_RL) {
+            const ip = request.headers.get('CF-Connecting-IP') || 'anon';
+            const { success } = await env.AUDIO_RL.limit({ key: 'qa:' + ip });
+            if (!success) {
+              return new Response('rate_limited', { status: 429, headers: CORS });
+            }
+          }
           const pad = (n) => String(n).padStart(3, '0');
           const src = 'https://everyayah.com/data/Alafasy_128kbps/' +
             pad(surah) + pad(ayah) + '.mp3';
