@@ -37,7 +37,10 @@ class StoryRail extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final stories = ref.watch(storiesProvider).value ?? const <Story>[];
+    // En fazla 6 hikâye göster (kullanıcı 2026-06-15: "8 yerine 6"). Panelden
+    // 5'ten fazla eklenmesi de Worker'da engellenir; bu kapak ekstra güvence.
+    final stories =
+        (ref.watch(storiesProvider).value ?? const <Story>[]).take(6).toList();
     if (stories.isEmpty) return const SizedBox(height: 0);
     final lang = context.langCode;
 

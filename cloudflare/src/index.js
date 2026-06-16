@@ -349,6 +349,20 @@ export default {
           if (!file || typeof file === 'string') {
             return json({ ok: false, error: 'file_required' }, { status: 400 });
           }
+          // Hikâye (stories) PANELDEN en fazla 5 eklenebilir (kullanıcı 2026-06-15).
+          // Uygulama tarafı da en fazla 6 gösterir (ekstra güvence).
+          if (collection === 'stories') {
+            const cnt = await env.DB.prepare(
+              "SELECT COUNT(*) AS n FROM content_items WHERE collection='stories' AND active=1"
+            ).first();
+            if (cnt && (cnt.n || 0) >= 5) {
+              return json({
+                ok: false,
+                error: 'story_limit_5',
+                message: 'En fazla 5 hikâye eklenebilir. Yeni eklemek için önce mevcut bir hikâyeyi silin.',
+              }, { status: 400 });
+            }
+          }
 
           const type = file.type || 'application/octet-stream';
           const kind = type.startsWith('video') ? 'video' : type.startsWith('audio') ? 'audio' : 'image';

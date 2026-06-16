@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_animate/flutter_animate.dart';
 
 import '../theme/app_colors.dart';
 import '../theme/app_icons.dart';
@@ -15,12 +14,7 @@ class AnimatedAiIcon extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final col = color ?? context.colors.gold;
-    return Icon(AppIcons.aiMagic, size: size, color: col)
-        .animate(onPlay: (ctrl) => ctrl.repeat(reverse: true))
-        .scaleXY(
-            begin: 0.9, end: 1.15, duration: 1300.ms, curve: Curves.easeInOut)
-        .rotate(
-            begin: -0.05, end: 0.05, duration: 1300.ms, curve: Curves.easeInOut)
-        .shimmer(duration: 1300.ms, color: Colors.white);
+    // Animasyon (nabız/salınım/ışıltı) KALDIRILDI (kullanıcı 2026-06-15) → statik.
+    return Icon(AppIcons.aiMagic, size: size, color: col);
   }
 }

@@ -1,15 +1,23 @@
+import 'dart:math';
+
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../../../../core/data/content_providers.dart';
 import '../../../../core/localization/localized_text.dart';
+import '../../../../core/models/content.dart';
 import '../../../../core/theme/app_colors.dart';
 import '../../../../core/theme/app_icons.dart';
 import '../../../../core/theme/app_spacing.dart';
 import '../../../../core/theme/app_typography.dart';
 import '../../../../core/utils/formatters.dart';
-import '../../../../core/widgets/video_background.dart';
+import '../../../../core/widgets/app_image.dart';
 import '../../data/prayer_repository.dart';
+
+/// Sayaç kartı arka planı için OTURUM başına SABİT rastgele seed → her uygulama
+/// açılışında FARKLI tek görsel; rebuild'lerde DEĞİŞMEZ (geçiş/titreme yok).
+final _heroBgSeedProvider = Provider<int>((ref) => Random().nextInt(1 << 30));
 
 /// Large hero card: city, date, hijri date, next prayer + live countdown + progress.
 class NextPrayerCard extends ConsumerWidget {
@@ -20,6 +28,12 @@ class NextPrayerCard extends ConsumerWidget {
     final lang = context.langCode;
     final viewAsync = ref.watch(prayerViewProvider);
     final now = ref.watch(clockProvider).value ?? DateTime.now();
+    // Arka plan: her açılışta duvar kâğıtlarımızdan SABİT rastgele tek görsel
+    // (video KALDIRILDI — kullanıcı 2026-06-15).
+    final wps = ref.watch(wallpapersProvider).value ?? const <Wallpaper>[];
+    final imgs = [for (final w in wps) w.image];
+    final heroBg =
+        imgs.isEmpty ? '' : imgs[ref.watch(_heroBgSeedProvider) % imgs.length];
 
     return AspectRatio(
       // Kompakt: üst/alt boşluk azaltıldı (kullanıcı isteği).
@@ -29,8 +43,11 @@ class NextPrayerCard extends ConsumerWidget {
         child: Stack(
           fit: StackFit.expand,
           children: [
-            const VideoBackground(
-                fallbackImage: 'assets/images/hero_mosque.jpg'),
+            // Video arka plan KALDIRILDI (kullanıcı 2026-06-15): her açılışta
+            // duvar kâğıtlarımızdan SABİT rastgele tek görsel (statik, geçiş yok).
+            heroBg.isEmpty
+                ? Image.asset('assets/images/hero_mosque.jpg', fit: BoxFit.cover)
+                : AppImage.cdn(heroBg, fit: BoxFit.cover, memWidth: 720),
             const DecoratedBox(
               decoration: BoxDecoration(
                 gradient: LinearGradient(

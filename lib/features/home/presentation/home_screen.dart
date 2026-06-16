@@ -200,32 +200,16 @@ class _QuickPair extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final isTr = context.langCode == 'tr';
-    // NOT: stretch / IntrinsicHeight KULLANILMAZ — patterned SelayaCard içindeki
-    // Stack, intrinsic yükseklik sorgusunda çöküp tüm ana ekranı boşaltır.
-    return Row(
-      children: [
-        Expanded(
-          child: _QuickCard(
-            icon: AppIcons.headphones,
-            title: 'audioStories.title'.tr(),
-            desc: isTr
-                ? 'Huzur veren İslami hikâyeler'
-                : 'Soothing Islamic stories',
-            onTap: () => context.push(Routes.audioStories),
-          ),
-        ),
-        const Gap.md(),
-        Expanded(
-          child: _QuickCard(
-            icon: AppIcons.card,
-            title: 'greetings.title'.tr(),
-            desc: isTr
-                ? 'Sevdiklerine özel kartlar'
-                : 'Special cards for loved ones',
-            onTap: () => context.push(Routes.greetings),
-          ),
-        ),
-      ],
+    // "Sesli Hikâyeler" kartı KALDIRILDI (özellik gitti; rotası da yok) → bölüm
+    // artık tek, tam genişlik TEBRİK KARTI (kullanıcı 2026-06-15: "sesli
+    // hikayeler yerine tebrik kartı").
+    return _QuickCard(
+      icon: AppIcons.card,
+      title: 'greetings.title'.tr(),
+      desc: isTr
+          ? 'Sevdiklerine özel kartlar'
+          : 'Special cards for loved ones',
+      onTap: () => context.push(Routes.greetings),
     );
   }
 }
@@ -903,29 +887,22 @@ class _VideoRail extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    // Vitrin: yalnızca İLK 12 video (5000 videoda carousel/thumb üretimi
-    // patlamasın); tamamı Akış ekranında zaten kayarak geziliyor.
-    final list = (ref.watch(feedProvider).value ?? const <FeedItem>[])
-        .take(12)
-        .toList();
+    final list = ref.watch(feedProvider).value ?? const <FeedItem>[];
     if (list.isEmpty) return const SizedBox.shrink();
-    return _AutoCarousel(
-      height: 210,
-      itemCount: list.length,
-      builder: (context, i) {
-        final v = list[i];
-        return Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 6),
-          child: GestureDetector(
-            onTap: () => context.push(Routes.feed, extra: i),
+    // Slider KALDIRILDI (kullanıcı 2026-06-15: "slider mantığını kaldır, 1 tane
+    // görünsün, tıklayınca o sayfaya gitsin") → tek "günün videosu"; dokun → Akış.
+    final v = list[DateTime.now().day % list.length];
+    return Padding(
+      padding: AppSpacing.screen,
+      child: SizedBox(
+        height: 190,
+        child: GestureDetector(
+            onTap: () => context.push(Routes.feed),
             child: ClipRRect(
               borderRadius: AppRadius.rXl,
               child: Stack(
                 fit: StackFit.expand,
                 children: [
-                  // Kapak: videonun KENDİ poster'ı; yoksa videonun KENDİ
-                  // karesinden üretilen thumbnail (native, cache'li); o da
-                  // yoksa nötr degrade. Duvar kâğıdından ÇEKİLMEZ.
                   if (v.poster.isNotEmpty)
                     AppImage.cdn(v.poster)
                   else
@@ -978,9 +955,8 @@ class _VideoRail extends ConsumerWidget {
               ),
             ),
           ),
-        );
-      },
-    );
+        ),
+      );
   }
 }
 
@@ -1083,49 +1059,48 @@ class _DailyWallpaper extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final lang = context.langCode;
     final list = ref.watch(wallpapersProvider).value ?? const <Wallpaper>[];
-    if (list.isEmpty) return const SizedBox(height: 180);
-    final items = list.take(12).toList();
-    return _AutoCarousel(
-      height: 200,
-      itemCount: items.length,
-      builder: (context, i) {
-        final wp = items[i];
-        return Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 6),
-          child: GestureDetector(
-            onTap: () => context.push(Routes.wallpapers),
-            child: ClipRRect(
-              borderRadius: AppRadius.rXl,
-              child: Stack(
-                fit: StackFit.expand,
-                children: [
-                  AppImage.cdn(wp.image),
-                  const DecoratedBox(
-                    decoration: BoxDecoration(
-                      gradient: LinearGradient(
-                        begin: Alignment.topCenter,
-                        end: Alignment.bottomCenter,
-                        colors: [Colors.transparent, Color(0xCC05070D)],
-                      ),
+    if (list.isEmpty) return const SizedBox(height: 0);
+    // Slider KALDIRILDI (kullanıcı 2026-06-15: "slider mantığını kaldır, 1 tane
+    // görünsün, tıklayınca o sayfaya gitsin") → tek "günün duvar kâğıdı"; dokun
+    // → Duvar Kâğıtları.
+    final wp = list[DateTime.now().day % list.length];
+    return Padding(
+      padding: AppSpacing.screen,
+      child: SizedBox(
+        height: 190,
+        child: GestureDetector(
+          onTap: () => context.push(Routes.wallpapers),
+          child: ClipRRect(
+            borderRadius: AppRadius.rXl,
+            child: Stack(
+              fit: StackFit.expand,
+              children: [
+                AppImage.cdn(wp.image),
+                const DecoratedBox(
+                  decoration: BoxDecoration(
+                    gradient: LinearGradient(
+                      begin: Alignment.topCenter,
+                      end: Alignment.bottomCenter,
+                      colors: [Colors.transparent, Color(0xCC05070D)],
                     ),
                   ),
-                  Padding(
-                    padding: const EdgeInsets.all(AppSpacing.base),
-                    child: Align(
-                      alignment: Alignment.bottomLeft,
-                      child: Text(wp.title(lang),
-                          style: const TextStyle(
-                              color: Colors.white,
-                              fontWeight: FontWeight.w700,
-                              fontSize: 16)),
-                    ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(AppSpacing.base),
+                  child: Align(
+                    alignment: Alignment.bottomLeft,
+                    child: Text(wp.title(lang),
+                        style: const TextStyle(
+                            color: Colors.white,
+                            fontWeight: FontWeight.w700,
+                            fontSize: 16)),
                   ),
-                ],
-              ),
+                ),
+              ],
             ),
           ),
-        );
-      },
+        ),
+      ),
     );
   }
 }

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_animate/flutter_animate.dart';
 
 import '../theme/app_colors.dart';
 
@@ -27,16 +26,9 @@ class FeatureIcon extends StatelessWidget {
       // stays in the badge background); light themes keep the coloured glyph.
       child: Icon(icon, color: c.isDark ? c.textPrimary : c.gold, size: size),
     );
-    // Continuous, gentle "breathing" pulse — the duration is varied per icon so
-    // the badges drift out of sync for an organic feel. Subtle (≤6%) and
-    // transform-only, so it's cheap to keep running.
-    return badge
-        .animate(onPlay: (controller) => controller.repeat(reverse: true))
-        .scaleXY(
-          begin: 1.0,
-          end: 1.06,
-          duration: (1900 + (index % 6) * 180).ms,
-          curve: Curves.easeInOut,
-        );
+    // Nefes alma (pulse) animasyonu KALDIRILDI (kullanıcı 2026-06-15: "tüm
+    // ikonlardan nefes alıp verme animasyonunu kaldır, sabit olsun, animasyon 0")
+    // → statik rozet. [index] artık kullanılmıyor (çağıranlar yine geçebilir).
+    return badge;
   }
 }

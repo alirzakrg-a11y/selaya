@@ -70,17 +70,10 @@ class _SlotCell extends StatelessWidget {
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-          // Aktif vaktin ikonu yumuşakça nabız atar (sürekli, hafif); diğerleri
-          // sabit. İkonlar büyütüldü (18 → 24).
-          active
-              ? Icon(slot.icon, size: 24, color: c.goldBright)
-                  .animate(onPlay: (a) => a.repeat(reverse: true))
-                  .scale(
-                      begin: const Offset(1, 1),
-                      end: const Offset(1.18, 1.18),
-                      duration: 900.ms,
-                      curve: Curves.easeInOut)
-              : Icon(slot.icon, size: 24, color: c.textTertiary),
+          // Aktif ikon nabzı KALDIRILDI (kullanıcı 2026-06-15 "ikonlarda nefes
+          // alma olmasın") — statik; aktif vakit yine parlak altın renkle ayrışır.
+          Icon(slot.icon,
+              size: 24, color: active ? c.goldBright : c.textTertiary),
           const SizedBox(height: 6),
           Text(
             slot.labelKey.tr(),
