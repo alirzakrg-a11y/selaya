@@ -27,7 +27,38 @@ import java.io.File
 class MainActivity : AudioServiceActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        applyPreferred60Hz()
         handleAdhanIntent(intent)
+    }
+
+    override fun onResume() {
+        super.onResume()
+        applyPreferred60Hz()
+    }
+
+    /** "Kaydirma donmasi"nin KOKU 120Hz kare butcesiydi (icerik 60Hz'e rahat
+     *  sigiyor ama 8.3ms'i asan agir karelerde kare dusup donma hissi veriyor;
+     *  CPU hic dolmuyor). Ekrani 60Hz'e SERT sabitle — preferredRefreshRate
+     *  yumusak istek, Samsung "Hareket akiciligi" yuksek-hareket boost'uyla yine
+     *  120'ye ciktigindan preferredDisplayModeId ile 60Hz modunu PINLE. Akis +
+     *  genel kaydirma akicilesir. (kullanici 2026-06-15: akista hala donma) */
+    private fun applyPreferred60Hz() {
+        try {
+            val lp = window.attributes
+            lp.preferredRefreshRate = 60f
+            val disp = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) display
+                       else @Suppress("DEPRECATION") windowManager.defaultDisplay
+            val cur = disp?.mode
+            if (cur != null) {
+                val mode60 = disp.supportedModes.firstOrNull { m ->
+                    m.physicalWidth == cur.physicalWidth &&
+                        m.physicalHeight == cur.physicalHeight &&
+                        m.refreshRate >= 59f && m.refreshRate <= 61f
+                }
+                if (mode60 != null) lp.preferredDisplayModeId = mode60.modeId
+            }
+            window.attributes = lp
+        } catch (_: Exception) {}
     }
 
     override fun onNewIntent(intent: Intent) {

@@ -16,7 +16,6 @@ import '../../../core/theme/app_icons.dart';
 import '../../../core/theme/app_spacing.dart';
 import '../../../core/theme/app_typography.dart';
 import '../../../core/widgets/content_detail_dialog.dart';
-import '../../../core/widgets/instant_swipe.dart';
 import '../../../core/widgets/selaya_card.dart';
 import '../../../core/widgets/selaya_scaffold.dart';
 import '../../../core/widgets/states.dart';
@@ -25,7 +24,6 @@ import '../data/mushaf_meta.dart';
 import '../data/quran_favorites.dart';
 import '../data/quran_audio_controller.dart';
 import '../data/quran_tracks.dart';
-import 'quran_now_playing.dart';
 
 const _bismillah = 'بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ';
 
@@ -383,14 +381,9 @@ class _QuranReaderScreenState extends ConsumerState<QuranReaderScreen> {
     return SelayaScaffold(
       title: surah?.name(lang) ?? 'quran.title'.tr(),
       showBack: true,
-      bottomBar: active
-          ? _QuranTransport(
-              surahName: surah?.name(lang) ?? 'quran.title'.tr(),
-              playing: isPlaying,
-              loading: st.loading,
-              ctrl: _ctrl,
-            )
-          : null,
+      // Alt kumanda (transport bar) KALDIRILDI — kullanıcı 2026-06-15: "alt
+      // kumandayı komple kaldır, sadece köşe başlat/durdur kalsın". Oynatma
+      // kontrolü artık YALNIZ sağ-alt köşedeki global oynat/durdur düğmesi.
       actions: [
         // ❤️ Favori — sure favorisi (Kur'an listesindeki kalple AYNI kayıt;
         // Beğendiklerim'in "Sureler" bölümüne düşer). Yâsîn dahil her surede.
@@ -569,131 +562,10 @@ class _NextSurahCard extends StatelessWidget {
   }
 }
 
-/// Okuyucunun altında, bu sure çalarken görünen kumanda barı (önceki / oynat-
-/// duraklat / sonraki / durdur). Arka plan + bildirim handler'dan; bu bar
-/// okuyucudayken pratik kontrol sağlar.
-class _QuranTransport extends StatelessWidget {
-  final String surahName;
-  final bool playing;
-  final bool loading;
-  final QuranAudioController ctrl;
-  const _QuranTransport({
-    required this.surahName,
-    required this.playing,
-    required this.loading,
-    required this.ctrl,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    final c = context.colors;
-    final cover = Container(
-      color: c.surfaceAlt,
-      alignment: Alignment.center,
-      child: Icon(Icons.queue_music_rounded, color: c.gold, size: 20),
-    );
-    // Barın TAMAMI yukarı çekilebilir + ANINDA tepki (parmak kalkmadan açılır).
-    return InstantSwipe(
-      onUp: () => openQuranNowPlaying(context),
-      child: Container(
-      padding: const EdgeInsets.symmetric(
-          horizontal: AppSpacing.sm, vertical: AppSpacing.sm),
-      decoration: BoxDecoration(
-        color: c.surface,
-        border: Border(top: BorderSide(color: c.border)),
-      ),
-      child: Row(
-        children: [
-          const Gap.sm(),
-          // Albüm kapağı (duvar kâğıdı) — okuma ekranı kumandasında da görünsün
-          // (ana ekrandaki global mini-player'da zaten vardı).
-          ClipRRect(
-            borderRadius: BorderRadius.circular(10),
-            child: SizedBox(
-              width: 42,
-              height: 42,
-              child: ctrl.art.isNotEmpty
-                  ? Image.network(ctrl.art,
-                      fit: BoxFit.cover, errorBuilder: (_, _, _) => cover)
-                  : cover,
-            ),
-          ),
-          const Gap.sm(),
-          Expanded(
-            child: GestureDetector(
-              behavior: HitTestBehavior.opaque,
-              onTap: () => openQuranNowPlaying(context),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  Text(surahName,
-                      maxLines: 1,
-                      overflow: TextOverflow.ellipsis,
-                      style: Theme.of(context).textTheme.titleSmall),
-                  Row(
-                    children: [
-                      Icon(Icons.queue_music_rounded,
-                          size: 13, color: c.textTertiary),
-                      const SizedBox(width: 4),
-                      Flexible(
-                        // Canlı "kaçıncı ayet": parça değiştikçe kendiliğinden
-                        // güncellenir; çözülemezse eski "Sıradaki ayetler".
-                        child: StreamBuilder<int?>(
-                          stream: ctrl.currentIndexStream,
-                          builder: (context, _) {
-                            final a = ctrl.currentAyahNumber;
-                            final tr = context.langCode == 'tr';
-                            final sub = loading
-                                ? 'common.loading'.tr()
-                                : a == null
-                                    ? 'quran.queue'.tr()
-                                    : (tr ? '$a. ayet okunuyor' : 'Verse $a');
-                            return Text(sub,
-                                maxLines: 1,
-                                overflow: TextOverflow.ellipsis,
-                                style: Theme.of(context)
-                                    .textTheme
-                                    .bodySmall
-                                    ?.copyWith(color: c.textTertiary));
-                          },
-                        ),
-                      ),
-                    ],
-                  ),
-                ],
-              ),
-            ),
-          ),
-          IconButton(
-            color: c.textSecondary,
-            icon: const Icon(Icons.skip_previous_rounded),
-            onPressed: ctrl.previous,
-          ),
-          IconButton(
-            iconSize: 42,
-            color: c.gold,
-            icon: Icon(playing
-                ? Icons.pause_circle_filled_rounded
-                : Icons.play_circle_fill_rounded),
-            onPressed: ctrl.toggle,
-          ),
-          IconButton(
-            color: c.textSecondary,
-            icon: const Icon(Icons.skip_next_rounded),
-            onPressed: ctrl.next,
-          ),
-          IconButton(
-            color: c.textSecondary,
-            icon: const Icon(Icons.stop_circle_outlined),
-            onPressed: ctrl.stop,
-          ),
-        ],
-      ),
-      ),
-    );
-  }
-}
+// _QuranTransport (okuyucu alt kumanda barı) KALDIRILDI — kullanıcı 2026-06-15:
+// "alt kumandayı komple kaldır, sadece köşe başlat/durdur kalsın". Oynatma
+// kontrolü artık yalnız sağ-alt köşedeki global oynat/durdur düğmesi
+// (global_mini_player_host.dart). Tam ekran çalar (quran_now_playing) da silindi.
 
 class _SurahHeader extends StatelessWidget {
   final Surah surah;
