@@ -13,8 +13,6 @@ import '../../../core/widgets/like_button.dart';
 import '../../../core/widgets/selaya_card.dart';
 import '../../../core/widgets/selaya_logo.dart';
 import '../../../core/widgets/selaya_scaffold.dart';
-import '../../daily_tasks/domain/daily_task.dart';
-import '../../daily_tasks/data/daily_tasks_controller.dart';
 import '../../stories/presentation/story_rail.dart';
 
 /// "Akış" (#19) — a single daily stream that gathers the verse & hadith of the
@@ -143,7 +141,6 @@ class AkisScreen extends ConsumerWidget {
     final ayahs = ref.watch(inspirationProvider).value ?? const [];
     final hadiths = ref.watch(hadithsProvider).value ?? const [];
     final duas = ref.watch(duasProvider).value ?? const [];
-    final stats = ref.watch(taskStatsProvider);
     final dayIdx = DateTime.now().day;
 
     // #7 — akışı zenginleştir: tek "günün" içeriği yerine birkaç ayet/hadis/dua/
@@ -215,10 +212,6 @@ class AkisScreen extends ConsumerWidget {
               share: false, // ⑱ "Bunu biliyor muydun"da paylaş butonu yok
             ),
             const Gap.md(),
-            if (k == 0) ...[
-              _TasksCard(done: stats.todayDone, total: dailyTaskCount),
-              const Gap.md(),
-            ],
           ],
           _ActionCard(
             label: 'akis.sendGreeting'.tr(),
@@ -313,71 +306,8 @@ class _ContentCard extends StatelessWidget {
   }
 }
 
-/// Today's task progress, tappable → the Daily Tasks screen.
-class _TasksCard extends StatelessWidget {
-  final int done;
-  final int total;
-  const _TasksCard({required this.done, required this.total});
-
-  @override
-  Widget build(BuildContext context) {
-    final c = context.colors;
-    final ratio = total == 0 ? 0.0 : done / total;
-    return SelayaCard(
-      onTap: () => context.push(Routes.tasks),
-      padding: const EdgeInsets.all(AppSpacing.base),
-      child: Row(
-        children: [
-          SizedBox(
-            width: 52,
-            height: 52,
-            child: Stack(
-              alignment: Alignment.center,
-              children: [
-                SizedBox(
-                  width: 52,
-                  height: 52,
-                  child: CircularProgressIndicator(
-                    value: ratio,
-                    strokeWidth: 5,
-                    backgroundColor: c.border,
-                    valueColor: AlwaysStoppedAnimation(c.gold),
-                    strokeCap: StrokeCap.round,
-                  ),
-                ),
-                Text('$done/$total',
-                    style: Theme.of(context)
-                        .textTheme
-                        .labelLarge
-                        ?.copyWith(fontWeight: FontWeight.w800)),
-              ],
-            ),
-          ),
-          const Gap.base(),
-          Expanded(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text('akis.tasksTitle'.tr(),
-                    style: Theme.of(context)
-                        .textTheme
-                        .titleSmall
-                        ?.copyWith(fontWeight: FontWeight.w700)),
-                const SizedBox(height: 2),
-                Text('akis.tasksDesc'.tr(),
-                    style: Theme.of(context)
-                        .textTheme
-                        .bodySmall
-                        ?.copyWith(color: c.textSecondary)),
-              ],
-            ),
-          ),
-          Icon(Icons.chevron_right_rounded, color: c.textTertiary),
-        ],
-      ),
-    );
-  }
-}
+// _TasksCard (günlük görev ilerlemesi) KALDIRILDI — günlük görevler komple
+// çıkarıldı (kullanıcı 2026-06-15).
 
 /// A simple "label + desc + chevron" action card.
 class _ActionCard extends StatelessWidget {

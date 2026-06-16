@@ -465,6 +465,17 @@ class _MushafScreenState extends ConsumerState<MushafScreen>
             padding: const EdgeInsets.fromLTRB(16, 6, 16, 0),
             child: Row(
               children: [
+                // ◀ Önceki sure (kullanıcı 2026-06-15: mushaf navigasyonu).
+                IconButton(
+                  tooltip: lang == 'tr' ? 'Önceki sure' : 'Prev surah',
+                  icon: const Icon(Icons.skip_previous_rounded),
+                  color: sNo > 1
+                      ? c.gold
+                      : c.textTertiary.withValues(alpha: 0.4),
+                  onPressed: sNo > 1
+                      ? () => _pc.jumpToPage(pageForSurah(sNo - 1) - 1)
+                      : null,
+                ),
                 Expanded(
                   child: GestureDetector(
                     onTap: () => _togglePlay(sNo, surahName),
@@ -510,7 +521,17 @@ class _MushafScreenState extends ConsumerState<MushafScreen>
                     ),
                   ),
                 ),
-                const SizedBox(width: 10),
+                // ▶ Sonraki sure.
+                IconButton(
+                  tooltip: lang == 'tr' ? 'Sonraki sure' : 'Next surah',
+                  icon: const Icon(Icons.skip_next_rounded),
+                  color: sNo < 114
+                      ? c.gold
+                      : c.textTertiary.withValues(alpha: 0.4),
+                  onPressed: sNo < 114
+                      ? () => _pc.jumpToPage(pageForSurah(sNo + 1) - 1)
+                      : null,
+                ),
                 GestureDetector(
                   onTap: _jumpDialog,
                   child: _Chip(

@@ -342,6 +342,7 @@ class _QuranReaderScreenState extends ConsumerState<QuranReaderScreen> {
     final matches = surahs.where((s) => s.number == widget.surahNumber);
     final surah = matches.isEmpty ? null : matches.first;
     final versesAsync = ref.watch(versesProvider(widget.surahNumber));
+    final versesList = versesAsync.value ?? const <Verse>[];
     final c = context.colors;
 
     // Bu sayfanın suresi çalarken ses BAŞKA bir sureye geçtiyse (otomatik
@@ -381,9 +382,24 @@ class _QuranReaderScreenState extends ConsumerState<QuranReaderScreen> {
     return SelayaScaffold(
       title: surah?.name(lang) ?? 'quran.title'.tr(),
       showBack: true,
-      // Alt kumanda (transport bar) KALDIRILDI — kullanıcı 2026-06-15: "alt
-      // kumandayı komple kaldır, sadece köşe başlat/durdur kalsın". Oynatma
-      // kontrolü artık YALNIZ sağ-alt köşedeki global oynat/durdur düğmesi.
+      // Alt navigasyon (kullanıcı 2026-06-15): ◀ önceki sure | play/pause (bu
+      // sureyi okur) | sonraki sure ▶. Play SADECE burada (Kur'an/Yâsîn okuyucu)
+      // + mushaf altında; global köşe düğmesi kaldırıldı. Yukarı kaydırınca da
+      // önceki/sonraki sureye geçilir (aşağıdaki overscroll nav).
+      bottomBar: _QuranReaderNav(
+        playing: isPlaying,
+        loading: st.loading,
+        canPlay: versesList.any((v) => v.audio != null),
+        onPlayPause: versesList.isEmpty
+            ? null
+            : () => _toggleSurah(versesList, surah?.name(lang) ?? 'Sure'),
+        onPrev: widget.surahNumber > 1
+            ? () => _goToSurah(widget.surahNumber - 1)
+            : null,
+        onNext: widget.surahNumber < 114
+            ? () => _goToSurah(widget.surahNumber + 1)
+            : null,
+      ),
       actions: [
         // ❤️ Favori — sure favorisi (Kur'an listesindeki kalple AYNI kayıt;
         // Beğendiklerim'in "Sureler" bölümüne düşer). Yâsîn dahil her surede.
@@ -747,6 +763,111 @@ class _VerseTile extends StatelessWidget {
                   ?.copyWith(color: c.textSecondary, height: 1.5)),
         ],
       ),
+      ),
+    );
+  }
+}
+
+/// Okuyucu alt navigasyonu (kullanıcı 2026-06-15): ◀ önceki sure | büyük
+/// play/pause (bu sureyi okur) | sonraki sure ▶. Play SADECE Kur'an/Yâsîn
+/// okuyucu + mushaf altında görünür (global köşe düğmesi kaldırıldı).
+class _QuranReaderNav extends StatelessWidget {
+  final bool playing;
+  final bool loading;
+  final bool canPlay;
+  final VoidCallback? onPlayPause;
+  final VoidCallback? onPrev;
+  final VoidCallback? onNext;
+  const _QuranReaderNav({
+    required this.playing,
+    required this.loading,
+    required this.canPlay,
+    this.onPlayPause,
+    this.onPrev,
+    this.onNext,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    final c = context.colors;
+    final tr = context.langCode == 'tr';
+    return Container(
+      decoration: BoxDecoration(
+        color: c.surface,
+        border: Border(top: BorderSide(color: c.border)),
+      ),
+      child: Padding(
+        padding: const EdgeInsets.symmetric(
+            horizontal: AppSpacing.lg, vertical: AppSpacing.xs),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            _NavBtn(
+              icon: Icons.skip_previous_rounded,
+              label: tr ? 'Önceki sure' : 'Prev surah',
+              onTap: onPrev,
+            ),
+            Material(
+              color: canPlay ? c.gold : c.gold.withValues(alpha: 0.14),
+              shape: const CircleBorder(),
+              child: InkWell(
+                customBorder: const CircleBorder(),
+                onTap: canPlay ? onPlayPause : null,
+                child: SizedBox(
+                  width: 56,
+                  height: 56,
+                  child: Icon(
+                    loading
+                        ? Icons.hourglass_bottom_rounded
+                        : (playing
+                            ? Icons.pause_rounded
+                            : Icons.play_arrow_rounded),
+                    color: canPlay ? c.bg : c.gold.withValues(alpha: 0.5),
+                    size: 30,
+                  ),
+                ),
+              ),
+            ),
+            _NavBtn(
+              icon: Icons.skip_next_rounded,
+              label: tr ? 'Sonraki sure' : 'Next surah',
+              onTap: onNext,
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class _NavBtn extends StatelessWidget {
+  final IconData icon;
+  final String label;
+  final VoidCallback? onTap;
+  const _NavBtn({required this.icon, required this.label, this.onTap});
+
+  @override
+  Widget build(BuildContext context) {
+    final c = context.colors;
+    final color =
+        onTap != null ? c.gold : c.textTertiary.withValues(alpha: 0.4);
+    return InkWell(
+      onTap: onTap,
+      borderRadius: BorderRadius.circular(12),
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Icon(icon, color: color, size: 26),
+            const SizedBox(height: 2),
+            Text(label,
+                style: Theme.of(context)
+                    .textTheme
+                    .labelSmall
+                    ?.copyWith(color: color)),
+          ],
+        ),
       ),
     );
   }

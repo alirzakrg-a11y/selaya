@@ -32,7 +32,6 @@ const featuredTools = <String, FeaturedTool>{
   'qibla': FeaturedTool(AppIcons.qibla, 'qibla.title', Routes.qibla),
   'yasin': FeaturedTool(AppIcons.book, 'more.yasin', Routes.yasin),
   'fasting': FeaturedTool(AppIcons.fasting, 'fasting.title', Routes.fasting),
-  'tasks': FeaturedTool(Icons.checklist_rounded, 'tasks.title', Routes.tasks),
   'hatim':
       FeaturedTool(Icons.auto_stories_rounded, 'hatim.title', Routes.hatim),
   'widgets': FeaturedTool(
@@ -49,7 +48,7 @@ const featuredToolKeys = [
   'dhikr', 'imsakiye', 'quran', 'yasin', 'duas', 'asma',
   'tracking', 'kaza', 'mosques', 'wallpaper', 'calendar',
   // Gerisi (varsayılan gizli — Daha Fazla'da görünür):
-  'hatim', 'ai', 'greetings', 'qibla', 'fasting', 'tasks', 'widgets',
+  'hatim', 'ai', 'greetings', 'qibla', 'fasting', 'widgets',
   'abdest', 'namaz',
 ];
 
