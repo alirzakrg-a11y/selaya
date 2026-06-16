@@ -101,6 +101,14 @@ class _MushafScreenState extends ConsumerState<MushafScreen>
     }
     _pageEnteredAt = DateTime.now();
     setState(() => _page = newPage);
+    // Başka SUREYE geçince çalan sesi durdur (kullanıcı 2026-06-15: "Fâtiha
+    // dinlerken başka sureye geçince sussun"). Aynı sure içinde sayfa çevirmek
+    // sesi kesmez (Bakara gibi çok sayfalı sureler kesintisiz çalar).
+    final audio = ref.read(quranAudioControllerProvider);
+    if (audio.surahNumber != null &&
+        audio.surahNumber != surahForPage(newPage)) {
+      ref.read(quranAudioControllerProvider.notifier).stop();
+    }
     // Yeni sayfa daima %100'de açılır (zoom önceki sayfada kalmasın).
     _zoom.value = Matrix4.identity();
     ref
