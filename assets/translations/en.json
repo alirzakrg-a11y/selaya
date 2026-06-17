@@ -153,6 +153,12 @@
     "streak": "{}-day streak",
     "allDone": "Mashallah! You completed all of today's tasks."
   },
+  "tesbihat": {
+    "title": "Tasbihat"
+  },
+  "zakat": {
+    "title": "Zakat Calculator"
+  },
   "kaza": {
     "title": "Missed Prayers",
     "totalDebt": "Total missed prayers",

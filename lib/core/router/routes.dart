@@ -41,6 +41,8 @@ abstract final class Routes {
   static const greetings = '/greetings';
   static const yasin = '/yasin';
   static const kaza = '/kaza';
+  static const tesbihat = '/tesbihat'; // namaz sonrası tesbihat sayacı
+  static const zakat = '/zakat'; // zekât & fitre hesaplayıcı
   static const tasks = '/tasks'; // günlük görevler (#18)
   static const abdestGuide = '/abdest'; // abdest & taharet rehberi HUB
   static const guideDetail = '/guide-detail'; // tekil rehber (extra: guide+collection)

@@ -44,6 +44,7 @@ class MoreScreen extends ConsumerWidget {
           Routes.namazGuide),
       _Entry(Icons.water_drop_rounded, 'more.abdestGuide', Routes.abdestGuide),
       _Entry(AppIcons.tasbih, 'dhikr.title', Routes.dhikr),
+      _Entry(Icons.repeat_rounded, 'tesbihat.title', Routes.tesbihat),
       _Entry(AppIcons.dua, 'duas.title', Routes.duas),
       _Entry(AppIcons.qibla, 'qibla.title', Routes.qibla),
     ]),
@@ -57,6 +58,7 @@ class MoreScreen extends ConsumerWidget {
       _Entry(AppIcons.chart, 'tracking.title', Routes.tracking),
       _Entry(AppIcons.fasting, 'fasting.title', Routes.fasting),
       _Entry(AppIcons.kerahat, 'kaza.title', Routes.kaza),
+      _Entry(Icons.savings_rounded, 'zakat.title', Routes.zakat),
     ]),
     _Section('more.secDiscover', [
       _Entry(Icons.favorite_rounded, 'liked.title', Routes.liked),

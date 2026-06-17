@@ -43,8 +43,10 @@ import '../../features/quran/presentation/quran_screen.dart';
 import '../../features/settings/presentation/settings_screen.dart';
 import '../../features/social_feed/presentation/feed_screen.dart';
 import '../../features/stories/presentation/story_viewer.dart';
+import '../../features/tesbihat/presentation/tesbihat_screen.dart';
 import '../../features/wallpapers/presentation/wallpapers_screen.dart';
 import '../../features/widgets_gallery/presentation/widgets_gallery_screen.dart';
+import '../../features/zakat/presentation/zakat_screen.dart';
 import '../widgets/mini_player_chrome.dart';
 import '../widgets/selaya_bottom_nav.dart';
 import 'routes.dart';
@@ -102,6 +104,8 @@ final routerProvider = Provider<GoRouter>((ref) {
           )),
       fs(Routes.asma, (_, _) => const AsmaScreen()),
       fs(Routes.duas, (_, _) => const DuasScreen()),
+      fs(Routes.tesbihat, (_, _) => const TesbihatScreen()),
+      fs(Routes.zakat, (_, _) => const ZakatScreen()),
       fs(Routes.verses,
           (_, _) => const InspirationListScreen(
               type: 'verse', titleKey: 'more.verses')),

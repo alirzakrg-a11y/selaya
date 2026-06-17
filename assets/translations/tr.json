@@ -153,6 +153,12 @@
     "streak": "{} günlük seri",
     "allDone": "Mâşâallah! Bugünün tüm görevlerini tamamladın."
   },
+  "tesbihat": {
+    "title": "Tesbihat"
+  },
+  "zakat": {
+    "title": "Zekât Hesapla"
+  },
   "kaza": {
     "title": "Kazalar",
     "totalDebt": "Toplam kaza namazı",
