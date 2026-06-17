@@ -30,8 +30,9 @@ class FeedScreen extends ConsumerStatefulWidget {
 }
 
 class _FeedScreenState extends ConsumerState<FeedScreen> {
-  late final PageController _pageController =
-      PageController(initialPage: widget.initialIndex);
+  late final PageController _pageController = PageController(
+    initialPage: widget.initialIndex,
+  );
   late int _current = widget.initialIndex;
 
   @override
@@ -46,9 +47,11 @@ class _FeedScreenState extends ConsumerState<FeedScreen> {
     if (length <= 1) return;
     final next = (_current + 1) % length;
     if (next > _current) {
-      _pageController.animateToPage(next,
-          duration: const Duration(milliseconds: 320),
-          curve: Curves.easeOutCubic);
+      _pageController.animateToPage(
+        next,
+        duration: const Duration(milliseconds: 320),
+        curve: Curves.easeOutCubic,
+      );
     } else {
       _pageController.jumpToPage(next); // last → first
     }
@@ -219,7 +222,9 @@ class _FeedPageState extends ConsumerState<_FeedPage> {
     final shareText = caption.trim().isEmpty
         ? '$appName · selaya.app'
         : '$caption\n\n$appName · selaya.app';
-    await ref.read(shareServiceProvider).shareVideo(
+    await ref
+        .read(shareServiceProvider)
+        .shareVideo(
           widget.item.video,
           text: shareText,
           subject: appName,
@@ -234,12 +239,17 @@ class _FeedPageState extends ConsumerState<_FeedPage> {
 
   /// Videoyu galeriye indir.
   Future<void> _download() async {
-    final ok =
-        await ref.read(galleryServiceProvider).saveVideo(widget.item.video);
+    final ok = await ref
+        .read(galleryServiceProvider)
+        .saveVideo(widget.item.video);
     if (!mounted) return;
-    ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-        content:
-            Text(ok ? 'wallpapers.saved'.tr() : 'wallpapers.saveError'.tr())));
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Text(
+          ok ? 'wallpapers.saved'.tr() : 'wallpapers.saveError'.tr(),
+        ),
+      ),
+    );
   }
 
   @override
@@ -288,7 +298,7 @@ class _FeedPageState extends ConsumerState<_FeedPage> {
                 colors: [
                   Color(0x66000000),
                   Colors.transparent,
-                  Color(0xDD000000)
+                  Color(0xDD000000),
                 ],
                 stops: [0, 0.45, 1],
               ),
@@ -318,10 +328,9 @@ class _FeedPageState extends ConsumerState<_FeedPage> {
                 icon: liked ? AppIcons.favoriteFilled : AppIcons.favorite,
                 label: '$likeCount',
                 color: liked ? AppColors.danger : Colors.white,
-                onTap: liked
-                    ? null
-                    : () =>
-                        ref.read(likedKeysProvider.notifier).like(likeKey),
+                // Çift yönlü: tekrar dokununca beğeniyi geri al (panelde −1).
+                onTap: () =>
+                    ref.read(likedKeysProvider.notifier).toggle(likeKey),
               ),
               const Gap.lg(),
               if (_hasVideo) ...[
@@ -369,18 +378,23 @@ class _FeedPageState extends ConsumerState<_FeedPage> {
                     backgroundImage: AssetImage('assets/icon/selaya_icon.png'),
                   ),
                   const Gap.sm(),
-                  const Text('SELAYA',
-                      style: TextStyle(
-                          color: Colors.white,
-                          fontWeight: FontWeight.w700,
-                          fontSize: 15)),
+                  const Text(
+                    'SELAYA',
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontWeight: FontWeight.w700,
+                      fontSize: 15,
+                    ),
+                  ),
                 ],
               ),
               const Gap.sm(),
-              Text(item.caption(context.langCode),
-                  maxLines: 3,
-                  overflow: TextOverflow.ellipsis,
-                  style: const TextStyle(color: Colors.white, height: 1.4)),
+              Text(
+                item.caption(context.langCode),
+                maxLines: 3,
+                overflow: TextOverflow.ellipsis,
+                style: const TextStyle(color: Colors.white, height: 1.4),
+              ),
             ],
           ),
         ),
@@ -411,7 +425,10 @@ class _FeedAction extends StatelessWidget {
         children: [
           Icon(icon, color: color, size: 30),
           const SizedBox(height: 4),
-          Text(label, style: const TextStyle(color: Colors.white, fontSize: 12)),
+          Text(
+            label,
+            style: const TextStyle(color: Colors.white, fontSize: 12),
+          ),
         ],
       ),
     );

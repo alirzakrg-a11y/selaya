@@ -21,8 +21,10 @@ class SyncState {
 /// Hangi PrefKeys buluta senkronlanır? (Kişisel veri; cihaza-özel + gizli olanlar HARİÇ.)
 class _Scope {
   static const exact = <String>{
-    PrefKeys.quranBookmarks, PrefKeys.duaFavorites, PrefKeys.inspirationFavorites,
-    PrefKeys.wallpaperFavorites, PrefKeys.quranLastRead, PrefKeys.dhikrCustom,
+    PrefKeys.quranBookmarks,
+    PrefKeys.duaFavorites,
+    PrefKeys.inspirationFavorites,
+    PrefKeys.quranLastRead, PrefKeys.dhikrCustom,
     PrefKeys.kazaCounts, PrefKeys.kazaCompleted, PrefKeys.homeOrder,
     PrefKeys.homeHidden, PrefKeys.featuredOrder, PrefKeys.featuredHidden,
     PrefKeys.dailyTasksLog, PrefKeys.likedKeys, PrefKeys.prayerOffsets,
@@ -49,8 +51,9 @@ class _Scope {
 class SyncController extends Notifier<SyncState> {
   @override
   SyncState build() => SyncState(
-      lastSyncedAt:
-          ref.read(sharedPreferencesProvider).getInt(PrefKeys.lastSyncAt) ?? 0);
+    lastSyncedAt:
+        ref.read(sharedPreferencesProvider).getInt(PrefKeys.lastSyncAt) ?? 0,
+  );
 
   // prefs -> json (her değer {t,v} ile tipiyle sarılır)
   Map<String, dynamic> _collect() {
@@ -86,7 +89,9 @@ class SyncController extends Notifier<SyncState> {
         switch (w['t']) {
           case 'sl':
             await prefs.setStringList(
-                e.key, (v as List).map((x) => x.toString()).toList());
+              e.key,
+              (v as List).map((x) => x.toString()).toList(),
+            );
             break;
           case 's':
             await prefs.setString(e.key, v.toString());
@@ -144,10 +149,15 @@ class SyncController extends Notifier<SyncState> {
       await _stamp();
       _refresh();
       state = SyncState(
-          syncing: false, lastSyncedAt: DateTime.now().millisecondsSinceEpoch);
+        syncing: false,
+        lastSyncedAt: DateTime.now().millisecondsSinceEpoch,
+      );
     } catch (e) {
       state = SyncState(
-          syncing: false, lastSyncedAt: state.lastSyncedAt, error: _code(e));
+        syncing: false,
+        lastSyncedAt: state.lastSyncedAt,
+        error: _code(e),
+      );
     }
   }
 
@@ -159,7 +169,9 @@ class SyncController extends Notifier<SyncState> {
       await AuthApi.putData(auth.token!, _collect(), _device());
       await _stamp();
       state = SyncState(
-          syncing: false, lastSyncedAt: DateTime.now().millisecondsSinceEpoch);
+        syncing: false,
+        lastSyncedAt: DateTime.now().millisecondsSinceEpoch,
+      );
     } catch (_) {
       // sessiz: bir sonraki fırsatta tekrar denenir
     }
@@ -193,5 +205,6 @@ class SyncController extends Notifier<SyncState> {
   }
 }
 
-final syncControllerProvider =
-    NotifierProvider<SyncController, SyncState>(SyncController.new);
+final syncControllerProvider = NotifierProvider<SyncController, SyncState>(
+  SyncController.new,
+);

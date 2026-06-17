@@ -32,7 +32,11 @@ class WallpapersScreen extends ConsumerWidget {
         error: (e, _) => SelayaError(error: e),
         data: (list) => GridView.builder(
           padding: const EdgeInsets.fromLTRB(
-              AppSpacing.base, AppSpacing.sm, AppSpacing.base, AppSpacing.xxxl),
+            AppSpacing.base,
+            AppSpacing.sm,
+            AppSpacing.base,
+            AppSpacing.xxxl,
+          ),
           gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
             crossAxisCount: 2,
             mainAxisSpacing: AppSpacing.md,
@@ -57,17 +61,23 @@ class _WallpaperTile extends ConsumerWidget {
     final lang = context.langCode;
     final wp = list[index];
     return GestureDetector(
-      onTap: () => Navigator.of(context).push(MaterialPageRoute(
+      onTap: () => Navigator.of(context).push(
+        MaterialPageRoute(
           fullscreenDialog: true,
-          builder: (_) => WallpaperDetail(list: list, index: index))),
+          builder: (_) => WallpaperDetail(list: list, index: index),
+        ),
+      ),
       child: ClipRRect(
         borderRadius: AppRadius.rLg,
         child: Stack(
           fit: StackFit.expand,
           children: [
             // Izgara: küçük önizleme + sınırlı decode → 1000 görselde de akıcı.
-            AppImage.cdn(wp.gridImage,
-                fallbackColors: wp.colors, memWidth: 560),
+            AppImage.cdn(
+              wp.gridImage,
+              fallbackColors: wp.colors,
+              memWidth: 560,
+            ),
             const DecoratedBox(
               decoration: BoxDecoration(
                 gradient: LinearGradient(
@@ -81,7 +91,11 @@ class _WallpaperTile extends ConsumerWidget {
               const Positioned(
                 top: 8,
                 right: 8,
-                child: Icon(AppIcons.crown, color: AppColors.goldBright, size: 18),
+                child: Icon(
+                  AppIcons.crown,
+                  color: AppColors.goldBright,
+                  size: 18,
+                ),
               ),
             Positioned(
               left: 10,
@@ -90,11 +104,15 @@ class _WallpaperTile extends ConsumerWidget {
               child: Row(
                 children: [
                   Expanded(
-                    child: Text(wp.title(lang),
-                        maxLines: 1,
-                        overflow: TextOverflow.ellipsis,
-                        style: const TextStyle(
-                            color: Colors.white, fontWeight: FontWeight.w700)),
+                    child: Text(
+                      wp.title(lang),
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
+                      style: const TextStyle(
+                        color: Colors.white,
+                        fontWeight: FontWeight.w700,
+                      ),
+                    ),
                   ),
                   LikeButton(likeKey: 'wallpaper:${wp.id}', light: true),
                 ],
@@ -117,8 +135,9 @@ class WallpaperDetail extends ConsumerStatefulWidget {
 }
 
 class _WallpaperDetailState extends ConsumerState<WallpaperDetail> {
-  late final PageController _controller =
-      PageController(initialPage: widget.index);
+  late final PageController _controller = PageController(
+    initialPage: widget.index,
+  );
   late int _current = widget.index;
 
   @override
@@ -130,9 +149,13 @@ class _WallpaperDetailState extends ConsumerState<WallpaperDetail> {
   Future<void> _download(Wallpaper wp) async {
     final ok = await ref.read(galleryServiceProvider).saveAsset(wp.image);
     if (!mounted) return;
-    ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-        content:
-            Text(ok ? 'wallpapers.saved'.tr() : 'wallpapers.saveError'.tr())));
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Text(
+          ok ? 'wallpapers.saved'.tr() : 'wallpapers.saveError'.tr(),
+        ),
+      ),
+    );
   }
 
   /// "Duvar Kâğıdı Yap" — hedef seç (ana ekran / kilit / ikisi), sonra ayarla.
@@ -141,7 +164,8 @@ class _WallpaperDetailState extends ConsumerState<WallpaperDetail> {
       context: context,
       backgroundColor: const Color(0xFF12161F),
       shape: const RoundedRectangleBorder(
-          borderRadius: BorderRadius.vertical(top: Radius.circular(20))),
+        borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
+      ),
       builder: (_) => SafeArea(
         child: Column(
           mainAxisSize: MainAxisSize.min,
@@ -150,11 +174,14 @@ class _WallpaperDetailState extends ConsumerState<WallpaperDetail> {
               padding: const EdgeInsets.fromLTRB(20, 16, 20, 6),
               child: Align(
                 alignment: Alignment.centerLeft,
-                child: Text('wallpapers.setAs'.tr(),
-                    style: const TextStyle(
-                        color: Colors.white,
-                        fontSize: 17,
-                        fontWeight: FontWeight.w700)),
+                child: Text(
+                  'wallpapers.setAs'.tr(),
+                  style: const TextStyle(
+                    color: Colors.white,
+                    fontSize: 17,
+                    fontWeight: FontWeight.w700,
+                  ),
+                ),
               ),
             ),
             for (final o in const [
@@ -164,8 +191,10 @@ class _WallpaperDetailState extends ConsumerState<WallpaperDetail> {
             ])
               ListTile(
                 leading: Icon(o.$2, color: AppColors.goldBright),
-                title:
-                    Text(o.$3.tr(), style: const TextStyle(color: Colors.white)),
+                title: Text(
+                  o.$3.tr(),
+                  style: const TextStyle(color: Colors.white),
+                ),
                 onTap: () => Navigator.of(context).pop(o.$1),
               ),
             const SizedBox(height: 8),
@@ -174,14 +203,20 @@ class _WallpaperDetailState extends ConsumerState<WallpaperDetail> {
       ),
     );
     if (target == null || !mounted) return;
-    ScaffoldMessenger.of(context)
-        .showSnackBar(SnackBar(content: Text('wallpapers.settingWp'.tr())));
-    final ok =
-        await ref.read(galleryServiceProvider).setWallpaper(wp.image, target);
+    ScaffoldMessenger.of(
+      context,
+    ).showSnackBar(SnackBar(content: Text('wallpapers.settingWp'.tr())));
+    final ok = await ref
+        .read(galleryServiceProvider)
+        .setWallpaper(wp.image, target);
     if (!mounted) return;
-    ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-        content:
-            Text(ok ? 'wallpapers.wpSet'.tr() : 'wallpapers.saveError'.tr())));
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Text(
+          ok ? 'wallpapers.wpSet'.tr() : 'wallpapers.saveError'.tr(),
+        ),
+      ),
+    );
   }
 
   @override
@@ -198,8 +233,10 @@ class _WallpaperDetailState extends ConsumerState<WallpaperDetail> {
             controller: _controller,
             itemCount: widget.list.length,
             onPageChanged: (i) => setState(() => _current = i),
-            itemBuilder: (_, i) => AppImage.cdn(widget.list[i].image,
-                fallbackColors: widget.list[i].colors),
+            itemBuilder: (_, i) => AppImage.cdn(
+              widget.list[i].image,
+              fallbackColors: widget.list[i].colors,
+            ),
           ),
           const IgnorePointer(
             child: DecoratedBox(
@@ -210,7 +247,7 @@ class _WallpaperDetailState extends ConsumerState<WallpaperDetail> {
                   colors: [
                     Color(0x99000000),
                     Colors.transparent,
-                    Color(0xCC000000)
+                    Color(0xCC000000),
                   ],
                   stops: [0, 0.4, 1],
                 ),
@@ -228,15 +265,19 @@ class _WallpaperDetailState extends ConsumerState<WallpaperDetail> {
                   ),
                 ),
                 const Spacer(),
-                Text(wp.title(lang),
-                    style: const TextStyle(
-                        color: Colors.white,
-                        fontSize: 22,
-                        fontWeight: FontWeight.w700)),
+                Text(
+                  wp.title(lang),
+                  style: const TextStyle(
+                    color: Colors.white,
+                    fontSize: 22,
+                    fontWeight: FontWeight.w700,
+                  ),
+                ),
                 const SizedBox(height: 6),
-                Text('${_current + 1} / ${widget.list.length}',
-                    style:
-                        const TextStyle(color: Colors.white60, fontSize: 13)),
+                Text(
+                  '${_current + 1} / ${widget.list.length}',
+                  style: const TextStyle(color: Colors.white60, fontSize: 13),
+                ),
                 const Gap.lg(),
                 Padding(
                   padding: const EdgeInsets.all(AppSpacing.lg),
@@ -257,9 +298,12 @@ class _WallpaperDetailState extends ConsumerState<WallpaperDetail> {
                       _Action(
                         icon: AppIcons.share,
                         label: 'common.share'.tr(),
-                        onTap: () => SharePlus.instance.share(ShareParams(
+                        onTap: () => SharePlus.instance.share(
+                          ShareParams(
                             text:
-                                '${wp.title(lang)} • SELAYA — ${'common.slogan'.tr()}')),
+                                '${wp.title(lang)} • SELAYA — ${'common.slogan'.tr()}',
+                          ),
+                        ),
                       ),
                     ],
                   ),
@@ -301,15 +345,19 @@ class _Action extends StatelessWidget {
               color: Colors.white.withValues(alpha: 0.12),
               border: Border.all(color: Colors.white24),
             ),
-            child: Icon(icon,
-                color: active
-                    ? (activeColor ?? AppColors.goldBright)
-                    : Colors.white,
-                size: 22),
+            child: Icon(
+              icon,
+              color: active
+                  ? (activeColor ?? AppColors.goldBright)
+                  : Colors.white,
+              size: 22,
+            ),
           ),
           const SizedBox(height: 6),
-          Text(label,
-              style: const TextStyle(color: Colors.white70, fontSize: 12)),
+          Text(
+            label,
+            style: const TextStyle(color: Colors.white70, fontSize: 12),
+          ),
         ],
       ),
     );
@@ -333,12 +381,10 @@ class _LikeAction extends ConsumerWidget {
       label: count > 0 ? '${'common.like'.tr()} · $count' : 'common.like'.tr(),
       active: liked,
       activeColor: const Color(0xFFE57373),
-      onTap: liked
-          ? null
-          : () {
-              HapticFeedback.lightImpact();
-              ref.read(likedKeysProvider.notifier).like(key);
-            },
+      onTap: () {
+        HapticFeedback.lightImpact();
+        ref.read(likedKeysProvider.notifier).toggle(key);
+      },
     );
   }
 }

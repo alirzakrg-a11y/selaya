@@ -222,6 +222,22 @@ export default {
         }
       }
 
+      // POST /v1/unlike/{key} — beğeni -1 (taban 0). Çift yönlü kalp: kullanıcı
+      // beğeniyi geri alınca sunucudaki sayı da düşsün.
+      {
+        const um = path.match(/^\/v1\/unlike\/(.+)$/);
+        if (um && request.method === 'POST') {
+          const key = decodeURIComponent(um[1]).slice(0, 80);
+          await env.DB.prepare(
+            'UPDATE likes SET count = MAX(0, count - 1) WHERE key = ?1'
+          ).bind(key).run();
+          const row = await env.DB.prepare(
+            'SELECT count FROM likes WHERE key = ?1'
+          ).bind(key).first();
+          return json({ ok: true, key, count: row ? row.count : 0 });
+        }
+      }
+
       return json({ ok: false, error: 'not_found' }, { status: 404 });
     }
 

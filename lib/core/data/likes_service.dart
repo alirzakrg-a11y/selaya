@@ -26,8 +26,9 @@ final likesProvider = FutureProvider<Map<String, int>>((ref) async {
   final raw = prefs.getString(PrefKeys.likesCache);
   if (raw != null) {
     try {
-      cached = (jsonDecode(raw) as Map)
-          .map((k, v) => MapEntry(k as String, (v as num).toInt()));
+      cached = (jsonDecode(raw) as Map).map(
+        (k, v) => MapEntry(k as String, (v as num).toInt()),
+      );
     } catch (_) {}
   }
   try {
@@ -37,8 +38,9 @@ final likesProvider = FutureProvider<Map<String, int>>((ref) async {
     if (res.statusCode == 200) {
       final data = jsonDecode(res.body) as Map<String, dynamic>;
       final likes = (data['likes'] as Map?) ?? const {};
-      final map =
-          likes.map((k, v) => MapEntry(k as String, (v as num).toInt()));
+      final map = likes.map(
+        (k, v) => MapEntry(k as String, (v as num).toInt()),
+      );
       await prefs.setString(PrefKeys.likesCache, jsonEncode(map));
       return map;
     }
@@ -57,22 +59,30 @@ class LikedKeys extends Notifier<Set<String>> {
 
   bool has(String key) => state.contains(key);
 
-  /// Beğen (yalnızca bir kez): yerelde işaretle + sunucuya +1 gönder.
-  Future<void> like(String key) async {
-    if (state.contains(key)) return;
-    final next = {...state, key};
+  /// Beğeni AÇ/KAPA (çift yönlü): yerelde işaretle/kaldır + sunucuya +1/−1 gönder.
+  /// Dolu kalbe tekrar dokununca beğeni geri alınır (kalp boşalır, panelde −1).
+  Future<void> toggle(String key) async {
+    final wasLiked = state.contains(key);
+    final next = wasLiked
+        ? (state.where((k) => k != key).toSet())
+        : {...state, key};
     state = next;
     await ref
         .read(sharedPreferencesProvider)
         .setStringList(PrefKeys.likedKeys, next.toList());
     try {
+      final action = wasLiked ? 'unlike' : 'like';
       await http
-          .post(Uri.parse(
-              '${SelayaCdn.apiBase}/v1/like/${Uri.encodeComponent(key)}'))
+          .post(
+            Uri.parse(
+              '${SelayaCdn.apiBase}/v1/$action/${Uri.encodeComponent(key)}',
+            ),
+          )
           .timeout(const Duration(seconds: 8));
     } catch (_) {}
   }
 }
 
-final likedKeysProvider =
-    NotifierProvider<LikedKeys, Set<String>>(LikedKeys.new);
+final likedKeysProvider = NotifierProvider<LikedKeys, Set<String>>(
+  LikedKeys.new,
+);
