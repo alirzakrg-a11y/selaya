@@ -24,6 +24,7 @@ import '../data/mushaf_meta.dart';
 import '../data/quran_favorites.dart';
 import '../data/quran_audio_controller.dart';
 import '../data/quran_tracks.dart';
+import 'quran_caching_badge.dart';
 
 const _bismillah = 'بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ';
 
@@ -116,16 +117,25 @@ class _QuranReaderScreenState extends ConsumerState<QuranReaderScreen> {
   void _goToSurah(int n) {
     if (_surahNavLock || n < 1 || n > 114) return;
     _surahNavLock = true;
+    // Kullanıcı ELLE başka sureye geçince çalan sesi DURDUR → "hangi suredeysen
+    // oradaki ses çalsın" (kullanıcı 2026-06-17). Otomatik sıradaki-sure geçişi
+    // bundan AYRIDIR: o ref.listen ile sesi sürdürür ve pushReplacement'i
+    // doğrudan çağırır (buradan geçmez).
+    if (ref.read(quranAudioControllerProvider).surahNumber != null) {
+      _ctrl.stop();
+    }
     context.pushReplacement('/quran-reader/$n');
   }
 
   void _ensureVisible(int ayah) {
     final ctx = _keys[ayah]?.currentContext;
     if (ctx != null) {
-      Scrollable.ensureVisible(ctx,
-          duration: const Duration(milliseconds: 350),
-          alignment: 0.25,
-          curve: Curves.easeInOut);
+      Scrollable.ensureVisible(
+        ctx,
+        duration: const Duration(milliseconds: 350),
+        alignment: 0.25,
+        curve: Curves.easeInOut,
+      );
     }
   }
 
@@ -146,7 +156,10 @@ class _QuranReaderScreenState extends ConsumerState<QuranReaderScreen> {
   /// Ayet seslerini (Worker proxy) MediaTrack listesi olarak hazırlar.
   void _buildTracks(List<Verse> verses, String surahName) {
     if (_tracks.isNotEmpty) return;
-    final audible = [for (final v in verses) if (v.audio != null) v];
+    final audible = [
+      for (final v in verses)
+        if (v.audio != null) v,
+    ];
     if (audible.isEmpty) return;
     _audibleAyahs = [for (final v in audible) v.ayah];
     final art = _wallpaperArt();
@@ -166,8 +179,7 @@ class _QuranReaderScreenState extends ConsumerState<QuranReaderScreen> {
   /// "Sureyi Dinle" baştan değil ORADAN okumaya başlar. Tile'ların GlobalKey'leri
   /// üzerinden bakılır (yalnız ekrandakiler bağlı olduğundan ucuzdur).
   int _firstVisibleIndex(List<Verse> verses) {
-    final topLimit =
-        MediaQuery.of(context).padding.top + kToolbarHeight + 12;
+    final topLimit = MediaQuery.of(context).padding.top + kToolbarHeight + 12;
     int? bestAyah;
     var bestDy = double.infinity;
     _keys.forEach((ayah, key) {
@@ -198,10 +210,15 @@ class _QuranReaderScreenState extends ConsumerState<QuranReaderScreen> {
       // (kullanıcı 2026-06-15: "internet yoksa da bilgi versin").
       if (!await _ctrl.canPlay(_tracks)) {
         if (!mounted) return;
-        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-            content: Text(context.langCode == 'tr'
-                ? 'İnternet yok — bu sure henüz indirilmedi. Bir kez internetliyken dinlersen sonrasında çevrimdışı çalar.'
-                : "No internet — this surah isn't downloaded yet. Listen once online and it plays offline afterwards.")));
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text(
+              context.langCode == 'tr'
+                  ? 'İnternet yok — bu sure henüz indirilmedi. Bir kez internetliyken dinlersen sonrasında çevrimdışı çalar.'
+                  : "No internet — this surah isn't downloaded yet. Listen once online and it plays offline afterwards.",
+            ),
+          ),
+        );
         return;
       }
       // Bulunduğun yerden başla: görünen ilk ayetten itibaren oku (sesi
@@ -217,7 +234,11 @@ class _QuranReaderScreenState extends ConsumerState<QuranReaderScreen> {
         }
       }
       await _ctrl.play(
-          widget.surahNumber, surahName, _tracks, audioIndex < 0 ? 0 : audioIndex);
+        widget.surahNumber,
+        surahName,
+        _tracks,
+        audioIndex < 0 ? 0 : audioIndex,
+      );
     }
   }
 
@@ -236,7 +257,10 @@ class _QuranReaderScreenState extends ConsumerState<QuranReaderScreen> {
   }
 
   Future<void> _playAyah(
-      List<Verse> verses, int index, String surahName) async {
+    List<Verse> verses,
+    int index,
+    String surahName,
+  ) async {
     _buildTracks(verses, surahName);
     final audioIndex = _audibleAyahs.indexOf(verses[index].ayah);
     if (audioIndex < 0) return;
@@ -254,15 +278,28 @@ class _QuranReaderScreenState extends ConsumerState<QuranReaderScreen> {
   /// sesi olan ayet doğrudan oradan çalınabilir. Çalan ayet biliniyorsa ondan
   /// açar. SON ayetten ▶ → SONRAKİ surenin popup'ı; İLK ayetten ◀ → önceki
   /// surenin son ayeti → kullanıcı popup içinde TÜM Kur'an'ı gezebilir.
-  void _openVersesPopup(List<Verse> verses, String surahName, String lang,
-      {int? startIndex}) {
-    _openVersesPopupFor(widget.surahNumber, verses, surahName, lang,
-        startIndex: startIndex);
+  void _openVersesPopup(
+    List<Verse> verses,
+    String surahName,
+    String lang, {
+    int? startIndex,
+  }) {
+    _openVersesPopupFor(
+      widget.surahNumber,
+      verses,
+      surahName,
+      lang,
+      startIndex: startIndex,
+    );
   }
 
   void _openVersesPopupFor(
-      int surahNo, List<Verse> verses, String surahName, String lang,
-      {int? startIndex}) {
+    int surahNo,
+    List<Verse> verses,
+    String surahName,
+    String lang, {
+    int? startIndex,
+  }) {
     if (verses.isEmpty) return;
     final mine = surahNo == widget.surahNumber;
     final items = [
@@ -288,11 +325,15 @@ class _QuranReaderScreenState extends ConsumerState<QuranReaderScreen> {
                   } else {
                     // Başka surenin ayeti: kuyruğu kur + o ayetten çal.
                     // Çalmaya başlayınca sayfa zaten o sureye atlar (ref.listen).
-                    final tracks = buildQuranTracks(surahNo, surahName, verses,
-                        quranWallpaperArt(ref, surahNo));
+                    final tracks = buildQuranTracks(
+                      surahNo,
+                      surahName,
+                      verses,
+                      quranWallpaperArt(ref, surahNo),
+                    );
                     final audible = [
                       for (final v in verses)
-                        if (v.audio != null) v.ayah
+                        if (v.audio != null) v.ayah,
                     ];
                     final ai = audible.indexOf(verses[i].ayah);
                     if (tracks.isNotEmpty) {
@@ -302,7 +343,8 @@ class _QuranReaderScreenState extends ConsumerState<QuranReaderScreen> {
                 },
         ),
     ];
-    final initial = startIndex ??
+    final initial =
+        startIndex ??
         (mine && _currentAyah != null
             ? verses.indexWhere((v) => v.ayah == _currentAyah)
             : 0);
@@ -327,7 +369,11 @@ class _QuranReaderScreenState extends ConsumerState<QuranReaderScreen> {
   }
 
   /// [n] suresinin ayetlerini yükleyip popup'ını açar (sure-gezinti köprüsü).
-  Future<void> _openSurahPopup(int n, String lang, {required bool atEnd}) async {
+  Future<void> _openSurahPopup(
+    int n,
+    String lang, {
+    required bool atEnd,
+  }) async {
     if (n < 1 || n > 114) return;
     try {
       final verses = await ref.read(versesProvider(n).future);
@@ -340,8 +386,13 @@ class _QuranReaderScreenState extends ConsumerState<QuranReaderScreen> {
           break;
         }
       }
-      _openVersesPopupFor(n, verses, name, lang,
-          startIndex: atEnd ? verses.length - 1 : 0);
+      _openVersesPopupFor(
+        n,
+        verses,
+        name,
+        lang,
+        startIndex: atEnd ? verses.length - 1 : 0,
+      );
     } catch (_) {}
   }
 
@@ -396,49 +447,66 @@ class _QuranReaderScreenState extends ConsumerState<QuranReaderScreen> {
       // sureyi okur) | sonraki sure ▶. Play SADECE burada (Kur'an/Yâsîn okuyucu)
       // + mushaf altında; global köşe düğmesi kaldırıldı. Yukarı kaydırınca da
       // önceki/sonraki sureye geçilir (aşağıdaki overscroll nav).
-      bottomBar: _QuranReaderNav(
-        playing: isPlaying,
-        loading: st.loading,
-        canPlay: versesList.any((v) => v.audio != null),
-        onPlayPause: versesList.isEmpty
-            ? null
-            : () => _toggleSurah(versesList, surah?.name(lang) ?? 'Sure'),
-        onPrev: widget.surahNumber > 1
-            ? () => _goToSurah(widget.surahNumber - 1)
-            : null,
-        onNext: widget.surahNumber < 114
-            ? () => _goToSurah(widget.surahNumber + 1)
-            : null,
+      bottomBar: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          // İbadeti bölmeyen küçük "ses indiriliyor" rozeti (indirme bitince
+          // kendiliğinden kaybolur; indirme yokken yer kaplamaz).
+          const QuranCachingBadge(),
+          _QuranReaderNav(
+            playing: isPlaying,
+            loading: st.loading,
+            canPlay: versesList.any((v) => v.audio != null),
+            onPlayPause: versesList.isEmpty
+                ? null
+                : () => _toggleSurah(versesList, surah?.name(lang) ?? 'Sure'),
+            onPrev: widget.surahNumber > 1
+                ? () => _goToSurah(widget.surahNumber - 1)
+                : null,
+            onNext: widget.surahNumber < 114
+                ? () => _goToSurah(widget.surahNumber + 1)
+                : null,
+          ),
+        ],
       ),
       actions: [
         // ❤️ Favori — sure favorisi (Kur'an listesindeki kalple AYNI kayıt;
         // Beğendiklerim'in "Sureler" bölümüne düşer). Yâsîn dahil her surede.
-        Builder(builder: (context) {
-          final fav =
-              ref.watch(quranFavoritesProvider).contains(widget.surahNumber);
-          return IconButton(
-            tooltip: lang == 'tr'
-                ? (fav ? 'Favoriden çıkar' : 'Favorilere ekle')
-                : (fav ? 'Unfavourite' : 'Favourite'),
-            icon: Icon(fav ? AppIcons.favoriteFilled : AppIcons.favorite,
-                color: fav ? c.danger : c.gold),
-            onPressed: () => ref
-                .read(quranFavoritesProvider.notifier)
-                .toggle(widget.surahNumber),
-          );
-        }),
+        Builder(
+          builder: (context) {
+            final fav = ref
+                .watch(quranFavoritesProvider)
+                .contains(widget.surahNumber);
+            return IconButton(
+              tooltip: lang == 'tr'
+                  ? (fav ? 'Favoriden çıkar' : 'Favorilere ekle')
+                  : (fav ? 'Unfavourite' : 'Favourite'),
+              icon: Icon(
+                fav ? AppIcons.favoriteFilled : AppIcons.favorite,
+                color: fav ? c.danger : c.gold,
+              ),
+              onPressed: () => ref
+                  .read(quranFavoritesProvider.notifier)
+                  .toggle(widget.surahNumber),
+            );
+          },
+        ),
         // 📖 Mushaf Modu — bu surenin sayfasından gerçek mushaf görünümü.
         IconButton(
           tooltip: lang == 'tr' ? 'Mushaf modu' : 'Mushaf view',
           icon: Icon(Icons.auto_stories_rounded, color: c.gold),
-          onPressed: () => context.push(Routes.mushaf,
-              extra: pageForSurah(widget.surahNumber)),
+          onPressed: () => context.push(
+            Routes.mushaf,
+            extra: pageForSurah(widget.surahNumber),
+          ),
         ),
         versesAsync.maybeWhen(
           data: (list) => list.isEmpty
               ? const SizedBox.shrink()
               : IconButton(
-                  tooltip: lang == 'tr' ? 'Ayetleri tek tek aç' : 'Browse verses',
+                  tooltip: lang == 'tr'
+                      ? 'Ayetleri tek tek aç'
+                      : 'Browse verses',
                   icon: Icon(Icons.grid_view_rounded, color: c.gold),
                   onPressed: () =>
                       _openVersesPopup(list, surah?.name(lang) ?? 'Sure', lang),
@@ -450,8 +518,10 @@ class _QuranReaderScreenState extends ConsumerState<QuranReaderScreen> {
               ? const SizedBox.shrink()
               : IconButton(
                   tooltip: 'quran.listenSurah'.tr(),
-                  icon: Icon(isPlaying ? AppIcons.mute : AppIcons.playCircle,
-                      color: c.gold),
+                  icon: Icon(
+                    isPlaying ? AppIcons.mute : AppIcons.playCircle,
+                    color: c.gold,
+                  ),
                   onPressed: () =>
                       _toggleSurah(list, surah?.name(lang) ?? 'Sure'),
                 ),
@@ -477,62 +547,71 @@ class _QuranReaderScreenState extends ConsumerState<QuranReaderScreen> {
             return false;
           },
           child: ListView(
-          padding: const EdgeInsets.fromLTRB(
-              AppSpacing.base, AppSpacing.sm, AppSpacing.base, AppSpacing.xxxl),
-          children: [
-            if (surah != null)
-              _SurahHeader(
-                surah: surah,
-                lang: lang,
-                playing: isPlaying,
-                onListen: list.isEmpty
-                    ? null
-                    : () => _toggleSurah(list, surah.name(lang)),
-                onListenFromStart: list.isEmpty
-                    ? null
-                    : () => _listenFromStart(list, surah.name(lang)),
-              ),
-            const Gap.base(),
-            if (widget.surahNumber != 1 && widget.surahNumber != 9)
-              Padding(
-                padding: const EdgeInsets.symmetric(vertical: AppSpacing.md),
-                child: Text(_bismillah,
+            padding: const EdgeInsets.fromLTRB(
+              AppSpacing.base,
+              AppSpacing.sm,
+              AppSpacing.base,
+              AppSpacing.xxxl,
+            ),
+            children: [
+              if (surah != null)
+                _SurahHeader(
+                  surah: surah,
+                  lang: lang,
+                  playing: isPlaying,
+                  onListen: list.isEmpty
+                      ? null
+                      : () => _toggleSurah(list, surah.name(lang)),
+                  onListenFromStart: list.isEmpty
+                      ? null
+                      : () => _listenFromStart(list, surah.name(lang)),
+                ),
+              const Gap.base(),
+              if (widget.surahNumber != 1 && widget.surahNumber != 9)
+                Padding(
+                  padding: const EdgeInsets.symmetric(vertical: AppSpacing.md),
+                  child: Text(
+                    _bismillah,
                     textAlign: TextAlign.center,
                     textDirection: TextDirection.rtl,
-                    style: AppTypography.arabic(fontSize: 26, color: c.gold)),
-              ),
-            if (list.isEmpty)
-              Padding(
-                padding: const EdgeInsets.only(top: AppSpacing.xl),
-                child: SelayaEmpty(
-                  icon: AppIcons.book,
-                  message: lang == 'tr'
-                      ? 'Bu surenin tam metni yakında eklenecek.\nSık okunan kısa sureler (Fâtiha, Kadir, Fil–Nâs arası) hazır.'
-                      : 'Full text for this surah is coming soon.\nCommon short surahs (Al-Fatiha, Al-Qadr, Al-Fil–An-Nas) are ready.',
+                    style: AppTypography.arabic(fontSize: 26, color: c.gold),
+                  ),
                 ),
-              ),
-            for (var i = 0; i < list.length; i++)
-              _VerseTile(
-                key: _keys.putIfAbsent(list[i].ayah, () => GlobalKey()),
-                verse: list[i],
-                lang: lang,
-                playing: currentAyah == list[i].ayah,
-                onPlay: () => _playAyah(list, i, surah?.name(lang) ?? 'Sure'),
-                // Karta dokun → bu ayetten popup açılır (oradan tüm
-                // sureler ◀▶ ile gezilebilir + Oku ile çalınabilir).
-                onTap: () => _openVersesPopup(
-                    list, surah?.name(lang) ?? 'Sure', lang,
-                    startIndex: i),
-              ),
-            if (widget.surahNumber < 114)
-              _NextSurahCard(
-                surahs: surahs,
-                next: widget.surahNumber + 1,
-                lang: lang,
-                onTap: () => _goToSurah(widget.surahNumber + 1),
-              ),
-          ],
-        ),
+              if (list.isEmpty)
+                Padding(
+                  padding: const EdgeInsets.only(top: AppSpacing.xl),
+                  child: SelayaEmpty(
+                    icon: AppIcons.book,
+                    message: lang == 'tr'
+                        ? 'Bu surenin tam metni yakında eklenecek.\nSık okunan kısa sureler (Fâtiha, Kadir, Fil–Nâs arası) hazır.'
+                        : 'Full text for this surah is coming soon.\nCommon short surahs (Al-Fatiha, Al-Qadr, Al-Fil–An-Nas) are ready.',
+                  ),
+                ),
+              for (var i = 0; i < list.length; i++)
+                _VerseTile(
+                  key: _keys.putIfAbsent(list[i].ayah, () => GlobalKey()),
+                  verse: list[i],
+                  lang: lang,
+                  playing: currentAyah == list[i].ayah,
+                  onPlay: () => _playAyah(list, i, surah?.name(lang) ?? 'Sure'),
+                  // Karta dokun → bu ayetten popup açılır (oradan tüm
+                  // sureler ◀▶ ile gezilebilir + Oku ile çalınabilir).
+                  onTap: () => _openVersesPopup(
+                    list,
+                    surah?.name(lang) ?? 'Sure',
+                    lang,
+                    startIndex: i,
+                  ),
+                ),
+              if (widget.surahNumber < 114)
+                _NextSurahCard(
+                  surahs: surahs,
+                  next: widget.surahNumber + 1,
+                  lang: lang,
+                  onTap: () => _goToSurah(widget.surahNumber + 1),
+                ),
+            ],
+          ),
         ),
       ),
     );
@@ -545,11 +624,12 @@ class _NextSurahCard extends StatelessWidget {
   final int next;
   final String lang;
   final VoidCallback onTap;
-  const _NextSurahCard(
-      {required this.surahs,
-      required this.next,
-      required this.lang,
-      required this.onTap});
+  const _NextSurahCard({
+    required this.surahs,
+    required this.next,
+    required this.lang,
+    required this.onTap,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -559,7 +639,9 @@ class _NextSurahCard extends StatelessWidget {
     return SelayaCard(
       onTap: onTap,
       padding: const EdgeInsets.symmetric(
-          horizontal: AppSpacing.base, vertical: AppSpacing.md),
+        horizontal: AppSpacing.base,
+        vertical: AppSpacing.md,
+      ),
       child: Row(
         children: [
           Icon(Icons.swipe_up_rounded, color: c.gold, size: 22),
@@ -568,16 +650,19 @@ class _NextSurahCard extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(lang == 'tr' ? 'Sonraki Sure' : 'Next Surah',
-                    style: Theme.of(context)
-                        .textTheme
-                        .labelSmall
-                        ?.copyWith(color: c.textTertiary)),
-                Text(s?.name(lang) ?? 'Sure $next',
-                    style: Theme.of(context)
-                        .textTheme
-                        .titleMedium
-                        ?.copyWith(color: c.gold, fontWeight: FontWeight.w800)),
+                Text(
+                  lang == 'tr' ? 'Sonraki Sure' : 'Next Surah',
+                  style: Theme.of(
+                    context,
+                  ).textTheme.labelSmall?.copyWith(color: c.textTertiary),
+                ),
+                Text(
+                  s?.name(lang) ?? 'Sure $next',
+                  style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                    color: c.gold,
+                    fontWeight: FontWeight.w800,
+                  ),
+                ),
               ],
             ),
           ),
@@ -613,25 +698,23 @@ class _SurahHeader extends StatelessWidget {
   Widget build(BuildContext context) {
     final c = context.colors;
     return SelayaCard(
-      gradient: LinearGradient(colors: [
-        c.gold.withValues(alpha: 0.18),
-        c.surfaceAlt,
-      ]),
+      gradient: LinearGradient(
+        colors: [c.gold.withValues(alpha: 0.18), c.surfaceAlt],
+      ),
       child: Column(
         children: [
-          Text(surah.arabic,
-              textDirection: TextDirection.rtl,
-              style: AppTypography.arabic(fontSize: 34, color: c.gold)),
+          Text(
+            surah.arabic,
+            textDirection: TextDirection.rtl,
+            style: AppTypography.arabic(fontSize: 34, color: c.gold),
+          ),
           const Gap.xs(),
           Text(surah.name(lang), style: Theme.of(context).textTheme.titleLarge),
           Text(
-            '${surah.revelation == 'meccan' ? 'quran.meccan'.tr() : 'quran.medinan'.tr()} • ${'quran.ayahCount'.tr(args: [
-                  surah.ayahCount.toString()
-                ])}',
-            style: Theme.of(context)
-                .textTheme
-                .bodySmall
-                ?.copyWith(color: c.textTertiary),
+            '${surah.revelation == 'meccan' ? 'quran.meccan'.tr() : 'quran.medinan'.tr()} • ${'quran.ayahCount'.tr(args: [surah.ayahCount.toString()])}',
+            style: Theme.of(
+              context,
+            ).textTheme.bodySmall?.copyWith(color: c.textTertiary),
           ),
           if (onListen != null) ...[
             const Gap.md(),
@@ -640,16 +723,23 @@ class _SurahHeader extends StatelessWidget {
               children: [
                 OutlinedButton.icon(
                   onPressed: onListen,
-                  icon: Icon(playing ? AppIcons.mute : AppIcons.playCircle,
-                      size: 18, color: c.gold),
+                  icon: Icon(
+                    playing ? AppIcons.mute : AppIcons.playCircle,
+                    size: 18,
+                    color: c.gold,
+                  ),
                   label: Text(
-                      playing ? 'quran.pause'.tr() : 'quran.listenSurah'.tr(),
-                      style: TextStyle(
-                          color: c.gold, fontWeight: FontWeight.w600)),
+                    playing ? 'quran.pause'.tr() : 'quran.listenSurah'.tr(),
+                    style: TextStyle(
+                      color: c.gold,
+                      fontWeight: FontWeight.w600,
+                    ),
+                  ),
                   style: OutlinedButton.styleFrom(
                     side: BorderSide(color: c.gold.withValues(alpha: 0.5)),
                     shape: const RoundedRectangleBorder(
-                        borderRadius: AppRadius.rLg),
+                      borderRadius: AppRadius.rLg,
+                    ),
                   ),
                 ),
                 if (onListenFromStart != null) ...[
@@ -657,10 +747,15 @@ class _SurahHeader extends StatelessWidget {
                   // "Baştan": dinleme nereden açılırsa açılsın 1. ayete döner.
                   TextButton.icon(
                     onPressed: onListenFromStart,
-                    icon: Icon(Icons.restart_alt_rounded,
-                        size: 18, color: c.textSecondary),
-                    label: Text(lang == 'tr' ? 'Baştan' : 'From start',
-                        style: TextStyle(color: c.textSecondary)),
+                    icon: Icon(
+                      Icons.restart_alt_rounded,
+                      size: 18,
+                      color: c.textSecondary,
+                    ),
+                    label: Text(
+                      lang == 'tr' ? 'Baştan' : 'From start',
+                      style: TextStyle(color: c.textSecondary),
+                    ),
                   ),
                 ],
               ],
@@ -694,85 +789,108 @@ class _VerseTile extends StatelessWidget {
       behavior: HitTestBehavior.opaque,
       onTap: onTap, // karta dokun → ayet popup'ı (oynat düğmesi ayrı çalışır)
       child: Container(
-      margin: const EdgeInsets.only(bottom: AppSpacing.md),
-      padding: const EdgeInsets.all(AppSpacing.base),
-      decoration: BoxDecoration(
-        color: playing ? c.gold.withValues(alpha: 0.10) : c.surfaceAlt,
-        borderRadius: AppRadius.rLg,
-        border: Border.all(
+        margin: const EdgeInsets.only(bottom: AppSpacing.md),
+        padding: const EdgeInsets.all(AppSpacing.base),
+        decoration: BoxDecoration(
+          color: playing ? c.gold.withValues(alpha: 0.10) : c.surfaceAlt,
+          borderRadius: AppRadius.rLg,
+          border: Border.all(
             color: playing ? c.gold.withValues(alpha: 0.6) : c.border,
-            width: playing ? 1.5 : 1),
-      ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Row(
-            children: [
-              CircleAvatar(
-                radius: 14,
-                backgroundColor: c.gold.withValues(alpha: 0.14),
-                child: Text('${verse.ayah}',
+            width: playing ? 1.5 : 1,
+          ),
+        ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Row(
+              children: [
+                CircleAvatar(
+                  radius: 14,
+                  backgroundColor: c.gold.withValues(alpha: 0.14),
+                  child: Text(
+                    '${verse.ayah}',
                     style: TextStyle(
-                        color: c.gold, fontSize: 12, fontWeight: FontWeight.w700)),
-              ),
-              if (playing) ...[
-                const Gap.sm(),
-                // ④ "Şu an okunuyor" göstergesi — çalan ayeti net işaretler.
-                Container(
-                  padding:
-                      const EdgeInsets.symmetric(horizontal: 8, vertical: 2),
-                  decoration: BoxDecoration(
-                    color: c.gold.withValues(alpha: 0.16),
-                    borderRadius: BorderRadius.circular(99),
-                  ),
-                  child: Row(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      Icon(Icons.graphic_eq_rounded, size: 12, color: c.gold),
-                      const SizedBox(width: 4),
-                      Text(lang == 'tr' ? 'okunuyor' : 'reciting',
-                          style: TextStyle(
-                              color: c.gold,
-                              fontSize: 10,
-                              fontWeight: FontWeight.w700)),
-                    ],
+                      color: c.gold,
+                      fontSize: 12,
+                      fontWeight: FontWeight.w700,
+                    ),
                   ),
                 ),
+                if (playing) ...[
+                  const Gap.sm(),
+                  // ④ "Şu an okunuyor" göstergesi — çalan ayeti net işaretler.
+                  Container(
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 8,
+                      vertical: 2,
+                    ),
+                    decoration: BoxDecoration(
+                      color: c.gold.withValues(alpha: 0.16),
+                      borderRadius: BorderRadius.circular(99),
+                    ),
+                    child: Row(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        Icon(Icons.graphic_eq_rounded, size: 12, color: c.gold),
+                        const SizedBox(width: 4),
+                        Text(
+                          lang == 'tr' ? 'okunuyor' : 'reciting',
+                          style: TextStyle(
+                            color: c.gold,
+                            fontSize: 10,
+                            fontWeight: FontWeight.w700,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
+                const Spacer(),
+                IconButton(
+                  visualDensity: VisualDensity.compact,
+                  icon: Icon(
+                    playing ? AppIcons.volumeHigh : AppIcons.playCircle,
+                    color: c.gold,
+                  ),
+                  onPressed: onPlay,
+                ),
               ],
-              const Spacer(),
-              IconButton(
-                visualDensity: VisualDensity.compact,
-                icon: Icon(playing ? AppIcons.volumeHigh : AppIcons.playCircle,
-                    color: c.gold),
-                onPressed: onPlay,
-              ),
-            ],
-          ),
-          const Gap.sm(),
-          // Full-width so the Arabic always right-aligns (RTL) consistently —
-          // otherwise a short verse sizes to its content and sits on the left.
-          SizedBox(
-            width: double.infinity,
-            child: Text(verse.arabic,
+            ),
+            const Gap.sm(),
+            // Full-width so the Arabic always right-aligns (RTL) consistently —
+            // otherwise a short verse sizes to its content and sits on the left.
+            SizedBox(
+              width: double.infinity,
+              child: Text(
+                verse.arabic,
                 textAlign: TextAlign.right,
                 textDirection: TextDirection.rtl,
                 style: AppTypography.arabic(
-                    fontSize: 28, color: playing ? c.gold : c.textPrimary)),
-          ),
-          if (verse.transliteration.isNotEmpty) ...[
-            const Gap.sm(),
-            Text(verse.transliteration,
+                  fontSize: 28,
+                  color: playing ? c.gold : c.textPrimary,
+                ),
+              ),
+            ),
+            if (verse.transliteration.isNotEmpty) ...[
+              const Gap.sm(),
+              Text(
+                verse.transliteration,
                 style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                    color: c.gold, fontStyle: FontStyle.italic)),
+                  color: c.gold,
+                  fontStyle: FontStyle.italic,
+                ),
+              ),
+            ],
+            const Gap.sm(),
+            Text(
+              verse.meaning(lang),
+              style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                color: c.textSecondary,
+                height: 1.5,
+              ),
+            ),
           ],
-          const Gap.sm(),
-          Text(verse.meaning(lang),
-              style: Theme.of(context)
-                  .textTheme
-                  .bodyMedium
-                  ?.copyWith(color: c.textSecondary, height: 1.5)),
-        ],
-      ),
+        ),
       ),
     );
   }
@@ -808,7 +926,9 @@ class _QuranReaderNav extends StatelessWidget {
       ),
       child: Padding(
         padding: const EdgeInsets.symmetric(
-            horizontal: AppSpacing.lg, vertical: AppSpacing.xs),
+          horizontal: AppSpacing.lg,
+          vertical: AppSpacing.xs,
+        ),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
@@ -830,8 +950,8 @@ class _QuranReaderNav extends StatelessWidget {
                     loading
                         ? Icons.hourglass_bottom_rounded
                         : (playing
-                            ? Icons.pause_rounded
-                            : Icons.play_arrow_rounded),
+                              ? Icons.pause_rounded
+                              : Icons.play_arrow_rounded),
                     color: canPlay ? c.bg : c.gold.withValues(alpha: 0.5),
                     size: 30,
                   ),
@@ -859,8 +979,9 @@ class _NavBtn extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final c = context.colors;
-    final color =
-        onTap != null ? c.gold : c.textTertiary.withValues(alpha: 0.4);
+    final color = onTap != null
+        ? c.gold
+        : c.textTertiary.withValues(alpha: 0.4);
     return InkWell(
       onTap: onTap,
       borderRadius: BorderRadius.circular(12),
@@ -871,11 +992,12 @@ class _NavBtn extends StatelessWidget {
           children: [
             Icon(icon, color: color, size: 26),
             const SizedBox(height: 2),
-            Text(label,
-                style: Theme.of(context)
-                    .textTheme
-                    .labelSmall
-                    ?.copyWith(color: color)),
+            Text(
+              label,
+              style: Theme.of(
+                context,
+              ).textTheme.labelSmall?.copyWith(color: color),
+            ),
           ],
         ),
       ),

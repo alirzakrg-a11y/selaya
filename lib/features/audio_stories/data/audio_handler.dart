@@ -3,6 +3,7 @@ import 'dart:io';
 
 import 'package:audio_service/audio_service.dart';
 import 'package:audio_session/audio_session.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:http/http.dart' as http;
 import 'package:just_audio/just_audio.dart';
@@ -43,32 +44,49 @@ Future<Directory> _quranAudioDir() async {
   return _quranAudioCacheDir = d;
 }
 
-File _quranCacheFile(Directory dir, MediaTrack t) => File(
-    '${dir.path}/${t.id.replaceAll(RegExp(r'[^0-9A-Za-z_]'), '_')}.mp3');
+File _quranCacheFile(Directory dir, MediaTrack t) =>
+    File('${dir.path}/${t.id.replaceAll(RegExp(r'[^0-9A-Za-z_]'), '_')}.mp3');
 
 /// Çalma listesini çözer: yereli olan ayet dosyadan (ağ YOK), olmayan ağdan akar.
 Future<List<AudioSource>> _resolveQuranSources(List<MediaTrack> list) async {
   final dir = await _quranAudioDir();
-  return Future.wait(list.map((t) async {
-    final f = _quranCacheFile(dir, t);
-    if (await f.exists() && await f.length() > 1024) {
-      return AudioSource.uri(Uri.file(f.path));
-    }
-    return AudioSource.uri(Uri.parse(t.url));
-  }));
+  return Future.wait(
+    list.map((t) async {
+      final f = _quranCacheFile(dir, t);
+      if (await f.exists() && await f.length() > 1024) {
+        return AudioSource.uri(Uri.file(f.path));
+      }
+      return AudioSource.uri(Uri.parse(t.url));
+    }),
+  );
 }
+
+/// Kur'an ayet sesi ŞU AN arka planda İNDİRİLİYOR mu — UI çok küçük, ibadeti
+/// BÖLMEYEN bir "indiriliyor" rozeti göstersin diye (kullanıcı 2026-06-17). Aynı
+/// anda birden çok ayet inebileceğinden sayaçla yönetilir: hepsi bitince false.
+final ValueNotifier<bool> quranCaching = ValueNotifier<bool>(false);
+int _activeQuranDownloads = 0;
 
 /// Tek ayeti (çalarken) arka planda indirir — yalnız henüz yoksa. Tek-tek
 /// indirildiğinden toplu istek patlaması (thundering herd) olmaz; rate-limit'i
-/// de zorlamaz.
+/// de zorlamaz. İndirme başlayınca [quranCaching] true olur, bitince false.
 Future<void> _cacheQuranTrack(MediaTrack t) async {
   try {
     final dir = await _quranAudioDir();
     final f = _quranCacheFile(dir, t);
-    if (await f.exists() && await f.length() > 1024) return;
-    final resp = await http.get(Uri.parse(t.url));
-    if (resp.statusCode == 200 && resp.bodyBytes.length > 1024) {
-      await f.writeAsBytes(resp.bodyBytes, flush: true);
+    if (await f.exists() && await f.length() > 1024) return; // zaten yerel
+    _activeQuranDownloads++;
+    quranCaching.value = true;
+    try {
+      final resp = await http.get(Uri.parse(t.url));
+      if (resp.statusCode == 200 && resp.bodyBytes.length > 1024) {
+        await f.writeAsBytes(resp.bodyBytes, flush: true);
+      }
+    } finally {
+      if (--_activeQuranDownloads <= 0) {
+        _activeQuranDownloads = 0;
+        quranCaching.value = false;
+      }
     }
   } catch (_) {}
 }
@@ -120,17 +138,19 @@ class AppAudioHandler extends BaseAudioHandler with SeekHandler {
 
   void _broadcast() {
     final playing = player.playing;
-    playbackState.add(playbackState.value.copyWith(
-      controls: [
-        MediaControl.skipToPrevious,
-        if (playing) MediaControl.pause else MediaControl.play,
-        MediaControl.stop,
-        MediaControl.skipToNext,
-      ],
-      androidCompactActionIndices: const [0, 1, 3],
-      processingState: _procMap[player.processingState]!,
-      playing: playing,
-    ));
+    playbackState.add(
+      playbackState.value.copyWith(
+        controls: [
+          MediaControl.skipToPrevious,
+          if (playing) MediaControl.pause else MediaControl.play,
+          MediaControl.stop,
+          MediaControl.skipToNext,
+        ],
+        androidCompactActionIndices: const [0, 1, 3],
+        processingState: _procMap[player.processingState]!,
+        playing: playing,
+      ),
+    );
   }
 
   @override
@@ -140,8 +160,12 @@ class AppAudioHandler extends BaseAudioHandler with SeekHandler {
   Future<void> skipToPrevious() => player.seekToPrevious();
 
   /// Sesli hikâye: bölüm listesi (prev/next bölümler arasında gezer).
-  Future<void> playPlaylist(List<MediaTrack> list,
-      {String albumTitle = '', int startIndex = 0, String mode = 'story'}) async {
+  Future<void> playPlaylist(
+    List<MediaTrack> list, {
+    String albumTitle = '',
+    int startIndex = 0,
+    String mode = 'story',
+  }) async {
     if (list.isEmpty) return;
     this.mode = mode;
     tracks = list;
@@ -168,14 +192,16 @@ class AppAudioHandler extends BaseAudioHandler with SeekHandler {
   void _setTrackMediaItem(int? i) {
     if (i == null || i < 0 || i >= tracks.length) return;
     final t = tracks[i];
-    mediaItem.add(MediaItem(
-      id: t.id,
-      title: t.title,
-      album: album.isNotEmpty ? album : 'Sesli Hikâye',
-      artist: 'SELAYA',
-      artUri: t.artUri.isNotEmpty ? Uri.tryParse(t.artUri) : null,
-      duration: t.durationSec > 0 ? Duration(seconds: t.durationSec) : null,
-    ));
+    mediaItem.add(
+      MediaItem(
+        id: t.id,
+        title: t.title,
+        album: album.isNotEmpty ? album : 'Sesli Hikâye',
+        artist: 'SELAYA',
+        artUri: t.artUri.isNotEmpty ? Uri.tryParse(t.artUri) : null,
+        duration: t.durationSec > 0 ? Duration(seconds: t.durationSec) : null,
+      ),
+    );
   }
 
   @override
@@ -190,12 +216,17 @@ class AppAudioHandler extends BaseAudioHandler with SeekHandler {
     tracks = const [];
     mode = 'idle';
     mediaItem.add(null);
-    playbackState.add(playbackState.value.copyWith(
-        processingState: AudioProcessingState.idle, playing: false));
+    playbackState.add(
+      playbackState.value.copyWith(
+        processingState: AudioProcessingState.idle,
+        playing: false,
+      ),
+    );
   }
 }
 
 /// The app-wide media handler. Overridden in `main()` with the
 /// `AudioService.init` result; falls back to a plain handler if init fails.
 final audioHandlerProvider = Provider<AppAudioHandler>(
-    (ref) => throw UnimplementedError('overridden in main()'));
+  (ref) => throw UnimplementedError('overridden in main()'),
+);
