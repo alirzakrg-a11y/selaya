@@ -18,19 +18,25 @@ class Surah {
   final int ayahCount;
   final String revelation; // meccan | medinan
   final Map<String, dynamic> translations;
-  const Surah(this.number, this.arabic, this.transliteration, this.ayahCount,
-      this.revelation, this.translations);
+  const Surah(
+    this.number,
+    this.arabic,
+    this.transliteration,
+    this.ayahCount,
+    this.revelation,
+    this.translations,
+  );
 
   String name(String l) => translations.mapFor(l)['name'] as String;
 
   factory Surah.fromJson(Map<String, dynamic> j) => Surah(
-        j['number'] as int,
-        j['arabic'] as String,
-        j['transliteration'] as String,
-        j['ayahCount'] as int,
-        j['revelation'] as String,
-        _tr(j),
-      );
+    j['number'] as int,
+    j['arabic'] as String,
+    j['transliteration'] as String,
+    j['ayahCount'] as int,
+    j['revelation'] as String,
+    _tr(j),
+  );
 }
 
 class Verse {
@@ -39,18 +45,23 @@ class Verse {
   final String transliteration;
   final String? audio;
   final Map<String, dynamic> translations;
-  const Verse(this.ayah, this.arabic, this.transliteration, this.audio,
-      this.translations);
+  const Verse(
+    this.ayah,
+    this.arabic,
+    this.transliteration,
+    this.audio,
+    this.translations,
+  );
 
   String meaning(String l) => translations.stringFor(l);
 
   factory Verse.fromJson(Map<String, dynamic> j) => Verse(
-        j['ayah'] as int,
-        j['arabic'] as String,
-        j['transliteration'] as String? ?? '',
-        j['audio'] as String?,
-        _tr(j),
-      );
+    j['ayah'] as int,
+    j['arabic'] as String,
+    j['transliteration'] as String? ?? '',
+    j['audio'] as String?,
+    _tr(j),
+  );
 }
 
 class Asma {
@@ -59,19 +70,24 @@ class Asma {
   final String arabic;
   final String transliteration;
   final Map<String, dynamic> translations;
-  const Asma(this.id, this.order, this.arabic, this.transliteration,
-      this.translations);
+  const Asma(
+    this.id,
+    this.order,
+    this.arabic,
+    this.transliteration,
+    this.translations,
+  );
 
   String name(String l) => translations.mapFor(l)['name'] as String;
   String meaning(String l) => translations.mapFor(l)['meaning'] as String;
 
   factory Asma.fromJson(Map<String, dynamic> j) => Asma(
-        j['id'] as int,
-        j['order'] as int,
-        j['arabic'] as String,
-        j['transliteration'] as String,
-        _tr(j),
-      );
+    j['id'] as int,
+    j['order'] as int,
+    j['arabic'] as String,
+    j['transliteration'] as String,
+    _tr(j),
+  );
 }
 
 class Dua {
@@ -81,20 +97,26 @@ class Dua {
   final String arabic;
   final String transliteration;
   final Map<String, dynamic> translations;
-  const Dua(this.id, this.category, this.source, this.arabic,
-      this.transliteration, this.translations);
+  const Dua(
+    this.id,
+    this.category,
+    this.source,
+    this.arabic,
+    this.transliteration,
+    this.translations,
+  );
 
   String title(String l) => translations.mapFor(l)['title'] as String;
   String text(String l) => translations.mapFor(l)['text'] as String;
 
   factory Dua.fromJson(Map<String, dynamic> j) => Dua(
-        j['id'] as String,
-        j['category'] as String,
-        j['source'] as String? ?? '',
-        j['arabic'] as String,
-        j['transliteration'] as String? ?? '',
-        _tr(j),
-      );
+    j['id'] as String,
+    j['category'] as String,
+    j['source'] as String? ?? '',
+    j['arabic'] as String,
+    j['transliteration'] as String? ?? '',
+    _tr(j),
+  );
 }
 
 class Hadith {
@@ -104,19 +126,25 @@ class Hadith {
   final String grade;
   final String arabic;
   final Map<String, dynamic> translations;
-  const Hadith(this.id, this.collection, this.narrator, this.grade, this.arabic,
-      this.translations);
+  const Hadith(
+    this.id,
+    this.collection,
+    this.narrator,
+    this.grade,
+    this.arabic,
+    this.translations,
+  );
 
   String text(String l) => translations.mapFor(l)['text'] as String;
 
   factory Hadith.fromJson(Map<String, dynamic> j) => Hadith(
-        j['id'] as String,
-        j['collection'] as String,
-        j['narrator'] as String? ?? '',
-        j['grade'] as String? ?? '',
-        j['arabic'] as String,
-        _tr(j),
-      );
+    j['id'] as String,
+    j['collection'] as String,
+    j['narrator'] as String? ?? '',
+    j['grade'] as String? ?? '',
+    j['arabic'] as String,
+    _tr(j),
+  );
 }
 
 class InspirationItem {
@@ -126,19 +154,25 @@ class InspirationItem {
   final String image;
   final String arabic;
   final Map<String, dynamic> translations;
-  const InspirationItem(this.id, this.type, this.reference, this.image,
-      this.arabic, this.translations);
+  const InspirationItem(
+    this.id,
+    this.type,
+    this.reference,
+    this.image,
+    this.arabic,
+    this.translations,
+  );
 
   String text(String l) => translations.mapFor(l)['text'] as String;
 
   factory InspirationItem.fromJson(Map<String, dynamic> j) => InspirationItem(
-        j['id'] as String,
-        j['type'] as String,
-        j['reference'] as String? ?? '',
-        j['image'] as String? ?? '',
-        j['arabic'] as String? ?? '',
-        _tr(j),
-      );
+    j['id'] as String,
+    j['type'] as String,
+    j['reference'] as String? ?? '',
+    j['image'] as String? ?? '',
+    j['arabic'] as String? ?? '',
+    _tr(j),
+  );
 }
 
 class StorySlide {
@@ -147,19 +181,25 @@ class StorySlide {
   final String? arabic;
   final String? video; // panel video hikâyesi (varsa görsel yerine oynatılır)
   final Map<String, dynamic> translations;
-  const StorySlide(this.image, this.durationMs, this.arabic, this.translations,
-      {this.video});
+  const StorySlide(
+    this.image,
+    this.durationMs,
+    this.arabic,
+    this.translations, {
+    this.video,
+  });
 
-  String heading(String l) => translations.mapFor(l)['heading'] as String? ?? '';
+  String heading(String l) =>
+      translations.mapFor(l)['heading'] as String? ?? '';
   String body(String l) => translations.mapFor(l)['body'] as String? ?? '';
 
   factory StorySlide.fromJson(Map<String, dynamic> j) => StorySlide(
-        j['image'] as String,
-        j['durationMs'] as int? ?? 6000,
-        j['arabic'] as String?,
-        _tr(j),
-        video: j['video'] as String?,
-      );
+    j['image'] as String,
+    j['durationMs'] as int? ?? 6000,
+    j['arabic'] as String?,
+    _tr(j),
+    video: j['video'] as String?,
+  );
 }
 
 class Story {
@@ -169,71 +209,28 @@ class Story {
   final String cover;
   final List<StorySlide> slides;
   final Map<String, dynamic> translations;
-  const Story(this.id, this.type, this.accent, this.cover, this.slides,
-      this.translations);
+  const Story(
+    this.id,
+    this.type,
+    this.accent,
+    this.cover,
+    this.slides,
+    this.translations,
+  );
 
   String title(String l) => translations.mapFor(l)['title'] as String;
   Color get accentColor => hexColor(accent);
 
   factory Story.fromJson(Map<String, dynamic> j) => Story(
-        j['id'] as String,
-        j['type'] as String,
-        j['accent'] as String? ?? '#E0B250',
-        j['cover'] as String,
-        (j['slides'] as List)
-            .map((e) => StorySlide.fromJson((e as Map).cast<String, dynamic>()))
-            .toList(),
-        _tr(j),
-      );
-}
-
-class AudioEpisode {
-  final String id;
-  final String audio; // url
-  final int durationSec;
-  final String cover;
-  final Map<String, dynamic> translations;
-  const AudioEpisode(
-      this.id, this.audio, this.durationSec, this.cover, this.translations);
-
-  String title(String l) => translations.mapFor(l)['title'] as String;
-  String subtitle(String l) => translations.mapFor(l)['subtitle'] as String? ?? '';
-
-  factory AudioEpisode.fromJson(Map<String, dynamic> j) => AudioEpisode(
-        j['id'] as String,
-        j['audio'] as String,
-        j['durationSec'] as int? ?? 0,
-        j['cover'] as String? ?? '',
-        _tr(j),
-      );
-}
-
-class AudioStoryCategory {
-  final String id;
-  final String iconKey;
-  final String accent;
-  final String cover;
-  final List<AudioEpisode> episodes;
-  final Map<String, dynamic> translations;
-  const AudioStoryCategory(this.id, this.iconKey, this.accent, this.cover,
-      this.episodes, this.translations);
-
-  String title(String l) => translations.mapFor(l)['title'] as String;
-  String subtitle(String l) => translations.mapFor(l)['subtitle'] as String? ?? '';
-  Color get accentColor => hexColor(accent);
-
-  factory AudioStoryCategory.fromJson(Map<String, dynamic> j) =>
-      AudioStoryCategory(
-        j['id'] as String,
-        j['iconKey'] as String? ?? 'prophets',
-        j['accent'] as String? ?? '#E0B250',
-        j['cover'] as String? ?? '',
-        (j['episodes'] as List)
-            .map((e) =>
-                AudioEpisode.fromJson((e as Map).cast<String, dynamic>()))
-            .toList(),
-        _tr(j),
-      );
+    j['id'] as String,
+    j['type'] as String,
+    j['accent'] as String? ?? '#E0B250',
+    j['cover'] as String,
+    (j['slides'] as List)
+        .map((e) => StorySlide.fromJson((e as Map).cast<String, dynamic>()))
+        .toList(),
+    _tr(j),
+  );
 }
 
 class GreetingMessage {
@@ -248,24 +245,30 @@ class GreetingMessage {
 }
 
 class GreetingOccasion {
-  final String occasion; // friday | bayram | ramazan | kandil | birthday | general
+  final String
+  occasion; // friday | bayram | ramazan | kandil | birthday | general
   final String iconKey;
   final List<GreetingMessage> messages;
   final Map<String, dynamic> translations;
   const GreetingOccasion(
-      this.occasion, this.iconKey, this.messages, this.translations);
+    this.occasion,
+    this.iconKey,
+    this.messages,
+    this.translations,
+  );
 
   String label(String l) => translations.mapFor(l)['label'] as String;
 
   factory GreetingOccasion.fromJson(Map<String, dynamic> j) => GreetingOccasion(
-        j['occasion'] as String,
-        j['iconKey'] as String? ?? 'card',
-        (j['messages'] as List)
-            .map((e) =>
-                GreetingMessage.fromJson((e as Map).cast<String, dynamic>()))
-            .toList(),
-        _tr(j),
-      );
+    j['occasion'] as String,
+    j['iconKey'] as String? ?? 'card',
+    (j['messages'] as List)
+        .map(
+          (e) => GreetingMessage.fromJson((e as Map).cast<String, dynamic>()),
+        )
+        .toList(),
+    _tr(j),
+  );
 }
 
 class CalendarDay {
@@ -275,8 +278,14 @@ class CalendarDay {
   final String type;
   final int days; // duration (1 for single-day, e.g. 4 for Eid al-Adha)
   final Map<String, dynamic> translations;
-  const CalendarDay(this.id, this.gregorian, this.hijri, this.type, this.days,
-      this.translations);
+  const CalendarDay(
+    this.id,
+    this.gregorian,
+    this.hijri,
+    this.type,
+    this.days,
+    this.translations,
+  );
 
   String name(String l) => translations.mapFor(l)['name'] as String;
   String note(String l) => translations.mapFor(l)['note'] as String? ?? '';
@@ -293,13 +302,13 @@ class CalendarDay {
   bool get isMultiDay => days > 1;
 
   factory CalendarDay.fromJson(Map<String, dynamic> j) => CalendarDay(
-        j['id'] as String,
-        DateTime.parse(j['gregorian'] as String),
-        j['hijri'] as String,
-        j['type'] as String,
-        j['days'] as int? ?? 1,
-        _tr(j),
-      );
+    j['id'] as String,
+    DateTime.parse(j['gregorian'] as String),
+    j['hijri'] as String,
+    j['type'] as String,
+    j['days'] as int? ?? 1,
+    _tr(j),
+  );
 }
 
 class AiSource {
@@ -317,22 +326,25 @@ class AiQa {
   final List<String> keywords;
   final Map<String, dynamic> translations;
   const AiQa(
-      this.id, this.category, this.sources, this.keywords, this.translations);
+    this.id,
+    this.category,
+    this.sources,
+    this.keywords,
+    this.translations,
+  );
 
   String question(String l) => translations.mapFor(l)['question'] as String;
   String answer(String l) => translations.mapFor(l)['answer'] as String;
 
   factory AiQa.fromJson(Map<String, dynamic> j) => AiQa(
-        j['id'] as String,
-        j['category'] as String? ?? 'general',
-        ((j['sources'] as List?) ?? const [])
-            .map((e) => AiSource.fromJson((e as Map).cast<String, dynamic>()))
-            .toList(),
-        ((j['keywords'] as List?) ?? const [])
-            .map((e) => e.toString())
-            .toList(),
-        _tr(j),
-      );
+    j['id'] as String,
+    j['category'] as String? ?? 'general',
+    ((j['sources'] as List?) ?? const [])
+        .map((e) => AiSource.fromJson((e as Map).cast<String, dynamic>()))
+        .toList(),
+    ((j['keywords'] as List?) ?? const []).map((e) => e.toString()).toList(),
+    _tr(j),
+  );
 }
 
 class Wallpaper {
@@ -347,9 +359,15 @@ class Wallpaper {
   /// tam boy [image] yalnızca detay/indirme ekranında çekilir.
   final String thumb;
 
-  const Wallpaper(this.id, this.category, this.image, this.premium,
-      this.palette, this.translations,
-      {this.thumb = ''});
+  const Wallpaper(
+    this.id,
+    this.category,
+    this.image,
+    this.premium,
+    this.palette,
+    this.translations, {
+    this.thumb = '',
+  });
 
   /// Izgara/kart görünümleri için: önizleme varsa o, yoksa tam görsel.
   String get gridImage => thumb.isEmpty ? image : thumb;
@@ -358,13 +376,13 @@ class Wallpaper {
   List<Color> get colors => palette.map(hexColor).toList();
 
   factory Wallpaper.fromJson(Map<String, dynamic> j) => Wallpaper(
-        j['id'] as String,
-        j['category'] as String,
-        j['image'] as String,
-        j['premium'] as bool? ?? false,
-        ((j['palette'] as List?) ?? const ['#05070D', '#E0B250']).cast<String>(),
-        _tr(j),
-      );
+    j['id'] as String,
+    j['category'] as String,
+    j['image'] as String,
+    j['premium'] as bool? ?? false,
+    ((j['palette'] as List?) ?? const ['#05070D', '#E0B250']).cast<String>(),
+    _tr(j),
+  );
 }
 
 class Mosque {
@@ -376,15 +394,16 @@ class Mosque {
   const Mosque(this.id, this.lat, this.lng, this.distanceKm, this.translations);
 
   String name(String l) => translations.mapFor(l)['name'] as String;
-  String address(String l) => translations.mapFor(l)['address'] as String? ?? '';
+  String address(String l) =>
+      translations.mapFor(l)['address'] as String? ?? '';
 
   factory Mosque.fromJson(Map<String, dynamic> j) => Mosque(
-        j['id'] as String,
-        (j['lat'] as num).toDouble(),
-        (j['lng'] as num).toDouble(),
-        (j['distanceKm'] as num?)?.toDouble() ?? 0,
-        _tr(j),
-      );
+    j['id'] as String,
+    (j['lat'] as num).toDouble(),
+    (j['lng'] as num).toDouble(),
+    (j['distanceKm'] as num?)?.toDouble() ?? 0,
+    _tr(j),
+  );
 }
 
 class FeedItem {
@@ -395,23 +414,31 @@ class FeedItem {
   final String author;
   final int likes;
   final Map<String, dynamic> translations;
-  const FeedItem(this.id, this.type, this.poster, this.video, this.author,
-      this.likes, this.translations);
+  const FeedItem(
+    this.id,
+    this.type,
+    this.poster,
+    this.video,
+    this.author,
+    this.likes,
+    this.translations,
+  );
 
   String title(String l) => translations.mapFor(l)['title'] as String;
-  String caption(String l) => translations.mapFor(l)['caption'] as String? ?? '';
+  String caption(String l) =>
+      translations.mapFor(l)['caption'] as String? ?? '';
 
   /// Asset path today (e.g. `assets/images/videolar/x.mp4`) or a remote URL
   /// later (`https://…`); empty when the item carries no video.
   factory FeedItem.fromJson(Map<String, dynamic> j) => FeedItem(
-        j['id'] as String,
-        j['type'] as String? ?? 'video',
-        j['poster'] as String,
-        j['video'] as String? ?? '',
-        j['author'] as String? ?? 'SELAYA',
-        j['likes'] as int? ?? 0,
-        _tr(j),
-      );
+    j['id'] as String,
+    j['type'] as String? ?? 'video',
+    j['poster'] as String,
+    j['video'] as String? ?? '',
+    j['author'] as String? ?? 'SELAYA',
+    j['likes'] as int? ?? 0,
+    _tr(j),
+  );
 }
 
 class DhikrPreset {
@@ -420,17 +447,23 @@ class DhikrPreset {
   final String transliteration;
   final int target;
   final Map<String, dynamic> translations;
-  const DhikrPreset(this.id, this.arabic, this.transliteration, this.target,
-      this.translations);
+  const DhikrPreset(
+    this.id,
+    this.arabic,
+    this.transliteration,
+    this.target,
+    this.translations,
+  );
 
   String name(String l) => translations.mapFor(l)['name'] as String;
-  String meaning(String l) => translations.mapFor(l)['meaning'] as String? ?? '';
+  String meaning(String l) =>
+      translations.mapFor(l)['meaning'] as String? ?? '';
 
   factory DhikrPreset.fromJson(Map<String, dynamic> j) => DhikrPreset(
-        j['id'] as String,
-        j['arabic'] as String,
-        j['transliteration'] as String? ?? '',
-        j['target'] as int? ?? 33,
-        _tr(j),
-      );
+    j['id'] as String,
+    j['arabic'] as String,
+    j['transliteration'] as String? ?? '',
+    j['target'] as int? ?? 33,
+    _tr(j),
+  );
 }

@@ -22,6 +22,10 @@ class SplashScreen extends ConsumerStatefulWidget {
 }
 
 class _SplashScreenState extends ConsumerState<SplashScreen> {
+  // İlk açılış senkronizasyon ilerlemesi (0→1) — alttaki çubuk bunu gösterir.
+  double _progress = 0.05;
+  String _syncLabel = '';
+
   @override
   void initState() {
     super.initState();
@@ -41,8 +45,13 @@ class _SplashScreenState extends ConsumerState<SplashScreen> {
       if (mounted && hadiths.isNotEmpty) {
         final h = hadiths[DateTime.now().day % hadiths.length];
         final label = lang == 'tr' ? 'Günün Hadisi' : 'Hadith of the Day';
-        await ref.read(widgetServiceProvider).updateHadith(
-            text: h.text(lang), reference: h.collection, label: label);
+        await ref
+            .read(widgetServiceProvider)
+            .updateHadith(
+              text: h.text(lang),
+              reference: h.collection,
+              label: label,
+            );
       }
       if (!mounted) return;
       await applyDailyHadith(ref, lang, ref.read(dailyHadithNotifProvider));
@@ -54,26 +63,54 @@ class _SplashScreenState extends ConsumerState<SplashScreen> {
   }
 
   Future<void> _go() async {
-    // İLK AÇILIŞ "DOLMA" SÜRECİ (kullanıcı 2026-06-15): panel/manifest içeriği
-    // GELENE KADAR splash'te bekle → ana ekran DOLU açılsın; "açılıp sonradan
-    // içerik dolarken donma"/pop-in olmasın. Yavaş/çevrimdışı ağda takılmamak
-    // için en fazla 6 sn bekle (o sürede gelmezse önbellek/paket yedeğiyle yine
-    // de geç). Sonraki açılışlarda manifest ÖNBELLEKTEN anında gelir → splash
-    // kısa kalır (alttaki min 1.2 sn yüzünden ekran çakmaz).
-    final minSplash = Future<void>.delayed(const Duration(milliseconds: 1200));
+    // İLK AÇILIŞ SENKRONİZASYON SÜRECİ (kullanıcı 2026-06-17): panel/manifest
+    // içeriği (hikâye, duvar kâğıdı, video, günün ayeti…) GELENE KADAR splash'te
+    // bekle + alttaki ilerleme ÇUBUĞUNU doldur → ana ekran DOLU açılsın; "açılıp
+    // sonradan içerik dolarken donma"/pop-in olmasın. Yavaş/çevrimdışı ağda
+    // takılmamak için en fazla 6 sn bekle (gelmezse önbellek/paket yedeğiyle
+    // yine de geç). Sonraki açılışlarda manifest ÖNBELLEKTEN anında gelir →
+    // çubuk hızla dolar, splash kısa kalır.
+    final tr = context.langCode == 'tr';
+    if (mounted) {
+      setState(() {
+        _syncLabel = tr ? 'Bağlanılıyor…' : 'Connecting…';
+        _progress = 0.25;
+      });
+    }
+    final minSplash = Future<void>.delayed(const Duration(milliseconds: 1400));
+    // Tek await'lik gerçek indirme sırasında "içerik alınıyor" hissi vermek için
+    // ilerlemeyi kademelendir (çubuk yarıya kadar akarak dolsun).
+    Future<void>.delayed(const Duration(milliseconds: 450), () {
+      if (mounted) {
+        setState(() {
+          _syncLabel = tr ? 'İçerikler hazırlanıyor…' : 'Preparing content…';
+          _progress = 0.65;
+        });
+      }
+    });
     Future<void> loadContent() async {
       try {
         await ref
             .read(manifestProvider.future)
             .timeout(const Duration(seconds: 6));
-      } catch (_) {/* zaman aşımı/çevrimdışı → yedek devrede, yine de geç */}
+      } catch (_) {
+        /* zaman aşımı/çevrimdışı → yedek devrede, yine de geç */
+      }
     }
 
     await Future.wait([minSplash, loadContent()]);
+    if (mounted) {
+      setState(() {
+        _syncLabel = tr ? 'Hazır' : 'Ready';
+        _progress = 1.0; // bitti → çubuk %100
+      });
+    }
+    // %100 bir an görünsün → "tamamlandı" hissi, sonra ana ekrana geç.
+    await Future<void>.delayed(const Duration(milliseconds: 300));
     if (!mounted) return;
     final seen =
         ref.read(sharedPreferencesProvider).getBool(PrefKeys.onboardingSeen) ??
-            false;
+        false;
     context.go(seen ? Routes.home : Routes.intro);
   }
 
@@ -96,16 +133,39 @@ class _SplashScreenState extends ConsumerState<SplashScreen> {
               Text(
                 'common.slogan'.tr(),
                 style: TextStyle(
-                    color: c.textSecondary, letterSpacing: 1, fontSize: 13),
+                  color: c.textSecondary,
+                  letterSpacing: 1,
+                  fontSize: 13,
+                ),
               ),
-              const SizedBox(height: 32),
-              // "Dolma" göstergesi: panel içeriği yüklenirken döner; içerik hazır
-              // olunca (veya 6 sn dolunca) splash kapanıp ana ekran açılır.
+              const SizedBox(height: 34),
+              // SENKRONİZASYON çubuğu: panel içeriği yüklenirken akarak dolar;
+              // içerik hazır olunca (veya 6 sn dolunca) %100 olup ana ekran açılır.
               SizedBox(
-                width: 22,
-                height: 22,
-                child: CircularProgressIndicator(
-                    strokeWidth: 2, color: c.gold.withValues(alpha: 0.8)),
+                width: 190,
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(6),
+                  child: TweenAnimationBuilder<double>(
+                    tween: Tween(begin: 0, end: _progress),
+                    duration: const Duration(milliseconds: 500),
+                    curve: Curves.easeOut,
+                    builder: (_, v, _) => LinearProgressIndicator(
+                      value: v,
+                      minHeight: 5,
+                      backgroundColor: c.gold.withValues(alpha: 0.12),
+                      valueColor: AlwaysStoppedAnimation(c.gold),
+                    ),
+                  ),
+                ),
+              ),
+              const SizedBox(height: 14),
+              Text(
+                _syncLabel,
+                style: TextStyle(
+                  color: c.textTertiary,
+                  fontSize: 12,
+                  letterSpacing: 0.3,
+                ),
               ),
             ],
           ),

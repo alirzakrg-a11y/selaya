@@ -26,8 +26,6 @@ import '../../../core/widgets/like_button.dart';
 import '../../../core/widgets/geometric_background.dart';
 import '../../../core/widgets/selaya_card.dart';
 import '../../../core/widgets/section_header.dart';
-import '../../daily_tasks/data/daily_tasks_controller.dart';
-import '../../daily_tasks/domain/daily_task.dart';
 import '../../social_feed/data/video_thumbs.dart';
 import '../../prayer_times/data/prayer_repository.dart';
 import '../../ibadah_tracking/data/prayer_checkin.dart';
@@ -79,10 +77,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
               // Tüm bölümler kullanıcı sırasına/gizlemesine göre (header hariç).
               for (final k in ref.watch(homeLayoutProvider).visible)
                 ..._section(context, k),
-              const Padding(
-                padding: AppSpacing.screen,
-                child: _IdeaCard(),
-              ),
+              const Padding(padding: AppSpacing.screen, child: _IdeaCard()),
             ],
           ),
         ),
@@ -128,12 +123,6 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
             padding: AppSpacing.screen,
             child: _SeeMoreButton(onTap: () => context.push(Routes.more)),
           ),
-          const Gap.lg(),
-        ];
-      case 'dailyTasks':
-        return [
-          SectionHeader(title: 'tasks.title'.tr()),
-          const Padding(padding: AppSpacing.screen, child: _DailyTasksCard()),
           const Gap.lg(),
         ];
       case 'verseOfDay':
@@ -206,9 +195,7 @@ class _QuickPair extends StatelessWidget {
     return _QuickCard(
       icon: AppIcons.card,
       title: 'greetings.title'.tr(),
-      desc: isTr
-          ? 'Sevdiklerine özel kartlar'
-          : 'Special cards for loved ones',
+      desc: isTr ? 'Sevdiklerine özel kartlar' : 'Special cards for loved ones',
       onTap: () => context.push(Routes.greetings),
     );
   }
@@ -219,11 +206,12 @@ class _QuickCard extends StatelessWidget {
   final String title;
   final String desc;
   final VoidCallback onTap;
-  const _QuickCard(
-      {required this.icon,
-      required this.title,
-      required this.desc,
-      required this.onTap});
+  const _QuickCard({
+    required this.icon,
+    required this.title,
+    required this.desc,
+    required this.onTap,
+  });
   @override
   Widget build(BuildContext context) {
     final c = context.colors;
@@ -236,23 +224,27 @@ class _QuickCard extends StatelessWidget {
           Container(
             padding: const EdgeInsets.all(9),
             decoration: BoxDecoration(
-                shape: BoxShape.circle, color: c.gold.withValues(alpha: 0.13)),
+              shape: BoxShape.circle,
+              color: c.gold.withValues(alpha: 0.13),
+            ),
             child: Icon(icon, color: c.gold, size: 20),
           ),
           const Gap.sm(),
-          Text(title,
-              maxLines: 1,
-              overflow: TextOverflow.ellipsis,
-              style: Theme.of(context)
-                  .textTheme
-                  .titleSmall
-                  ?.copyWith(fontWeight: FontWeight.w700)),
+          Text(
+            title,
+            maxLines: 1,
+            overflow: TextOverflow.ellipsis,
+            style: Theme.of(
+              context,
+            ).textTheme.titleSmall?.copyWith(fontWeight: FontWeight.w700),
+          ),
           const SizedBox(height: 3),
-          Text(desc,
-              maxLines: 2,
-              overflow: TextOverflow.ellipsis,
-              style: TextStyle(
-                  color: c.textSecondary, fontSize: 12, height: 1.3)),
+          Text(
+            desc,
+            maxLines: 2,
+            overflow: TextOverflow.ellipsis,
+            style: TextStyle(color: c.textSecondary, fontSize: 12, height: 1.3),
+          ),
         ],
       ),
     );
@@ -269,7 +261,11 @@ class _HomeHeader extends ConsumerWidget {
     final city = ref.watch(selectedCityProvider).value;
     return Padding(
       padding: const EdgeInsets.fromLTRB(
-          AppSpacing.base, AppSpacing.sm, AppSpacing.base, 0),
+        AppSpacing.base,
+        AppSpacing.sm,
+        AppSpacing.base,
+        0,
+      ),
       child: Row(
         children: [
           Expanded(
@@ -279,39 +275,51 @@ class _HomeHeader extends ConsumerWidget {
                 Row(
                   children: [
                     Flexible(
-                      child: Text(city?.name(lang) ?? 'SELAYA',
-                          maxLines: 1,
-                          overflow: TextOverflow.ellipsis,
-                          style: Theme.of(context).textTheme.headlineSmall),
+                      child: Text(
+                        city?.name(lang) ?? 'SELAYA',
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
+                        style: Theme.of(context).textTheme.headlineSmall,
+                      ),
                     ),
                     const SizedBox(width: 4),
-                    const Icon(AppIcons.location, size: 18, color: AppColors.gold),
+                    const Icon(
+                      AppIcons.location,
+                      size: 18,
+                      color: AppColors.gold,
+                    ),
                   ],
                 ),
                 Row(
                   children: [
                     Flexible(
-                      child: Text('home.appTagline'.tr(),
-                          maxLines: 1,
-                          overflow: TextOverflow.ellipsis,
-                          style: Theme.of(context)
-                              .textTheme
-                              .bodySmall
-                              ?.copyWith(color: c.textSecondary)),
+                      child: Text(
+                        'home.appTagline'.tr(),
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
+                        style: Theme.of(
+                          context,
+                        ).textTheme.bodySmall?.copyWith(color: c.textSecondary),
+                      ),
                     ),
                     const SizedBox(width: 6),
                     Container(
-                      padding:
-                          const EdgeInsets.symmetric(horizontal: 6, vertical: 1),
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 6,
+                        vertical: 1,
+                      ),
                       decoration: BoxDecoration(
                         color: c.gold.withValues(alpha: 0.14),
                         borderRadius: BorderRadius.circular(99),
                       ),
-                      child: Text('home.fewAds'.tr(),
-                          style: TextStyle(
-                              color: c.gold,
-                              fontSize: 9,
-                              fontWeight: FontWeight.w700)),
+                      child: Text(
+                        'home.fewAds'.tr(),
+                        style: TextStyle(
+                          color: c.gold,
+                          fontSize: 9,
+                          fontWeight: FontWeight.w700,
+                        ),
+                      ),
                     ),
                   ],
                 ),
@@ -342,8 +350,10 @@ class _HeaderWeather extends ConsumerWidget {
             mainAxisSize: MainAxisSize.min,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text('home.weather'.tr(),
-                  style: Theme.of(context).textTheme.titleMedium),
+              Text(
+                'home.weather'.tr(),
+                style: Theme.of(context).textTheme.titleMedium,
+              ),
               const Gap.md(),
               for (final d in days.take(4))
                 Padding(
@@ -351,23 +361,27 @@ class _HeaderWeather extends ConsumerWidget {
                   child: Row(
                     children: [
                       SizedBox(
-                          width: 96,
-                          child: Text(DateFormat('EEEE', lang).format(d.date),
-                              style: Theme.of(context).textTheme.bodyMedium)),
+                        width: 96,
+                        child: Text(
+                          DateFormat('EEEE', lang).format(d.date),
+                          style: Theme.of(context).textTheme.bodyMedium,
+                        ),
+                      ),
                       Icon(d.icon, color: context.colors.gold, size: 20),
                       const Gap.sm(),
                       Expanded(
-                        child: Text(d.labelKey().tr(),
-                            style: Theme.of(context)
-                                .textTheme
-                                .bodySmall
-                                ?.copyWith(color: context.colors.textSecondary)),
+                        child: Text(
+                          d.labelKey().tr(),
+                          style: Theme.of(context).textTheme.bodySmall
+                              ?.copyWith(color: context.colors.textSecondary),
+                        ),
                       ),
-                      Text('${d.tMax.round()}° / ${d.tMin.round()}°',
-                          style: Theme.of(context)
-                              .textTheme
-                              .bodyMedium
-                              ?.copyWith(fontWeight: FontWeight.w600)),
+                      Text(
+                        '${d.tMax.round()}° / ${d.tMin.round()}°',
+                        style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                          fontWeight: FontWeight.w600,
+                        ),
+                      ),
                     ],
                   ),
                 ),
@@ -400,17 +414,19 @@ class _HeaderWeather extends ConsumerWidget {
               children: [
                 Icon(today.icon, color: c.gold, size: 22),
                 const SizedBox(width: 7),
-                Text(today.labelKey().tr(),
-                    style: Theme.of(context)
-                        .textTheme
-                        .bodyMedium
-                        ?.copyWith(color: c.textSecondary)),
+                Text(
+                  today.labelKey().tr(),
+                  style: Theme.of(
+                    context,
+                  ).textTheme.bodyMedium?.copyWith(color: c.textSecondary),
+                ),
                 const SizedBox(width: 8),
-                Text('${today.tMax.round()}°',
-                    style: Theme.of(context)
-                        .textTheme
-                        .titleMedium
-                        ?.copyWith(fontWeight: FontWeight.w700)),
+                Text(
+                  '${today.tMax.round()}°',
+                  style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                    fontWeight: FontWeight.w700,
+                  ),
+                ),
               ],
             ),
           ),
@@ -453,11 +469,16 @@ class _LocationWarningBannerState
     final c = context.colors;
     return Padding(
       padding: const EdgeInsets.fromLTRB(
-          AppSpacing.base, AppSpacing.sm, AppSpacing.base, 0),
+        AppSpacing.base,
+        AppSpacing.sm,
+        AppSpacing.base,
+        0,
+      ),
       child: SelayaCard(
         onTap: () => context.push(Routes.citySelect),
         gradient: LinearGradient(
-            colors: [c.gold.withValues(alpha: 0.22), c.surfaceAlt]),
+          colors: [c.gold.withValues(alpha: 0.22), c.surfaceAlt],
+        ),
         child: Row(
           children: [
             const Icon(AppIcons.location, color: AppColors.gold, size: 22),
@@ -466,16 +487,18 @@ class _LocationWarningBannerState
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text('onboarding.locationWarnTitle'.tr(),
-                      style: Theme.of(context)
-                          .textTheme
-                          .titleSmall
-                          ?.copyWith(fontWeight: FontWeight.w700)),
-                  Text('onboarding.locationWarnBody'.tr(),
-                      style: Theme.of(context)
-                          .textTheme
-                          .bodySmall
-                          ?.copyWith(color: c.textSecondary)),
+                  Text(
+                    'onboarding.locationWarnTitle'.tr(),
+                    style: Theme.of(context).textTheme.titleSmall?.copyWith(
+                      fontWeight: FontWeight.w700,
+                    ),
+                  ),
+                  Text(
+                    'onboarding.locationWarnBody'.tr(),
+                    style: Theme.of(
+                      context,
+                    ).textTheme.bodySmall?.copyWith(color: c.textSecondary),
+                  ),
                 ],
               ),
             ),
@@ -486,108 +509,6 @@ class _LocationWarningBannerState
             ),
           ],
         ),
-      ),
-    );
-  }
-}
-
-/// Ana ekran günlük görev kartı — ilerleme halkası + seri + sıradaki 2 görev.
-class _DailyTasksCard extends ConsumerWidget {
-  const _DailyTasksCard();
-
-  @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    final c = context.colors;
-    final lang = context.langCode;
-    final tasks = dailyTasksFor(DateTime.now());
-    final log = ref.watch(dailyTasksProvider);
-    final done =
-        log[DailyTasksController.dateKey(DateTime.now())] ?? const <String>[];
-    final stats = ref.watch(taskStatsProvider);
-    final ratio = dailyTaskCount == 0 ? 0.0 : stats.todayDone / dailyTaskCount;
-    final pending =
-        tasks.where((t) => !done.contains(t.id)).take(3).toList();
-    return SelayaCard(
-      onTap: () => context.push(Routes.tasks),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Row(
-            children: [
-              SizedBox(
-                width: 46,
-                height: 46,
-                child: Stack(
-                  alignment: Alignment.center,
-                  children: [
-                    SizedBox(
-                      width: 46,
-                      height: 46,
-                      child: CircularProgressIndicator(
-                        value: ratio,
-                        strokeWidth: 5,
-                        backgroundColor: c.border,
-                        valueColor: AlwaysStoppedAnimation(c.gold),
-                        strokeCap: StrokeCap.round,
-                      ),
-                    ),
-                    Text('${stats.todayDone}/$dailyTaskCount',
-                        style: const TextStyle(
-                            fontWeight: FontWeight.w800, fontSize: 11)),
-                  ],
-                ),
-              ),
-              const Gap.md(),
-              Expanded(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text('tasks.today'.tr(),
-                        style: Theme.of(context)
-                            .textTheme
-                            .titleSmall
-                            ?.copyWith(fontWeight: FontWeight.w700)),
-                    Row(
-                      children: [
-                        Icon(Icons.local_fire_department_rounded,
-                            size: 15,
-                            color: stats.streak > 0 ? c.gold : c.textTertiary),
-                        const SizedBox(width: 3),
-                        Text('tasks.streak'.tr(args: ['${stats.streak}']),
-                            style: Theme.of(context)
-                                .textTheme
-                                .bodySmall
-                                ?.copyWith(color: c.textSecondary)),
-                      ],
-                    ),
-                  ],
-                ),
-              ),
-              Icon(Icons.chevron_right_rounded, color: c.textTertiary),
-            ],
-          ),
-          if (pending.isNotEmpty) ...[
-            const Gap.sm(),
-            Divider(height: 1, color: c.border),
-            const Gap.sm(),
-            for (final t in pending)
-              Padding(
-                padding: const EdgeInsets.symmetric(vertical: 4),
-                child: Row(
-                  children: [
-                    Icon(t.icon, size: 18, color: c.gold),
-                    const Gap.sm(),
-                    Expanded(
-                      child: Text(t.title(lang),
-                          maxLines: 1,
-                          overflow: TextOverflow.ellipsis,
-                          style: Theme.of(context).textTheme.bodyMedium),
-                    ),
-                  ],
-                ),
-              ),
-          ],
-        ],
       ),
     );
   }
@@ -641,39 +562,54 @@ class _DailyContentCard extends StatelessWidget {
                   children: [
                     Icon(icon, size: 16, color: AppColors.goldBright),
                     const SizedBox(width: 6),
-                    Text(label.toUpperCase(),
-                        style: const TextStyle(
-                            color: AppColors.goldBright,
-                            fontSize: 11,
-                            letterSpacing: 0.8,
-                            fontWeight: FontWeight.w700)),
+                    Text(
+                      label.toUpperCase(),
+                      style: const TextStyle(
+                        color: AppColors.goldBright,
+                        fontSize: 11,
+                        letterSpacing: 0.8,
+                        fontWeight: FontWeight.w700,
+                      ),
+                    ),
                   ],
                 ),
                 if (arabic != null && arabic!.isNotEmpty) ...[
                   const Gap.md(),
-                  Text(arabic!,
-                      textAlign: TextAlign.center,
-                      textDirection: TextDirection.rtl,
-                      maxLines: 2,
-                      overflow: TextOverflow.ellipsis,
-                      style:
-                          AppTypography.arabic(fontSize: 20, color: Colors.white)),
+                  Text(
+                    arabic!,
+                    textAlign: TextAlign.center,
+                    textDirection: TextDirection.rtl,
+                    maxLines: 2,
+                    overflow: TextOverflow.ellipsis,
+                    style: AppTypography.arabic(
+                      fontSize: 20,
+                      color: Colors.white,
+                    ),
+                  ),
                 ],
                 const Gap.md(),
-                Text('"$text"',
-                    maxLines: 3,
-                    overflow: TextOverflow.ellipsis,
-                    style: const TextStyle(
-                        color: Colors.white, fontSize: 14, height: 1.45)),
+                Text(
+                  '"$text"',
+                  maxLines: 3,
+                  overflow: TextOverflow.ellipsis,
+                  style: const TextStyle(
+                    color: Colors.white,
+                    fontSize: 14,
+                    height: 1.45,
+                  ),
+                ),
                 const Gap.sm(),
                 Row(
                   children: [
                     Expanded(
-                      child: Text(reference,
-                          style: const TextStyle(
-                              color: AppColors.goldBright,
-                              fontSize: 12,
-                              fontWeight: FontWeight.w600)),
+                      child: Text(
+                        reference,
+                        style: const TextStyle(
+                          color: AppColors.goldBright,
+                          fontSize: 12,
+                          fontWeight: FontWeight.w600,
+                        ),
+                      ),
                     ),
                     LikeButton(likeKey: likeKey, light: true),
                     const SizedBox(width: 4),
@@ -688,7 +624,9 @@ class _DailyContentCard extends StatelessWidget {
                       ),
                       child: Container(
                         padding: const EdgeInsets.symmetric(
-                            horizontal: 12, vertical: 7),
+                          horizontal: 12,
+                          vertical: 7,
+                        ),
                         decoration: BoxDecoration(
                           color: Colors.white.withValues(alpha: 0.12),
                           borderRadius: AppRadius.rSm,
@@ -697,14 +635,20 @@ class _DailyContentCard extends StatelessWidget {
                         child: Row(
                           mainAxisSize: MainAxisSize.min,
                           children: [
-                            const Icon(AppIcons.share,
-                                size: 14, color: Colors.white),
+                            const Icon(
+                              AppIcons.share,
+                              size: 14,
+                              color: Colors.white,
+                            ),
                             const SizedBox(width: 6),
-                            Text('common.share'.tr(),
-                                style: const TextStyle(
-                                    color: Colors.white,
-                                    fontSize: 12,
-                                    fontWeight: FontWeight.w600)),
+                            Text(
+                              'common.share'.tr(),
+                              style: const TextStyle(
+                                color: Colors.white,
+                                fontSize: 12,
+                                fontWeight: FontWeight.w600,
+                              ),
+                            ),
                           ],
                         ),
                       ),
@@ -731,7 +675,7 @@ class _VerseOfDayCard extends ConsumerWidget {
     // dosya-adı içeren öğeler "Günün Ayeti"ne düşmesin.
     final verses = [
       for (final i in all)
-        if (i.type == 'verse' && i.arabic.isNotEmpty) i
+        if (i.type == 'verse' && i.arabic.isNotEmpty) i,
     ];
     if (verses.isEmpty) return const SizedBox.shrink();
     final v = verses[DateTime.now().day % verses.length];
@@ -840,8 +784,11 @@ class _AutoCarouselState extends State<_AutoCarousel> {
     _timer = Timer.periodic(const Duration(seconds: 4), (_) {
       if (!mounted || !_pc.hasClients) return;
       final next = ((_pc.page ?? 0).round() + 1) % widget.itemCount;
-      _pc.animateToPage(next,
-          duration: const Duration(milliseconds: 550), curve: Curves.easeInOut);
+      _pc.animateToPage(
+        next,
+        duration: const Duration(milliseconds: 550),
+        curve: Curves.easeInOut,
+      );
     });
   }
 
@@ -897,66 +844,74 @@ class _VideoRail extends ConsumerWidget {
       child: SizedBox(
         height: 190,
         child: GestureDetector(
-            onTap: () => context.push(Routes.feed),
-            child: ClipRRect(
-              borderRadius: AppRadius.rXl,
-              child: Stack(
-                fit: StackFit.expand,
-                children: [
-                  if (v.poster.isNotEmpty)
-                    AppImage.cdn(v.poster)
-                  else
-                    ref.watch(videoThumbProvider(v.video)).maybeWhen(
-                          data: (p) => p == null
-                              ? const _VideoPosterPlaceholder()
-                              : Image.file(File(p), fit: BoxFit.cover),
-                          orElse: () => const _VideoPosterPlaceholder(),
-                        ),
-                  const DecoratedBox(
+          onTap: () => context.push(Routes.feed),
+          child: ClipRRect(
+            borderRadius: AppRadius.rXl,
+            child: Stack(
+              fit: StackFit.expand,
+              children: [
+                if (v.poster.isNotEmpty)
+                  AppImage.cdn(v.poster)
+                else
+                  ref
+                      .watch(videoThumbProvider(v.video))
+                      .maybeWhen(
+                        data: (p) => p == null
+                            ? const _VideoPosterPlaceholder()
+                            : Image.file(File(p), fit: BoxFit.cover),
+                        orElse: () => const _VideoPosterPlaceholder(),
+                      ),
+                const DecoratedBox(
+                  decoration: BoxDecoration(
+                    gradient: LinearGradient(
+                      begin: Alignment.topCenter,
+                      end: Alignment.bottomCenter,
+                      colors: [Color(0x22000000), Color(0xDD000000)],
+                    ),
+                  ),
+                ),
+                Center(
+                  child: Container(
+                    padding: const EdgeInsets.all(12),
                     decoration: BoxDecoration(
-                      gradient: LinearGradient(
-                        begin: Alignment.topCenter,
-                        end: Alignment.bottomCenter,
-                        colors: [Color(0x22000000), Color(0xDD000000)],
-                      ),
+                      shape: BoxShape.circle,
+                      color: Colors.black.withValues(alpha: 0.40),
+                    ),
+                    child: const Icon(
+                      AppIcons.play,
+                      color: Colors.white,
+                      size: 28,
                     ),
                   ),
-                  Center(
-                    child: Container(
-                      padding: const EdgeInsets.all(12),
-                      decoration: BoxDecoration(
-                        shape: BoxShape.circle,
-                        color: Colors.black.withValues(alpha: 0.40),
-                      ),
-                      child: const Icon(AppIcons.play,
-                          color: Colors.white, size: 28),
-                    ),
-                  ),
-                  Positioned(
-                    left: 14,
-                    right: 6,
-                    bottom: 8,
-                    child: Row(
-                      children: [
-                        Expanded(
-                          child: Text(v.author,
-                              maxLines: 1,
-                              overflow: TextOverflow.ellipsis,
-                              style: const TextStyle(
-                                  color: Colors.white,
-                                  fontWeight: FontWeight.w700,
-                                  fontSize: 14)),
+                ),
+                Positioned(
+                  left: 14,
+                  right: 6,
+                  bottom: 8,
+                  child: Row(
+                    children: [
+                      Expanded(
+                        child: Text(
+                          v.author,
+                          maxLines: 1,
+                          overflow: TextOverflow.ellipsis,
+                          style: const TextStyle(
+                            color: Colors.white,
+                            fontWeight: FontWeight.w700,
+                            fontSize: 14,
+                          ),
                         ),
-                        LikeButton(likeKey: 'feed:${v.id}', light: true),
-                      ],
-                    ),
+                      ),
+                      LikeButton(likeKey: 'feed:${v.id}', light: true),
+                    ],
                   ),
-                ],
-              ),
+                ),
+              ],
             ),
           ),
         ),
-      );
+      ),
+    );
   }
 }
 
@@ -972,18 +927,17 @@ class _VideoPosterPlaceholder extends StatelessWidget {
         gradient: LinearGradient(
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
-          colors: [
-            c.goldDeep.withValues(alpha: 0.40),
-            c.surfaceAlt,
-            c.bg,
-          ],
+          colors: [c.goldDeep.withValues(alpha: 0.40), c.surfaceAlt, c.bg],
           stops: const [0, 0.55, 1],
         ),
       ),
       child: Align(
         alignment: const Alignment(0.85, -0.8),
-        child: Icon(Icons.video_library_rounded,
-            size: 40, color: c.gold.withValues(alpha: 0.22)),
+        child: Icon(
+          Icons.video_library_rounded,
+          size: 40,
+          color: c.gold.withValues(alpha: 0.22),
+        ),
       ),
     );
   }
@@ -1005,8 +959,11 @@ class _AiCard extends StatelessWidget {
             Positioned(
               right: -10,
               top: -10,
-              child: Icon(AppIcons.sparkles,
-                  size: 120, color: c.gold.withValues(alpha: 0.12)),
+              child: Icon(
+                AppIcons.sparkles,
+                size: 120,
+                color: c.gold.withValues(alpha: 0.12),
+              ),
             ),
             Padding(
               padding: const EdgeInsets.all(AppSpacing.lg),
@@ -1016,8 +973,7 @@ class _AiCard extends StatelessWidget {
                     padding: const EdgeInsets.all(12),
                     decoration: BoxDecoration(
                       shape: BoxShape.circle,
-                      gradient: LinearGradient(
-                          colors: [c.gold, c.goldBright]),
+                      gradient: LinearGradient(colors: [c.gold, c.goldBright]),
                     ),
                     child: AnimatedAiIcon(color: c.bg, size: 26),
                   ),
@@ -1026,15 +982,19 @@ class _AiCard extends StatelessWidget {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text('home.askSelayaTitle'.tr(),
-                            style: Theme.of(context)
-                                .textTheme
-                                .titleMedium
-                                ?.copyWith(fontWeight: FontWeight.w700)),
+                        Text(
+                          'home.askSelayaTitle'.tr(),
+                          style: Theme.of(context).textTheme.titleMedium
+                              ?.copyWith(fontWeight: FontWeight.w700),
+                        ),
                         const SizedBox(height: 2),
-                        Text('home.askSelayaDesc'.tr(),
-                            style:
-                                TextStyle(color: c.textSecondary, fontSize: 13)),
+                        Text(
+                          'home.askSelayaDesc'.tr(),
+                          style: TextStyle(
+                            color: c.textSecondary,
+                            fontSize: 13,
+                          ),
+                        ),
                       ],
                     ),
                   ),
@@ -1089,11 +1049,14 @@ class _DailyWallpaper extends ConsumerWidget {
                   padding: const EdgeInsets.all(AppSpacing.base),
                   child: Align(
                     alignment: Alignment.bottomLeft,
-                    child: Text(wp.title(lang),
-                        style: const TextStyle(
-                            color: Colors.white,
-                            fontWeight: FontWeight.w700,
-                            fontSize: 16)),
+                    child: Text(
+                      wp.title(lang),
+                      style: const TextStyle(
+                        color: Colors.white,
+                        fontWeight: FontWeight.w700,
+                        fontSize: 16,
+                      ),
+                    ),
                   ),
                 ),
               ],
@@ -1133,15 +1096,21 @@ class _FeaturedGrid extends ConsumerWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  FeatureIcon(featuredTools[key]!.icon,
-                      index: i, size: 19, padding: 9),
+                  FeatureIcon(
+                    featuredTools[key]!.icon,
+                    index: i,
+                    size: 19,
+                    padding: 9,
+                  ),
                   const Gap.xs(),
                   Flexible(
-                    child: Text(featuredTools[key]!.labelKey.tr(),
-                        maxLines: 2,
-                        textAlign: TextAlign.center,
-                        overflow: TextOverflow.ellipsis,
-                        style: Theme.of(context).textTheme.labelSmall),
+                    child: Text(
+                      featuredTools[key]!.labelKey.tr(),
+                      maxLines: 2,
+                      textAlign: TextAlign.center,
+                      overflow: TextOverflow.ellipsis,
+                      style: Theme.of(context).textTheme.labelSmall,
+                    ),
                   ),
                 ],
               ),
@@ -1164,8 +1133,10 @@ class _SeeMoreButton extends StatelessWidget {
         child: Row(
           mainAxisSize: MainAxisSize.min,
           children: [
-            Text('common.more'.tr(),
-                style: TextStyle(color: c.gold, fontWeight: FontWeight.w700)),
+            Text(
+              'common.more'.tr(),
+              style: TextStyle(color: c.gold, fontWeight: FontWeight.w700),
+            ),
             const SizedBox(width: 4),
             Icon(Icons.arrow_forward_rounded, size: 16, color: c.gold),
           ],
@@ -1246,7 +1217,9 @@ class _WidgetPromoCard extends StatelessWidget {
           Container(
             padding: const EdgeInsets.all(11),
             decoration: BoxDecoration(
-                shape: BoxShape.circle, color: c.gold.withValues(alpha: 0.14)),
+              shape: BoxShape.circle,
+              color: c.gold.withValues(alpha: 0.14),
+            ),
             child: Icon(AppIcons.tune, color: c.gold, size: 22),
           ),
           const Gap.md(),
@@ -1254,16 +1227,18 @@ class _WidgetPromoCard extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text('home.addWidgetTitle'.tr(),
-                    style: Theme.of(context)
-                        .textTheme
-                        .titleSmall
-                        ?.copyWith(fontWeight: FontWeight.w700)),
-                Text('home.addWidgetDesc'.tr(),
-                    style: Theme.of(context)
-                        .textTheme
-                        .bodySmall
-                        ?.copyWith(color: c.textSecondary)),
+                Text(
+                  'home.addWidgetTitle'.tr(),
+                  style: Theme.of(
+                    context,
+                  ).textTheme.titleSmall?.copyWith(fontWeight: FontWeight.w700),
+                ),
+                Text(
+                  'home.addWidgetDesc'.tr(),
+                  style: Theme.of(
+                    context,
+                  ).textTheme.bodySmall?.copyWith(color: c.textSecondary),
+                ),
               ],
             ),
           ),
@@ -1279,20 +1254,34 @@ class _WidgetPromoCard extends StatelessWidget {
 class _DailyFact extends StatelessWidget {
   const _DailyFact();
   static const _facts = <(String, String)>[
-    ("Kur'an'da 114 sûre ve 6236 âyet bulunur.",
-        'The Quran contains 114 surahs and 6236 verses.'),
-    ("Esmâ-ül Hüsnâ, Allah'ın 99 güzel ismidir.",
-        'Asma al-Husna are the 99 Beautiful Names of Allah.'),
-    ('Tebessüm sadakadır; küçük iyilikler büyük sevaplara vesiledir.',
-        'A smile is charity; small kindnesses bring great rewards.'),
-    ('Cuma günü müminlerin haftalık bayramı sayılır.',
-        'Friday is the weekly festival of the believers.'),
-    ("Bir âyet bile olsa her gün Kur'an okumak kalbi diri tutar.",
-        'Reading even one verse of the Quran daily keeps the heart alive.'),
-    ('Sabah ve akşam zikirleri günü manevi korumayla çevreler.',
-        'Morning and evening adhkar surround the day with protection.'),
-    ('İlk vahiy "Oku!" emriyle Hira Mağarası\'nda gelmiştir.',
-        'The first revelation began with "Read!" in the Cave of Hira.'),
+    (
+      "Kur'an'da 114 sûre ve 6236 âyet bulunur.",
+      'The Quran contains 114 surahs and 6236 verses.',
+    ),
+    (
+      "Esmâ-ül Hüsnâ, Allah'ın 99 güzel ismidir.",
+      'Asma al-Husna are the 99 Beautiful Names of Allah.',
+    ),
+    (
+      'Tebessüm sadakadır; küçük iyilikler büyük sevaplara vesiledir.',
+      'A smile is charity; small kindnesses bring great rewards.',
+    ),
+    (
+      'Cuma günü müminlerin haftalık bayramı sayılır.',
+      'Friday is the weekly festival of the believers.',
+    ),
+    (
+      "Bir âyet bile olsa her gün Kur'an okumak kalbi diri tutar.",
+      'Reading even one verse of the Quran daily keeps the heart alive.',
+    ),
+    (
+      'Sabah ve akşam zikirleri günü manevi korumayla çevreler.',
+      'Morning and evening adhkar surround the day with protection.',
+    ),
+    (
+      'İlk vahiy "Oku!" emriyle Hira Mağarası\'nda gelmiştir.',
+      'The first revelation began with "Read!" in the Cave of Hira.',
+    ),
   ];
   @override
   Widget build(BuildContext context) {
@@ -1311,11 +1300,13 @@ class _DailyFact extends StatelessWidget {
           Icon(Icons.lightbulb_outline_rounded, color: c.gold, size: 20),
           const Gap.md(),
           Expanded(
-            child: Text('${isTr ? 'Bunu biliyor muydun?' : 'Did you know?'} ${isTr ? f.$1 : f.$2}',
-                style: Theme.of(context)
-                    .textTheme
-                    .bodySmall
-                    ?.copyWith(color: c.textSecondary, height: 1.4)),
+            child: Text(
+              '${isTr ? 'Bunu biliyor muydun?' : 'Did you know?'} ${isTr ? f.$1 : f.$2}',
+              style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                color: c.textSecondary,
+                height: 1.4,
+              ),
+            ),
           ),
         ],
       ),
@@ -1329,7 +1320,8 @@ class _IdeaCard extends StatelessWidget {
 
   Future<void> _shareIdea() async {
     final uri = Uri.parse(
-        'mailto:destek@selayaapp.com?subject=${Uri.encodeComponent('SELAYA — Görüş & Öneri')}');
+      'mailto:destek@selayaapp.com?subject=${Uri.encodeComponent('SELAYA — Görüş & Öneri')}',
+    );
     try {
       await launchUrl(uri, mode: LaunchMode.externalApplication);
     } catch (_) {}
@@ -1339,17 +1331,18 @@ class _IdeaCard extends StatelessWidget {
   Widget build(BuildContext context) {
     final c = context.colors;
     return SelayaCard(
-      gradient: LinearGradient(colors: [
-        c.gold.withValues(alpha: 0.14),
-        c.surfaceAlt,
-      ]),
+      gradient: LinearGradient(
+        colors: [c.gold.withValues(alpha: 0.14), c.surfaceAlt],
+      ),
       onTap: _shareIdea,
       child: Row(
         children: [
           Container(
             padding: const EdgeInsets.all(11),
             decoration: BoxDecoration(
-                shape: BoxShape.circle, color: c.gold.withValues(alpha: 0.18)),
+              shape: BoxShape.circle,
+              color: c.gold.withValues(alpha: 0.18),
+            ),
             child: Icon(AppIcons.sparkles, color: c.gold, size: 22),
           ),
           const Gap.md(),
@@ -1357,16 +1350,19 @@ class _IdeaCard extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text('home.shareIdeaTitle'.tr(),
-                    style: Theme.of(context)
-                        .textTheme
-                        .titleSmall
-                        ?.copyWith(color: c.gold, fontWeight: FontWeight.w700)),
-                Text('home.shareIdeaDesc'.tr(),
-                    style: Theme.of(context)
-                        .textTheme
-                        .bodySmall
-                        ?.copyWith(color: c.textSecondary)),
+                Text(
+                  'home.shareIdeaTitle'.tr(),
+                  style: Theme.of(context).textTheme.titleSmall?.copyWith(
+                    color: c.gold,
+                    fontWeight: FontWeight.w700,
+                  ),
+                ),
+                Text(
+                  'home.shareIdeaDesc'.tr(),
+                  style: Theme.of(
+                    context,
+                  ).textTheme.bodySmall?.copyWith(color: c.textSecondary),
+                ),
               ],
             ),
           ),
@@ -1391,13 +1387,16 @@ class _ReligiousDayCard extends ConsumerWidget {
     final isHoliday = day.type == 'holiday';
     return Padding(
       padding: const EdgeInsets.fromLTRB(
-          AppSpacing.base, 0, AppSpacing.base, AppSpacing.md),
+        AppSpacing.base,
+        0,
+        AppSpacing.base,
+        AppSpacing.md,
+      ),
       child: SelayaCard(
         onTap: () => context.push(Routes.calendar),
-        gradient: LinearGradient(colors: [
-          c.gold.withValues(alpha: 0.26),
-          c.surfaceAlt,
-        ]),
+        gradient: LinearGradient(
+          colors: [c.gold.withValues(alpha: 0.26), c.surfaceAlt],
+        ),
         child: Row(
           children: [
             Container(
@@ -1406,8 +1405,11 @@ class _ReligiousDayCard extends ConsumerWidget {
                 shape: BoxShape.circle,
                 color: c.gold.withValues(alpha: 0.18),
               ),
-              child: Icon(isHoliday ? AppIcons.mosque : AppIcons.moon,
-                  color: c.gold, size: 22),
+              child: Icon(
+                isHoliday ? AppIcons.mosque : AppIcons.moon,
+                color: c.gold,
+                size: 22,
+              ),
             ),
             const Gap.md(),
             Expanded(
@@ -1417,25 +1419,35 @@ class _ReligiousDayCard extends ConsumerWidget {
                   Row(
                     children: [
                       Flexible(
-                        child: Text(day.name(lang),
-                            maxLines: 1,
-                            overflow: TextOverflow.ellipsis,
-                            style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                                color: c.gold, fontWeight: FontWeight.w700)),
+                        child: Text(
+                          day.name(lang),
+                          maxLines: 1,
+                          overflow: TextOverflow.ellipsis,
+                          style: Theme.of(context).textTheme.titleMedium
+                              ?.copyWith(
+                                color: c.gold,
+                                fontWeight: FontWeight.w700,
+                              ),
+                        ),
                       ),
                       if (day.isMultiDay) ...[
                         const Gap.sm(),
                         Container(
                           padding: const EdgeInsets.symmetric(
-                              horizontal: 8, vertical: 2),
+                            horizontal: 8,
+                            vertical: 2,
+                          ),
                           decoration: BoxDecoration(
-                              color: c.gold, borderRadius: AppRadius.rSm),
+                            color: c.gold,
+                            borderRadius: AppRadius.rSm,
+                          ),
                           child: Text(
                             'calendar.nthDay'.tr(args: ['${active.index}']),
                             style: const TextStyle(
-                                color: Color(0xFF1A1203),
-                                fontSize: 11,
-                                fontWeight: FontWeight.w700),
+                              color: Color(0xFF1A1203),
+                              fontSize: 11,
+                              fontWeight: FontWeight.w700,
+                            ),
                           ),
                         ),
                       ],
@@ -1444,10 +1456,9 @@ class _ReligiousDayCard extends ConsumerWidget {
                   const SizedBox(height: 2),
                   Text(
                     '${formatGregorian(DateTime.now(), lang)} • ${day.hijri}',
-                    style: Theme.of(context)
-                        .textTheme
-                        .bodySmall
-                        ?.copyWith(color: c.textSecondary),
+                    style: Theme.of(
+                      context,
+                    ).textTheme.bodySmall?.copyWith(color: c.textSecondary),
                   ),
                 ],
               ),
@@ -1464,8 +1475,9 @@ String _mosqueDist(double km) =>
     km < 1 ? '${(km * 1000).round()} m' : '${km.toStringAsFixed(1)} km';
 
 Future<void> _openMosqueDirections(double lat, double lng) async {
-  final uri =
-      Uri.parse('https://www.google.com/maps/dir/?api=1&destination=$lat,$lng');
+  final uri = Uri.parse(
+    'https://www.google.com/maps/dir/?api=1&destination=$lat,$lng',
+  );
   try {
     await launchUrl(uri, mode: LaunchMode.externalApplication);
   } catch (_) {}
@@ -1481,23 +1493,29 @@ class _NearestMosqueCard extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final c = context.colors;
-    return ref.watch(nearestMosqueProvider).when(
+    return ref
+        .watch(nearestMosqueProvider)
+        .when(
           loading: () => SelayaCard(
             child: Row(
               children: [
                 _iconBadge(c),
                 const Gap.md(),
                 Expanded(
-                  child: Text('home.nearestMosqueFinding'.tr(),
-                      style: Theme.of(context)
-                          .textTheme
-                          .bodyMedium
-                          ?.copyWith(color: c.textSecondary)),
+                  child: Text(
+                    'home.nearestMosqueFinding'.tr(),
+                    style: Theme.of(
+                      context,
+                    ).textTheme.bodyMedium?.copyWith(color: c.textSecondary),
+                  ),
                 ),
                 SizedBox(
                   width: 18,
                   height: 18,
-                  child: CircularProgressIndicator(strokeWidth: 2, color: c.gold),
+                  child: CircularProgressIndicator(
+                    strokeWidth: 2,
+                    color: c.gold,
+                  ),
                 ),
               ],
             ),
@@ -1515,34 +1533,35 @@ class _NearestMosqueCard extends ConsumerWidget {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text('home.nearestMosque'.tr(),
-                            style: Theme.of(context)
-                                .textTheme
-                                .labelSmall
-                                ?.copyWith(color: c.textTertiary)),
+                        Text(
+                          'home.nearestMosque'.tr(),
+                          style: Theme.of(context).textTheme.labelSmall
+                              ?.copyWith(color: c.textTertiary),
+                        ),
                         const SizedBox(height: 1),
-                        Text(m.name,
-                            maxLines: 1,
-                            overflow: TextOverflow.ellipsis,
-                            style: Theme.of(context)
-                                .textTheme
-                                .titleSmall
-                                ?.copyWith(fontWeight: FontWeight.w700)),
+                        Text(
+                          m.name,
+                          maxLines: 1,
+                          overflow: TextOverflow.ellipsis,
+                          style: Theme.of(context).textTheme.titleSmall
+                              ?.copyWith(fontWeight: FontWeight.w700),
+                        ),
                         const SizedBox(height: 2),
                         Row(
                           children: [
                             Icon(AppIcons.location, size: 13, color: c.gold),
                             const SizedBox(width: 3),
-                            Text(_mosqueDist(m.distanceKm),
-                                style: Theme.of(context)
-                                    .textTheme
-                                    .labelMedium
-                                    ?.copyWith(color: c.gold)),
-                            Text('  ·  ${'mosques.directions'.tr()}',
-                                style: Theme.of(context)
-                                    .textTheme
-                                    .labelMedium
-                                    ?.copyWith(color: c.textTertiary)),
+                            Text(
+                              _mosqueDist(m.distanceKm),
+                              style: Theme.of(
+                                context,
+                              ).textTheme.labelMedium?.copyWith(color: c.gold),
+                            ),
+                            Text(
+                              '  ·  ${'mosques.directions'.tr()}',
+                              style: Theme.of(context).textTheme.labelMedium
+                                  ?.copyWith(color: c.textTertiary),
+                            ),
                           ],
                         ),
                       ],
@@ -1551,10 +1570,14 @@ class _NearestMosqueCard extends ConsumerWidget {
                   Container(
                     padding: const EdgeInsets.all(9),
                     decoration: BoxDecoration(
-                        shape: BoxShape.circle,
-                        color: c.gold.withValues(alpha: 0.12)),
-                    child: const Icon(Icons.directions_rounded,
-                        color: AppColors.gold, size: 20),
+                      shape: BoxShape.circle,
+                      color: c.gold.withValues(alpha: 0.12),
+                    ),
+                    child: const Icon(
+                      Icons.directions_rounded,
+                      color: AppColors.gold,
+                      size: 20,
+                    ),
                   ),
                 ],
               ),
@@ -1564,9 +1587,11 @@ class _NearestMosqueCard extends ConsumerWidget {
   }
 
   Widget _iconBadge(SelayaColors c) => Container(
-        padding: const EdgeInsets.all(10),
-        decoration: BoxDecoration(
-            shape: BoxShape.circle, color: c.gold.withValues(alpha: 0.12)),
-        child: const Icon(AppIcons.mosque, color: AppColors.gold, size: 20),
-      );
+    padding: const EdgeInsets.all(10),
+    decoration: BoxDecoration(
+      shape: BoxShape.circle,
+      color: c.gold.withValues(alpha: 0.12),
+    ),
+    child: const Icon(AppIcons.mosque, color: AppColors.gold, size: 20),
+  );
 }

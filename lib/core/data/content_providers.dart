@@ -8,13 +8,17 @@ import 'manifest_service.dart';
 
 const _data = 'assets/data';
 
-final surahsProvider = FutureProvider<List<Surah>>((ref) => ref
-    .watch(assetJsonLoaderProvider)
-    .loadModels('$_data/quran/surahs.json', Surah.fromJson));
+final surahsProvider = FutureProvider<List<Surah>>(
+  (ref) => ref
+      .watch(assetJsonLoaderProvider)
+      .loadModels('$_data/quran/surahs.json', Surah.fromJson),
+);
 
 /// Verses for a surah; returns empty list if the surah isn't in the demo set.
-final versesProvider =
-    FutureProvider.family<List<Verse>, int>((ref, surahNumber) async {
+final versesProvider = FutureProvider.family<List<Verse>, int>((
+  ref,
+  surahNumber,
+) async {
   final path =
       '$_data/quran/verses_${surahNumber.toString().padLeft(3, '0')}.json';
   try {
@@ -26,9 +30,11 @@ final versesProvider =
   }
 });
 
-final asmaProvider = FutureProvider<List<Asma>>((ref) => ref
-    .watch(assetJsonLoaderProvider)
-    .loadModels('$_data/asma_ul_husna.json', Asma.fromJson));
+final asmaProvider = FutureProvider<List<Asma>>(
+  (ref) => ref
+      .watch(assetJsonLoaderProvider)
+      .loadModels('$_data/asma_ul_husna.json', Asma.fromJson),
+);
 
 /// Dualar: paket-içi duas.json + PANELDEN eklenenler. ⑯ Panel duaları artık
 /// kendi 'duas' koleksiyonuna yazıyor; eski kayıtlar 'inspiration'a type=dua
@@ -85,10 +91,12 @@ final hadithsProvider = FutureProvider<List<Hadith>>((ref) async {
     if (t.isEmpty) continue;
     seen.add(t.trim());
     final r = (c.extra?['reference'] ?? '').toString();
-    out.add(Hadith(c.id, r, r, '', (c.extra?['arabic'] ?? '').toString(), {
-      'tr': {'text': t},
-      'en': {'text': t},
-    }));
+    out.add(
+      Hadith(c.id, r, r, '', (c.extra?['arabic'] ?? '').toString(), {
+        'tr': {'text': t},
+        'en': {'text': t},
+      }),
+    );
   }
   for (final b in bundled) {
     if (seen.contains(b.text('tr').trim())) continue;
@@ -112,17 +120,19 @@ final inspirationProvider = FutureProvider<List<InspirationItem>>((ref) async {
     if (t.isEmpty && c.url.isEmpty) continue;
     seen.add(t.trim());
     final ex = c.extra ?? const <String, dynamic>{};
-    out.add(InspirationItem(
-      c.id,
-      (ex['type'] ?? 'verse').toString(),
-      (ex['reference'] ?? c.subtitle ?? '').toString(),
-      c.url,
-      (ex['arabic'] ?? '').toString(),
-      {
-        'tr': {'text': t},
-        'en': {'text': t},
-      },
-    ));
+    out.add(
+      InspirationItem(
+        c.id,
+        (ex['type'] ?? 'verse').toString(),
+        (ex['reference'] ?? c.subtitle ?? '').toString(),
+        c.url,
+        (ex['arabic'] ?? '').toString(),
+        {
+          'tr': {'text': t},
+          'en': {'text': t},
+        },
+      ),
+    );
   }
   for (final b in bundled) {
     if (seen.contains(b.text('tr').trim())) continue;
@@ -135,7 +145,9 @@ final inspirationProvider = FutureProvider<List<InspirationItem>>((ref) async {
 /// item each time the app is opened (it used a day index → identical all day).
 /// Cached for the session, so it stays stable while browsing and only rerolls
 /// on the next cold launch.
-final inspirationSeedProvider = Provider<int>((ref) => Random().nextInt(1 << 30));
+final inspirationSeedProvider = Provider<int>(
+  (ref) => Random().nextInt(1 << 30),
+);
 
 /// Sadece panelde mevcut hikâyeler (görsel VEYA video).
 final storiesProvider = FutureProvider<List<Story>>((ref) async {
@@ -147,50 +159,57 @@ final storiesProvider = FutureProvider<List<Story>>((ref) async {
     final sub = c.subtitle ?? '';
     final isVideo = c.kind == 'video';
     final poster = c.thumb ?? '';
-    out.add(Story(
-      c.id,
-      'special',
-      '#E0B250',
-      isVideo ? poster : c.url,
-      [
-        StorySlide(
-          isVideo ? poster : c.url,
-          isVideo ? 20000 : 6000,
-          null,
-          {
-            'tr': {'heading': t, 'body': sub},
-            'en': {'heading': t, 'body': sub},
-          },
-          video: isVideo ? c.url : null,
-        ),
-      ],
-      {
-        'tr': {'title': t},
-        'en': {'title': t},
-      },
-    ));
+    out.add(
+      Story(
+        c.id,
+        'special',
+        '#E0B250',
+        isVideo ? poster : c.url,
+        [
+          StorySlide(
+            isVideo ? poster : c.url,
+            isVideo ? 20000 : 6000,
+            null,
+            {
+              'tr': {'heading': t, 'body': sub},
+              'en': {'heading': t, 'body': sub},
+            },
+            video: isVideo ? c.url : null,
+          ),
+        ],
+        {
+          'tr': {'title': t},
+          'en': {'title': t},
+        },
+      ),
+    );
   }
   return out;
 });
 
-final calendarDaysProvider = FutureProvider<List<CalendarDay>>((ref) => ref
-    .watch(assetJsonLoaderProvider)
-    .loadModels('$_data/calendar_days.json', CalendarDay.fromJson));
+final calendarDaysProvider = FutureProvider<List<CalendarDay>>(
+  (ref) => ref
+      .watch(assetJsonLoaderProvider)
+      .loadModels('$_data/calendar_days.json', CalendarDay.fromJson),
+);
 
 /// Today's active religious day (with its 1-based day index), or null.
 final activeReligiousDayProvider =
     FutureProvider<({CalendarDay day, int index})?>((ref) async {
-  final days = await ref.watch(calendarDaysProvider.future);
-  final now = DateTime.now();
-  for (final d in days) {
-    final idx = d.activeDayIndex(now);
-    if (idx > 0) return (day: d, index: idx);
-  }
-  return null;
-});
+      final days = await ref.watch(calendarDaysProvider.future);
+      final now = DateTime.now();
+      for (final d in days) {
+        final idx = d.activeDayIndex(now);
+        if (idx > 0) return (day: d, index: idx);
+      }
+      return null;
+    });
 
-final aiQaProvider = FutureProvider<List<AiQa>>((ref) =>
-    ref.watch(assetJsonLoaderProvider).loadModels('$_data/ai_qa.json', AiQa.fromJson));
+final aiQaProvider = FutureProvider<List<AiQa>>(
+  (ref) => ref
+      .watch(assetJsonLoaderProvider)
+      .loadModels('$_data/ai_qa.json', AiQa.fromJson),
+);
 
 /// Sadece panelde mevcut duvar kâğıtları.
 final wallpapersProvider = FutureProvider<List<Wallpaper>>((ref) async {
@@ -199,25 +218,29 @@ final wallpapersProvider = FutureProvider<List<Wallpaper>>((ref) async {
   for (final c in extras) {
     if (c.url.isEmpty) continue;
     final t = c.title ?? '';
-    out.add(Wallpaper(
-      c.id,
-      (c.subtitle?.isNotEmpty ?? false) ? c.subtitle! : 'custom',
-      c.url,
-      false,
-      const ['#05070D', '#E0B250'],
-      {
-        'tr': {'title': t},
-        'en': {'title': t},
-      },
-      thumb: c.thumb ?? '',
-    ));
+    out.add(
+      Wallpaper(
+        c.id,
+        (c.subtitle?.isNotEmpty ?? false) ? c.subtitle! : 'custom',
+        c.url,
+        false,
+        const ['#05070D', '#E0B250'],
+        {
+          'tr': {'title': t},
+          'en': {'title': t},
+        },
+        thumb: c.thumb ?? '',
+      ),
+    );
   }
   return out;
 });
 
-final mosquesProvider = FutureProvider<List<Mosque>>((ref) => ref
-    .watch(assetJsonLoaderProvider)
-    .loadModels('$_data/mosques.json', Mosque.fromJson));
+final mosquesProvider = FutureProvider<List<Mosque>>(
+  (ref) => ref
+      .watch(assetJsonLoaderProvider)
+      .loadModels('$_data/mosques.json', Mosque.fromJson),
+);
 
 /// Sadece panelden eklenen reel'ler (video, CDN'den oynar).
 final feedProvider = FutureProvider<List<FeedItem>>((ref) async {
@@ -228,71 +251,25 @@ final feedProvider = FutureProvider<List<FeedItem>>((ref) async {
     final t = c.title ?? '';
     // Caption (SELAYA'nın altında görünen açıklama) = panel altyazısı (subtitle).
     final cap = c.subtitle ?? '';
-    out.add(FeedItem(
-      c.id,
-      'video',
-      c.thumb ?? '',
-      c.url,
-      'SELAYA',
-      0,
-      {
+    out.add(
+      FeedItem(c.id, 'video', c.thumb ?? '', c.url, 'SELAYA', 0, {
         'tr': {'title': t, 'caption': cap},
         'en': {'title': t, 'caption': cap},
-      },
-    ));
+      }),
+    );
   }
   return out;
 });
 
-final dhikrPresetsProvider = FutureProvider<List<DhikrPreset>>((ref) => ref
-    .watch(assetJsonLoaderProvider)
-    .loadModels('$_data/dhikr_presets.json', DhikrPreset.fromJson));
+final dhikrPresetsProvider = FutureProvider<List<DhikrPreset>>(
+  (ref) => ref
+      .watch(assetJsonLoaderProvider)
+      .loadModels('$_data/dhikr_presets.json', DhikrPreset.fromJson),
+);
 
-/// Paketteki sesli hikâye kategorileri + panelden eklenenler.
-/// Her panel öğesi, kendi kapağı/başlığı/açıklamasıyla tek bölümlük bir kategori olur.
-final audioStoriesProvider = FutureProvider<List<AudioStoryCategory>>((ref) async {
-  // Sadece panelde mevcut sesli hikâyeler — paketteki gömülü demo içerik
-  // (Peygamber Kıssaları vb.) artık gösterilmez (kullanıcı isteği).
-  final extras = ref.watch(collectionProvider('audio_stories'));
-  final cats = <AudioStoryCategory>[];
-  for (final c in extras) {
-    final eps = (c.extra?['episodes'] as List?) ?? const [];
-    if (c.url.isEmpty || eps.isEmpty) continue;
-    final cover = c.url;
-    final t = c.title ?? 'Sesli Hikâye';
-    final sub = c.subtitle ?? '';
-    final episodes = <AudioEpisode>[];
-    for (var i = 0; i < eps.length; i++) {
-      final e = eps[i];
-      if (e is! Map) continue;
-      final audioUrl = (e['audio'] ?? '').toString();
-      if (audioUrl.isEmpty) continue;
-      final et = (e['title'] ?? 'Bölüm ${i + 1}').toString();
-      final esub = (e['subtitle'] ?? '').toString();
-      final edur = (e['durationSec'] is num) ? (e['durationSec'] as num).toInt() : 0;
-      episodes.add(AudioEpisode('${c.id}_$i', audioUrl, edur, cover, {
-        'tr': {'title': et, 'subtitle': esub},
-        'en': {'title': et, 'subtitle': esub},
-      }));
-    }
-    if (episodes.isEmpty) continue;
-    cats.insert(0, AudioStoryCategory(
-      c.id,
-      'prophets',
-      '#E0B250',
-      cover,
-      episodes,
-      {
-        'tr': {'title': t, 'subtitle': sub},
-        'en': {'title': t, 'subtitle': sub},
-      },
-    ));
-  }
-  return cats;
-});
-
-final greetingTemplatesProvider =
-    FutureProvider<List<GreetingOccasion>>((ref) async {
+final greetingTemplatesProvider = FutureProvider<List<GreetingOccasion>>((
+  ref,
+) async {
   final bundled = await ref
       .watch(assetJsonLoaderProvider)
       .loadModels('$_data/greeting_templates.json', GreetingOccasion.fromJson);
@@ -309,10 +286,12 @@ final greetingTemplatesProvider =
     if (t.isEmpty) continue;
     final occ = (c.extra?['occasion'] ?? 'general').toString();
     seen.add('$occ|$t');
-    (byOcc[occ] ??= []).add(GreetingMessage(c.id, {
-      'tr': {'text': t},
-      'en': {'text': t},
-    }));
+    (byOcc[occ] ??= []).add(
+      GreetingMessage(c.id, {
+        'tr': {'text': t},
+        'en': {'text': t},
+      }),
+    );
   }
   return [
     for (final o in bundled)

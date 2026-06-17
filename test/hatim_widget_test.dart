@@ -5,7 +5,6 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:selaya/core/di/providers.dart';
 import 'package:selaya/features/audio_stories/data/audio_handler.dart';
-import 'package:selaya/features/hatim/data/hatim_controller.dart';
 import 'package:selaya/features/hatim/domain/hatim_session.dart';
 import 'package:selaya/features/hatim/presentation/hatim_screen.dart';
 import 'package:shared_preferences/shared_preferences.dart';

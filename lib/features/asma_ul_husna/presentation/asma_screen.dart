@@ -6,7 +6,6 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../../core/data/content_providers.dart';
-import '../../../core/share/share_helper.dart';
 import '../../../core/localization/localized_text.dart';
 import '../../../core/models/content.dart';
 import '../../../core/utils/ebced.dart';
@@ -41,17 +40,26 @@ class AsmaScreen extends ConsumerWidget {
           children: [
             Padding(
               padding: const EdgeInsets.fromLTRB(
-                  AppSpacing.base, AppSpacing.sm, AppSpacing.base, AppSpacing.sm),
-              child: Text('asma.subtitle'.tr(),
-                  style: Theme.of(context)
-                      .textTheme
-                      .bodyMedium
-                      ?.copyWith(color: c.textSecondary)),
+                AppSpacing.base,
+                AppSpacing.sm,
+                AppSpacing.base,
+                AppSpacing.sm,
+              ),
+              child: Text(
+                'asma.subtitle'.tr(),
+                style: Theme.of(
+                  context,
+                ).textTheme.bodyMedium?.copyWith(color: c.textSecondary),
+              ),
             ),
             Expanded(
               child: GridView.builder(
-                padding: const EdgeInsets.fromLTRB(AppSpacing.base, 0,
-                    AppSpacing.base, AppSpacing.xxxl),
+                padding: const EdgeInsets.fromLTRB(
+                  AppSpacing.base,
+                  0,
+                  AppSpacing.base,
+                  AppSpacing.xxxl,
+                ),
                 gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                   crossAxisCount: 2,
                   mainAxisSpacing: AppSpacing.md,
@@ -76,11 +84,12 @@ class _AsmaCell extends StatelessWidget {
   final List<Asma> list;
   final int index;
   final String lang;
-  const _AsmaCell(
-      {required this.a,
-      required this.list,
-      required this.index,
-      required this.lang});
+  const _AsmaCell({
+    required this.a,
+    required this.list,
+    required this.index,
+    required this.lang,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -106,7 +115,8 @@ class _AsmaCell extends StatelessWidget {
               onAction: (ctx) {
                 Navigator.of(ctx).pop();
                 ctx.push(
-                    '/dhikr?ar=${Uri.encodeComponent(x.arabic)}&name=${Uri.encodeComponent(x.name(lang))}&target=${ebcedValue(x.arabic)}');
+                  '/dhikr?ar=${Uri.encodeComponent(x.arabic)}&name=${Uri.encodeComponent(x.name(lang))}&target=${ebcedValue(x.arabic)}',
+                );
               },
             ),
         ],
@@ -121,43 +131,51 @@ class _AsmaCell extends StatelessWidget {
               CircleAvatar(
                 radius: 13,
                 backgroundColor: c.gold.withValues(alpha: 0.13),
-                child: Text('${a.order}',
-                    style: TextStyle(
-                        color: c.gold,
-                        fontWeight: FontWeight.w700,
-                        fontSize: 11)),
+                child: Text(
+                  '${a.order}',
+                  style: TextStyle(
+                    color: c.gold,
+                    fontWeight: FontWeight.w700,
+                    fontSize: 11,
+                  ),
+                ),
               ),
               const Spacer(),
-              Text('ebced $eb',
-                  style: Theme.of(context)
-                      .textTheme
-                      .labelSmall
-                      ?.copyWith(color: c.textTertiary)),
+              Text(
+                'ebced $eb',
+                style: Theme.of(
+                  context,
+                ).textTheme.labelSmall?.copyWith(color: c.textTertiary),
+              ),
             ],
           ),
           const Spacer(),
-          Text(a.arabic,
-              maxLines: 1,
-              textAlign: TextAlign.right,
-              textDirection: TextDirection.rtl,
-              style: AppTypography.arabic(fontSize: 30, color: c.gold)),
+          Text(
+            a.arabic,
+            maxLines: 1,
+            textAlign: TextAlign.right,
+            textDirection: TextDirection.rtl,
+            style: AppTypography.arabic(fontSize: 30, color: c.gold),
+          ),
           const Gap.xs(),
-          Text(a.transliteration,
-              maxLines: 1,
-              overflow: TextOverflow.ellipsis,
-              style: Theme.of(context)
-                  .textTheme
-                  .titleSmall
-                  ?.copyWith(fontWeight: FontWeight.w700)),
+          Text(
+            a.transliteration,
+            maxLines: 1,
+            overflow: TextOverflow.ellipsis,
+            style: Theme.of(
+              context,
+            ).textTheme.titleSmall?.copyWith(fontWeight: FontWeight.w700),
+          ),
           const SizedBox(height: 2),
-          Text(a.meaning(lang),
-              maxLines: 2,
-              textAlign: TextAlign.center,
-              overflow: TextOverflow.ellipsis,
-              style: Theme.of(context)
-                  .textTheme
-                  .bodySmall
-                  ?.copyWith(color: c.textTertiary, height: 1.3)),
+          Text(
+            a.meaning(lang),
+            maxLines: 2,
+            textAlign: TextAlign.center,
+            overflow: TextOverflow.ellipsis,
+            style: Theme.of(
+              context,
+            ).textTheme.bodySmall?.copyWith(color: c.textTertiary, height: 1.3),
+          ),
           const Spacer(),
         ],
       ),
@@ -179,132 +197,3 @@ const _bgFallback = [
   'assets/images/wallpapers/wp_nabawi_2.jpg',
   'assets/images/wallpapers/wp_night_2.jpg',
 ];
-
-/// Paylaşım için rastgele duvar kâğıdı: `wallpapersProvider` (panel/CDN —
-/// kullanıcının eklediği OTOMATİK dahil) + paket-içi yedekler → rastgele biri.
-String _randomWallpaper(WidgetRef ref) {
-  final wps = ref.read(wallpapersProvider).value ?? const <Wallpaper>[];
-  final pool = <String>[
-    for (final w in wps)
-      if (w.image.isNotEmpty) w.image,
-    ..._bgFallback,
-  ];
-  return pool[Random().nextInt(pool.length)];
-}
-
-/// Detail sheet: Arabic + transliteration + name + meaning (açıklama), ebced,
-/// a zikir suggestion, and "Zikir Çek" + "Paylaş" actions.
-void _showAsmaDetail(BuildContext context, Asma a, String lang) {
-  final c = context.colors;
-  final eb = ebcedValue(a.arabic);
-  showModalBottomSheet(
-    context: context,
-    isScrollControlled: true,
-    builder: (_) => SafeArea(
-      child: SingleChildScrollView(
-        padding: const EdgeInsets.all(AppSpacing.xl),
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            Text(a.arabic,
-                textDirection: TextDirection.rtl,
-                style: AppTypography.arabic(fontSize: 56, color: c.gold)),
-            const Gap.sm(),
-            Text(a.transliteration,
-                style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                    color: c.textSecondary, fontStyle: FontStyle.italic)),
-            const Gap.xs(),
-            Text(a.name(lang), style: Theme.of(context).textTheme.headlineSmall),
-            const Gap.md(),
-            Text(a.meaning(lang),
-                textAlign: TextAlign.center,
-                style: Theme.of(context)
-                    .textTheme
-                    .bodyLarge
-                    ?.copyWith(color: c.textSecondary, height: 1.6)),
-            const Gap.md(),
-            Container(
-              padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 6),
-              decoration: BoxDecoration(
-                color: c.gold.withValues(alpha: 0.14),
-                borderRadius: BorderRadius.circular(99),
-              ),
-              child: Text('asma.ebced'.tr(args: ['$eb']),
-                  style: Theme.of(context).textTheme.titleSmall?.copyWith(
-                      color: c.gold, fontWeight: FontWeight.w700)),
-            ),
-            const Gap.md(),
-            // Zikir suggestion — the traditional zikir count equals the ebced.
-            Container(
-              padding: const EdgeInsets.all(AppSpacing.base),
-              decoration: BoxDecoration(
-                color: c.surfaceAlt,
-                borderRadius: AppRadius.rLg,
-                border: Border.all(color: c.border),
-              ),
-              child: Row(
-                children: [
-                  Icon(Icons.lightbulb_outline_rounded, color: c.gold, size: 20),
-                  const Gap.sm(),
-                  Expanded(
-                    child: Text('asma.zikirSuggestion'.tr(args: ['$eb']),
-                        style: Theme.of(context)
-                            .textTheme
-                            .bodyMedium
-                            ?.copyWith(color: c.textSecondary, height: 1.4)),
-                  ),
-                ],
-              ),
-            ),
-            const Gap.lg(),
-            Row(
-              children: [
-                Expanded(
-                  child: Consumer(
-                    builder: (ctx, ref, _) => OutlinedButton.icon(
-                      // Düz metin yerine: rastgele duvar kâğıdı arka planlı GÖRSEL
-                      // kart (panel'den eklenenler dahil) → görsel olarak paylaş.
-                      onPressed: () => showVerseShareSheet(
-                        ctx,
-                        arabic: a.arabic,
-                        text: a.meaning(lang),
-                        reference: '${a.name(lang)} · ${a.transliteration}',
-                        label: 'asma.title'.tr(),
-                        backgroundImage: _randomWallpaper(ref),
-                      ),
-                      icon: const Icon(Icons.ios_share_rounded, size: 18),
-                      label: Text('common.share'.tr()),
-                      style: OutlinedButton.styleFrom(
-                        foregroundColor: c.gold,
-                        side: BorderSide(color: c.gold.withValues(alpha: 0.5)),
-                        padding: const EdgeInsets.symmetric(vertical: 12),
-                      ),
-                    ),
-                  ),
-                ),
-                const Gap.sm(),
-                Expanded(
-                  child: FilledButton.icon(
-                    onPressed: () {
-                      Navigator.of(context).pop();
-                      context.push(
-                          '/dhikr?ar=${Uri.encodeComponent(a.arabic)}&name=${Uri.encodeComponent(a.name(lang))}&target=$eb');
-                    },
-                    icon: const Icon(Icons.repeat_rounded, size: 18),
-                    label: Text('asma.doZikir'.tr()),
-                    style: FilledButton.styleFrom(
-                      backgroundColor: c.gold,
-                      foregroundColor: const Color(0xFF1A1203),
-                      padding: const EdgeInsets.symmetric(vertical: 12),
-                    ),
-                  ),
-                ),
-              ],
-            ),
-            const Gap.sm(),
-          ],
-        ),
-      ),
-    ),
-  );
-}
