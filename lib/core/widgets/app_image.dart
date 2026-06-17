@@ -23,6 +23,11 @@ class AppImage extends StatelessWidget {
   /// uzun ızgaralarda (yüzlerce görsel) RAM ve kaydırma takılmasını düşürür.
   final int? memWidth;
 
+  /// Verilirse, AĞ görseli (disk-önbellekte yokken) İNDİRİLİRKEN paket-yedeği
+  /// yerine BU gösterilir — ör. mushaf sayfası inerken küçük "Sayfa indiriliyor…"
+  /// bilgisi. Sadece [networkUrl] modunda etkili.
+  final Widget? loadingPlaceholder;
+
   const AppImage(
     this.asset, {
     super.key,
@@ -32,6 +37,7 @@ class AppImage extends StatelessWidget {
     this.height,
     this.fallbackColors,
     this.memWidth,
+    this.loadingPlaceholder,
   });
 
   /// Asset yolu VEYA tam CDN URL'si kabul eder; ikisini de çözüp ağdan
@@ -47,6 +53,7 @@ class AppImage extends StatelessWidget {
     double? height,
     List<Color>? fallbackColors,
     int? memWidth,
+    Widget? loadingPlaceholder,
   }) {
     final v = imageOrUrl ?? '';
     String? asset;
@@ -71,6 +78,7 @@ class AppImage extends StatelessWidget {
       height: height,
       fallbackColors: fallbackColors,
       memWidth: memWidth,
+      loadingPlaceholder: loadingPlaceholder,
     );
   }
 
@@ -86,7 +94,7 @@ class AppImage extends StatelessWidget {
         height: height,
         memCacheWidth: memWidth,
         fadeInDuration: const Duration(milliseconds: 200),
-        placeholder: (_, _) => _bundled(fallback),
+        placeholder: (_, _) => loadingPlaceholder ?? _bundled(fallback),
         errorWidget: (_, _, _) => _bundled(fallback),
       );
     }
@@ -107,8 +115,8 @@ class AppImage extends StatelessWidget {
 
   Widget _fallback(BuildContext context) {
     final c = context.colors;
-    final colors = fallbackColors ??
-        [c.goldDeep.withValues(alpha: 0.55), c.surface, c.bg];
+    final colors =
+        fallbackColors ?? [c.goldDeep.withValues(alpha: 0.55), c.surface, c.bg];
     return Container(
       width: width,
       height: height,

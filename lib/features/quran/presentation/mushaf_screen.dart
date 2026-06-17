@@ -513,6 +513,10 @@ class _MushafScreenState extends ConsumerState<MushafScreen>
                         child: AppImage.cdn(
                           mushafPageUrl(page),
                           fit: BoxFit.contain,
+                          // Sayfa görseli CDN'den İLK inerken küçük "indiriliyor"
+                          // bilgisi (kullanıcı 2026-06-17). İkinci görüşte disk
+                          // önbelleğinden anında gelir → gösterge çıkmaz.
+                          loadingPlaceholder: const _MushafPageLoading(),
                         ),
                       ),
                     ),
@@ -634,6 +638,50 @@ class _MushafScreenState extends ConsumerState<MushafScreen>
             builder: (_, h, _) => SizedBox(height: h),
           ),
         ],
+      ),
+    );
+  }
+}
+
+/// Mushaf sayfası CDN'den inerken sayfanın ortasında gösterilen küçük
+/// "Sayfa indiriliyor…" bilgisi (kullanıcı 2026-06-17). Sayfa zaten boşken
+/// göründüğünden küçük gösterge ibadeti bölmez; disk önbelleğinden gelen
+/// sayfalarda hiç çıkmaz.
+class _MushafPageLoading extends StatelessWidget {
+  const _MushafPageLoading();
+
+  @override
+  Widget build(BuildContext context) {
+    final tr = context.langCode == 'tr';
+    return Center(
+      child: Container(
+        padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 8),
+        decoration: BoxDecoration(
+          color: const Color(0xFF2A2008).withValues(alpha: 0.06),
+          borderRadius: BorderRadius.circular(99),
+        ),
+        child: Row(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            const SizedBox(
+              width: 13,
+              height: 13,
+              child: CircularProgressIndicator(
+                strokeWidth: 2,
+                color: Color(0xFFB8860B),
+              ),
+            ),
+            const SizedBox(width: 8),
+            Text(
+              tr ? 'Sayfa indiriliyor…' : 'Loading page…',
+              style: const TextStyle(
+                color: Color(0xFF8A6D1E),
+                fontSize: 12,
+                fontWeight: FontWeight.w600,
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
