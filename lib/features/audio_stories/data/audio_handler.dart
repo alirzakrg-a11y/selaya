@@ -66,16 +66,19 @@ Future<List<AudioSource>> _resolveQuranSources(List<MediaTrack> list) async {
 /// anda birden çok ayet inebileceğinden sayaçla yönetilir: hepsi bitince false.
 final ValueNotifier<bool> quranCaching = ValueNotifier<bool>(false);
 int _activeQuranDownloads = 0;
+Timer? _quranCachingHideTimer;
 
 /// Tek ayeti (çalarken) arka planda indirir — yalnız henüz yoksa. Tek-tek
 /// indirildiğinden toplu istek patlaması (thundering herd) olmaz; rate-limit'i
-/// de zorlamaz. İndirme başlayınca [quranCaching] true olur, bitince false.
+/// de zorlamaz. İndirme başlayınca [quranCaching] true olur; son indirme bitince
+/// kısa bir gecikmeyle (rozet görünür kalsın diye) false olur.
 Future<void> _cacheQuranTrack(MediaTrack t) async {
   try {
     final dir = await _quranAudioDir();
     final f = _quranCacheFile(dir, t);
     if (await f.exists() && await f.length() > 1024) return; // zaten yerel
     _activeQuranDownloads++;
+    _quranCachingHideTimer?.cancel(); // yeni indirme → bekleyen gizlemeyi iptal
     quranCaching.value = true;
     try {
       final resp = await http.get(Uri.parse(t.url));
@@ -85,7 +88,13 @@ Future<void> _cacheQuranTrack(MediaTrack t) async {
     } finally {
       if (--_activeQuranDownloads <= 0) {
         _activeQuranDownloads = 0;
-        quranCaching.value = false;
+        // Hızlı internette indirme ANINDA biter → rozet göz açıp kapayana kadar
+        // kaybolmasın: son indirmeden ~1.8 sn sonra gizle. Yeni indirme gelirse
+        // yukarıdaki cancel ile ertelenir. (kullanıcı 2026-06-17)
+        _quranCachingHideTimer?.cancel();
+        _quranCachingHideTimer = Timer(const Duration(milliseconds: 1800), () {
+          if (_activeQuranDownloads <= 0) quranCaching.value = false;
+        });
       }
     }
   } catch (_) {}
