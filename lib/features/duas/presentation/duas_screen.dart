@@ -28,17 +28,23 @@ class _DuasScreenState extends ConsumerState<DuasScreen> {
   late Set<String> _favs;
 
   static const _categories = [
-    'all', 'morning', 'evening', 'prayer', 'daily', 'protection'
+    'all',
+    'morning',
+    'evening',
+    'prayer',
+    'daily',
+    'protection',
   ];
 
   @override
   void initState() {
     super.initState();
-    _favs = (ref
-                .read(sharedPreferencesProvider)
-                .getStringList(PrefKeys.duaFavorites) ??
-            const [])
-        .toSet();
+    _favs =
+        (ref
+                    .read(sharedPreferencesProvider)
+                    .getStringList(PrefKeys.duaFavorites) ??
+                const [])
+            .toSet();
   }
 
   void _toggleFav(String id) {
@@ -52,6 +58,15 @@ class _DuasScreenState extends ConsumerState<DuasScreen> {
 
   String _label(String cat) =>
       cat == 'all' ? 'common.seeAll'.tr() : 'duas.$cat'.tr();
+
+  static IconData _catIcon(String cat) => switch (cat) {
+    'morning' => Icons.wb_twilight_rounded,
+    'evening' => Icons.nightlight_round,
+    'prayer' => Icons.mosque_rounded,
+    'daily' => Icons.event_repeat_rounded,
+    'protection' => Icons.shield_moon_rounded,
+    _ => Icons.apps_rounded,
+  };
 
   @override
   Widget build(BuildContext context) {
@@ -81,10 +96,7 @@ class _DuasScreenState extends ConsumerState<DuasScreen> {
               ),
               Expanded(
                 child: TabBarView(
-                  children: [
-                    _listTab(all, lang),
-                    _favTab(all, lang),
-                  ],
+                  children: [_listTab(all, lang), _favTab(all, lang)],
                 ),
               ),
             ],
@@ -102,17 +114,23 @@ class _DuasScreenState extends ConsumerState<DuasScreen> {
         : all.where((d) => d.category == _category).toList();
     if (q.isNotEmpty) {
       list = list
-          .where((d) =>
-              d.title(lang).toLowerCase().contains(q) ||
-              d.text(lang).toLowerCase().contains(q) ||
-              d.transliteration.toLowerCase().contains(q))
+          .where(
+            (d) =>
+                d.title(lang).toLowerCase().contains(q) ||
+                d.text(lang).toLowerCase().contains(q) ||
+                d.transliteration.toLowerCase().contains(q),
+          )
           .toList();
     }
     return Column(
       children: [
         Padding(
           padding: const EdgeInsets.fromLTRB(
-              AppSpacing.base, AppSpacing.xs, AppSpacing.base, AppSpacing.xs),
+            AppSpacing.base,
+            AppSpacing.xs,
+            AppSpacing.base,
+            AppSpacing.xs,
+          ),
           child: TextField(
             onChanged: (v) => setState(() => _query = v),
             decoration: InputDecoration(
@@ -122,35 +140,38 @@ class _DuasScreenState extends ConsumerState<DuasScreen> {
               filled: true,
               fillColor: c.surfaceAlt,
               border: OutlineInputBorder(
-                  borderRadius: AppRadius.rLg, borderSide: BorderSide.none),
+                borderRadius: AppRadius.rLg,
+                borderSide: BorderSide.none,
+              ),
             ),
           ),
         ),
-        SizedBox(
-          height: 52,
-          child: ListView.separated(
-            scrollDirection: Axis.horizontal,
-            padding: AppSpacing.screen,
-            itemCount: _categories.length,
-            separatorBuilder: (_, _) => const Gap.sm(),
-            itemBuilder: (context, i) {
-              final cat = _categories[i];
-              final sel = cat == _category;
-              return Center(
-                child: ChoiceChip(
-                  label: Text(_label(cat)),
-                  selected: sel,
-                  onSelected: (_) => setState(() => _category = cat),
-                  selectedColor: c.gold.withValues(alpha: 0.2),
-                  backgroundColor: c.surfaceAlt,
-                  labelStyle: TextStyle(
-                      color: sel ? c.gold : c.textSecondary,
-                      fontWeight: FontWeight.w600),
-                  side: BorderSide(
-                      color: sel ? c.gold.withValues(alpha: 0.5) : c.border),
+        // Kategoriler üstten ÇİP yerine KART-TABLO (kullanıcı 2026-06-17): 3
+        // sütunlu kart grid; seçili kart altın çerçeveyle ayrışır, alttaki liste
+        // ona göre filtrelenir. FittedBox sayesinde büyük fontta da taşmaz.
+        Padding(
+          padding: const EdgeInsets.fromLTRB(
+            AppSpacing.base,
+            AppSpacing.xs,
+            AppSpacing.base,
+            0,
+          ),
+          child: GridView.count(
+            shrinkWrap: true,
+            physics: const NeverScrollableScrollPhysics(),
+            crossAxisCount: 3,
+            mainAxisSpacing: AppSpacing.sm,
+            crossAxisSpacing: AppSpacing.sm,
+            childAspectRatio: 1.55,
+            children: [
+              for (final cat in _categories)
+                _CatCard(
+                  label: _label(cat),
+                  icon: _catIcon(cat),
+                  selected: cat == _category,
+                  onTap: () => setState(() => _category = cat),
                 ),
-              );
-            },
+            ],
           ),
         ),
         const Gap.sm(),
@@ -172,19 +193,18 @@ class _DuasScreenState extends ConsumerState<DuasScreen> {
     final favs = all.where((d) => _favs.contains(d.id)).toList();
     return favs.isEmpty
         ? SelayaEmpty(message: 'duas.noFavorites'.tr())
-        : _DuaList(
-            duas: favs,
-            lang: lang,
-            favs: _favs,
-            onFav: _toggleFav,
-          );
+        : _DuaList(duas: favs, lang: lang, favs: _favs, onFav: _toggleFav);
   }
 
   /// Gold-gradient visual header (like the Quran tab's), with a count subtitle.
   Widget _header(SelayaColors c, int count) {
     return Container(
       margin: const EdgeInsets.fromLTRB(
-          AppSpacing.base, AppSpacing.sm, AppSpacing.base, AppSpacing.sm),
+        AppSpacing.base,
+        AppSpacing.sm,
+        AppSpacing.base,
+        AppSpacing.sm,
+      ),
       padding: const EdgeInsets.all(AppSpacing.base),
       decoration: BoxDecoration(
         gradient: LinearGradient(
@@ -204,29 +224,89 @@ class _DuasScreenState extends ConsumerState<DuasScreen> {
               shape: BoxShape.circle,
               color: c.gold.withValues(alpha: 0.16),
             ),
-            child: Icon(Icons.volunteer_activism_rounded,
-                color: c.gold, size: 24),
+            child: Icon(
+              Icons.volunteer_activism_rounded,
+              color: c.gold,
+              size: 24,
+            ),
           ),
           const Gap.md(),
           Expanded(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text('duas.title'.tr(),
-                    style: Theme.of(context)
-                        .textTheme
-                        .titleMedium
-                        ?.copyWith(fontWeight: FontWeight.w800)),
+                Text(
+                  'duas.title'.tr(),
+                  style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                    fontWeight: FontWeight.w800,
+                  ),
+                ),
                 const SizedBox(height: 2),
-                Text('duas.headerSubtitle'.tr(args: ['$count']),
-                    style: Theme.of(context)
-                        .textTheme
-                        .bodySmall
-                        ?.copyWith(color: c.textSecondary)),
+                Text(
+                  'duas.headerSubtitle'.tr(args: ['$count']),
+                  style: Theme.of(
+                    context,
+                  ).textTheme.bodySmall?.copyWith(color: c.textSecondary),
+                ),
               ],
             ),
           ),
         ],
+      ),
+    );
+  }
+}
+
+/// Dua kategorisi kartı — üstten çip yerine kart-tablo (kullanıcı 2026-06-17).
+class _CatCard extends StatelessWidget {
+  final String label;
+  final IconData icon;
+  final bool selected;
+  final VoidCallback onTap;
+  const _CatCard({
+    required this.label,
+    required this.icon,
+    required this.selected,
+    required this.onTap,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    final c = context.colors;
+    return InkWell(
+      onTap: onTap,
+      borderRadius: AppRadius.rMd,
+      child: AnimatedContainer(
+        duration: const Duration(milliseconds: 160),
+        padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 8),
+        decoration: BoxDecoration(
+          color: selected ? c.gold.withValues(alpha: 0.16) : c.surfaceAlt,
+          borderRadius: AppRadius.rMd,
+          border: Border.all(
+            color: selected ? c.gold : c.border,
+            width: selected ? 1.5 : 1,
+          ),
+        ),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Icon(icon, size: 22, color: selected ? c.gold : c.textSecondary),
+            const SizedBox(height: 6),
+            FittedBox(
+              fit: BoxFit.scaleDown,
+              child: Text(
+                label,
+                maxLines: 1,
+                style: TextStyle(
+                  color: selected ? c.gold : c.textSecondary,
+                  fontWeight: FontWeight.w600,
+                  fontSize: 12,
+                ),
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
@@ -237,17 +317,22 @@ class _DuaList extends StatelessWidget {
   final String lang;
   final Set<String> favs;
   final void Function(String) onFav;
-  const _DuaList(
-      {required this.duas,
-      required this.lang,
-      required this.favs,
-      required this.onFav});
+  const _DuaList({
+    required this.duas,
+    required this.lang,
+    required this.favs,
+    required this.onFav,
+  });
 
   @override
   Widget build(BuildContext context) {
     return ListView.separated(
       padding: const EdgeInsets.fromLTRB(
-          AppSpacing.base, AppSpacing.sm, AppSpacing.base, AppSpacing.xxxl),
+        AppSpacing.base,
+        AppSpacing.sm,
+        AppSpacing.base,
+        AppSpacing.xxxl,
+      ),
       itemCount: duas.length,
       separatorBuilder: (_, _) => const Gap.md(),
       itemBuilder: (context, i) => _DuaCard(
@@ -269,13 +354,14 @@ class _DuaCard extends StatelessWidget {
   final String lang;
   final bool fav;
   final VoidCallback onFav;
-  const _DuaCard(
-      {required this.dua,
-      required this.allDuas,
-      required this.index,
-      required this.lang,
-      required this.fav,
-      required this.onFav});
+  const _DuaCard({
+    required this.dua,
+    required this.allDuas,
+    required this.index,
+    required this.lang,
+    required this.fav,
+    required this.onFav,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -290,24 +376,30 @@ class _DuaCard extends StatelessWidget {
           Row(
             children: [
               Expanded(
-                child: Text(dua.title(lang),
-                    style: Theme.of(context)
-                        .textTheme
-                        .titleMedium
-                        ?.copyWith(color: c.gold)),
+                child: Text(
+                  dua.title(lang),
+                  style: Theme.of(
+                    context,
+                  ).textTheme.titleMedium?.copyWith(color: c.gold),
+                ),
               ),
               // ⑭ Paylaş — duayı doğrudan paylaş (kart üzerinden).
               InkWell(
-                onTap: () => showVerseShareSheet(context,
-                    arabic: dua.arabic.isEmpty ? null : dua.arabic,
-                    text: dua.text(lang),
-                    reference: dua.source,
-                    label: dua.title(lang)),
+                onTap: () => showVerseShareSheet(
+                  context,
+                  arabic: dua.arabic.isEmpty ? null : dua.arabic,
+                  text: dua.text(lang),
+                  reference: dua.source,
+                  label: dua.title(lang),
+                ),
                 borderRadius: BorderRadius.circular(99),
                 child: Padding(
                   padding: const EdgeInsets.all(4),
-                  child: Icon(Icons.ios_share_rounded,
-                      size: 18, color: c.textSecondary),
+                  child: Icon(
+                    Icons.ios_share_rounded,
+                    size: 18,
+                    color: c.textSecondary,
+                  ),
                 ),
               ),
               InkWell(
@@ -316,9 +408,10 @@ class _DuaCard extends StatelessWidget {
                 child: Padding(
                   padding: const EdgeInsets.all(4),
                   child: Icon(
-                      fav ? AppIcons.favoriteFilled : AppIcons.favorite,
-                      size: 20,
-                      color: fav ? c.danger : c.textTertiary),
+                    fav ? AppIcons.favoriteFilled : AppIcons.favorite,
+                    size: 20,
+                    color: fav ? c.danger : c.textTertiary,
+                  ),
                 ),
               ),
             ],
@@ -328,33 +421,44 @@ class _DuaCard extends StatelessWidget {
           // göre büzülüp SOLDA görünür → RTL sağa yaslama görünmez kalır.
           SizedBox(
             width: double.infinity,
-            child: Text(dua.arabic,
-                textAlign: TextAlign.right,
-                textDirection: TextDirection.rtl,
-                style:
-                    AppTypography.arabic(fontSize: 26, color: c.textPrimary)),
+            child: Text(
+              dua.arabic,
+              textAlign: TextAlign.right,
+              textDirection: TextDirection.rtl,
+              style: AppTypography.arabic(fontSize: 26, color: c.textPrimary),
+            ),
           ),
           if (dua.transliteration.isNotEmpty) ...[
             const Gap.sm(),
-            Text(dua.transliteration,
-                style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                    color: c.gold, fontStyle: FontStyle.italic)),
+            Text(
+              dua.transliteration,
+              style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                color: c.gold,
+                fontStyle: FontStyle.italic,
+              ),
+            ),
           ],
           const Gap.sm(),
-          Text(dua.text(lang),
-              style: Theme.of(context)
-                  .textTheme
-                  .bodyMedium
-                  ?.copyWith(color: c.textSecondary, height: 1.5)),
+          Text(
+            dua.text(lang),
+            style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+              color: c.textSecondary,
+              height: 1.5,
+            ),
+          ),
           if (dua.source.isNotEmpty) ...[
             const Gap.sm(),
             Row(
               children: [
                 Icon(Icons.menu_book_rounded, size: 14, color: c.gold),
                 const SizedBox(width: 5),
-                Text('${lang == 'tr' ? 'Kaynak' : 'Source'}: ${dua.source}',
-                    style: Theme.of(context).textTheme.labelMedium?.copyWith(
-                        color: c.textTertiary, fontWeight: FontWeight.w600)),
+                Text(
+                  '${lang == 'tr' ? 'Kaynak' : 'Source'}: ${dua.source}',
+                  style: Theme.of(context).textTheme.labelMedium?.copyWith(
+                    color: c.textTertiary,
+                    fontWeight: FontWeight.w600,
+                  ),
+                ),
               ],
             ),
           ],
@@ -367,7 +471,11 @@ class _DuaCard extends StatelessWidget {
 /// Bir duâya dokununca açılan popup — namaz rehberi gibi büyük görünüm,
 /// oklarla (◀ ▶) veya kaydırarak duâlar arası geçiş + paylaş.
 void showDuaDetail(
-    BuildContext context, List<Dua> duas, int index, String lang) {
+  BuildContext context,
+  List<Dua> duas,
+  int index,
+  String lang,
+) {
   // ⑦ Genel ADAPTİF popup'a taşındı: yükseklik içeriğe göre (kısa dua = küçük
   // popup; eskiden _DuaDetailDialog hep %82 doluyordu). ◀▶/kaydır + paylaş hazır.
   showContentDetail(
@@ -392,8 +500,11 @@ class _DuaDetailDialog extends StatefulWidget {
   final List<Dua> duas;
   final int initial;
   final String lang;
-  const _DuaDetailDialog(
-      {required this.duas, required this.initial, required this.lang});
+  const _DuaDetailDialog({
+    required this.duas,
+    required this.initial,
+    required this.lang,
+  });
   @override
   State<_DuaDetailDialog> createState() => _DuaDetailDialogState();
 }
@@ -411,9 +522,11 @@ class _DuaDetailDialogState extends State<_DuaDetailDialog> {
   void _go(int delta) {
     final n = _i + delta;
     if (n < 0 || n >= widget.duas.length) return;
-    _pc.animateToPage(n,
-        duration: const Duration(milliseconds: 280),
-        curve: Curves.easeOutCubic);
+    _pc.animateToPage(
+      n,
+      duration: const Duration(milliseconds: 280),
+      curve: Curves.easeOutCubic,
+    );
   }
 
   @override
@@ -424,19 +537,23 @@ class _DuaDetailDialogState extends State<_DuaDetailDialog> {
     return Dialog(
       backgroundColor: Colors.transparent,
       insetPadding: const EdgeInsets.symmetric(
-          horizontal: AppSpacing.base, vertical: AppSpacing.xl),
+        horizontal: AppSpacing.base,
+        vertical: AppSpacing.xl,
+      ),
       child: Container(
         constraints: BoxConstraints(
-            maxHeight: MediaQuery.of(context).size.height * 0.82),
+          maxHeight: MediaQuery.of(context).size.height * 0.82,
+        ),
         decoration: BoxDecoration(
           color: c.surface,
           borderRadius: AppRadius.rXl,
           border: Border.all(color: c.gold.withValues(alpha: 0.3)),
           boxShadow: [
             BoxShadow(
-                color: Colors.black.withValues(alpha: 0.5),
-                blurRadius: 30,
-                offset: const Offset(0, 12)),
+              color: Colors.black.withValues(alpha: 0.5),
+              blurRadius: 30,
+              offset: const Offset(0, 12),
+            ),
           ],
         ),
         child: ClipRRect(
@@ -446,8 +563,12 @@ class _DuaDetailDialogState extends State<_DuaDetailDialog> {
             children: [
               // Başlık şeridi + kapat
               Container(
-                padding: const EdgeInsets.fromLTRB(AppSpacing.base,
-                    AppSpacing.sm, AppSpacing.xs, AppSpacing.sm),
+                padding: const EdgeInsets.fromLTRB(
+                  AppSpacing.base,
+                  AppSpacing.sm,
+                  AppSpacing.xs,
+                  AppSpacing.sm,
+                ),
                 decoration: BoxDecoration(
                   gradient: LinearGradient(
                     colors: [c.gold.withValues(alpha: 0.18), c.surfaceAlt],
@@ -455,17 +576,20 @@ class _DuaDetailDialogState extends State<_DuaDetailDialog> {
                 ),
                 child: Row(
                   children: [
-                    Icon(Icons.volunteer_activism_rounded,
-                        color: c.gold, size: 20),
+                    Icon(
+                      Icons.volunteer_activism_rounded,
+                      color: c.gold,
+                      size: 20,
+                    ),
                     const Gap.sm(),
                     Expanded(
-                      child: Text('duas.title'.tr(),
-                          style: Theme.of(context)
-                              .textTheme
-                              .titleSmall
-                              ?.copyWith(
-                                  color: c.gold,
-                                  fontWeight: FontWeight.w800)),
+                      child: Text(
+                        'duas.title'.tr(),
+                        style: Theme.of(context).textTheme.titleSmall?.copyWith(
+                          color: c.gold,
+                          fontWeight: FontWeight.w800,
+                        ),
+                      ),
                     ),
                     IconButton(
                       onPressed: () => Navigator.of(context).pop(),
@@ -483,40 +607,49 @@ class _DuaDetailDialogState extends State<_DuaDetailDialog> {
                   itemBuilder: (_, idx) {
                     final d = widget.duas[idx];
                     return SingleChildScrollView(
-                      padding: const EdgeInsets.fromLTRB(AppSpacing.lg,
-                          AppSpacing.md, AppSpacing.lg, AppSpacing.lg),
+                      padding: const EdgeInsets.fromLTRB(
+                        AppSpacing.lg,
+                        AppSpacing.md,
+                        AppSpacing.lg,
+                        AppSpacing.lg,
+                      ),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.stretch,
                         children: [
-                          Text(d.title(lang),
-                              textAlign: TextAlign.center,
-                              style: Theme.of(context)
-                                  .textTheme
-                                  .titleMedium
-                                  ?.copyWith(
-                                      color: c.textPrimary,
-                                      fontWeight: FontWeight.w800)),
+                          Text(
+                            d.title(lang),
+                            textAlign: TextAlign.center,
+                            style: Theme.of(context).textTheme.titleMedium
+                                ?.copyWith(
+                                  color: c.textPrimary,
+                                  fontWeight: FontWeight.w800,
+                                ),
+                          ),
                           if (d.arabic.isNotEmpty) ...[
                             const Gap.lg(),
-                            Text(d.arabic,
-                                textAlign: TextAlign.right,
-                                textDirection: TextDirection.rtl,
-                                style: AppTypography.arabic(
-                                    fontSize: 30,
-                                    color: c.textPrimary,
-                                    height: 1.95)),
+                            Text(
+                              d.arabic,
+                              textAlign: TextAlign.right,
+                              textDirection: TextDirection.rtl,
+                              style: AppTypography.arabic(
+                                fontSize: 30,
+                                color: c.textPrimary,
+                                height: 1.95,
+                              ),
+                            ),
                           ],
                           if (d.transliteration.isNotEmpty) ...[
                             const Gap.md(),
-                            Text(d.transliteration,
-                                textAlign: TextAlign.center,
-                                style: Theme.of(context)
-                                    .textTheme
-                                    .bodyMedium
-                                    ?.copyWith(
-                                        color: c.gold,
-                                        fontStyle: FontStyle.italic,
-                                        height: 1.5)),
+                            Text(
+                              d.transliteration,
+                              textAlign: TextAlign.center,
+                              style: Theme.of(context).textTheme.bodyMedium
+                                  ?.copyWith(
+                                    color: c.gold,
+                                    fontStyle: FontStyle.italic,
+                                    height: 1.5,
+                                  ),
+                            ),
                           ],
                           const Gap.md(),
                           Container(
@@ -525,32 +658,39 @@ class _DuaDetailDialogState extends State<_DuaDetailDialog> {
                               color: c.surfaceAlt,
                               borderRadius: AppRadius.rLg,
                             ),
-                            child: Text('"${d.text(lang)}"',
-                                textAlign: TextAlign.center,
-                                style: Theme.of(context)
-                                    .textTheme
-                                    .bodyLarge
-                                    ?.copyWith(
-                                        color: c.textSecondary, height: 1.6)),
+                            child: Text(
+                              '"${d.text(lang)}"',
+                              textAlign: TextAlign.center,
+                              style: Theme.of(context).textTheme.bodyLarge
+                                  ?.copyWith(
+                                    color: c.textSecondary,
+                                    height: 1.6,
+                                  ),
+                            ),
                           ),
                           if (d.source.isNotEmpty) ...[
                             const Gap.md(),
                             Row(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
-                                Icon(Icons.menu_book_rounded,
-                                    size: 14, color: c.gold),
+                                Icon(
+                                  Icons.menu_book_rounded,
+                                  size: 14,
+                                  color: c.gold,
+                                ),
                                 const SizedBox(width: 5),
                                 Flexible(
                                   child: Text(
-                                      '${lang == 'tr' ? 'Kaynak' : 'Source'}: ${d.source}',
-                                      textAlign: TextAlign.center,
-                                      style: Theme.of(context)
-                                          .textTheme
-                                          .labelMedium
-                                          ?.copyWith(
-                                              color: c.textTertiary,
-                                              fontWeight: FontWeight.w600)),
+                                    '${lang == 'tr' ? 'Kaynak' : 'Source'}: ${d.source}',
+                                    textAlign: TextAlign.center,
+                                    style: Theme.of(context)
+                                        .textTheme
+                                        .labelMedium
+                                        ?.copyWith(
+                                          color: c.textTertiary,
+                                          fontWeight: FontWeight.w600,
+                                        ),
+                                  ),
                                 ),
                               ],
                             ),
@@ -577,23 +717,25 @@ class _DuaDetailDialogState extends State<_DuaDetailDialog> {
                       disabledColor: c.textTertiary.withValues(alpha: 0.4),
                     ),
                     Expanded(
-                      child: Text('${_i + 1} / $total',
-                          textAlign: TextAlign.center,
-                          style: Theme.of(context)
-                              .textTheme
-                              .labelLarge
-                              ?.copyWith(
-                                  color: c.textSecondary,
-                                  fontWeight: FontWeight.w700)),
+                      child: Text(
+                        '${_i + 1} / $total',
+                        textAlign: TextAlign.center,
+                        style: Theme.of(context).textTheme.labelLarge?.copyWith(
+                          color: c.textSecondary,
+                          fontWeight: FontWeight.w700,
+                        ),
+                      ),
                     ),
                     IconButton(
                       onPressed: () {
                         final d = widget.duas[_i];
-                        showVerseShareSheet(context,
-                            arabic: d.arabic.isEmpty ? null : d.arabic,
-                            text: d.text(lang),
-                            reference: d.source,
-                            label: d.title(lang));
+                        showVerseShareSheet(
+                          context,
+                          arabic: d.arabic.isEmpty ? null : d.arabic,
+                          text: d.text(lang),
+                          reference: d.source,
+                          label: d.title(lang),
+                        );
                       },
                       icon: const Icon(Icons.share_rounded, size: 22),
                       color: c.gold,

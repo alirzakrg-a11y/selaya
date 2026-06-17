@@ -1170,8 +1170,11 @@ class _GaugeCarouselState extends State<_GaugeCarousel> {
     return Column(
       children: [
         SizedBox(
-          // Kompakt — geri sayım kartının üst/alt boşluğu en aza indirildi.
-          height: 218,
+          // Kompakt — geri sayım kartının üst/alt boşluğu en aza indirildi. Büyük
+          // fontta (1.3x) içerik taşmasın diye yükseklik metin ölçeğiyle büyür.
+          height:
+              218.0 *
+              MediaQuery.textScalerOf(context).scale(1.0).clamp(1.0, 1.35),
           child: PageView(
             controller: _controller,
             onPageChanged: (i) => setState(() => _page = i),

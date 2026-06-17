@@ -27,21 +27,26 @@ class PrayerStrip extends ConsumerWidget {
         final active = view?.currentSlot;
         return SelayaCard(
           padding: const EdgeInsets.symmetric(
-              vertical: AppSpacing.md, horizontal: AppSpacing.sm),
+            vertical: AppSpacing.md,
+            horizontal: AppSpacing.sm,
+          ),
           child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               // Açılışta vakitler soldan sağa tek tek belirir (hafif yukarı
-              // kayarak) — kısa, bir kerelik giriş animasyonu.
+              // kayarak) — kısa, bir kerelik giriş animasyonu. Her hücre Expanded:
+              // büyük fontta (1.3x) 6 vakit yan yana TAŞMASIN (eşit pay; içi küçülür).
               for (var i = 0; i < PrayerSlot.values.length; i++)
-                _SlotCell(
-                  slot: PrayerSlot.values[i],
-                  time: t.timeOf(PrayerSlot.values[i]),
-                  active: PrayerSlot.values[i] == active,
-                )
-                    .animate(delay: (60 * i).ms)
-                    .fadeIn(duration: 320.ms, curve: Curves.easeOut)
-                    .moveY(begin: 10, end: 0, curve: Curves.easeOutCubic),
+                Expanded(
+                  child:
+                      _SlotCell(
+                            slot: PrayerSlot.values[i],
+                            time: t.timeOf(PrayerSlot.values[i]),
+                            active: PrayerSlot.values[i] == active,
+                          )
+                          .animate(delay: (60 * i).ms)
+                          .fadeIn(duration: 320.ms, curve: Curves.easeOut)
+                          .moveY(begin: 10, end: 0, curve: Curves.easeOutCubic),
+                ),
             ],
           ),
         );
@@ -54,7 +59,11 @@ class _SlotCell extends StatelessWidget {
   final PrayerSlot slot;
   final DateTime time;
   final bool active;
-  const _SlotCell({required this.slot, required this.time, required this.active});
+  const _SlotCell({
+    required this.slot,
+    required this.time,
+    required this.active,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -65,31 +74,45 @@ class _SlotCell extends StatelessWidget {
       decoration: BoxDecoration(
         borderRadius: AppRadius.rMd,
         gradient: active ? LinearGradient(colors: c.prayerActive) : null,
-        border: active ? Border.all(color: c.gold.withValues(alpha: 0.5)) : null,
+        border: active
+            ? Border.all(color: c.gold.withValues(alpha: 0.5))
+            : null,
       ),
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
           // Aktif ikon nabzı KALDIRILDI (kullanıcı 2026-06-15 "ikonlarda nefes
           // alma olmasın") — statik; aktif vakit yine parlak altın renkle ayrışır.
-          Icon(slot.icon,
-              size: 24, color: active ? c.goldBright : c.textTertiary),
+          Icon(
+            slot.icon,
+            size: 24,
+            color: active ? c.goldBright : c.textTertiary,
+          ),
           const SizedBox(height: 6),
-          Text(
-            slot.labelKey.tr(),
-            style: Theme.of(context).textTheme.labelSmall?.copyWith(
-                  color: active ? c.goldBright : c.textSecondary,
-                  fontWeight: FontWeight.w600,
-                ),
+          // FittedBox: büyük fontta hücreye sığmazsa metni küçültür (taşma yok).
+          FittedBox(
+            fit: BoxFit.scaleDown,
+            child: Text(
+              slot.labelKey.tr(),
+              maxLines: 1,
+              style: Theme.of(context).textTheme.labelSmall?.copyWith(
+                color: active ? c.goldBright : c.textSecondary,
+                fontWeight: FontWeight.w600,
+              ),
+            ),
           ),
           const SizedBox(height: 2),
-          Text(
-            formatClock(time),
-            style: AppTypography.tabular(
-              Theme.of(context).textTheme.labelMedium!.copyWith(
-                    color: active ? Colors.white : c.textPrimary,
-                    fontWeight: FontWeight.w700,
-                  ),
+          FittedBox(
+            fit: BoxFit.scaleDown,
+            child: Text(
+              formatClock(time),
+              maxLines: 1,
+              style: AppTypography.tabular(
+                Theme.of(context).textTheme.labelMedium!.copyWith(
+                  color: active ? Colors.white : c.textPrimary,
+                  fontWeight: FontWeight.w700,
+                ),
+              ),
             ),
           ),
         ],

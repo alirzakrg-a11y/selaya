@@ -26,18 +26,24 @@ class NextPrayerCard extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final lang = context.langCode;
+    // Büyük fontta (1.3x) içerik taşmasın diye kart YÜKSEKLİĞİ metin ölçeğiyle
+    // büyür (öne-çıkanlar gridindeki "/ scale" tekniğiyle aynı). (kullanıcı 2026-06-17)
+    final scale = MediaQuery.textScalerOf(
+      context,
+    ).scale(1.0).clamp(1.0, 1.35).toDouble();
     final viewAsync = ref.watch(prayerViewProvider);
     final now = ref.watch(clockProvider).value ?? DateTime.now();
     // Arka plan: her açılışta duvar kâğıtlarımızdan SABİT rastgele tek görsel
     // (video KALDIRILDI — kullanıcı 2026-06-15).
     final wps = ref.watch(wallpapersProvider).value ?? const <Wallpaper>[];
     final imgs = [for (final w in wps) w.image];
-    final heroBg =
-        imgs.isEmpty ? '' : imgs[ref.watch(_heroBgSeedProvider) % imgs.length];
+    final heroBg = imgs.isEmpty
+        ? ''
+        : imgs[ref.watch(_heroBgSeedProvider) % imgs.length];
 
     return AspectRatio(
       // Kompakt: üst/alt boşluk azaltıldı (kullanıcı isteği).
-      aspectRatio: 16 / 9.6,
+      aspectRatio: 16 / (9.6 * scale),
       child: ClipRRect(
         borderRadius: AppRadius.rXl,
         child: Stack(
@@ -46,24 +52,35 @@ class NextPrayerCard extends ConsumerWidget {
             // Video arka plan KALDIRILDI (kullanıcı 2026-06-15): her açılışta
             // duvar kâğıtlarımızdan SABİT rastgele tek görsel (statik, geçiş yok).
             heroBg.isEmpty
-                ? Image.asset('assets/images/hero_mosque.jpg', fit: BoxFit.cover)
+                ? Image.asset(
+                    'assets/images/hero_mosque.jpg',
+                    fit: BoxFit.cover,
+                  )
                 : AppImage.cdn(heroBg, fit: BoxFit.cover, memWidth: 720),
             const DecoratedBox(
               decoration: BoxDecoration(
                 gradient: LinearGradient(
                   begin: Alignment.topLeft,
                   end: Alignment.bottomRight,
-                  colors: [Color(0xCC05070D), Color(0x6605070D), Color(0xEE05070D)],
+                  colors: [
+                    Color(0xCC05070D),
+                    Color(0x6605070D),
+                    Color(0xEE05070D),
+                  ],
                 ),
               ),
             ),
             viewAsync.when(
               loading: () => const Center(
-                  child: SizedBox(
-                      width: 26,
-                      height: 26,
-                      child: CircularProgressIndicator(
-                          strokeWidth: 2, color: AppColors.gold))),
+                child: SizedBox(
+                  width: 26,
+                  height: 26,
+                  child: CircularProgressIndicator(
+                    strokeWidth: 2,
+                    color: AppColors.gold,
+                  ),
+                ),
+              ),
               error: (_, _) => const SizedBox.shrink(),
               data: (v) {
                 var remaining = v.remaining(now);
@@ -81,55 +98,95 @@ class NextPrayerCard extends ConsumerWidget {
                 final progress = v.progress(now);
                 return Padding(
                   padding: const EdgeInsets.fromLTRB(
-                      AppSpacing.lg, AppSpacing.md, AppSpacing.lg, AppSpacing.md),
+                    AppSpacing.lg,
+                    AppSpacing.md,
+                    AppSpacing.lg,
+                    AppSpacing.md,
+                  ),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Row(
                         children: [
-                          const Icon(AppIcons.location,
-                              size: 16, color: AppColors.goldBright),
-                          const SizedBox(width: 4),
-                          Text(
-                            v.city.name(lang),
-                            style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                                color: Colors.white, fontWeight: FontWeight.w700),
+                          const Icon(
+                            AppIcons.location,
+                            size: 16,
+                            color: AppColors.goldBright,
                           ),
-                          const Spacer(),
+                          const SizedBox(width: 4),
+                          Expanded(
+                            child: Text(
+                              v.city.name(lang),
+                              maxLines: 1,
+                              overflow: TextOverflow.ellipsis,
+                              style: Theme.of(context).textTheme.titleMedium
+                                  ?.copyWith(
+                                    color: Colors.white,
+                                    fontWeight: FontWeight.w700,
+                                  ),
+                            ),
+                          ),
+                          const SizedBox(width: 8),
                           Text(
-                            formatHijri(now, lang,
-                                offsetDays: ref.watch(hijriOffsetProvider)),
+                            formatHijri(
+                              now,
+                              lang,
+                              offsetDays: ref.watch(hijriOffsetProvider),
+                            ),
                             style: const TextStyle(
-                                color: Colors.white70, fontSize: 12),
+                              color: Colors.white70,
+                              fontSize: 12,
+                            ),
                           ),
                         ],
                       ),
                       Text(
                         formatGregorian(now, lang),
-                        style: const TextStyle(color: Colors.white60, fontSize: 12),
+                        style: const TextStyle(
+                          color: Colors.white60,
+                          fontSize: 12,
+                        ),
                       ),
                       const Spacer(),
                       Text(
                         '${'home.nextPrayer'.tr()} • ${v.nextSlot.labelKey.tr()}',
                         style: const TextStyle(
-                            color: AppColors.goldBright,
-                            fontSize: 13,
-                            fontWeight: FontWeight.w600),
+                          color: AppColors.goldBright,
+                          fontSize: 13,
+                          fontWeight: FontWeight.w600,
+                        ),
                       ),
                       const SizedBox(height: 2),
-                      Text(
-                        formatCountdown(remaining),
-                        style: AppTypography.countdown(Colors.white, fontSize: 46),
+                      FittedBox(
+                        fit: BoxFit.scaleDown,
+                        alignment: Alignment.centerLeft,
+                        child: Text(
+                          formatCountdown(remaining),
+                          style: AppTypography.countdown(
+                            Colors.white,
+                            fontSize: 46,
+                          ),
+                        ),
                       ),
                       const Gap.sm(),
                       Row(
                         children: [
-                          Icon(v.nextSlot.icon, size: 16, color: Colors.white70),
+                          Icon(
+                            v.nextSlot.icon,
+                            size: 16,
+                            color: Colors.white70,
+                          ),
                           const SizedBox(width: 6),
-                          Text(
-                            '${v.nextSlot.labelKey.tr()}  ${formatClock(v.nextTime)}',
-                            style: const TextStyle(
-                                color: Colors.white, fontWeight: FontWeight.w600),
+                          Flexible(
+                            child: Text(
+                              '${v.nextSlot.labelKey.tr()}  ${formatClock(v.nextTime)}',
+                              maxLines: 1,
+                              overflow: TextOverflow.ellipsis,
+                              style: const TextStyle(
+                                color: Colors.white,
+                                fontWeight: FontWeight.w600,
+                              ),
+                            ),
                           ),
                         ],
                       ),
@@ -140,7 +197,9 @@ class NextPrayerCard extends ConsumerWidget {
                           value: progress,
                           minHeight: 5,
                           backgroundColor: Colors.white24,
-                          valueColor: const AlwaysStoppedAnimation(AppColors.gold),
+                          valueColor: const AlwaysStoppedAnimation(
+                            AppColors.gold,
+                          ),
                         ),
                       ),
                     ],
