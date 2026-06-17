@@ -30,6 +30,17 @@ class _Scope {
     PrefKeys.dailyTasksLog, PrefKeys.likedKeys, PrefKeys.prayerOffsets,
     PrefKeys.hanafiAsr, PrefKeys.hijriOffsetDays, PrefKeys.themeMode,
     PrefKeys.amoled, PrefKeys.palette, PrefKeys.textScale,
+    // Namaz vakti hesap yöntemi + mushaf son sayfa (kullanıcı 2026-06-17).
+    PrefKeys.calcMethod, PrefKeys.mushafLastPage,
+    // Bildirim/ezan tercihleri (kullanıcı 2026-06-17) — KONUM senkronlanmaz, ama
+    // hangi vakit/ezan/titreşim/sessize-alma açık BİLGİSİ cihazlar arası taşınır.
+    PrefKeys.prayerNotifConfig,
+    PrefKeys.ongoingNotif,
+    PrefKeys.dailyHadithNotif,
+    PrefKeys.dailyAyahNotif, PrefKeys.fullScreenAdhan, PrefKeys.notifVibration,
+    PrefKeys.notifLed, PrefKeys.prayerAlerts, PrefKeys.smartSilent,
+    PrefKeys.kandilNotif, PrefKeys.cumaNotif, PrefKeys.ramadanMode,
+    PrefKeys.checkinPrompt,
     // Hatim: push/pull normal taşır; restore'da readPagesByDay GÜN GÜN merge
     // edilir (mergeHatimData) — overwrite değil.
     PrefKeys.hatimState,
@@ -113,11 +124,19 @@ class SyncController extends Notifier<SyncState> {
   String _device() => defaultTargetPlatform.name;
   String _code(Object e) => e is AuthException ? e.code : 'unknown';
 
-  Future<void> _stamp() async {
+  /// Son senkron damgası. [at] verilirse SUNUCU updated_at'i (cihazlar arası
+  /// karşılaştırma sunucu saatinde olsun diye); verilmezse yerel saat.
+  Future<void> _stamp([int? at]) async {
     await ref
         .read(sharedPreferencesProvider)
-        .setInt(PrefKeys.lastSyncAt, DateTime.now().millisecondsSinceEpoch);
+        .setInt(
+          PrefKeys.lastSyncAt,
+          at ?? DateTime.now().millisecondsSinceEpoch,
+        );
   }
+
+  int get _lastStamp =>
+      ref.read(sharedPreferencesProvider).getInt(PrefKeys.lastSyncAt) ?? 0;
 
   /// Giriş/kayıt veya manuel: buluttan çek + birleştir (bulut çakışmada kazanır)
   /// + birleşimi geri yükle. "Yeni cihazda verilerim geldi" anı.
@@ -132,27 +151,17 @@ class SyncController extends Notifier<SyncState> {
     try {
       final remote = await AuthApi.getData(auth.token!);
       if (remote.data.isNotEmpty) {
-        // Mevcut hesap → SADECE bu hesabın verisi görünsün: yereli temizle + bulutu yükle
-        // (önceki kullanıcının/misafirin verisiyle KARIŞMASIN).
-        await _clearLocal();
-        await _apply(remote.data);
-        // Hatim: yerel (merge öncesi) + bulut = gün-union; currentPage = max.
-        final merged = mergeHatimData(
-          HatimData.decode(localHatim),
-          HatimData.decode(prefs.getString(PrefKeys.hatimState)),
-        );
-        await prefs.setString(PrefKeys.hatimState, merged.encode());
+        await _applyRemote(remote.data, localHatim);
+        await _stamp(remote.updatedAt);
       } else {
         // Yeni/boş hesap → mevcut yerel (misafir) veriyi hesaba yükle (seed).
-        await AuthApi.putData(auth.token!, _collect(), _device());
+        final at = await AuthApi.putData(auth.token!, _collect(), _device());
+        await _stamp(at);
       }
-      await _stamp();
       _refresh();
-      state = SyncState(
-        syncing: false,
-        lastSyncedAt: DateTime.now().millisecondsSinceEpoch,
-      );
+      state = SyncState(syncing: false, lastSyncedAt: _lastStamp);
     } catch (e) {
+      await _handleError(e);
       state = SyncState(
         syncing: false,
         lastSyncedAt: state.lastSyncedAt,
@@ -161,19 +170,70 @@ class SyncController extends Notifier<SyncState> {
     }
   }
 
+  /// Uygulamaya DÖNÜŞTE (resume): bulut son senkronumuzdan DAHA YENİYSE (başka
+  /// cihaz yazmış) sessizce çek + uygula → çok-cihazda güncel kal. Yalnız bulut
+  /// kesin daha yeniyken uygular (yerel değişikliği boş yere ezmemek için);
+  /// arka plana alınınca zaten push edildiğinden yerel hep buluta yansımıştır.
+  Future<void> syncOnResume() async {
+    final auth = ref.read(authControllerProvider);
+    if (!auth.loggedIn || state.syncing) return;
+    state = SyncState(syncing: true, lastSyncedAt: state.lastSyncedAt);
+    final prefs = ref.read(sharedPreferencesProvider);
+    final localHatim = prefs.getString(PrefKeys.hatimState);
+    try {
+      final remote = await AuthApi.getData(auth.token!);
+      if (remote.data.isNotEmpty && remote.updatedAt > state.lastSyncedAt) {
+        await _applyRemote(remote.data, localHatim);
+        await _stamp(remote.updatedAt);
+        _refresh();
+      }
+      state = SyncState(syncing: false, lastSyncedAt: _lastStamp);
+    } catch (e) {
+      await _handleError(e);
+      state = SyncState(
+        syncing: false,
+        lastSyncedAt: state.lastSyncedAt,
+        error: _code(e),
+      );
+    }
+  }
+
+  /// Buluttan gelen veriyi yerele uygular: yereli temizle + bulutu yaz + hatim'i
+  /// gün-gün birleştir (overwrite değil). [localHatim] = temizlemeden önceki hatim.
+  Future<void> _applyRemote(
+    Map<String, dynamic> data,
+    String? localHatim,
+  ) async {
+    final prefs = ref.read(sharedPreferencesProvider);
+    await _clearLocal();
+    await _apply(data);
+    final merged = mergeHatimData(
+      HatimData.decode(localHatim),
+      HatimData.decode(prefs.getString(PrefKeys.hatimState)),
+    );
+    await prefs.setString(PrefKeys.hatimState, merged.encode());
+  }
+
+  /// Sunucu oturumu reddettiyse (token süresi doldu VEYA hesap başka cihazda
+  /// açıldığı için bu cihaz DÜŞÜRÜLDÜ — en fazla 2 cihaz) yerel oturumu kapat.
+  Future<void> _handleError(Object e) async {
+    if (_code(e) == 'unauthorized') {
+      await ref.read(authControllerProvider.notifier).sessionRevoked();
+    }
+  }
+
   /// Yerel değişiklikleri buluta gönder (lifecycle pause — sessiz).
   Future<void> push() async {
     final auth = ref.read(authControllerProvider);
     if (!auth.loggedIn || state.syncing) return;
     try {
-      await AuthApi.putData(auth.token!, _collect(), _device());
-      await _stamp();
-      state = SyncState(
-        syncing: false,
-        lastSyncedAt: DateTime.now().millisecondsSinceEpoch,
-      );
-    } catch (_) {
-      // sessiz: bir sonraki fırsatta tekrar denenir
+      final at = await AuthApi.putData(auth.token!, _collect(), _device());
+      await _stamp(at);
+      state = SyncState(syncing: false, lastSyncedAt: at);
+    } catch (e) {
+      await _handleError(
+        e,
+      ); // 401 → oturum kapat; diğer hatalar sessiz (tekrar denenir)
     }
   }
 

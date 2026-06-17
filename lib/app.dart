@@ -5,6 +5,7 @@ import 'package:intl/intl.dart' as intl;
 
 import 'core/data/manifest_service.dart';
 import 'core/data/notifications_sync.dart';
+import 'core/di/providers.dart';
 import 'core/router/app_router.dart';
 import 'core/router/routes.dart';
 import 'core/services/notification_service.dart';
@@ -29,7 +30,12 @@ class SelayaApp extends ConsumerStatefulWidget {
   ConsumerState<SelayaApp> createState() => _SelayaAppState();
 }
 
-class _SelayaAppState extends ConsumerState<SelayaApp> with WidgetsBindingObserver {
+class _SelayaAppState extends ConsumerState<SelayaApp>
+    with WidgetsBindingObserver {
+  // Oturum "başka cihazda açıldı" bilgisini global snackbar ile göstermek için.
+  final GlobalKey<ScaffoldMessengerState> _messengerKey =
+      GlobalKey<ScaffoldMessengerState>();
+
   @override
   void initState() {
     super.initState();
@@ -60,6 +66,12 @@ class _SelayaAppState extends ConsumerState<SelayaApp> with WidgetsBindingObserv
 
   void _syncBackground() {
     _reschedule();
+    // Girişliyse: bulut başka cihazda güncellendiyse sessizce çek (çok-cihaz);
+    // hesap başka yerde açıldığı için bu cihaz düşürüldüyse (en fazla 2 cihaz)
+    // "çıkış yapıldı" bilgisini göster.
+    ref.read(syncControllerProvider.notifier).syncOnResume().then((_) {
+      if (mounted) _checkSessionRevoked();
+    });
     // Resmî çevrimiçi vakitler her dönüşte tazelik bekçisinden geçer: 12 saatte
     // bir / kapsama 14 günün altına düşünce yeni ay çekilir → vakitler süresiz
     // güncel kalır (build zaten izliyor; invalidate yeniden hesaplatır).
@@ -74,6 +86,26 @@ class _SelayaAppState extends ConsumerState<SelayaApp> with WidgetsBindingObserv
       pushHomeWidgets(ref, context.locale.languageCode);
       _checkPendingAdhan();
     }
+  }
+
+  /// Hesap başka cihazda açıldığı için bu cihaz düşürüldüyse (en fazla 2 cihaz)
+  /// bir kez "çıkış yapıldı" bilgisi göster — senkron servisi oturumu çoktan
+  /// kapattı (sessionRevoked).
+  void _checkSessionRevoked() {
+    final prefs = ref.read(sharedPreferencesProvider);
+    if (!(prefs.getBool(PrefKeys.sessionRevoked) ?? false)) return;
+    prefs.remove(PrefKeys.sessionRevoked);
+    final tr = context.locale.languageCode == 'tr';
+    _messengerKey.currentState?.showSnackBar(
+      SnackBar(
+        duration: const Duration(seconds: 6),
+        content: Text(
+          tr
+              ? 'Hesabın başka bir cihazda açıldığı için bu cihazdan çıkış yapıldı (en fazla 2 cihaz).'
+              : 'Signed out: your account was opened on another device (max 2 devices).',
+        ),
+      ),
+    );
   }
 
   /// Pops the full-screen adhan alarm if the native side stashed a slot when an
@@ -135,9 +167,13 @@ class _SelayaAppState extends ConsumerState<SelayaApp> with WidgetsBindingObserv
 
     return MaterialApp.router(
       title: 'SELAYA',
+      scaffoldMessengerKey: _messengerKey,
       debugShowCheckedModeBanner: false,
       theme: AppTheme.light(palette: settings.palette),
-      darkTheme: AppTheme.darkMode(amoled: settings.amoled, palette: settings.palette),
+      darkTheme: AppTheme.darkMode(
+        amoled: settings.amoled,
+        palette: settings.palette,
+      ),
       themeMode: settings.themeMode,
       routerConfig: router,
       locale: context.locale,
@@ -146,8 +182,9 @@ class _SelayaAppState extends ConsumerState<SelayaApp> with WidgetsBindingObserv
       // Apply the user's in-app font size (#22 large-text mode), then clamp so
       // very large/small sizes never break our dense layouts.
       builder: (context, child) => MediaQuery(
-        data: MediaQuery.of(context)
-            .copyWith(textScaler: TextScaler.linear(settings.textScale)),
+        data: MediaQuery.of(
+          context,
+        ).copyWith(textScaler: TextScaler.linear(settings.textScale)),
         child: MediaQuery.withClampedTextScaling(
           minScaleFactor: 0.9,
           maxScaleFactor: 1.35,
@@ -200,8 +237,9 @@ class _AdhanWatcherState extends ConsumerState<_AdhanWatcher> {
           final crossed = t.isAfter(prev) && !t.isAfter(now);
           // Ignore stale crossings after a long background gap (resume).
           if (crossed && now.difference(t).inSeconds.abs() < 90) {
-            WidgetsBinding.instance
-                .addPostFrameCallback((_) => adhanAlarmSlot.value = slot.index);
+            WidgetsBinding.instance.addPostFrameCallback(
+              (_) => adhanAlarmSlot.value = slot.index,
+            );
           }
         }
       }

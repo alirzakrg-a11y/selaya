@@ -35,3 +35,17 @@ CREATE TABLE IF NOT EXISTS auth_codes (
   created_at  INTEGER NOT NULL DEFAULT 0
 );
 CREATE INDEX IF NOT EXISTS idx_authcodes_user ON auth_codes(user_id, kind);
+
+-- En fazla 2 aktif cihaz (kullanıcı 2026-06-17): her kullanıcının kayıtlı
+-- cihazları (kalıcı device_id). Hesap 3. cihazda açılınca EN ESKİ (last_seen)
+-- cihaz silinir → o cihazın token'ı sonraki istekte 401 olur (sessionRevoked).
+CREATE TABLE IF NOT EXISTS user_devices (
+  user_id    TEXT NOT NULL,
+  device_id  TEXT NOT NULL,
+  label      TEXT,
+  created_at INTEGER NOT NULL DEFAULT 0,
+  last_seen  INTEGER NOT NULL DEFAULT 0,
+  PRIMARY KEY (user_id, device_id),
+  FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
+);
+CREATE INDEX IF NOT EXISTS idx_user_devices_user ON user_devices(user_id, last_seen);

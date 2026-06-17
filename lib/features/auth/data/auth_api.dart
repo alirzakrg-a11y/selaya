@@ -29,27 +29,41 @@ class AuthApi {
     required String surname,
     required String email,
     required String password,
-  }) =>
-      _auth('/v1/auth/register', {
-        'name': name,
-        'surname': surname,
-        'email': email,
-        'password': password,
-      });
+    String? deviceId,
+    String? deviceLabel,
+  }) => _auth('/v1/auth/register', {
+    'name': name,
+    'surname': surname,
+    'email': email,
+    'password': password,
+    'deviceId': ?deviceId,
+    'device': ?deviceLabel,
+  });
 
   static Future<AuthResult> login({
     required String email,
     required String password,
-  }) =>
-      _auth('/v1/auth/login', {'email': email, 'password': password});
+    String? deviceId,
+    String? deviceLabel,
+  }) => _auth('/v1/auth/login', {
+    'email': email,
+    'password': password,
+    'deviceId': ?deviceId,
+    'device': ?deviceLabel,
+  });
 
-  static Future<AuthResult> _auth(String path, Map<String, dynamic> body) async {
+  static Future<AuthResult> _auth(
+    String path,
+    Map<String, dynamic> body,
+  ) async {
     http.Response res;
     try {
       res = await http
-          .post(_u(path),
-              headers: {'Content-Type': 'application/json'},
-              body: jsonEncode(body))
+          .post(
+            _u(path),
+            headers: {'Content-Type': 'application/json'},
+            body: jsonEncode(body),
+          )
           .timeout(_timeout);
     } catch (_) {
       throw AuthException('network');
@@ -58,7 +72,9 @@ class AuthApi {
     if (res.statusCode == 200 && d['ok'] == true) {
       return AuthResult(
         (d['token'] ?? '').toString(),
-        AuthUser.fromJson(((d['user'] as Map?) ?? const {}).cast<String, dynamic>()),
+        AuthUser.fromJson(
+          ((d['user'] as Map?) ?? const {}).cast<String, dynamic>(),
+        ),
       );
     }
     throw AuthException((d['error'] ?? 'unknown').toString());
@@ -66,11 +82,13 @@ class AuthApi {
 
   /// Buluttaki kullanıcı verisini çek (Faz 3 senkron).
   static Future<({Map<String, dynamic> data, int updatedAt})> getData(
-      String token) async {
+    String token,
+  ) async {
     http.Response res;
     try {
-      res = await http.get(_u('/v1/me/data'),
-          headers: {'Authorization': 'Bearer $token'}).timeout(_timeout);
+      res = await http
+          .get(_u('/v1/me/data'), headers: {'Authorization': 'Bearer $token'})
+          .timeout(_timeout);
     } catch (_) {
       throw AuthException('network');
     }
@@ -86,16 +104,21 @@ class AuthApi {
 
   /// Veriyi buluta yaz (Faz 3 senkron); dönen updatedAt damgasını verir.
   static Future<int> putData(
-      String token, Map<String, dynamic> data, String device) async {
+    String token,
+    Map<String, dynamic> data,
+    String device,
+  ) async {
     http.Response res;
     try {
       res = await http
-          .put(_u('/v1/me/data'),
-              headers: {
-                'Content-Type': 'application/json',
-                'Authorization': 'Bearer $token',
-              },
-              body: jsonEncode({'data': data, 'device': device}))
+          .put(
+            _u('/v1/me/data'),
+            headers: {
+              'Content-Type': 'application/json',
+              'Authorization': 'Bearer $token',
+            },
+            body: jsonEncode({'data': data, 'device': device}),
+          )
           .timeout(_timeout);
     } catch (_) {
       throw AuthException('network');
@@ -109,16 +132,21 @@ class AuthApi {
 
   /// Girişli kullanıcının şifresini değiştir (eski şifre doğrulanır).
   static Future<void> changePassword(
-      String token, String oldPw, String newPw) async {
+    String token,
+    String oldPw,
+    String newPw,
+  ) async {
     http.Response res;
     try {
       res = await http
-          .post(_u('/v1/me/password'),
-              headers: {
-                'Content-Type': 'application/json',
-                'Authorization': 'Bearer $token',
-              },
-              body: jsonEncode({'oldPassword': oldPw, 'newPassword': newPw}))
+          .post(
+            _u('/v1/me/password'),
+            headers: {
+              'Content-Type': 'application/json',
+              'Authorization': 'Bearer $token',
+            },
+            body: jsonEncode({'oldPassword': oldPw, 'newPassword': newPw}),
+          )
           .timeout(_timeout);
     } catch (_) {
       throw AuthException('network');
@@ -130,16 +158,21 @@ class AuthApi {
 
   /// Profil güncelle (ad/soyad) → güncel AuthUser döner.
   static Future<AuthUser> updateProfile(
-      String token, String name, String surname) async {
+    String token,
+    String name,
+    String surname,
+  ) async {
     http.Response res;
     try {
       res = await http
-          .put(_u('/v1/me'),
-              headers: {
-                'Content-Type': 'application/json',
-                'Authorization': 'Bearer $token',
-              },
-              body: jsonEncode({'name': name, 'surname': surname}))
+          .put(
+            _u('/v1/me'),
+            headers: {
+              'Content-Type': 'application/json',
+              'Authorization': 'Bearer $token',
+            },
+            body: jsonEncode({'name': name, 'surname': surname}),
+          )
           .timeout(_timeout);
     } catch (_) {
       throw AuthException('network');
@@ -147,7 +180,8 @@ class AuthApi {
     final d = _decode(res);
     if (res.statusCode == 200 && d['ok'] == true) {
       return AuthUser.fromJson(
-          ((d['user'] as Map?) ?? const {}).cast<String, dynamic>());
+        ((d['user'] as Map?) ?? const {}).cast<String, dynamic>(),
+      );
     }
     throw AuthException((d['error'] ?? 'unknown').toString());
   }
@@ -157,9 +191,11 @@ class AuthApi {
     http.Response res;
     try {
       res = await http
-          .post(_u('/v1/auth/forgot'),
-              headers: {'Content-Type': 'application/json'},
-              body: jsonEncode({'email': email}))
+          .post(
+            _u('/v1/auth/forgot'),
+            headers: {'Content-Type': 'application/json'},
+            body: jsonEncode({'email': email}),
+          )
           .timeout(_timeout);
     } catch (_) {
       throw AuthException('network');
@@ -174,10 +210,15 @@ class AuthApi {
     http.Response res;
     try {
       res = await http
-          .post(_u('/v1/auth/reset'),
-              headers: {'Content-Type': 'application/json'},
-              body: jsonEncode(
-                  {'email': email, 'code': code, 'newPassword': newPw}))
+          .post(
+            _u('/v1/auth/reset'),
+            headers: {'Content-Type': 'application/json'},
+            body: jsonEncode({
+              'email': email,
+              'code': code,
+              'newPassword': newPw,
+            }),
+          )
           .timeout(_timeout);
     } catch (_) {
       throw AuthException('network');

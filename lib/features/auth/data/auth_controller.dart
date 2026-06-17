@@ -1,5 +1,7 @@
 import 'dart:convert';
+import 'dart:math';
 
+import 'package:flutter/foundation.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../core/di/providers.dart';
@@ -33,7 +35,14 @@ class AuthController extends Notifier<AuthState> {
   }
 
   Future<void> login({required String email, required String password}) async {
-    await _persist(await AuthApi.login(email: email, password: password));
+    await _persist(
+      await AuthApi.login(
+        email: email,
+        password: password,
+        deviceId: _ensureDeviceId(),
+        deviceLabel: defaultTargetPlatform.name,
+      ),
+    );
   }
 
   Future<void> register({
@@ -42,8 +51,43 @@ class AuthController extends Notifier<AuthState> {
     required String email,
     required String password,
   }) async {
-    await _persist(await AuthApi.register(
-        name: name, surname: surname, email: email, password: password));
+    await _persist(
+      await AuthApi.register(
+        name: name,
+        surname: surname,
+        email: email,
+        password: password,
+        deviceId: _ensureDeviceId(),
+        deviceLabel: defaultTargetPlatform.name,
+      ),
+    );
+  }
+
+  /// Bu kuruluma özel KALICI cihaz kimliği (en fazla 2 cihaz limiti için). İlk
+  /// ihtiyaçta üretilir + prefs'e yazılır; SENKRONLANMAZ (her cihaz benzersiz).
+  String _ensureDeviceId() {
+    final prefs = ref.read(sharedPreferencesProvider);
+    var id = prefs.getString(PrefKeys.deviceId);
+    if (id == null || id.isEmpty) {
+      final r = Random.secure();
+      id = List<int>.generate(
+        16,
+        (_) => r.nextInt(256),
+      ).map((b) => b.toRadixString(16).padLeft(2, '0')).join();
+      prefs.setString(PrefKeys.deviceId, id);
+    }
+    return id;
+  }
+
+  /// Sunucu oturumu reddetti (token süresi doldu VEYA hesap başka cihazda açıldı
+  /// — en fazla 2 cihaz, bu cihaz düşürüldü). Yerel oturumu kapat + sebebi
+  /// işaretle (UI bir kez bilgilendirsin).
+  Future<void> sessionRevoked() async {
+    if (!state.loggedIn) return;
+    await ref
+        .read(sharedPreferencesProvider)
+        .setBool(PrefKeys.sessionRevoked, true);
+    await logout();
   }
 
   Future<void> _persist(AuthResult r) async {
@@ -69,5 +113,6 @@ class AuthController extends Notifier<AuthState> {
   }
 }
 
-final authControllerProvider =
-    NotifierProvider<AuthController, AuthState>(AuthController.new);
+final authControllerProvider = NotifierProvider<AuthController, AuthState>(
+  AuthController.new,
+);

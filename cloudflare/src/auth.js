@@ -120,13 +120,44 @@ async function verifyJWT(token, secret) {
 
 const TOKEN_TTL = 60 * 60 * 24 * 180; // 180 gün
 
-async function issueToken(env, user) {
+async function issueToken(env, user, deviceId) {
   const now = Math.floor(Date.now() / 1000);
-  return signJWT({ sub: user.id, email: user.email, iat: now, exp: now + TOKEN_TTL }, env.AUTH_SECRET);
+  const payload = { sub: user.id, email: user.email, iat: now, exp: now + TOKEN_TTL };
+  if (deviceId) payload.did = deviceId; // en fazla 2 cihaz: token'ı cihaza bağla
+  return signJWT(payload, env.AUTH_SECRET);
 }
 
 function publicUser(u) {
   return { id: u.id, name: u.name, surname: u.surname || '', email: u.email };
+}
+
+// En fazla 2 aktif cihaz. Cihazı kaydet/tazele; yeni cihaz sınırı aşıyorsa EN
+// ESKİ (last_seen) cihaz(lar)ı düşür → onların token'ı sonraki istekte 401 olur.
+const MAX_DEVICES = 2;
+async function registerDevice(env, userId, deviceId, label) {
+  if (!deviceId) return;
+  const now = Date.now();
+  const existing = await env.DB.prepare(
+    'SELECT device_id FROM user_devices WHERE user_id=? AND device_id=?'
+  ).bind(userId, deviceId).first();
+  if (existing) {
+    await env.DB.prepare(
+      'UPDATE user_devices SET last_seen=?, label=? WHERE user_id=? AND device_id=?'
+    ).bind(now, label || '', userId, deviceId).run();
+    return;
+  }
+  // Yeni cihaz → bu cihazı eklediğimizde toplam MAX'ı aşacaksa en eskileri düşür.
+  const { results } = await env.DB.prepare(
+    'SELECT device_id FROM user_devices WHERE user_id=? ORDER BY last_seen ASC'
+  ).bind(userId).all();
+  const evict = results.slice(0, Math.max(0, results.length - (MAX_DEVICES - 1)));
+  for (const r of evict) {
+    await env.DB.prepare('DELETE FROM user_devices WHERE user_id=? AND device_id=?')
+      .bind(userId, r.device_id).run();
+  }
+  await env.DB.prepare(
+    'INSERT INTO user_devices (user_id,device_id,label,created_at,last_seen) VALUES (?,?,?,?,?)'
+  ).bind(userId, deviceId, label || '', now, now).run();
 }
 
 // Bearer token'dan kullanıcıyı doğrula → payload | null
@@ -135,7 +166,21 @@ export async function requireUser(request, env) {
   const auth = request.headers.get('Authorization') || '';
   const m = auth.match(/^Bearer\s+(.+)$/i);
   if (!m) return null;
-  return verifyJWT(m[1], env.AUTH_SECRET);
+  const payload = await verifyJWT(m[1], env.AUTH_SECRET);
+  if (!payload) return null;
+  // En fazla 2 cihaz: token bir cihaza bağlıysa (did) o cihaz HÂLÂ kayıtlı olmalı.
+  // Hesap başka cihazda açılınca bu cihaz düşürülür (did silinir) → burada 401.
+  // Eski (did'siz) token'lar geriye dönük çalışır; yeniden girişte did kazanır.
+  if (payload.did) {
+    const dev = await env.DB.prepare(
+      'SELECT device_id FROM user_devices WHERE user_id=? AND device_id=?'
+    ).bind(payload.sub, payload.did).first();
+    if (!dev) return null;
+    await env.DB.prepare(
+      'UPDATE user_devices SET last_seen=? WHERE user_id=? AND device_id=?'
+    ).bind(Date.now(), payload.sub, payload.did).run();
+  }
+  return payload;
 }
 
 // 6 haneli sıfırlama kodu + SHA-256 hex (kod kısa ömürlü; bcrypt'e gerek yok).
@@ -215,7 +260,10 @@ export async function handleAuth(request, env, path) {
       .bind(id, '{}', now).run();
 
     const user = { id, name, surname, email };
-    return json({ ok: true, token: await issueToken(env, user), user });
+    const deviceId = (b.deviceId || '').toString().slice(0, 80);
+    const deviceLabel = (b.device || '').toString().slice(0, 80);
+    await registerDevice(env, id, deviceId, deviceLabel);
+    return json({ ok: true, token: await issueToken(env, user, deviceId), user });
   }
 
   // ---- GİRİŞ (5 hatalı denemede 15 dk hesap kilidi) ----
@@ -246,7 +294,10 @@ export async function handleAuth(request, env, path) {
 
     await env.DB.prepare('UPDATE users SET last_active=?, failed_attempts=0, locked_until=0 WHERE id=?')
       .bind(now, u.id).run();
-    return json({ ok: true, token: await issueToken(env, u), user: publicUser(u) });
+    const deviceId = (b.deviceId || '').toString().slice(0, 80);
+    const deviceLabel = (b.device || '').toString().slice(0, 80);
+    await registerDevice(env, u.id, deviceId, deviceLabel);
+    return json({ ok: true, token: await issueToken(env, u, deviceId), user: publicUser(u) });
   }
 
   // ---- ŞİFREMİ UNUTTUM: e-postaya kod gönder ----
