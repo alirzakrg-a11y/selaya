@@ -42,8 +42,8 @@ class NextPrayerCard extends ConsumerWidget {
         : imgs[ref.watch(_heroBgSeedProvider) % imgs.length];
 
     return AspectRatio(
-      // Kompakt: üst/alt boşluk azaltıldı (kullanıcı isteği).
-      aspectRatio: 16 / (9.6 * scale),
+      // Kompakt: üst/alt boşluk azaltıldı + içerik ortalandı (kullanıcı 2026-06-18).
+      aspectRatio: 16 / (8.8 * scale),
       child: ClipRRect(
         borderRadius: AppRadius.rXl,
         child: Stack(
@@ -104,9 +104,10 @@ class NextPrayerCard extends ConsumerWidget {
                     AppSpacing.md,
                   ),
                   child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
                       Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           const Icon(
                             AppIcons.location,
@@ -114,7 +115,7 @@ class NextPrayerCard extends ConsumerWidget {
                             color: AppColors.goldBright,
                           ),
                           const SizedBox(width: 4),
-                          Expanded(
+                          Flexible(
                             child: Text(
                               v.city.name(lang),
                               maxLines: 1,
@@ -159,7 +160,7 @@ class NextPrayerCard extends ConsumerWidget {
                       const SizedBox(height: 2),
                       FittedBox(
                         fit: BoxFit.scaleDown,
-                        alignment: Alignment.centerLeft,
+                        alignment: Alignment.center,
                         child: Text(
                           formatCountdown(remaining),
                           style: AppTypography.countdown(
@@ -170,6 +171,7 @@ class NextPrayerCard extends ConsumerWidget {
                       ),
                       const Gap.sm(),
                       Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Icon(
                             v.nextSlot.icon,

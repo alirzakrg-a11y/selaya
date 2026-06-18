@@ -13,11 +13,9 @@ const homeSectionKeys = [
   'nearestMosque',
   'featured',
   'quickPair',
-  'verseOfDay',
-  'hadithOfDay',
+  'verseHadithPair', // Günün Ayeti + Hadisi YAN YANA (eski verseOfDay+hadithOfDay)
   'dailyDua',
-  'videos',
-  'wallpaper',
+  'mediaPair', // Videolar + Duvar Kâğıdı YAN YANA (eski videos+wallpaper)
   'widgetPromo',
   'ai',
 ];
@@ -32,13 +30,11 @@ const homeSectionLabels = {
   'prayerStrip': 'home.secPrayerStrip',
   'nearestMosque': 'home.nearestMosque',
   'featured': 'home.featured',
-  'verseOfDay': 'akis.verseOfDay',
-  'hadithOfDay': 'akis.hadithOfDay',
+  'verseHadithPair': 'home.secVerseHadith',
   'dailyDua': 'akis.duaOfDay',
-  'videos': 'home.videos',
+  'mediaPair': 'home.secMedia',
   'ai': 'home.askSelayaTitle',
   'quickPair': 'home.quickPair',
-  'wallpaper': 'home.dailyWallpaper',
   'widgetPromo': 'home.addWidgetTitle',
 };
 

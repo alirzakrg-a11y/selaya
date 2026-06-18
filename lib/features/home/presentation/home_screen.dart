@@ -100,6 +100,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
         ];
       case 'prayerStrip':
         return [
+          SectionHeader(title: 'home.todayPrayerTimes'.tr()),
           Padding(
             padding: AppSpacing.screen,
             child: GestureDetector(
@@ -124,6 +125,15 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
             child: _SeeMoreButton(onTap: () => context.push(Routes.more)),
           ),
           const Gap.lg(),
+        ];
+      case 'verseHadithPair':
+        return const [_VerseHadithPair(), Gap.lg()];
+      case 'mediaPair':
+        return const [
+          _MediaPair(),
+          Gap.md(),
+          Padding(padding: AppSpacing.screen, child: _DailyFact()),
+          Gap.lg(),
         ];
       case 'verseOfDay':
         return const [
@@ -189,14 +199,34 @@ class _QuickPair extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final isTr = context.langCode == 'tr';
-    // "Sesli Hikâyeler" kartı KALDIRILDI (özellik gitti; rotası da yok) → bölüm
-    // artık tek, tam genişlik TEBRİK KARTI (kullanıcı 2026-06-15: "sesli
-    // hikayeler yerine tebrik kartı").
-    return _QuickCard(
-      icon: AppIcons.card,
-      title: 'greetings.title'.tr(),
-      desc: isTr ? 'Sevdiklerine özel kartlar' : 'Special cards for loved ones',
-      onTap: () => context.push(Routes.greetings),
+    // Tebrik Kartı + Dua Duvarı YAN YANA (kullanıcı 2026-06-18). IntrinsicHeight:
+    // ListView'da yükseklik sınırsız olduğundan `stretch`li Row sıfıra çökerdi;
+    // IntrinsicHeight iki kartı en uzunun boyuna eşitler (çökmez).
+    return IntrinsicHeight(
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          Expanded(
+            child: _QuickCard(
+              icon: AppIcons.card,
+              title: 'greetings.title'.tr(),
+              desc: isTr
+                  ? 'Sevdiklerine özel kartlar'
+                  : 'Special cards for loved ones',
+              onTap: () => context.push(Routes.greetings),
+            ),
+          ),
+          const Gap.md(),
+          Expanded(
+            child: _QuickCard(
+              icon: Icons.front_hand_rounded,
+              title: 'duaWall.title'.tr(),
+              desc: isTr ? 'Dua paylaş, Âmin de' : 'Share a prayer, say Amin',
+              onTap: () => context.push(Routes.duaWall),
+            ),
+          ),
+        ],
+      ),
     );
   }
 }
@@ -732,11 +762,281 @@ class _DailyDuaCard extends ConsumerWidget {
       child: _DailyContentCard(
         label: 'akis.duaOfDay'.tr(),
         icon: Icons.volunteer_activism_rounded,
-        arabic: d.arabic,
+        // Arapça KALDIRILDI (kullanıcı 2026-06-18: tıklayınca zaten açılıyor).
         text: d.text(lang),
         reference: d.title(lang),
         likeKey: 'dua:${d.id}',
         backgroundImage: wps.isEmpty ? '' : wps[(seed + 1) % wps.length].image,
+      ),
+    );
+  }
+}
+
+/// Günün Ayeti + Günün Hadisi YAN YANA — kompakt, Arapçasız (kullanıcı
+/// 2026-06-18: "yan yana, arapçaya gerek yok, tıklayınca açılıyor"). Dokun → liste.
+class _VerseHadithPair extends ConsumerWidget {
+  const _VerseHadithPair();
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final lang = context.langCode;
+    final seed = ref.watch(inspirationSeedProvider);
+    final wps = ref.watch(wallpapersProvider).value ?? const <Wallpaper>[];
+    final all =
+        ref.watch(inspirationProvider).value ?? const <InspirationItem>[];
+    final verses = [
+      for (final i in all)
+        if (i.type == 'verse' && i.arabic.isNotEmpty) i,
+    ];
+    final hadiths = ref.watch(hadithsProvider).value ?? const <Hadith>[];
+
+    final cards = <Widget>[];
+    if (verses.isNotEmpty) {
+      final v = verses[DateTime.now().day % verses.length];
+      cards.add(_MiniContentCard(
+        label: 'akis.verseOfDay'.tr(),
+        icon: Icons.menu_book_rounded,
+        text: v.text(lang),
+        reference: v.reference,
+        backgroundImage: wps.isEmpty ? '' : wps[(seed + 2) % wps.length].image,
+        onTap: () => context.push(Routes.verses),
+      ));
+    }
+    if (hadiths.isNotEmpty) {
+      final h = hadiths[DateTime.now().day % hadiths.length];
+      cards.add(_MiniContentCard(
+        label: 'akis.hadithOfDay'.tr(),
+        icon: Icons.format_quote_rounded,
+        text: h.text(lang),
+        reference: h.collection,
+        backgroundImage: wps.isEmpty ? '' : wps[(seed + 3) % wps.length].image,
+        onTap: () => context.push(Routes.hadiths),
+      ));
+    }
+    if (cards.isEmpty) return const SizedBox.shrink();
+    return Padding(
+      padding: AppSpacing.screen,
+      child: SizedBox(
+        height: 178,
+        child: Row(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            for (final (i, w) in cards.indexed) ...[
+              if (i > 0) const Gap.md(),
+              Expanded(child: w),
+            ],
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+/// Kompakt günlük içerik kartı (ayet/hadis çifti için): görsel zemin + etiket +
+/// kısa metin + kaynak. Arapça/paylaş yok; dokun → ilgili liste.
+class _MiniContentCard extends StatelessWidget {
+  final String label;
+  final IconData icon;
+  final String text;
+  final String reference;
+  final String backgroundImage;
+  final VoidCallback onTap;
+  const _MiniContentCard({
+    required this.label,
+    required this.icon,
+    required this.text,
+    required this.reference,
+    required this.backgroundImage,
+    required this.onTap,
+  });
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTap: onTap,
+      child: ClipRRect(
+        borderRadius: AppRadius.rXl,
+        child: Stack(
+          fit: StackFit.expand,
+          children: [
+            backgroundImage.isEmpty
+                ? const ColoredBox(color: Color(0xFF0E1322))
+                : AppImage.cdn(backgroundImage),
+            const DecoratedBox(
+              decoration: BoxDecoration(
+                gradient: LinearGradient(
+                  begin: Alignment.topCenter,
+                  end: Alignment.bottomCenter,
+                  colors: [Color(0x9905070D), Color(0xF205070D)],
+                ),
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.all(AppSpacing.md),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Row(
+                    children: [
+                      Icon(icon, size: 13, color: AppColors.goldBright),
+                      const SizedBox(width: 5),
+                      Expanded(
+                        child: Text(
+                          label.toUpperCase(),
+                          maxLines: 1,
+                          overflow: TextOverflow.ellipsis,
+                          style: const TextStyle(
+                            color: AppColors.goldBright,
+                            fontSize: 10,
+                            letterSpacing: 0.6,
+                            fontWeight: FontWeight.w700,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                  const Spacer(),
+                  Text(
+                    '"$text"',
+                    maxLines: 3,
+                    overflow: TextOverflow.ellipsis,
+                    style: const TextStyle(
+                      color: Colors.white,
+                      fontSize: 12.5,
+                      height: 1.35,
+                    ),
+                  ),
+                  const SizedBox(height: 4),
+                  Text(
+                    reference,
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                    style: const TextStyle(
+                      color: AppColors.goldBright,
+                      fontSize: 11,
+                      fontWeight: FontWeight.w600,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+/// Videolar + Günün Duvar Kâğıdı YAN YANA (kullanıcı 2026-06-18).
+class _MediaPair extends ConsumerWidget {
+  const _MediaPair();
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final feed = ref.watch(feedProvider).value ?? const <FeedItem>[];
+    final wps = ref.watch(wallpapersProvider).value ?? const <Wallpaper>[];
+
+    final tiles = <Widget>[];
+    if (feed.isNotEmpty) {
+      final v = feed[DateTime.now().day % feed.length];
+      tiles.add(_MediaTile(
+        label: 'home.videos'.tr(),
+        play: true,
+        onTap: () => context.push(Routes.feed),
+        image: v.poster.isNotEmpty
+            ? AppImage.cdn(v.poster)
+            : ref.watch(videoThumbProvider(v.video)).maybeWhen(
+                  data: (p) => p == null
+                      ? const _VideoPosterPlaceholder()
+                      : Image.file(File(p), fit: BoxFit.cover),
+                  orElse: () => const _VideoPosterPlaceholder(),
+                ),
+      ));
+    }
+    if (wps.isNotEmpty) {
+      final wp = wps[DateTime.now().day % wps.length];
+      tiles.add(_MediaTile(
+        label: 'home.dailyWallpaper'.tr(),
+        play: false,
+        onTap: () => context.push(Routes.wallpapers),
+        image: AppImage.cdn(wp.image),
+      ));
+    }
+    if (tiles.isEmpty) return const SizedBox.shrink();
+    return Padding(
+      padding: AppSpacing.screen,
+      child: SizedBox(
+        height: 200,
+        child: Row(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            for (final (i, t) in tiles.indexed) ...[
+              if (i > 0) const Gap.md(),
+              Expanded(child: t),
+            ],
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class _MediaTile extends StatelessWidget {
+  final String label;
+  final Widget image;
+  final bool play;
+  final VoidCallback onTap;
+  const _MediaTile({
+    required this.label,
+    required this.image,
+    required this.play,
+    required this.onTap,
+  });
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTap: onTap,
+      child: ClipRRect(
+        borderRadius: AppRadius.rXl,
+        child: Stack(
+          fit: StackFit.expand,
+          children: [
+            image,
+            const DecoratedBox(
+              decoration: BoxDecoration(
+                gradient: LinearGradient(
+                  begin: Alignment.topCenter,
+                  end: Alignment.bottomCenter,
+                  colors: [Color(0x22000000), Color(0xCC05070D)],
+                ),
+              ),
+            ),
+            if (play)
+              Center(
+                child: Container(
+                  padding: const EdgeInsets.all(10),
+                  decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    color: Colors.black.withValues(alpha: 0.40),
+                  ),
+                  child: const Icon(AppIcons.play, color: Colors.white, size: 24),
+                ),
+              ),
+            Padding(
+              padding: const EdgeInsets.all(AppSpacing.md),
+              child: Align(
+                alignment: Alignment.bottomLeft,
+                child: Text(
+                  label,
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
+                  style: const TextStyle(
+                    color: Colors.white,
+                    fontWeight: FontWeight.w700,
+                    fontSize: 14,
+                  ),
+                ),
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
