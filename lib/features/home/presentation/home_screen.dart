@@ -872,7 +872,9 @@ class _VerseHadithPair extends ConsumerWidget {
       for (final i in all)
         if (i.type == 'verse' && i.arabic.isNotEmpty) i,
     ];
-    final hadiths = ref.watch(hadithsProvider).value ?? const <Hadith>[];
+    // Hadis de inspirationProvider'dan (Hadisler liste ekranıyla AYNI kaynak →
+    // ?open=id eşleşir, popup açılır); hadithsProvider FARKLI ID'ler içerir.
+    final hadiths = [for (final i in all) if (i.type == 'hadith') i];
 
     final cards = <Widget>[];
     if (verses.isNotEmpty) {
@@ -892,7 +894,7 @@ class _VerseHadithPair extends ConsumerWidget {
         label: 'akis.hadithOfDay'.tr(),
         icon: Icons.format_quote_rounded,
         text: h.text(lang),
-        reference: h.collection,
+        reference: h.reference,
         backgroundImage: wps.isEmpty ? '' : wps[(seed + 3) % wps.length].image,
         onTap: () => context.push('${Routes.hadiths}?open=${h.id}'),
       ));
