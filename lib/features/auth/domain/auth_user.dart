@@ -4,11 +4,13 @@ class AuthUser {
   final String name; // ad
   final String surname; // soyad
   final String email;
+  final String rumuz; // Dua Duvarı takma adı (opsiyonel; boş olabilir)
   const AuthUser({
     required this.id,
     required this.name,
     required this.surname,
     required this.email,
+    this.rumuz = '',
   });
 
   String get fullName =>
@@ -23,13 +25,27 @@ class AuthUser {
     return (a + b).toUpperCase();
   }
 
+  AuthUser copyWith({String? rumuz}) => AuthUser(
+        id: id,
+        name: name,
+        surname: surname,
+        email: email,
+        rumuz: rumuz ?? this.rumuz,
+      );
+
   factory AuthUser.fromJson(Map<String, dynamic> j) => AuthUser(
         id: (j['id'] ?? '').toString(),
         name: (j['name'] ?? '').toString(),
         surname: (j['surname'] ?? '').toString(),
         email: (j['email'] ?? '').toString(),
+        rumuz: (j['rumuz'] ?? '').toString(),
       );
 
-  Map<String, dynamic> toJson() =>
-      {'id': id, 'name': name, 'surname': surname, 'email': email};
+  Map<String, dynamic> toJson() => {
+        'id': id,
+        'name': name,
+        'surname': surname,
+        'email': email,
+        'rumuz': rumuz,
+      };
 }

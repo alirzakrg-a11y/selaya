@@ -183,6 +183,9 @@
   "readingPlan": {
     "title": "Kur'an Okuma Planı"
   },
+  "duaWall": {
+    "title": "Dua Duvarı"
+  },
   "kaza": {
     "title": "Kazalar",
     "totalDebt": "Toplam kaza namazı",

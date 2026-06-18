@@ -183,6 +183,9 @@
   "readingPlan": {
     "title": "Quran Reading Plan"
   },
+  "duaWall": {
+    "title": "Prayer Wall"
+  },
   "kaza": {
     "title": "Missed Prayers",
     "totalDebt": "Total missed prayers",

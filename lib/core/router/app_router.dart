@@ -11,6 +11,7 @@ import '../../features/baby_names/presentation/baby_names_screen.dart';
 import '../../features/calendar/presentation/calendar_screen.dart';
 import '../../features/daily_tasks/presentation/daily_tasks_screen.dart';
 import '../../features/dhikr/presentation/dhikr_screen.dart';
+import '../../features/dua_wall/presentation/dua_wall_screen.dart';
 import '../../features/hatim/presentation/hatim_screen.dart';
 import '../../features/duas/presentation/duas_screen.dart';
 import '../../features/fasting_tracking/presentation/fasting_screen.dart';
@@ -122,6 +123,7 @@ final routerProvider = Provider<GoRouter>((ref) {
       fs(Routes.reminders, (_, _) => const RemindersScreen()),
       fs(Routes.travel, (_, _) => const TravelModeScreen()),
       fs(Routes.readingPlan, (_, _) => const ReadingPlanScreen()),
+      fs(Routes.duaWall, (_, _) => const DuaWallScreen()),
       fs(Routes.verses,
           (_, _) => const InspirationListScreen(
               type: 'verse', titleKey: 'more.verses')),

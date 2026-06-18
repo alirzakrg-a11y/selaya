@@ -51,6 +51,7 @@ abstract final class Routes {
   static const reminders = '/reminders'; // özel hatırlatıcılar
   static const travel = '/travel'; // seferî (seyahat) modu
   static const readingPlan = '/reading-plan'; // Kur'an okuma planı (şablonlar)
+  static const duaWall = '/dua-wall'; // Dua duvarı (üye + rumuz + moderasyon)
   static const tasks = '/tasks'; // günlük görevler (#18)
   static const abdestGuide = '/abdest'; // abdest & taharet rehberi HUB
   static const guideDetail = '/guide-detail'; // tekil rehber (extra: guide+collection)
