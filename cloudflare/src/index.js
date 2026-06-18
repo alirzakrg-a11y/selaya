@@ -6,6 +6,7 @@
 //             ADMIN_TOKEN (secret), AUTH_SECRET (secret — JWT imzası)
 
 import { handleAuth, hashPassword } from './auth.js';
+import { handleDuaWall } from './dua_wall.js';
 
 const CORS = {
   'Access-Control-Allow-Origin': '*',
@@ -112,6 +113,10 @@ export default {
       // ÜYELİK & SENKRON (kayıt/giriş/profil/veri) — ayrı modül, auth değilse null.
       const authResp = await handleAuth(request, env, path);
       if (authResp) return authResp;
+
+      // DUA DUVARI (#10) — üyeler dua paylaşır, panelde onaylanınca yayınlanır.
+      const duaResp = await handleDuaWall(request, env, path);
+      if (duaResp) return duaResp;
 
       if (path === '/v1/manifest') {
         const cache = caches.default;
@@ -293,6 +298,49 @@ export default {
           await env.DB.prepare(
             'UPDATE users SET pass_hash=?, pass_salt=?, iters=?, failed_attempts=0, locked_until=0 WHERE id=?'
           ).bind(np.hash, np.salt, np.iters, uid).run();
+          return json({ ok: true });
+        }
+
+        // ---- DUA DUVARI MODERASYONU (#10) ----
+        // Bekleyenler + son kararlananlar (moderatör bağlamı görsün).
+        if (request.method === 'GET' && path === '/api/dua-pending') {
+          const pending = await env.DB.prepare(
+            "SELECT id, rumuz, text, amins, created_at FROM dua_wall " +
+            "WHERE status='pending' ORDER BY created_at ASC LIMIT 200"
+          ).all();
+          const recent = await env.DB.prepare(
+            "SELECT id, rumuz, text, status, amins, created_at, decided_at FROM dua_wall " +
+            "WHERE status!='pending' ORDER BY decided_at DESC LIMIT 40"
+          ).all();
+          return json({
+            ok: true,
+            pending: pending.results || [],
+            recent: recent.results || [],
+          });
+        }
+        // Onayla → yayına al.
+        if (request.method === 'POST' && path === '/api/dua-approve') {
+          const form = await request.formData();
+          const id = (form.get('id') || '').toString();
+          if (!id) return json({ ok: false, error: 'id_required' }, { status: 400 });
+          await env.DB.prepare(
+            "UPDATE dua_wall SET status='approved', decided_at=? WHERE id=?"
+          ).bind(Date.now(), id).run();
+          return json({ ok: true });
+        }
+        // Reddet → gizle (kayıt kalır; istenirse sil).
+        if (request.method === 'POST' && path === '/api/dua-reject') {
+          const form = await request.formData();
+          const id = (form.get('id') || '').toString();
+          const del = (form.get('delete') || '').toString() === '1';
+          if (!id) return json({ ok: false, error: 'id_required' }, { status: 400 });
+          if (del) {
+            await env.DB.prepare('DELETE FROM dua_wall WHERE id=?').bind(id).run();
+          } else {
+            await env.DB.prepare(
+              "UPDATE dua_wall SET status='rejected', decided_at=? WHERE id=?"
+            ).bind(Date.now(), id).run();
+          }
           return json({ ok: true });
         }
 
@@ -648,6 +696,7 @@ const PANEL_HTML = `<!doctype html>
     <div class="nav-item" id="tabNotifyBtn" onclick="showTab('notify')">🔔 Bildirimler</div>
     <div class="nav-item" id="tabStatsBtn" onclick="showTab('stats')">📊 Kullanım</div>
     <div class="nav-item" id="tabUsersBtn" onclick="showTab('users')">👤 Kullanıcılar</div>
+    <div class="nav-item" id="tabDuaBtn" onclick="showTab('dua')">🤲 Dua Duvarı<span id="duaBadge" style="margin-left:auto;background:#e0556b;color:#fff;font-size:11px;font-weight:700;border-radius:999px;padding:1px 7px;display:none"></span></div>
     <div class="nav-item" onclick="logout()">🚪 Çıkış</div>
   </aside>
   <main class="main">
@@ -759,6 +808,22 @@ const PANEL_HTML = `<!doctype html>
       </div>
     </div>
 
+    <!-- ============ DUA DUVARI ============ -->
+    <div id="viewDua" class="hide">
+      <div class="card">
+        <div class="row" style="align-items:center">
+          <h3 style="margin:0">🤲 Onay Bekleyen Dualar</h3>
+          <button class="ghost" style="flex:0 0 auto" onclick="loadDuaWall()">Yenile</button>
+        </div>
+        <p class="hint">Üyelerin gönderdiği dualar burada onayını bekler. <b>Onayla</b> duayı duvarda yayınlar · <b>Reddet</b> gizler · <b>Sil</b> tamamen kaldırır. Apaçık küfür içerenler zaten otomatik engellenir; yine de son söz sende.</p>
+        <div id="duaPendingBody"><p class="muted">Yükleniyor…</p></div>
+      </div>
+      <div class="card">
+        <h3 style="margin:0 0 8px">Son Kararlananlar</h3>
+        <div id="duaRecentBody"><p class="muted">—</p></div>
+      </div>
+    </div>
+
     <!-- ============ METİN İÇERİK ============ -->
     <div id="viewText" class="hide">
       <div class="card">
@@ -861,7 +926,7 @@ const PANEL_HTML = `<!doctype html>
     if (noTitle) el('upTitle').value = '';
   }
 
-  var TAB_TITLES = { text:'Metin İçerik', notify:'Bildirimler', stats:'Kullanım', users:'Kullanıcılar' };
+  var TAB_TITLES = { text:'Metin İçerik', notify:'Bildirimler', stats:'Kullanım', users:'Kullanıcılar', dua:'Dua Duvarı' };
   function setActiveNav(node){
     document.querySelectorAll('.nav-item').forEach(function(n){ n.classList.remove('active'); });
     if (node) node.classList.add('active');
@@ -891,6 +956,7 @@ const PANEL_HTML = `<!doctype html>
     el('viewStats').classList.toggle('hide', t !== 'stats');
     el('viewText').classList.toggle('hide', t !== 'text');
     el('viewUsers').classList.toggle('hide', t !== 'users');
+    el('viewDua').classList.toggle('hide', t !== 'dua');
     setActiveNav(el('tab' + t.charAt(0).toUpperCase() + t.slice(1) + 'Btn'));
     var pt = el('pageTitle'); if (pt) pt.textContent = TAB_TITLES[t] || '';
     toggleSidebar(false);
@@ -898,6 +964,7 @@ const PANEL_HTML = `<!doctype html>
     if (t === 'stats') loadStats();
     if (t === 'text') loadText();
     if (t === 'users') loadUsers();
+    if (t === 'dua') loadDuaWall();
   }
   function toggleSidebar(open){
     var sb = el('sidebar'); if (!sb) return;
@@ -1017,6 +1084,45 @@ const PANEL_HTML = `<!doctype html>
     var fd=new FormData(); fd.append('id',id);
     api('user-delete',{method:'POST',body:fd}).then(function(res){
       if(res.j&&res.j.ok){ toast('Silindi ✓'); loadUsers(); }
+      else { toast('Hata: '+((res.j&&res.j.error)||res.status)); }
+    }).catch(function(e){ toast('Hata: '+e); });
+  }
+
+  // --- Dua Duvarı moderasyonu (#10) ---
+  function loadDuaWall(){
+    el('duaPendingBody').innerHTML='<p class="muted">Yükleniyor…</p>';
+    api('dua-pending').then(function(res){
+      var pend=(res.j&&res.j.pending)||[]; var rec=(res.j&&res.j.recent)||[];
+      var badge=el('duaBadge');
+      if(badge){ if(pend.length){ badge.style.display='inline-block'; badge.textContent=pend.length; } else { badge.style.display='none'; } }
+      if(!pend.length){ el('duaPendingBody').innerHTML='<p class="muted">Onay bekleyen dua yok. 🎉</p>'; }
+      else {
+        el('duaPendingBody').innerHTML='<p class="muted" style="margin:0 0 8px">Bekleyen: <b>'+pend.length+'</b></p>'+pend.map(function(d){
+          var id=esc(d.id);
+          return '<div class="item"><div class="ph">🤲</div><div class="meta"><b>'+esc(d.rumuz)+'</b><span>'+esc(d.text)+'</span><span class="muted">'+fmtDate(d.created_at)+'</span></div>'+
+            '<button data-id="'+id+'" onclick="approveDua(this.dataset.id)">Onayla</button> '+
+            '<button class="ghost" data-id="'+id+'" onclick="rejectDua(this.dataset.id,false)">Reddet</button> '+
+            '<button class="danger" data-id="'+id+'" onclick="rejectDua(this.dataset.id,true)">Sil</button></div>';
+        }).join('');
+      }
+      el('duaRecentBody').innerHTML = rec.length ? rec.map(function(d){
+        var st=d.status==='approved'?'<span class="ok">onaylı</span>':'<span class="muted">reddedildi</span>';
+        return '<div class="item"><div class="ph">'+(d.status==='approved'?'✅':'🚫')+'</div><div class="meta"><b>'+esc(d.rumuz)+'</b> '+st+'<span class="muted">'+esc(d.text)+'</span></div></div>';
+      }).join('') : '<p class="muted">—</p>';
+    }).catch(function(e){ el('duaPendingBody').innerHTML='<p class="muted">Hata: '+e+'</p>'; });
+  }
+  function approveDua(id){
+    var fd=new FormData(); fd.append('id',id);
+    api('dua-approve',{method:'POST',body:fd}).then(function(res){
+      if(res.j&&res.j.ok){ toast('Onaylandı ✓'); loadDuaWall(); }
+      else { toast('Hata: '+((res.j&&res.j.error)||res.status)); }
+    }).catch(function(e){ toast('Hata: '+e); });
+  }
+  function rejectDua(id,del){
+    if(del && !confirm('Bu duayı tamamen silmek istediğine emin misin?')) return;
+    var fd=new FormData(); fd.append('id',id); if(del) fd.append('delete','1');
+    api('dua-reject',{method:'POST',body:fd}).then(function(res){
+      if(res.j&&res.j.ok){ toast(del?'Silindi ✓':'Reddedildi ✓'); loadDuaWall(); }
       else { toast('Hata: '+((res.j&&res.j.error)||res.status)); }
     }).catch(function(e){ toast('Hata: '+e); });
   }

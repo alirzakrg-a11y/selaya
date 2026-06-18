@@ -8,6 +8,8 @@
 // Şifreler PBKDF2-SHA256 + salt ile hash'lenir (düz metin SAKLANMAZ).
 // Oturum = HMAC-SHA256 ile imzalı JWT (secret: env.AUTH_SECRET).
 
+import { validateRumuz } from './profanity.js';
+
 const enc = new TextEncoder();
 
 const CORS = {
@@ -128,7 +130,10 @@ async function issueToken(env, user, deviceId) {
 }
 
 function publicUser(u) {
-  return { id: u.id, name: u.name, surname: u.surname || '', email: u.email };
+  return {
+    id: u.id, name: u.name, surname: u.surname || '', email: u.email,
+    rumuz: u.rumuz || '',
+  };
 }
 
 // En fazla 2 aktif cihaz. Cihazı kaydet/tazele; yeni cihaz sınırı aşıyorsa EN
@@ -240,6 +245,13 @@ export async function handleAuth(request, env, path) {
     if (!name) return json({ ok: false, error: 'name_required' }, 400);
     if (!validEmail(email)) return json({ ok: false, error: 'invalid_email' }, 400);
     if (!validPassword(password)) return json({ ok: false, error: 'weak_password' }, 400);
+    // Rumuz (Dua Duvarı takma adı) — opsiyonel; verilirse küfür/uzunluk denetimi.
+    let rumuz = null;
+    if (b.rumuz != null && b.rumuz.toString().trim() !== '') {
+      const rv = validateRumuz(b.rumuz);
+      if (!rv.ok) return json({ ok: false, error: rv.error }, 400);
+      rumuz = rv.value;
+    }
 
     const exists = await env.DB.prepare('SELECT id FROM users WHERE email=?').bind(email).first();
     if (exists) return json({ ok: false, error: 'email_taken' }, 409);
@@ -249,9 +261,9 @@ export async function handleAuth(request, env, path) {
     const now = Date.now();
     try {
       await env.DB.prepare(
-        'INSERT INTO users (id,name,surname,email,pass_hash,pass_salt,iters,email_verified,created_at,last_active) ' +
-        'VALUES (?,?,?,?,?,?,?,0,?,?)'
-      ).bind(id, name, surname, email, hash, salt, iters, now, now).run();
+        'INSERT INTO users (id,name,surname,email,rumuz,pass_hash,pass_salt,iters,email_verified,created_at,last_active) ' +
+        'VALUES (?,?,?,?,?,?,?,?,0,?,?)'
+      ).bind(id, name, surname, email, rumuz, hash, salt, iters, now, now).run();
     } catch (_) {
       // E-posta UNIQUE çakışması (eşzamanlı kayıt yarışı) → yine email_taken.
       return json({ ok: false, error: 'email_taken' }, 409);
@@ -259,7 +271,7 @@ export async function handleAuth(request, env, path) {
     await env.DB.prepare('INSERT INTO user_data (user_id,data,updated_at) VALUES (?,?,?)')
       .bind(id, '{}', now).run();
 
-    const user = { id, name, surname, email };
+    const user = { id, name, surname, email, rumuz: rumuz || '' };
     const deviceId = (b.deviceId || '').toString().slice(0, 80);
     const deviceLabel = (b.device || '').toString().slice(0, 80);
     await registerDevice(env, id, deviceId, deviceLabel);
@@ -400,7 +412,7 @@ export async function handleAuth(request, env, path) {
 
     if (path === '/v1/me' && request.method === 'GET') {
       const u = await env.DB.prepare(
-        'SELECT id,name,surname,email,email_verified,created_at,last_active FROM users WHERE id=?'
+        'SELECT id,name,surname,email,rumuz,email_verified,created_at,last_active FROM users WHERE id=?'
       ).bind(uid).first();
       if (!u) return json({ ok: false, error: 'not_found' }, 404);
       return json({ ok: true, user: u });
