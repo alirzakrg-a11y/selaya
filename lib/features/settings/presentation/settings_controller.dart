@@ -62,9 +62,9 @@ class AppSettings {
   final bool smartSilent; // auto-silence the phone during prayer & Friday windows
 
   const AppSettings({
-    this.themeMode = ThemeMode.dark, // Koyu yeşil + parlak altın varsayılan (mockup)
-    this.amoled = false, // saf siyah değil — koyu yeşil zemin
-    this.palette = AppPalette.green,
+    this.themeMode = ThemeMode.dark, // ilk kurulum: koyu + Altın + AMOLED siyah
+    this.amoled = true, // saf siyah zemin (kullanıcı 2026-06-18: "temada siyah")
+    this.palette = AppPalette.gold,
     this.textScale = 1.0,
     this.calcMethod = CalcMethod.diyanet,
     this.cityId = 'istanbul',
@@ -120,9 +120,8 @@ class SettingsController extends Notifier<AppSettings> {
   AppSettings build() {
     return AppSettings(
       themeMode: _modeFromName(_prefs.getString(PrefKeys.themeMode)),
-      amoled: _prefs.getBool(PrefKeys.amoled) ?? false,
-      palette: AppPalette.fromId(
-          _prefs.getString(PrefKeys.palette) ?? AppPalette.green.name),
+      amoled: _prefs.getBool(PrefKeys.amoled) ?? true,
+      palette: AppPalette.fromId(_prefs.getString(PrefKeys.palette)),
       textScale: _prefs.getDouble(PrefKeys.textScale) ?? 1.0,
       calcMethod: CalcMethod.fromId(_prefs.getString(PrefKeys.calcMethod) ?? 'diyanet'),
       cityId: _prefs.getString(PrefKeys.cityId) ?? 'istanbul',
