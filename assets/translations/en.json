@@ -177,6 +177,12 @@
   "reminders": {
     "title": "Reminders"
   },
+  "travel": {
+    "title": "Travel Mode"
+  },
+  "readingPlan": {
+    "title": "Quran Reading Plan"
+  },
   "kaza": {
     "title": "Missed Prayers",
     "totalDebt": "Total missed prayers",

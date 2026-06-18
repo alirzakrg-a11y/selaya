@@ -44,12 +44,14 @@ import '../../features/quran/presentation/mushaf_screen.dart';
 import '../../features/quran/presentation/quran_reader_screen.dart';
 import '../../features/quran/presentation/quran_screen.dart';
 import '../../features/quran/presentation/quran_search_screen.dart';
+import '../../features/reading_plan/presentation/reading_plan_screen.dart';
 import '../../features/reminders/presentation/reminders_screen.dart';
 import '../../features/settings/presentation/settings_screen.dart';
 import '../../features/social_feed/presentation/feed_screen.dart';
 import '../../features/stories/presentation/story_viewer.dart';
 import '../../features/streak/presentation/streak_screen.dart';
 import '../../features/tesbihat/presentation/tesbihat_screen.dart';
+import '../../features/travel/presentation/travel_mode_screen.dart';
 import '../../features/wallpapers/presentation/wallpapers_screen.dart';
 import '../../features/widgets_gallery/presentation/widgets_gallery_screen.dart';
 import '../../features/zakat/presentation/zakat_screen.dart';
@@ -118,6 +120,8 @@ final routerProvider = Provider<GoRouter>((ref) {
       fs(Routes.hajj, (_, _) => const HajjUmrahScreen()),
       fs(Routes.streak, (_, _) => const StreakScreen()),
       fs(Routes.reminders, (_, _) => const RemindersScreen()),
+      fs(Routes.travel, (_, _) => const TravelModeScreen()),
+      fs(Routes.readingPlan, (_, _) => const ReadingPlanScreen()),
       fs(Routes.verses,
           (_, _) => const InspirationListScreen(
               type: 'verse', titleKey: 'more.verses')),

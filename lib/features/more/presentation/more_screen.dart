@@ -38,6 +38,7 @@ class MoreScreen extends ConsumerWidget {
       _Entry(Icons.format_quote_rounded, 'more.verses', Routes.verses),
       _Entry(Icons.history_edu_rounded, 'more.hadiths', Routes.hadiths),
       _Entry(AppIcons.book, 'more.yasin', Routes.yasin),
+      _Entry(Icons.event_note_rounded, 'readingPlan.title', Routes.readingPlan),
       _Entry(AppIcons.crown, 'asma.title', Routes.asma),
     ]),
     _Section('more.secWorship', [
@@ -45,6 +46,7 @@ class MoreScreen extends ConsumerWidget {
           Routes.namazGuide),
       _Entry(Icons.water_drop_rounded, 'more.abdestGuide', Routes.abdestGuide),
       _Entry(Icons.travel_explore_rounded, 'hajj.title', Routes.hajj),
+      _Entry(Icons.flight_rounded, 'travel.title', Routes.travel),
       _Entry(Icons.menu_book_rounded, 'ilmihal.title', Routes.ilmihal),
       _Entry(AppIcons.tasbih, 'dhikr.title', Routes.dhikr),
       _Entry(Icons.repeat_rounded, 'tesbihat.title', Routes.tesbihat),

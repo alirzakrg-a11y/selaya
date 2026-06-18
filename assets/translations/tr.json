@@ -177,6 +177,12 @@
   "reminders": {
     "title": "Hatırlatıcılar"
   },
+  "travel": {
+    "title": "Seyahat Modu"
+  },
+  "readingPlan": {
+    "title": "Kur'an Okuma Planı"
+  },
   "kaza": {
     "title": "Kazalar",
     "totalDebt": "Toplam kaza namazı",
