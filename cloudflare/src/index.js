@@ -343,6 +343,9 @@ export default {
           // Cihaz kayıtlarını sil → mevcut token'lar da hemen geçersiz (sonraki
           // istekte 'banned' zaten döner; bu garantiyi güçlendirir).
           await env.DB.prepare('DELETE FROM user_devices WHERE user_id=?').bind(uid).run();
+          // Banlanan kullanıcının dua duvarı gönderileri de kalksın (yayında +
+          // bekleyen hepsi); dua_amins FK CASCADE ile temizlenir.
+          await env.DB.prepare('DELETE FROM dua_wall WHERE user_id=?').bind(uid).run();
           return json({ ok: true });
         }
         // ---- AF / yasağı kaldır ----
@@ -364,8 +367,8 @@ export default {
             "WHERE status='pending' ORDER BY created_at ASC LIMIT 200"
           ).all();
           const recent = await env.DB.prepare(
-            "SELECT id, rumuz, text, status, amins, created_at, decided_at FROM dua_wall " +
-            "WHERE status!='pending' ORDER BY decided_at DESC LIMIT 40"
+            "SELECT id, user_id, rumuz, text, status, amins, created_at, decided_at FROM dua_wall " +
+            "WHERE status!='pending' ORDER BY decided_at DESC LIMIT 100"
           ).all();
           return json({
             ok: true,
@@ -396,6 +399,20 @@ export default {
               "UPDATE dua_wall SET status='rejected', decided_at=? WHERE id=?"
             ).bind(Date.now(), id).run();
           }
+          return json({ ok: true });
+        }
+        // Gizle / Göster → yayındaki duayı duvardan kaldır (status='hidden') ya da
+        // tekrar yayınla (status='approved'). Kayıt SİLİNMEZ, geri alınabilir.
+        // Herkese açık akış zaten yalnız status='approved' getirdiği için gizli
+        // dualar uygulamada anında görünmez olur.
+        if (request.method === 'POST' && path === '/api/dua-hide') {
+          const form = await request.formData();
+          const id = (form.get('id') || '').toString();
+          const hide = (form.get('hidden') || '').toString() === '1';
+          if (!id) return json({ ok: false, error: 'id_required' }, { status: 400 });
+          await env.DB.prepare(
+            "UPDATE dua_wall SET status=?, decided_at=? WHERE id=?"
+          ).bind(hide ? 'hidden' : 'approved', Date.now(), id).run();
           return json({ ok: true });
         }
 
@@ -874,7 +891,8 @@ const PANEL_HTML = `<!doctype html>
         <div id="duaPendingBody"><p class="muted">Yükleniyor…</p></div>
       </div>
       <div class="card">
-        <h3 style="margin:0 0 8px">Son Kararlananlar</h3>
+        <h3 style="margin:0 0 8px">📿 Yayındaki &amp; Kararlanan Dualar</h3>
+        <p class="hint"><b>Gizle</b> duayı duvardan kaldırır (geri alınabilir — <b>Göster</b>) · <b>Sil</b> tamamen kaldırır · <b>🚫 Banla</b> yazarı engeller + tüm dualarını siler.</p>
         <div id="duaRecentBody"><p class="muted">—</p></div>
       </div>
     </div>
@@ -1171,8 +1189,21 @@ const PANEL_HTML = `<!doctype html>
         }).join('');
       }
       el('duaRecentBody').innerHTML = rec.length ? rec.map(function(d){
-        var st=d.status==='approved'?'<span class="ok">onaylı</span>':'<span class="muted">reddedildi</span>';
-        return '<div class="item"><div class="ph">'+(d.status==='approved'?'✅':'🚫')+'</div><div class="meta"><b>'+esc(d.rumuz)+'</b> '+st+'<span class="muted">'+esc(d.text)+'</span></div></div>';
+        var id=esc(d.id); var uid=esc(d.user_id||'');
+        var icon,label,actions;
+        if(d.status==='approved'){
+          icon='✅'; label='<span class="ok">yayında</span>';
+          actions='<button class="ghost" data-id="'+id+'" onclick="hideDua(this.dataset.id,true)">Gizle</button> ';
+        } else if(d.status==='hidden'){
+          icon='🙈'; label='<span class="muted">gizli</span>';
+          actions='<button data-id="'+id+'" onclick="hideDua(this.dataset.id,false)">Göster</button> ';
+        } else {
+          icon='🚫'; label='<span class="muted">reddedildi</span>'; actions='';
+        }
+        return '<div class="item"><div class="ph">'+icon+'</div><div class="meta"><b>'+esc(d.rumuz)+'</b> '+label+'<span class="muted">'+esc(d.text)+'</span></div>'+
+          actions+
+          '<button class="danger" data-id="'+id+'" onclick="rejectDua(this.dataset.id,true)">Sil</button> '+
+          '<button class="danger" data-uid="'+uid+'" data-id="'+id+'" onclick="banDuaUser(this.dataset.uid,this.dataset.id)">🚫 Banla</button></div>';
       }).join('') : '<p class="muted">—</p>';
     }).catch(function(e){ el('duaPendingBody').innerHTML='<p class="muted">Hata: '+e+'</p>'; });
   }
@@ -1191,18 +1222,25 @@ const PANEL_HTML = `<!doctype html>
       else { toast('Hata: '+((res.j&&res.j.error)||res.status)); }
     }).catch(function(e){ toast('Hata: '+e); });
   }
-  // Banla (dua moderasyonundan): yazarı banla + bu duayı sil. Kullanıcı
-  // uygulamadan otomatik çıkar, bir daha giremez, "engellendiniz" görür.
+  // Gizle/Göster: yayındaki duayı duvardan kaldır (geri alınabilir) ya da geri yayınla.
+  function hideDua(id,hide){
+    var fd=new FormData(); fd.append('id',id); fd.append('hidden',hide?'1':'0');
+    api('dua-hide',{method:'POST',body:fd}).then(function(res){
+      if(res.j&&res.j.ok){ toast(hide?'Gizlendi ✓':'Tekrar yayınlandı ✓'); loadDuaWall(); }
+      else { toast('Hata: '+((res.j&&res.j.error)||res.status)); }
+    }).catch(function(e){ toast('Hata: '+e); });
+  }
+  // Banla (dua moderasyonundan): yazarı banla → uygulamadan otomatik çıkar, bir
+  // daha giremez, "engellendiniz" görür + TÜM dua duvarı gönderileri silinir (sunucu).
   function banDuaUser(uid,id){
     if(!uid){ toast('Kullanıcı bilgisi yok'); return; }
+    if(!confirm('Bu kullanıcı banlanacak; uygulamaya bir daha giremeyecek ve tüm duaları silinecek. Emin misin?')) return;
     var reason=prompt('Ban sebebi (opsiyonel — kullanıcıya gösterilmez):','Uygunsuz içerik');
     if(reason===null) return;
     var fd=new FormData(); fd.append('id',uid); fd.append('reason',reason);
     api('user-ban',{method:'POST',body:fd}).then(function(res){
-      if(res.j&&res.j.ok){
-        var fd2=new FormData(); fd2.append('id',id); fd2.append('delete','1');
-        api('dua-reject',{method:'POST',body:fd2}).then(function(){ toast('Kullanıcı banlandı + dua silindi ✓'); loadDuaWall(); });
-      } else { toast('Hata: '+((res.j&&res.j.error)||res.status)); }
+      if(res.j&&res.j.ok){ toast('Kullanıcı banlandı + duaları silindi ✓'); loadDuaWall(); }
+      else { toast('Hata: '+((res.j&&res.j.error)||res.status)); }
     }).catch(function(e){ toast('Hata: '+e); });
   }
   function banUser(id,email){
