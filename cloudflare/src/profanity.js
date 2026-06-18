@@ -43,6 +43,44 @@ const CONTAINS = [
   'whore', 'nigger', 'faggot', 'motherf',
 ];
 
+// ── Dini hakaret + kutsal isim koruması (kullanıcı 2026-06-18) ──────────────
+// Kutsal kelime + (≤3 bağlaç harfi) + NET küfür kökü BİTİŞİK kaçırmasını yakalar
+// ("allahasiktir", "dininesikeyim", "kuranaorospu"). Boşluklu hâli ("Allah'a
+// siktir") zaten kelime bazlı küfür taramasında yakalanır. Kısa/çift-anlamlı
+// kökler (sik/göt/bok) burada KULLANILMAZ ("din psikoloji" gibi sahte pozitif
+// olmasın) → yalnız çekimli/uzun küfürler.
+const BLASPHEMY_RE =
+    /(allah|tanr[iı]|din|kur[a]?n|kitab|peygamber|islam|ilah|rab|mevla)[a-zçğıiöşü]{0,3}(siktir|sikeyim|sikiyim|sikik|sikici|sikim|orospu|amk|amq|kahpe|yarrak|yarak|pezevenk|g[oö]tver|ibne|pu[şs]t|piçkurusu)/;
+
+// Rumuzda yasak — TAM eşleşme: Allah'ı/ilahlığı doğrudan çağrıştıran terimler.
+// "Abdullah", "Allah'ın Kulu", "Kerim" gibi normal/itaatkâr adlar engellenmez.
+const SACRED_EXACT = new Set([
+  'allah', 'allahım', 'allahu', 'allahuteala', 'rab', 'rabbim', 'rabbimiz',
+  'rabbena', 'tanrı', 'tanrım', 'ilah', 'ilahım', 'ilahi', 'mevla', 'mevlam',
+  'yaradan', 'yaratan', 'yaratıcı', 'halık', 'hüda', 'hüdam', 'subhan',
+  'sübhan', 'cenabıhak', 'cenabihak', 'peygamber', 'peygamberim',
+  'resulullah', 'resulallah', 'nebiyullah', 'rabbül', 'zülcelal',
+]);
+
+// Esma-ül Hüsna (99) — yalnız "EL-/ER-/ES-…" tanım edatıyla (ilahî sıfat olarak)
+// kullanılınca yasak; çıplak hâli (Kerim, Rahim, Aziz…) normal addır, serbesttir.
+const ESMA = new Set([
+  'rahman', 'rahim', 'melik', 'kuddüs', 'kuddus', 'selam', 'mümin', 'müheymin',
+  'aziz', 'cebbar', 'mütekebbir', 'halık', 'halik', 'bari', 'musavvir',
+  'gaffar', 'kahhar', 'vehhab', 'rezzak', 'fettah', 'alim', 'kabıd', 'basıt',
+  'hafıd', 'rafi', 'muiz', 'müzil', 'semi', 'basir', 'hakem', 'adl', 'latif',
+  'habir', 'halim', 'azim', 'gafur', 'şekur', 'sekur', 'kebir', 'hafız',
+  'mukit', 'hasib', 'celil', 'kerim', 'rakib', 'mucib', 'vasi', 'hakim',
+  'vedud', 'mecid', 'bais', 'şehid', 'sehid', 'vekil', 'kavi', 'metin', 'veli',
+  'hamid', 'muhsi', 'mübdi', 'muid', 'muhyi', 'mümit', 'hayy', 'kayyum',
+  'vacid', 'macid', 'vahid', 'ahad', 'samed', 'kadir', 'muktedir', 'mukaddim',
+  'muahhir', 'evvel', 'ahir', 'zahir', 'batın', 'vali', 'müteali', 'berr',
+  'tevvab', 'müntekim', 'afüvv', 'rauf', 'malik', 'muksit', 'cami', 'gani',
+  'mugni', 'mani', 'darr', 'nafi', 'nur', 'hadi', 'bedi', 'baki', 'varis',
+  'reşid', 'resid', 'sabur',
+]);
+const ARTICLES = ['el', 'er', 'es', 'eş', 'ez', 'en', 'ed', 'et', 'ül', 'ul'];
+
 const LEET = { '0': 'o', '1': 'i', '3': 'e', '4': 'a', '5': 's', '7': 't', '@': 'a', '$': 's', '!': 'i', '|': 'i' };
 
 // Türkçe-duyarlı küçük harf (JS toLowerCase 'I'→'i' yapar; biz 'ı' isteriz).
@@ -90,6 +128,20 @@ export function containsProfanity(input) {
   // → "akşamki namaz" gibi uzun metinler asla yakalanmaz (sahte pozitif yok).
   const squeezed = collapseRepeats(mapLeet(lowerTr(raw)).replace(/[^a-zçğıiöşü]/g, ''));
   if (squeezed.length <= 5 && EXACT.has(squeezed)) return true;
+  // Dini hakaret: kutsal kelime + bitişik küfür ("allahasiktir", "dininesik...").
+  if (BLASPHEMY_RE.test(squeezed)) return true;
+  return false;
+}
+
+/// Rumuz kutsal bir ismi/ilahlığı doğrudan çağrıştırıyor mu? (TAM eşleşme +
+/// EL-/ER- edatlı Esma). "Abdullah", "Allah'ın Kulu", "Kerim" engellenmez.
+function isSacredRumuz(raw) {
+  const n = mapLeet(lowerTr(raw)).replace(/[^a-zçğıiöşü]/g, '');
+  if (n.length < 2) return false;
+  if (SACRED_EXACT.has(n)) return true;
+  for (const a of ARTICLES) {
+    if (n.startsWith(a) && ESMA.has(n.slice(a.length))) return true;
+  }
   return false;
 }
 
@@ -100,8 +152,10 @@ export function containsProfanity(input) {
 export function validateRumuz(input) {
   const r = (input || '').toString().trim();
   if (r.length < 2 || r.length > 24) return { ok: false, error: 'rumuz_length' };
-  // Harf/rakam/boşluk/altçizgi/nokta — link/etiket/özel karakter yok.
-  if (!/^[\p{L}0-9 ._]+$/u.test(r)) return { ok: false, error: 'rumuz_chars' };
+  // Harf/rakam/boşluk/altçizgi/nokta/kesme(') — link/etiket/özel karakter yok.
+  if (!/^[\p{L}0-9 ._'’ʼ]+$/u.test(r)) return { ok: false, error: 'rumuz_chars' };
   if (containsProfanity(r)) return { ok: false, error: 'rumuz_profanity' };
+  // Allah'ın/ilahın isimleri rumuz olarak kullanılamaz (dine saygı).
+  if (isSacredRumuz(r)) return { ok: false, error: 'rumuz_sacred' };
   return { ok: true, value: r };
 }

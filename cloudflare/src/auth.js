@@ -8,7 +8,7 @@
 // Şifreler PBKDF2-SHA256 + salt ile hash'lenir (düz metin SAKLANMAZ).
 // Oturum = HMAC-SHA256 ile imzalı JWT (secret: env.AUTH_SECRET).
 
-import { validateRumuz } from './profanity.js';
+import { validateRumuz, containsProfanity } from './profanity.js';
 
 const enc = new TextEncoder();
 
@@ -243,6 +243,10 @@ export async function handleAuth(request, env, path) {
     const email = (b.email || '').toString().trim().toLowerCase();
     const password = (b.password || '').toString();
     if (!name) return json({ ok: false, error: 'name_required' }, 400);
+    // Ad/soyad küfür/hakaret içeremez (tüm kullanıcı girişlerinde koruma).
+    if (containsProfanity(name) || (surname && containsProfanity(surname))) {
+      return json({ ok: false, error: 'name_profanity' }, 400);
+    }
     if (!validEmail(email)) return json({ ok: false, error: 'invalid_email' }, 400);
     if (!validPassword(password)) return json({ ok: false, error: 'weak_password' }, 400);
     // Rumuz (Dua Duvarı takma adı) — opsiyonel; verilirse küfür/uzunluk denetimi.

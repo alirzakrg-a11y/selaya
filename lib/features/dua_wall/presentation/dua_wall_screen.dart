@@ -106,6 +106,10 @@ class _DuaWallScreenState extends ConsumerState<DuaWallScreen> {
         return tr
             ? 'Rumuz yalnızca harf, rakam, boşluk, nokta ve _ içerebilir.'
             : 'Nickname may contain only letters, numbers, space, dot and _.';
+      case 'rumuz_sacred':
+        return tr
+            ? 'Allah\'ın isimleri veya kutsal değerler rumuz olarak kullanılamaz.'
+            : 'Sacred names cannot be used as a nickname.';
       case 'unauthorized':
         return tr ? 'Oturum süresi doldu, tekrar giriş yapın.' : 'Session expired.';
       case 'network':

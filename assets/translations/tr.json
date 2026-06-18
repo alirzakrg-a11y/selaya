@@ -44,6 +44,7 @@
     "err_weak_password": "Şifre en az 6 karakter olmalı; harf ve rakam içermeli.",
     "err_invalid_credentials": "E-posta veya şifre hatalı.",
     "err_name_required": "Adını gir.",
+    "err_name_profanity": "Ad uygunsuz ifade içeremez.",
     "err_network": "Bağlantı hatası. İnternetini kontrol et.",
     "err_bad_response": "Sunucu yanıtı okunamadı.",
     "changePassword": "Şifre Değiştir",

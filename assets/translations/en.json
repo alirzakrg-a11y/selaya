@@ -44,6 +44,7 @@
     "err_weak_password": "Password needs 6+ characters with a letter and a number.",
     "err_invalid_credentials": "Wrong email or password.",
     "err_name_required": "Enter your name.",
+    "err_name_profanity": "Name cannot contain inappropriate language.",
     "err_network": "Connection error. Check your internet.",
     "err_bad_response": "Could not read server response.",
     "changePassword": "Change Password",

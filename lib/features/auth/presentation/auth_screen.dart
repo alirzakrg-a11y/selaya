@@ -44,7 +44,7 @@ class _AuthScreenState extends ConsumerState<AuthScreen> {
     const known = {
       'email_taken', 'invalid_email', 'weak_password',
       'invalid_credentials', 'name_required', 'network', 'bad_response',
-      'too_many_attempts',
+      'too_many_attempts', 'name_profanity',
     };
     return (known.contains(code) ? 'auth.err_$code' : 'auth.err_unknown').tr();
   }
