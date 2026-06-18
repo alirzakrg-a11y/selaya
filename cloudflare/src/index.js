@@ -27,6 +27,7 @@ function safeParse(s) { try { return JSON.parse(s); } catch (e) { return null; }
 // bustManifest ile anında düşürür.
 const MANIFEST_CK = 'https://api.selaya.app/v1/manifest';
 const LIKES_CK = 'https://api.selaya.app/v1/likes';
+const FINANCE_CK = 'https://api.selaya.app/v1/finance';
 function bustManifest(ctx) {
   if (!ctx) return;
   try { ctx.waitUntil(caches.default.delete(MANIFEST_CK)); } catch (_) {}
@@ -117,6 +118,36 @@ export default {
       // DUA DUVARI (#10) — üyeler dua paylaşır, panelde onaylanınca yayınlanır.
       const duaResp = await handleDuaWall(request, env, path);
       if (duaResp) return duaResp;
+
+      // FİNANS — canlı gram altın (₺) + Diyanet fitre (zekât/fitre hesabı için).
+      // 30 dk edge cache: kaynağı yormaz, uygulama her açılışta güncel çeker.
+      if (path === '/v1/finance') {
+        const cache = caches.default;
+        const hit = await cache.match(FINANCE_CK);
+        if (hit) return hit;
+        let goldGram = 0, goldUpdated = '';
+        try {
+          const r = await fetch('https://finans.truncgil.com/v4/today.json',
+              { cf: { cacheTtl: 1800 } });
+          if (r.ok) {
+            const d = await r.json();
+            goldGram = Number(d && d.GRA && d.GRA.Selling) || 0;
+            goldUpdated = (d && d.Update_Date) || '';
+          }
+        } catch (_) {}
+        const resp = json({
+          ok: true,
+          goldGram,                              // ₺/gram (gram altın satış)
+          goldSource: 'finans.truncgil.com',
+          goldUpdated,
+          fitre: 240,                            // Diyanet 2026 (Ramazan 2026–2027)
+          fitreYear: '2026',
+          fitreSource: 'Diyanet İşleri Başkanlığı',
+          generatedAt: new Date().toISOString(),
+        }, { maxage: 1800 });
+        ctx.waitUntil(cache.put(FINANCE_CK, resp.clone()));
+        return resp;
+      }
 
       if (path === '/v1/manifest') {
         const cache = caches.default;
