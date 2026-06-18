@@ -304,6 +304,7 @@ export default {
             'SELECT u.id, u.name, u.surname, u.email, u.rumuz, u.banned, u.ban_reason, ' +
             'u.email_verified, u.created_at, u.last_active, d.updated_at AS data_updated, d.device ' +
             'FROM users u LEFT JOIN user_data d ON d.user_id = u.id ' +
+            "WHERE u.id NOT IN ('seed-demo','panel-author') " +
             'ORDER BY u.banned DESC, u.created_at DESC LIMIT 1000'
           ).all();
           return json({ ok: true, users: results });
@@ -353,6 +354,29 @@ export default {
             'UPDATE users SET name=?, surname=?, email=?, rumuz=? WHERE id=?'
           ).bind(name, surname, email, rumuz || null, uid).run();
           return json({ ok: true });
+        }
+        // ---- panelden YENİ ÜYE oluştur (admin; kullanıcı bu e-posta+şifre ile giriş yapar) ----
+        if (request.method === 'POST' && path === '/api/user-create') {
+          const form = await request.formData();
+          const name = (form.get('name') || '').toString().trim();
+          const surname = (form.get('surname') || '').toString().trim();
+          const email = (form.get('email') || '').toString().trim().toLowerCase();
+          const password = (form.get('password') || '').toString();
+          const rumuz = (form.get('rumuz') || '').toString().trim();
+          if (!name) return json({ ok: false, error: 'name_required' }, { status: 400 });
+          if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email)) {
+            return json({ ok: false, error: 'invalid_email' }, { status: 400 });
+          }
+          if (password.length < 6) return json({ ok: false, error: 'weak_password' }, { status: 400 });
+          const clash = await env.DB.prepare('SELECT id FROM users WHERE email=?').bind(email).first();
+          if (clash) return json({ ok: false, error: 'email_taken' }, { status: 409 });
+          const np = await hashPassword(password);
+          const id = crypto.randomUUID();
+          await env.DB.prepare(
+            'INSERT INTO users (id,name,surname,email,pass_hash,pass_salt,iters,email_verified,created_at,last_active,rumuz,banned) ' +
+            'VALUES (?,?,?,?,?,?,?,1,?,0,?,0)'
+          ).bind(id, name, surname, email, np.hash, np.salt, np.iters, Date.now(), rumuz || null).run();
+          return json({ ok: true, id });
         }
         // ---- BAN: kullanıcı uygulamaya giremez + otomatik çıkış + cihazları düşür ----
         if (request.method === 'POST' && path === '/api/user-ban') {
@@ -437,6 +461,30 @@ export default {
             "UPDATE dua_wall SET status=?, decided_at=? WHERE id=?"
           ).bind(hide ? 'hidden' : 'approved', Date.now(), id).run();
           return json({ ok: true });
+        }
+        // ---- panelden DUVARA DUA EKLE (admin; doğrudan 'approved' yayınlanır) ----
+        if (request.method === 'POST' && path === '/api/dua-create') {
+          const form = await request.formData();
+          const rumuz = (form.get('rumuz') || '').toString().trim().slice(0, 40);
+          const text = (form.get('text') || '').toString().trim().replace(/\s+/g, ' ');
+          let amins = parseInt((form.get('amins') || '0').toString(), 10);
+          if (!Number.isFinite(amins) || amins < 0) amins = 0;
+          if (!rumuz) return json({ ok: false, error: 'rumuz_required' }, { status: 400 });
+          if (text.length < 3) return json({ ok: false, error: 'too_short' }, { status: 400 });
+          if (text.length > 280) return json({ ok: false, error: 'too_long' }, { status: 400 });
+          // Panel duaları sabit bir sistem yazarına bağlanır (FK). seed-demo'dan
+          // AYRI kalıcı hesap → "sahte/seed duaları sil" işlemi bunları silmez.
+          const now = Date.now();
+          await env.DB.prepare(
+            "INSERT OR IGNORE INTO users (id,name,surname,email,pass_hash,pass_salt,rumuz,banned,created_at) " +
+            "VALUES ('panel-author','Panel','','panel-author@selaya.app','-','-','SELAYA',0,?)"
+          ).bind(now).run();
+          const id = 'panel-' + crypto.randomUUID();
+          await env.DB.prepare(
+            "INSERT INTO dua_wall (id,user_id,rumuz,text,status,amins,created_at,decided_at) " +
+            "VALUES (?,'panel-author',?,?,'approved',?,?,?)"
+          ).bind(id, rumuz, text, amins, now, now).run();
+          return json({ ok: true, id });
         }
 
         // ---- metin içerik (ayet/hadis/dua/tebrik — DOSYASIZ) ----
@@ -894,6 +942,20 @@ const PANEL_HTML = `<!doctype html>
     <!-- ============ KULLANICILAR ============ -->
     <div id="viewUsers" class="hide">
       <div class="card">
+        <h3 style="margin:0 0 4px">➕ Yeni Üye Ekle</h3>
+        <p class="hint">Panelden elle üye oluştur. Kullanıcı bu e-posta + şifre ile uygulamada giriş yapabilir.</p>
+        <div class="row">
+          <div><label>Ad</label><input id="cuName" placeholder="Ad"></div>
+          <div><label>Soyad</label><input id="cuSurname" placeholder="Soyad (opsiyonel)"></div>
+        </div>
+        <div class="row">
+          <div><label>E-posta</label><input id="cuEmail" type="email" placeholder="ornek@eposta.com"></div>
+          <div><label>Şifre</label><input id="cuPass" placeholder="en az 6 karakter"></div>
+        </div>
+        <label>Rumuz (opsiyonel)</label><input id="cuRumuz" placeholder="Dua duvarında görünecek ad">
+        <div style="margin-top:14px"><button onclick="createUser()">Üye Oluştur</button> <span id="cuStatus" class="muted"></span></div>
+      </div>
+      <div class="card">
         <div class="row" style="align-items:center">
           <h3 style="margin:0">👤 Üyeler</h3>
           <button class="ghost" style="flex:0 0 auto" onclick="loadUsers()">Yenile</button>
@@ -905,6 +967,16 @@ const PANEL_HTML = `<!doctype html>
 
     <!-- ============ DUA DUVARI ============ -->
     <div id="viewDua" class="hide">
+      <div class="card">
+        <h3 style="margin:0 0 4px">➕ Panelden Dua Ekle</h3>
+        <p class="hint">Senin eklediğin dua doğrudan duvarda <b>yayınlanır</b> (onay beklemez). Rumuz, duada görünecek addır.</p>
+        <div class="row">
+          <div style="flex:0 0 200px"><label>Rumuz</label><input id="cdRumuz" placeholder="ör. Bir Kul"></div>
+          <div><label>Âmin sayısı (opsiyonel)</label><input id="cdAmins" type="number" placeholder="0"></div>
+        </div>
+        <label>Dua metni</label><textarea id="cdText" placeholder="Dua / istek metni (en çok 280 karakter)"></textarea>
+        <div style="margin-top:14px"><button onclick="createDua()">Duvara Ekle</button> <span id="cdStatus" class="muted"></span></div>
+      </div>
       <div class="card">
         <div class="row" style="align-items:center">
           <h3 style="margin:0">🤲 Onay Bekleyen Dualar</h3>
@@ -1149,6 +1221,41 @@ const PANEL_HTML = `<!doctype html>
 
   // --- Kullanıcılar (üyeler) ---
   function fmtDate(ms){ if(!ms) return '—'; try{ var d=new Date(ms); return d.toLocaleDateString('tr-TR')+' '+d.toLocaleTimeString('tr-TR',{hour:'2-digit',minute:'2-digit'}); }catch(e){ return '—'; } }
+  // --- Panelden üye / dua ekleme ---
+  function createUser(){
+    var name=el('cuName').value.trim(), sur=el('cuSurname').value.trim();
+    var email=el('cuEmail').value.trim(), pass=el('cuPass').value, rumuz=el('cuRumuz').value.trim();
+    if(!name||!email||pass.length<6){ toast('Ad, e-posta ve en az 6 karakter şifre gerekli'); return; }
+    el('cuStatus').textContent='Ekleniyor…';
+    var fd=new FormData();
+    fd.append('name',name); fd.append('surname',sur); fd.append('email',email);
+    fd.append('password',pass); fd.append('rumuz',rumuz);
+    api('user-create',{method:'POST',body:fd}).then(function(res){
+      el('cuStatus').textContent='';
+      if(res.j&&res.j.ok){
+        toast('Üye oluşturuldu ✓');
+        el('cuName').value=''; el('cuSurname').value=''; el('cuEmail').value=''; el('cuPass').value=''; el('cuRumuz').value='';
+        loadUsers();
+      } else { var er=(res.j&&res.j.error)||res.status; var mm={email_taken:'Bu e-posta zaten kayıtlı',invalid_email:'Geçersiz e-posta',weak_password:'Şifre en az 6 karakter olmalı',name_required:'Ad zorunlu'}; toast('Hata: '+(mm[er]||er)); }
+    }).catch(function(e){ el('cuStatus').textContent=''; toast('Hata: '+e); });
+  }
+  function createDua(){
+    var rumuz=el('cdRumuz').value.trim(), text=el('cdText').value.trim();
+    var amins=parseInt(el('cdAmins').value,10); if(isNaN(amins)||amins<0) amins=0;
+    if(!rumuz){ toast('Rumuz gerekli'); return; }
+    if(text.length<3){ toast('Dua metni çok kısa'); return; }
+    if(text.length>280){ toast('En çok 280 karakter olmalı'); return; }
+    el('cdStatus').textContent='Ekleniyor…';
+    var fd=new FormData(); fd.append('rumuz',rumuz); fd.append('text',text); fd.append('amins',amins);
+    api('dua-create',{method:'POST',body:fd}).then(function(res){
+      el('cdStatus').textContent='';
+      if(res.j&&res.j.ok){
+        toast('Dua duvara eklendi ✓');
+        el('cdRumuz').value=''; el('cdText').value=''; el('cdAmins').value='';
+        loadDuaWall();
+      } else { toast('Hata: '+((res.j&&res.j.error)||res.status)); }
+    }).catch(function(e){ el('cdStatus').textContent=''; toast('Hata: '+e); });
+  }
   function loadUsers(){
     el('usersBody').innerHTML='<p class="muted">Yükleniyor…</p>';
     api('users').then(function(res){
