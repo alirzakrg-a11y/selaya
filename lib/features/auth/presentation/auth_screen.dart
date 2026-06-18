@@ -30,6 +30,7 @@ class _AuthScreenState extends ConsumerState<AuthScreen> {
   final _surname = TextEditingController();
   final _email = TextEditingController();
   final _password = TextEditingController();
+  final _rumuz = TextEditingController(); // Dua Duvarı takma adı (kayıtta zorunlu)
 
   @override
   void dispose() {
@@ -37,6 +38,7 @@ class _AuthScreenState extends ConsumerState<AuthScreen> {
     _surname.dispose();
     _email.dispose();
     _password.dispose();
+    _rumuz.dispose();
     super.dispose();
   }
 
@@ -44,7 +46,8 @@ class _AuthScreenState extends ConsumerState<AuthScreen> {
     const known = {
       'email_taken', 'invalid_email', 'weak_password',
       'invalid_credentials', 'name_required', 'network', 'bad_response',
-      'too_many_attempts', 'name_profanity',
+      'too_many_attempts', 'name_profanity', 'banned',
+      'rumuz_length', 'rumuz_chars', 'rumuz_profanity', 'rumuz_sacred',
     };
     return (known.contains(code) ? 'auth.err_$code' : 'auth.err_unknown').tr();
   }
@@ -58,7 +61,10 @@ class _AuthScreenState extends ConsumerState<AuthScreen> {
     setState(() => _error = null);
     final email = _email.text.trim();
     final pw = _password.text;
-    if (email.isEmpty || pw.isEmpty || (_register && _name.text.trim().isEmpty)) {
+    if (email.isEmpty ||
+        pw.isEmpty ||
+        (_register &&
+            (_name.text.trim().isEmpty || _rumuz.text.trim().isEmpty))) {
       _snack('auth.fillAll'.tr());
       return;
     }
@@ -78,7 +84,8 @@ class _AuthScreenState extends ConsumerState<AuthScreen> {
             name: _name.text.trim(),
             surname: _surname.text.trim(),
             email: email,
-            password: pw);
+            password: pw,
+            rumuz: _rumuz.text.trim());
       } else {
         await ctrl.login(email: email, password: pw);
       }
@@ -123,6 +130,17 @@ class _AuthScreenState extends ConsumerState<AuthScreen> {
             const Gap.md(),
             _field(_surname, 'auth.surname'.tr(), Icons.badge_outlined,
                 action: TextInputAction.next),
+            const Gap.md(),
+            _field(_rumuz, 'auth.rumuz'.tr(), Icons.front_hand_rounded,
+                action: TextInputAction.next),
+            Padding(
+              padding: const EdgeInsets.only(left: 12, top: 4, bottom: 2),
+              child: Text(
+                'auth.rumuzHint'.tr(),
+                style: TextStyle(
+                    color: context.colors.textTertiary, fontSize: 11.5),
+              ),
+            ),
             const Gap.md(),
           ],
           _field(_email, 'auth.email'.tr(), Icons.alternate_email_rounded,

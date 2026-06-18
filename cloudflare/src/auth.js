@@ -185,6 +185,11 @@ export async function requireUser(request, env) {
       'UPDATE user_devices SET last_seen=? WHERE user_id=? AND device_id=?'
     ).bind(Date.now(), payload.sub, payload.did).run();
   }
+  // Banlı kullanıcı → 'banned' sentineli (çağıran 403 döner; uygulama
+  // "engellendiniz" gösterip oturumu kapatır). Banlanınca hiçbir authed istek geçmez.
+  const u = await env.DB.prepare('SELECT banned FROM users WHERE id=?')
+      .bind(payload.sub).first();
+  if (u && u.banned) return 'banned';
   return payload;
 }
 
@@ -249,13 +254,11 @@ export async function handleAuth(request, env, path) {
     }
     if (!validEmail(email)) return json({ ok: false, error: 'invalid_email' }, 400);
     if (!validPassword(password)) return json({ ok: false, error: 'weak_password' }, 400);
-    // Rumuz (Dua Duvarı takma adı) — opsiyonel; verilirse küfür/uzunluk denetimi.
-    let rumuz = null;
-    if (b.rumuz != null && b.rumuz.toString().trim() !== '') {
-      const rv = validateRumuz(b.rumuz);
-      if (!rv.ok) return json({ ok: false, error: rv.error }, 400);
-      rumuz = rv.value;
-    }
+    // Rumuz ZORUNLU (kullanıcı 2026-06-18: kayıt olurken rumuz istensin) +
+    // küfür/kutsal-isim/uzunluk denetimi.
+    const rv = validateRumuz(b.rumuz);
+    if (!rv.ok) return json({ ok: false, error: rv.error }, 400);
+    const rumuz = rv.value;
 
     const exists = await env.DB.prepare('SELECT id FROM users WHERE email=?').bind(email).first();
     if (exists) return json({ ok: false, error: 'email_taken' }, 409);
@@ -307,6 +310,9 @@ export async function handleAuth(request, env, path) {
       }
       return json({ ok: false, error: 'invalid_credentials' }, 401);
     }
+
+    // Banlı kullanıcı giriş yapamaz (uygulama "engellendiniz" gösterir).
+    if (u.banned) return json({ ok: false, error: 'banned' }, 403);
 
     await env.DB.prepare('UPDATE users SET last_active=?, failed_attempts=0, locked_until=0 WHERE id=?')
       .bind(now, u.id).run();
@@ -378,6 +384,7 @@ export async function handleAuth(request, env, path) {
   // ---- PROFİL & VERİ (Bearer şart) ----
   if (path === '/v1/me' || path === '/v1/me/data' || path === '/v1/me/password') {
     const payload = await requireUser(request, env);
+    if (payload === 'banned') return json({ ok: false, error: 'banned' }, 403);
     if (!payload) return json({ ok: false, error: 'unauthorized' }, 401);
     const uid = payload.sub;
 

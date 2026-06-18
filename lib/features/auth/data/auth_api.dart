@@ -29,6 +29,7 @@ class AuthApi {
     required String surname,
     required String email,
     required String password,
+    required String rumuz,
     String? deviceId,
     String? deviceLabel,
   }) => _auth('/v1/auth/register', {
@@ -36,6 +37,7 @@ class AuthApi {
     'surname': surname,
     'email': email,
     'password': password,
+    'rumuz': rumuz,
     'deviceId': ?deviceId,
     'device': ?deviceLabel,
   });

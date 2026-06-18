@@ -93,9 +93,28 @@ class _SelayaAppState extends ConsumerState<SelayaApp>
   /// kapattı (sessionRevoked).
   void _checkSessionRevoked() {
     final prefs = ref.read(sharedPreferencesProvider);
+    final tr = context.locale.languageCode == 'tr';
+    // ÖNCE ban: hesap engellendiyse kalıcı, net bir uyarı göster.
+    if (prefs.getBool(PrefKeys.bannedFlag) ?? false) {
+      prefs.remove(PrefKeys.bannedFlag);
+      _messengerKey.currentState
+        ?..clearSnackBars()
+        ..showSnackBar(
+          SnackBar(
+            duration: const Duration(seconds: 10),
+            backgroundColor: const Color(0xFFC0392B),
+            content: Text(
+              tr
+                  ? '⛔ Hesabınız engellendi. Uygulamayı kullanmaya devam edemezsiniz.'
+                  : '⛔ Your account has been blocked. You can no longer use the app.',
+              style: const TextStyle(color: Colors.white, fontWeight: FontWeight.w600),
+            ),
+          ),
+        );
+      return;
+    }
     if (!(prefs.getBool(PrefKeys.sessionRevoked) ?? false)) return;
     prefs.remove(PrefKeys.sessionRevoked);
-    final tr = context.locale.languageCode == 'tr';
     _messengerKey.currentState?.showSnackBar(
       SnackBar(
         duration: const Duration(seconds: 6),

@@ -18,6 +18,8 @@ abstract final class PrefKeys {
       'device_id'; // kalıcı cihaz kimliği — en fazla 2 cihaz limiti için (senkronlanmaz)
   static const String sessionRevoked =
       'session_revoked'; // bool: oturum başka cihazda düşürüldü → bir kez bildir
+  static const String bannedFlag =
+      'banned_flag'; // bool: hesap banlandı → bir kez "engellendiniz" bildir
   static const String lastSyncAt = 'last_sync_at'; // int ms — son bulut senkron
   static const String themeMode = 'theme_mode';
   static const String amoled = 'amoled';

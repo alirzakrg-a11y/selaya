@@ -138,6 +138,10 @@ export function containsProfanity(input) {
 function isSacredRumuz(raw) {
   const n = mapLeet(lowerTr(raw)).replace(/[^a-zçğıiöşü]/g, '');
   if (n.length < 2) return false;
+  // KATI (kullanıcı 2026-06-18): "Allah/Tanrı geçen her şeyi engelle".
+  if (n.includes('allah') || n.includes('tanrı') || n.includes('tanri')) {
+    return true;
+  }
   if (SACRED_EXACT.has(n)) return true;
   for (const a of ARTICLES) {
     if (n.startsWith(a) && ESMA.has(n.slice(a.length))) return true;

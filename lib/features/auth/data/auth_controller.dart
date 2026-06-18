@@ -50,6 +50,7 @@ class AuthController extends Notifier<AuthState> {
     required String surname,
     required String email,
     required String password,
+    required String rumuz,
   }) async {
     await _persist(
       await AuthApi.register(
@@ -57,10 +58,18 @@ class AuthController extends Notifier<AuthState> {
         surname: surname,
         email: email,
         password: password,
+        rumuz: rumuz,
         deviceId: _ensureDeviceId(),
         deviceLabel: defaultTargetPlatform.name,
       ),
     );
+  }
+
+  /// Sunucu hesabı BANLADI (403 banned). Yerel oturumu kapat + "engellendiniz"
+  /// bilgisini işaretle (app.dart bir kez gösterir). Banlı kullanıcı giremez.
+  Future<void> banned() async {
+    await ref.read(sharedPreferencesProvider).setBool(PrefKeys.bannedFlag, true);
+    await logout();
   }
 
   /// Bu kuruluma özel KALICI cihaz kimliği (en fazla 2 cihaz limiti için). İlk

@@ -52,6 +52,7 @@ export async function handleDuaWall(request, env, path) {
 
   // ---- Bundan sonrası giriş ister ----
   const payload = await requireUser(request, env);
+  if (payload === 'banned') return json({ ok: false, error: 'banned' }, 403);
   if (!payload) return json({ ok: false, error: 'unauthorized' }, 401);
   const uid = payload.sub;
 

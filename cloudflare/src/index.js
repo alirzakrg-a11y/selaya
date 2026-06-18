@@ -301,10 +301,10 @@ export default {
         // ---- üyeler (Faz 4: panel 'Kullanıcılar' sekmesi) ----
         if (request.method === 'GET' && path === '/api/users') {
           const { results } = await env.DB.prepare(
-            'SELECT u.id, u.name, u.surname, u.email, u.email_verified, u.created_at, ' +
-            'u.last_active, d.updated_at AS data_updated, d.device ' +
+            'SELECT u.id, u.name, u.surname, u.email, u.rumuz, u.banned, u.ban_reason, ' +
+            'u.email_verified, u.created_at, u.last_active, d.updated_at AS data_updated, d.device ' +
             'FROM users u LEFT JOIN user_data d ON d.user_id = u.id ' +
-            'ORDER BY u.created_at DESC LIMIT 1000'
+            'ORDER BY u.banned DESC, u.created_at DESC LIMIT 1000'
           ).all();
           return json({ ok: true, users: results });
         }
@@ -331,12 +331,36 @@ export default {
           ).bind(np.hash, np.salt, np.iters, uid).run();
           return json({ ok: true });
         }
+        // ---- BAN: kullanıcı uygulamaya giremez + otomatik çıkış + cihazları düşür ----
+        if (request.method === 'POST' && path === '/api/user-ban') {
+          const form = await request.formData();
+          const uid = (form.get('id') || '').toString();
+          const reason = (form.get('reason') || '').toString().slice(0, 200);
+          if (!uid) return json({ ok: false, error: 'id_required' }, { status: 400 });
+          await env.DB.prepare(
+            'UPDATE users SET banned=1, ban_reason=?, banned_at=? WHERE id=?'
+          ).bind(reason, Date.now(), uid).run();
+          // Cihaz kayıtlarını sil → mevcut token'lar da hemen geçersiz (sonraki
+          // istekte 'banned' zaten döner; bu garantiyi güçlendirir).
+          await env.DB.prepare('DELETE FROM user_devices WHERE user_id=?').bind(uid).run();
+          return json({ ok: true });
+        }
+        // ---- AF / yasağı kaldır ----
+        if (request.method === 'POST' && path === '/api/user-unban') {
+          const form = await request.formData();
+          const uid = (form.get('id') || '').toString();
+          if (!uid) return json({ ok: false, error: 'id_required' }, { status: 400 });
+          await env.DB.prepare(
+            'UPDATE users SET banned=0, ban_reason=NULL, banned_at=0 WHERE id=?'
+          ).bind(uid).run();
+          return json({ ok: true });
+        }
 
         // ---- DUA DUVARI MODERASYONU (#10) ----
         // Bekleyenler + son kararlananlar (moderatör bağlamı görsün).
         if (request.method === 'GET' && path === '/api/dua-pending') {
           const pending = await env.DB.prepare(
-            "SELECT id, rumuz, text, amins, created_at FROM dua_wall " +
+            "SELECT id, user_id, rumuz, text, amins, created_at FROM dua_wall " +
             "WHERE status='pending' ORDER BY created_at ASC LIMIT 200"
           ).all();
           const recent = await env.DB.prepare(
@@ -1093,7 +1117,16 @@ const PANEL_HTML = `<!doctype html>
       h+=us.map(function(u){
         var name=esc(((u.name||'')+' '+(u.surname||'')).trim()||'—');
         var em=esc(u.email||''); var id=esc(u.id);
-        return '<div class="item"><div class="ph">👤</div><div class="meta"><b>'+name+'</b><span class="muted">'+em+'</span><span class="muted">Kayıt: '+fmtDate(u.created_at)+' · Son aktif: '+fmtDate(u.last_active)+(u.device?' · '+esc(u.device):'')+'</span></div>'+
+        var banned=!!u.banned;
+        var ban=banned
+          ? '<span style="background:#e0556b;color:#fff;font-size:11px;font-weight:700;border-radius:6px;padding:1px 7px;margin-left:6px">BANLI</span>'
+          : '';
+        var rumuz=u.rumuz?' · @'+esc(u.rumuz):'';
+        var banBtn=banned
+          ? '<button class="ghost" data-id="'+id+'" data-email="'+em+'" onclick="unbanUser(this.dataset.id,this.dataset.email)">✓ Yasağı Kaldır</button>'
+          : '<button class="danger" data-id="'+id+'" data-email="'+em+'" onclick="banUser(this.dataset.id,this.dataset.email)">🚫 Banla</button>';
+        return '<div class="item"'+(banned?' style="opacity:.7"':'')+'><div class="ph">'+(banned?'🚫':'👤')+'</div><div class="meta"><b>'+name+ban+'</b><span class="muted">'+em+rumuz+'</span><span class="muted">Kayıt: '+fmtDate(u.created_at)+' · Son aktif: '+fmtDate(u.last_active)+(u.device?' · '+esc(u.device):'')+'</span></div>'+
+          banBtn+' '+
           '<button class="ghost" style="flex:0 0 auto" data-id="'+id+'" data-email="'+em+'" onclick="resetUserPw(this.dataset.id,this.dataset.email)">Şifre Sıfırla</button> '+
           '<button class="danger" data-id="'+id+'" data-email="'+em+'" onclick="deleteUser(this.dataset.id,this.dataset.email)">Sil</button></div>';
       }).join('');
@@ -1129,11 +1162,12 @@ const PANEL_HTML = `<!doctype html>
       if(!pend.length){ el('duaPendingBody').innerHTML='<p class="muted">Onay bekleyen dua yok. 🎉</p>'; }
       else {
         el('duaPendingBody').innerHTML='<p class="muted" style="margin:0 0 8px">Bekleyen: <b>'+pend.length+'</b></p>'+pend.map(function(d){
-          var id=esc(d.id);
+          var id=esc(d.id); var uid=esc(d.user_id||'');
           return '<div class="item"><div class="ph">🤲</div><div class="meta"><b>'+esc(d.rumuz)+'</b><span>'+esc(d.text)+'</span><span class="muted">'+fmtDate(d.created_at)+'</span></div>'+
             '<button data-id="'+id+'" onclick="approveDua(this.dataset.id)">Onayla</button> '+
             '<button class="ghost" data-id="'+id+'" onclick="rejectDua(this.dataset.id,false)">Reddet</button> '+
-            '<button class="danger" data-id="'+id+'" onclick="rejectDua(this.dataset.id,true)">Sil</button></div>';
+            '<button class="danger" data-id="'+id+'" onclick="rejectDua(this.dataset.id,true)">Sil</button> '+
+            '<button class="danger" data-uid="'+uid+'" data-id="'+id+'" onclick="banDuaUser(this.dataset.uid,this.dataset.id)">🚫 Banla</button></div>';
         }).join('');
       }
       el('duaRecentBody').innerHTML = rec.length ? rec.map(function(d){
@@ -1154,6 +1188,37 @@ const PANEL_HTML = `<!doctype html>
     var fd=new FormData(); fd.append('id',id); if(del) fd.append('delete','1');
     api('dua-reject',{method:'POST',body:fd}).then(function(res){
       if(res.j&&res.j.ok){ toast(del?'Silindi ✓':'Reddedildi ✓'); loadDuaWall(); }
+      else { toast('Hata: '+((res.j&&res.j.error)||res.status)); }
+    }).catch(function(e){ toast('Hata: '+e); });
+  }
+  // Banla (dua moderasyonundan): yazarı banla + bu duayı sil. Kullanıcı
+  // uygulamadan otomatik çıkar, bir daha giremez, "engellendiniz" görür.
+  function banDuaUser(uid,id){
+    if(!uid){ toast('Kullanıcı bilgisi yok'); return; }
+    var reason=prompt('Ban sebebi (opsiyonel — kullanıcıya gösterilmez):','Uygunsuz içerik');
+    if(reason===null) return;
+    var fd=new FormData(); fd.append('id',uid); fd.append('reason',reason);
+    api('user-ban',{method:'POST',body:fd}).then(function(res){
+      if(res.j&&res.j.ok){
+        var fd2=new FormData(); fd2.append('id',id); fd2.append('delete','1');
+        api('dua-reject',{method:'POST',body:fd2}).then(function(){ toast('Kullanıcı banlandı + dua silindi ✓'); loadDuaWall(); });
+      } else { toast('Hata: '+((res.j&&res.j.error)||res.status)); }
+    }).catch(function(e){ toast('Hata: '+e); });
+  }
+  function banUser(id,email){
+    var reason=prompt('"'+email+'" — ban sebebi (opsiyonel):','');
+    if(reason===null) return;
+    var fd=new FormData(); fd.append('id',id); fd.append('reason',reason);
+    api('user-ban',{method:'POST',body:fd}).then(function(res){
+      if(res.j&&res.j.ok){ toast('Banlandı ✓'); loadUsers(); }
+      else { toast('Hata: '+((res.j&&res.j.error)||res.status)); }
+    }).catch(function(e){ toast('Hata: '+e); });
+  }
+  function unbanUser(id,email){
+    if(!confirm('"'+email+'" yasağını kaldır (af)?')) return;
+    var fd=new FormData(); fd.append('id',id);
+    api('user-unban',{method:'POST',body:fd}).then(function(res){
+      if(res.j&&res.j.ok){ toast('Yasak kaldırıldı ✓'); loadUsers(); }
       else { toast('Hata: '+((res.j&&res.j.error)||res.status)); }
     }).catch(function(e){ toast('Hata: '+e); });
   }
