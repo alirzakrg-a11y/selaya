@@ -173,6 +173,15 @@ export async function requireUser(request, env) {
   if (!m) return null;
   const payload = await verifyJWT(m[1], env.AUTH_SECRET);
   if (!payload) return null;
+  // Banlı kullanıcı → 'banned' sentineli (çağıran 403 döner; uygulama
+  // "engellendiniz" gösterip oturumu kapatır). Banlanınca hiçbir authed istek geçmez.
+  // ⚠️ Ban kontrolü cihaz kontrolünden ÖNCE: ban, user_devices kayıtlarını da
+  // sildiği için aşağıdaki "did hâlâ kayıtlı mı" kontrolü null (401) döndürür ve
+  // uygulamaya yanlışlıkla "başka cihazda açıldı (en fazla 2 cihaz)" mesajı
+  // gösterirdi. Banlı kullanıcı net biçimde "engellendiniz" görsün diye en başta.
+  const u = await env.DB.prepare('SELECT banned FROM users WHERE id=?')
+      .bind(payload.sub).first();
+  if (u && u.banned) return 'banned';
   // En fazla 2 cihaz: token bir cihaza bağlıysa (did) o cihaz HÂLÂ kayıtlı olmalı.
   // Hesap başka cihazda açılınca bu cihaz düşürülür (did silinir) → burada 401.
   // Eski (did'siz) token'lar geriye dönük çalışır; yeniden girişte did kazanır.
@@ -185,11 +194,6 @@ export async function requireUser(request, env) {
       'UPDATE user_devices SET last_seen=? WHERE user_id=? AND device_id=?'
     ).bind(Date.now(), payload.sub, payload.did).run();
   }
-  // Banlı kullanıcı → 'banned' sentineli (çağıran 403 döner; uygulama
-  // "engellendiniz" gösterip oturumu kapatır). Banlanınca hiçbir authed istek geçmez.
-  const u = await env.DB.prepare('SELECT banned FROM users WHERE id=?')
-      .bind(payload.sub).first();
-  if (u && u.banned) return 'banned';
   return payload;
 }
 

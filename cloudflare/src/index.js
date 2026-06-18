@@ -331,6 +331,29 @@ export default {
           ).bind(np.hash, np.salt, np.iters, uid).run();
           return json({ ok: true });
         }
+        // ---- üye bilgilerini düzenle (ad / soyad / e-posta / rumuz) ----
+        if (request.method === 'POST' && path === '/api/user-update') {
+          const form = await request.formData();
+          const uid = (form.get('id') || '').toString();
+          const name = (form.get('name') || '').toString().trim();
+          const surname = (form.get('surname') || '').toString().trim();
+          const email = (form.get('email') || '').toString().trim().toLowerCase();
+          const rumuz = (form.get('rumuz') || '').toString().trim();
+          if (!uid) return json({ ok: false, error: 'id_required' }, { status: 400 });
+          if (!name) return json({ ok: false, error: 'name_required' }, { status: 400 });
+          if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email)) {
+            return json({ ok: false, error: 'invalid_email' }, { status: 400 });
+          }
+          // E-posta başka bir üyede kayıtlıysa engelle (UNIQUE çakışması).
+          const clash = await env.DB.prepare(
+            'SELECT id FROM users WHERE email=? AND id<>?'
+          ).bind(email, uid).first();
+          if (clash) return json({ ok: false, error: 'email_taken' }, { status: 409 });
+          await env.DB.prepare(
+            'UPDATE users SET name=?, surname=?, email=?, rumuz=? WHERE id=?'
+          ).bind(name, surname, email, rumuz || null, uid).run();
+          return json({ ok: true });
+        }
         // ---- BAN: kullanıcı uygulamaya giremez + otomatik çıkış + cihazları düşür ----
         if (request.method === 'POST' && path === '/api/user-ban') {
           const form = await request.formData();
@@ -875,7 +898,7 @@ const PANEL_HTML = `<!doctype html>
           <h3 style="margin:0">👤 Üyeler</h3>
           <button class="ghost" style="flex:0 0 auto" onclick="loadUsers()">Yenile</button>
         </div>
-        <p class="hint">Uygulamaya kaydolan kullanıcılar. <b>Şifre Sıfırla</b> yeni şifre belirler (kullanıcıya iletirsin) · <b>Sil</b> hesabı + verisini kalıcı kaldırır (KVKK).</p>
+        <p class="hint">Uygulamaya kaydolan kullanıcılar (rumuz <b>@</b> ile gösterilir). <b>✏️ Düzenle</b> ad/soyad/e-posta/rumuz değiştirir · <b>Şifre Sıfırla</b> yeni şifre belirler · <b>🚫 Banla</b> girişi engeller · <b>Sil</b> hesabı + verisini kalıcı kaldırır (KVKK).</p>
         <div id="usersBody"><p class="muted">Yükleniyor…</p></div>
       </div>
     </div>
@@ -1139,17 +1162,51 @@ const PANEL_HTML = `<!doctype html>
         var ban=banned
           ? '<span style="background:#e0556b;color:#fff;font-size:11px;font-weight:700;border-radius:6px;padding:1px 7px;margin-left:6px">BANLI</span>'
           : '';
-        var rumuz=u.rumuz?' · @'+esc(u.rumuz):'';
+        var rumuz=u.rumuz?' · <b style="color:var(--gold)">@'+esc(u.rumuz)+'</b>':' · <span style="color:var(--danger)">rumuz yok</span>';
         var banBtn=banned
           ? '<button class="ghost" data-id="'+id+'" data-email="'+em+'" onclick="unbanUser(this.dataset.id,this.dataset.email)">✓ Yasağı Kaldır</button>'
           : '<button class="danger" data-id="'+id+'" data-email="'+em+'" onclick="banUser(this.dataset.id,this.dataset.email)">🚫 Banla</button>';
+        var edit='<button class="ghost" style="flex:0 0 auto" data-id="'+id+'" data-name="'+esc(u.name||'')+'" data-surname="'+esc(u.surname||'')+'" data-email="'+em+'" data-rumuz="'+esc(u.rumuz||'')+'" onclick="editUser(this.dataset.id,this.dataset.name,this.dataset.surname,this.dataset.email,this.dataset.rumuz)">✏️ Düzenle</button>';
         return '<div class="item"'+(banned?' style="opacity:.7"':'')+'><div class="ph">'+(banned?'🚫':'👤')+'</div><div class="meta"><b>'+name+ban+'</b><span class="muted">'+em+rumuz+'</span><span class="muted">Kayıt: '+fmtDate(u.created_at)+' · Son aktif: '+fmtDate(u.last_active)+(u.device?' · '+esc(u.device):'')+'</span></div>'+
-          banBtn+' '+
+          edit+' '+banBtn+' '+
           '<button class="ghost" style="flex:0 0 auto" data-id="'+id+'" data-email="'+em+'" onclick="resetUserPw(this.dataset.id,this.dataset.email)">Şifre Sıfırla</button> '+
           '<button class="danger" data-id="'+id+'" data-email="'+em+'" onclick="deleteUser(this.dataset.id,this.dataset.email)">Sil</button></div>';
       }).join('');
       el('usersBody').innerHTML=h;
     }).catch(function(e){ el('usersBody').innerHTML='<p class="muted">Hata: '+e+'</p>'; });
+  }
+  // Üyeyi düzenle: ad/soyad/e-posta/rumuz için modal. Değerler .value ile
+  // atanır (HTML'e gömülmez) → tırnak/özel karakter güvenli.
+  function editUser(id,name,surname,email,rumuz){
+    var ov=document.createElement('div');
+    ov.style.cssText='position:fixed;inset:0;background:rgba(16,24,40,.45);display:flex;align-items:center;justify-content:center;z-index:50;padding:20px';
+    ov.innerHTML='<div style="background:#fff;border-radius:18px;padding:22px;max-width:380px;width:100%;box-shadow:0 14px 44px rgba(0,0,0,.22)">'+
+      '<h3 style="margin:0 0 12px">✏️ Üyeyi Düzenle</h3>'+
+      '<label>Ad</label><input id="euName">'+
+      '<label>Soyad</label><input id="euSurname">'+
+      '<label>E-posta</label><input id="euEmail" type="email">'+
+      '<label>Rumuz</label><input id="euRumuz" placeholder="(boş bırakılabilir)">'+
+      '<div class="row" style="margin-top:18px"><button class="ghost" id="euCancel">Vazgeç</button><button id="euSave">Kaydet</button></div>'+
+      '</div>';
+    document.body.appendChild(ov);
+    ov.querySelector('#euName').value=name||'';
+    ov.querySelector('#euSurname').value=surname||'';
+    ov.querySelector('#euEmail').value=email||'';
+    ov.querySelector('#euRumuz').value=rumuz||'';
+    function close(){ ov.remove(); }
+    ov.addEventListener('click',function(e){ if(e.target===ov) close(); });
+    ov.querySelector('#euCancel').onclick=close;
+    ov.querySelector('#euSave').onclick=function(){
+      var fd=new FormData(); fd.append('id',id);
+      fd.append('name',ov.querySelector('#euName').value.trim());
+      fd.append('surname',ov.querySelector('#euSurname').value.trim());
+      fd.append('email',ov.querySelector('#euEmail').value.trim());
+      fd.append('rumuz',ov.querySelector('#euRumuz').value.trim());
+      api('user-update',{method:'POST',body:fd}).then(function(res){
+        if(res.j&&res.j.ok){ toast('Güncellendi ✓'); close(); loadUsers(); }
+        else { var er=(res.j&&res.j.error)||res.status; var mm={email_taken:'Bu e-posta başka bir üyede kayıtlı',invalid_email:'Geçersiz e-posta',name_required:'Ad zorunlu'}; toast('Hata: '+(mm[er]||er)); }
+      }).catch(function(e){ toast('Hata: '+e); });
+    };
   }
   function resetUserPw(id,email){
     var np=prompt('"'+email+'" için yeni şifre (en az 6 karakter):');
