@@ -16,6 +16,9 @@ class SelayaScaffold extends StatelessWidget {
   final Widget? floatingActionButton;
   final bool safeTop;
   final double patternOpacity;
+  /// Başlık çubuğu yüksekliği (null = Material varsayılanı 56). Liste ağırlıklı
+  /// ekranlarda (Kur'an gibi) daha alçak verilip içeriğe yer açılır.
+  final double? toolbarHeight;
 
   const SelayaScaffold({
     super.key,
@@ -28,6 +31,7 @@ class SelayaScaffold extends StatelessWidget {
     this.floatingActionButton,
     this.safeTop = true,
     this.patternOpacity = 0.05,
+    this.toolbarHeight,
   });
 
   @override
@@ -46,6 +50,7 @@ class SelayaScaffold extends StatelessWidget {
       appBar: hasAppBar
           ? AppBar(
               automaticallyImplyLeading: false,
+              toolbarHeight: toolbarHeight,
               title: title == null ? null : Text(title!),
               leading: leading ??
                   (showBack

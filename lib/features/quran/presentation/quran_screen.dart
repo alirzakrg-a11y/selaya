@@ -46,6 +46,7 @@ class _QuranScreenState extends ConsumerState<QuranScreen> {
       child: SelayaScaffold(
         title: 'quran.title'.tr(),
         showBack: Navigator.of(context).canPop(),
+        toolbarHeight: 46,
         body: surahs.when(
           loading: () => const SelayaLoading(),
           error: (e, _) => SelayaError(error: e),
@@ -72,7 +73,7 @@ class _QuranScreenState extends ConsumerState<QuranScreen> {
                 Padding(
                   // İnce arama kutusu — üst blok ferah ama küçük kalsın.
                   padding: const EdgeInsets.fromLTRB(AppSpacing.base,
-                      AppSpacing.sm, AppSpacing.base, AppSpacing.sm),
+                      AppSpacing.xs, AppSpacing.base, AppSpacing.sm),
                   child: TextField(
                     onChanged: (v) => setState(() => _query = v),
                     textInputAction: TextInputAction.search,
