@@ -758,7 +758,7 @@ class _DailyDuaCard extends ConsumerWidget {
     final d = duas[seed % duas.length];
     final wps = ref.watch(wallpapersProvider).value ?? const <Wallpaper>[];
     return GestureDetector(
-      onTap: () => context.push(Routes.duas),
+      onTap: () => context.push('${Routes.duas}?open=${d.id}'),
       child: _DailyContentCard(
         label: 'akis.duaOfDay'.tr(),
         icon: Icons.volunteer_activism_rounded,
@@ -798,7 +798,7 @@ class _VerseHadithPair extends ConsumerWidget {
         text: v.text(lang),
         reference: v.reference,
         backgroundImage: wps.isEmpty ? '' : wps[(seed + 2) % wps.length].image,
-        onTap: () => context.push(Routes.verses),
+        onTap: () => context.push('${Routes.verses}?open=${v.id}'),
       ));
     }
     if (hadiths.isNotEmpty) {
@@ -809,7 +809,7 @@ class _VerseHadithPair extends ConsumerWidget {
         text: h.text(lang),
         reference: h.collection,
         backgroundImage: wps.isEmpty ? '' : wps[(seed + 3) % wps.length].image,
-        onTap: () => context.push(Routes.hadiths),
+        onTap: () => context.push('${Routes.hadiths}?open=${h.id}'),
       ));
     }
     if (cards.isEmpty) return const SizedBox.shrink();

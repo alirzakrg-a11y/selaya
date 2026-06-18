@@ -5,6 +5,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../core/data/content_providers.dart';
 import '../../../core/di/providers.dart';
 import '../../../core/localization/localized_text.dart';
+import '../../../core/models/content.dart';
 import '../../../core/share/share_helper.dart';
 import '../../../core/theme/app_colors.dart';
 import '../../../core/theme/app_spacing.dart';
@@ -19,8 +20,9 @@ import '../../../core/widgets/selaya_scaffold.dart';
 class InspirationListScreen extends ConsumerStatefulWidget {
   final String type; // 'verse' | 'hadith'
   final String titleKey;
+  final String? openId; // verilirse: liste açılınca o öğenin popup'ı açılır
   const InspirationListScreen(
-      {super.key, required this.type, required this.titleKey});
+      {super.key, required this.type, required this.titleKey, this.openId});
 
   @override
   ConsumerState<InspirationListScreen> createState() =>
@@ -30,6 +32,27 @@ class InspirationListScreen extends ConsumerStatefulWidget {
 class _InspirationListScreenState extends ConsumerState<InspirationListScreen> {
   late Set<String> _favs;
   bool _favsOnly = false;
+  bool _autoOpened = false; // openId popup'ı yalnız bir kez aç
+
+  /// Seçili öğenin detay popup'ını aç (◀▶/kaydır + paylaş hazır).
+  void _openDetail(
+      List<InspirationItem> items, int index, String lang, List wps) {
+    showContentDetail(
+      context,
+      [
+        for (final (j, e) in items.indexed)
+          ContentDetailItem(
+            arabic: e.arabic,
+            text: e.text(lang),
+            reference: e.reference,
+            shareLabel: widget.titleKey.tr(),
+            shareBg: wps.isEmpty ? null : wps[j % wps.length].image,
+          ),
+      ],
+      index,
+      headerTitle: widget.titleKey.tr(),
+    );
+  }
 
   @override
   void initState() {
@@ -65,11 +88,23 @@ class _InspirationListScreenState extends ConsumerState<InspirationListScreen> {
           ),
         ),
         data: (all) {
-          var items = all.where((e) => e.type == widget.type).toList();
+          final full = all.where((e) => e.type == widget.type).toList();
+          var items = full;
           if (_favsOnly) {
             items = items
                 .where((e) => _favs.contains('${widget.type}:${e.id}'))
                 .toList();
+          }
+          // openId: ana ekrandaki "Günün Ayeti/Hadisi" kartından gelindiyse o
+          // öğenin popup'ını bir kez otomatik aç (tüm listede ara).
+          if (!_autoOpened && widget.openId != null) {
+            _autoOpened = true;
+            final idx = full.indexWhere((e) => e.id == widget.openId);
+            if (idx >= 0) {
+              WidgetsBinding.instance.addPostFrameCallback((_) {
+                if (mounted) _openDetail(full, idx, lang, wps);
+              });
+            }
           }
           return CustomScrollView(
             slivers: [
@@ -123,23 +158,7 @@ class _InspirationListScreenState extends ConsumerState<InspirationListScreen> {
                         child: SelayaCard(
                           patterned: true,
                           // Dokun → ortada büyük popup, ◀▶ oklarla gez, paylaş.
-                          onTap: () => showContentDetail(
-                            ctx,
-                            [
-                              for (final (j, e) in items.indexed)
-                                ContentDetailItem(
-                                  arabic: e.arabic,
-                                  text: e.text(lang),
-                                  reference: e.reference,
-                                  shareLabel: widget.titleKey.tr(),
-                                  shareBg: wps.isEmpty
-                                      ? null
-                                      : wps[j % wps.length].image,
-                                ),
-                            ],
-                            i,
-                            headerTitle: widget.titleKey.tr(),
-                          ),
+                          onTap: () => _openDetail(items, i, lang, wps),
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [

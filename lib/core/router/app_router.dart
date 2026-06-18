@@ -112,7 +112,8 @@ final routerProvider = Provider<GoRouter>((ref) {
             taskId: s.uri.queryParameters['task'],
           )),
       fs(Routes.asma, (_, _) => const AsmaScreen()),
-      fs(Routes.duas, (_, _) => const DuasScreen()),
+      fs(Routes.duas,
+          (_, s) => DuasScreen(openId: s.uri.queryParameters['open'])),
       fs(Routes.tesbihat, (_, _) => const TesbihatScreen()),
       fs(Routes.zakat, (_, _) => const ZakatScreen()),
       fs(Routes.babyNames, (_, _) => const BabyNamesScreen()),
@@ -125,11 +126,15 @@ final routerProvider = Provider<GoRouter>((ref) {
       fs(Routes.readingPlan, (_, _) => const ReadingPlanScreen()),
       fs(Routes.duaWall, (_, _) => const DuaWallScreen()),
       fs(Routes.verses,
-          (_, _) => const InspirationListScreen(
-              type: 'verse', titleKey: 'more.verses')),
+          (_, s) => InspirationListScreen(
+              type: 'verse',
+              titleKey: 'more.verses',
+              openId: s.uri.queryParameters['open'])),
       fs(Routes.hadiths,
-          (_, _) => const InspirationListScreen(
-              type: 'hadith', titleKey: 'more.hadiths')),
+          (_, s) => InspirationListScreen(
+              type: 'hadith',
+              titleKey: 'more.hadiths',
+              openId: s.uri.queryParameters['open'])),
       fs(Routes.calendar, (_, _) => const CalendarScreen()),
       fs(Routes.tracking, (_, _) => const TrackingScreen()),
       fs(Routes.wallpapers, (_, _) => const WallpapersScreen()),

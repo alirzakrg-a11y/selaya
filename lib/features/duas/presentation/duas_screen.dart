@@ -17,7 +17,8 @@ import '../../../core/widgets/selaya_scaffold.dart';
 import '../../../core/widgets/states.dart';
 
 class DuasScreen extends ConsumerStatefulWidget {
-  const DuasScreen({super.key});
+  final String? openId; // verilirse: ekran açılınca o duanın popup'ı açılır
+  const DuasScreen({super.key, this.openId});
   @override
   ConsumerState<DuasScreen> createState() => _DuasScreenState();
 }
@@ -26,6 +27,7 @@ class _DuasScreenState extends ConsumerState<DuasScreen> {
   String _category = 'all';
   String _query = '';
   late Set<String> _favs;
+  bool _autoOpened = false; // openId popup'ı yalnız bir kez aç
 
   static const _categories = [
     'all',
@@ -80,11 +82,23 @@ class _DuasScreenState extends ConsumerState<DuasScreen> {
       body: duas.when(
         loading: () => const SelayaLoading(),
         error: (e, _) => SelayaError(error: e),
-        data: (all) => DefaultTabController(
-          length: 2,
-          child: Column(
-            children: [
-              _header(c, all.length),
+        data: (all) {
+          // openId: ana ekrandaki "Günün Duası" kartından gelindiyse o duanın
+          // popup'ını bir kez otomatik aç.
+          if (!_autoOpened && widget.openId != null) {
+            _autoOpened = true;
+            final idx = all.indexWhere((d) => d.id == widget.openId);
+            if (idx >= 0) {
+              WidgetsBinding.instance.addPostFrameCallback((_) {
+                if (mounted) showDuaDetail(context, all, idx, lang);
+              });
+            }
+          }
+          return DefaultTabController(
+            length: 2,
+            child: Column(
+              children: [
+                _header(c, all.length),
               TabBar(
                 labelColor: c.gold,
                 unselectedLabelColor: c.textTertiary,
@@ -101,7 +115,8 @@ class _DuasScreenState extends ConsumerState<DuasScreen> {
               ),
             ],
           ),
-        ),
+          );
+        },
       ),
     );
   }
