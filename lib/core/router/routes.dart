@@ -48,6 +48,7 @@ abstract final class Routes {
   static const ilmihal = '/ilmihal'; // ilmihal / sık sorulan dini sorular
   static const hajj = '/hajj'; // Hac & Umre rehberi
   static const streak = '/streak'; // İbadet serisi & rozetler
+  static const reminders = '/reminders'; // özel hatırlatıcılar
   static const tasks = '/tasks'; // günlük görevler (#18)
   static const abdestGuide = '/abdest'; // abdest & taharet rehberi HUB
   static const guideDetail = '/guide-detail'; // tekil rehber (extra: guide+collection)

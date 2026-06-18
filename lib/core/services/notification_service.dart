@@ -109,8 +109,10 @@ class NotificationService {
   /// One Android channel per [AdhanSound] (sounds are immutable per-channel) +
   /// a silent low-importance channel for the persistent "next prayer" notice.
   Future<void> _createPrayerChannels() async {
-    final android = _plugin.resolvePlatformSpecificImplementation<
-        AndroidFlutterLocalNotificationsPlugin>();
+    final android = _plugin
+        .resolvePlatformSpecificImplementation<
+          AndroidFlutterLocalNotificationsPlugin
+        >();
     if (android == null) return;
     // One-time cleanup: drop older channel versions (pre-_v2 placeholders, _v2,
     // and the _v3/_v3s alarm-stream experiments) so Settings doesn't show stale
@@ -142,52 +144,60 @@ class NotificationService {
       }
     }
     for (final s in AdhanSound.values) {
-      await android.createNotificationChannel(AndroidNotificationChannel(
-        s.channelId,
-        'Namaz — ${s.id}',
-        description: 'Namaz vakti bildirimi (${s.id})',
-        importance: Importance.max,
-        playSound: !s.isSilent,
-        sound: s.androidRaw == null
-            ? null
-            : RawResourceAndroidNotificationSound(s.androidRaw!),
-        enableVibration: prayerVibration,
-        // NOTIFICATION stream → the adhan follows the phone's ringer profile
-        // (sound normal / vibrate / quiet). Titreşim kullanıcı ayarından.
-        audioAttributesUsage: AudioAttributesUsage.notification,
-      ));
+      await android.createNotificationChannel(
+        AndroidNotificationChannel(
+          s.channelId,
+          'Namaz — ${s.id}',
+          description: 'Namaz vakti bildirimi (${s.id})',
+          importance: Importance.max,
+          playSound: !s.isSilent,
+          sound: s.androidRaw == null
+              ? null
+              : RawResourceAndroidNotificationSound(s.androidRaw!),
+          enableVibration: prayerVibration,
+          // NOTIFICATION stream → the adhan follows the phone's ringer profile
+          // (sound normal / vibrate / quiet). Titreşim kullanıcı ayarından.
+          audioAttributesUsage: AudioAttributesUsage.notification,
+        ),
+      );
     }
     // At-time adhan channels on the ALARM stream so the adhan sounds at prayer
     // time even on silent/vibrate and even while Smart Silent has muted the
     // ringer (alarms are exempt from ringer mode). Before-reminders use the
     // notification-stream channels created above.
     for (final s in AdhanSound.values) {
-      await android.createNotificationChannel(AndroidNotificationChannel(
-        s.alarmChannelId,
-        'Namaz vakti — ${s.id}',
-        description: 'Vakit girince çalan ezan (${s.id})',
-        importance: Importance.max,
-        playSound: !s.isSilent,
-        sound: s.androidRaw == null
-            ? null
-            : RawResourceAndroidNotificationSound(s.androidRaw!),
-        enableVibration: prayerVibration,
-        audioAttributesUsage: AudioAttributesUsage.alarm,
-      ));
+      await android.createNotificationChannel(
+        AndroidNotificationChannel(
+          s.alarmChannelId,
+          'Namaz vakti — ${s.id}',
+          description: 'Vakit girince çalan ezan (${s.id})',
+          importance: Importance.max,
+          playSound: !s.isSilent,
+          sound: s.androidRaw == null
+              ? null
+              : RawResourceAndroidNotificationSound(s.androidRaw!),
+          enableVibration: prayerVibration,
+          audioAttributesUsage: AudioAttributesUsage.alarm,
+        ),
+      );
     }
-    await android.createNotificationChannel(const AndroidNotificationChannel(
-      _ongoingChannel,
-      'Sıradaki Vakit',
-      description: 'Durum çubuğunda sürekli görünen sıradaki namaz vakti',
-      importance: Importance.low,
-      playSound: false,
-    ));
-    await android.createNotificationChannel(const AndroidNotificationChannel(
-      _specialChannel,
-      'Özel Günler',
-      description: 'Kandil, Cuma, Ramazan ve dini gün bildirimleri',
-      importance: Importance.high,
-    ));
+    await android.createNotificationChannel(
+      const AndroidNotificationChannel(
+        _ongoingChannel,
+        'Sıradaki Vakit',
+        description: 'Durum çubuğunda sürekli görünen sıradaki namaz vakti',
+        importance: Importance.low,
+        playSound: false,
+      ),
+    );
+    await android.createNotificationChannel(
+      const AndroidNotificationChannel(
+        _specialChannel,
+        'Özel Günler',
+        description: 'Kandil, Cuma, Ramazan ve dini gün bildirimleri',
+        importance: Importance.high,
+      ),
+    );
   }
 
   /// Persistent, non-dismissible "next prayer" notification (Android only).
@@ -210,7 +220,8 @@ class NotificationService {
     final android = AndroidNotificationDetails(
       _ongoingChannel,
       'Sıradaki Vakit',
-      channelDescription: 'Durum çubuğunda sürekli görünen sıradaki namaz vakti',
+      channelDescription:
+          'Durum çubuğunda sürekli görünen sıradaki namaz vakti',
       importance: Importance.low,
       priority: Priority.low,
       ongoing: true,
@@ -233,10 +244,11 @@ class NotificationService {
       ),
     );
     await _plugin.show(
-        id: ongoingId,
-        title: collapsedTitle,
-        body: collapsedBody,
-        notificationDetails: NotificationDetails(android: android));
+      id: ongoingId,
+      title: collapsedTitle,
+      body: collapsedBody,
+      notificationDetails: NotificationDetails(android: android),
+    );
   }
 
   Future<void> cancelOngoing() async {
@@ -247,7 +259,9 @@ class NotificationService {
   }
 
   IOSFlutterLocalNotificationsPlugin? get _ios => _plugin
-      .resolvePlatformSpecificImplementation<IOSFlutterLocalNotificationsPlugin>();
+      .resolvePlatformSpecificImplementation<
+        IOSFlutterLocalNotificationsPlugin
+      >();
 
   Future<bool> requestPermission() async {
     await init();
@@ -255,7 +269,10 @@ class NotificationService {
       final pre = await _ios?.checkPermissions();
       if (pre?.isEnabled ?? false) return true;
       return await _ios?.requestPermissions(
-              alert: true, badge: true, sound: true) ??
+            alert: true,
+            badge: true,
+            sound: true,
+          ) ??
           false;
     }
     final status = await Permission.notification.request();
@@ -273,25 +290,27 @@ class NotificationService {
 
   /// Android 12+ exact-alarm permission. Returns false if unavailable/denied.
   Future<bool> requestExactAlarms() async {
-    final android = _plugin.resolvePlatformSpecificImplementation<
-        AndroidFlutterLocalNotificationsPlugin>();
+    final android = _plugin
+        .resolvePlatformSpecificImplementation<
+          AndroidFlutterLocalNotificationsPlugin
+        >();
     if (android == null) return true; // iOS doesn't need it
     final ok = await android.requestExactAlarmsPermission();
     return ok ?? false;
   }
 
   NotificationDetails _details(String body) => NotificationDetails(
-        android: AndroidNotificationDetails(
-          'selaya_hadith',
-          'Günün Hadisi',
-          channelDescription: 'Günlük hadis-i şerif bildirimi',
-          importance: Importance.high,
-          priority: Priority.high,
-          visibility: NotificationVisibility.public, // show on lock screen
-          styleInformation: BigTextStyleInformation(body),
-        ),
-        iOS: const DarwinNotificationDetails(),
-      );
+    android: AndroidNotificationDetails(
+      'selaya_hadith',
+      'Günün Hadisi',
+      channelDescription: 'Günlük hadis-i şerif bildirimi',
+      importance: Importance.high,
+      priority: Priority.high,
+      visibility: NotificationVisibility.public, // show on lock screen
+      styleInformation: BigTextStyleInformation(body),
+    ),
+    iOS: const DarwinNotificationDetails(),
+  );
 
   Future<void> showHadithNow({
     required String title,
@@ -301,22 +320,26 @@ class NotificationService {
     await init();
     final body = '$text\n\n— $reference';
     await _plugin.show(
-        id: 1001, title: title, body: body, notificationDetails: _details(body));
+      id: 1001,
+      title: title,
+      body: body,
+      notificationDetails: _details(body),
+    );
   }
 
   /// Yönetim panelinden gönderilen duyuru/özel bildirim için ayrı kanal.
   NotificationDetails _announceDetails(String body) => NotificationDetails(
-        android: AndroidNotificationDetails(
-          'selaya_announce',
-          'SELAYA Duyurular',
-          channelDescription: 'Uygulama duyuruları ve özel bildirimler',
-          importance: Importance.high,
-          priority: Priority.high,
-          visibility: NotificationVisibility.public,
-          styleInformation: BigTextStyleInformation(body),
-        ),
-        iOS: const DarwinNotificationDetails(),
-      );
+    android: AndroidNotificationDetails(
+      'selaya_announce',
+      'SELAYA Duyurular',
+      channelDescription: 'Uygulama duyuruları ve özel bildirimler',
+      importance: Importance.high,
+      priority: Priority.high,
+      visibility: NotificationVisibility.public,
+      styleInformation: BigTextStyleInformation(body),
+    ),
+    iOS: const DarwinNotificationDetails(),
+  );
 
   /// Panelden gönderilen özel/yönetici bildirimini gösterir.
   Future<void> showCustom({
@@ -327,7 +350,11 @@ class NotificationService {
     await init();
     final b = (body == null || body.isEmpty) ? title : body;
     await _plugin.show(
-        id: id, title: title, body: b, notificationDetails: _announceDetails(b));
+      id: id,
+      title: title,
+      body: b,
+      notificationDetails: _announceDetails(b),
+    );
   }
 
   static const int hadithDailyId = 1002;
@@ -344,7 +371,14 @@ class NotificationService {
   }) async {
     await init();
     final now = tz.TZDateTime.now(tz.local);
-    var when = tz.TZDateTime(tz.local, now.year, now.month, now.day, hour, minute);
+    var when = tz.TZDateTime(
+      tz.local,
+      now.year,
+      now.month,
+      now.day,
+      hour,
+      minute,
+    );
     if (!when.isAfter(now)) when = when.add(const Duration(days: 1));
     try {
       await _plugin.zonedSchedule(
@@ -381,13 +415,13 @@ class NotificationService {
     required String title,
     required String text,
     required String reference,
-  }) =>
-      _scheduleDaily(
-          id: hadithDailyId,
-          hour: hour,
-          minute: minute,
-          title: title,
-          body: '$text\n\n— $reference');
+  }) => _scheduleDaily(
+    id: hadithDailyId,
+    hour: hour,
+    minute: minute,
+    title: title,
+    body: '$text\n\n— $reference',
+  );
 
   /// Daily repeating verse-of-the-day notification (default 08:00).
   Future<void> scheduleDailyAyah({
@@ -396,13 +430,13 @@ class NotificationService {
     required String title,
     required String text,
     required String reference,
-  }) =>
-      _scheduleDaily(
-          id: ayahDailyId,
-          hour: hour,
-          minute: minute,
-          title: title,
-          body: '$text\n\n— $reference');
+  }) => _scheduleDaily(
+    id: ayahDailyId,
+    hour: hour,
+    minute: minute,
+    title: title,
+    body: '$text\n\n— $reference',
+  );
 
   Future<void> cancelDailyHadith() => cancelIds([hadithDailyId]);
   Future<void> cancelDailyAyah() => cancelIds([ayahDailyId]);
@@ -419,7 +453,14 @@ class NotificationService {
   }) async {
     await init();
     final now = tz.TZDateTime.now(tz.local);
-    var when = tz.TZDateTime(tz.local, now.year, now.month, now.day, hour, minute);
+    var when = tz.TZDateTime(
+      tz.local,
+      now.year,
+      now.month,
+      now.day,
+      hour,
+      minute,
+    );
     if (skipToday || !when.isAfter(now)) {
       when = when.add(const Duration(days: 1));
     }
@@ -496,69 +537,127 @@ class NotificationService {
     }
   }
 
+  /// Özel (kullanıcı tanımlı) hatırlatıcı — verilen saatte gösterilir; [daily]
+  /// ise her gün tekrarlar. Id'ler [customReminderBase] bloğundan gelir; vakit/
+  /// özel bildirimlerle çakışmaz. (kullanıcı 2026-06-17)
+  static const int customReminderBase = 7000;
+  Future<void> scheduleCustomReminder({
+    required int id,
+    required int hour,
+    required int minute,
+    required String title,
+    required String body,
+    required bool daily,
+  }) async {
+    await init();
+    final now = tz.TZDateTime.now(tz.local);
+    var when = tz.TZDateTime(
+      tz.local,
+      now.year,
+      now.month,
+      now.day,
+      hour,
+      minute,
+    );
+    if (!when.isAfter(now)) when = when.add(const Duration(days: 1));
+    final match = daily ? DateTimeComponents.time : null;
+    try {
+      await _plugin.zonedSchedule(
+        id: id,
+        title: title,
+        body: body,
+        scheduledDate: when,
+        notificationDetails: _details(body),
+        androidScheduleMode: AndroidScheduleMode.exactAllowWhileIdle,
+        matchDateTimeComponents: match,
+      );
+    } catch (_) {
+      try {
+        await _plugin.zonedSchedule(
+          id: id,
+          title: title,
+          body: body,
+          scheduledDate: when,
+          notificationDetails: _details(body),
+          androidScheduleMode: AndroidScheduleMode.inexactAllowWhileIdle,
+          matchDateTimeComponents: match,
+        );
+      } catch (_) {}
+    }
+  }
+
+  Future<void> cancelCustomReminder(int id) => cancelIds([id]);
+
   /// Clears the whole special-notification id block [specialBase, +100).
   Future<void> cancelSpecialBlock() =>
       cancelIds([for (int i = specialBase; i < specialBase + 100; i++) i]);
 
-  NotificationDetails _prayerDetails(AdhanSound sound, String body,
-          {bool fullScreen = false,
-          bool atTime = false,
-          bool dropSound = false,
-          bool mute = false,
-          String? stopLabel}) =>
-      NotificationDetails(
-        android: AndroidNotificationDetails(
-          // [mute] → sessiz "görsel" kanal: ezan sesi native serviste çalarken
-          // bu bildirim yalnız tam-ekran alarmı tetikler (çift ses olmasın).
-          // At-time → alarm-stream channel (the adhan sounds even on
-          // silent/vibrate); before-reminders → notification-stream channel.
-          mute
-              ? 'selaya_adhan_visual'
-              : (atTime ? sound.alarmChannelId : sound.channelId),
-          mute ? 'Ezan — tam ekran' : 'Namaz — ${sound.id}',
-          channelDescription: 'Namaz vakti bildirimi',
-          importance: Importance.max,
-          priority: Priority.high,
-          category: AndroidNotificationCategory.alarm,
-          visibility: NotificationVisibility.public,
-          // "Tam Ekran Alarm" — when on, wake the screen and show the full-screen
-          // adhan alarm over the lock screen; off → a plain heads-up that rings.
-          fullScreenIntent: fullScreen,
-          // Full-screen ON: must NOT auto-cancel — the full-screen launch (or a
-          // tap) would dismiss the notification, and dismissing a sounding
-          // notification STOPS its sound, cutting the adhan as the app opens. Kept
-          // alive, the alarm-channel adhan plays as a fallback; "Durdur" stops it.
-          // Full-screen OFF: there's no adhan screen, so the notification IS the
-          // adhan — tapping it should close it + stop the sound, like an alarm.
-          // (mute'ta ses bildirimde değil → kapatmak sesi etkilemez, autoCancel OK.)
-          autoCancel: mute || !(atTime && fullScreen),
-          playSound: !mute && sound != AdhanSound.silent,
-          // [dropSound] omits the raw-resource sound: a resilience fallback for
-          // when the resource can't be resolved (so scheduling still succeeds and
-          // the channel's own sound is used) — a missing sound must never again
-          // silently stop the whole prayer notification from being scheduled.
-          sound: (mute || dropSound || sound.androidRaw == null)
-              ? null
-              : RawResourceAndroidNotificationSound(sound.androidRaw!),
-          // "Durdur" action — tapping it cancels the notification (which stops the
-          // adhan) WITHOUT opening the app, exactly like an alarm's stop button.
-          actions: (atTime && stopLabel != null)
-              ? <AndroidNotificationAction>[
-                  AndroidNotificationAction('stop_adhan', stopLabel,
-                      cancelNotification: true, showsUserInterface: false),
-                ]
-              : null,
-          styleInformation: BigTextStyleInformation(body),
-        ),
-        iOS: DarwinNotificationDetails(
-          presentSound: sound != AdhanSound.silent,
-          sound: sound.iosFile,
-          // Time-sensitive at prayer time (breaks Focus) but still respects the
-          // hardware silent switch. A plain reminder is "active".
-          interruptionLevel:
-              atTime ? InterruptionLevel.timeSensitive : InterruptionLevel.active,
-        ),
-      );
+  NotificationDetails _prayerDetails(
+    AdhanSound sound,
+    String body, {
+    bool fullScreen = false,
+    bool atTime = false,
+    bool dropSound = false,
+    bool mute = false,
+    String? stopLabel,
+  }) => NotificationDetails(
+    android: AndroidNotificationDetails(
+      // [mute] → sessiz "görsel" kanal: ezan sesi native serviste çalarken
+      // bu bildirim yalnız tam-ekran alarmı tetikler (çift ses olmasın).
+      // At-time → alarm-stream channel (the adhan sounds even on
+      // silent/vibrate); before-reminders → notification-stream channel.
+      mute
+          ? 'selaya_adhan_visual'
+          : (atTime ? sound.alarmChannelId : sound.channelId),
+      mute ? 'Ezan — tam ekran' : 'Namaz — ${sound.id}',
+      channelDescription: 'Namaz vakti bildirimi',
+      importance: Importance.max,
+      priority: Priority.high,
+      category: AndroidNotificationCategory.alarm,
+      visibility: NotificationVisibility.public,
+      // "Tam Ekran Alarm" — when on, wake the screen and show the full-screen
+      // adhan alarm over the lock screen; off → a plain heads-up that rings.
+      fullScreenIntent: fullScreen,
+      // Full-screen ON: must NOT auto-cancel — the full-screen launch (or a
+      // tap) would dismiss the notification, and dismissing a sounding
+      // notification STOPS its sound, cutting the adhan as the app opens. Kept
+      // alive, the alarm-channel adhan plays as a fallback; "Durdur" stops it.
+      // Full-screen OFF: there's no adhan screen, so the notification IS the
+      // adhan — tapping it should close it + stop the sound, like an alarm.
+      // (mute'ta ses bildirimde değil → kapatmak sesi etkilemez, autoCancel OK.)
+      autoCancel: mute || !(atTime && fullScreen),
+      playSound: !mute && sound != AdhanSound.silent,
+      // [dropSound] omits the raw-resource sound: a resilience fallback for
+      // when the resource can't be resolved (so scheduling still succeeds and
+      // the channel's own sound is used) — a missing sound must never again
+      // silently stop the whole prayer notification from being scheduled.
+      sound: (mute || dropSound || sound.androidRaw == null)
+          ? null
+          : RawResourceAndroidNotificationSound(sound.androidRaw!),
+      // "Durdur" action — tapping it cancels the notification (which stops the
+      // adhan) WITHOUT opening the app, exactly like an alarm's stop button.
+      actions: (atTime && stopLabel != null)
+          ? <AndroidNotificationAction>[
+              AndroidNotificationAction(
+                'stop_adhan',
+                stopLabel,
+                cancelNotification: true,
+                showsUserInterface: false,
+              ),
+            ]
+          : null,
+      styleInformation: BigTextStyleInformation(body),
+    ),
+    iOS: DarwinNotificationDetails(
+      presentSound: sound != AdhanSound.silent,
+      sound: sound.iosFile,
+      // Time-sensitive at prayer time (breaks Focus) but still respects the
+      // hardware silent switch. A plain reminder is "active".
+      interruptionLevel: atTime
+          ? InterruptionLevel.timeSensitive
+          : InterruptionLevel.active,
+    ),
+  );
 
   /// Schedule a single prayer notification at [when] (exact if permitted). For
   /// the at-time adhan, pass [stopLabel] (the "Durdur" action) and — when the
@@ -594,17 +693,22 @@ class NotificationService {
         });
         nativeAdhan = true;
         if (alarmSlot == null) return;
-      } catch (_) {/* native başarısız → eski kanal-sesi yoluna düş */}
+      } catch (_) {
+        /* native başarısız → eski kanal-sesi yoluna düş */
+      }
     }
     // The adhan plays from the alarm-stream channel (sounds even on
     // silent/vibrate) — unless the native service owns the sound (then this
     // notification is the MUTED full-screen trigger only). With [alarmSlot] it
     // wakes the full-screen alarm.
-    final details = _prayerDetails(sound, body,
-        fullScreen: alarmSlot != null,
-        atTime: atTime,
-        mute: nativeAdhan,
-        stopLabel: stopLabel);
+    final details = _prayerDetails(
+      sound,
+      body,
+      fullScreen: alarmSlot != null,
+      atTime: atTime,
+      mute: nativeAdhan,
+      stopLabel: stopLabel,
+    );
     final payload = alarmSlot == null ? null : 'adhan:${alarmSlot.index}';
     try {
       await _plugin.zonedSchedule(
@@ -638,12 +742,15 @@ class NotificationService {
             title: title,
             body: body,
             scheduledDate: when,
-            notificationDetails: _prayerDetails(sound, body,
-                fullScreen: alarmSlot != null,
-                atTime: atTime,
-                mute: nativeAdhan,
-                stopLabel: stopLabel,
-                dropSound: true),
+            notificationDetails: _prayerDetails(
+              sound,
+              body,
+              fullScreen: alarmSlot != null,
+              atTime: atTime,
+              mute: nativeAdhan,
+              stopLabel: stopLabel,
+              dropSound: true,
+            ),
             androidScheduleMode: AndroidScheduleMode.exactAllowWhileIdle,
             payload: payload,
           );
@@ -671,8 +778,10 @@ class NotificationService {
     try {
       await _adhanNativeChannel.invokeMethod('stopAdhan');
     } catch (_) {}
-    final android = _plugin.resolvePlatformSpecificImplementation<
-        AndroidFlutterLocalNotificationsPlugin>();
+    final android = _plugin
+        .resolvePlatformSpecificImplementation<
+          AndroidFlutterLocalNotificationsPlugin
+        >();
     if (android == null) return;
     try {
       final active = await android.getActiveNotifications();
@@ -703,7 +812,9 @@ class NotificationService {
         'res': sound.androidRaw,
         'label': label,
       });
-    } catch (_) {/* native yoksa görsel pencere yine de korur */}
+    } catch (_) {
+      /* native yoksa görsel pencere yine de korur */
+    }
   }
 
   /// ⑨ Kayıtlı native ezan alarmlarını (AlarmManager) iptal et + listeyi temizle.
@@ -721,7 +832,8 @@ class NotificationService {
 /// scheduler talk to the exact same instance explicitly).
 final localNotificationsPluginProvider =
     Provider<FlutterLocalNotificationsPlugin>(
-        (ref) => FlutterLocalNotificationsPlugin());
+      (ref) => FlutterLocalNotificationsPlugin(),
+    );
 
 final notificationServiceProvider = Provider<NotificationService>(
   (ref) => NotificationService(ref.read(localNotificationsPluginProvider)),

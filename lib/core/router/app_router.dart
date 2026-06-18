@@ -44,6 +44,7 @@ import '../../features/quran/presentation/mushaf_screen.dart';
 import '../../features/quran/presentation/quran_reader_screen.dart';
 import '../../features/quran/presentation/quran_screen.dart';
 import '../../features/quran/presentation/quran_search_screen.dart';
+import '../../features/reminders/presentation/reminders_screen.dart';
 import '../../features/settings/presentation/settings_screen.dart';
 import '../../features/social_feed/presentation/feed_screen.dart';
 import '../../features/stories/presentation/story_viewer.dart';
@@ -116,6 +117,7 @@ final routerProvider = Provider<GoRouter>((ref) {
       fs(Routes.ilmihal, (_, _) => const IlmihalScreen()),
       fs(Routes.hajj, (_, _) => const HajjUmrahScreen()),
       fs(Routes.streak, (_, _) => const StreakScreen()),
+      fs(Routes.reminders, (_, _) => const RemindersScreen()),
       fs(Routes.verses,
           (_, _) => const InspirationListScreen(
               type: 'verse', titleKey: 'more.verses')),
