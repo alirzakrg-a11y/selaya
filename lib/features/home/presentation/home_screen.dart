@@ -26,6 +26,7 @@ import '../../../core/widgets/like_button.dart';
 import '../../../core/widgets/geometric_background.dart';
 import '../../../core/widgets/selaya_card.dart';
 import '../../../core/widgets/section_header.dart';
+import '../../auth/data/auth_controller.dart';
 import '../../social_feed/data/video_thumbs.dart';
 import '../../prayer_times/data/prayer_repository.dart';
 import '../../ibadah_tracking/data/prayer_checkin.dart';
@@ -91,6 +92,11 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
     switch (key) {
       case 'storyRail':
         return const [StoryRail(), Gap.sm()];
+      case 'greeting':
+        return const [
+          Padding(padding: AppSpacing.screen, child: _GreetingBanner()),
+          Gap.md(),
+        ];
       case 'religiousDay':
         return const [_ReligiousDayCard()];
       case 'gaugeCarousel':
@@ -274,6 +280,85 @@ class _QuickCard extends StatelessWidget {
             maxLines: 2,
             overflow: TextOverflow.ellipsis,
             style: TextStyle(color: c.textSecondary, fontSize: 12, height: 1.3),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+/// Story çemberleri ile geri sayım arasındaki kişisel karşılama (kullanıcı
+/// 2026-06-18). Girişliyse "Aleykümselam, {ad}"; misafirse "hoş geldin" + saate
+/// göre hayırlı sabahlar/günler/akşamlar/geceler.
+class _GreetingBanner extends ConsumerWidget {
+  const _GreetingBanner();
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final c = context.colors;
+    final tr = context.langCode == 'tr';
+    final name = (ref.watch(authControllerProvider).user?.name ?? '').trim();
+    final h = (ref.watch(clockProvider).value ?? DateTime.now()).hour;
+    final timeTr = h < 11
+        ? 'Hayırlı sabahlar'
+        : h < 17
+            ? 'Hayırlı günler'
+            : h < 21
+                ? 'Hayırlı akşamlar'
+                : 'Hayırlı geceler';
+    final timeEn = h < 11
+        ? 'Good morning'
+        : h < 17
+            ? 'Good day'
+            : h < 21
+                ? 'Good evening'
+                : 'Good night';
+    final night = h < 6 || h >= 19;
+    final title = name.isNotEmpty
+        ? (tr ? 'Aleykümselam, $name' : 'Peace be upon you, $name')
+        : (tr ? 'Aleykümselam' : 'Peace be upon you');
+    final sub = name.isNotEmpty
+        ? (tr ? '$timeTr, hoş geldin' : '$timeEn, welcome')
+        : (tr ? "SELAYA'ya hoş geldin · $timeTr" : 'Welcome to SELAYA · $timeEn');
+    return SelayaCard(
+      padding:
+          const EdgeInsets.symmetric(horizontal: AppSpacing.md, vertical: 10),
+      child: Row(
+        children: [
+          Container(
+            padding: const EdgeInsets.all(8),
+            decoration: BoxDecoration(
+              shape: BoxShape.circle,
+              color: c.gold.withValues(alpha: 0.14),
+            ),
+            child: Icon(
+              night ? Icons.nightlight_round : Icons.wb_sunny_rounded,
+              color: c.gold,
+              size: 18,
+            ),
+          ),
+          const Gap.md(),
+          Expanded(
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  title,
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
+                  style: Theme.of(context)
+                      .textTheme
+                      .titleSmall
+                      ?.copyWith(fontWeight: FontWeight.w700),
+                ),
+                Text(
+                  sub,
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
+                  style: TextStyle(color: c.textSecondary, fontSize: 12),
+                ),
+              ],
+            ),
           ),
         ],
       ),

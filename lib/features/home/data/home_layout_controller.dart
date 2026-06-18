@@ -7,6 +7,7 @@ import '../../../core/di/providers.dart';
 /// sabittir; aşağıdaki bölümler kişiselleştirilebilir.
 const homeSectionKeys = [
   'storyRail',
+  'greeting',
   'religiousDay',
   'gaugeCarousel',
   'prayerStrip',
@@ -25,6 +26,7 @@ const homeSectionKeys = [
 /// Düzenleme menüsünde gösterilecek etiket anahtarı (mevcut çevirilerden).
 const homeSectionLabels = {
   'storyRail': 'home.secStories',
+  'greeting': 'home.secGreeting',
   'religiousDay': 'home.secReligiousDay',
   'gaugeCarousel': 'home.secCountdown',
   'prayerStrip': 'home.secPrayerStrip',
