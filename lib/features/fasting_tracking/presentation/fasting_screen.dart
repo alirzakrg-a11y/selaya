@@ -98,31 +98,25 @@ class _FastingScreenState extends ConsumerState<FastingScreen> {
         padding: const EdgeInsets.fromLTRB(
             AppSpacing.base, AppSpacing.sm, AppSpacing.base, AppSpacing.xxxl),
         children: [
-          // streak + stats
+          // streak + stats (sade: düz kart, vurgu altın ikon + büyük sayıda)
           SelayaCard(
-            gradient: const LinearGradient(
-                colors: [Color(0xFF2A1E0A), Color(0xFF3A2A12)]),
             child: Row(
               children: [
-                const Icon(AppIcons.fire, color: AppColors.goldBright, size: 34),
+                Icon(AppIcons.fire, color: c.gold, size: 34),
                 const Gap.md(),
                 Expanded(
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text('fasting.dayStreak'.tr(args: ['$streak']),
-                          style: Theme.of(context)
-                              .textTheme
-                              .titleLarge
-                              ?.copyWith(color: Colors.white)),
+                          style: Theme.of(context).textTheme.titleLarge),
                       Text('fasting.streak'.tr(),
-                          style: const TextStyle(color: Colors.white60)),
+                          style: TextStyle(color: c.textSecondary)),
                     ],
                   ),
                 ),
                 Text('$streak',
-                    style: AppTypography.countdown(AppColors.goldBright,
-                        fontSize: 36)),
+                    style: AppTypography.countdown(c.gold, fontSize: 36)),
               ],
             ),
           ),

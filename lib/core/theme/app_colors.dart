@@ -32,11 +32,14 @@ abstract final class AppColors {
   static const Color darkTextTertiary = Color(0xFF5E6680);
   static const List<Color> prayerActiveDark = [Color(0xFF3A2A12), Color(0xFF6B4E1E)];
 
-  // ── Light palette ────────────────────────────────────────────────────
-  static const Color lightBg = Color(0xFFF6F4EF);
+  // ── Light palette (redesign: sade/aydınlık, düz zemin) ───────────────
+  // Hafif sıcak krem zemin + neredeyse beyaz kartlar; desen/gölge yok, kart
+  // tanımı net bir kenarlıkla verilir. surfaceAlt beyazdan AYRI tutulur ki
+  // beyaz yüzeylerdeki metin alanı dolguları (fillColor) görünür kalsın.
+  static const Color lightBg = Color(0xFFEFEDE6);
   static const Color lightSurface = Color(0xFFFFFFFF);
-  static const Color lightSurfaceAlt = Color(0xFFFBF8F1);
-  static const Color lightBorder = Color(0x14000000); // black @ 8%
+  static const Color lightSurfaceAlt = Color(0xFFFAF8F3);
+  static const Color lightBorder = Color(0x1A000000); // black @ 10%
   static const Color lightGlass = Color(0x99FFFFFF);
   static const Color lightTextPrimary = Color(0xFF14171F);
   static const Color lightTextSecondary = Color(0xFF5A6172);

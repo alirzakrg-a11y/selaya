@@ -62,8 +62,8 @@ class AppSettings {
   final bool smartSilent; // auto-silence the phone during prayer & Friday windows
 
   const AppSettings({
-    this.themeMode = ThemeMode.dark,
-    this.amoled = true, // AMOLED pure-black on by default (#23: "sürekli aktif")
+    this.themeMode = ThemeMode.light, // Sade aydınlık tema varsayılan (redesign)
+    this.amoled = false, // AMOLED yalnızca koyu temayı seçenler için
     this.palette = AppPalette.gold,
     this.textScale = 1.0,
     this.calcMethod = CalcMethod.diyanet,
@@ -120,7 +120,7 @@ class SettingsController extends Notifier<AppSettings> {
   AppSettings build() {
     return AppSettings(
       themeMode: _modeFromName(_prefs.getString(PrefKeys.themeMode)),
-      amoled: _prefs.getBool(PrefKeys.amoled) ?? true,
+      amoled: _prefs.getBool(PrefKeys.amoled) ?? false,
       palette: AppPalette.fromId(_prefs.getString(PrefKeys.palette)),
       textScale: _prefs.getDouble(PrefKeys.textScale) ?? 1.0,
       calcMethod: CalcMethod.fromId(_prefs.getString(PrefKeys.calcMethod) ?? 'diyanet'),
@@ -231,9 +231,9 @@ class SettingsController extends Notifier<AppSettings> {
   }
 
   static ThemeMode _modeFromName(String? name) => switch (name) {
-        'light' => ThemeMode.light,
+        'dark' => ThemeMode.dark,
         'system' => ThemeMode.system,
-        _ => ThemeMode.dark,
+        _ => ThemeMode.light, // varsayılan: sade aydınlık tema
       };
 }
 

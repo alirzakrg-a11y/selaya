@@ -26,6 +26,20 @@ class GeometricBackground extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final colors = context.colors;
+
+    // ── Sade aydınlık tema (redesign): desen + parıltı + gradyan YOK. Düz,
+    // sakin tek renk zemin = olabildiğince basit görünüm. Koyu tema imza
+    // yıldız-deseni + altın parıltısını korur. ──────────────────────────────
+    if (!colors.isDark) {
+      final flatBg = (gradientColors != null && gradientColors!.isNotEmpty)
+          ? gradientColors!.first
+          : colors.bg;
+      return ColoredBox(
+        color: flatBg,
+        child: child ?? const SizedBox.shrink(),
+      );
+    }
+
     final grad = gradientColors ??
         (colors.isDark
             ? [colors.bg, colors.surface, colors.bg]

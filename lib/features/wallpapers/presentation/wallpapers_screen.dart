@@ -162,7 +162,7 @@ class _WallpaperDetailState extends ConsumerState<WallpaperDetail> {
   Future<void> _setWallpaper(Wallpaper wp) async {
     final target = await showModalBottomSheet<String>(
       context: context,
-      backgroundColor: const Color(0xFF12161F),
+      backgroundColor: context.colors.surface,
       shape: const RoundedRectangleBorder(
         borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
       ),
@@ -176,8 +176,8 @@ class _WallpaperDetailState extends ConsumerState<WallpaperDetail> {
                 alignment: Alignment.centerLeft,
                 child: Text(
                   'wallpapers.setAs'.tr(),
-                  style: const TextStyle(
-                    color: Colors.white,
+                  style: TextStyle(
+                    color: context.colors.textPrimary,
                     fontSize: 17,
                     fontWeight: FontWeight.w700,
                   ),
@@ -190,10 +190,10 @@ class _WallpaperDetailState extends ConsumerState<WallpaperDetail> {
               ('both', Icons.smartphone_rounded, 'wallpapers.both'),
             ])
               ListTile(
-                leading: Icon(o.$2, color: AppColors.goldBright),
+                leading: Icon(o.$2, color: context.colors.gold),
                 title: Text(
                   o.$3.tr(),
-                  style: const TextStyle(color: Colors.white),
+                  style: TextStyle(color: context.colors.textPrimary),
                 ),
                 onTap: () => Navigator.of(context).pop(o.$1),
               ),
