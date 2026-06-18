@@ -3853,5 +3853,185 @@
         "text": "At that, Zechariah called upon his Lord, saying, \"My Lord, grant me from Yourself a good offspring. Indeed, You are the Hearer of supplication.\""
       }
     }
+  },
+  {
+    "id": "insx01",
+    "type": "verse",
+    "reference": "Bakara 156",
+    "image": "assets/images/wallpapers/wp_calligraphy_1.jpg",
+    "arabic": "إِنَّا لِلَّهِ وَإِنَّا إِلَيْهِ رَاجِعُونَ",
+    "translations": {
+      "tr": {
+        "text": "Biz şüphesiz Allah’a aitiz ve elbette O’na döneceğiz."
+      },
+      "en": {
+        "text": "Indeed we belong to Allah, and indeed to Him we will return."
+      }
+    }
+  },
+  {
+    "id": "insx02",
+    "type": "verse",
+    "reference": "Bakara 152",
+    "image": "assets/images/wallpapers/wp_kaaba_1.jpg",
+    "arabic": "فَاذْكُرُونِي أَذْكُرْكُمْ",
+    "translations": {
+      "tr": {
+        "text": "Öyleyse yalnız beni anın ki ben de sizi anayım."
+      },
+      "en": {
+        "text": "So remember Me; I will remember you."
+      }
+    }
+  },
+  {
+    "id": "insx03",
+    "type": "verse",
+    "reference": "Âl-i İmrân 173",
+    "image": "assets/images/wallpapers/wp_mosque_1.jpg",
+    "arabic": "حَسْبُنَا اللَّهُ وَنِعْمَ الْوَكِيلُ",
+    "translations": {
+      "tr": {
+        "text": "Allah bize yeter, O ne güzel vekildir."
+      },
+      "en": {
+        "text": "Sufficient for us is Allah, and He is the best Disposer of affairs."
+      }
+    }
+  },
+  {
+    "id": "insx04",
+    "type": "verse",
+    "reference": "Talâk 3",
+    "image": "assets/images/wallpapers/wp_nabawi_1.jpg",
+    "arabic": "وَمَنْ يَتَوَكَّلْ عَلَى اللَّهِ فَهُوَ حَسْبُهُ",
+    "translations": {
+      "tr": {
+        "text": "Kim Allah’a tevekkül ederse, O ona yeter."
+      },
+      "en": {
+        "text": "And whoever relies upon Allah – then He is sufficient for him."
+      }
+    }
+  },
+  {
+    "id": "insx05",
+    "type": "verse",
+    "reference": "Talâk 2",
+    "image": "assets/images/wallpapers/wp_night_1.jpg",
+    "arabic": "وَمَنْ يَتَّقِ اللَّهَ يَجْعَلْ لَهُ مَخْرَجًا",
+    "translations": {
+      "tr": {
+        "text": "Kim Allah’a karşı gelmekten sakınırsa, Allah ona bir çıkış yolu açar."
+      },
+      "en": {
+        "text": "And whoever fears Allah – He will make for him a way out."
+      }
+    }
+  },
+  {
+    "id": "insx06",
+    "type": "verse",
+    "reference": "Enbiyâ 87",
+    "image": "assets/images/wallpapers/wp_ramadan_1.jpg",
+    "arabic": "لَا إِلَٰهَ إِلَّا أَنْتَ سُبْحَانَكَ إِنِّي كُنْتُ مِنَ الظَّالِمِينَ",
+    "translations": {
+      "tr": {
+        "text": "Senden başka hiçbir ilah yoktur. Seni tenzih ederim. Gerçekten ben zalimlerden oldum."
+      },
+      "en": {
+        "text": "There is no deity except You; exalted are You. Indeed, I have been of the wrongdoers."
+      }
+    }
+  },
+  {
+    "id": "insx07",
+    "type": "verse",
+    "reference": "Enbiyâ 107",
+    "image": "assets/images/wallpapers/wp_kaaba_2.jpg",
+    "arabic": "وَمَا أَرْسَلْنَاكَ إِلَّا رَحْمَةً لِلْعَالَمِينَ",
+    "translations": {
+      "tr": {
+        "text": "Biz seni ancak âlemlere rahmet olarak gönderdik."
+      },
+      "en": {
+        "text": "And We have not sent you except as a mercy to the worlds."
+      }
+    }
+  },
+  {
+    "id": "insx08",
+    "type": "verse",
+    "reference": "Bakara 286",
+    "image": "assets/images/wallpapers/wp_mosque_2.jpg",
+    "arabic": "لَا يُكَلِّفُ اللَّهُ نَفْسًا إِلَّا وُسْعَهَا",
+    "translations": {
+      "tr": {
+        "text": "Allah bir kimseyi ancak gücünün yettiği şeyle yükümlü kılar."
+      },
+      "en": {
+        "text": "Allah does not charge a soul except with that within its capacity."
+      }
+    }
+  },
+  {
+    "id": "insx09",
+    "type": "verse",
+    "reference": "Zilzâl 7",
+    "image": "assets/images/wallpapers/wp_calligraphy_2.jpg",
+    "arabic": "فَمَنْ يَعْمَلْ مِثْقَالَ ذَرَّةٍ خَيْرًا يَرَهُ",
+    "translations": {
+      "tr": {
+        "text": "Kim zerre ağırlığınca bir hayır işlerse onu görür."
+      },
+      "en": {
+        "text": "So whoever does an atom’s weight of good will see it."
+      }
+    }
+  },
+  {
+    "id": "insx10",
+    "type": "verse",
+    "reference": "Ra’d 11",
+    "image": "assets/images/wallpapers/wp_night_2.jpg",
+    "arabic": "إِنَّ اللَّهَ لَا يُغَيِّرُ مَا بِقَوْمٍ حَتَّىٰ يُغَيِّرُوا مَا بِأَنْفُسِهِمْ",
+    "translations": {
+      "tr": {
+        "text": "Bir toplum kendindekini değiştirmedikçe Allah onların durumunu değiştirmez."
+      },
+      "en": {
+        "text": "Indeed, Allah will not change the condition of a people until they change what is in themselves."
+      }
+    }
+  },
+  {
+    "id": "insx11",
+    "type": "verse",
+    "reference": "İbrahim 7",
+    "image": "assets/images/wallpapers/wp_calligraphy_1.jpg",
+    "arabic": "لَئِنْ شَكَرْتُمْ لَأَزِيدَنَّكُمْ",
+    "translations": {
+      "tr": {
+        "text": "Andolsun, eğer şükrederseniz elbette size daha çok veririm."
+      },
+      "en": {
+        "text": "If you are grateful, I will surely increase you in favor."
+      }
+    }
+  },
+  {
+    "id": "insx12",
+    "type": "verse",
+    "reference": "Âl-i İmrân 139",
+    "image": "assets/images/wallpapers/wp_kaaba_1.jpg",
+    "arabic": "وَلَا تَهِنُوا وَلَا تَحْزَنُوا وَأَنْتُمُ الْأَعْلَوْنَ إِنْ كُنْتُمْ مُؤْمِنِينَ",
+    "translations": {
+      "tr": {
+        "text": "Gevşemeyin, üzülmeyin; eğer gerçekten inanıyorsanız en üstün olan sizsiniz."
+      },
+      "en": {
+        "text": "So do not weaken and do not grieve, for you will be superior if you are believers."
+      }
+    }
   }
 ]

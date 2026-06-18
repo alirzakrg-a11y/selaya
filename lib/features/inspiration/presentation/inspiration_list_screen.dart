@@ -1,5 +1,8 @@
+import 'dart:math';
+
 import 'package:easy_localization/easy_localization.dart' hide TextDirection;
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../core/data/content_providers.dart';
@@ -33,6 +36,8 @@ class _InspirationListScreenState extends ConsumerState<InspirationListScreen> {
   late Set<String> _favs;
   bool _favsOnly = false;
   bool _autoOpened = false; // openId popup'ı yalnız bir kez aç
+  String _query = '';
+  final _searchCtrl = TextEditingController();
 
   /// Seçili öğenin detay popup'ını aç (◀▶/kaydır + paylaş hazır).
   void _openDetail(
@@ -72,6 +77,32 @@ class _InspirationListScreenState extends ConsumerState<InspirationListScreen> {
   }
 
   @override
+  void dispose() {
+    _searchCtrl.dispose();
+    super.dispose();
+  }
+
+  // Rastgele bir ayet/hadis popup'ı aç (gezinti + ilham).
+  void _random(List<InspirationItem> full, String lang, List wps) {
+    if (full.isEmpty) return;
+    _openDetail(full, Random().nextInt(full.length), lang, wps);
+  }
+
+  // Arapça + meal + kaynağı panoya kopyala.
+  void _copy(BuildContext ctx, InspirationItem it, String lang, bool hasArabic) {
+    final parts = <String>[
+      if (hasArabic) it.arabic,
+      it.text(lang),
+      if (it.reference.isNotEmpty) '— ${it.reference}',
+    ];
+    Clipboard.setData(ClipboardData(text: parts.join('\n\n')));
+    ScaffoldMessenger.of(ctx).showSnackBar(SnackBar(
+      content: Text(lang == 'tr' ? 'Kopyalandı' : 'Copied'),
+      duration: const Duration(milliseconds: 1200),
+    ));
+  }
+
+  @override
   Widget build(BuildContext context) {
     final lang = context.langCode;
     final c = context.colors;
@@ -89,12 +120,25 @@ class _InspirationListScreenState extends ConsumerState<InspirationListScreen> {
         ),
         data: (all) {
           final full = all.where((e) => e.type == widget.type).toList();
+          final q = _query.trim().toLowerCase();
           var items = full;
+          if (q.isNotEmpty) {
+            final raw = _query.trim();
+            items = items
+                .where((e) =>
+                    e.text(lang).toLowerCase().contains(q) ||
+                    e.reference.toLowerCase().contains(q) ||
+                    e.arabic.contains(raw))
+                .toList();
+          }
           if (_favsOnly) {
             items = items
                 .where((e) => _favs.contains('${widget.type}:${e.id}'))
                 .toList();
           }
+          final favCount = full
+              .where((e) => _favs.contains('${widget.type}:${e.id}'))
+              .length;
           // openId: ana ekrandaki "Günün Ayeti/Hadisi" kartından gelindiyse o
           // öğenin popup'ını bir kez otomatik aç (tüm listede ara).
           if (!_autoOpened && widget.openId != null) {
@@ -113,6 +157,58 @@ class _InspirationListScreenState extends ConsumerState<InspirationListScreen> {
                 backgroundColor: c.bg,
                 surfaceTintColor: Colors.transparent,
                 title: Text(widget.titleKey.tr()),
+                actions: [
+                  IconButton(
+                    tooltip: lang == 'tr' ? 'Rastgele' : 'Random',
+                    onPressed: () => _random(full, lang, wps),
+                    icon: Icon(Icons.shuffle_rounded, color: c.gold),
+                  ),
+                ],
+                bottom: PreferredSize(
+                  preferredSize: const Size.fromHeight(54),
+                  child: Padding(
+                    padding: const EdgeInsets.fromLTRB(
+                        AppSpacing.base, 0, AppSpacing.base, AppSpacing.sm),
+                    child: TextField(
+                      controller: _searchCtrl,
+                      onChanged: (v) => setState(() => _query = v),
+                      textInputAction: TextInputAction.search,
+                      decoration: InputDecoration(
+                        hintText: lang == 'tr'
+                            ? (widget.type == 'verse'
+                                ? 'Ayetlerde ara…'
+                                : 'Hadislerde ara…')
+                            : 'Search…',
+                        prefixIcon: Icon(Icons.search_rounded,
+                            size: 20, color: c.textTertiary),
+                        suffixIcon: _query.isEmpty
+                            ? null
+                            : IconButton(
+                                icon: Icon(Icons.close_rounded,
+                                    size: 19, color: c.textTertiary),
+                                onPressed: () {
+                                  _searchCtrl.clear();
+                                  setState(() => _query = '');
+                                },
+                              ),
+                        isDense: true,
+                        contentPadding: const EdgeInsets.symmetric(
+                            vertical: 10, horizontal: 12),
+                        filled: true,
+                        fillColor: c.surfaceAlt,
+                        border: OutlineInputBorder(
+                            borderRadius: AppRadius.rLg,
+                            borderSide: BorderSide.none),
+                        enabledBorder: OutlineInputBorder(
+                            borderRadius: AppRadius.rLg,
+                            borderSide: BorderSide.none),
+                        focusedBorder: OutlineInputBorder(
+                            borderRadius: AppRadius.rLg,
+                            borderSide: BorderSide(color: c.gold, width: 1.4)),
+                      ),
+                    ),
+                  ),
+                ),
               ),
               SliverToBoxAdapter(
                 child: Padding(
@@ -121,12 +217,12 @@ class _InspirationListScreenState extends ConsumerState<InspirationListScreen> {
                   child: Row(
                     children: [
                       _Chip(
-                          label: 'common.seeAll'.tr(),
+                          label: '${'common.seeAll'.tr()} · ${full.length}',
                           selected: !_favsOnly,
                           onTap: () => setState(() => _favsOnly = false)),
                       const Gap.sm(),
                       _Chip(
-                          label: 'quran.favorites'.tr(),
+                          label: '${'quran.favorites'.tr()} · $favCount',
                           selected: _favsOnly,
                           onTap: () => setState(() => _favsOnly = true)),
                     ],
@@ -137,8 +233,32 @@ class _InspirationListScreenState extends ConsumerState<InspirationListScreen> {
                 SliverFillRemaining(
                   hasScrollBody: false,
                   child: Center(
-                    child: Text('quran.favorites'.tr(),
-                        style: TextStyle(color: c.textTertiary)),
+                    child: Padding(
+                      padding: const EdgeInsets.all(AppSpacing.xl),
+                      child: Column(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          Icon(
+                              q.isNotEmpty
+                                  ? Icons.search_off_rounded
+                                  : Icons.bookmark_border_rounded,
+                              size: 40,
+                              color: c.textTertiary),
+                          const Gap.md(),
+                          Text(
+                            q.isNotEmpty
+                                ? (lang == 'tr'
+                                    ? '“${_query.trim()}” için sonuç yok'
+                                    : 'No results for “${_query.trim()}”')
+                                : (lang == 'tr'
+                                    ? 'Henüz favori eklemedin.'
+                                    : 'No favorites yet.'),
+                            textAlign: TextAlign.center,
+                            style: TextStyle(color: c.textTertiary),
+                          ),
+                        ],
+                      ),
+                    ),
                   ),
                 )
               else
@@ -194,6 +314,15 @@ class _InspirationListScreenState extends ConsumerState<InspirationListScreen> {
                                   // Beğeni — kalp + sayı (sunucu).
                                   LikeButton(likeKey: key),
                                   const Spacer(),
+                                  // Kopyala (Arapça + meal + kaynak).
+                                  IconButton(
+                                    visualDensity: VisualDensity.compact,
+                                    tooltip: lang == 'tr' ? 'Kopyala' : 'Copy',
+                                    onPressed: () =>
+                                        _copy(ctx, it, lang, hasArabic),
+                                    icon: Icon(Icons.copy_rounded,
+                                        size: 20, color: c.textSecondary),
+                                  ),
                                   // Favori — yer imi (kalpten AYRI ikon).
                                   IconButton(
                                     visualDensity: VisualDensity.compact,
