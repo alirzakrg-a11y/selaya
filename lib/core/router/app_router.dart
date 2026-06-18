@@ -24,6 +24,7 @@ import '../../features/home/presentation/featured_grid_screen.dart';
 import '../../features/home/presentation/home_layout_screen.dart';
 import '../../features/home/presentation/home_screen.dart';
 import '../../features/ibadah_tracking/presentation/tracking_screen.dart';
+import '../../features/ilmihal/presentation/ilmihal_screen.dart';
 import '../../features/kaza_tracking/presentation/kaza_screen.dart';
 import '../../features/liked/presentation/liked_screen.dart';
 import '../../features/more/presentation/more_screen.dart';
@@ -41,6 +42,7 @@ import '../../features/qibla/presentation/qibla_screen.dart';
 import '../../features/quran/presentation/mushaf_screen.dart';
 import '../../features/quran/presentation/quran_reader_screen.dart';
 import '../../features/quran/presentation/quran_screen.dart';
+import '../../features/quran/presentation/quran_search_screen.dart';
 import '../../features/settings/presentation/settings_screen.dart';
 import '../../features/social_feed/presentation/feed_screen.dart';
 import '../../features/stories/presentation/story_viewer.dart';
@@ -108,6 +110,8 @@ final routerProvider = Provider<GoRouter>((ref) {
       fs(Routes.tesbihat, (_, _) => const TesbihatScreen()),
       fs(Routes.zakat, (_, _) => const ZakatScreen()),
       fs(Routes.babyNames, (_, _) => const BabyNamesScreen()),
+      fs(Routes.quranSearch, (_, _) => const QuranSearchScreen()),
+      fs(Routes.ilmihal, (_, _) => const IlmihalScreen()),
       fs(Routes.verses,
           (_, _) => const InspirationListScreen(
               type: 'verse', titleKey: 'more.verses')),

@@ -162,6 +162,12 @@
   "babyNames": {
     "title": "Bebek İsimleri"
   },
+  "quranSearch": {
+    "title": "Kur'an'da Ara"
+  },
+  "ilmihal": {
+    "title": "İlmihal"
+  },
   "kaza": {
     "title": "Kazalar",
     "totalDebt": "Toplam kaza namazı",

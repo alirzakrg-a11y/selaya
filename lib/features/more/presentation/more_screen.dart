@@ -34,6 +34,7 @@ class MoreScreen extends ConsumerWidget {
   static const _sections = [
     _Section('more.secQuran', [
       _Entry(AppIcons.quran, 'quran.title', Routes.quran),
+      _Entry(Icons.search_rounded, 'quranSearch.title', Routes.quranSearch),
       _Entry(Icons.format_quote_rounded, 'more.verses', Routes.verses),
       _Entry(Icons.history_edu_rounded, 'more.hadiths', Routes.hadiths),
       _Entry(AppIcons.book, 'more.yasin', Routes.yasin),
@@ -43,6 +44,7 @@ class MoreScreen extends ConsumerWidget {
       _Entry(Icons.self_improvement_rounded, 'more.namazGuide',
           Routes.namazGuide),
       _Entry(Icons.water_drop_rounded, 'more.abdestGuide', Routes.abdestGuide),
+      _Entry(Icons.menu_book_rounded, 'ilmihal.title', Routes.ilmihal),
       _Entry(AppIcons.tasbih, 'dhikr.title', Routes.dhikr),
       _Entry(Icons.repeat_rounded, 'tesbihat.title', Routes.tesbihat),
       _Entry(AppIcons.dua, 'duas.title', Routes.duas),

@@ -162,6 +162,12 @@
   "babyNames": {
     "title": "Baby Names"
   },
+  "quranSearch": {
+    "title": "Search the Quran"
+  },
+  "ilmihal": {
+    "title": "Islamic Basics"
+  },
   "kaza": {
     "title": "Missed Prayers",
     "totalDebt": "Total missed prayers",

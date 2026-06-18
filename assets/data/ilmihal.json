@@ -1,0 +1,20 @@
+[
+  {"c": "İman & İslam", "q": "İslam'ın şartları nelerdir?", "a": "Beştir: Kelime-i şehâdet getirmek, namaz kılmak, oruç tutmak, zekât vermek, gücü yetenin hacca gitmesi."},
+  {"c": "İman & İslam", "q": "İmanın şartları nelerdir?", "a": "Altıdır: Allah'a, meleklerine, kitaplarına, peygamberlerine, ahiret gününe ve kadere (hayrın ve şerrin Allah'tan olduğuna) iman etmek."},
+  {"c": "İman & İslam", "q": "Kelime-i şehâdet nedir?", "a": "'Eşhedü en lâ ilâhe illallâh ve eşhedü enne Muhammeden abdühû ve resûlüh' — Allah'tan başka ilah olmadığına, Muhammed'in (s.a.v.) O'nun kulu ve elçisi olduğuna şahitlik ederim."},
+  {"c": "Abdest & Temizlik", "q": "Abdestin farzları nelerdir?", "a": "Dörttür: Yüzü yıkamak, kolları dirseklerle birlikte yıkamak, başın dörtte birini mesh etmek, ayakları topuklarla birlikte yıkamak."},
+  {"c": "Abdest & Temizlik", "q": "Abdesti bozan şeyler nelerdir?", "a": "Ön veya arkadan bir şey çıkması, yellenmek, ağız dolusu kusmak, bayılmak, yan üstü yatarak/dayanarak uyumak, namazda sesli gülmek."},
+  {"c": "Abdest & Temizlik", "q": "Guslün (boy abdesti) farzları nelerdir?", "a": "Hanefî'ye göre üçtür: Ağıza su almak (mazmaza), buruna su çekmek (istinşâk) ve hiç kuru yer kalmadan bütün bedeni yıkamak."},
+  {"c": "Abdest & Temizlik", "q": "Teyemmüm ne zaman ve nasıl yapılır?", "a": "Su bulunmadığında veya hastalık gibi bir engel sebebiyle kullanılamadığında yapılır. Temiz toprak/toprak cinsi bir şeye iki kez el vurularak bir kez yüz, bir kez de kollar mesh edilir; niyet şarttır."},
+  {"c": "Namaz", "q": "Namazın dışındaki şartları nelerdir?", "a": "Altıdır: Hadesten tahâret (abdest/gusül), necâsetten tahâret (beden-elbise-yer temizliği), setr-i avret (örtünme), istikbâl-i kıble (kıbleye yönelme), vakit ve niyet."},
+  {"c": "Namaz", "q": "Namazın içindeki rükünleri (farzları) nelerdir?", "a": "Altıdır: İftitah tekbiri, kıyam (ayakta durmak), kıraat (Kur'an okumak), rükû, secde ve ka'de-i âhire (son oturuş)."},
+  {"c": "Namaz", "q": "Namazı bozan şeyler nelerdir?", "a": "Konuşmak, bir şey yiyip içmek, kıbleden dönmek, özürsüz çok hareket etmek (amel-i kesîr), abdestin bozulması, sesli gülmek, selam vermek/almak."},
+  {"c": "Namaz", "q": "Vacip olan namazlar hangileridir?", "a": "Vitir namazı ve Ramazan ile Kurban bayramı namazları vaciptir."},
+  {"c": "Namaz", "q": "Sehiv (yanılma) secdesi ne zaman yapılır?", "a": "Namazın vaciplerinden biri yanlışlıkla terk veya tehir edildiğinde yapılır. Son oturuşta selâmdan sonra iki secde yapılır, ardından tahiyyat okunup tekrar selâm verilir."},
+  {"c": "Oruç", "q": "Orucu bozup hem kaza hem kefaret gerektiren şeyler nelerdir?", "a": "Oruçlu olduğunu bilerek kasten yemek-içmek veya cinsel ilişkide bulunmak. Kefaret, peş peşe altmış gün oruç tutmaktır."},
+  {"c": "Oruç", "q": "Orucu bozup sadece kaza gerektiren şeyler nelerdir?", "a": "Kasten ağız dolusu kusmak, yenmesi mutat olmayan bir şeyi yutmak, ilaç almak gibi durumlar orucu bozar ve sadece kaza gerektirir."},
+  {"c": "Oruç", "q": "Orucu bozmayan şeyler nelerdir?", "a": "Unutarak yemek-içmek, ihtilâm olmak (rüyada), kan aldırmak, sürme çekmek, göze damla damlatmak ve istemeden boğaza toz-duman kaçması orucu bozmaz."},
+  {"c": "Zekât", "q": "Zekât kimlere farzdır?", "a": "Akıllı, ergin, hür ve Müslüman olan; temel ihtiyaçlarından fazla, nisap miktarı (80,18 gr altın değeri) mala sahip olup üzerinden bir kameri yıl geçen kişiye farzdır."},
+  {"c": "Zekât", "q": "Zekâtın oranı nedir?", "a": "Genel olarak kırkta bir, yani yüzde iki buçuktur (%2,5)."},
+  {"c": "Zekât", "q": "Fıtır sadakası (fitre) nedir?", "a": "Ramazan bayramından önce, nisaba sahip her Müslümanın kendisi ve bakmakla yükümlü olduğu kişiler için vermesi vacip olan sadakadır. Bayram namazından önce verilmesi efdaldir."}
+]
