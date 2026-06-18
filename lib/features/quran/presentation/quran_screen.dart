@@ -70,15 +70,18 @@ class _QuranScreenState extends ConsumerState<QuranScreen> {
             return Column(
               children: [
                 Padding(
-                  // Breathing room below the title and a clear gap before the
-                  // cards/tabs (the search box was glued to them otherwise).
+                  // İnce arama kutusu — üst blok ferah ama küçük kalsın.
                   padding: const EdgeInsets.fromLTRB(AppSpacing.base,
-                      AppSpacing.sm, AppSpacing.base, AppSpacing.md),
+                      AppSpacing.sm, AppSpacing.base, AppSpacing.sm),
                   child: TextField(
                     onChanged: (v) => setState(() => _query = v),
+                    textInputAction: TextInputAction.search,
                     decoration: InputDecoration(
                       hintText: 'quran.searchHint'.tr(),
-                      prefixIcon: const Icon(AppIcons.search, size: 20),
+                      prefixIcon: const Icon(AppIcons.search, size: 19),
+                      isDense: true,
+                      contentPadding: const EdgeInsets.symmetric(
+                          vertical: 10, horizontal: 12),
                       filled: true,
                       fillColor: c.surfaceAlt,
                       border: OutlineInputBorder(
@@ -89,18 +92,24 @@ class _QuranScreenState extends ConsumerState<QuranScreen> {
                         borderRadius: AppRadius.rLg,
                         borderSide: BorderSide(color: c.border),
                       ),
+                      focusedBorder: OutlineInputBorder(
+                        borderRadius: AppRadius.rLg,
+                        borderSide: BorderSide(color: c.gold, width: 1.4),
+                      ),
                     ),
                   ),
                 ),
-                // Last-read + start-listening cards.
+                // Kaldığın yerden devam: son okunan · dinle · mushaf → tek satır
+                // kompakt mini kartlar (eskiden 2 kart + tam genişlik mushaf kartı
+                // 3 ayrı blok yer kaplıyordu; artık tek küçük satır).
                 if (_query.isEmpty)
                   Padding(
                     padding: const EdgeInsets.fromLTRB(
-                        AppSpacing.base, 0, AppSpacing.base, AppSpacing.md),
+                        AppSpacing.base, 0, AppSpacing.base, AppSpacing.sm),
                     child: Row(
                       children: [
                         Expanded(
-                          child: _TopCard(
+                          child: _MiniAction(
                             icon: AppIcons.book,
                             label: 'quran.lastRead'.tr(),
                             value: lastSurah?.name(lang) ?? '—',
@@ -110,30 +119,27 @@ class _QuranScreenState extends ConsumerState<QuranScreen> {
                         ),
                         const Gap.sm(),
                         Expanded(
-                          child: _TopCard(
+                          child: _MiniAction(
                             icon: AppIcons.playCircle,
-                            label: 'quran.startListening'.tr(),
+                            label: lang == 'tr' ? 'Dinle' : 'Listen',
                             value: (lastSurah ?? all.first).name(lang),
                             accent: true,
                             onTap: () => context.push(
                                 '${Routes.quranReader}/${lastSurah?.number ?? 1}'),
                           ),
                         ),
+                        const Gap.sm(),
+                        Expanded(
+                          child: _MiniAction(
+                            icon: Icons.auto_stories_rounded,
+                            label: 'Mushaf',
+                            value: lang == 'tr'
+                                ? 'Sayfa ${ref.read(sharedPreferencesProvider).getInt(PrefKeys.mushafLastPage) ?? 1}'
+                                : 'Page ${ref.read(sharedPreferencesProvider).getInt(PrefKeys.mushafLastPage) ?? 1}',
+                            onTap: () => context.push(Routes.mushaf),
+                          ),
+                        ),
                       ],
-                    ),
-                  ),
-                // 📖 Mushaf Modu — sayfa sayfa gerçek mushaf (kaldığı yerden).
-                if (_query.isEmpty)
-                  Padding(
-                    padding: const EdgeInsets.fromLTRB(
-                        AppSpacing.base, 0, AppSpacing.base, AppSpacing.md),
-                    child: _TopCard(
-                      icon: Icons.auto_stories_rounded,
-                      label: lang == 'tr' ? 'Mushaf Modu' : 'Mushaf View',
-                      value: lang == 'tr'
-                          ? 'Sayfa ${ref.read(sharedPreferencesProvider).getInt(PrefKeys.mushafLastPage) ?? 1} — sayfa sayfa oku'
-                          : 'Page ${ref.read(sharedPreferencesProvider).getInt(PrefKeys.mushafLastPage) ?? 1} — read page by page',
-                      onTap: () => context.push(Routes.mushaf),
                     ),
                   ),
                 TabBar(
@@ -177,13 +183,15 @@ class _QuranScreenState extends ConsumerState<QuranScreen> {
   }
 }
 
-class _TopCard extends StatelessWidget {
+/// Kompakt "kaldığın yerden devam" mini kartı — üstte küçük altın ikon rozeti,
+/// altında etiket + değer (tek satır). Üçü yan yana tek satırda durur.
+class _MiniAction extends StatelessWidget {
   final IconData icon;
   final String label;
   final String value;
   final bool accent;
   final VoidCallback onTap;
-  const _TopCard({
+  const _MiniAction({
     required this.icon,
     required this.label,
     required this.value,
@@ -196,33 +204,44 @@ class _TopCard extends StatelessWidget {
     final c = context.colors;
     return SelayaCard(
       onTap: onTap,
-      padding: const EdgeInsets.all(AppSpacing.md),
+      borderRadius: AppRadius.rLg,
+      padding: const EdgeInsets.symmetric(
+          horizontal: AppSpacing.xs, vertical: AppSpacing.md),
       gradient: accent
-          ? LinearGradient(colors: [c.gold.withValues(alpha: 0.18), c.surfaceAlt])
+          ? LinearGradient(
+              colors: [c.gold.withValues(alpha: 0.20), c.surfaceAlt],
+              begin: Alignment.topLeft,
+              end: Alignment.bottomRight)
           : null,
-      child: Row(
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
         children: [
-          Icon(icon, color: c.gold, size: 22),
-          const Gap.sm(),
-          Expanded(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(label,
-                    style: Theme.of(context)
-                        .textTheme
-                        .labelSmall
-                        ?.copyWith(color: c.textTertiary)),
-                Text(value,
-                    maxLines: 1,
-                    overflow: TextOverflow.ellipsis,
-                    style: Theme.of(context)
-                        .textTheme
-                        .titleSmall
-                        ?.copyWith(fontWeight: FontWeight.w700)),
-              ],
+          Container(
+            width: 32,
+            height: 32,
+            decoration: BoxDecoration(
+              color: c.gold.withValues(alpha: accent ? 0.24 : 0.12),
+              borderRadius: BorderRadius.circular(10),
             ),
+            child: Icon(icon, color: c.gold, size: 18),
           ),
+          const Gap.xs(),
+          Text(label,
+              maxLines: 1,
+              overflow: TextOverflow.ellipsis,
+              style: Theme.of(context)
+                  .textTheme
+                  .labelSmall
+                  ?.copyWith(color: c.textTertiary, fontSize: 10.5)),
+          const SizedBox(height: 1),
+          Text(value,
+              maxLines: 1,
+              overflow: TextOverflow.ellipsis,
+              textAlign: TextAlign.center,
+              style: Theme.of(context)
+                  .textTheme
+                  .titleSmall
+                  ?.copyWith(fontWeight: FontWeight.w700, fontSize: 13)),
         ],
       ),
     );
