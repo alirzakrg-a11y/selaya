@@ -262,9 +262,9 @@ class _SurahList extends StatelessWidget {
     if (surahs.isEmpty) return const SelayaEmpty();
     return ListView.separated(
       padding: const EdgeInsets.fromLTRB(
-          AppSpacing.base, AppSpacing.md, AppSpacing.base, AppSpacing.xxxl),
+          AppSpacing.base, AppSpacing.sm, AppSpacing.base, AppSpacing.xxxl),
       itemCount: surahs.length,
-      separatorBuilder: (_, _) => const Gap.sm(),
+      separatorBuilder: (_, _) => const Gap(6),
       itemBuilder: (context, i) => _SurahTile(
         surah: surahs[i],
         lang: lang,
@@ -292,23 +292,23 @@ class _SurahTile extends StatelessWidget {
     return SelayaCard(
       onTap: () => context.push('${Routes.quranReader}/${surah.number}'),
       padding: const EdgeInsets.symmetric(
-          horizontal: AppSpacing.md, vertical: AppSpacing.md),
+          horizontal: AppSpacing.md, vertical: AppSpacing.sm),
       child: Row(
         children: [
           SizedBox(
-            width: 40,
-            height: 40,
+            width: 34,
+            height: 34,
             child: Stack(
               alignment: Alignment.center,
               children: [
                 Transform.rotate(
                   angle: 0.785,
                   child: Container(
-                    width: 28,
-                    height: 28,
+                    width: 24,
+                    height: 24,
                     decoration: BoxDecoration(
                       color: c.gold.withValues(alpha: 0.12),
-                      borderRadius: BorderRadius.circular(8),
+                      borderRadius: BorderRadius.circular(7),
                     ),
                   ),
                 ),
@@ -320,13 +320,16 @@ class _SurahTile extends StatelessWidget {
               ],
             ),
           ),
-          const Gap.md(),
+          const Gap.sm(),
           Expanded(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(surah.name(lang),
-                    style: Theme.of(context).textTheme.titleMedium),
+                    style: Theme.of(context)
+                        .textTheme
+                        .titleMedium
+                        ?.copyWith(fontSize: 15)),
                 Text(
                   '${surah.revelation == 'meccan' ? 'quran.meccan'.tr() : 'quran.medinan'.tr()} • ${'quran.ayahCount'.tr(args: [
                         surah.ayahCount.toString()
@@ -334,7 +337,7 @@ class _SurahTile extends StatelessWidget {
                   style: Theme.of(context)
                       .textTheme
                       .bodySmall
-                      ?.copyWith(color: c.textTertiary),
+                      ?.copyWith(color: c.textTertiary, fontSize: 11.5),
                 ),
               ],
             ),
@@ -345,13 +348,13 @@ class _SurahTile extends StatelessWidget {
             child: Padding(
               padding: const EdgeInsets.all(4),
               child: Icon(fav ? AppIcons.favoriteFilled : AppIcons.favorite,
-                  size: 18, color: fav ? c.danger : c.textTertiary),
+                  size: 17, color: fav ? c.danger : c.textTertiary),
             ),
           ),
           const Gap.xs(),
           Text(surah.arabic,
               textDirection: TextDirection.rtl,
-              style: AppTypography.arabic(fontSize: 22, color: c.gold)),
+              style: AppTypography.arabic(fontSize: 20, color: c.gold)),
         ],
       ),
     );
