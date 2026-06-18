@@ -35,6 +35,7 @@ abstract final class PrefKeys {
   static const String inspirationFavorites =
       'inspiration_favorites'; // verse/hadith favs
   static const String quranLastRead = 'quran_last_read';
+  static const String quranRecentSearches = 'quran_recent_searches'; // son aramalar
   static const String dhikrTotalPrefix = 'dhikr_total_';
   static const String dhikrSound = 'dhikr_sound'; // bool
   static const String dhikrSoundType = 'dhikr_sound_type'; // 'tik' | 'boncuk'

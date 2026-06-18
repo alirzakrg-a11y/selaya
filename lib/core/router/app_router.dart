@@ -98,7 +98,8 @@ final routerProvider = Provider<GoRouter>((ref) {
 
       // Full-screen detail routes (pushed above the shell).
       fs('${Routes.quranReader}/:surah', (_, s) => QuranReaderScreen(
-          surahNumber: int.tryParse(s.pathParameters['surah'] ?? '1') ?? 1)),
+          surahNumber: int.tryParse(s.pathParameters['surah'] ?? '1') ?? 1,
+          initialAyah: int.tryParse(s.uri.queryParameters['ayah'] ?? ''))),
       // GoRoute (raw push değil) → location '/mushaf' olur; global mini buna
       // bakarak kendini ekranın altına (safe-bottom) konumlar.
       fs(Routes.mushaf, (_, s) =>

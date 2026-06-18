@@ -30,7 +30,10 @@ const _bismillah = 'بِسْمِ اللَّهِ الرَّحْمَٰنِ الر�
 
 class QuranReaderScreen extends ConsumerStatefulWidget {
   final int surahNumber;
-  const QuranReaderScreen({super.key, required this.surahNumber});
+  /// Aramadan/derin bağlantıdan gelince bu ayete kaydırılır + kısa süre vurgulanır.
+  final int? initialAyah;
+  const QuranReaderScreen(
+      {super.key, required this.surahNumber, this.initialAyah});
 
   @override
   ConsumerState<QuranReaderScreen> createState() => _QuranReaderScreenState();
@@ -38,8 +41,11 @@ class QuranReaderScreen extends ConsumerStatefulWidget {
 
 class _QuranReaderScreenState extends ConsumerState<QuranReaderScreen> {
   final Map<int, GlobalKey> _keys = {};
+  final ScrollController _scrollController = ScrollController();
   StreamSubscription<int?>? _idxSub;
   int? _currentAyah;
+  int? _flashAyah; // aramadan gelince kısa süre altın vurgulanan ayet (ses dışı)
+  bool _didInitialJump = false;
   bool _wasActive = false; // bu sure çalıyordu (örtülü geçiş yakalama için)
   double _endOverscroll = 0; // alt uçta birikmiş aşırı-kaydırma (sonraki sure)
   bool _surahNavLock = false;
@@ -109,6 +115,7 @@ class _QuranReaderScreenState extends ConsumerState<QuranReaderScreen> {
   @override
   void dispose() {
     _idxSub?.cancel();
+    _scrollController.dispose();
     super.dispose();
   }
 
@@ -137,6 +144,44 @@ class _QuranReaderScreenState extends ConsumerState<QuranReaderScreen> {
         curve: Curves.easeInOut,
       );
     }
+  }
+
+  /// Aramadan/derin bağlantıdan gelince: ilk yüklemede hedef ayete kaydır + kısa
+  /// süre altın vurgula (ses çalmadan). Yalnız bir kez çalışır.
+  void _maybeInitialJump(List<Verse> list) {
+    if (_didInitialJump || widget.initialAyah == null) return;
+    if (!list.any((v) => v.ayah == widget.initialAyah)) return;
+    _didInitialJump = true;
+    final target = widget.initialAyah!;
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      if (!mounted) return;
+      setState(() => _flashAyah = target);
+      _scrollToAyahRetry(target);
+      Future.delayed(const Duration(milliseconds: 2900), () {
+        if (mounted) setState(() => _flashAyah = null);
+      });
+    });
+  }
+
+  /// Tembel liste: hedef ayet henüz kurulmadıysa (ekran dışı) context yoktur →
+  /// viewport viewport aşağı kaydırıp her karede tekrar dener; kurulunca ortalar.
+  void _scrollToAyahRetry(int ayah, [int attempt = 0]) {
+    if (!mounted) return;
+    final ctx = _keys[ayah]?.currentContext;
+    if (ctx != null) {
+      Scrollable.ensureVisible(ctx,
+          duration: const Duration(milliseconds: 300),
+          alignment: 0.18,
+          curve: Curves.easeInOut);
+      return;
+    }
+    if (attempt >= 10 || !_scrollController.hasClients) return;
+    final pos = _scrollController.position;
+    final next = (_scrollController.offset + pos.viewportDimension * 0.9)
+        .clamp(0.0, pos.maxScrollExtent);
+    _scrollController.jumpTo(next);
+    WidgetsBinding.instance
+        .addPostFrameCallback((_) => _scrollToAyahRetry(ayah, attempt + 1));
   }
 
   /// Kapak görselini günlük duvar kâğıtlarından seçer (sure no'ya göre sabit).
@@ -403,6 +448,7 @@ class _QuranReaderScreenState extends ConsumerState<QuranReaderScreen> {
     final matches = surahs.where((s) => s.number == widget.surahNumber);
     final surah = matches.isEmpty ? null : matches.first;
     final versesAsync = ref.watch(versesProvider(widget.surahNumber));
+    if (versesAsync.hasValue) _maybeInitialJump(versesAsync.value!);
     final versesList = versesAsync.value ?? const <Verse>[];
     final c = context.colors;
 
@@ -547,6 +593,7 @@ class _QuranReaderScreenState extends ConsumerState<QuranReaderScreen> {
             return false;
           },
           child: ListView(
+            controller: _scrollController,
             padding: const EdgeInsets.fromLTRB(
               AppSpacing.base,
               AppSpacing.sm,
@@ -593,6 +640,7 @@ class _QuranReaderScreenState extends ConsumerState<QuranReaderScreen> {
                   verse: list[i],
                   lang: lang,
                   playing: currentAyah == list[i].ayah,
+                  highlight: _flashAyah == list[i].ayah,
                   onPlay: () => _playAyah(list, i, surah?.name(lang) ?? 'Sure'),
                   // Karta dokun → bu ayetten popup açılır (oradan tüm
                   // sureler ◀▶ ile gezilebilir + Oku ile çalınabilir).
@@ -771,6 +819,7 @@ class _VerseTile extends StatelessWidget {
   final Verse verse;
   final String lang;
   final bool playing;
+  final bool highlight;
   final VoidCallback onPlay;
   final VoidCallback? onTap;
   const _VerseTile({
@@ -780,11 +829,13 @@ class _VerseTile extends StatelessWidget {
     required this.playing,
     required this.onPlay,
     this.onTap,
+    this.highlight = false,
   });
 
   @override
   Widget build(BuildContext context) {
     final c = context.colors;
+    final on = playing || highlight;
     return GestureDetector(
       behavior: HitTestBehavior.opaque,
       onTap: onTap, // karta dokun → ayet popup'ı (oynat düğmesi ayrı çalışır)
@@ -792,11 +843,11 @@ class _VerseTile extends StatelessWidget {
         margin: const EdgeInsets.only(bottom: AppSpacing.md),
         padding: const EdgeInsets.all(AppSpacing.base),
         decoration: BoxDecoration(
-          color: playing ? c.gold.withValues(alpha: 0.10) : c.surfaceAlt,
+          color: on ? c.gold.withValues(alpha: 0.10) : c.surfaceAlt,
           borderRadius: AppRadius.rLg,
           border: Border.all(
-            color: playing ? c.gold.withValues(alpha: 0.6) : c.border,
-            width: playing ? 1.5 : 1,
+            color: on ? c.gold.withValues(alpha: 0.6) : c.border,
+            width: on ? 1.5 : 1,
           ),
         ),
         child: Column(
