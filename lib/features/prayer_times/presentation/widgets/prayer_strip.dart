@@ -7,6 +7,7 @@ import '../../../../core/theme/app_colors.dart';
 import '../../../../core/theme/app_spacing.dart';
 import '../../../../core/theme/app_typography.dart';
 import '../../../../core/utils/formatters.dart';
+import '../../../../core/widgets/gold_icon.dart';
 import '../../../../core/widgets/selaya_card.dart';
 import '../../data/prayer_repository.dart';
 import '../../domain/prayer.dart';
@@ -81,13 +82,9 @@ class _SlotCell extends StatelessWidget {
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-          // Aktif ikon nabzı KALDIRILDI (kullanıcı 2026-06-15 "ikonlarda nefes
-          // alma olmasın") — statik; aktif vakit yine parlak altın renkle ayrışır.
-          Icon(
-            slot.icon,
-            size: 24,
-            color: active ? c.goldBright : c.textTertiary,
-          ),
+          // Tüm vakit ikonları GRADYANLI altın (kullanıcı 2026-06-18: "imsaktakilerin
+          // logolarını da"); aktif vakit pill zemin + altın çerçeve + beyaz saatle ayrışır.
+          GoldIcon(slot.icon, size: 24),
           const SizedBox(height: 6),
           // FittedBox: büyük fontta hücreye sığmazsa metni küçültür (taşma yok).
           FittedBox(

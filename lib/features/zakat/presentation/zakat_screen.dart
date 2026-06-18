@@ -7,6 +7,7 @@ import '../../../core/theme/app_colors.dart';
 import '../../../core/theme/app_spacing.dart';
 import '../../../core/widgets/selaya_card.dart';
 import '../../../core/widgets/selaya_scaffold.dart';
+import '../data/finance_api.dart';
 
 /// Zekât + Fitre hesaplayıcı. Zekât nisabı = 80.18 gr altın değeri; oran %2,5
 /// (1/40). Yalnız tahminî yardımcıdır — kesin hüküm için müftülüğe danışılır.
@@ -31,6 +32,38 @@ class _ZakatScreenState extends State<ZakatScreen> {
   final _fitreCount = TextEditingController(text: '1'); // kişi sayısı
 
   static const _nisabGoldGram = 80.18; // 20 miskal
+
+  Finance? _fin; // canlı altın + Diyanet fitre
+  bool _loadingFin = true;
+
+  @override
+  void initState() {
+    super.initState();
+    _loadFinance(); // her açılışta güncel altın + fitre çek
+  }
+
+  /// Canlı gram altın + Diyanet fitresini çek; boş alanları otomatik doldur.
+  Future<void> _loadFinance({bool force = false}) async {
+    setState(() => _loadingFin = true);
+    final f = await FinanceApi.fetch();
+    if (!mounted) return;
+    setState(() {
+      _fin = f;
+      _loadingFin = false;
+      if (f != null) {
+        // Altın fiyatı: boşsa (ya da elle yenilemede) güncel değeri yaz (₺, 2 ondalık).
+        if (force || _gold.text.trim().isEmpty) {
+          _gold.text = _fmt(f.goldGram);
+        }
+        if (force || _fitrePer.text.trim().isEmpty) {
+          _fitrePer.text = _fmt(f.fitre);
+        }
+      }
+    });
+  }
+
+  // Alan dolgusu: 6337.57 → "6337,57" (ondalık virgül; _v bunu ayrıştırır).
+  static String _fmt(double v) => v.toStringAsFixed(2).replaceAll('.', ',');
 
   double _v(TextEditingController c) =>
       double.tryParse(c.text.replaceAll(',', '.').trim()) ?? 0;
@@ -60,6 +93,19 @@ class _ZakatScreenState extends State<ZakatScreen> {
     return SelayaScaffold(
       title: 'zakat.title'.tr(),
       showBack: true,
+      actions: [
+        IconButton(
+          tooltip: tr ? 'Güncel fiyatı yenile' : 'Refresh live price',
+          icon: _loadingFin
+              ? const SizedBox(
+                  width: 18,
+                  height: 18,
+                  child: CircularProgressIndicator(strokeWidth: 2),
+                )
+              : Icon(Icons.refresh_rounded, color: context.colors.gold),
+          onPressed: _loadingFin ? null : () => _loadFinance(force: true),
+        ),
+      ],
       body: ListView(
         padding: const EdgeInsets.fromLTRB(
           AppSpacing.base,
@@ -73,7 +119,7 @@ class _ZakatScreenState extends State<ZakatScreen> {
               ButtonSegment(
                 value: 'zakat',
                 label: Text(tr ? 'Zekât' : 'Zakat'),
-                icon: const Icon(Icons.savings_rounded, size: 18),
+                icon: const Icon(Icons.payments_rounded, size: 18),
               ),
               ButtonSegment(
                 value: 'fitre',
@@ -208,6 +254,20 @@ class _ZakatScreenState extends State<ZakatScreen> {
             ? 'Zekât; bir kameri yıl boyunca elde tutulan, ihtiyaç fazlası mala düşer. Bu hesap tahminîdir — kesin hüküm için müftülüğe danış.'
             : 'Zakat applies to surplus wealth held for one lunar year. This is an estimate — consult a scholar for a ruling.',
       ),
+      const Gap.sm(),
+      _sourceLine(
+        context,
+        _fin != null && _fin!.goldGram > 0
+            ? (tr
+                ? 'Gram altın: ${_fmt(_fin!.goldGram)} ₺ · kaynak: ${_fin!.goldSource}'
+                    '${_fin!.goldUpdated.isNotEmpty ? ' · ${_fin!.goldUpdated}' : ''}'
+                : 'Gold/gram: ${_fmt(_fin!.goldGram)} ₺ · source: ${_fin!.goldSource}')
+            : (_loadingFin
+                ? (tr ? 'Güncel altın fiyatı alınıyor…' : 'Fetching live gold price…')
+                : (tr
+                    ? 'Canlı fiyat alınamadı — altın gram fiyatını elle girebilirsin.'
+                    : 'Live price unavailable — enter the gold price manually.')),
+      ),
     ];
   }
 
@@ -260,8 +320,21 @@ class _ZakatScreenState extends State<ZakatScreen> {
       _note(
         context,
         tr
-            ? 'Fıtır sadakası, bayram namazından önce verilir. Diyanet’in bu yıl açıkladığı kişi başı miktarı gir (yaklaşık bir günlük yemek bedeli).'
-            : 'Fitra is given before the Eid prayer. Enter this year’s announced per-person amount.',
+            ? 'Fıtır sadakası, bayram namazından önce verilir. Kişi başı miktar Diyanet’in açıkladığı güncel tutardır (yaklaşık bir günlük yemek bedeli); istersen değiştirebilirsin.'
+            : 'Fitra is given before the Eid prayer. The per-person amount is Diyanet’s current figure; you can edit it.',
+      ),
+      const Gap.sm(),
+      _sourceLine(
+        context,
+        _fin != null && _fin!.fitre > 0
+            ? (tr
+                ? 'Kişi başı fitre: ${_fmt(_fin!.fitre)} ₺ · kaynak: ${_fin!.fitreSource} (${_fin!.fitreYear})'
+                : 'Per person: ${_fmt(_fin!.fitre)} ₺ · source: ${_fin!.fitreSource} (${_fin!.fitreYear})')
+            : (_loadingFin
+                ? (tr ? 'Güncel fitre alınıyor…' : 'Fetching current fitra…')
+                : (tr
+                    ? 'Güncel fitre alınamadı — kişi başı tutarı elle girebilirsin.'
+                    : 'Could not fetch fitra — enter the amount manually.')),
       ),
     ];
   }
@@ -315,6 +388,28 @@ class _ZakatScreenState extends State<ZakatScreen> {
           ),
         ],
       ),
+    );
+  }
+
+  /// Veri kaynağı satırı (en altta: altın fiyatı/fitre nereden geldi).
+  Widget _sourceLine(BuildContext context, String text) {
+    final c = context.colors;
+    return Row(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Icon(Icons.public_rounded,
+            size: 14, color: c.gold.withValues(alpha: 0.7)),
+        const Gap.sm(),
+        Expanded(
+          child: Text(
+            text,
+            style: Theme.of(context)
+                .textTheme
+                .labelSmall
+                ?.copyWith(color: c.textTertiary, height: 1.4),
+          ),
+        ),
+      ],
     );
   }
 

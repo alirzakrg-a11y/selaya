@@ -10,6 +10,7 @@ import '../../../core/theme/app_icons.dart';
 import '../../../core/theme/app_spacing.dart';
 import '../../../core/theme/app_typography.dart';
 import '../../../core/utils/formatters.dart';
+import '../../../core/widgets/gold_icon.dart';
 import '../../../core/widgets/selaya_card.dart';
 import '../../../core/widgets/selaya_scaffold.dart';
 import '../../../core/services/notification_service.dart';
@@ -216,7 +217,7 @@ class _PrayerRow extends StatelessWidget {
       ),
       child: Row(
         children: [
-          Icon(slot.icon, color: active ? c.goldBright : c.textSecondary, size: 22),
+          GoldIcon(slot.icon, size: 22),
           const Gap.md(),
           Expanded(
             child: Text(slot.labelKey.tr(),

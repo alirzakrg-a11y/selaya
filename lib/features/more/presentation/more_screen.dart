@@ -64,7 +64,7 @@ class MoreScreen extends ConsumerWidget {
       _Entry(AppIcons.chart, 'tracking.title', Routes.tracking),
       _Entry(AppIcons.fasting, 'fasting.title', Routes.fasting),
       _Entry(AppIcons.kerahat, 'kaza.title', Routes.kaza),
-      _Entry(Icons.savings_rounded, 'zakat.title', Routes.zakat),
+      _Entry(Icons.volunteer_activism_rounded, 'zakat.title', Routes.zakat),
     ]),
     _Section('more.secDiscover', [
       _Entry(Icons.front_hand_rounded, 'duaWall.title', Routes.duaWall),

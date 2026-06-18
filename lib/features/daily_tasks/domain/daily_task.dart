@@ -100,7 +100,7 @@ const List<DailyTaskDef> taskLibrary = [
   DailyTaskDef('tefekkur', '5 dakika tefekkür et', 'Reflect for 5 minutes',
       Icons.self_improvement_rounded),
   DailyTaskDef('sadaka', 'Bir sadaka ver', 'Give a charity (sadaqah)',
-      Icons.savings_rounded),
+      Icons.volunteer_activism_rounded),
   DailyTaskDef('nafile', '2 rekât nâfile namaz kıl',
       'Pray 2 rakats of nafilah', Icons.brightness_low_rounded),
   DailyTaskDef('shukr', "Allah'a 3 nimet için şükret",

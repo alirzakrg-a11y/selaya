@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../theme/app_colors.dart';
+import 'gold_icon.dart';
 
 /// The circular gold icon badge used by the home & "More" feature grids, with a
 /// subtle, staggered pop-in animation so the grids feel alive as they appear.
@@ -22,9 +23,8 @@ class FeatureIcon extends StatelessWidget {
         shape: BoxShape.circle,
         color: c.gold.withValues(alpha: 0.13),
       ),
-      // Dark themes → white glyph for max contrast/readability (the accent tint
-      // stays in the badge background); light themes keep the coloured glyph.
-      child: Icon(icon, color: c.isDark ? c.textPrimary : c.gold, size: size),
+      // Simgeler GRADYANLI parlak altın (kullanıcı 2026-06-18: "gradyanlı böyle").
+      child: GoldIcon(icon, size: size),
     );
     // Nefes alma (pulse) animasyonu KALDIRILDI (kullanıcı 2026-06-15: "tüm
     // ikonlardan nefes alıp verme animasyonunu kaldır, sabit olsun, animasyon 0")

@@ -62,9 +62,9 @@ class AppSettings {
   final bool smartSilent; // auto-silence the phone during prayer & Friday windows
 
   const AppSettings({
-    this.themeMode = ThemeMode.light, // Sade aydınlık tema varsayılan (redesign)
-    this.amoled = false, // AMOLED yalnızca koyu temayı seçenler için
-    this.palette = AppPalette.gold,
+    this.themeMode = ThemeMode.dark, // Koyu yeşil + parlak altın varsayılan (mockup)
+    this.amoled = false, // saf siyah değil — koyu yeşil zemin
+    this.palette = AppPalette.green,
     this.textScale = 1.0,
     this.calcMethod = CalcMethod.diyanet,
     this.cityId = 'istanbul',
@@ -121,7 +121,8 @@ class SettingsController extends Notifier<AppSettings> {
     return AppSettings(
       themeMode: _modeFromName(_prefs.getString(PrefKeys.themeMode)),
       amoled: _prefs.getBool(PrefKeys.amoled) ?? false,
-      palette: AppPalette.fromId(_prefs.getString(PrefKeys.palette)),
+      palette: AppPalette.fromId(
+          _prefs.getString(PrefKeys.palette) ?? AppPalette.green.name),
       textScale: _prefs.getDouble(PrefKeys.textScale) ?? 1.0,
       calcMethod: CalcMethod.fromId(_prefs.getString(PrefKeys.calcMethod) ?? 'diyanet'),
       cityId: _prefs.getString(PrefKeys.cityId) ?? 'istanbul',
@@ -231,9 +232,9 @@ class SettingsController extends Notifier<AppSettings> {
   }
 
   static ThemeMode _modeFromName(String? name) => switch (name) {
-        'dark' => ThemeMode.dark,
+        'light' => ThemeMode.light,
         'system' => ThemeMode.system,
-        _ => ThemeMode.light, // varsayılan: sade aydınlık tema
+        _ => ThemeMode.dark, // varsayılan: koyu yeşil + parlak altın
       };
 }
 

@@ -58,6 +58,14 @@ abstract final class AppColors {
   static const Color greenDarkTextTertiary = Color(0xFF5C7165);
   static const List<Color> prayerActiveDarkGreen = [Color(0xFF15321F), Color(0xFF2A6043)];
 
+  // ── Parlak altın (mockup "premium gold" hissi) + altın kart kenarlığı ──
+  // Koyu yeşil zeminde kullanılan daha parlak/doygun altın ailesi ve kartlara
+  // ince altın çerçeve (mockup'taki gold-border kartlar).
+  static const Color goldVivid = Color(0xFFEAC25C); // parlak altın
+  static const Color goldLumin = Color(0xFFF7E3A6); // ışıltılı vurgu
+  static const Color goldBorderDark = Color(0x40E6B84F); // altın @ ~25% (kart kenarı)
+  static const List<Color> goldGradientVivid = [goldLumin, goldVivid, Color(0xFFC79A3A)];
+
   static const Color greenLightBg = Color(0xFFECF1E6);
   static const Color greenLightSurface = Color(0xFFFBFCF7);
   static const Color greenLightSurfaceAlt = Color(0xFFF1F5EB);
@@ -171,18 +179,18 @@ class SelayaColors extends ThemeExtension<SelayaColors> {
     bg: AppColors.greenDarkBg,
     surface: AppColors.greenDarkSurface,
     surfaceAlt: AppColors.greenDarkSurfaceAlt,
-    border: AppColors.darkBorder,
+    border: AppColors.goldBorderDark, // altın çerçeveli kartlar (mockup)
     glass: AppColors.darkGlass,
     textPrimary: AppColors.greenDarkTextPrimary,
     textSecondary: AppColors.greenDarkTextSecondary,
     textTertiary: AppColors.greenDarkTextTertiary,
-    gold: AppColors.gold,
-    goldBright: AppColors.goldBright,
+    gold: AppColors.goldVivid, // parlak altın
+    goldBright: AppColors.goldLumin,
     goldDeep: AppColors.goldDeep,
     accent: AppColors.accent,
     success: AppColors.success,
     danger: AppColors.danger,
-    goldGradient: AppColors.goldGradient,
+    goldGradient: AppColors.goldGradientVivid,
     prayerActive: AppColors.prayerActiveDarkGreen,
   );
 
