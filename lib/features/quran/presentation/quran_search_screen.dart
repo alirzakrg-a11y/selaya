@@ -285,7 +285,7 @@ class _VerseHit extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              '$surahName · ${ayah}. ayet',
+              '$surahName · $ayah. ayet',
               style: AppTypography.tabular(
                 Theme.of(context).textTheme.labelMedium!.copyWith(
                   color: c.gold,
