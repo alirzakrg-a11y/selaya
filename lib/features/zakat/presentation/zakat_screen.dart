@@ -5,6 +5,7 @@ import 'package:flutter/services.dart';
 import '../../../core/localization/localized_text.dart';
 import '../../../core/theme/app_colors.dart';
 import '../../../core/theme/app_spacing.dart';
+import '../../../core/utils/thousands_formatter.dart';
 import '../../../core/widgets/selaya_card.dart';
 import '../../../core/widgets/selaya_scaffold.dart';
 import '../data/finance_api.dart';
@@ -62,11 +63,12 @@ class _ZakatScreenState extends State<ZakatScreen> {
     });
   }
 
-  // Alan dolgusu: 6337.57 → "6337,57" (ondalık virgül; _v bunu ayrıştırır).
-  static String _fmt(double v) => v.toStringAsFixed(2).replaceAll('.', ',');
+  // Alan dolgusu: 6337.57 → "6.337,57" (binlik nokta + ondalık virgül; canlı
+  // biçimlendiriciyle ve _v ayrıştırıcısıyla uyumlu).
+  String _fmt(double v) => NumberFormat.decimalPattern('tr')
+      .format(double.parse(v.toStringAsFixed(2)));
 
-  double _v(TextEditingController c) =>
-      double.tryParse(c.text.replaceAll(',', '.').trim()) ?? 0;
+  double _v(TextEditingController c) => parseTrNumber(c.text);
 
   @override
   void dispose() {
@@ -284,6 +286,7 @@ class _ZakatScreenState extends State<ZakatScreen> {
         _fitreCount,
         tr ? 'Kişi sayısı' : 'Number of people',
         Icons.groups_rounded,
+        money: false,
       ),
       const Gap.md(),
       SelayaCard(
@@ -340,16 +343,19 @@ class _ZakatScreenState extends State<ZakatScreen> {
   }
 
   // ---------------- ortak parçalar ----------------
-  Widget _field(TextEditingController ctrl, String label, IconData icon) {
+  Widget _field(TextEditingController ctrl, String label, IconData icon,
+      {bool money = true}) {
     final c = context.colors;
     return Padding(
       padding: const EdgeInsets.only(bottom: AppSpacing.sm),
       child: TextField(
         controller: ctrl,
-        keyboardType: const TextInputType.numberWithOptions(decimal: true),
-        inputFormatters: [
-          FilteringTextInputFormatter.allow(RegExp(r'[0-9.,]')),
-        ],
+        keyboardType: TextInputType.numberWithOptions(decimal: money),
+        // Para alanları: yazarken canlı binlik ayraç (1.234.567,89). Kişi
+        // sayısı: sadece tam sayı.
+        inputFormatters: money
+            ? const [TrThousandsFormatter()]
+            : [FilteringTextInputFormatter.digitsOnly],
         onChanged: (_) => setState(() {}),
         decoration: InputDecoration(
           labelText: label,
