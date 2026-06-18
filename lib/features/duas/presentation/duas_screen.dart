@@ -146,32 +146,28 @@ class _DuasScreenState extends ConsumerState<DuasScreen> {
             ),
           ),
         ),
-        // Kategoriler üstten ÇİP yerine KART-TABLO (kullanıcı 2026-06-17): 3
-        // sütunlu kart grid; seçili kart altın çerçeveyle ayrışır, alttaki liste
-        // ona göre filtrelenir. FittedBox sayesinde büyük fontta da taşmaz.
-        Padding(
-          padding: const EdgeInsets.fromLTRB(
-            AppSpacing.base,
-            AppSpacing.xs,
-            AppSpacing.base,
-            0,
-          ),
-          child: GridView.count(
-            shrinkWrap: true,
-            physics: const NeverScrollableScrollPhysics(),
-            crossAxisCount: 3,
-            mainAxisSpacing: AppSpacing.sm,
-            crossAxisSpacing: AppSpacing.sm,
-            childAspectRatio: 1.55,
-            children: [
-              for (final cat in _categories)
-                _CatCard(
+        // Kategoriler: KOMPAKT YATAY kart şeridi (kullanıcı 2026-06-17). Eski
+        // 3 sütunlu grid 2 sıra yer kaplayıp dua listesini aşağı itiyordu →
+        // tek sıra; kart stili korunur ama dualar tam görünür.
+        SizedBox(
+          height: 62,
+          child: ListView.separated(
+            scrollDirection: Axis.horizontal,
+            padding: const EdgeInsets.symmetric(horizontal: AppSpacing.base),
+            itemCount: _categories.length,
+            separatorBuilder: (_, _) => const Gap.sm(),
+            itemBuilder: (_, i) {
+              final cat = _categories[i];
+              return SizedBox(
+                width: 82,
+                child: _CatCard(
                   label: _label(cat),
                   icon: _catIcon(cat),
                   selected: cat == _category,
                   onTap: () => setState(() => _category = cat),
                 ),
-            ],
+              );
+            },
           ),
         ),
         const Gap.sm(),
@@ -278,7 +274,7 @@ class _CatCard extends StatelessWidget {
       borderRadius: AppRadius.rMd,
       child: AnimatedContainer(
         duration: const Duration(milliseconds: 160),
-        padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 8),
+        padding: const EdgeInsets.symmetric(horizontal: 4, vertical: 6),
         decoration: BoxDecoration(
           color: selected ? c.gold.withValues(alpha: 0.16) : c.surfaceAlt,
           borderRadius: AppRadius.rMd,
@@ -291,8 +287,8 @@ class _CatCard extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           mainAxisSize: MainAxisSize.min,
           children: [
-            Icon(icon, size: 22, color: selected ? c.gold : c.textSecondary),
-            const SizedBox(height: 6),
+            Icon(icon, size: 20, color: selected ? c.gold : c.textSecondary),
+            const SizedBox(height: 5),
             FittedBox(
               fit: BoxFit.scaleDown,
               child: Text(

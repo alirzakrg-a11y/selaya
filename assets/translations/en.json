@@ -159,6 +159,9 @@
   "zakat": {
     "title": "Zakat Calculator"
   },
+  "babyNames": {
+    "title": "Baby Names"
+  },
   "kaza": {
     "title": "Missed Prayers",
     "totalDebt": "Total missed prayers",

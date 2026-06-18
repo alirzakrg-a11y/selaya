@@ -7,6 +7,7 @@ import '../../features/akis/presentation/akis_screen.dart';
 import '../../features/asma_ul_husna/presentation/asma_screen.dart';
 import '../../features/auth/presentation/account_screen.dart';
 import '../../features/auth/presentation/auth_screen.dart';
+import '../../features/baby_names/presentation/baby_names_screen.dart';
 import '../../features/calendar/presentation/calendar_screen.dart';
 import '../../features/daily_tasks/presentation/daily_tasks_screen.dart';
 import '../../features/dhikr/presentation/dhikr_screen.dart';
@@ -106,6 +107,7 @@ final routerProvider = Provider<GoRouter>((ref) {
       fs(Routes.duas, (_, _) => const DuasScreen()),
       fs(Routes.tesbihat, (_, _) => const TesbihatScreen()),
       fs(Routes.zakat, (_, _) => const ZakatScreen()),
+      fs(Routes.babyNames, (_, _) => const BabyNamesScreen()),
       fs(Routes.verses,
           (_, _) => const InspirationListScreen(
               type: 'verse', titleKey: 'more.verses')),

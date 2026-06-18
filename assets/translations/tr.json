@@ -159,6 +159,9 @@
   "zakat": {
     "title": "Zekât Hesapla"
   },
+  "babyNames": {
+    "title": "Bebek İsimleri"
+  },
   "kaza": {
     "title": "Kazalar",
     "totalDebt": "Toplam kaza namazı",
