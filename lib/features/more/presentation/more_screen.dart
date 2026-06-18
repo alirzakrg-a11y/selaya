@@ -44,6 +44,7 @@ class MoreScreen extends ConsumerWidget {
       _Entry(Icons.self_improvement_rounded, 'more.namazGuide',
           Routes.namazGuide),
       _Entry(Icons.water_drop_rounded, 'more.abdestGuide', Routes.abdestGuide),
+      _Entry(Icons.travel_explore_rounded, 'hajj.title', Routes.hajj),
       _Entry(Icons.menu_book_rounded, 'ilmihal.title', Routes.ilmihal),
       _Entry(AppIcons.tasbih, 'dhikr.title', Routes.dhikr),
       _Entry(Icons.repeat_rounded, 'tesbihat.title', Routes.tesbihat),
@@ -56,6 +57,7 @@ class MoreScreen extends ConsumerWidget {
       _Entry(AppIcons.mosque, 'mosques.title', Routes.mosques),
     ]),
     _Section('more.secTracking', [
+      _Entry(Icons.local_fire_department_rounded, 'streak.title', Routes.streak),
       _Entry(Icons.auto_stories_rounded, 'hatim.title', Routes.hatim),
       _Entry(AppIcons.chart, 'tracking.title', Routes.tracking),
       _Entry(AppIcons.fasting, 'fasting.title', Routes.fasting),

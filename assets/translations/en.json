@@ -168,6 +168,12 @@
   "ilmihal": {
     "title": "Islamic Basics"
   },
+  "hajj": {
+    "title": "Hajj & Umrah Guide"
+  },
+  "streak": {
+    "title": "My Streak"
+  },
   "kaza": {
     "title": "Missed Prayers",
     "totalDebt": "Total missed prayers",

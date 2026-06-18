@@ -46,6 +46,8 @@ abstract final class Routes {
   static const babyNames = '/baby-names'; // İslami bebek isimleri
   static const quranSearch = '/quran-search'; // Kur'an'da arama
   static const ilmihal = '/ilmihal'; // ilmihal / sık sorulan dini sorular
+  static const hajj = '/hajj'; // Hac & Umre rehberi
+  static const streak = '/streak'; // İbadet serisi & rozetler
   static const tasks = '/tasks'; // günlük görevler (#18)
   static const abdestGuide = '/abdest'; // abdest & taharet rehberi HUB
   static const guideDetail = '/guide-detail'; // tekil rehber (extra: guide+collection)

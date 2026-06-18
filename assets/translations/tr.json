@@ -168,6 +168,12 @@
   "ilmihal": {
     "title": "İlmihal"
   },
+  "hajj": {
+    "title": "Hac & Umre Rehberi"
+  },
+  "streak": {
+    "title": "İbadet Serim"
+  },
   "kaza": {
     "title": "Kazalar",
     "totalDebt": "Toplam kaza namazı",
