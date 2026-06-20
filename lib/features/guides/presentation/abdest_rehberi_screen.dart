@@ -9,17 +9,17 @@ import '../../../core/theme/app_spacing.dart';
 import '../../../core/widgets/selaya_card.dart';
 import '../../../core/widgets/selaya_scaffold.dart';
 import '../domain/guide.dart';
+import '../domain/wudu_basics.dart';
+import 'guide_widgets.dart';
 
-/// Abdest & Taharet Rehberi hub'ı — İslam'daki temizlik (taharet) çeşitleri:
-/// Abdest, Gusül, Teyemmüm, Mest üzerine mesh, Yara/sargı üzerine mesh.
-/// Her kart tekil görselli/adımlı rehbere (GuideScreen) gider.
+/// Abdest & Taharet Rehberi hub'ı — adım adım abdest + hızlı erişim + abdestin
+/// esasları (farzları, sünnetleri, bozan şeyler) + diğer temizlik çeşitleri
+/// (gusül, teyemmüm, mest/sargı üzerine mesh).
 class AbdestRehberiScreen extends StatelessWidget {
   const AbdestRehberiScreen({super.key});
 
-  // (guide, panel görsel-koleksiyonu, alt başlık TR, alt başlık EN)
-  static const _types = <(Guide, String, String, String)>[
-    (abdestGuide, 'guide_abdest', 'Namaz için temizlik — adım adım görselli',
-        'Purity for prayer — illustrated steps'),
+  // Abdest hero olarak ayrıldı; diğer taharet türleri kart olarak listelenir.
+  static const _otherTypes = <(Guide, String, String, String)>[
     (gusulGuide, '', 'Boy abdesti — tüm vücudun yıkanması',
         'Full-body ritual washing'),
     (teyemmumGuide, '', 'Su yoksa temiz toprakla abdest',
@@ -32,55 +32,83 @@ class AbdestRehberiScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final c = context.colors;
     final lang = context.langCode;
+    final tr = lang == 'tr';
     return SelayaScaffold(
       title: 'more.abdestGuide'.tr(),
       showBack: true,
       body: ListView(
         padding: const EdgeInsets.fromLTRB(
-            AppSpacing.base, AppSpacing.md, AppSpacing.base, AppSpacing.xxxl),
+            AppSpacing.base, AppSpacing.sm, AppSpacing.base, AppSpacing.xxxl),
         children: [
-          Padding(
-            padding: const EdgeInsets.only(left: 4, bottom: 8),
-            child: Text(
-                lang == 'tr'
-                    ? 'İSLAM\'DA TEMİZLİK (TAHARET) ÇEŞİTLERİ'
-                    : 'TYPES OF PURIFICATION (TAHARAH)',
-                style: Theme.of(context).textTheme.labelMedium?.copyWith(
-                    color: c.gold,
-                    letterSpacing: 1.1,
-                    fontWeight: FontWeight.w700)),
+          GuideHero(
+            icon: Icons.water_drop_rounded,
+            title: tr ? 'Abdest Nasıl Alınır?' : 'How to Perform Wudu',
+            subtitle: tr
+                ? 'Adım adım görselli anlatım'
+                : 'Illustrated step-by-step walkthrough',
+            onTap: () => context.push(Routes.guideDetail,
+                extra: (guide: abdestGuide, collection: 'guide_abdest')),
           ),
-          for (final t in _types) ...[
+          const Gap.md(),
+          Row(children: [
+            Expanded(
+                child: GuideQuickLink(
+                    icon: Icons.mosque_rounded,
+                    label: tr ? 'Namaz' : 'Prayer',
+                    onTap: () => context.push(Routes.namazGuide))),
+            const Gap.sm(),
+            Expanded(
+                child: GuideQuickLink(
+                    icon: Icons.explore_rounded,
+                    label: tr ? 'Kıble' : 'Qibla',
+                    onTap: () => context.push(Routes.qibla))),
+            const Gap.sm(),
+            Expanded(
+                child: GuideQuickLink(
+                    icon: Icons.schedule_rounded,
+                    label: tr ? 'Vakitler' : 'Times',
+                    onTap: () => context.push(Routes.times))),
+          ]),
+          const Gap.lg(),
+          GuideSectionLabel(tr ? 'ABDESTİN ESASLARI' : 'WUDU ESSENTIALS'),
+          const Gap.sm(),
+          GuideExpandCard(
+              icon: Icons.checklist_rounded,
+              title: tr ? 'Abdestin Farzları' : 'Obligations of Wudu',
+              subtitle: tr ? 'Olmazsa olmaz 4 esas' : 'The 4 essentials',
+              items: abdestFarzlari,
+              lang: lang),
+          const Gap.sm(),
+          GuideExpandCard(
+              icon: Icons.auto_awesome_rounded,
+              title: tr ? 'Abdestin Sünnetleri' : 'Sunnahs of Wudu',
+              subtitle: tr ? 'Sevabı artıran edepler' : 'Recommended acts',
+              items: abdestSunnetleri,
+              lang: lang),
+          const Gap.sm(),
+          GuideExpandCard(
+              icon: Icons.report_gmailerrorred_rounded,
+              title: tr ? 'Abdesti Bozan Şeyler' : 'What Invalidates Wudu',
+              subtitle: tr ? 'Yeniden abdest gerektirir' : 'Require renewing wudu',
+              items: abdestiBozanlar,
+              lang: lang),
+          const Gap.lg(),
+          GuideSectionLabel(
+              tr ? 'DİĞER TEMİZLİK ÇEŞİTLERİ' : 'OTHER PURIFICATION'),
+          const Gap.sm(),
+          for (final t in _otherTypes) ...[
             _TypeCard(
                 guide: t.$1,
                 collection: t.$2,
-                subtitle: lang == 'tr' ? t.$3 : t.$4,
+                subtitle: tr ? t.$3 : t.$4,
                 lang: lang),
             const Gap.sm(),
           ],
           const Gap.sm(),
-          Container(
-            padding: const EdgeInsets.all(AppSpacing.md),
-            decoration: BoxDecoration(
-              color: c.gold.withValues(alpha: 0.08),
-              borderRadius: BorderRadius.circular(12),
-              border: Border.all(color: c.gold.withValues(alpha: 0.25)),
-            ),
-            child: Row(children: [
-              Icon(Icons.menu_book_rounded, size: 16, color: c.gold),
-              const Gap.sm(),
-              Expanded(
-                child: Text(
-                    lang == 'tr'
-                        ? 'Kaynak: Diyanet İşleri Başkanlığı İlmihali esas alınmıştır. Ayrıntı için yetkili kaynaklara başvurun.'
-                        : 'Source: based on the Diyanet catechism. Consult qualified sources for detail.',
-                    style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                        color: c.textSecondary, height: 1.4)),
-              ),
-            ]),
-          ),
+          GuideSourceNote(tr
+              ? 'Kaynak: Diyanet İşleri Başkanlığı İlmihali esas alınmıştır. Ayrıntı için yetkili kaynaklara başvurun.'
+              : 'Source: based on the Diyanet catechism. Consult qualified sources for detail.'),
         ],
       ),
     );
@@ -123,7 +151,7 @@ class _TypeCard extends StatelessWidget {
                         .textTheme
                         .titleSmall
                         ?.copyWith(fontWeight: FontWeight.w800)),
-                const SizedBox(height: 2),
+                const Gap.xxs(),
                 Text(subtitle,
                     style: TextStyle(
                         color: c.textSecondary, fontSize: 12.5, height: 1.3)),

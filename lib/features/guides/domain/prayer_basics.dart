@@ -1,13 +1,8 @@
+import 'basic_item.dart';
+
 /// Namazın temelleri — şartları, rükünleri, bozan şeyler, secde-i sehv.
 /// İçerik Diyanet İlmihali esas alınarak hazırlanmıştır (Hanefî). Ayrıntı için
 /// yetkili kaynaklara başvurulmalıdır.
-class BasicItem {
-  final String titleTr, titleEn;
-  final String descTr, descEn;
-  const BasicItem(this.titleTr, this.titleEn, this.descTr, this.descEn);
-  String title(String l) => l == 'tr' ? titleTr : titleEn;
-  String desc(String l) => l == 'tr' ? descTr : descEn;
-}
 
 /// Namazın şartları — namaza BAŞLAMADAN önce yerine getirilen (dış) farzlar.
 const namazSartlari = <BasicItem>[
