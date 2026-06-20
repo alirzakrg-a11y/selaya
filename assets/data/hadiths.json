@@ -375,21 +375,6 @@
     }
   },
   {
-    "id": "h_x2",
-    "collection": "Müslim",
-    "narrator": "",
-    "grade": "sahih",
-    "arabic": "الطُّهُورُ شَطْرُ الْإِيمَانِ",
-    "translations": {
-      "tr": {
-        "text": "Temizlik imanın yarısıdır."
-      },
-      "en": {
-        "text": "Cleanliness is half of faith."
-      }
-    }
-  },
-  {
     "id": "h_x3",
     "collection": "Buhârî",
     "narrator": "",

@@ -493,23 +493,6 @@
     }
   },
   {
-    "id": "x_hasbunallah",
-    "category": "daily",
-    "source": "Âl-i İmrân 173",
-    "arabic": "حَسْبُنَا اللَّهُ وَنِعْمَ الْوَكِيلُ",
-    "transliteration": "Hasbünallâhü ve ni'me'l-vekîl",
-    "translations": {
-      "tr": {
-        "title": "Allah Bize Yeter",
-        "text": "Allah bize yeter, O ne güzel vekildir."
-      },
-      "en": {
-        "title": "Allah is Sufficient",
-        "text": "Allah is sufficient for us, and He is the best Disposer of affairs."
-      }
-    }
-  },
-  {
     "id": "x_salavat",
     "category": "prayer",
     "source": "Buhârî & Müslim",
@@ -574,23 +557,6 @@
       "en": {
         "title": "Contentment",
         "text": "I am pleased with Allah as Lord, Islam as religion, and Muhammad as Prophet."
-      }
-    }
-  },
-  {
-    "id": "x_sere",
-    "category": "protection",
-    "source": "Müslim",
-    "arabic": "أَعُوذُ بِكَلِمَاتِ اللَّهِ التَّامَّاتِ مِنْ شَرِّ مَا خَلَقَ",
-    "transliteration": "Eûzü bi-kelimâtillâhi't-tâmmâti min şerri mâ halak",
-    "translations": {
-      "tr": {
-        "title": "Şerden Korunma",
-        "text": "Yarattığı şeylerin şerrinden, Allah'ın eksiksiz kelimelerine sığınırım."
-      },
-      "en": {
-        "title": "Refuge from Evil",
-        "text": "I seek refuge in the perfect words of Allah from the evil of what He has created."
       }
     }
   },

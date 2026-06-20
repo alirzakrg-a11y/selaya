@@ -1,7 +1,7 @@
 ﻿name: selaya
 description: "SELAYA — More Than Prayer Times. Premium Islamic lifestyle & prayer companion."
 publish_to: 'none'
-version: 1.0.181+2182
+version: 1.0.182+2183
 
 environment:
   sdk: ^3.12.0
