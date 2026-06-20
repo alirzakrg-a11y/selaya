@@ -172,7 +172,7 @@
   {
     "id": "distress_01",
     "category": "protection",
-    "source": "Buhârî",
+    "source": "Âl-i İmrân 173",
     "arabic": "حَسْبُنَا اللَّهُ وَنِعْمَ الْوَكِيلُ",
     "transliteration": "Hasbünallâhü ve ni'me'l-vekîl",
     "translations": {
@@ -632,16 +632,16 @@
     "id": "x_anababa",
     "category": "daily",
     "source": "İbrâhim 41",
-    "arabic": "رَبَّنَا اغْفِرْ لِي وَلِوَالِدَيَّ وَلِلْمُؤْمِنِينَ",
-    "transliteration": "Rabbenâ'ğfir lî ve li-vâlideyye ve li'l-mü'minîn",
+    "arabic": "رَبَّنَا اغْفِرْ لِي وَلِوَالِدَيَّ وَلِلْمُؤْمِنِينَ يَوْمَ يَقُومُ الْحِسَابُ",
+    "transliteration": "Rabbenâ'ğfir lî ve li-vâlideyye ve li'l-mü'minîne yevme yekûmu'l-hisâb",
     "translations": {
       "tr": {
         "title": "Ana-Baba İçin Dua",
-        "text": "Rabbim! Beni, anne babamı ve bütün müminleri bağışla."
+        "text": "Rabbimiz! Beni, anne babamı ve bütün müminleri hesabın görüleceği gün bağışla."
       },
       "en": {
         "title": "For One's Parents",
-        "text": "Our Lord, forgive me, my parents, and all the believers."
+        "text": "Our Lord, forgive me, my parents and the believers on the Day the reckoning takes place."
       }
     }
   },
@@ -937,17 +937,17 @@
   {
     "id": "qd_20_25",
     "category": "quran",
-    "source": "Tâhâ 25",
-    "arabic": "قَالَ رَبِّ ٱشْرَحْ لِى صَدْرِى",
-    "transliteration": "Kale rabbişrah li sadri",
+    "source": "Tâhâ 25-28",
+    "arabic": "قَالَ رَبِّ اشْرَحْ لِي صَدْرِي وَيَسِّرْ لِي أَمْرِي وَاحْلُلْ عُقْدَةً مِنْ لِسَانِي يَفْقَهُوا قَوْلِي",
+    "transliteration": "Kâle rabbişrah lî sadrî, ve yessir lî emrî, vahlul ukdeten min lisânî, yefkahû kavlî",
     "translations": {
       "tr": {
         "title": "Kur'an'dan Dua",
-        "text": "Musa: \"Rabbim! Göğsümü genişlet, işimi kolaylaştır, dilimin düğümünü çöz ki sözümü iyi anlasınlar. Ailemden kardeşim Harun'u bana vezir yap, beni onunla destekle, onu görevimde ortak kıl ki Seni daha çok tesbih edelim ve çokça analım. Şüphesiz Sen bizi görmektesin\" dedi."
+        "text": "Mûsâ: “Rabbim! Göğsümü genişlet, işimi kolaylaştır, dilimdeki düğümü çöz ki sözümü iyi anlasınlar” dedi."
       },
       "en": {
         "title": "Dua from the Quran",
-        "text": "[Moses] said, \"My Lord, expand for me my breast [with assurance]"
+        "text": "[Moses] said: “My Lord, expand for me my breast, ease my task, and untie the knot from my tongue so they understand my speech.”"
       }
     }
   },

@@ -1,16 +1,226 @@
 [
-  { "id": "subhanallah", "arabic": "سُبْحَانَ اللّٰهِ", "transliteration": "Sübhânallâh", "target": 33, "translations": { "tr": { "name": "Sübhânallah", "meaning": "Allah'ı her türlü eksiklikten tenzih ederim." }, "en": { "name": "Subhanallah", "meaning": "Glory be to Allah." } } },
-  { "id": "alhamdulillah", "arabic": "اَلْحَمْدُ لِلّٰهِ", "transliteration": "Elhamdülillâh", "target": 33, "translations": { "tr": { "name": "Elhamdülillah", "meaning": "Hamd, Allah'a mahsustur." }, "en": { "name": "Alhamdulillah", "meaning": "All praise is due to Allah." } } },
-  { "id": "allahuakbar", "arabic": "اَللّٰهُ أَكْبَرُ", "transliteration": "Allâhü ekber", "target": 33, "translations": { "tr": { "name": "Allahu Ekber", "meaning": "Allah en büyüktür." }, "en": { "name": "Allahu Akbar", "meaning": "Allah is the Greatest." } } },
-  { "id": "lailaheillallah", "arabic": "لَا إِلٰهَ إِلَّا اللّٰهُ", "transliteration": "Lâ ilâhe illallâh", "target": 100, "translations": { "tr": { "name": "Lâ ilâhe illallah", "meaning": "Allah'tan başka ilah yoktur." }, "en": { "name": "La ilaha illallah", "meaning": "There is no god but Allah." } } },
-  { "id": "istighfar", "arabic": "أَسْتَغْفِرُ اللّٰهَ", "transliteration": "Estağfirullâh", "target": 100, "translations": { "tr": { "name": "Estağfirullah", "meaning": "Allah'tan bağışlanma dilerim." }, "en": { "name": "Astaghfirullah", "meaning": "I seek forgiveness from Allah." } } },
-  { "id": "salawat", "arabic": "اَللّٰهُمَّ صَلِّ عَلٰى مُحَمَّدٍ", "transliteration": "Allâhümme salli alâ Muhammed", "target": 100, "translations": { "tr": { "name": "Salavât-ı Şerîfe", "meaning": "Allah'ım, Efendimiz Muhammed'e salât eyle." }, "en": { "name": "Salawat", "meaning": "O Allah, send blessings upon Muhammad." } } },
-  { "id": "subhanallahibihamdihi", "arabic": "سُبْحَانَ اللّٰهِ وَبِحَمْدِهٖ", "transliteration": "Sübhânallâhi ve bi-hamdihî", "target": 100, "translations": { "tr": { "name": "Sübhânallâhi ve bihamdihî", "meaning": "Allah'ı hamdiyle tesbih ederim." }, "en": { "name": "Subhanallahi wa bihamdihi", "meaning": "Glory and praise be to Allah." } } },
-  { "id": "subhanallahilazim", "arabic": "سُبْحَانَ اللّٰهِ الْعَظٖيمِ", "transliteration": "Sübhânallâhi'l-azîm", "target": 33, "translations": { "tr": { "name": "Sübhânallâhi'l-azîm", "meaning": "Yüce Allah'ı her türlü eksiklikten tenzih ederim." }, "en": { "name": "Subhanallahil-Azim", "meaning": "Glory be to Allah, the Most Great." } } },
-  { "id": "havkale", "arabic": "لَا حَوْلَ وَلَا قُوَّةَ إِلَّا بِاللّٰهِ", "transliteration": "Lâ havle velâ kuvvete illâ billâh", "target": 33, "translations": { "tr": { "name": "Havkale", "meaning": "Güç ve kuvvet ancak Allah'ındır." }, "en": { "name": "La hawla wa la quwwata illa billah", "meaning": "There is no might nor power except with Allah." } } },
-  { "id": "tehlil", "arabic": "لَا إِلٰهَ إِلَّا اللّٰهُ وَحْدَهُ لَا شَرٖيكَ لَهُ، لَهُ الْمُلْكُ وَلَهُ الْحَمْدُ وَهُوَ عَلٰى كُلِّ شَيْءٍ قَدٖيرٌ", "transliteration": "Lâ ilâhe illallâhü vahdehû lâ şerîke leh, lehü'l-mülkü ve lehü'l-hamdü ve hüve alâ külli şey'in kadîr", "target": 100, "translations": { "tr": { "name": "Tehlil", "meaning": "Allah'tan başka ilah yoktur; O tektir, ortağı yoktur. Mülk O'nun, hamd O'nundur ve O her şeye kâdirdir." }, "en": { "name": "Tahlil", "meaning": "There is no god but Allah alone, He has no partner; His is the dominion and His is the praise, and He is over all things competent." } } },
-  { "id": "hasbunallah", "arabic": "حَسْبُنَا اللّٰهُ وَنِعْمَ الْوَكٖيلُ", "transliteration": "Hasbünallâhü ve ni'me'l-vekîl", "target": 100, "translations": { "tr": { "name": "Hasbünallâhü ve ni'me'l-vekîl", "meaning": "Allah bize yeter; O ne güzel vekildir." }, "en": { "name": "Hasbunallahu wa ni'mal-wakil", "meaning": "Allah is sufficient for us, and He is the best disposer of affairs." } } },
-  { "id": "istighfarazim", "arabic": "أَسْتَغْفِرُ اللّٰهَ الْعَظٖيمَ وَأَتُوبُ إِلَيْهِ", "transliteration": "Estağfirullâhe'l-azîme ve etûbü ileyh", "target": 100, "translations": { "tr": { "name": "Estağfirullâhe'l-azîm", "meaning": "Yüce Allah'tan bağışlanma diler ve O'na tövbe ederim." }, "en": { "name": "Astaghfirullahal-Azim", "meaning": "I seek forgiveness from Allah the Mighty and turn to Him in repentance." } } },
-  { "id": "bakiyat", "arabic": "سُبْحَانَ اللّٰهِ وَالْحَمْدُ لِلّٰهِ وَلَا إِلٰهَ إِلَّا اللّٰهُ وَاللّٰهُ أَكْبَرُ", "transliteration": "Sübhânallâhi ve'l-hamdü lillâhi ve lâ ilâhe illallâhü vallâhü ekber", "target": 33, "translations": { "tr": { "name": "Bâkiyât-ı Sâlihât", "meaning": "Allah'ı tesbih ederim; hamd Allah'a mahsustur; Allah'tan başka ilah yoktur ve Allah en büyüktür." }, "en": { "name": "Baqiyat as-Salihat", "meaning": "Glory be to Allah, praise be to Allah, there is no god but Allah, and Allah is the Greatest." } } },
-  { "id": "hasbiyallah", "arabic": "حَسْبِيَ اللّٰهُ لَا إِلٰهَ إِلَّا هُوَ", "transliteration": "Hasbiyallâhü lâ ilâhe illâ hû", "target": 7, "translations": { "tr": { "name": "Hasbiyallah", "meaning": "Allah bana yeter; O'ndan başka ilah yoktur." }, "en": { "name": "Hasbiyallah", "meaning": "Allah is sufficient for me; there is no god but He." } } }
+  {
+    "id": "subhanallah",
+    "arabic": "سُبْحَانَ اللّٰهِ",
+    "transliteration": "Sübhânallâh",
+    "target": 33,
+    "translations": {
+      "tr": {
+        "name": "Sübhânallah",
+        "meaning": "Allah'ı her türlü eksiklikten tenzih ederim."
+      },
+      "en": {
+        "name": "Subhanallah",
+        "meaning": "Glory be to Allah."
+      }
+    }
+  },
+  {
+    "id": "alhamdulillah",
+    "arabic": "اَلْحَمْدُ لِلّٰهِ",
+    "transliteration": "Elhamdülillâh",
+    "target": 33,
+    "translations": {
+      "tr": {
+        "name": "Elhamdülillah",
+        "meaning": "Hamd, Allah'a mahsustur."
+      },
+      "en": {
+        "name": "Alhamdulillah",
+        "meaning": "All praise is due to Allah."
+      }
+    }
+  },
+  {
+    "id": "allahuakbar",
+    "arabic": "اَللّٰهُ أَكْبَرُ",
+    "transliteration": "Allâhü ekber",
+    "target": 33,
+    "translations": {
+      "tr": {
+        "name": "Allahu Ekber",
+        "meaning": "Allah en büyüktür."
+      },
+      "en": {
+        "name": "Allahu Akbar",
+        "meaning": "Allah is the Greatest."
+      }
+    }
+  },
+  {
+    "id": "lailaheillallah",
+    "arabic": "لَا إِلٰهَ إِلَّا اللّٰهُ",
+    "transliteration": "Lâ ilâhe illallâh",
+    "target": 100,
+    "translations": {
+      "tr": {
+        "name": "Lâ ilâhe illallah",
+        "meaning": "Allah'tan başka ilah yoktur."
+      },
+      "en": {
+        "name": "La ilaha illallah",
+        "meaning": "There is no god but Allah."
+      }
+    }
+  },
+  {
+    "id": "istighfar",
+    "arabic": "أَسْتَغْفِرُ اللّٰهَ",
+    "transliteration": "Estağfirullâh",
+    "target": 100,
+    "translations": {
+      "tr": {
+        "name": "Estağfirullah",
+        "meaning": "Allah'tan bağışlanma dilerim."
+      },
+      "en": {
+        "name": "Astaghfirullah",
+        "meaning": "I seek forgiveness from Allah."
+      }
+    }
+  },
+  {
+    "id": "salawat",
+    "arabic": "اَللّٰهُمَّ صَلِّ عَلٰى مُحَمَّدٍ",
+    "transliteration": "Allâhümme salli alâ Muhammed",
+    "target": 100,
+    "translations": {
+      "tr": {
+        "name": "Salavât-ı Şerîfe",
+        "meaning": "Allah'ım, Efendimiz Muhammed'e salât eyle."
+      },
+      "en": {
+        "name": "Salawat",
+        "meaning": "O Allah, send blessings upon Muhammad."
+      }
+    }
+  },
+  {
+    "id": "subhanallahibihamdihi",
+    "arabic": "سُبْحَانَ اللّٰهِ وَبِحَمْدِهٖ",
+    "transliteration": "Sübhânallâhi ve bi-hamdihî",
+    "target": 100,
+    "translations": {
+      "tr": {
+        "name": "Sübhânallâhi ve bihamdihî",
+        "meaning": "Allah'ı hamdiyle tesbih ederim."
+      },
+      "en": {
+        "name": "Subhanallahi wa bihamdihi",
+        "meaning": "Glory and praise be to Allah."
+      }
+    }
+  },
+  {
+    "id": "subhanallahilazim",
+    "arabic": "سُبْحَانَ اللّٰهِ الْعَظٖيمِ",
+    "transliteration": "Sübhânallâhi'l-azîm",
+    "target": 33,
+    "translations": {
+      "tr": {
+        "name": "Sübhânallâhi'l-azîm",
+        "meaning": "Yüce Allah'ı her türlü eksiklikten tenzih ederim."
+      },
+      "en": {
+        "name": "Subhanallahil-Azim",
+        "meaning": "Glory be to Allah, the Most Great."
+      }
+    }
+  },
+  {
+    "id": "havkale",
+    "arabic": "لَا حَوْلَ وَلَا قُوَّةَ إِلَّا بِاللّٰهِ",
+    "transliteration": "Lâ havle velâ kuvvete illâ billâh",
+    "target": 33,
+    "translations": {
+      "tr": {
+        "name": "Havkale",
+        "meaning": "Güç ve kuvvet ancak Allah’ın yardımıyladır."
+      },
+      "en": {
+        "name": "La hawla wa la quwwata illa billah",
+        "meaning": "There is no might nor power except with Allah."
+      }
+    }
+  },
+  {
+    "id": "tehlil",
+    "arabic": "لَا إِلٰهَ إِلَّا اللّٰهُ وَحْدَهُ لَا شَرٖيكَ لَهُ، لَهُ الْمُلْكُ وَلَهُ الْحَمْدُ وَهُوَ عَلٰى كُلِّ شَيْءٍ قَدٖيرٌ",
+    "transliteration": "Lâ ilâhe illallâhü vahdehû lâ şerîke leh, lehü'l-mülkü ve lehü'l-hamdü ve hüve alâ külli şey'in kadîr",
+    "target": 100,
+    "translations": {
+      "tr": {
+        "name": "Tehlil",
+        "meaning": "Allah'tan başka ilah yoktur; O tektir, ortağı yoktur. Mülk O'nun, hamd O'nundur ve O her şeye kâdirdir."
+      },
+      "en": {
+        "name": "Tahlil",
+        "meaning": "There is no god but Allah alone, He has no partner; His is the dominion and His is the praise, and He is over all things competent."
+      }
+    }
+  },
+  {
+    "id": "hasbunallah",
+    "arabic": "حَسْبُنَا اللّٰهُ وَنِعْمَ الْوَكٖيلُ",
+    "transliteration": "Hasbünallâhü ve ni'me'l-vekîl",
+    "target": 100,
+    "translations": {
+      "tr": {
+        "name": "Hasbünallâhü ve ni'me'l-vekîl",
+        "meaning": "Allah bize yeter; O ne güzel vekildir."
+      },
+      "en": {
+        "name": "Hasbunallahu wa ni'mal-wakil",
+        "meaning": "Allah is sufficient for us, and He is the best disposer of affairs."
+      }
+    }
+  },
+  {
+    "id": "istighfarazim",
+    "arabic": "أَسْتَغْفِرُ اللّٰهَ الْعَظٖيمَ وَأَتُوبُ إِلَيْهِ",
+    "transliteration": "Estağfirullâhe'l-azîme ve etûbü ileyh",
+    "target": 100,
+    "translations": {
+      "tr": {
+        "name": "Estağfirullâhe'l-azîm",
+        "meaning": "Yüce Allah'tan bağışlanma diler ve O'na tövbe ederim."
+      },
+      "en": {
+        "name": "Astaghfirullahal-Azim",
+        "meaning": "I seek forgiveness from Allah the Mighty and turn to Him in repentance."
+      }
+    }
+  },
+  {
+    "id": "bakiyat",
+    "arabic": "سُبْحَانَ اللّٰهِ وَالْحَمْدُ لِلّٰهِ وَلَا إِلٰهَ إِلَّا اللّٰهُ وَاللّٰهُ أَكْبَرُ",
+    "transliteration": "Sübhânallâhi ve'l-hamdü lillâhi ve lâ ilâhe illallâhü vallâhü ekber",
+    "target": 33,
+    "translations": {
+      "tr": {
+        "name": "Bâkiyât-ı Sâlihât",
+        "meaning": "Allah'ı tesbih ederim; hamd Allah'a mahsustur; Allah'tan başka ilah yoktur ve Allah en büyüktür."
+      },
+      "en": {
+        "name": "Baqiyat as-Salihat",
+        "meaning": "Glory be to Allah, praise be to Allah, there is no god but Allah, and Allah is the Greatest."
+      }
+    }
+  },
+  {
+    "id": "hasbiyallah",
+    "arabic": "حَسْبِيَ اللّٰهُ لَا إِلٰهَ إِلَّا هُوَ",
+    "transliteration": "Hasbiyallâhü lâ ilâhe illâ hû",
+    "target": 7,
+    "translations": {
+      "tr": {
+        "name": "Hasbiyallah",
+        "meaning": "Allah bana yeter; O'ndan başka ilah yoktur."
+      },
+      "en": {
+        "name": "Hasbiyallah",
+        "meaning": "Allah is sufficient for me; there is no god but He."
+      }
+    }
+  }
 ]

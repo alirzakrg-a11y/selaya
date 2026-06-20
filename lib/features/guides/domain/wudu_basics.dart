@@ -45,9 +45,12 @@ const abdestSunnetleri = <BasicItem>[
       'Yıkanan her uzvu üçer kez yıkamak.', 'Washing each washed limb three times.'),
   BasicItem('Hilallemek', 'Running through',
       'El ve ayak parmaklarını, sakalı hilallemek.', 'Running fingers between the toes/fingers and through the beard.'),
+  BasicItem('Başın tamamını meshetmek', 'Wiping the whole head',
+      'Başın tamamını, kulakları ve boynu meshetmek (farz olan yalnızca dörtte biridir).',
+      'Wiping the whole head, the ears and the neck (only a quarter is obligatory).'),
   BasicItem('Tertip ve muvâlât', 'Order & continuity',
-      'Uzuvları âyetteki sırayla ve ara vermeden yıkamak; başın tamamını, kulakları ve boynu meshetmek.',
-      'Washing in the Quranic order without pause; wiping the whole head, ears and neck.'),
+      'Uzuvları âyetteki sırayla ve ara vermeden (önceki kurumadan) yıkamak.',
+      'Washing the limbs in the Quranic order, without pause.'),
 ];
 
 /// Abdesti bozan başlıca şeyler.

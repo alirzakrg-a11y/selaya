@@ -90,7 +90,7 @@ const prayerTypes = <PrayerType>[
       '3 Rekât (Vacip)',
       'Yatsıdan sonra, gecenin son namazı olarak',
       'After Isha, as the last prayer of the night',
-      'Üçüncü rekâtta Kunut duaları okunur. Gece kalkamayacak olan yatsıdan hemen sonra kılar.',
+      'Üçüncü rekâtta Kunut duaları okunur. Gece kalkamayacağından endişe eden kişi, vitri yatsıdan hemen sonra kılar.',
       'Qunut supplications are recited in the third rakah. Pray it after Isha if you may not wake at night.',
       Icons.brightness_3_rounded),
   PrayerType(
