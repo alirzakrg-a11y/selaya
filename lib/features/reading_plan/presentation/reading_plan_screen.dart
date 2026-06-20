@@ -239,9 +239,9 @@ class ReadingPlanScreen extends ConsumerWidget {
                             dailyPages: pages);
                       },
                       child: Text(tr ? 'Hatmi Başlat' : 'Start Khatm',
-                          style: const TextStyle(
+                          style: TextStyle(
                               fontWeight: FontWeight.w700,
-                              color: Color(0xFF1A1203))),
+                              color: c.onGold)),
                     ),
                   ),
                 ],
@@ -390,7 +390,7 @@ class _ActiveHatimHero extends StatelessWidget {
                         ],
                       ],
                     ),
-                    const SizedBox(height: 2),
+                    const Gap.xxs(),
                     Text(
                         tr
                             ? 'Sayfa ${session.currentPage} / $hatimPageTotal'
@@ -525,7 +525,7 @@ class _PlanCard extends StatelessWidget {
                         .textTheme
                         .titleSmall
                         ?.copyWith(fontWeight: FontWeight.w700)),
-                const SizedBox(height: 2),
+                const Gap.xxs(),
                 Text(desc,
                     style: TextStyle(
                         color: c.textSecondary, fontSize: 12.5, height: 1.35)),

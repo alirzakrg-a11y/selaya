@@ -322,7 +322,7 @@ class _TermsRow extends StatelessWidget {
                 value: accepted,
                 onChanged: (v) => onChanged(v ?? false),
                 activeColor: c.gold,
-                checkColor: const Color(0xFF1A1203),
+                checkColor: c.onGold,
                 side: BorderSide(color: c.border),
               ),
             ),

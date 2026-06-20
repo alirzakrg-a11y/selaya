@@ -249,8 +249,8 @@ class _UserBubble extends StatelessWidget {
           ),
         ),
         child: Text(text,
-            style: const TextStyle(
-                color: Color(0xFF1A1203), fontWeight: FontWeight.w600)),
+            style: TextStyle(
+                color: c.onGold, fontWeight: FontWeight.w600)),
       ),
     );
   }

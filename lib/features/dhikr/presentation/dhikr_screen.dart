@@ -809,7 +809,7 @@ class _DhikrScreenState extends ConsumerState<DhikrScreen> {
             },
             style: FilledButton.styleFrom(
                 backgroundColor: c.gold,
-                foregroundColor: const Color(0xFF1A1203)),
+                foregroundColor: c.onGold),
             child: Text('common.save'.tr()),
           ),
         ],

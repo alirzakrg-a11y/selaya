@@ -133,6 +133,12 @@ class SelayaColors extends ThemeExtension<SelayaColors> {
 
   bool get isDark => brightness == Brightness.dark;
 
+  /// Altın zemin ÜSTÜNDEKİ koyu metin/ikon rengi (gold buton, seçili çip, gold
+  /// kart, isToday). 24+ ekranda ham `Color(0xFF1A1203)` olarak geçiyordu → tek
+  /// kaynak. Tema-bağımsız (gold accent her iki temada da aynı).
+  Color get onGold => const Color(0xFF1A1203);
+  Color get onGoldMuted => const Color(0xCC1A1203);
+
   static const SelayaColors dark = SelayaColors(
     brightness: Brightness.dark,
     bg: AppColors.darkBg,

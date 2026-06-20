@@ -210,8 +210,8 @@ class _PlanTile extends StatelessWidget {
                       decoration: BoxDecoration(
                           color: c.gold, borderRadius: AppRadius.rSm),
                       child: Text(badge!,
-                          style: const TextStyle(
-                              color: Color(0xFF1A1203),
+                          style: TextStyle(
+                              color: c.onGold,
                               fontSize: 10,
                               fontWeight: FontWeight.w700)),
                     ),

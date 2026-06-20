@@ -170,8 +170,8 @@ class _NotificationSettingsScreenState
         ok
             ? 'notif.testFullScreenScheduled'.tr(args: ['$seconds'])
             : 'notif.permissionDeniedBody'.tr(),
-        style: const TextStyle(
-            color: Color(0xFF1A1203), fontWeight: FontWeight.w700),
+        style: TextStyle(
+            color: context.colors.onGold, fontWeight: FontWeight.w700),
       ),
     ));
   }
@@ -609,7 +609,7 @@ class _OffsetChip extends StatelessWidget {
         ),
         child: Text('$minutes dk',
             style: TextStyle(
-                color: selected ? const Color(0xFF1A1203) : c.textSecondary,
+                color: selected ? c.onGold : c.textSecondary,
                 fontWeight: FontWeight.w700,
                 fontSize: 12)),
       ),

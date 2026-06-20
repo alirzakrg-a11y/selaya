@@ -745,7 +745,7 @@ class _MosqueDetailSheet extends StatelessWidget {
                   label: Text('mosques.directions'.tr()),
                   style: FilledButton.styleFrom(
                       backgroundColor: c.gold,
-                      foregroundColor: const Color(0xFF1A1203)),
+                      foregroundColor: c.onGold),
                 ),
               ),
               const Gap.sm(),

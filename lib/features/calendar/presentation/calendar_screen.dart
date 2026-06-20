@@ -205,7 +205,7 @@ class _ReligiousDaysViewState extends ConsumerState<_ReligiousDaysView> {
                               : '${d.gregorian.day}',
                           style: TextStyle(
                               color: isToday
-                                  ? const Color(0xFF1A1203)
+                                  ? c.onGold
                                   : c.gold,
                               fontWeight: FontWeight.w800,
                               fontSize: 16)),
@@ -215,7 +215,7 @@ class _ReligiousDaysViewState extends ConsumerState<_ReligiousDaysView> {
                               : DateFormat('E', lang).format(d.gregorian),
                           style: TextStyle(
                               color: isToday
-                                  ? const Color(0xCC1A1203)
+                                  ? c.onGoldMuted
                                   : c.textTertiary,
                               fontSize: 10)),
                     ],
@@ -281,7 +281,7 @@ class _YearChip extends StatelessWidget {
         ),
         child: Text('$year',
             style: TextStyle(
-                color: selected ? const Color(0xFF1A1203) : c.textSecondary,
+                color: selected ? c.onGold : c.textSecondary,
                 fontWeight: FontWeight.w700,
                 fontSize: 13)),
       ),

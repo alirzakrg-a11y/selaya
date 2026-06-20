@@ -281,7 +281,7 @@ class _TesbihatScreenState extends State<TesbihatScreen> {
               label: Text(tr ? 'Yeniden başla' : 'Start again'),
               style: FilledButton.styleFrom(
                 backgroundColor: c.gold,
-                foregroundColor: const Color(0xFF1A1203),
+                foregroundColor: c.onGold,
                 padding: const EdgeInsets.symmetric(
                   horizontal: 24,
                   vertical: 12,

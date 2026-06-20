@@ -1379,7 +1379,7 @@ class _AiCard extends StatelessWidget {
                           style: Theme.of(context).textTheme.titleMedium
                               ?.copyWith(fontWeight: FontWeight.w700),
                         ),
-                        const SizedBox(height: 2),
+                        const Gap.xxs(),
                         Text(
                           'home.askSelayaDesc'.tr(),
                           style: TextStyle(
@@ -1838,8 +1838,8 @@ class _ReligiousDayCard extends ConsumerWidget {
                           ),
                           child: Text(
                             'calendar.nthDay'.tr(args: ['${active.index}']),
-                            style: const TextStyle(
-                              color: Color(0xFF1A1203),
+                            style: TextStyle(
+                              color: c.onGold,
                               fontSize: 11,
                               fontWeight: FontWeight.w700,
                             ),
@@ -1848,7 +1848,7 @@ class _ReligiousDayCard extends ConsumerWidget {
                       ],
                     ],
                   ),
-                  const SizedBox(height: 2),
+                  const Gap.xxs(),
                   Text(
                     '${formatGregorian(DateTime.now(), lang)} • ${day.hijri}',
                     style: Theme.of(
@@ -1941,7 +1941,7 @@ class _NearestMosqueCard extends ConsumerWidget {
                           style: Theme.of(context).textTheme.titleSmall
                               ?.copyWith(fontWeight: FontWeight.w700),
                         ),
-                        const SizedBox(height: 2),
+                        const Gap.xxs(),
                         Row(
                           children: [
                             Icon(AppIcons.location, size: 13, color: c.gold),

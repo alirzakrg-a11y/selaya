@@ -292,7 +292,7 @@ class _DuaWallScreenState extends ConsumerState<DuaWallScreen> {
                 child: FilledButton(
                   style: FilledButton.styleFrom(
                     backgroundColor: c.gold,
-                    foregroundColor: const Color(0xFF1A1203),
+                    foregroundColor: c.onGold,
                     padding: const EdgeInsets.symmetric(vertical: 14),
                   ),
                   onPressed: sending

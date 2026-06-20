@@ -2,6 +2,7 @@ import 'package:flutter/widgets.dart';
 
 /// 4-based spacing scale.
 abstract final class AppSpacing {
+  static const double xxs = 2;
   static const double xs = 4;
   static const double sm = 8;
   static const double md = 12;
@@ -35,6 +36,7 @@ abstract final class AppRadius {
 class Gap extends StatelessWidget {
   final double size;
   const Gap(this.size, {super.key});
+  const Gap.xxs({super.key}) : size = AppSpacing.xxs;
   const Gap.xs({super.key}) : size = AppSpacing.xs;
   const Gap.sm({super.key}) : size = AppSpacing.sm;
   const Gap.md({super.key}) : size = AppSpacing.md;

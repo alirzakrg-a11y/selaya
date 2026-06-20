@@ -193,7 +193,7 @@ class _ImsakiyeScreenState extends ConsumerState<ImsakiyeScreen> {
           label: Text('imsakiye.monthly'.tr()),
           style: FilledButton.styleFrom(
             backgroundColor: c.gold,
-            foregroundColor: const Color(0xFF1A1203),
+            foregroundColor: c.onGold,
             padding: const EdgeInsets.symmetric(vertical: 14),
             shape:
                 const RoundedRectangleBorder(borderRadius: AppRadius.rLg),

@@ -224,7 +224,7 @@ class _ReminderTile extends StatelessWidget {
                     context,
                   ).textTheme.titleSmall?.copyWith(fontWeight: FontWeight.w600),
                 ),
-                const SizedBox(height: 2),
+                const Gap.xxs(),
                 Text(
                   reminder.daily
                       ? (tr ? 'Her gün' : 'Daily')
@@ -344,7 +344,7 @@ class _AddReminderSheetState extends State<_AddReminderSheet> {
               },
               style: FilledButton.styleFrom(
                 backgroundColor: c.gold,
-                foregroundColor: const Color(0xFF1A1203),
+                foregroundColor: c.onGold,
                 padding: const EdgeInsets.symmetric(vertical: 14),
               ),
               child: Text(tr ? 'Ekle' : 'Add'),

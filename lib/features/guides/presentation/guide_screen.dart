@@ -418,7 +418,7 @@ class _NavBtn extends StatelessWidget {
         child: Padding(
           padding: const EdgeInsets.all(10),
           child: Icon(icon,
-              color: on ? const Color(0xFF1A1203) : c.textTertiary, size: 28),
+              color: on ? c.onGold : c.textTertiary, size: 28),
         ),
       ),
     );

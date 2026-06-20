@@ -386,7 +386,7 @@ class _Chip extends StatelessWidget {
         ),
         child: Text(label,
             style: TextStyle(
-                color: selected ? const Color(0xFF1A1203) : c.textSecondary,
+                color: selected ? c.onGold : c.textSecondary,
                 fontWeight: FontWeight.w600,
                 fontSize: 13)),
       ),

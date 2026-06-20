@@ -623,7 +623,7 @@ class _LangToggle extends StatelessWidget {
           ),
           child: Text(label,
               style: TextStyle(
-                  color: sel ? const Color(0xFF1A1203) : c.textSecondary,
+                  color: sel ? c.onGold : c.textSecondary,
                   fontWeight: FontWeight.w700,
                   fontSize: 13)),
         ),
@@ -670,7 +670,7 @@ class _ThemeToggle extends StatelessWidget {
                 child: Icon(e.value,
                     size: 16,
                     color: mode == e.key
-                        ? const Color(0xFF1A1203)
+                        ? c.onGold
                         : c.textTertiary),
               ),
             ),

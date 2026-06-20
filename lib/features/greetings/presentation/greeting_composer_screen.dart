@@ -16,9 +16,6 @@ import '../../../core/widgets/greeting_card.dart';
 import '../../../core/widgets/selaya_scaffold.dart';
 import '../../../core/widgets/states.dart';
 
-/// Koyu mürekkep tonu — altın zemin üzerine yazı/ikon için (gold-on-gold).
-const _onGold = Color(0xFF1A1203);
-
 const _bgDefaults = [
   'assets/images/inspiration_2.jpg',
   'assets/images/inspiration_1.jpg',
@@ -400,7 +397,7 @@ class _GreetingComposerScreenState
                             label: Text('common.share'.tr()),
                             style: FilledButton.styleFrom(
                               backgroundColor: c.gold,
-                              foregroundColor: _onGold,
+                              foregroundColor: c.onGold,
                               padding:
                                   const EdgeInsets.symmetric(vertical: 14),
                             ),
@@ -467,7 +464,7 @@ class _ChipButton extends StatelessWidget {
         ),
         child: Text(label,
             style: TextStyle(
-                color: selected ? _onGold : c.textSecondary,
+                color: selected ? c.onGold : c.textSecondary,
                 fontWeight: FontWeight.w600,
                 fontSize: 13)),
       ),

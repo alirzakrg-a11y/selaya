@@ -535,8 +535,7 @@ class _ThemePicker extends StatelessWidget {
                     width: i == selected ? 2.5 : 1),
               ),
               child: i == selected
-                  ? const Icon(AppIcons.check,
-                      size: 16, color: Color(0xFF1A1203))
+                  ? Icon(AppIcons.check, size: 16, color: c.onGold)
                   : null,
             ),
           ),
@@ -634,8 +633,8 @@ class _Compass extends StatelessWidget {
                                 blurRadius: 18)
                           ],
                         ),
-                        child: const Icon(AppIcons.mosque,
-                            color: Color(0xFF1A1203), size: 22),
+                        child: Icon(AppIcons.mosque,
+                            color: c.onGold, size: 22),
                       ),
                     ),
                   ),

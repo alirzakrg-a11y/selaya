@@ -537,7 +537,7 @@ class _MonthHistoryState extends State<_MonthHistory> {
               style: TextStyle(
                   color: isFuture
                       ? c.textTertiary
-                      : (ratio > 0.5 ? const Color(0xFF1A1203) : c.textSecondary),
+                      : (ratio > 0.5 ? c.onGold : c.textSecondary),
                   fontWeight: isToday ? FontWeight.w800 : FontWeight.w600,
                   fontSize: 12)),
         ),
