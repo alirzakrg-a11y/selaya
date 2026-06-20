@@ -92,18 +92,21 @@ const namaziBozanlar = <BasicItem>[
       'Movement so much that an onlooker would think one is not praying.'),
   BasicItem('Abdestin bozulması', 'Wudu being nullified',
       'Namaz içinde abdestin bozulması.', 'The wudu becoming invalid during prayer.'),
-  BasicItem('Özürsüz boğaz/öksürük', 'Forced sounds',
-      'Harf çıkacak şekilde kasten öksürmek, “öf-ah” demek.', 'Deliberately making letter-like sounds.'),
+  BasicItem('Selam verip almak', 'Giving or returning salam',
+      'Namaz içinde başkasına selam vermek veya sözle selam almak.',
+      'Greeting someone or verbally returning a greeting during prayer.'),
 ];
 
 /// Secde-i sehv (yanılma secdesi).
 const secdeSehvTr =
-    'Namazda yanılarak bir vâcibin terk edilmesi veya geciktirilmesi (ör. ilk '
-    'oturuşu unutmak, bir rükûyu fazla yapmak) durumunda yapılır: son oturuşta '
-    'yalnız sağ tarafa selâm verildikten sonra iki secde daha yapılır, ardından '
-    'Tahiyyât, salli-bârik ve dualar okunarak namaz tamamlanır.';
+    'Namazda yanılarak bir vâcibin terk edilmesi ya da bir farzın/vâcibin '
+    'geciktirilmesi (örneğin ilk oturuşu —ka‘de-i ûlâ— unutmak) durumunda '
+    'yapılır: son oturuşta sağ tarafa selâm verildikten sonra iki secde daha '
+    'yapılır; ardından Tahiyyât ve dualar okunup her iki tarafa selâm verilerek '
+    'namaz tamamlanır.';
 const secdeSehvEn =
-    'Performed when one mistakenly omits or delays a wajib (e.g. forgetting the '
-    'first sitting): after saluting only to the right at the final sitting, two '
-    'more prostrations are made, then the Tashahhud and closing supplications '
-    'are recited to complete the prayer.';
+    'Performed when one forgetfully omits a wajib or delays a fard/wajib (e.g. '
+    'forgetting the first sitting): after saluting to the right at the final '
+    'sitting, two more prostrations are made; then the Tashahhud and '
+    'supplications are recited and the prayer is completed with the salam to '
+    'both sides.';
