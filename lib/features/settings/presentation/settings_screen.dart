@@ -294,7 +294,7 @@ class SettingsScreen extends ConsumerWidget {
                       Text('common.appName'.tr(),
                           style: Theme.of(context).textTheme.titleMedium?.copyWith(
                               color: c.gold, fontWeight: FontWeight.w700)),
-                      const SizedBox(height: 2),
+                      const Gap.xs(),
                       Text('common.slogan'.tr(),
                           style: Theme.of(context)
                               .textTheme
@@ -305,8 +305,8 @@ class SettingsScreen extends ConsumerWidget {
                 ),
                 const Gap.sm(),
                 Container(
-                  padding:
-                      const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
+                  padding: const EdgeInsets.symmetric(
+                      horizontal: AppSpacing.sm, vertical: AppSpacing.xs),
                   decoration: BoxDecoration(
                     color: c.gold.withValues(alpha: 0.14),
                     borderRadius: BorderRadius.circular(99),
@@ -404,7 +404,7 @@ class SettingsScreen extends ConsumerWidget {
                 for (final slot in PrayerSlot.values)
                   Padding(
                     padding: const EdgeInsets.symmetric(
-                        horizontal: AppSpacing.lg, vertical: 4),
+                        horizontal: AppSpacing.lg, vertical: AppSpacing.xs),
                     child: Row(
                       children: [
                         Expanded(
@@ -552,7 +552,7 @@ class _AboutSheet extends StatelessWidget {
           Text('common.appName'.tr(),
               style: Theme.of(context).textTheme.headlineSmall?.copyWith(
                   color: c.gold, fontWeight: FontWeight.w800, letterSpacing: 2)),
-          const SizedBox(height: 4),
+          const Gap.xs(),
           Text('common.slogan'.tr(),
               textAlign: TextAlign.center,
               style: Theme.of(context)
@@ -615,7 +615,8 @@ class _LangToggle extends StatelessWidget {
       return GestureDetector(
         onTap: () => context.setLocale(Locale(code)),
         child: Container(
-          padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 7),
+          padding: const EdgeInsets.symmetric(
+              horizontal: AppSpacing.base, vertical: AppSpacing.xs),
           decoration: BoxDecoration(
             color: sel ? c.gold : Colors.transparent,
             borderRadius: BorderRadius.circular(99),
@@ -712,7 +713,7 @@ class _PaletteToggle extends StatelessWidget {
                 decoration:
                     BoxDecoration(color: swatch, shape: BoxShape.circle),
               ),
-              const SizedBox(width: 6),
+              const Gap.xs(),
               Text(label,
                   style: Theme.of(context).textTheme.labelMedium?.copyWith(
                       color: sel ? c.gold : c.textSecondary,
@@ -786,7 +787,7 @@ class _FontSizeSelector extends StatelessWidget {
                               height: 1.1,
                               fontWeight: FontWeight.w800,
                               color: sel ? c.gold : c.textSecondary)),
-                      const SizedBox(height: 2),
+                      const Gap.xs(),
                       Text(_opts[i].$2.tr(),
                           textAlign: TextAlign.center,
                           maxLines: 1,
@@ -901,7 +902,7 @@ class _NavRow extends StatelessWidget {
               children: [
                 Text(label, style: Theme.of(context).textTheme.titleSmall),
                 if (value.isNotEmpty) ...[
-                  const SizedBox(height: 2),
+                  const Gap.xs(),
                   Text(value,
                       maxLines: 2,
                       overflow: TextOverflow.ellipsis,
@@ -1090,7 +1091,8 @@ class _HatimReminderRowState extends ConsumerState<_HatimReminderRow> {
             onTap: _pickTime,
             borderRadius: BorderRadius.circular(12),
             child: Padding(
-              padding: const EdgeInsets.symmetric(vertical: 6, horizontal: 4),
+              padding: const EdgeInsets.symmetric(
+                  vertical: AppSpacing.xs, horizontal: AppSpacing.xs),
               child: Row(
                 children: [
                   Icon(Icons.schedule_rounded, color: c.textSecondary, size: 18),

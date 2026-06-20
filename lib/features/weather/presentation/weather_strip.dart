@@ -58,9 +58,9 @@ class WeatherStrip extends ConsumerWidget {
                               .textTheme
                               .labelSmall
                               ?.copyWith(color: c.textTertiary)),
-                      const SizedBox(height: 3),
+                      const Gap.xs(),
                       Icon(d.icon, color: c.textSecondary, size: 18),
-                      const SizedBox(height: 3),
+                      const Gap.xs(),
                       Text('${d.tMax.round()}°',
                           style: Theme.of(context)
                               .textTheme

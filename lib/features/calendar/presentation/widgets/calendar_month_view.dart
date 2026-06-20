@@ -123,7 +123,7 @@ class _CalendarMonthViewState extends ConsumerState<CalendarMonthView> {
           color: highlight
               ? c.gold.withValues(alpha: 0.16)
               : c.surface,
-          borderRadius: BorderRadius.circular(10),
+          borderRadius: AppRadius.rSm,
           border: Border.all(
             color: isToday
                 ? c.gold

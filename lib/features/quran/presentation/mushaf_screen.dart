@@ -8,6 +8,7 @@ import '../../../core/di/providers.dart';
 import '../../../core/localization/localized_text.dart';
 import '../../../core/models/content.dart';
 import '../../../core/theme/app_colors.dart';
+import '../../../core/theme/app_spacing.dart';
 import '../../../core/theme/app_typography.dart';
 import '../../../core/widgets/app_image.dart';
 import '../../../core/widgets/mini_player_chrome.dart';
@@ -571,7 +572,7 @@ class _MushafScreenState extends ConsumerState<MushafScreen>
                             color: c.gold,
                             size: 26,
                           ),
-                          const SizedBox(width: 10),
+                          const Gap.md(),
                           Expanded(
                             child: Text(
                               playingThis
@@ -657,25 +658,25 @@ class _MushafPageLoading extends StatelessWidget {
       child: Container(
         padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 8),
         decoration: BoxDecoration(
-          color: const Color(0xFF2A2008).withValues(alpha: 0.06),
+          color: context.colors.gold.withValues(alpha: 0.06),
           borderRadius: BorderRadius.circular(99),
         ),
         child: Row(
           mainAxisSize: MainAxisSize.min,
           children: [
-            const SizedBox(
-              width: 13,
-              height: 13,
+            SizedBox(
+              width: 14,
+              height: 14,
               child: CircularProgressIndicator(
                 strokeWidth: 2,
-                color: Color(0xFFB8860B),
+                color: context.colors.gold,
               ),
             ),
-            const SizedBox(width: 8),
+            const Gap.sm(),
             Text(
               tr ? 'Sayfa indiriliyor…' : 'Loading page…',
-              style: const TextStyle(
-                color: Color(0xFF8A6D1E),
+              style: TextStyle(
+                color: context.colors.gold,
                 fontSize: 12,
                 fontWeight: FontWeight.w600,
               ),

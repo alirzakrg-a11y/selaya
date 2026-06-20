@@ -52,11 +52,11 @@ class AccountScreen extends ConsumerWidget {
                         .textTheme
                         .titleLarge
                         ?.copyWith(fontWeight: FontWeight.w800)),
-                const SizedBox(height: 4),
+                const Gap.xs(),
                 Text(user.email,
                     textAlign: TextAlign.center,
                     style: TextStyle(color: c.textSecondary)),
-                const SizedBox(height: 2),
+                const Gap.xs(),
                 Center(
                   child: TextButton.icon(
                     onPressed: () => _showEditProfile(context, ref),
@@ -312,7 +312,8 @@ class _ChangePasswordSheetState extends ConsumerState<_ChangePasswordSheet> {
       child: Container(
         decoration: BoxDecoration(
             color: c.surface,
-            borderRadius: const BorderRadius.vertical(top: Radius.circular(24))),
+            borderRadius: const BorderRadius.vertical(
+                top: Radius.circular(AppRadius.xl))),
         padding: const EdgeInsets.all(AppSpacing.lg),
         child: Column(
           mainAxisSize: MainAxisSize.min,
@@ -320,11 +321,11 @@ class _ChangePasswordSheetState extends ConsumerState<_ChangePasswordSheet> {
           children: [
             Center(
               child: Container(
-                  width: 40,
-                  height: 4,
+                  width: AppSpacing.xxxl,
+                  height: AppSpacing.xs,
                   decoration: BoxDecoration(
                       color: c.border,
-                      borderRadius: BorderRadius.circular(2))),
+                      borderRadius: BorderRadius.circular(AppRadius.pill))),
             ),
             const Gap.md(),
             Text('auth.changePassword'.tr(),
@@ -456,7 +457,8 @@ class _EditProfileSheetState extends ConsumerState<_EditProfileSheet> {
       child: Container(
         decoration: BoxDecoration(
             color: c.surface,
-            borderRadius: const BorderRadius.vertical(top: Radius.circular(24))),
+            borderRadius: const BorderRadius.vertical(
+                top: Radius.circular(AppRadius.xl))),
         padding: const EdgeInsets.all(AppSpacing.lg),
         child: Column(
           mainAxisSize: MainAxisSize.min,
@@ -464,11 +466,11 @@ class _EditProfileSheetState extends ConsumerState<_EditProfileSheet> {
           children: [
             Center(
               child: Container(
-                  width: 40,
-                  height: 4,
+                  width: AppSpacing.xxxl,
+                  height: AppSpacing.xs,
                   decoration: BoxDecoration(
                       color: c.border,
-                      borderRadius: BorderRadius.circular(2))),
+                      borderRadius: BorderRadius.circular(AppRadius.pill))),
             ),
             const Gap.md(),
             Text('auth.editProfile'.tr(),

@@ -627,7 +627,7 @@ class _SoundChip extends StatelessWidget {
     final c = context.colors;
     return InkWell(
       onTap: onTap,
-      borderRadius: BorderRadius.circular(99),
+      borderRadius: BorderRadius.circular(AppRadius.pill),
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 4),
         child: Row(
@@ -1111,7 +1111,7 @@ class _StatusBadge extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 3),
       decoration: BoxDecoration(
         color: color.withValues(alpha: 0.14),
-        borderRadius: BorderRadius.circular(99),
+        borderRadius: BorderRadius.circular(AppRadius.pill),
       ),
       child: Row(
         mainAxisSize: MainAxisSize.min,
@@ -1223,7 +1223,7 @@ class _ReliabilityGuideCard extends StatelessWidget {
               padding: const EdgeInsets.all(AppSpacing.sm),
               decoration: BoxDecoration(
                 color: c.gold.withValues(alpha: 0.10),
-                borderRadius: BorderRadius.circular(10),
+                borderRadius: AppRadius.rSm,
               ),
               child: Row(
                 children: [

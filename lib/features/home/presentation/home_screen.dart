@@ -397,7 +397,7 @@ class _HomeHeader extends ConsumerWidget {
                         style: Theme.of(context).textTheme.headlineSmall,
                       ),
                     ),
-                    const SizedBox(width: 4),
+                    const Gap.xs(),
                     const Icon(
                       AppIcons.location,
                       size: 18,
@@ -518,7 +518,10 @@ class _HeaderWeather extends ConsumerWidget {
         return GestureDetector(
           onTap: () => _showForecast(context, days),
           child: Container(
-            padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+            padding: const EdgeInsets.symmetric(
+              horizontal: AppSpacing.md,
+              vertical: AppSpacing.sm,
+            ),
             decoration: BoxDecoration(
               color: c.surfaceAlt,
               borderRadius: BorderRadius.circular(99),
@@ -727,7 +730,7 @@ class _DailyContentCard extends StatelessWidget {
                       ),
                     ),
                     LikeButton(likeKey: likeKey, light: true),
-                    const SizedBox(width: 4),
+                    const Gap.xs(),
                     GestureDetector(
                       onTap: () => showVerseShareSheet(
                         context,
@@ -991,7 +994,7 @@ class _MiniContentCard extends StatelessWidget {
                       height: 1.35,
                     ),
                   ),
-                  const SizedBox(height: 4),
+                  const Gap.xs(),
                   Text(
                     reference,
                     maxLines: 1,
@@ -1156,6 +1159,7 @@ class _AutoCarouselState extends State<_AutoCarousel> {
   @override
   void initState() {
     super.initState();
+    // 0.74 → merkez kart geniş, iki yan komşu hafifçe görünür (story vitrini).
     _pc = PageController(viewportFraction: 0.74)
       ..addListener(() {
         if (_pc.hasClients && _pc.page != null) {
@@ -1205,7 +1209,8 @@ class _AutoCarouselState extends State<_AutoCarousel> {
             return Transform.scale(
               scale: scale,
               child: Opacity(
-                opacity: 1.0 - delta * 0.4,
+                opacity: 1.0 - delta * 0.4, // merkez 1.0 · komşu ~0.6 soluk
+
                 child: widget.builder(context, i),
               ),
             );
@@ -1524,7 +1529,7 @@ class _SeeMoreButton extends StatelessWidget {
               'common.more'.tr(),
               style: TextStyle(color: c.gold, fontWeight: FontWeight.w700),
             ),
-            const SizedBox(width: 4),
+            const Gap.xs(),
             Icon(Icons.arrow_forward_rounded, size: 16, color: c.gold),
           ],
         ),

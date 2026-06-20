@@ -11,6 +11,7 @@ import '../../../core/theme/app_spacing.dart';
 import '../../../core/utils/formatters.dart';
 import '../../../core/widgets/selaya_card.dart';
 import '../../../core/widgets/selaya_scaffold.dart';
+import '../../../core/widgets/states.dart';
 import '../../prayer_times/data/prayer_repository.dart';
 import '../data/religious_days.dart';
 import 'widgets/calendar_month_view.dart';
@@ -106,7 +107,6 @@ class _ReligiousDaysViewState extends ConsumerState<_ReligiousDaysView> {
   @override
   Widget build(BuildContext context) {
     final lang = context.langCode;
-    final c = context.colors;
     final now = DateTime.now();
     final all = ref.watch(religiousDaysProvider);
     final offset = ref.watch(hijriOffsetProvider);
@@ -145,9 +145,10 @@ class _ReligiousDaysViewState extends ConsumerState<_ReligiousDaysView> {
         ),
         Expanded(
           child: days.isEmpty
-              ? Center(
-                  child: Text('common.empty'.tr(),
-                      style: TextStyle(color: c.textTertiary)))
+              ? SelayaEmpty(
+                  icon: AppIcons.calendar,
+                  message: 'common.empty'.tr(),
+                )
               : ListView(
                   padding: const EdgeInsets.fromLTRB(AppSpacing.base, 0,
                       AppSpacing.base, AppSpacing.xxxl),
@@ -167,8 +168,8 @@ class _ReligiousDaysViewState extends ConsumerState<_ReligiousDaysView> {
       if (d.gregorian.month != month) {
         month = d.gregorian.month;
         out.add(Padding(
-          padding: EdgeInsets.fromLTRB(
-              4, out.isEmpty ? AppSpacing.xs : AppSpacing.base, 4, AppSpacing.xs),
+          padding: EdgeInsets.fromLTRB(AppSpacing.xs,
+              out.isEmpty ? AppSpacing.xs : AppSpacing.base, 4, AppSpacing.xs),
           child: Text(DateFormat('MMMM', lang).format(d.gregorian),
               style: Theme.of(context).textTheme.labelMedium?.copyWith(
                   color: c.gold,

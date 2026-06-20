@@ -114,7 +114,7 @@ class NextPrayerCard extends ConsumerWidget {
                             size: 16,
                             color: AppColors.goldBright,
                           ),
-                          const SizedBox(width: 4),
+                          const SizedBox(width: AppSpacing.xs),
                           Flexible(
                             child: Text(
                               v.city.name(lang),
@@ -127,26 +127,22 @@ class NextPrayerCard extends ConsumerWidget {
                                   ),
                             ),
                           ),
-                          const SizedBox(width: 8),
+                          const SizedBox(width: AppSpacing.sm),
                           Text(
                             formatHijri(
                               now,
                               lang,
                               offsetDays: ref.watch(hijriOffsetProvider),
                             ),
-                            style: const TextStyle(
-                              color: Colors.white70,
-                              fontSize: 12,
-                            ),
+                            style: Theme.of(context).textTheme.bodySmall
+                                ?.copyWith(color: Colors.white70),
                           ),
                         ],
                       ),
                       Text(
                         formatGregorian(now, lang),
-                        style: const TextStyle(
-                          color: Colors.white60,
-                          fontSize: 12,
-                        ),
+                        style: Theme.of(context).textTheme.bodySmall
+                            ?.copyWith(color: Colors.white60),
                       ),
                       const Spacer(),
                       Text(
@@ -157,7 +153,7 @@ class NextPrayerCard extends ConsumerWidget {
                           fontWeight: FontWeight.w600,
                         ),
                       ),
-                      const SizedBox(height: 2),
+                      const SizedBox(height: AppSpacing.xs),
                       FittedBox(
                         fit: BoxFit.scaleDown,
                         alignment: Alignment.center,
@@ -178,7 +174,7 @@ class NextPrayerCard extends ConsumerWidget {
                             size: 16,
                             color: Colors.white70,
                           ),
-                          const SizedBox(width: 6),
+                          const SizedBox(width: AppSpacing.xs),
                           Flexible(
                             child: Text(
                               '${v.nextSlot.labelKey.tr()}  ${formatClock(v.nextTime)}',
@@ -194,7 +190,7 @@ class NextPrayerCard extends ConsumerWidget {
                       ),
                       const Gap.sm(),
                       ClipRRect(
-                        borderRadius: BorderRadius.circular(99),
+                        borderRadius: BorderRadius.circular(AppRadius.pill),
                         child: LinearProgressIndicator(
                           value: progress,
                           minHeight: 5,

@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../../core/theme/app_colors.dart';
+import '../../../../core/theme/app_spacing.dart';
 import '../../../../core/theme/app_typography.dart';
 import '../../../../core/utils/formatters.dart';
 import '../../data/prayer_repository.dart';
@@ -12,6 +13,8 @@ import '../../domain/prayer.dart';
 /// live "now" marker — the swipe-to alternate gauge requested in the PDF.
 class PrayerTimelineGauge extends ConsumerWidget {
   const PrayerTimelineGauge({super.key});
+
+  static const double _timelineHeight = 112;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -56,7 +59,7 @@ class PrayerTimelineGauge extends ConsumerWidget {
     ];
 
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 4),
+      padding: const EdgeInsets.symmetric(horizontal: AppSpacing.xs),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
@@ -73,11 +76,11 @@ class PrayerTimelineGauge extends ConsumerWidget {
                   .textTheme
                   .bodySmall
                   ?.copyWith(color: c.textTertiary)),
-          const SizedBox(height: 16),
+          const Gap.base(),
           SizedBox(
-            height: 112,
+            height: _timelineHeight,
             child: CustomPaint(
-              size: const Size(double.infinity, 112),
+              size: const Size(double.infinity, _timelineHeight),
               painter: _TimelinePainter(
                 prayers: prayers,
                 extended: extended,

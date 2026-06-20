@@ -82,17 +82,20 @@ class _HajjUmrahScreenState extends ConsumerState<HajjUmrahScreen> {
                 ),
               ),
               Expanded(
-                child: ListView.separated(
-                  padding: const EdgeInsets.fromLTRB(
-                    AppSpacing.base,
-                    0,
-                    AppSpacing.base,
-                    AppSpacing.xxxl,
-                  ),
-                  itemCount: steps.length,
-                  separatorBuilder: (_, _) => const Gap.sm(),
-                  itemBuilder: (_, i) => _StepCard(step: steps[i], index: i),
-                ),
+                child: steps.isEmpty
+                    ? const SelayaEmpty(icon: Icons.mosque_rounded)
+                    : ListView.separated(
+                        padding: const EdgeInsets.fromLTRB(
+                          AppSpacing.base,
+                          0,
+                          AppSpacing.base,
+                          AppSpacing.xxxl,
+                        ),
+                        itemCount: steps.length,
+                        separatorBuilder: (_, _) => const Gap.sm(),
+                        itemBuilder: (_, i) =>
+                            _StepCard(step: steps[i], index: i),
+                      ),
               ),
             ],
           );
@@ -135,7 +138,7 @@ class _StepCard extends StatelessWidget {
                   step.title,
                   style: Theme.of(context).textTheme.titleSmall?.copyWith(
                     fontWeight: FontWeight.w800,
-                    color: c.gold,
+                    color: c.textPrimary,
                   ),
                 ),
               ),

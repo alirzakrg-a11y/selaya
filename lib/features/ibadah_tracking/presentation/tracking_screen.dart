@@ -284,8 +284,8 @@ class _TrackingScreenState extends ConsumerState<TrackingScreen> {
             children: [
               for (final b in badges)
                 Container(
-                  padding:
-                      const EdgeInsets.symmetric(horizontal: 12, vertical: 9),
+                  padding: const EdgeInsets.symmetric(
+                      horizontal: AppSpacing.md, vertical: AppSpacing.sm),
                   decoration: BoxDecoration(
                     color: b.$3 ? c.gold.withValues(alpha: 0.14) : c.surfaceAlt,
                     borderRadius: BorderRadius.circular(99),
@@ -298,7 +298,7 @@ class _TrackingScreenState extends ConsumerState<TrackingScreen> {
                     children: [
                       Icon(b.$2,
                           size: 18, color: b.$3 ? c.gold : c.textTertiary),
-                      const SizedBox(width: 6),
+                      const Gap.xs(),
                       Text(b.$1.tr(),
                           style: Theme.of(context)
                               .textTheme
@@ -529,7 +529,7 @@ class _MonthHistoryState extends State<_MonthHistory> {
           color: ratio > 0
               ? c.gold.withValues(alpha: 0.15 + ratio * 0.55)
               : c.surfaceAlt,
-          borderRadius: BorderRadius.circular(7),
+          borderRadius: BorderRadius.circular(AppRadius.sm),
           border: isToday ? Border.all(color: c.gold, width: 1.6) : null,
         ),
         child: Center(
@@ -566,7 +566,7 @@ class _DayRow extends StatelessWidget {
   Widget build(BuildContext context) {
     final c = context.colors;
     return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 5),
+      padding: const EdgeInsets.symmetric(vertical: AppSpacing.xs),
       child: Row(
         children: [
           SizedBox(

@@ -35,7 +35,7 @@ class KazaScreen extends ConsumerWidget {
             child: Row(
               children: [
                 Container(
-                  padding: const EdgeInsets.all(12),
+                  padding: const EdgeInsets.all(AppSpacing.md),
                   decoration: BoxDecoration(
                       shape: BoxShape.circle,
                       color: c.gold.withValues(alpha: 0.18)),
@@ -143,7 +143,7 @@ class KazaScreen extends ConsumerWidget {
         onTap();
       },
       style: OutlinedButton.styleFrom(
-        padding: const EdgeInsets.symmetric(vertical: 10),
+        padding: const EdgeInsets.symmetric(vertical: AppSpacing.sm),
         side: BorderSide(color: c.gold.withValues(alpha: 0.5)),
         shape: const RoundedRectangleBorder(borderRadius: AppRadius.rMd),
       ),
@@ -165,7 +165,22 @@ class KazaScreen extends ConsumerWidget {
             autofocus: true,
             keyboardType: TextInputType.number,
             inputFormatters: [FilteringTextInputFormatter.digitsOnly],
-            decoration: InputDecoration(hintText: 'kaza.enterCount'.tr()),
+            decoration: InputDecoration(
+              hintText: 'kaza.enterCount'.tr(),
+              filled: true,
+              fillColor: context.colors.surfaceAlt,
+              contentPadding: const EdgeInsets.symmetric(
+                  horizontal: AppSpacing.base, vertical: AppSpacing.md),
+              enabledBorder: OutlineInputBorder(
+                borderRadius: AppRadius.rMd,
+                borderSide: BorderSide(color: context.colors.border),
+              ),
+              focusedBorder: OutlineInputBorder(
+                borderRadius: AppRadius.rMd,
+                borderSide:
+                    BorderSide(color: context.colors.gold, width: 1.5),
+              ),
+            ),
           ),
           actions: [
             TextButton(
@@ -246,7 +261,7 @@ class _RoundBtn extends StatelessWidget {
       onTap: onTap,
       borderRadius: BorderRadius.circular(99),
       child: Container(
-        padding: const EdgeInsets.all(8),
+        padding: const EdgeInsets.all(AppSpacing.sm),
         decoration: BoxDecoration(
           color: c.surface,
           shape: BoxShape.circle,

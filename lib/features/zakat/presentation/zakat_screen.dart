@@ -201,7 +201,7 @@ class _ZakatScreenState extends State<ZakatScreen> {
               tr ? 'Nisap (80,18 gr altın)' : 'Nisab (80.18g gold)',
               price > 0 ? _money(context, nisab) : '—',
             ),
-            const Divider(height: 18),
+            Divider(height: 18, color: c.border),
             Row(
               children: [
                 Icon(
@@ -239,9 +239,8 @@ class _ZakatScreenState extends State<ZakatScreen> {
               ),
               Text(
                 _money(context, zakat),
-                style: TextStyle(
+                style: Theme.of(context).textTheme.displaySmall?.copyWith(
                   color: c.gold,
-                  fontSize: 30,
                   fontWeight: FontWeight.w800,
                 ),
               ),
@@ -307,12 +306,11 @@ class _ZakatScreenState extends State<ZakatScreen> {
                 color: context.colors.textSecondary,
               ),
             ),
-            const SizedBox(height: 2),
+            const Gap.xs(),
             Text(
               _money(context, total),
-              style: TextStyle(
+              style: Theme.of(context).textTheme.displaySmall?.copyWith(
                 color: context.colors.gold,
-                fontSize: 32,
                 fontWeight: FontWeight.w800,
               ),
             ),
@@ -367,6 +365,14 @@ class _ZakatScreenState extends State<ZakatScreen> {
             borderRadius: AppRadius.rLg,
             borderSide: BorderSide.none,
           ),
+          enabledBorder: OutlineInputBorder(
+            borderRadius: AppRadius.rLg,
+            borderSide: BorderSide(color: c.border),
+          ),
+          focusedBorder: OutlineInputBorder(
+            borderRadius: AppRadius.rLg,
+            borderSide: BorderSide(color: c.gold, width: 1.4),
+          ),
         ),
       ),
     );
@@ -375,7 +381,7 @@ class _ZakatScreenState extends State<ZakatScreen> {
   Widget _row(BuildContext context, String label, String value) {
     final c = context.colors;
     return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 3),
+      padding: const EdgeInsets.symmetric(vertical: AppSpacing.xs),
       child: Row(
         children: [
           Expanded(

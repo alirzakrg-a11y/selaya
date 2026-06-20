@@ -73,9 +73,15 @@ class _PremiumScreenState extends State<PremiumScreen> {
                     SelayaCard(
                       child: Column(
                         children: [
-                          for (final f in _features)
+                          for (final f in _features) ...[
+                            if (f != _features.first)
+                              Divider(
+                                  height: 1,
+                                  thickness: 1,
+                                  color: c.border.withValues(alpha: 0.5)),
                             Padding(
-                              padding: const EdgeInsets.symmetric(vertical: 8),
+                              padding:
+                                  const EdgeInsets.symmetric(vertical: AppSpacing.sm),
                               child: Row(
                                 children: [
                                   Container(
@@ -96,6 +102,7 @@ class _PremiumScreenState extends State<PremiumScreen> {
                                 ],
                               ),
                             ),
+                          ],
                         ],
                       ),
                     ),
@@ -168,13 +175,23 @@ class _PlanTile extends StatelessWidget {
     final c = context.colors;
     return GestureDetector(
       onTap: onTap,
-      child: Container(
+      child: AnimatedContainer(
+        duration: const Duration(milliseconds: 160),
         padding: const EdgeInsets.all(AppSpacing.base),
         decoration: BoxDecoration(
           color: selected ? c.gold.withValues(alpha: 0.12) : c.surfaceAlt,
           borderRadius: AppRadius.rLg,
           border: Border.all(
               color: selected ? c.gold : c.border, width: selected ? 1.5 : 1),
+          boxShadow: selected
+              ? [
+                  BoxShadow(
+                    color: c.gold.withValues(alpha: 0.18),
+                    blurRadius: 16,
+                    offset: const Offset(0, 4),
+                  ),
+                ]
+              : null,
         ),
         child: Row(
           children: [

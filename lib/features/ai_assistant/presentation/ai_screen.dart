@@ -238,7 +238,7 @@ class _UserBubble extends StatelessWidget {
     return Align(
       alignment: Alignment.centerRight,
       child: Container(
-        margin: const EdgeInsets.only(bottom: AppSpacing.md, left: 40),
+        margin: const EdgeInsets.only(bottom: AppSpacing.md, left: AppSpacing.xxxl),
         padding: const EdgeInsets.all(AppSpacing.md),
         decoration: BoxDecoration(
           gradient: LinearGradient(colors: c.goldGradient),
@@ -278,7 +278,7 @@ class _AiBubble extends StatelessWidget {
     return Align(
       alignment: Alignment.centerLeft,
       child: Container(
-        margin: const EdgeInsets.only(bottom: AppSpacing.md, right: 32),
+        margin: const EdgeInsets.only(bottom: AppSpacing.md, right: AppSpacing.xxl),
         padding: const EdgeInsets.all(AppSpacing.md),
         decoration: BoxDecoration(
           color: c.surfaceAlt,
@@ -295,7 +295,7 @@ class _AiBubble extends StatelessWidget {
             Row(
               children: [
                 AnimatedAiIcon(size: 18, color: c.accent),
-                const SizedBox(width: 6),
+                const Gap.xs(),
                 Text('SELAYA AI',
                     style: TextStyle(
                         color: c.accent,
@@ -316,7 +316,7 @@ class _AiBubble extends StatelessWidget {
               Row(
                 children: [
                   Icon(Icons.menu_book_rounded, size: 13, color: c.textTertiary),
-                  const SizedBox(width: 4),
+                  const Gap.xs(),
                   Text('ai.sources'.tr().toUpperCase(),
                       style: TextStyle(
                           color: c.textTertiary,
@@ -333,7 +333,7 @@ class _AiBubble extends StatelessWidget {
                   for (final s in sources)
                     Container(
                       padding: const EdgeInsets.symmetric(
-                          horizontal: 9, vertical: 4),
+                          horizontal: 9, vertical: AppSpacing.xs),
                       decoration: BoxDecoration(
                           color: c.gold.withValues(alpha: 0.12),
                           borderRadius: AppRadius.rSm,
@@ -343,7 +343,7 @@ class _AiBubble extends StatelessWidget {
                         mainAxisSize: MainAxisSize.min,
                         children: [
                           Icon(_sourceIcon(s.type), size: 12, color: c.gold),
-                          const SizedBox(width: 4),
+                          const Gap.xs(),
                           Text('${'ai.${s.type}Ref'.tr()}: ${s.ref}',
                               style: TextStyle(
                                   color: c.gold,
@@ -371,8 +371,8 @@ class _TypingBubble extends StatelessWidget {
     return Align(
       alignment: Alignment.centerLeft,
       child: Container(
-        margin: const EdgeInsets.only(bottom: AppSpacing.md, right: 32),
-        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
+        margin: const EdgeInsets.only(bottom: AppSpacing.md, right: AppSpacing.xxl),
+        padding: const EdgeInsets.symmetric(horizontal: AppSpacing.base, vertical: 14),
         decoration: BoxDecoration(
           color: c.surfaceAlt,
           borderRadius: const BorderRadius.only(
@@ -460,7 +460,7 @@ class _InputBar extends StatelessWidget {
                 filled: true,
                 fillColor: c.surfaceAlt,
                 contentPadding:
-                    const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+                    const EdgeInsets.symmetric(horizontal: AppSpacing.base, vertical: AppSpacing.md),
                 border: OutlineInputBorder(
                     borderRadius: AppRadius.rLg,
                     borderSide: BorderSide(color: c.border)),
@@ -474,7 +474,7 @@ class _InputBar extends StatelessWidget {
           GestureDetector(
             onTap: onSend,
             child: Container(
-              padding: const EdgeInsets.all(12),
+              padding: const EdgeInsets.all(AppSpacing.md),
               decoration: BoxDecoration(
                 shape: BoxShape.circle,
                 gradient: LinearGradient(colors: AppColors.accentGradient),

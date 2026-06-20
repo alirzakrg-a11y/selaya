@@ -308,11 +308,15 @@ class _FastingScreenState extends ConsumerState<FastingScreen> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Text('${day.day}',
-                style: TextStyle(
-                    color: fg, fontWeight: FontWeight.w700, fontSize: 13)),
+                style: Theme.of(context)
+                    .textTheme
+                    .bodySmall
+                    ?.copyWith(color: fg, fontWeight: FontWeight.w700)),
             Text('${hijri.hDay}',
-                style: TextStyle(
-                    color: fg.withValues(alpha: 0.6), fontSize: 9)),
+                style: Theme.of(context)
+                    .textTheme
+                    .labelSmall
+                    ?.copyWith(color: fg.withValues(alpha: 0.6))),
           ],
         ),
       ),
@@ -364,7 +368,8 @@ class _DateChip extends StatelessWidget {
   Widget build(BuildContext context) {
     final c = context.colors;
     return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+      padding: const EdgeInsets.symmetric(
+          horizontal: AppSpacing.md, vertical: AppSpacing.sm),
       decoration: BoxDecoration(
         color: c.surfaceAlt,
         borderRadius: AppRadius.rMd,
@@ -378,7 +383,7 @@ class _DateChip extends StatelessWidget {
                   .textTheme
                   .labelSmall
                   ?.copyWith(color: c.textTertiary)),
-          const SizedBox(height: 2),
+          const Gap.xs(),
           Text(value,
               style: Theme.of(context)
                   .textTheme
@@ -398,8 +403,8 @@ class _Legend extends StatelessWidget {
           mainAxisSize: MainAxisSize.min,
           children: [
             Container(
-              width: 12,
-              height: 12,
+              width: AppSpacing.md,
+              height: AppSpacing.md,
               decoration: BoxDecoration(
                   color: color, borderRadius: BorderRadius.circular(3)),
             ),

@@ -37,19 +37,27 @@ class ExtendedTimesSection extends ConsumerWidget {
               style: Theme.of(context).textTheme.titleSmall),
           iconColor: c.gold,
           collapsedIconColor: c.textTertiary,
-          children: [for (final s in segments) _row(context, s)],
+          children: [
+            for (var i = 0; i < segments.length; i++)
+              _row(context, segments[i], isFirst: i == 0),
+          ],
         ),
       ),
     );
   }
 
-  Widget _row(BuildContext context, ExtTime s) {
+  Widget _row(BuildContext context, ExtTime s, {bool isFirst = false}) {
     final c = context.colors;
     final value = s.end == null
         ? formatClock(s.start)
         : '${formatClock(s.start)} – ${formatClock(s.end!)}';
-    return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 5),
+    return Container(
+      decoration: BoxDecoration(
+        border: isFirst
+            ? null
+            : Border(top: BorderSide(color: c.border)),
+      ),
+      padding: const EdgeInsets.symmetric(vertical: AppSpacing.sm),
       child: Row(
         children: [
           Expanded(
@@ -59,11 +67,16 @@ class ExtendedTimesSection extends ConsumerWidget {
                     .bodyMedium
                     ?.copyWith(color: c.textSecondary)),
           ),
-          Text(value,
-              style: AppTypography.tabular(Theme.of(context)
-                  .textTheme
-                  .titleSmall!
-                  .copyWith(color: c.textPrimary))),
+          const Gap(AppSpacing.sm),
+          ConstrainedBox(
+            constraints: const BoxConstraints(minWidth: 96),
+            child: Text(value,
+                textAlign: TextAlign.end,
+                style: AppTypography.tabular(Theme.of(context)
+                    .textTheme
+                    .titleSmall!
+                    .copyWith(color: c.textPrimary))),
+          ),
         ],
       ),
     );

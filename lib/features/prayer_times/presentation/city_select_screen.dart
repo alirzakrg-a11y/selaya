@@ -85,16 +85,16 @@ class _CitySelectScreenState extends ConsumerState<CitySelectScreen> {
           return Column(
             children: [
               Padding(
-                padding: const EdgeInsets.fromLTRB(AppSpacing.base,
-                    AppSpacing.sm, AppSpacing.base, AppSpacing.sm),
+                padding: const EdgeInsets.symmetric(
+                    horizontal: AppSpacing.base, vertical: AppSpacing.sm),
                 child: _LocationHero(
                   locating: _locating,
                   onTap: _locating ? null : _useLocation,
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.fromLTRB(
-                    AppSpacing.base, 0, AppSpacing.base, AppSpacing.sm),
+                padding: const EdgeInsets.symmetric(
+                    horizontal: AppSpacing.base, vertical: AppSpacing.sm),
                 child: _SearchField(
                   controller: _searchCtrl,
                   onChanged: (v) => setState(() => _q = v),
@@ -106,7 +106,10 @@ class _CitySelectScreenState extends ConsumerState<CitySelectScreen> {
               ),
               Expanded(
                 child: list.isEmpty
-                    ? SelayaEmpty(message: 'common.empty'.tr())
+                    ? SelayaEmpty(
+                        icon: AppIcons.search,
+                        message: 'common.empty'.tr(),
+                      )
                     : _CityList(
                         cities: list,
                         lang: lang,
@@ -146,7 +149,7 @@ class _LocationHero extends StatelessWidget {
         child: Row(
           children: [
             Container(
-              padding: const EdgeInsets.all(11),
+              padding: const EdgeInsets.all(AppSpacing.md),
               decoration: BoxDecoration(
                   shape: BoxShape.circle,
                   color: c.gold.withValues(alpha: 0.18)),
@@ -254,8 +257,8 @@ class _CityList extends StatelessWidget {
       if (city.country != country) {
         country = city.country;
         rows.add(Padding(
-          padding: EdgeInsets.fromLTRB(
-              4, rows.isEmpty ? 0 : AppSpacing.md, 4, AppSpacing.xs),
+          padding: EdgeInsets.fromLTRB(AppSpacing.xs,
+              rows.isEmpty ? 0 : AppSpacing.md, AppSpacing.xs, AppSpacing.xs),
           child: Text(city.countryName(lang).toUpperCase(),
               style: Theme.of(context).textTheme.labelSmall?.copyWith(
                   color: c.gold,
@@ -271,7 +274,7 @@ class _CityList extends StatelessWidget {
           borderRadius: AppRadius.rLg,
           child: Container(
             padding: const EdgeInsets.symmetric(
-                horizontal: AppSpacing.base, vertical: 14),
+                horizontal: AppSpacing.base, vertical: AppSpacing.md),
             decoration: BoxDecoration(
               color: selected ? c.gold.withValues(alpha: 0.12) : c.surfaceAlt,
               borderRadius: AppRadius.rLg,

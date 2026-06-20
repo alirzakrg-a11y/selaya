@@ -57,6 +57,9 @@ class PrayerStrip extends ConsumerWidget {
 }
 
 class _SlotCell extends StatelessWidget {
+  /// Aktif vakit hücresinin altın çerçevesinin opaklığı (yarı saydam).
+  static const double activeBorderAlpha = 0.5;
+
   final PrayerSlot slot;
   final DateTime time;
   final bool active;
@@ -71,12 +74,15 @@ class _SlotCell extends StatelessWidget {
     final c = context.colors;
     return AnimatedContainer(
       duration: const Duration(milliseconds: 250),
-      padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 6),
+      padding: const EdgeInsets.symmetric(
+        vertical: AppSpacing.sm,
+        horizontal: AppSpacing.xs,
+      ),
       decoration: BoxDecoration(
         borderRadius: AppRadius.rMd,
         gradient: active ? LinearGradient(colors: c.prayerActive) : null,
         border: active
-            ? Border.all(color: c.gold.withValues(alpha: 0.5))
+            ? Border.all(color: c.gold.withValues(alpha: activeBorderAlpha))
             : null,
       ),
       child: Column(

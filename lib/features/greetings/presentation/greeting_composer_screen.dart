@@ -16,6 +16,9 @@ import '../../../core/widgets/greeting_card.dart';
 import '../../../core/widgets/selaya_scaffold.dart';
 import '../../../core/widgets/states.dart';
 
+/// Koyu mürekkep tonu — altın zemin üzerine yazı/ikon için (gold-on-gold).
+const _onGold = Color(0xFF1A1203);
+
 const _bgDefaults = [
   'assets/images/inspiration_2.jpg',
   'assets/images/inspiration_1.jpg',
@@ -103,7 +106,12 @@ class _GreetingComposerScreenState
         loading: () => const SelayaLoading(),
         error: (e, _) => SelayaError(error: e),
         data: (occasions) {
-          if (occasions.isEmpty) return const SelayaEmpty(message: '—');
+          if (occasions.isEmpty) {
+            return SelayaEmpty(
+              icon: Icons.card_giftcard_rounded,
+              message: 'common.empty'.tr(),
+            );
+          }
           if (_occasion >= occasions.length) _occasion = 0;
           final occ = occasions[_occasion];
           if (!_seeded && occ.messages.isNotEmpty) {
@@ -143,8 +151,9 @@ class _GreetingComposerScreenState
                   itemCount: occasions.length,
                   separatorBuilder: (_, _) => const Gap.sm(),
                   itemBuilder: (context, i) {
-                    final sel = i == _occasion;
-                    return GestureDetector(
+                    return _ChipButton(
+                      label: occasions[i].label(lang),
+                      selected: i == _occasion,
                       onTap: () => setState(() {
                         _occasion = i;
                         if (occasions[i].messages.isNotEmpty) {
@@ -152,22 +161,6 @@ class _GreetingComposerScreenState
                               occasions[i].messages.first.text(lang);
                         }
                       }),
-                      child: Container(
-                        padding: const EdgeInsets.symmetric(
-                            horizontal: 16, vertical: 8),
-                        decoration: BoxDecoration(
-                          color: sel ? c.gold : c.surfaceAlt,
-                          borderRadius: BorderRadius.circular(99),
-                          border: Border.all(color: sel ? c.gold : c.border),
-                        ),
-                        child: Text(occasions[i].label(lang),
-                            style: TextStyle(
-                                color: sel
-                                    ? const Color(0xFF1A1203)
-                                    : c.textSecondary,
-                                fontWeight: FontWeight.w600,
-                                fontSize: 13)),
-                      ),
                     );
                   },
                 ),
@@ -276,25 +269,10 @@ class _GreetingComposerScreenState
                   itemCount: _fontLabels.length,
                   separatorBuilder: (_, _) => const Gap.sm(),
                   itemBuilder: (context, i) {
-                    final sel = i == _fontIndex;
-                    return GestureDetector(
+                    return _ChipButton(
+                      label: _fontLabels[i],
+                      selected: i == _fontIndex,
                       onTap: () => setState(() => _fontIndex = i),
-                      child: Container(
-                        padding: const EdgeInsets.symmetric(
-                            horizontal: 16, vertical: 8),
-                        decoration: BoxDecoration(
-                          color: sel ? c.gold : c.surfaceAlt,
-                          borderRadius: BorderRadius.circular(99),
-                          border: Border.all(color: sel ? c.gold : c.border),
-                        ),
-                        child: Text(_fontLabels[i],
-                            style: TextStyle(
-                                color: sel
-                                    ? const Color(0xFF1A1203)
-                                    : c.textSecondary,
-                                fontWeight: FontWeight.w600,
-                                fontSize: 13)),
-                      ),
                     );
                   },
                 ),
@@ -389,12 +367,13 @@ class _GreetingComposerScreenState
                   for (var i = 0; i < backgrounds.length; i++)
                     AnimatedContainer(
                       duration: const Duration(milliseconds: 200),
-                      margin: const EdgeInsets.symmetric(horizontal: 3),
+                      margin: const EdgeInsets.symmetric(
+                          horizontal: AppSpacing.xs),
                       width: i == _bg ? 16 : 6,
                       height: 6,
                       decoration: BoxDecoration(
                         color: i == _bg ? c.gold : c.border,
-                        borderRadius: BorderRadius.circular(99),
+                        borderRadius: BorderRadius.circular(AppRadius.pill),
                       ),
                     ),
                 ],
@@ -421,7 +400,7 @@ class _GreetingComposerScreenState
                             label: Text('common.share'.tr()),
                             style: FilledButton.styleFrom(
                               backgroundColor: c.gold,
-                              foregroundColor: const Color(0xFF1A1203),
+                              foregroundColor: _onGold,
                               padding:
                                   const EdgeInsets.symmetric(vertical: 14),
                             ),
@@ -461,6 +440,39 @@ class _ArrowBtn extends StatelessWidget {
         icon: Icon(icon, color: context.colors.gold, size: 30),
         onPressed: onTap,
       );
+}
+
+class _ChipButton extends StatelessWidget {
+  final String label;
+  final bool selected;
+  final VoidCallback onTap;
+  const _ChipButton({
+    required this.label,
+    required this.selected,
+    required this.onTap,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    final c = context.colors;
+    return GestureDetector(
+      onTap: onTap,
+      child: Container(
+        padding: const EdgeInsets.symmetric(
+            horizontal: AppSpacing.base, vertical: AppSpacing.sm),
+        decoration: BoxDecoration(
+          color: selected ? c.gold : c.surfaceAlt,
+          borderRadius: BorderRadius.circular(AppRadius.pill),
+          border: Border.all(color: selected ? c.gold : c.border),
+        ),
+        child: Text(label,
+            style: TextStyle(
+                color: selected ? _onGold : c.textSecondary,
+                fontWeight: FontWeight.w600,
+                fontSize: 13)),
+      ),
+    );
+  }
 }
 
 class _Label extends StatelessWidget {

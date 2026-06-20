@@ -220,7 +220,7 @@ class _LanguagePage extends StatelessWidget {
       return GestureDetector(
         onTap: () => context.setLocale(Locale(code)),
         child: Container(
-          margin: const EdgeInsets.symmetric(vertical: 6),
+          margin: const EdgeInsets.symmetric(vertical: AppSpacing.xs),
           padding: const EdgeInsets.all(AppSpacing.base),
           decoration: BoxDecoration(
             color: sel ? c.gold.withValues(alpha: 0.14) : c.surfaceAlt,
@@ -340,7 +340,7 @@ class _TermsRow extends StatelessWidget {
           ],
         ),
         Padding(
-          padding: const EdgeInsets.only(left: 32),
+          padding: const EdgeInsets.only(left: AppSpacing.xxl),
           child: GestureDetector(
             onTap: () => _showTerms(context),
             child: Text('onboarding.termsLink'.tr(),
@@ -378,12 +378,15 @@ class _IntroPage extends StatelessWidget {
                 fit: StackFit.expand,
                 children: [
                   AppImage(image),
-                  const DecoratedBox(
+                  DecoratedBox(
                     decoration: BoxDecoration(
                       gradient: LinearGradient(
                         begin: Alignment.topCenter,
                         end: Alignment.bottomCenter,
-                        colors: [Colors.transparent, Color(0xCC05070D)],
+                        colors: [
+                          Colors.transparent,
+                          c.bg.withValues(alpha: 0.8),
+                        ],
                       ),
                     ),
                   ),
@@ -514,7 +517,7 @@ class _FeaturesShowcasePage extends StatelessWidget {
                 return Row(
                   children: [
                     Container(
-                      padding: const EdgeInsets.all(9),
+                      padding: const EdgeInsets.all(AppSpacing.sm),
                       decoration: BoxDecoration(
                           shape: BoxShape.circle,
                           color: c.gold.withValues(alpha: 0.13)),
@@ -732,7 +735,7 @@ class _PrefToggleCard extends StatelessWidget {
                         .textTheme
                         .titleMedium
                         ?.copyWith(fontWeight: FontWeight.w700)),
-                const SizedBox(height: 2),
+                const Gap.xs(),
                 Text(desc,
                     style: Theme.of(context)
                         .textTheme
