@@ -122,6 +122,8 @@ class ReadingPlanScreen extends ConsumerWidget {
               title: p.title,
               desc: p.desc,
               action: tr ? 'Başlat' : 'Start',
+              meta: tr ? '${p.dailyPages} sayfa/gün' : '${p.dailyPages} pages/day',
+              metaIcon: Icons.menu_book_rounded,
               onTap: () => _confirmStart(context, ref, tr,
                   title: p.title, dailyPages: p.dailyPages),
             ),
@@ -147,6 +149,8 @@ class ReadingPlanScreen extends ConsumerWidget {
               title: h.title,
               desc: h.desc,
               action: tr ? 'Oku' : 'Read',
+              meta: tr ? 'Sûre ${h.surah}' : 'Surah ${h.surah}',
+              metaIcon: Icons.bookmark_rounded,
               onTap: () => context.push('${Routes.quranReader}/${h.surah}'),
             ),
             const Gap.sm(),
@@ -293,7 +297,20 @@ class ReadingPlanScreen extends ConsumerWidget {
   }
 }
 
-/// Aktif hatim ilerleme kartı: yüzde + ilerleme çubuğu + bugün/kalan/seri.
+/// Kısa tarih: "12 Tem" / "12 Jul" (intl + yerel veri gerektirmez).
+String _shortDate(DateTime d, bool tr) {
+  const trM = [
+    'Oca', 'Şub', 'Mar', 'Nis', 'May', 'Haz',
+    'Tem', 'Ağu', 'Eyl', 'Eki', 'Kas', 'Ara'
+  ];
+  const enM = [
+    'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
+    'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'
+  ];
+  return '${d.day} ${(tr ? trM : enM)[d.month - 1]}';
+}
+
+/// Aktif hatim ilerleme kartı: dairesel % halkası + bugün/kalan/tahmini bitiş.
 class _ActiveHatimHero extends StatelessWidget {
   final HatimSession session;
   final bool tr;
@@ -310,6 +327,7 @@ class _ActiveHatimHero extends StatelessWidget {
     final target = session.dailyTarget;
     final left = session.pagesLeft;
     final streak = session.streak();
+    final end = session.estimatedEnd();
 
     return SelayaCard(
       onTap: onTap,
@@ -323,48 +341,67 @@ class _ActiveHatimHero extends StatelessWidget {
         children: [
           Row(
             children: [
-              Icon(Icons.auto_stories_rounded, color: c.gold, size: 20),
-              const Gap.sm(),
-              Text(tr ? 'Aktif Hatim' : 'Active Khatm',
-                  style: Theme.of(context)
-                      .textTheme
-                      .titleSmall
-                      ?.copyWith(fontWeight: FontWeight.w800)),
-              const Spacer(),
-              Text(tr ? 'Devam Et' : 'Continue',
-                  style: TextStyle(
-                      color: c.gold, fontWeight: FontWeight.w700, fontSize: 13)),
-              Icon(Icons.chevron_right_rounded, color: c.gold, size: 18),
+              // Dairesel ilerleme halkası — % ortada.
+              SizedBox(
+                width: 58,
+                height: 58,
+                child: Stack(
+                  alignment: Alignment.center,
+                  children: [
+                    SizedBox(
+                      width: 58,
+                      height: 58,
+                      child: CircularProgressIndicator(
+                        value: pct,
+                        strokeWidth: 5,
+                        backgroundColor: c.gold.withValues(alpha: 0.16),
+                        valueColor: AlwaysStoppedAnimation(c.gold),
+                      ),
+                    ),
+                    Text('%$pctInt',
+                        style: TextStyle(
+                            color: c.gold,
+                            fontWeight: FontWeight.w800,
+                            fontSize: 14)),
+                  ],
+                ),
+              ),
+              const Gap.md(),
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Row(
+                      children: [
+                        Text(tr ? 'Aktif Hatim' : 'Active Khatm',
+                            style: Theme.of(context)
+                                .textTheme
+                                .titleSmall
+                                ?.copyWith(fontWeight: FontWeight.w800)),
+                        if (streak > 0) ...[
+                          const Gap.sm(),
+                          Icon(Icons.local_fire_department_rounded,
+                              size: 15, color: c.gold),
+                          Text(' $streak',
+                              style: TextStyle(
+                                  color: c.gold,
+                                  fontWeight: FontWeight.w800,
+                                  fontSize: 13)),
+                        ],
+                      ],
+                    ),
+                    const SizedBox(height: 2),
+                    Text(
+                        tr
+                            ? 'Sayfa ${session.currentPage} / $hatimPageTotal'
+                            : 'Page ${session.currentPage} / $hatimPageTotal',
+                        style:
+                            TextStyle(color: c.textSecondary, fontSize: 12.5)),
+                  ],
+                ),
+              ),
+              Icon(Icons.chevron_right_rounded, color: c.gold),
             ],
-          ),
-          const Gap.md(),
-          Row(
-            crossAxisAlignment: CrossAxisAlignment.baseline,
-            textBaseline: TextBaseline.alphabetic,
-            children: [
-              Text('%$pctInt',
-                  style: TextStyle(
-                      color: c.gold,
-                      fontSize: 30,
-                      fontWeight: FontWeight.w800,
-                      height: 1)),
-              const Spacer(),
-              Text(
-                  tr
-                      ? 'Sayfa ${session.currentPage} / $hatimPageTotal'
-                      : 'Page ${session.currentPage} / $hatimPageTotal',
-                  style: TextStyle(color: c.textSecondary, fontSize: 12.5)),
-            ],
-          ),
-          const Gap.sm(),
-          ClipRRect(
-            borderRadius: BorderRadius.circular(99),
-            child: LinearProgressIndicator(
-              value: pct,
-              minHeight: 7,
-              backgroundColor: c.gold.withValues(alpha: 0.14),
-              valueColor: AlwaysStoppedAnimation(c.gold),
-            ),
           ),
           const Gap.md(),
           Wrap(
@@ -379,10 +416,11 @@ class _ActiveHatimHero extends StatelessWidget {
               _Stat(
                   icon: Icons.flag_rounded,
                   text: tr ? 'Kalan $left sayfa' : '$left pages left'),
-              if (streak > 0)
-                _Stat(
-                    icon: Icons.local_fire_department_rounded,
-                    text: tr ? '$streak gün seri' : '$streak-day streak'),
+              _Stat(
+                  icon: Icons.event_available_rounded,
+                  text: tr
+                      ? '≈ ${_shortDate(end, tr)} biter'
+                      : '≈ by ${_shortDate(end, tr)}'),
             ],
           ),
         ],
@@ -441,6 +479,8 @@ class _PlanCard extends StatelessWidget {
   final String desc;
   final String action;
   final bool accent;
+  final String? meta; // küçük altın rozet (örn. "20 sayfa/gün", "Sûre 67")
+  final IconData? metaIcon;
   final VoidCallback onTap;
   const _PlanCard({
     required this.icon,
@@ -449,6 +489,8 @@ class _PlanCard extends StatelessWidget {
     required this.action,
     required this.onTap,
     this.accent = false,
+    this.meta,
+    this.metaIcon,
   });
 
   @override
@@ -487,6 +529,31 @@ class _PlanCard extends StatelessWidget {
                 Text(desc,
                     style: TextStyle(
                         color: c.textSecondary, fontSize: 12.5, height: 1.35)),
+                if (meta != null) ...[
+                  const SizedBox(height: 7),
+                  Container(
+                    padding:
+                        const EdgeInsets.symmetric(horizontal: 9, vertical: 3),
+                    decoration: BoxDecoration(
+                      color: c.gold.withValues(alpha: 0.12),
+                      borderRadius: BorderRadius.circular(99),
+                    ),
+                    child: Row(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        if (metaIcon != null) ...[
+                          Icon(metaIcon, size: 12, color: c.gold),
+                          const SizedBox(width: 4),
+                        ],
+                        Text(meta!,
+                            style: TextStyle(
+                                color: c.gold,
+                                fontSize: 11,
+                                fontWeight: FontWeight.w700)),
+                      ],
+                    ),
+                  ),
+                ],
               ],
             ),
           ),
