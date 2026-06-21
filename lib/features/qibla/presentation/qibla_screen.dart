@@ -88,6 +88,83 @@ class _QiblaScreenState extends ConsumerState<QiblaScreen> {
             args: ['${bearing.round()}', _dirLabel(bearing), '${dist.round()}'])));
   }
 
+  /// Pusulanın doğru kullanımı + kalibrasyon + manyetik/gerçek kuzey bilgisi.
+  void _showInfo() {
+    final c = context.colors;
+    final tr = context.langCode == 'tr';
+    final tips = tr
+        ? const [
+            'Telefonu yere paralel (düz) tutup yavaşça döndürün; üstteki ok Kâbe simgesiyle çakıştığında kıbleye dönüksünüz.',
+            'Metal eşya, mıknatıs, hoparlör ve elektronik cihazlardan uzak, mümkünse açık bir yerde kullanın.',
+            'Doğruluk düştüğünde telefonu havada 8 (sekiz) çizerek pusulayı kalibre edin.',
+            'Pusula manyetik kuzeyi gösterir; uygulama bulunduğunuz yerin manyetik sapmasını (declination) hesaba katarak gerçek kıble yönüne göre düzeltir.',
+            'Pusulaya güvenemediğinizde gündüz aşağıdaki “Güneşle Kıble” yöntemini kullanabilirsiniz.',
+          ]
+        : const [
+            'Hold the phone flat (parallel to the ground) and turn slowly; you face the qibla when the top arrow meets the Kaaba marker.',
+            'Use it away from metal, magnets, speakers and electronics — ideally outdoors.',
+            'If accuracy drops, calibrate by moving the phone in a figure-8 in the air.',
+            'The compass shows magnetic north; the app corrects for your local magnetic declination to point to the true qibla.',
+            'When the compass is unreliable, use the “Qibla by Sun” method below during daytime.',
+          ];
+    showModalBottomSheet<void>(
+      context: context,
+      isScrollControlled: true,
+      builder: (_) => SafeArea(
+        child: DraggableScrollableSheet(
+          expand: false,
+          initialChildSize: 0.6,
+          maxChildSize: 0.9,
+          builder: (_, scroll) => ListView(
+            controller: scroll,
+            padding: const EdgeInsets.all(AppSpacing.lg),
+            children: [
+              Row(children: [
+                Icon(Icons.explore_rounded, color: c.gold),
+                const Gap.sm(),
+                Expanded(
+                  child: Text(
+                      tr
+                          ? 'Kıble Pusulası Nasıl Kullanılır?'
+                          : 'Using the Qibla Compass',
+                      style: Theme.of(context).textTheme.titleLarge),
+                ),
+              ]),
+              const Gap.lg(),
+              for (var i = 0; i < tips.length; i++) ...[
+                Row(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Container(
+                      width: 24,
+                      height: 24,
+                      alignment: Alignment.center,
+                      decoration: BoxDecoration(
+                          shape: BoxShape.circle,
+                          color: c.gold.withValues(alpha: 0.14)),
+                      child: Text('${i + 1}',
+                          style: TextStyle(
+                              color: c.gold,
+                              fontWeight: FontWeight.w800,
+                              fontSize: 12)),
+                    ),
+                    const Gap.md(),
+                    Expanded(
+                      child: Text(tips[i],
+                          style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                              color: c.textSecondary, height: 1.45)),
+                    ),
+                  ],
+                ),
+                const Gap.md(),
+              ],
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     final city = ref.watch(selectedCityProvider).value;
@@ -133,6 +210,11 @@ class _QiblaScreenState extends ConsumerState<QiblaScreen> {
           onPressed: _toggleHaptic,
         ),
         IconButton(
+          tooltip: context.langCode == 'tr' ? 'Nasıl kullanılır?' : 'How to use',
+          icon: const Icon(Icons.info_outline_rounded),
+          onPressed: _showInfo,
+        ),
+        IconButton(
           tooltip: 'common.share'.tr(),
           icon: const Icon(Icons.ios_share_rounded),
           onPressed: city == null ? null : () => _share(bearing, dist),
@@ -157,6 +239,10 @@ class _QiblaScreenState extends ConsumerState<QiblaScreen> {
                   ?.copyWith(color: c.textSecondary)),
           const Gap.md(),
           _TurnGuide(heading: heading, delta: delta, aligned: aligned),
+          if (heading != null) ...[
+            const Gap.sm(),
+            Center(child: _AccuracyChip(accuracy: accuracy)),
+          ],
           const Gap.md(),
           Center(
             child: _Compass(
@@ -284,6 +370,58 @@ class _TurnGuide extends StatelessWidget {
             ),
           ],
         ),
+      ),
+    );
+  }
+}
+
+/// Pusula sensör hassasiyeti rozeti — kullanıcıya okumanın güvenilirliğini
+/// anlık gösterir (önceden yalnızca düşükken uyarı vardı).
+class _AccuracyChip extends StatelessWidget {
+  final double? accuracy;
+  const _AccuracyChip({required this.accuracy});
+
+  @override
+  Widget build(BuildContext context) {
+    final c = context.colors;
+    final tr = context.langCode == 'tr';
+    final acc = accuracy;
+    final String label;
+    final Color color;
+    final IconData icon;
+    if (acc == null) {
+      label = tr ? 'Pusula hazır' : 'Compass ready';
+      color = c.textTertiary;
+      icon = Icons.explore_rounded;
+    } else if (acc <= 12) {
+      label = tr ? 'Hassas' : 'High accuracy';
+      color = c.success;
+      icon = Icons.gps_fixed_rounded;
+    } else if (acc <= 25) {
+      label = tr ? 'Orta hassasiyet' : 'Medium accuracy';
+      color = const Color(0xFFD9A441);
+      icon = Icons.gps_not_fixed_rounded;
+    } else {
+      label = tr ? 'Düşük — kalibre edin' : 'Low — calibrate';
+      color = c.danger;
+      icon = Icons.gps_off_rounded;
+    }
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 5),
+      decoration: BoxDecoration(
+        color: color.withValues(alpha: 0.12),
+        borderRadius: BorderRadius.circular(99),
+        border: Border.all(color: color.withValues(alpha: 0.35)),
+      ),
+      child: Row(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Icon(icon, size: 14, color: color),
+          const Gap.xs(),
+          Text(label,
+              style: TextStyle(
+                  color: color, fontSize: 12, fontWeight: FontWeight.w700)),
+        ],
       ),
     );
   }
