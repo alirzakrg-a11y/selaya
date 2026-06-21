@@ -779,6 +779,8 @@ const PANEL_HTML = `<!doctype html>
   button.danger:hover{ background:#fdf0f2; }
   .row{ display:flex; gap:10px; flex-wrap:wrap; } .row > *{ flex:1; min-width:150px; }
   .muted{ color:var(--mut); font-size:12px; word-break:break-all; }
+  .search{ margin:0 0 13px; background:#fbfbfc; }
+  .search:focus{ background:#fff; }
   .tabs{ display:none; }
   details{ border:1px solid var(--line); border-radius:14px; margin-bottom:10px; overflow:hidden; background:#fff; }
   summary{ cursor:pointer; padding:13px 15px; font-weight:700; color:var(--txt); list-style:none; display:flex; align-items:center; gap:8px; }
@@ -900,6 +902,7 @@ const PANEL_HTML = `<!doctype html>
           <button class="ghost" style="flex:0 0 auto" onclick="loadItems()">Yenile</button>
         </div>
         <p class="hint"><b>Düzenle</b> başlık/açıklama · <b>Değiştir</b> dosya · <b>Gizle</b> uygulamadan kaldırır (silmez) · <b>Sil</b> tamamen kaldırır.</p>
+        <input class="search" placeholder="🔍 İçerikte ara — başlık…" oninput="filterRows(this,'list')">
         <div id="list"></div>
       </div>
     </div>
@@ -923,6 +926,7 @@ const PANEL_HTML = `<!doctype html>
           <h3 style="margin:0">Gönderilen Bildirimler</h3>
           <button class="ghost" style="flex:0 0 auto" onclick="loadNotifications()">Yenile</button>
         </div>
+        <input class="search" placeholder="🔍 Bildirimlerde ara…" oninput="filterRows(this,'nlist')">
         <div id="nlist"></div>
       </div>
     </div>
@@ -961,6 +965,7 @@ const PANEL_HTML = `<!doctype html>
           <button class="ghost" style="flex:0 0 auto" onclick="loadUsers()">Yenile</button>
         </div>
         <p class="hint">Uygulamaya kaydolan kullanıcılar (rumuz <b>@</b> ile gösterilir). <b>✏️ Düzenle</b> ad/soyad/e-posta/rumuz değiştirir · <b>Şifre Sıfırla</b> yeni şifre belirler · <b>🚫 Banla</b> girişi engeller · <b>Sil</b> hesabı + verisini kalıcı kaldırır (KVKK).</p>
+        <input class="search" placeholder="🔍 Üye ara — ad, e-posta veya rumuz…" oninput="filterRows(this,'usersBody')">
         <div id="usersBody"><p class="muted">Yükleniyor…</p></div>
       </div>
     </div>
@@ -988,6 +993,7 @@ const PANEL_HTML = `<!doctype html>
       <div class="card">
         <h3 style="margin:0 0 8px">📿 Yayındaki &amp; Kararlanan Dualar</h3>
         <p class="hint"><b>Gizle</b> duayı duvardan kaldırır (geri alınabilir — <b>Göster</b>) · <b>Sil</b> tamamen kaldırır · <b>🚫 Banla</b> yazarı engeller + tüm dualarını siler.</p>
+        <input class="search" placeholder="🔍 Dualarda ara — rumuz veya metin…" oninput="filterRows(this,'duaRecentBody')">
         <div id="duaRecentBody"><p class="muted">—</p></div>
       </div>
     </div>
@@ -1023,6 +1029,7 @@ const PANEL_HTML = `<!doctype html>
           <button class="ghost" style="flex:0 0 auto" onclick="loadText()">Yenile</button>
         </div>
         <div id="txTabs" class="txtabs"></div>
+        <input id="txSearch" class="search" placeholder="🔍 Bu türde ara…" oninput="filterRows(this,'txList')">
         <div id="txList"></div>
       </div>
     </div>
@@ -1070,6 +1077,15 @@ const PANEL_HTML = `<!doctype html>
   function toast(m){ var t=document.createElement('div'); t.className='toast'; t.textContent=m; document.body.appendChild(t); setTimeout(function(){ t.remove(); }, 2600); }
   function esc(s){ return String(s == null ? '' : s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
   function fmtSize(b){ return b > 1048576 ? (b/1048576).toFixed(1)+' MB' : Math.round(b/1024)+' KB'; }
+  // Genel istemci-tarafı arama: bir listedeki .item satırlarını metne göre süzer.
+  function filterRows(input, containerId){
+    var q=(input.value||'').trim().toLowerCase(); var c=el(containerId); if(!c) return;
+    var items=c.querySelectorAll('.item'); var shown=0;
+    for(var i=0;i<items.length;i++){ var ok=(!q||items[i].textContent.toLowerCase().indexOf(q)!==-1); items[i].style.display=ok?'':'none'; if(ok) shown++; }
+    var nf=c.parentNode && c.parentNode.querySelector('.nofound');
+    if(q && shown===0){ if(!nf){ nf=document.createElement('p'); nf.className='muted nofound'; c.parentNode.insertBefore(nf,c.nextSibling); } nf.textContent='"'+input.value.trim()+'" için sonuç yok.'; }
+    else if(nf){ nf.remove(); }
+  }
 
   function onCollectionChange(){
     var c = val('upCollection');
@@ -1187,7 +1203,7 @@ const PANEL_HTML = `<!doctype html>
     var m = TXMAP[type]; if (!m || x.collection !== m[0]) return false;
     return m[0] === 'greeting_msg' ? (ex.occasion === m[1]) : (ex.type === m[1]);
   }
-  function showTxTab(type){ currentTxType = type; renderTxTabs(); renderTxList(); }
+  function showTxTab(type){ currentTxType = type; var s=el('txSearch'); if(s) s.value=''; renderTxTabs(); renderTxList(); }
   function renderTxTabs(){
     var h = '';
     TX_TABS.forEach(function(t){
@@ -1321,7 +1337,7 @@ const PANEL_HTML = `<!doctype html>
     if(np.length<6){ toast('Şifre en az 6 karakter olmalı'); return; }
     var fd=new FormData(); fd.append('id',id); fd.append('password',np);
     api('user-reset-password',{method:'POST',body:fd}).then(function(res){
-      if(res.j&&res.j.ok){ alert('Şifre sıfırlandı ✓\\n\\nKullanıcıya ilet:\\n'+email+'\\nYeni şifre: '+np); }
+      if(res.j&&res.j.ok){ try{ if(navigator.clipboard) navigator.clipboard.writeText(np); }catch(e){} alert('Şifre sıfırlandı ✓ (yeni şifre panoya kopyalandı)\\n\\nKullanıcıya ilet:\\n'+email+'\\nYeni şifre: '+np); }
       else { toast('Hata: '+((res.j&&res.j.error)||res.status)); }
     }).catch(function(e){ toast('Hata: '+e); });
   }
