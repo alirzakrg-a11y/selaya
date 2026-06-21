@@ -1,7 +1,9 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
+import 'package:share_plus/share_plus.dart';
 
 import '../../../core/localization/localized_text.dart';
 import '../../../core/router/routes.dart';
@@ -338,6 +340,7 @@ class _DuaWallScreenState extends ConsumerState<DuaWallScreen> {
       _toast(tr ? 'Âmin demek için giriş yapın.' : 'Sign in to say Amin.');
       return;
     }
+    HapticFeedback.mediumImpact();
     setState(() => _amined.add(post.id)); // iyimser
     try {
       final n = await DuaWallApi.amin(auth.token!, post.id);
@@ -355,6 +358,73 @@ class _DuaWallScreenState extends ConsumerState<DuaWallScreen> {
     } catch (_) {
       if (mounted) setState(() => _amined.remove(post.id));
     }
+  }
+
+  /// Üstte duran "dua paylaş" davet kutusu — dokununca compose akışı (giriş +
+  /// rumuz kontrolü _onCompose'da). Listeyle birlikte kayar.
+  Widget _composePrompt(bool tr) {
+    final c = context.colors;
+    return Padding(
+      padding: const EdgeInsets.fromLTRB(
+          AppSpacing.base, AppSpacing.sm, AppSpacing.base, 0),
+      child: InkWell(
+        onTap: _onCompose,
+        borderRadius: AppRadius.rLg,
+        child: Container(
+          padding: const EdgeInsets.all(AppSpacing.md),
+          decoration: BoxDecoration(
+            gradient: LinearGradient(
+              colors: [c.gold.withValues(alpha: 0.16), c.surfaceAlt],
+              begin: Alignment.topLeft,
+              end: Alignment.bottomRight,
+            ),
+            borderRadius: AppRadius.rLg,
+            border: Border.all(color: c.gold.withValues(alpha: 0.3)),
+          ),
+          child: Row(
+            children: [
+              CircleAvatar(
+                radius: 18,
+                backgroundColor: c.gold.withValues(alpha: 0.16),
+                child: Icon(Icons.front_hand_rounded, color: c.gold, size: 18),
+              ),
+              const Gap.md(),
+              Expanded(
+                child: Text(
+                  tr
+                      ? 'Dileğini paylaş, kardeşlerine âmin aldır…'
+                      : 'Share your prayer, gather Amins…',
+                  style: Theme.of(context)
+                      .textTheme
+                      .bodyMedium
+                      ?.copyWith(color: c.textSecondary),
+                ),
+              ),
+              const Gap.sm(),
+              Container(
+                padding: const EdgeInsets.symmetric(
+                    horizontal: 12, vertical: 7),
+                decoration: BoxDecoration(
+                    color: c.gold,
+                    borderRadius: BorderRadius.circular(99)),
+                child: Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Icon(Icons.edit_rounded, color: c.onGold, size: 15),
+                    const Gap.xs(),
+                    Text(tr ? 'Paylaş' : 'Share',
+                        style: TextStyle(
+                            color: c.onGold,
+                            fontWeight: FontWeight.w800,
+                            fontSize: 13)),
+                  ],
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
   }
 
   @override
@@ -380,12 +450,13 @@ class _DuaWallScreenState extends ConsumerState<DuaWallScreen> {
                   child: _duas.isEmpty
                       ? ListView(
                           children: [
-                            const SizedBox(height: 120),
+                            _composePrompt(tr),
+                            const SizedBox(height: 80),
                             SelayaEmpty(
                               icon: Icons.front_hand_rounded,
                               message: tr
-                                  ? 'Henüz onaylı dua yok.\nİlk duayı sen paylaş — sağ üstteki + ile.'
-                                  : 'No approved prayers yet.\nBe the first — tap + above.',
+                                  ? 'Henüz onaylı dua yok.\nİlk duayı sen paylaş — yukarıdaki kutuya dokun.'
+                                  : 'No approved prayers yet.\nBe the first — tap the box above.',
                             ),
                           ],
                         )
@@ -403,10 +474,11 @@ class _DuaWallScreenState extends ConsumerState<DuaWallScreen> {
                                 AppSpacing.sm,
                                 AppSpacing.base,
                                 AppSpacing.xxxl),
-                            itemCount: _duas.length + 1,
+                            itemCount: _duas.length + 2,
                             separatorBuilder: (_, _) => const Gap.sm(),
                             itemBuilder: (_, i) {
-                              if (i == _duas.length) {
+                              if (i == 0) return _composePrompt(tr);
+                              if (i == _duas.length + 1) {
                                 return _end
                                     ? const SizedBox(height: 8)
                                     : const Padding(
@@ -421,7 +493,7 @@ class _DuaWallScreenState extends ConsumerState<DuaWallScreen> {
                                         ),
                                       );
                               }
-                              final d = _duas[i];
+                              final d = _duas[i - 1];
                               return _DuaCard(
                                 post: d,
                                 amined: _amined.contains(d.id),
@@ -501,39 +573,51 @@ class _DuaCard extends StatelessWidget {
                   .bodyMedium
                   ?.copyWith(height: 1.5, color: c.textPrimary)),
           const Gap.sm(),
-          Align(
-            alignment: Alignment.centerRight,
-            child: InkWell(
-              onTap: onAmin,
-              borderRadius: AppRadius.rMd,
-              child: Container(
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
-                decoration: BoxDecoration(
-                  color: amined
-                      ? c.gold.withValues(alpha: 0.16)
-                      : c.surfaceAlt,
-                  borderRadius: AppRadius.rMd,
-                  border: Border.all(
-                      color: amined ? c.gold.withValues(alpha: 0.4) : c.border),
-                ),
-                child: Row(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    Text('🤲', style: TextStyle(fontSize: amined ? 15 : 14)),
-                    const SizedBox(width: 6),
-                    Text(
-                      post.amins > 0 ? 'Âmin · ${post.amins}' : 'Âmin',
-                      style: TextStyle(
-                        color: amined ? c.gold : c.textSecondary,
-                        fontWeight: FontWeight.w700,
-                        fontSize: 13,
-                      ),
-                    ),
-                  ],
+          Row(
+            children: [
+              InkWell(
+                onTap: () => SharePlus.instance.share(ShareParams(
+                    text: '${post.text}\n\n— @${post.rumuz} · SELAYA')),
+                borderRadius: AppRadius.rMd,
+                child: Padding(
+                  padding: const EdgeInsets.all(6),
+                  child: Icon(Icons.ios_share_rounded,
+                      size: 18, color: c.textTertiary),
                 ),
               ),
-            ),
+              const Spacer(),
+              InkWell(
+                onTap: onAmin,
+                borderRadius: AppRadius.rMd,
+                child: Container(
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+                  decoration: BoxDecoration(
+                    color:
+                        amined ? c.gold.withValues(alpha: 0.16) : c.surfaceAlt,
+                    borderRadius: AppRadius.rMd,
+                    border: Border.all(
+                        color:
+                            amined ? c.gold.withValues(alpha: 0.4) : c.border),
+                  ),
+                  child: Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Text('🤲', style: TextStyle(fontSize: amined ? 15 : 14)),
+                      const SizedBox(width: 6),
+                      Text(
+                        post.amins > 0 ? 'Âmin · ${post.amins}' : 'Âmin',
+                        style: TextStyle(
+                          color: amined ? c.gold : c.textSecondary,
+                          fontWeight: FontWeight.w700,
+                          fontSize: 13,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ],
           ),
         ],
       ),
