@@ -49,6 +49,7 @@ class _GreetingComposerScreenState
   double _lineHeight = 1.55;
   bool _seeded = false;
   bool _busy = false;
+  int _tool = 0; // Canva araç sekmesi: 0 Mesaj · 1 Arka Plan · 2 Yazı · 3 Kime
 
   static const _fontLabels = ['Varsayılan', 'Amiri', 'Zarif', 'El Yazısı', 'Modern'];
   static const _fontFamilies = <String?>[
@@ -141,6 +142,41 @@ class _GreetingComposerScreenState
     );
   }
 
+  /// Canva-tarzı alt araç sekmesi (ikon + etiket; seçiliyse altın).
+  Widget _toolTab(int idx, IconData icon, String label) {
+    final c = context.colors;
+    final sel = _tool == idx;
+    return Expanded(
+      child: InkWell(
+        onTap: () {
+          FocusScope.of(context).unfocus();
+          setState(() => _tool = idx);
+        },
+        child: Container(
+          padding: const EdgeInsets.symmetric(vertical: 10),
+          decoration: BoxDecoration(
+            border: Border(
+              bottom: BorderSide(
+                  color: sel ? c.gold : Colors.transparent, width: 2.5),
+            ),
+          ),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Icon(icon, size: 20, color: sel ? c.gold : c.textTertiary),
+              const SizedBox(height: 3),
+              Text(label,
+                  style: TextStyle(
+                      fontSize: 11,
+                      fontWeight: sel ? FontWeight.w700 : FontWeight.w500,
+                      color: sel ? c.gold : c.textTertiary)),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     final lang = context.langCode;
@@ -172,15 +208,10 @@ class _GreetingComposerScreenState
             _seeded = true;
           }
           final size = MediaQuery.sizeOf(context);
-          // Önizleme kartı 9:16. Yüksekliği ekranın ~%40'ı ile sınırlanır ki
-          // diğer kontrolleri (paylaş/indir, hazır mesajlar) ekran dışına itmesin.
-          final cardH = (size.width * 0.56 * 16 / 9).clamp(0.0, size.height * 0.4);
-          final cardW = cardH * 9 / 16;
-          // Arka planlar = DUVAR KÂĞITLARI (panelden yüklediklerin otomatik dahil)
-          // + panel tebrik görselleri + paket-içi yedekler. Yeni duvar kâğıdı
-          // yükleyince burada da kullanılabilir hâle gelir.
           final wps = ref.watch(wallpapersProvider).value ?? const <Wallpaper>[];
           final gExtras = ref.watch(collectionProvider('greeting'));
+          // Arka planlar = DUVAR KÂĞITLARI (panelden yüklediklerin otomatik dahil)
+          // + panel tebrik görselleri + paket-içi yedekler.
           final backgrounds = <String>[
             for (final wp in wps)
               if (wp.image.isNotEmpty) wp.image,
@@ -189,314 +220,392 @@ class _GreetingComposerScreenState
             ..._bgDefaults,
           ];
           if (_bg >= backgrounds.length) _bg = 0;
+          // Canva düzeni: kart (canvas) EN ÜSTTE sabit; araçlar altta sekmeli
+          // panelde. Klavye açılınca canvas küçülür ki düzenleme alanı görünür kalsın.
+          final kbOpen = MediaQuery.viewInsetsOf(context).bottom > 0;
+          final cardH = (size.width * 0.6 * 16 / 9)
+              .clamp(0.0, size.height * (kbOpen ? 0.24 : 0.42));
+          final cardW = cardH * 9 / 16;
 
-          return ListView(
-            padding: const EdgeInsets.fromLTRB(AppSpacing.base, AppSpacing.sm,
-                AppSpacing.base, AppSpacing.xxxl),
+          return Column(
             children: [
-              // 1) Konu (occasion) chips
-              _Label('greetings.chooseOccasion'.tr()),
-              const Gap.sm(),
-              SizedBox(
-                height: 38,
-                child: ListView.separated(
-                  scrollDirection: Axis.horizontal,
-                  itemCount: occasions.length,
-                  separatorBuilder: (_, _) => const Gap.sm(),
-                  itemBuilder: (context, i) {
-                    return _ChipButton(
-                      label: occasions[i].label(lang),
-                      selected: i == _occasion,
-                      onTap: () => setState(() {
-                        _occasion = i;
-                        if (occasions[i].messages.isNotEmpty) {
-                          _controller.text =
-                              occasions[i].messages.first.text(lang);
-                        }
-                      }),
-                    );
-                  },
-                ),
-              ),
-              const Gap.md(),
-              // 2) Hazır mesajlar — seçilen konuya ait, yatay kaydırmalı.
-              _Label('greetings.chooseTemplate'.tr()),
-              const Gap.sm(),
-              SizedBox(
-                height: 92,
-                child: ListView.separated(
-                  scrollDirection: Axis.horizontal,
-                  itemCount: occ.messages.length,
-                  separatorBuilder: (_, _) => const Gap.sm(),
-                  itemBuilder: (context, i) {
-                    final m = occ.messages[i];
-                    final sel = _controller.text == m.text(lang);
-                    return GestureDetector(
-                      onTap: () =>
-                          setState(() => _controller.text = m.text(lang)),
-                      child: Container(
-                        width: 220,
-                        padding: const EdgeInsets.all(AppSpacing.md),
-                        decoration: BoxDecoration(
-                          color: c.surfaceAlt,
-                          borderRadius: AppRadius.rLg,
-                          border: Border.all(
-                              color: sel
-                                  ? c.gold.withValues(alpha: 0.7)
-                                  : c.border,
-                              width: sel ? 1.5 : 1),
-                        ),
-                        child: Text(m.text(lang),
-                            maxLines: 4,
-                            overflow: TextOverflow.ellipsis,
-                            style: Theme.of(context)
-                                .textTheme
-                                .bodySmall
-                                ?.copyWith(
-                                    color: c.textSecondary, height: 1.45)),
-                      ),
-                    );
-                  },
-                ),
-              ),
-              const Gap.md(),
-              // 3) Düzenlenebilir mesaj
-              _Label('greetings.editMessage'.tr()),
-              const Gap.sm(),
-              TextField(
-                controller: _controller,
-                maxLines: 4,
-                minLines: 2,
-                maxLength: 200,
-                onChanged: (_) => setState(() {}),
-                decoration: InputDecoration(
-                  filled: true,
-                  fillColor: c.surfaceAlt,
-                  border: OutlineInputBorder(
-                      borderRadius: AppRadius.rLg,
-                      borderSide: BorderSide(color: c.border)),
-                  enabledBorder: OutlineInputBorder(
-                      borderRadius: AppRadius.rLg,
-                      borderSide: BorderSide(color: c.border)),
-                ),
-              ),
-              const Gap.md(),
-              // 3b) Kime / Kimden — kartın kişiye hitap etmesi için.
-              _Label(lang == 'tr'
-                  ? 'Kişiselleştir (kime / kimden)'
-                  : 'Personalize (to / from)'),
-              const Gap.sm(),
-              Row(
-                children: [
-                  Expanded(
-                    child: _nameField(
-                        _toCtrl,
-                        lang == 'tr' ? 'Kime (örn. Annem)' : 'To',
-                        Icons.favorite_outline_rounded),
-                  ),
-                  const Gap.sm(),
-                  Expanded(
-                    child: _nameField(_fromCtrl,
-                        lang == 'tr' ? 'Kimden (imza)' : 'From', Icons.draw_outlined),
-                  ),
-                ],
-              ),
-              const Gap.md(),
-              // 4) Arka plan seçici
-              _Label('greetings.chooseBackground'.tr()),
-              const Gap.sm(),
-              SizedBox(
-                height: 64,
-                child: ListView.separated(
-                  scrollDirection: Axis.horizontal,
-                  itemCount: backgrounds.length,
-                  separatorBuilder: (_, _) => const Gap.sm(),
-                  itemBuilder: (context, i) {
-                    final sel = i == _bg;
-                    return GestureDetector(
-                      onTap: () => setState(() => _bg = i),
-                      child: Container(
-                        width: 64,
-                        decoration: BoxDecoration(
-                          borderRadius: AppRadius.rMd,
-                          border: Border.all(
-                              color: sel ? c.gold : c.border,
-                              width: sel ? 2 : 1),
-                        ),
-                        child: ClipRRect(
-                          borderRadius: AppRadius.rMd,
-                          child: AppImage.cdn(backgrounds[i], fit: BoxFit.cover),
-                        ),
-                      ),
-                    );
-                  },
-                ),
-              ),
-              const Gap.md(),
-              // 5) Yazı tipi (font) seçici
-              _Label('Yazı Tipi'),
-              const Gap.sm(),
-              SizedBox(
-                height: 38,
-                child: ListView.separated(
-                  scrollDirection: Axis.horizontal,
-                  itemCount: _fontLabels.length,
-                  separatorBuilder: (_, _) => const Gap.sm(),
-                  itemBuilder: (context, i) {
-                    return _ChipButton(
-                      label: _fontLabels[i],
-                      selected: i == _fontIndex,
-                      onTap: () => setState(() => _fontIndex = i),
-                    );
-                  },
-                ),
-              ),
-              const Gap.sm(),
-              // 6) Yazı boyutu & satır aralığı (line height)
-              Row(
-                children: [
-                  Icon(Icons.text_fields_rounded,
-                      size: 18, color: c.textSecondary),
-                  Expanded(
-                    child: Slider(
-                      value: _fontScale,
-                      min: 0.6,
-                      max: 1.4,
-                      divisions: 8,
-                      activeColor: c.gold,
-                      label: '${(_fontScale * 100).round()}%',
-                      onChanged: (v) => setState(() => _fontScale = v),
-                    ),
-                  ),
-                  Text('${(_fontScale * 100).round()}%',
-                      style: TextStyle(
-                          color: c.textSecondary,
-                          fontSize: 12,
-                          fontWeight: FontWeight.w600)),
-                ],
-              ),
-              Row(
-                children: [
-                  Icon(Icons.format_line_spacing_rounded,
-                      size: 18, color: c.textSecondary),
-                  Expanded(
-                    child: Slider(
-                      value: _lineHeight,
-                      min: 1.0,
-                      max: 2.4,
-                      divisions: 14,
-                      activeColor: c.gold,
-                      label: _lineHeight.toStringAsFixed(1),
-                      onChanged: (v) => setState(() => _lineHeight = v),
-                    ),
-                  ),
-                  Text(_lineHeight.toStringAsFixed(1),
-                      style: TextStyle(
-                          color: c.textSecondary,
-                          fontSize: 12,
-                          fontWeight: FontWeight.w600)),
-                ],
-              ),
-              const Gap.md(),
-              // 7) Canlı önizleme — ‹ › ile arka planı değiştir (yükseklik sınırlı)
-              _Label('greetings.preview'.tr()),
-              const Gap.sm(),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  _ArrowBtn(
-                    icon: Icons.chevron_left_rounded,
-                    onTap: () => setState(() => _bg =
-                        (_bg - 1 + backgrounds.length) % backgrounds.length),
-                  ),
-                  ClipRRect(
-                    borderRadius: AppRadius.rXl,
-                    child: SizedBox(
-                      width: cardW,
-                      height: cardH,
-                      child: RepaintBoundary(
-                        key: _cardKey,
-                        child: GreetingCard(
-                          message: _composed(lang),
-                          backgroundImage: backgrounds[_bg],
-                          fontFamily: _fontFamilies[_fontIndex],
-                          fontScale: _fontScale,
-                          lineHeight: _lineHeight,
-                        ),
-                      ),
-                    ),
-                  ),
-                  _ArrowBtn(
-                    icon: Icons.chevron_right_rounded,
-                    onTap: () => setState(
-                        () => _bg = (_bg + 1) % backgrounds.length),
-                  ),
-                ],
-              ),
-              const Gap.sm(),
-              // page dots
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  for (var i = 0; i < backgrounds.length; i++)
-                    AnimatedContainer(
-                      duration: const Duration(milliseconds: 200),
-                      margin: const EdgeInsets.symmetric(
-                          horizontal: AppSpacing.xs),
-                      width: i == _bg ? 16 : 6,
-                      height: 6,
-                      decoration: BoxDecoration(
-                        color: i == _bg ? c.gold : c.border,
-                        borderRadius: BorderRadius.circular(AppRadius.pill),
-                      ),
-                    ),
-                ],
-              ),
-              const Gap.lg(),
-              // 8) Paylaş / indir — en altta, son aksiyonlar.
-              _busy
-                  ? const Center(
-                      child: Padding(
-                        padding: EdgeInsets.all(AppSpacing.md),
-                        child: SizedBox(
-                            width: 26,
-                            height: 26,
-                            child: CircularProgressIndicator(
-                                strokeWidth: 2, color: AppColors.gold)),
-                      ),
-                    )
-                  : Row(
+              // ── CANVAS (en üstte, sabit) ──
+              Padding(
+                padding: const EdgeInsets.fromLTRB(AppSpacing.base,
+                    AppSpacing.sm, AppSpacing.base, AppSpacing.xs),
+                child: Column(
+                  children: [
+                    Row(
                       children: [
+                        _ArrowBtn(
+                          icon: Icons.chevron_left_rounded,
+                          onTap: () => setState(() => _bg =
+                              (_bg - 1 + backgrounds.length) %
+                                  backgrounds.length),
+                        ),
                         Expanded(
-                          child: FilledButton.icon(
-                            onPressed: () => _doShare(ShareTarget.system),
-                            icon: const Icon(Icons.ios_share_rounded),
-                            label: Text('common.share'.tr()),
-                            style: FilledButton.styleFrom(
-                              backgroundColor: c.gold,
-                              foregroundColor: c.onGold,
-                              padding:
-                                  const EdgeInsets.symmetric(vertical: 14),
+                          child: Center(
+                            child: ClipRRect(
+                              borderRadius: AppRadius.rXl,
+                              child: SizedBox(
+                                width: cardW,
+                                height: cardH,
+                                child: RepaintBoundary(
+                                  key: _cardKey,
+                                  child: GreetingCard(
+                                    message: _composed(lang),
+                                    backgroundImage: backgrounds[_bg],
+                                    fontFamily: _fontFamilies[_fontIndex],
+                                    fontScale: _fontScale,
+                                    lineHeight: _lineHeight,
+                                  ),
+                                ),
+                              ),
                             ),
                           ),
                         ),
-                        const Gap.sm(),
-                        Expanded(
-                          child: OutlinedButton.icon(
-                            onPressed: _downloadCard,
-                            icon: const Icon(Icons.download_rounded),
-                            label: Text('common.download'.tr()),
-                            style: OutlinedButton.styleFrom(
-                              foregroundColor: c.gold,
-                              side: BorderSide(
-                                  color: c.gold.withValues(alpha: 0.5)),
-                              padding:
-                                  const EdgeInsets.symmetric(vertical: 14),
-                            ),
-                          ),
+                        _ArrowBtn(
+                          icon: Icons.chevron_right_rounded,
+                          onTap: () => setState(() =>
+                              _bg = (_bg + 1) % backgrounds.length),
                         ),
                       ],
                     ),
+                    const Gap.xs(),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        for (var i = 0;
+                            i < backgrounds.length && i < 12;
+                            i++)
+                          AnimatedContainer(
+                            duration: const Duration(milliseconds: 200),
+                            margin: const EdgeInsets.symmetric(
+                                horizontal: AppSpacing.xs),
+                            width: i == _bg ? 16 : 6,
+                            height: 6,
+                            decoration: BoxDecoration(
+                              color: i == _bg ? c.gold : c.border,
+                              borderRadius:
+                                  BorderRadius.circular(AppRadius.pill),
+                            ),
+                          ),
+                      ],
+                    ),
+                  ],
+                ),
+              ),
+              // ── ARAÇ SEKMELERİ (Canva alt çubuğu gibi) ──
+              Container(
+                decoration: BoxDecoration(
+                  color: c.surface,
+                  border: Border(
+                    top: BorderSide(color: c.border),
+                    bottom: BorderSide(color: c.border),
+                  ),
+                ),
+                child: Row(
+                  children: [
+                    _toolTab(0, Icons.chat_bubble_outline_rounded,
+                        lang == 'tr' ? 'Mesaj' : 'Message'),
+                    _toolTab(1, Icons.image_outlined,
+                        lang == 'tr' ? 'Arka Plan' : 'Background'),
+                    _toolTab(2, Icons.text_fields_rounded,
+                        lang == 'tr' ? 'Yazı' : 'Font'),
+                    _toolTab(3, Icons.favorite_outline_rounded,
+                        lang == 'tr' ? 'Kime' : 'To/From'),
+                  ],
+                ),
+              ),
+              // ── SEÇİLİ ARACIN PANELİ (kaydırılır) ──
+              Expanded(
+                child: ListView(
+                  padding: const EdgeInsets.fromLTRB(AppSpacing.base,
+                      AppSpacing.md, AppSpacing.base, AppSpacing.lg),
+                  children: switch (_tool) {
+                    // 0 — MESAJ: konu + hazır şablon + düzenlenebilir metin
+                    0 => [
+                        _Label('greetings.chooseOccasion'.tr()),
+                        const Gap.sm(),
+                        SizedBox(
+                          height: 38,
+                          child: ListView.separated(
+                            scrollDirection: Axis.horizontal,
+                            itemCount: occasions.length,
+                            separatorBuilder: (_, _) => const Gap.sm(),
+                            itemBuilder: (context, i) => _ChipButton(
+                              label: occasions[i].label(lang),
+                              selected: i == _occasion,
+                              onTap: () => setState(() {
+                                _occasion = i;
+                                if (occasions[i].messages.isNotEmpty) {
+                                  _controller.text =
+                                      occasions[i].messages.first.text(lang);
+                                }
+                              }),
+                            ),
+                          ),
+                        ),
+                        const Gap.md(),
+                        _Label('greetings.chooseTemplate'.tr()),
+                        const Gap.sm(),
+                        SizedBox(
+                          height: 92,
+                          child: ListView.separated(
+                            scrollDirection: Axis.horizontal,
+                            itemCount: occ.messages.length,
+                            separatorBuilder: (_, _) => const Gap.sm(),
+                            itemBuilder: (context, i) {
+                              final m = occ.messages[i];
+                              final sel = _controller.text == m.text(lang);
+                              return GestureDetector(
+                                onTap: () => setState(
+                                    () => _controller.text = m.text(lang)),
+                                child: Container(
+                                  width: 220,
+                                  padding:
+                                      const EdgeInsets.all(AppSpacing.md),
+                                  decoration: BoxDecoration(
+                                    color: c.surfaceAlt,
+                                    borderRadius: AppRadius.rLg,
+                                    border: Border.all(
+                                        color: sel
+                                            ? c.gold.withValues(alpha: 0.7)
+                                            : c.border,
+                                        width: sel ? 1.5 : 1),
+                                  ),
+                                  child: Text(m.text(lang),
+                                      maxLines: 4,
+                                      overflow: TextOverflow.ellipsis,
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .bodySmall
+                                          ?.copyWith(
+                                              color: c.textSecondary,
+                                              height: 1.45)),
+                                ),
+                              );
+                            },
+                          ),
+                        ),
+                        const Gap.md(),
+                        _Label('greetings.editMessage'.tr()),
+                        const Gap.sm(),
+                        TextField(
+                          controller: _controller,
+                          maxLines: 6,
+                          minLines: 3,
+                          maxLength: 200,
+                          onChanged: (_) => setState(() {}),
+                          decoration: InputDecoration(
+                            filled: true,
+                            fillColor: c.surfaceAlt,
+                            border: OutlineInputBorder(
+                                borderRadius: AppRadius.rLg,
+                                borderSide: BorderSide(color: c.border)),
+                            enabledBorder: OutlineInputBorder(
+                                borderRadius: AppRadius.rLg,
+                                borderSide: BorderSide(color: c.border)),
+                            focusedBorder: OutlineInputBorder(
+                                borderRadius: AppRadius.rLg,
+                                borderSide:
+                                    BorderSide(color: c.gold, width: 1.4)),
+                          ),
+                        ),
+                      ],
+                    // 1 — ARKA PLAN: ızgara (Canva gibi)
+                    1 => [
+                        _Label('greetings.chooseBackground'.tr()),
+                        const Gap.sm(),
+                        GridView.builder(
+                          shrinkWrap: true,
+                          physics: const NeverScrollableScrollPhysics(),
+                          gridDelegate:
+                              const SliverGridDelegateWithFixedCrossAxisCount(
+                            crossAxisCount: 4,
+                            mainAxisSpacing: AppSpacing.sm,
+                            crossAxisSpacing: AppSpacing.sm,
+                            childAspectRatio: 9 / 16,
+                          ),
+                          itemCount: backgrounds.length,
+                          itemBuilder: (context, i) {
+                            final sel = i == _bg;
+                            return GestureDetector(
+                              onTap: () => setState(() => _bg = i),
+                              child: Container(
+                                decoration: BoxDecoration(
+                                  borderRadius: AppRadius.rMd,
+                                  border: Border.all(
+                                      color: sel ? c.gold : c.border,
+                                      width: sel ? 2.5 : 1),
+                                ),
+                                child: ClipRRect(
+                                  borderRadius: AppRadius.rMd,
+                                  child: AppImage.cdn(backgrounds[i],
+                                      fit: BoxFit.cover),
+                                ),
+                              ),
+                            );
+                          },
+                        ),
+                      ],
+                    // 2 — YAZI: font + boyut + satır aralığı
+                    2 => [
+                        _Label(lang == 'tr' ? 'Yazı Tipi' : 'Font'),
+                        const Gap.sm(),
+                        SizedBox(
+                          height: 38,
+                          child: ListView.separated(
+                            scrollDirection: Axis.horizontal,
+                            itemCount: _fontLabels.length,
+                            separatorBuilder: (_, _) => const Gap.sm(),
+                            itemBuilder: (context, i) => _ChipButton(
+                              label: _fontLabels[i],
+                              selected: i == _fontIndex,
+                              onTap: () => setState(() => _fontIndex = i),
+                            ),
+                          ),
+                        ),
+                        const Gap.md(),
+                        _Label(lang == 'tr' ? 'Yazı Boyutu' : 'Text Size'),
+                        Row(
+                          children: [
+                            Icon(Icons.text_fields_rounded,
+                                size: 18, color: c.textSecondary),
+                            Expanded(
+                              child: Slider(
+                                value: _fontScale,
+                                min: 0.6,
+                                max: 1.4,
+                                divisions: 8,
+                                activeColor: c.gold,
+                                label: '${(_fontScale * 100).round()}%',
+                                onChanged: (v) =>
+                                    setState(() => _fontScale = v),
+                              ),
+                            ),
+                            Text('${(_fontScale * 100).round()}%',
+                                style: TextStyle(
+                                    color: c.textSecondary,
+                                    fontSize: 12,
+                                    fontWeight: FontWeight.w600)),
+                          ],
+                        ),
+                        _Label(
+                            lang == 'tr' ? 'Satır Aralığı' : 'Line Spacing'),
+                        Row(
+                          children: [
+                            Icon(Icons.format_line_spacing_rounded,
+                                size: 18, color: c.textSecondary),
+                            Expanded(
+                              child: Slider(
+                                value: _lineHeight,
+                                min: 1.0,
+                                max: 2.4,
+                                divisions: 14,
+                                activeColor: c.gold,
+                                label: _lineHeight.toStringAsFixed(1),
+                                onChanged: (v) =>
+                                    setState(() => _lineHeight = v),
+                              ),
+                            ),
+                            Text(_lineHeight.toStringAsFixed(1),
+                                style: TextStyle(
+                                    color: c.textSecondary,
+                                    fontSize: 12,
+                                    fontWeight: FontWeight.w600)),
+                          ],
+                        ),
+                      ],
+                    // 3 — KİME / KİMDEN: kişiye hitap
+                    _ => [
+                        _Label(lang == 'tr'
+                            ? 'Kişiselleştir (kime / kimden)'
+                            : 'Personalize (to / from)'),
+                        const Gap.sm(),
+                        Row(
+                          children: [
+                            Expanded(
+                              child: _nameField(
+                                  _toCtrl,
+                                  lang == 'tr' ? 'Kime (örn. Annem)' : 'To',
+                                  Icons.favorite_outline_rounded),
+                            ),
+                            const Gap.sm(),
+                            Expanded(
+                              child: _nameField(
+                                  _fromCtrl,
+                                  lang == 'tr' ? 'Kimden (imza)' : 'From',
+                                  Icons.draw_outlined),
+                            ),
+                          ],
+                        ),
+                        const Gap.sm(),
+                        Text(
+                          lang == 'tr'
+                              ? 'İsim girince kart "Sevgili …," diye hitap eder; imza en alta eklenir.'
+                              : 'A name makes the card greet "Dear …,"; the signature is added at the bottom.',
+                          style: TextStyle(
+                              color: c.textTertiary,
+                              fontSize: 12,
+                              height: 1.4),
+                        ),
+                      ],
+                  },
+                ),
+              ),
+              // ── ALT AKSİYON ÇUBUĞU (sabit) ──
+              Container(
+                padding: const EdgeInsets.fromLTRB(AppSpacing.base,
+                    AppSpacing.sm, AppSpacing.base, AppSpacing.md),
+                decoration: BoxDecoration(
+                  color: c.surface,
+                  border: Border(top: BorderSide(color: c.border)),
+                ),
+                child: _busy
+                    ? const Center(
+                        child: Padding(
+                          padding: EdgeInsets.all(AppSpacing.sm),
+                          child: SizedBox(
+                              width: 26,
+                              height: 26,
+                              child: CircularProgressIndicator(
+                                  strokeWidth: 2, color: AppColors.gold)),
+                        ),
+                      )
+                    : Row(
+                        children: [
+                          Expanded(
+                            child: FilledButton.icon(
+                              onPressed: () => _doShare(ShareTarget.system),
+                              icon: const Icon(Icons.ios_share_rounded),
+                              label: Text('common.share'.tr()),
+                              style: FilledButton.styleFrom(
+                                backgroundColor: c.gold,
+                                foregroundColor: c.onGold,
+                                padding: const EdgeInsets.symmetric(
+                                    vertical: 14),
+                              ),
+                            ),
+                          ),
+                          const Gap.sm(),
+                          Expanded(
+                            child: OutlinedButton.icon(
+                              onPressed: _downloadCard,
+                              icon: const Icon(Icons.download_rounded),
+                              label: Text('common.download'.tr()),
+                              style: OutlinedButton.styleFrom(
+                                foregroundColor: c.gold,
+                                side: BorderSide(
+                                    color: c.gold.withValues(alpha: 0.5)),
+                                padding: const EdgeInsets.symmetric(
+                                    vertical: 14),
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+              ),
             ],
           );
         },
