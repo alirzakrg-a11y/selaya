@@ -14,12 +14,14 @@ import '../../../core/widgets/selaya_card.dart';
 import '../../../core/widgets/selaya_logo.dart';
 import '../../../core/widgets/selaya_scaffold.dart';
 import '../../stories/presentation/story_rail.dart';
+import '../../prayer_times/data/prayer_repository.dart';
+import '../../../core/utils/formatters.dart';
 
 /// "Akış" (#19) — a single daily stream that gathers the verse & hadith of the
 /// day, today's task progress, a short tip, a greeting-card shortcut and
 /// announcements. (Distinct from the video "Reels" feed in More.) Built to be a
 /// future admin-driven hub; the announcement block is the placeholder for that.
-class AkisScreen extends ConsumerWidget {
+class AkisScreen extends ConsumerStatefulWidget {
   const AkisScreen({super.key});
 
   // Short "did you know" facts (kısa dini bilgiler) — rotate daily. Bilingual
@@ -136,25 +138,107 @@ class AkisScreen extends ConsumerWidget {
   ];
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  ConsumerState<AkisScreen> createState() => _AkisScreenState();
+}
+
+class _AkisScreenState extends ConsumerState<AkisScreen> {
+  String _filter = 'all'; // all · verse · hadith · dua · tip
+
+  @override
+  Widget build(BuildContext context) {
     final lang = context.langCode;
+    final tr = lang == 'tr';
+    final c = context.colors;
     final ayahs = ref.watch(inspirationProvider).value ?? const [];
     final hadiths = ref.watch(hadithsProvider).value ?? const [];
     final duas = ref.watch(duasProvider).value ?? const [];
-    final dayIdx = DateTime.now().day;
+    final now = DateTime.now();
+    final dayIdx = now.day;
 
-    // #7 — akışı zenginleştir: tek "günün" içeriği yerine birkaç ayet/hadis/dua/
-    // bilgi (güne göre SABİT, farklı offset'lerle çeşitli).
+    // Güne göre SABİT seçim; bir tür seçilince ondan DAHA ÇOK gösterilir.
     List<T> pick<T>(List<T> src, int n) => src.isEmpty
         ? <T>[]
         : [
             for (var k = 0; k < n && k < src.length; k++)
               src[(dayIdx + k) % src.length]
           ];
-    final vs = pick(ayahs, 3);
-    final hs = pick(hadiths, 3);
-    final ds = pick(duas, 2);
-    final tips = [for (var k = 0; k < 3; k++) _tips[(dayIdx + k) % _tips.length]];
+    final vs = pick(ayahs, _filter == 'verse' ? 10 : 3);
+    final hs = pick(hadiths, _filter == 'hadith' ? 10 : 3);
+    final ds = pick(duas, _filter == 'dua' ? 8 : 2);
+    final tipN = _filter == 'tip' ? 8 : 3;
+    final tips = [
+      for (var k = 0; k < tipN; k++)
+        AkisScreen._tips[(dayIdx + k) % AkisScreen._tips.length]
+    ];
+
+    Widget verseCard(int i) => _ContentCard(
+          label: i == 0 ? 'akis.verseOfDay'.tr() : 'more.verses'.tr(),
+          icon: Icons.menu_book_rounded,
+          body: vs[i].text(lang),
+          footer: vs[i].reference,
+          likeKey: 'verse:${vs[i].id}',
+        );
+    Widget hadithCard(int i) => _ContentCard(
+          label: i == 0 ? 'akis.hadithOfDay'.tr() : 'more.hadiths'.tr(),
+          icon: Icons.format_quote_rounded,
+          body: hs[i].text(lang),
+          footer: hs[i].collection,
+          likeKey: 'hadith:${hs[i].id}',
+        );
+    Widget duaCard(int i) => _ContentCard(
+          label: i == 0 ? 'akis.duaOfDay'.tr() : 'duas.title'.tr(),
+          icon: Icons.volunteer_activism_rounded,
+          body: ds[i].text(lang),
+          footer: ds[i].source.isNotEmpty ? ds[i].source : null,
+          likeKey: 'dua:${ds[i].id}',
+        );
+    Widget tipCard(int i) => _ContentCard(
+          label: 'akis.didYouKnow'.tr(),
+          icon: Icons.lightbulb_outline_rounded,
+          body: tr ? tips[i].$1 : tips[i].$2,
+          share: false,
+        );
+
+    final cards = <Widget>[];
+    void push(Widget w) {
+      cards.add(w);
+      cards.add(const Gap.md());
+    }
+
+    if (_filter == 'all') {
+      for (var k = 0; k < 3; k++) {
+        if (k < vs.length) push(verseCard(k));
+        if (k < hs.length) push(hadithCard(k));
+        if (k < ds.length) push(duaCard(k));
+        push(tipCard(k));
+      }
+    } else if (_filter == 'verse') {
+      for (var i = 0; i < vs.length; i++) {
+        push(verseCard(i));
+      }
+    } else if (_filter == 'hadith') {
+      for (var i = 0; i < hs.length; i++) {
+        push(hadithCard(i));
+      }
+    } else if (_filter == 'dua') {
+      for (var i = 0; i < ds.length; i++) {
+        push(duaCard(i));
+      }
+    } else {
+      for (var i = 0; i < tips.length; i++) {
+        push(tipCard(i));
+      }
+    }
+    if (cards.isEmpty) {
+      cards.add(Padding(
+        padding: const EdgeInsets.symmetric(vertical: AppSpacing.xxxl),
+        child: Center(
+          child: Text(tr ? 'İçerik yükleniyor…' : 'Loading…',
+              style: TextStyle(color: c.textTertiary)),
+        ),
+      ));
+    }
+    final offset = ref.watch(hijriOffsetProvider);
 
     return SelayaScaffold(
       body: ListView(
@@ -169,66 +253,71 @@ class AkisScreen extends ConsumerWidget {
                   style: Theme.of(context).textTheme.headlineSmall),
             ],
           ),
+          const Gap.sm(),
+          // Bugünün tarihi — günlük akışa bağlam verir.
+          Row(
+            children: [
+              Icon(Icons.event_rounded, size: 15, color: c.textTertiary),
+              const SizedBox(width: 6),
+              Expanded(
+                child: Text(
+                  '${formatWeekday(now, lang)} · ${formatGregorian(now, lang)}  ·  ${formatHijri(now, lang, offsetDays: offset)}',
+                  style: Theme.of(context)
+                      .textTheme
+                      .bodySmall
+                      ?.copyWith(color: c.textTertiary),
+                ),
+              ),
+            ],
+          ),
           const Gap.md(),
-          // Instagram-style story rail (Günün Ayeti, Hadisi, "Bunu biliyor
-          // muydun"…) at the very top of the stream.
+          // Instagram-style story rail at the very top of the stream.
           const StoryRail(),
-          const Gap.lg(),
-          for (var k = 0; k < 3; k++) ...[
-            if (k < vs.length) ...[
-              _ContentCard(
-                label: k == 0 ? 'akis.verseOfDay'.tr() : 'more.verses'.tr(),
-                icon: Icons.menu_book_rounded,
-                body: vs[k].text(lang),
-                footer: vs[k].reference,
-                likeKey: 'verse:${vs[k].id}',
-              ),
-              const Gap.md(),
-            ],
-            if (k < hs.length) ...[
-              _ContentCard(
-                label: k == 0 ? 'akis.hadithOfDay'.tr() : 'more.hadiths'.tr(),
-                icon: Icons.format_quote_rounded,
-                body: hs[k].text(lang),
-                footer: hs[k].collection,
-                likeKey: 'hadith:${hs[k].id}',
-              ),
-              const Gap.md(),
-            ],
-            if (k < ds.length) ...[
-              _ContentCard(
-                label: k == 0 ? 'akis.duaOfDay'.tr() : 'duas.title'.tr(),
-                icon: Icons.volunteer_activism_rounded,
-                body: ds[k].text(lang),
-                footer: ds[k].source.isNotEmpty ? ds[k].source : null,
-                likeKey: 'dua:${ds[k].id}',
-              ),
-              const Gap.md(),
-            ],
-            _ContentCard(
-              label: 'akis.didYouKnow'.tr(),
-              icon: Icons.lightbulb_outline_rounded,
-              body: lang == 'tr' ? tips[k].$1 : tips[k].$2,
-              share: false, // ⑱ "Bunu biliyor muydun"da paylaş butonu yok
+          const Gap.md(),
+          // Tür filtreleri — akışı düzenle (Tümü / Ayet / Hadis / Dua / Bilgi).
+          SizedBox(
+            height: 36,
+            child: ListView(
+              scrollDirection: Axis.horizontal,
+              children: [
+                for (final f in const <(String, String, String)>[
+                  ('all', 'Tümü', 'All'),
+                  ('verse', 'Ayet', 'Verses'),
+                  ('hadith', 'Hadis', 'Hadith'),
+                  ('dua', 'Dua', 'Duas'),
+                  ('tip', 'Bilgi', 'Facts'),
+                ])
+                  Padding(
+                    padding: const EdgeInsets.only(right: AppSpacing.sm),
+                    child: _FilterChip(
+                      label: tr ? f.$2 : f.$3,
+                      selected: _filter == f.$1,
+                      onTap: () => setState(() => _filter = f.$1),
+                    ),
+                  ),
+              ],
+            ),
+          ),
+          const Gap.md(),
+          ...cards,
+          if (_filter == 'all') ...[
+            _ActionCard(
+              label: 'akis.sendGreeting'.tr(),
+              desc: 'akis.sendGreetingDesc'.tr(),
+              icon: Icons.card_giftcard_rounded,
+              onTap: () => context.push(Routes.greetings),
             ),
             const Gap.md(),
+            _ActionCard(
+              label: 'akis.reels'.tr(),
+              desc: 'akis.reelsDesc'.tr(),
+              icon: Icons.play_circle_outline_rounded,
+              onTap: () => context.push(Routes.feed),
+            ),
+            const Gap.md(),
+            _Announcement(text: 'akis.announcementDemo'.tr()),
+            const Gap.md(),
           ],
-          _ActionCard(
-            label: 'akis.sendGreeting'.tr(),
-            desc: 'akis.sendGreetingDesc'.tr(),
-            icon: Icons.card_giftcard_rounded,
-            onTap: () => context.push(Routes.greetings),
-          ),
-          const Gap.md(),
-          _ActionCard(
-            label: 'akis.reels'.tr(),
-            desc: 'akis.reelsDesc'.tr(),
-            icon: Icons.play_circle_outline_rounded,
-            onTap: () => context.push(Routes.feed),
-          ),
-          const Gap.md(),
-          _Announcement(text: 'akis.announcementDemo'.tr()),
-          const Gap.md(),
           const _SourceNote(),
         ],
       ),
@@ -437,6 +526,37 @@ class _Announcement extends StatelessWidget {
             ),
           ),
         ],
+      ),
+    );
+  }
+}
+
+/// Akış tür filtresi çipi (Tümü / Ayet / Hadis / Dua / Bilgi).
+class _FilterChip extends StatelessWidget {
+  final String label;
+  final bool selected;
+  final VoidCallback onTap;
+  const _FilterChip(
+      {required this.label, required this.selected, required this.onTap});
+
+  @override
+  Widget build(BuildContext context) {
+    final c = context.colors;
+    return GestureDetector(
+      onTap: onTap,
+      child: Container(
+        alignment: Alignment.center,
+        padding: const EdgeInsets.symmetric(horizontal: AppSpacing.base),
+        decoration: BoxDecoration(
+          color: selected ? c.gold : c.surfaceAlt,
+          borderRadius: BorderRadius.circular(AppRadius.pill),
+          border: Border.all(color: selected ? c.gold : c.border),
+        ),
+        child: Text(label,
+            style: TextStyle(
+                color: selected ? c.onGold : c.textSecondary,
+                fontWeight: FontWeight.w600,
+                fontSize: 13)),
       ),
     );
   }
