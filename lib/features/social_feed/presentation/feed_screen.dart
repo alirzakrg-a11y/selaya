@@ -1,5 +1,6 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:video_player/video_player.dart';
 
@@ -34,6 +35,7 @@ class _FeedScreenState extends ConsumerState<FeedScreen> {
     initialPage: widget.initialIndex,
   );
   late int _current = widget.initialIndex;
+  bool _muted = false; // global: bir klipte sessize alınca hepsi sessiz kalır
 
   @override
   void dispose() {
@@ -77,6 +79,8 @@ class _FeedScreenState extends ConsumerState<FeedScreen> {
                 itemBuilder: (context, i) => _FeedPage(
                   item: items[i],
                   active: i == _current,
+                  muted: _muted,
+                  onToggleMute: () => setState(() => _muted = !_muted),
                   onCompleted: () => _advance(items.length),
                 ),
               ),
@@ -100,11 +104,15 @@ class _FeedScreenState extends ConsumerState<FeedScreen> {
 class _FeedPage extends ConsumerStatefulWidget {
   final FeedItem item;
   final bool active;
+  final bool muted;
   final VoidCallback onCompleted;
+  final VoidCallback onToggleMute;
   const _FeedPage({
     required this.item,
     required this.active,
+    required this.muted,
     required this.onCompleted,
+    required this.onToggleMute,
   });
 
   @override
@@ -115,7 +123,6 @@ class _FeedPageState extends ConsumerState<_FeedPage> {
   VideoPlayerController? _video;
   bool _ready = false;
   bool _paused = false;
-  bool _muted = false;
   bool _ended = false;
 
   bool get _hasVideo => widget.item.video.isNotEmpty;
@@ -138,6 +145,7 @@ class _FeedPageState extends ConsumerState<_FeedPage> {
       await controller.initialize();
       // Play once, then let the feed advance to the next clip (no per-clip loop).
       await controller.setLooping(false);
+      controller.setVolume(widget.muted ? 0 : 1);
       controller.addListener(_onValue);
       if (!mounted) return;
       setState(() => _ready = true);
@@ -166,6 +174,7 @@ class _FeedPageState extends ConsumerState<_FeedPage> {
     super.didUpdateWidget(old);
     final c = _video;
     if (c == null || !_ready) return;
+    if (widget.muted != old.muted) c.setVolume(widget.muted ? 0 : 1);
     // Autoplay the clip that just scrolled into view; pause the one leaving.
     if (widget.active && !old.active) {
       _ended = false;
@@ -200,12 +209,9 @@ class _FeedPageState extends ConsumerState<_FeedPage> {
   }
 
   void _toggleMute() {
-    final c = _video;
-    if (c == null) return;
-    setState(() {
-      _muted = !_muted;
-      c.setVolume(_muted ? 0 : 1);
-    });
+    HapticFeedback.selectionClick();
+    // Global sessiz: parent setState → didUpdateWidget tüm kliplere uygular.
+    widget.onToggleMute();
   }
 
   /// Shares the actual video file so any app (WhatsApp, Instagram, Telegram…)
@@ -329,16 +335,18 @@ class _FeedPageState extends ConsumerState<_FeedPage> {
                 label: '$likeCount',
                 color: liked ? AppColors.danger : Colors.white,
                 // Çift yönlü: tekrar dokununca beğeniyi geri al (panelde −1).
-                onTap: () =>
-                    ref.read(likedKeysProvider.notifier).toggle(likeKey),
+                onTap: () {
+                  HapticFeedback.selectionClick();
+                  ref.read(likedKeysProvider.notifier).toggle(likeKey);
+                },
               ),
               const Gap.lg(),
               if (_hasVideo) ...[
                 _FeedAction(
-                  icon: _muted
+                  icon: widget.muted
                       ? Icons.volume_off_rounded
                       : Icons.volume_up_rounded,
-                  label: _muted ? 'feed.muted'.tr() : 'feed.sound'.tr(),
+                  label: widget.muted ? 'feed.muted'.tr() : 'feed.sound'.tr(),
                   color: Colors.white,
                   onTap: _toggleMute,
                 ),
@@ -398,6 +406,43 @@ class _FeedPageState extends ConsumerState<_FeedPage> {
             ],
           ),
         ),
+        // Video yüklenirken küçük spinner (poster üstünde).
+        if (_hasVideo && !_ready)
+          const IgnorePointer(
+            child: Center(
+              child: SizedBox(
+                width: 34,
+                height: 34,
+                child: CircularProgressIndicator(
+                    strokeWidth: 2.5, color: Colors.white70),
+              ),
+            ),
+          ),
+        // İlerleme çubuğu (en altta).
+        if (_ready && c != null)
+          Positioned(
+            left: 0,
+            right: 0,
+            bottom: 0,
+            child: IgnorePointer(
+              child: ValueListenableBuilder<VideoPlayerValue>(
+                valueListenable: c,
+                builder: (_, value, _) {
+                  final dur = value.duration.inMilliseconds;
+                  final p = dur > 0
+                      ? (value.position.inMilliseconds / dur).clamp(0.0, 1.0)
+                      : 0.0;
+                  return LinearProgressIndicator(
+                    value: p,
+                    minHeight: 2.5,
+                    backgroundColor: Colors.white24,
+                    valueColor:
+                        const AlwaysStoppedAnimation(Color(0xFFE0B250)),
+                  );
+                },
+              ),
+            ),
+          ),
       ],
     );
   }
