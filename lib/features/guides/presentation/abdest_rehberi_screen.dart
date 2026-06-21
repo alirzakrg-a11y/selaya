@@ -62,13 +62,13 @@ class AbdestRehberiScreen extends StatelessWidget {
                 child: GuideQuickLink(
                     icon: Icons.explore_rounded,
                     label: tr ? 'Kıble' : 'Qibla',
-                    onTap: () => context.push(Routes.qibla))),
+                    onTap: () => context.go(Routes.qibla))),
             const Gap.sm(),
             Expanded(
                 child: GuideQuickLink(
                     icon: Icons.schedule_rounded,
                     label: tr ? 'Vakitler' : 'Times',
-                    onTap: () => context.push(Routes.times))),
+                    onTap: () => context.go(Routes.times))),
           ]),
           const Gap.lg(),
           GuideSectionLabel(tr ? 'ABDESTİN ESASLARI' : 'WUDU ESSENTIALS'),

@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
+import '../../../core/router/nav.dart';
 import '../../../core/router/routes.dart';
 import '../../auth/data/auth_controller.dart';
 import '../../../core/theme/app_colors.dart';
@@ -147,7 +148,7 @@ class _Grid extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.only(bottom: AppSpacing.sm),
             child: SelayaCard(
-              onTap: () => context.push(e.route),
+              onTap: () => context.openRoute(e.route),
               padding: const EdgeInsets.all(AppSpacing.md),
               child: Row(
                 children: [

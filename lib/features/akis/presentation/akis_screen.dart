@@ -15,6 +15,10 @@ import '../../../core/widgets/selaya_logo.dart';
 import '../../../core/widgets/selaya_scaffold.dart';
 import '../../stories/presentation/story_rail.dart';
 import '../../prayer_times/data/prayer_repository.dart';
+import '../../baby_names/presentation/baby_names_screen.dart';
+import '../../../core/di/providers.dart';
+import '../../../core/models/content.dart';
+import '../../../core/theme/app_typography.dart';
 import '../../../core/utils/formatters.dart';
 
 /// "Akış" (#19) — a single daily stream that gathers the verse & hadith of the
@@ -144,6 +148,40 @@ class AkisScreen extends ConsumerStatefulWidget {
 class _AkisScreenState extends ConsumerState<AkisScreen> {
   String _filter = 'all'; // all · verse · hadith · dua · tip
 
+  // Günün görevi — eyleme dönük günlük teşvikler (güne göre döner, sünnete uygun).
+  static const _tasks = <(String, String)>[
+    ('Bugün 33 kere "SübhanAllah" de.', 'Say "SubhanAllah" 33 times today.'),
+    ("Bir sayfa Kur'an-ı Kerim oku.", 'Read one page of the Quran.'),
+    ('Bir yakınını ara, hatırını sor (sıla-i rahim).',
+        'Call a relative and check on them.'),
+    ('Bugün birine tebessüm et — tebessüm sadakadır.',
+        'Smile at someone today — a smile is charity.'),
+    ('Bir miktar sadaka ver.', 'Give a little in charity.'),
+    ('100 kere salavat getir.', 'Send 100 salawat upon the Prophet.'),
+    ('Sabah ve akşam zikirlerini yap.',
+        'Do the morning and evening adhkar.'),
+    ('Bir âyetin mealini oku ve üzerine düşün.',
+        "Read a verse's meaning and reflect on it."),
+    ('Ana babanı ara veya ziyaret et.', 'Call or visit your parents.'),
+    ('Bugün bir iyilik yap, kimseye söyleme.',
+        'Do a good deed today without telling anyone.'),
+    ('70 kere "Estağfirullah" diyerek tövbe et.',
+        'Seek forgiveness 70 times saying "Astaghfirullah".'),
+    ('Bir komşunun hatırını sor.', 'Check on a neighbour.'),
+    ('İsrafı azalt — suyu dikkatli kullan.',
+        'Reduce waste — use water carefully.'),
+    ('Öğrendiğin bir bilgiyi biriyle paylaş.',
+        'Share something you learned with someone.'),
+    ('Bir öfkeni yut ve affet.', 'Hold back an anger and forgive.'),
+    ('Yemekten önce ve sonra duanı et.',
+        'Say the dua before and after eating.'),
+  ];
+
+  String get _todayKey {
+    final n = DateTime.now();
+    return '${n.year}-${n.month}-${n.day}';
+  }
+
   @override
   Widget build(BuildContext context) {
     final lang = context.langCode;
@@ -152,6 +190,8 @@ class _AkisScreenState extends ConsumerState<AkisScreen> {
     final ayahs = ref.watch(inspirationProvider).value ?? const [];
     final hadiths = ref.watch(hadithsProvider).value ?? const [];
     final duas = ref.watch(duasProvider).value ?? const [];
+    final asmas = ref.watch(asmaProvider).value ?? const <Asma>[];
+    final babies = ref.watch(babyNamesProvider).value ?? const <BabyName>[];
     final now = DateTime.now();
     final dayIdx = now.day;
 
@@ -199,6 +239,17 @@ class _AkisScreenState extends ConsumerState<AkisScreen> {
           share: false,
         );
 
+    // Günün çeşitlilik kartları (yalnızca "Tümü" digest'inde gösterilir).
+    final asma = asmas.isEmpty ? null : asmas[dayIdx % asmas.length];
+    final males = babies.where((n) => n.gender == 'm').toList();
+    final females = babies.where((n) => n.gender != 'm').toList();
+    final boy = males.isEmpty ? null : males[dayIdx % males.length];
+    final girl = females.isEmpty ? null : females[dayIdx % females.length];
+    final task = _tasks[dayIdx % _tasks.length];
+    final taskDone =
+        ref.read(sharedPreferencesProvider).getString('akis_task_done') ==
+            _todayKey;
+
     final cards = <Widget>[];
     void push(Widget w) {
       cards.add(w);
@@ -206,12 +257,30 @@ class _AkisScreenState extends ConsumerState<AkisScreen> {
     }
 
     if (_filter == 'all') {
-      for (var k = 0; k < 3; k++) {
-        if (k < vs.length) push(verseCard(k));
-        if (k < hs.length) push(hadithCard(k));
-        if (k < ds.length) push(duaCard(k));
-        push(tipCard(k));
+      // Küratörlü günlük digest — her türden BİR + çeşitlilik (esma/isim/görev),
+      // arka arkaya bir sürü ayet/hadis yerine.
+      if (vs.isNotEmpty) push(verseCard(0));
+      if (hs.isNotEmpty) push(hadithCard(0));
+      if (asma != null) push(_EsmaCard(asma: asma, lang: lang));
+      if (ds.isNotEmpty) push(duaCard(0));
+      if (boy != null || girl != null) {
+        push(_NamesCard(boy: boy, girl: girl, tr: tr));
       }
+      push(_TaskCard(
+        text: tr ? task.$1 : task.$2,
+        done: taskDone,
+        tr: tr,
+        onToggle: () {
+          final p = ref.read(sharedPreferencesProvider);
+          if (p.getString('akis_task_done') == _todayKey) {
+            p.remove('akis_task_done');
+          } else {
+            p.setString('akis_task_done', _todayKey);
+          }
+          setState(() {});
+        },
+      ));
+      push(tipCard(0));
     } else if (_filter == 'verse') {
       for (var i = 0; i < vs.length; i++) {
         push(verseCard(i));
@@ -557,6 +626,200 @@ class _FilterChip extends StatelessWidget {
                 color: selected ? c.onGold : c.textSecondary,
                 fontWeight: FontWeight.w600,
                 fontSize: 13)),
+      ),
+    );
+  }
+}
+
+/// Gold bölüm etiketi (ikon + büyük harf) — digest kartlarının başlığı.
+class _CardLabel extends StatelessWidget {
+  final IconData icon;
+  final String text;
+  final bool chevron;
+  const _CardLabel(this.icon, this.text, {this.chevron = false});
+  @override
+  Widget build(BuildContext context) {
+    final c = context.colors;
+    return Row(
+      children: [
+        Icon(icon, size: 18, color: c.gold),
+        const SizedBox(width: 6),
+        Text(text.toUpperCase(),
+            style: Theme.of(context).textTheme.labelMedium?.copyWith(
+                color: c.gold, letterSpacing: 0.8, fontWeight: FontWeight.w700)),
+        if (chevron) ...[
+          const Spacer(),
+          Icon(Icons.chevron_right_rounded, size: 18, color: c.textTertiary),
+        ],
+      ],
+    );
+  }
+}
+
+/// Günün Esması — Arapça isim + okunuş + anlam; dokun → Esmâül Hüsna.
+class _EsmaCard extends StatelessWidget {
+  final Asma asma;
+  final String lang;
+  const _EsmaCard({required this.asma, required this.lang});
+  @override
+  Widget build(BuildContext context) {
+    final c = context.colors;
+    return SelayaCard(
+      patterned: true,
+      onTap: () => context.push(Routes.asma),
+      padding: const EdgeInsets.all(AppSpacing.base),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          _CardLabel(Icons.auto_awesome_rounded,
+              lang == 'tr' ? 'Günün Esması' : 'Name of Allah',
+              chevron: true),
+          const Gap.sm(),
+          Center(
+            child: Text(asma.arabic,
+                style:
+                    AppTypography.arabic(fontSize: 30, color: c.textPrimary)),
+          ),
+          const Gap.xs(),
+          Center(
+            child: Text(asma.name(lang),
+                style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                    color: c.gold, fontWeight: FontWeight.w800)),
+          ),
+          const SizedBox(height: 2),
+          Center(
+            child: Text(asma.meaning(lang),
+                textAlign: TextAlign.center,
+                style: Theme.of(context)
+                    .textTheme
+                    .bodyMedium
+                    ?.copyWith(color: c.textSecondary, height: 1.4)),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+/// Günün İsimleri — 1 erkek + 1 kız; dokun → Bebek İsimleri.
+class _NamesCard extends StatelessWidget {
+  final BabyName? boy;
+  final BabyName? girl;
+  final bool tr;
+  const _NamesCard({required this.boy, required this.girl, required this.tr});
+  @override
+  Widget build(BuildContext context) {
+    final c = context.colors;
+    Widget nameRow(BabyName n, bool isF) => Padding(
+          padding: const EdgeInsets.symmetric(vertical: 4),
+          child: Row(
+            children: [
+              Icon(isF ? Icons.female_rounded : Icons.male_rounded,
+                  size: 18, color: isF ? Colors.pink : c.gold),
+              const Gap.sm(),
+              Expanded(
+                child: Text.rich(
+                  TextSpan(children: [
+                    TextSpan(
+                        text: n.name,
+                        style: Theme.of(context).textTheme.titleSmall?.copyWith(
+                            color: c.textPrimary, fontWeight: FontWeight.w800)),
+                    TextSpan(
+                        text: '   ${n.meaning}',
+                        style: Theme.of(context)
+                            .textTheme
+                            .bodySmall
+                            ?.copyWith(color: c.textSecondary)),
+                  ]),
+                  maxLines: 2,
+                  overflow: TextOverflow.ellipsis,
+                ),
+              ),
+            ],
+          ),
+        );
+    return SelayaCard(
+      patterned: true,
+      onTap: () => context.push(Routes.babyNames),
+      padding: const EdgeInsets.all(AppSpacing.base),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          _CardLabel(Icons.child_care_rounded,
+              tr ? 'Günün İsimleri' : 'Names of the Day',
+              chevron: true),
+          const Gap.sm(),
+          if (boy != null) nameRow(boy!, false),
+          if (girl != null) nameRow(girl!, true),
+        ],
+      ),
+    );
+  }
+}
+
+/// Günün Görevi — eyleme dönük günlük teşvik; dokun → bugün için işaretle.
+class _TaskCard extends StatelessWidget {
+  final String text;
+  final bool done;
+  final bool tr;
+  final VoidCallback onToggle;
+  const _TaskCard(
+      {required this.text,
+      required this.done,
+      required this.tr,
+      required this.onToggle});
+  @override
+  Widget build(BuildContext context) {
+    final c = context.colors;
+    return SelayaCard(
+      patterned: true,
+      onTap: onToggle,
+      padding: const EdgeInsets.all(AppSpacing.base),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          _CardLabel(Icons.task_alt_rounded,
+              tr ? 'Günün Görevi' : "Today's Task"),
+          const Gap.sm(),
+          Row(
+            children: [
+              Expanded(
+                child: Text(text,
+                    style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+                          height: 1.45,
+                          color: done ? c.textTertiary : c.textPrimary,
+                          decoration:
+                              done ? TextDecoration.lineThrough : null,
+                          decorationColor: c.textTertiary,
+                        )),
+              ),
+              const Gap.md(),
+              AnimatedContainer(
+                duration: const Duration(milliseconds: 180),
+                width: 30,
+                height: 30,
+                decoration: BoxDecoration(
+                  shape: BoxShape.circle,
+                  color: done ? c.success : Colors.transparent,
+                  border: Border.all(
+                      color: done ? c.success : c.border, width: 2),
+                ),
+                child: done
+                    ? const Icon(Icons.check_rounded,
+                        size: 18, color: Colors.white)
+                    : null,
+              ),
+            ],
+          ),
+          if (done) ...[
+            const Gap.xs(),
+            Text(tr ? '✓ Bugün tamamlandı' : '✓ Done today',
+                style: TextStyle(
+                    color: c.success,
+                    fontSize: 12,
+                    fontWeight: FontWeight.w700)),
+          ],
+        ],
       ),
     );
   }
