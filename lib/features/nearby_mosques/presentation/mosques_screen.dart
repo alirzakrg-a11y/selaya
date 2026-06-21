@@ -16,6 +16,7 @@ import '../../../core/widgets/selaya_scaffold.dart';
 import '../../../core/widgets/states.dart';
 import '../../prayer_times/data/prayer_repository.dart';
 import '../data/mosque_repository.dart';
+import 'mosque_guide_sheet.dart';
 
 const _featureFilters = ['historic', 'disabled', 'women', 'quranCourse', 'selatin'];
 
@@ -43,6 +44,15 @@ class MosquesScreen extends StatelessWidget {
       child: SelayaScaffold(
         title: 'mosques.title'.tr(),
         showBack: true,
+        actions: [
+          IconButton(
+            tooltip: context.langCode == 'tr'
+                ? 'Cami adabı & duaları'
+                : 'Mosque etiquette',
+            icon: const Icon(Icons.menu_book_rounded),
+            onPressed: () => showMosqueGuideSheet(context),
+          ),
+        ],
         body: Column(
           children: [
             TabBar(
