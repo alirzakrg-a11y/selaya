@@ -50,6 +50,7 @@ class _StoryPlayerState extends State<StoryPlayer>
   late int _story;
   int _slide = 0;
   VideoPlayerController? _video;
+  double _dragDy = 0; // aşağı sürükleyerek kapatma için dikey ofset
 
   @override
   void initState() {
@@ -150,8 +151,34 @@ class _StoryPlayerState extends State<StoryPlayer>
   @override
   Widget build(BuildContext context) {
     final lang = context.langCode;
-    return PageView.builder(
-      controller: _pageController,
+    final scale = (1 - (_dragDy / 1600)).clamp(0.9, 1.0);
+    // Aşağı sürükleyince parmağı takip et + hafifçe küçül; eşiği geçince kapat.
+    return GestureDetector(
+      onVerticalDragUpdate: (d) {
+        final ny = (_dragDy + d.delta.dy).clamp(0.0, 700.0);
+        if (ny != _dragDy) {
+          setState(() => _dragDy = ny);
+          _progress.stop();
+          _video?.pause();
+        }
+      },
+      onVerticalDragEnd: (d) {
+        if (_dragDy > 140 || d.velocity.pixelsPerSecond.dy > 700) {
+          Navigator.of(context).maybePop();
+        } else {
+          setState(() => _dragDy = 0);
+          _progress.forward();
+          _video?.play();
+        }
+      },
+      child: Transform.translate(
+        offset: Offset(0, _dragDy),
+        child: Transform.scale(
+          scale: scale,
+          child: ClipRRect(
+            borderRadius: BorderRadius.circular(_dragDy > 4 ? 22 : 0),
+            child: PageView.builder(
+              controller: _pageController,
       itemCount: widget.stories.length,
       onPageChanged: (i) {
         setState(() {
@@ -303,6 +330,10 @@ class _StoryPlayerState extends State<StoryPlayer>
           ),
         );
       },
+            ),
+          ),
+        ),
+      ),
     );
   }
 }
