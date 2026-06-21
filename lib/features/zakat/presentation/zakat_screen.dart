@@ -199,6 +199,8 @@ class _ZakatScreenState extends State<ZakatScreen> {
             onSelectionChanged: (s) => setState(() => _mode = s.first),
           ),
           const Gap.md(),
+          _privacyNote(context, tr),
+          const Gap.md(),
           if (_mode == 'zakat')
             ..._zakat(context, tr)
           else
@@ -444,6 +446,38 @@ class _ZakatScreenState extends State<ZakatScreen> {
             borderSide: BorderSide(color: c.gold, width: 1.4),
           ),
         ),
+      ),
+    );
+  }
+
+  /// Gizlilik notu — girilen mal varlığı bilgileri cihazda kalır, kaydedilmez
+  /// veya senkronlanmaz (hesaba/buluta gitmez).
+  Widget _privacyNote(BuildContext context, bool tr) {
+    final c = context.colors;
+    return Container(
+      padding: const EdgeInsets.symmetric(
+          horizontal: AppSpacing.md, vertical: AppSpacing.sm),
+      decoration: BoxDecoration(
+        color: c.surfaceAlt,
+        borderRadius: AppRadius.rMd,
+        border: Border.all(color: c.border),
+      ),
+      child: Row(
+        children: [
+          Icon(Icons.lock_outline_rounded, size: 16, color: c.gold),
+          const Gap.sm(),
+          Expanded(
+            child: Text(
+              tr
+                  ? 'Gizlilik: Girdiğin tutarlar yalnızca bu cihazda, anlık hesap için kullanılır — kaydedilmez, hiçbir yere gönderilmez veya hesabına/buluta senkronlanmaz.'
+                  : 'Privacy: The amounts you enter are used only on this device for instant calculation — they are not saved, sent, or synced anywhere.',
+              style: Theme.of(context)
+                  .textTheme
+                  .bodySmall
+                  ?.copyWith(color: c.textSecondary, height: 1.35),
+            ),
+          ),
+        ],
       ),
     );
   }
