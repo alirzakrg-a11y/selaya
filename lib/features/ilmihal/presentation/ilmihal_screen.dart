@@ -27,8 +27,8 @@ final ilmihalProvider = FutureProvider<List<IlmihalItem>>(
       .loadModels('assets/data/ilmihal.json', IlmihalItem.fromJson),
 );
 
-/// İlmihal — temel fıkıh bilgileri + sık sorulan dini sorular. Kategorilere
-/// göre gruplu, açılır-kapanır soru-cevap + arama.
+/// İlmihal — temel fıkıh bilgileri + sık sorulan dini sorular. Kategori
+/// filtresi + arama + açılır-kapanır soru-cevap.
 class IlmihalScreen extends ConsumerStatefulWidget {
   const IlmihalScreen({super.key});
   @override
@@ -37,6 +37,14 @@ class IlmihalScreen extends ConsumerStatefulWidget {
 
 class _IlmihalScreenState extends ConsumerState<IlmihalScreen> {
   String _query = '';
+  String _category = 'all';
+  final _searchCtrl = TextEditingController();
+
+  @override
+  void dispose() {
+    _searchCtrl.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -51,15 +59,26 @@ class _IlmihalScreenState extends ConsumerState<IlmihalScreen> {
         error: (e, _) => SelayaError(error: e),
         data: (all) {
           final q = _query.trim().toLowerCase();
-          final list = q.isEmpty
+          // Kategoriler (veri sırasında, başa "all").
+          final cats = <String>['all'];
+          for (final e in all) {
+            if (!cats.contains(e.category)) cats.add(e.category);
+          }
+          // Arama varsa TÜM kategoride ara; yoksa seçili kategori.
+          var list = q.isNotEmpty
               ? all
-              : all
-                    .where(
-                      (e) =>
-                          e.question.toLowerCase().contains(q) ||
-                          e.answer.toLowerCase().contains(q),
-                    )
-                    .toList();
+              : (_category == 'all'
+                  ? all
+                  : all.where((e) => e.category == _category).toList());
+          if (q.isNotEmpty) {
+            list = list
+                .where((e) =>
+                    e.question.toLowerCase().contains(q) ||
+                    e.answer.toLowerCase().contains(q))
+                .toList();
+          }
+
+          // Kategori başlıklarıyla grupla + sonuna kaynak notu.
           String? prevCat;
           final children = <Widget>[];
           for (final e in list) {
@@ -81,49 +100,160 @@ class _IlmihalScreenState extends ConsumerState<IlmihalScreen> {
             }
             children.add(_QaCard(item: e));
           }
+          if (children.isNotEmpty) {
+            children.add(const Gap.md());
+            children.add(_SourceNote(tr: tr));
+          }
+
           return Column(
             children: [
               Padding(
-                padding: const EdgeInsets.fromLTRB(
-                  AppSpacing.base,
-                  AppSpacing.sm,
-                  AppSpacing.base,
-                  AppSpacing.xs,
-                ),
+                padding: const EdgeInsets.fromLTRB(AppSpacing.base,
+                    AppSpacing.sm, AppSpacing.base, AppSpacing.xs),
                 child: TextField(
+                  controller: _searchCtrl,
                   onChanged: (v) => setState(() => _query = v),
+                  textInputAction: TextInputAction.search,
                   decoration: InputDecoration(
                     hintText: tr ? 'Soru ara…' : 'Search…',
-                    prefixIcon: Icon(
-                      Icons.search_rounded,
-                      color: c.textTertiary,
-                    ),
+                    prefixIcon: Icon(Icons.search_rounded,
+                        size: 20, color: c.textTertiary),
+                    suffixIcon: _query.isEmpty
+                        ? null
+                        : IconButton(
+                            icon: Icon(Icons.close_rounded,
+                                size: 19, color: c.textTertiary),
+                            onPressed: () {
+                              _searchCtrl.clear();
+                              setState(() => _query = '');
+                            },
+                          ),
                     isDense: true,
+                    contentPadding: const EdgeInsets.symmetric(
+                        vertical: 10, horizontal: 12),
                     filled: true,
                     fillColor: c.surfaceAlt,
                     border: OutlineInputBorder(
-                      borderRadius: AppRadius.rLg,
-                      borderSide: BorderSide.none,
-                    ),
+                        borderRadius: AppRadius.rLg,
+                        borderSide: BorderSide.none),
+                    enabledBorder: OutlineInputBorder(
+                        borderRadius: AppRadius.rLg,
+                        borderSide: BorderSide.none),
+                    focusedBorder: OutlineInputBorder(
+                        borderRadius: AppRadius.rLg,
+                        borderSide: BorderSide(color: c.gold, width: 1.4)),
                   ),
                 ),
               ),
+              // Kategori filtre çipleri (arama yokken etkin).
+              SizedBox(
+                height: 40,
+                child: ListView.separated(
+                  scrollDirection: Axis.horizontal,
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: AppSpacing.base),
+                  itemCount: cats.length,
+                  separatorBuilder: (_, _) => const Gap.sm(),
+                  itemBuilder: (_, i) {
+                    final cat = cats[i];
+                    return _CatChip(
+                      label: cat == 'all' ? (tr ? 'Tümü' : 'All') : cat,
+                      selected: _category == cat && _query.isEmpty,
+                      onTap: () => setState(() {
+                        _category = cat;
+                        if (_query.isNotEmpty) {
+                          _searchCtrl.clear();
+                          _query = '';
+                        }
+                      }),
+                    );
+                  },
+                ),
+              ),
+              const Gap.sm(),
               Expanded(
                 child: children.isEmpty
-                    ? const SelayaEmpty()
+                    ? SelayaEmpty(
+                        message: tr
+                            ? '“${_query.trim()}” için sonuç yok'
+                            : 'No results')
                     : ListView(
-                        padding: const EdgeInsets.fromLTRB(
-                          AppSpacing.base,
-                          0,
-                          AppSpacing.base,
-                          AppSpacing.xxxl,
-                        ),
+                        padding: const EdgeInsets.fromLTRB(AppSpacing.base, 0,
+                            AppSpacing.base, AppSpacing.xxxl),
                         children: children,
                       ),
               ),
             ],
           );
         },
+      ),
+    );
+  }
+}
+
+class _CatChip extends StatelessWidget {
+  final String label;
+  final bool selected;
+  final VoidCallback onTap;
+  const _CatChip(
+      {required this.label, required this.selected, required this.onTap});
+  @override
+  Widget build(BuildContext context) {
+    final c = context.colors;
+    return GestureDetector(
+      onTap: onTap,
+      child: AnimatedContainer(
+        duration: const Duration(milliseconds: 160),
+        alignment: Alignment.center,
+        padding: const EdgeInsets.symmetric(horizontal: 14),
+        decoration: BoxDecoration(
+          color: selected ? c.gold : c.surfaceAlt,
+          borderRadius: BorderRadius.circular(999),
+          border:
+              Border.all(color: selected ? c.gold : c.border),
+        ),
+        child: Text(
+          label,
+          style: TextStyle(
+            color: selected ? c.onGold : c.textSecondary,
+            fontWeight: FontWeight.w600,
+            fontSize: 13,
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class _SourceNote extends StatelessWidget {
+  final bool tr;
+  const _SourceNote({required this.tr});
+  @override
+  Widget build(BuildContext context) {
+    final c = context.colors;
+    return Container(
+      padding: const EdgeInsets.all(AppSpacing.md),
+      decoration: BoxDecoration(
+        color: c.gold.withValues(alpha: 0.08),
+        borderRadius: AppRadius.rSm,
+        border: Border.all(color: c.gold.withValues(alpha: 0.25)),
+      ),
+      child: Row(
+        children: [
+          Icon(Icons.menu_book_rounded, size: 16, color: c.gold),
+          const Gap.sm(),
+          Expanded(
+            child: Text(
+              tr
+                  ? 'Kaynak: Diyanet İşleri Başkanlığı İlmihali esas alınmıştır. Özel durumlar için yetkili kaynaklara / bir âlime başvurun.'
+                  : 'Source: based on the Diyanet catechism. For specific cases, consult qualified sources.',
+              style: Theme.of(context)
+                  .textTheme
+                  .bodySmall
+                  ?.copyWith(color: c.textSecondary, height: 1.4),
+            ),
+          ),
+        ],
       ),
     );
   }
