@@ -14,6 +14,8 @@ class IbadetStats {
   final int completeDays; // 5 vakit tamamlanan gün sayısı
   final int fastDays; // tutulan oruç günü
   final int dhikrTotal; // toplam zikir
+  final int todayCount; // bugün kılınan vakit (0-5)
+  final List<bool> last7; // son 7 günün tam-gün durumu (eskiden bugüne)
   const IbadetStats(
     this.streak,
     this.longest,
@@ -21,6 +23,8 @@ class IbadetStats {
     this.completeDays,
     this.fastDays,
     this.dhikrTotal,
+    this.todayCount,
+    this.last7,
   );
 }
 
@@ -69,7 +73,18 @@ final ibadetStatsProvider = Provider<IbadetStats>((ref) {
       dhikr += prefs.getInt(k) ?? 0;
     }
   }
-  return IbadetStats(streak, longest, total, complete.length, fast, dhikr);
+  // Bugün kılınan vakit + son 7 günün tam-gün durumu (şerit için).
+  final today = DateTime(t.year, t.month, t.day);
+  final todayCount = (prefs.getStringList(
+              'tracking_${today.toIso8601String().substring(0, 10)}') ??
+          const [])
+      .length;
+  final last7 = <bool>[
+    for (var i = 6; i >= 0; i--)
+      complete.contains(today.subtract(Duration(days: i)))
+  ];
+  return IbadetStats(
+      streak, longest, total, complete.length, fast, dhikr, todayCount, last7);
 });
 
 class _Badge {
@@ -198,6 +213,10 @@ class StreakScreen extends ConsumerWidget {
             ),
           ),
           const Gap.md(),
+          _todayCard(context, tr, s),
+          const Gap.md(),
+          _weekStrip(context, tr, s),
+          const Gap.lg(),
           // İstatistik üçlüsü
           Row(
             children: [
@@ -244,6 +263,148 @@ class StreakScreen extends ConsumerWidget {
           ),
         ],
       ),
+    );
+  }
+
+  /// Bugünkü 5 vakit ilerlemesi (bar + mesaj).
+  Widget _todayCard(BuildContext context, bool tr, IbadetStats s) {
+    final c = context.colors;
+    final done = s.todayCount.clamp(0, 5);
+    final msg = done >= 5
+        ? (tr ? 'Maşallah, bugünü tamamladın!' : 'All done for today, mashallah!')
+        : (tr ? '${5 - done} vakit kaldı' : '${5 - done} prayers left');
+    return Container(
+      padding: const EdgeInsets.all(AppSpacing.md),
+      decoration: BoxDecoration(
+        color: c.surfaceAlt,
+        borderRadius: AppRadius.rLg,
+        border: Border.all(color: c.border),
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Row(
+            children: [
+              Text(tr ? 'Bugün' : 'Today',
+                  style: Theme.of(context)
+                      .textTheme
+                      .titleSmall
+                      ?.copyWith(fontWeight: FontWeight.w800)),
+              const Spacer(),
+              Text('$done / 5',
+                  style: TextStyle(
+                      color: c.gold,
+                      fontWeight: FontWeight.w800,
+                      fontSize: 16)),
+            ],
+          ),
+          const Gap.sm(),
+          Row(
+            children: [
+              for (var i = 0; i < 5; i++) ...[
+                Expanded(
+                  child: Container(
+                    height: 8,
+                    decoration: BoxDecoration(
+                      color: i < done ? c.gold : c.border,
+                      borderRadius: BorderRadius.circular(99),
+                    ),
+                  ),
+                ),
+                if (i < 4) const SizedBox(width: 5),
+              ],
+            ],
+          ),
+          const Gap.sm(),
+          Text(msg,
+              style: Theme.of(context)
+                  .textTheme
+                  .bodySmall
+                  ?.copyWith(color: c.textSecondary)),
+        ],
+      ),
+    );
+  }
+
+  /// Son 7 günün tam-gün (5 vakit) durumu — gün gün alev/çizgi.
+  Widget _weekStrip(BuildContext context, bool tr, IbadetStats s) {
+    final c = context.colors;
+    final now = DateTime.now();
+    final today = DateTime(now.year, now.month, now.day);
+    return Container(
+      padding: const EdgeInsets.fromLTRB(
+          AppSpacing.sm, AppSpacing.md, AppSpacing.sm, AppSpacing.md),
+      decoration: BoxDecoration(
+        color: c.surfaceAlt,
+        borderRadius: AppRadius.rLg,
+        border: Border.all(color: c.border),
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Padding(
+            padding: const EdgeInsets.only(
+                left: AppSpacing.sm, bottom: AppSpacing.sm),
+            child: Text(tr ? 'Son 7 Gün' : 'Last 7 Days',
+                style: Theme.of(context)
+                    .textTheme
+                    .titleSmall
+                    ?.copyWith(fontWeight: FontWeight.w800)),
+          ),
+          Row(
+            children: [
+              for (var i = 0; i < 7; i++)
+                Expanded(
+                  child: _dayCell(
+                    context,
+                    tr,
+                    today.subtract(Duration(days: 6 - i)),
+                    i < s.last7.length && s.last7[i],
+                    i == 6,
+                  ),
+                ),
+            ],
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _dayCell(BuildContext context, bool tr, DateTime date, bool done,
+      bool isToday) {
+    final c = context.colors;
+    const wdTr = ['Pt', 'Sa', 'Ça', 'Pe', 'Cu', 'Ct', 'Pa'];
+    const wdEn = ['M', 'T', 'W', 'T', 'F', 'S', 'S'];
+    return Column(
+      children: [
+        Container(
+          width: 32,
+          height: 32,
+          decoration: BoxDecoration(
+            shape: BoxShape.circle,
+            color: done ? c.gold.withValues(alpha: 0.18) : c.surface,
+            border: Border.all(
+              color: isToday
+                  ? c.gold
+                  : (done ? c.gold.withValues(alpha: 0.4) : c.border),
+              width: isToday ? 1.6 : 1,
+            ),
+          ),
+          child: Icon(
+            done
+                ? Icons.local_fire_department_rounded
+                : Icons.remove_rounded,
+            size: 16,
+            color: done ? c.gold : c.textTertiary,
+          ),
+        ),
+        const Gap.xs(),
+        Text((tr ? wdTr : wdEn)[date.weekday - 1],
+            style: TextStyle(
+                color: isToday ? c.gold : c.textTertiary,
+                fontSize: 11,
+                fontWeight: isToday ? FontWeight.w800 : FontWeight.w500)),
+      ],
     );
   }
 
