@@ -1,7 +1,10 @@
 import 'package:easy_localization/easy_localization.dart' hide TextDirection;
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:just_audio/just_audio.dart';
 
+import '../../../core/di/providers.dart';
 import '../../../core/localization/localized_text.dart';
 import '../../../core/theme/app_colors.dart';
 import '../../../core/theme/app_spacing.dart';
@@ -58,16 +61,52 @@ const _steps = <_Zikr>[
   ),
 ];
 
-class TesbihatScreen extends StatefulWidget {
+class TesbihatScreen extends ConsumerStatefulWidget {
   const TesbihatScreen({super.key});
   @override
-  State<TesbihatScreen> createState() => _TesbihatScreenState();
+  ConsumerState<TesbihatScreen> createState() => _TesbihatScreenState();
 }
 
-class _TesbihatScreenState extends State<TesbihatScreen> {
+class _TesbihatScreenState extends ConsumerState<TesbihatScreen> {
   int _step = 0;
   int _count = 0;
   bool _done = false;
+  bool _sound = true;
+  final _player = AudioPlayer();
+
+  @override
+  void initState() {
+    super.initState();
+    _sound =
+        ref.read(sharedPreferencesProvider).getBool(PrefKeys.dhikrSound) ?? true;
+    _preload();
+  }
+
+  Future<void> _preload() async {
+    try {
+      await _player.setAsset('assets/audio/dhikr_wood.wav');
+    } catch (_) {}
+  }
+
+  @override
+  void dispose() {
+    _player.dispose();
+    super.dispose();
+  }
+
+  /// Her sayımda kısa tıkırtı (zikirmatikle aynı ses; aç/kapat kalıcı).
+  Future<void> _playTick() async {
+    if (!_sound) return;
+    try {
+      await _player.seek(Duration.zero);
+      await _player.play();
+    } catch (_) {}
+  }
+
+  void _toggleSound() {
+    setState(() => _sound = !_sound);
+    ref.read(sharedPreferencesProvider).setBool(PrefKeys.dhikrSound, _sound);
+  }
 
   void _reset() => setState(() {
     _step = 0;
@@ -77,6 +116,7 @@ class _TesbihatScreenState extends State<TesbihatScreen> {
 
   void _tap() {
     if (_done) return;
+    _playTick();
     final z = _steps[_step];
     if (_count + 1 >= z.target) {
       // Adım tamamlandı → güçlü titreşim + sıradaki adım (veya bitti).
@@ -98,6 +138,91 @@ class _TesbihatScreenState extends State<TesbihatScreen> {
     }
   }
 
+  /// Namaz tesbihatının ne olduğunu + faziletini (hadis) anlatan bilgi sayfası.
+  void _showInfo() {
+    final c = context.colors;
+    final tr = context.langCode == 'tr';
+    showModalBottomSheet<void>(
+      context: context,
+      isScrollControlled: true,
+      builder: (_) => SafeArea(
+        child: DraggableScrollableSheet(
+          expand: false,
+          initialChildSize: 0.62,
+          maxChildSize: 0.9,
+          builder: (_, scroll) => ListView(
+            controller: scroll,
+            padding: const EdgeInsets.all(AppSpacing.lg),
+            children: [
+              Row(children: [
+                Icon(Icons.auto_awesome_rounded, color: c.gold),
+                const Gap.sm(),
+                Expanded(
+                  child: Text(tr ? 'Namaz Tesbihatı' : 'Post-Prayer Tasbihat',
+                      style: Theme.of(context).textTheme.titleLarge),
+                ),
+              ]),
+              const Gap.md(),
+              Text(
+                tr
+                    ? 'Her farz namazdan sonra 33 defa “Sübhânallah”, 33 defa “Elhamdülillah” ve 33 defa “Allâhüekber” denir; böylece doksan dokuza ulaşılır. Yüzü tamamlamak için kelime-i tevhîd okunur.'
+                    : 'After each obligatory prayer one says 33× “Subhanallah”, 33× “Alhamdulillah” and 33× “Allahu akbar”, reaching ninety-nine; the hundredth is completed with the tahlil (kalima of monotheism).',
+                style: Theme.of(context)
+                    .textTheme
+                    .bodyMedium
+                    ?.copyWith(color: c.textSecondary, height: 1.5),
+              ),
+              const Gap.lg(),
+              Container(
+                padding: const EdgeInsets.all(AppSpacing.md),
+                decoration: BoxDecoration(
+                  color: c.gold.withValues(alpha: 0.08),
+                  borderRadius: AppRadius.rLg,
+                  border: Border.all(color: c.gold.withValues(alpha: 0.25)),
+                ),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      tr
+                          ? '“Her namazın ardından kim otuz üç defa Sübhânallah, otuz üç defa Elhamdülillah ve otuz üç defa Allâhüekber der; böylece doksan dokuz olur. Yüzü tamamlamak için de ‘Lâ ilâhe illallâhü vahdehû lâ şerîke leh, lehü’l-mülkü ve lehü’l-hamdü ve hüve alâ külli şey’in kadîr’ derse, denizin köpüğü kadar bile olsa günahları bağışlanır.”'
+                          : '“Whoever, after every prayer, glorifies Allah 33 times, praises Him 33 times and magnifies Him 33 times — that is ninety-nine — and completes the hundred with ‘La ilaha illallahu wahdahu la sharika lah…’, his sins are forgiven even if they were like the foam of the sea.”',
+                      style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                          height: 1.55, fontStyle: FontStyle.italic),
+                    ),
+                    const Gap.sm(),
+                    Text('— Müslim, Mesâcid 146',
+                        style: TextStyle(
+                            color: c.gold,
+                            fontWeight: FontWeight.w700,
+                            fontSize: 12.5)),
+                  ],
+                ),
+              ),
+              const Gap.md(),
+              Row(children: [
+                Icon(Icons.menu_book_rounded, size: 16, color: c.gold),
+                const Gap.sm(),
+                Expanded(
+                  child: Text(
+                    tr
+                        ? 'Kaynak: Diyanet İşleri Başkanlığı esas alınmıştır.'
+                        : 'Source: based on the Diyanet (Presidency of Religious Affairs).',
+                    style: Theme.of(context)
+                        .textTheme
+                        .bodySmall
+                        ?.copyWith(color: c.textTertiary),
+                  ),
+                ),
+              ]),
+              const Gap.sm(),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     final tr = context.langCode == 'tr';
@@ -105,6 +230,18 @@ class _TesbihatScreenState extends State<TesbihatScreen> {
       title: 'tesbihat.title'.tr(),
       showBack: true,
       actions: [
+        IconButton(
+          tooltip: tr ? 'Ses' : 'Sound',
+          icon: Icon(
+              _sound ? Icons.volume_up_rounded : Icons.volume_off_rounded,
+              color: context.colors.gold),
+          onPressed: _toggleSound,
+        ),
+        IconButton(
+          tooltip: tr ? 'Bilgi' : 'Info',
+          icon: Icon(Icons.info_outline_rounded, color: context.colors.gold),
+          onPressed: _showInfo,
+        ),
         IconButton(
           tooltip: 'common.reset'.tr(),
           icon: Icon(Icons.refresh_rounded, color: context.colors.gold),
