@@ -136,7 +136,7 @@ class _WidgetPreview extends StatelessWidget {
                         .textTheme
                         .titleSmall
                         ?.copyWith(fontWeight: FontWeight.w700)),
-                const SizedBox(height: 2),
+                const Gap.xxs(),
                 Text(desc,
                     style: Theme.of(context)
                         .textTheme

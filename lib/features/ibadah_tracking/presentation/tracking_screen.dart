@@ -495,8 +495,8 @@ class _MonthHistoryState extends State<_MonthHistory> {
             crossAxisCount: 7,
             shrinkWrap: true,
             physics: const NeverScrollableScrollPhysics(),
-            mainAxisSpacing: 4,
-            crossAxisSpacing: 4,
+            mainAxisSpacing: AppSpacing.xs,
+            crossAxisSpacing: AppSpacing.xs,
             children: [
               for (var i = 1; i < firstWeekday; i++) const SizedBox(),
               for (var dnum = 1; dnum <= daysInMonth; dnum++)

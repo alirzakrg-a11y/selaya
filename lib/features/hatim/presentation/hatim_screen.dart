@@ -394,7 +394,7 @@ void showHatimStartSheet(BuildContext context, WidgetRef ref) {
     backgroundColor: c.surface,
     showDragHandle: true,
     shape: const RoundedRectangleBorder(
-        borderRadius: BorderRadius.vertical(top: Radius.circular(24))),
+        borderRadius: BorderRadius.vertical(top: Radius.circular(AppRadius.xl))),
     builder: (_) => _StartSheet(parentRef: ref),
   );
 }
@@ -462,7 +462,7 @@ class _StartSheetState extends ConsumerState<_StartSheet> {
                   style: Theme.of(context).textTheme.titleSmall),
               const Gap.sm(),
               Wrap(
-                spacing: 8,
+                spacing: AppSpacing.sm,
                 children: [
                   for (final v in [4, 10, 20])
                     ChoiceChip(
@@ -485,7 +485,7 @@ class _StartSheetState extends ConsumerState<_StartSheet> {
                         filled: true,
                         fillColor: c.surfaceAlt,
                         border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(12),
+                            borderRadius: BorderRadius.circular(AppRadius.sm),
                             borderSide: BorderSide(color: c.border)),
                       ),
                     ),

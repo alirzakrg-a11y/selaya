@@ -71,7 +71,7 @@ class IntroScreen extends StatelessWidget {
                           child: Row(
                             children: [
                               Container(
-                                padding: const EdgeInsets.all(12),
+                                padding: const EdgeInsets.all(AppSpacing.md),
                                 decoration: BoxDecoration(
                                   shape: BoxShape.circle,
                                   color: c.gold.withValues(alpha: 0.13),
@@ -88,7 +88,7 @@ class IntroScreen extends StatelessWidget {
                                         style: Theme.of(context)
                                             .textTheme
                                             .titleSmall),
-                                    const SizedBox(height: 2),
+                                    const Gap.xxs(),
                                     Text(_features[i].descKey.tr(),
                                         style: Theme.of(context)
                                             .textTheme

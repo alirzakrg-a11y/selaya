@@ -110,6 +110,43 @@ class _PrayerTimesScreenState extends ConsumerState<PrayerTimesScreen> {
           const ExtendedTimesSection(),
           const Gap.md(),
           const _KerahatCard(),
+          const Gap.md(),
+          const _SourceNote(),
+        ],
+      ),
+    );
+  }
+}
+
+/// Dini içerik için kaynak notu (Diyanet İlmihali esas alınır).
+class _SourceNote extends StatelessWidget {
+  const _SourceNote();
+
+  @override
+  Widget build(BuildContext context) {
+    final c = context.colors;
+    return Container(
+      padding: const EdgeInsets.all(AppSpacing.md),
+      decoration: BoxDecoration(
+        borderRadius: AppRadius.rMd,
+        color: c.gold.withValues(alpha: 0.08),
+        border: Border.all(color: c.gold.withValues(alpha: 0.25)),
+      ),
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          const Icon(Icons.menu_book_rounded, size: 18, color: AppColors.gold),
+          const Gap.sm(),
+          Expanded(
+            child: Text(
+              'Kaynak: Diyanet İşleri Başkanlığı İlmihali esas alınmıştır. '
+              'Ayrıntı için yetkili kaynaklara başvurun.',
+              style: Theme.of(context)
+                  .textTheme
+                  .bodySmall
+                  ?.copyWith(color: c.textTertiary),
+            ),
+          ),
         ],
       ),
     );

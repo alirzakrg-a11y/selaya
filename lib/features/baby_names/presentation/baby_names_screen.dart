@@ -40,9 +40,16 @@ class BabyNamesScreen extends ConsumerStatefulWidget {
 }
 
 class _BabyNamesScreenState extends ConsumerState<BabyNamesScreen> {
+  final TextEditingController _searchCtrl = TextEditingController();
   String _gender = 'all';
   String _query = '';
   BabyName? _daily; // bir kez hesaplanır (oturum içinde sabit)
+
+  @override
+  void dispose() {
+    _searchCtrl.dispose();
+    super.dispose();
+  }
 
   String _todayKey() {
     final n = DateTime.now();
@@ -102,6 +109,7 @@ class _BabyNamesScreenState extends ConsumerState<BabyNamesScreen> {
                   AppSpacing.xs,
                 ),
                 child: TextField(
+                  controller: _searchCtrl,
                   onChanged: (v) => setState(() => _query = v),
                   decoration: InputDecoration(
                     hintText: tr
@@ -111,12 +119,35 @@ class _BabyNamesScreenState extends ConsumerState<BabyNamesScreen> {
                       Icons.search_rounded,
                       color: context.colors.textTertiary,
                     ),
+                    suffixIcon: _query.isNotEmpty
+                        ? IconButton(
+                            icon: Icon(
+                              Icons.close_rounded,
+                              color: context.colors.textTertiary,
+                            ),
+                            onPressed: () {
+                              _searchCtrl.clear();
+                              setState(() => _query = '');
+                            },
+                          )
+                        : null,
                     isDense: true,
+                    contentPadding: const EdgeInsets.symmetric(
+                      vertical: 10,
+                      horizontal: 12,
+                    ),
                     filled: true,
                     fillColor: context.colors.surfaceAlt,
                     border: OutlineInputBorder(
                       borderRadius: AppRadius.rLg,
                       borderSide: BorderSide.none,
+                    ),
+                    focusedBorder: OutlineInputBorder(
+                      borderRadius: AppRadius.rLg,
+                      borderSide: BorderSide(
+                        color: context.colors.gold,
+                        width: 1.4,
+                      ),
                     ),
                   ),
                 ),

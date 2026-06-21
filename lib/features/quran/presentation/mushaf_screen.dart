@@ -191,11 +191,22 @@ class _MushafScreenState extends ConsumerState<MushafScreen>
                                     size: 20,
                                   ),
                                   isDense: true,
+                                  contentPadding: const EdgeInsets.symmetric(
+                                    vertical: 10,
+                                    horizontal: 12,
+                                  ),
                                   filled: true,
                                   fillColor: c.surfaceAlt,
                                   border: OutlineInputBorder(
                                     borderRadius: BorderRadius.circular(14),
                                     borderSide: BorderSide(color: c.border),
+                                  ),
+                                  focusedBorder: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(14),
+                                    borderSide: BorderSide(
+                                      color: c.gold,
+                                      width: 1.4,
+                                    ),
                                   ),
                                 ),
                               ),

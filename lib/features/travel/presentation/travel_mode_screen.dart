@@ -167,7 +167,7 @@ class TravelModeScreen extends ConsumerWidget {
                             .titleSmall
                             ?.copyWith(fontWeight: FontWeight.w700),
                       ),
-                      const SizedBox(height: 2),
+                      const Gap.xxs(),
                       Text(
                         on
                             ? (tr
@@ -312,14 +312,31 @@ class TravelModeScreen extends ConsumerWidget {
             const Gap.sm(),
           ],
           const Gap.sm(),
-          Text(
-            tr
-                ? 'Bilgiler Hanefî mezhebi ve Diyanet İşleri Başkanlığı esas alınarak '
-                    'hazırlanmıştır. Tereddüt hâlinde bir din görevlisine danışınız.'
-                : 'Information is based on the Hanafi school and Diyanet. When in '
-                    'doubt, consult a scholar.',
-            textAlign: TextAlign.center,
-            style: TextStyle(color: c.textTertiary, fontSize: 11.5, height: 1.4),
+          Container(
+            padding: const EdgeInsets.all(AppSpacing.md),
+            decoration: BoxDecoration(
+              color: c.gold.withValues(alpha: 0.08),
+              borderRadius: AppRadius.rMd,
+              border: Border.all(color: c.gold.withValues(alpha: 0.2)),
+            ),
+            child: Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Icon(Icons.menu_book_rounded, color: c.gold, size: 18),
+                const Gap.sm(),
+                Expanded(
+                  child: Text(
+                    tr
+                        ? 'Bilgiler Hanefî mezhebi ve Diyanet İşleri Başkanlığı esas alınarak '
+                            'hazırlanmıştır. Tereddüt hâlinde bir din görevlisine danışınız.'
+                        : 'Information is based on the Hanafi school and Diyanet. When in '
+                            'doubt, consult a scholar.',
+                    style: TextStyle(
+                        color: c.textTertiary, fontSize: 11.5, height: 1.4),
+                  ),
+                ),
+              ],
+            ),
           ),
         ],
       ),

@@ -85,7 +85,7 @@ class _PremiumScreenState extends State<PremiumScreen> {
                               child: Row(
                                 children: [
                                   Container(
-                                    padding: const EdgeInsets.all(8),
+                                    padding: const EdgeInsets.all(AppSpacing.sm),
                                     decoration: BoxDecoration(
                                       shape: BoxShape.circle,
                                       color: c.gold.withValues(alpha: 0.14),
@@ -205,8 +205,8 @@ class _PlanTile extends StatelessWidget {
                   if (badge != null) ...[
                     const Gap.sm(),
                     Container(
-                      padding:
-                          const EdgeInsets.symmetric(horizontal: 8, vertical: 2),
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: AppSpacing.sm, vertical: AppSpacing.xxs),
                       decoration: BoxDecoration(
                           color: c.gold, borderRadius: AppRadius.rSm),
                       child: Text(badge!,

@@ -267,7 +267,7 @@ class StreakScreen extends ConsumerWidget {
                 fontWeight: FontWeight.w800,
               ),
             ),
-            const SizedBox(height: 2),
+            const Gap.xxs(),
             Text(
               label,
               textAlign: TextAlign.center,

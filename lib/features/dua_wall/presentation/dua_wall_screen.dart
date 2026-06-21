@@ -381,19 +381,11 @@ class _DuaWallScreenState extends ConsumerState<DuaWallScreen> {
                       ? ListView(
                           children: [
                             const SizedBox(height: 120),
-                            Icon(Icons.front_hand_rounded,
-                                size: 60, color: c.textTertiary),
-                            const Gap.md(),
-                            Padding(
-                              padding: const EdgeInsets.symmetric(horizontal: 32),
-                              child: Text(
-                                tr
-                                    ? 'Henüz onaylı dua yok.\nİlk duayı sen paylaş — sağ üstteki + ile.'
-                                    : 'No approved prayers yet.\nBe the first — tap + above.',
-                                textAlign: TextAlign.center,
-                                style: TextStyle(
-                                    color: c.textSecondary, height: 1.5),
-                              ),
+                            SelayaEmpty(
+                              icon: Icons.front_hand_rounded,
+                              message: tr
+                                  ? 'Henüz onaylı dua yok.\nİlk duayı sen paylaş — sağ üstteki + ile.'
+                                  : 'No approved prayers yet.\nBe the first — tap + above.',
                             ),
                           ],
                         )

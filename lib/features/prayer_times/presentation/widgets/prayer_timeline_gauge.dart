@@ -68,7 +68,7 @@ class PrayerTimelineGauge extends ConsumerWidget {
                   .textTheme
                   .labelMedium
                   ?.copyWith(color: c.gold)),
-          const SizedBox(height: 2),
+          const Gap.xxs(),
           Text(formatCountdown(v.remaining(now)),
               style: AppTypography.countdown(c.textPrimary, fontSize: 34)),
           Text('prayer.remaining'.tr(),

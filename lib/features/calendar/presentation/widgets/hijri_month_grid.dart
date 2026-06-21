@@ -60,7 +60,7 @@ class HijriMonthGrid extends StatelessWidget {
           for (var k = 0; k < 7; k++)
             Expanded(
               child: Padding(
-                padding: const EdgeInsets.all(2),
+                padding: const EdgeInsets.all(AppSpacing.xxs),
                 child: AspectRatio(
                   aspectRatio: 1,
                   child: items[r + k] ?? const SizedBox.shrink(),

@@ -1,4 +1,3 @@
-import 'dart:async';
 import 'dart:io';
 
 import 'package:easy_localization/easy_localization.dart' hide TextDirection;
@@ -1126,95 +1125,6 @@ class _MediaTile extends StatelessWidget {
               ),
             ),
           ],
-        ),
-      ),
-    );
-  }
-}
-
-/// Tam genişlikte kayan (slider) video önizlemesi; her kart videonun kapak
-/// görselini gösterir (panel kapağı yoksa paketteki bir arka plana düşer),
-/// dokununca tam ekran akışı açar.
-/// Otomatik geçen, ortadaki öğesi büyük 3'lü vitrin (story gibi). Videolar ve
-/// duvar kâğıtları aynı sistemi paylaşır: ~4 sn'de bir kayar, elle kaydırınca
-/// sayaç sıfırlanır; merkez kart tam boy, komşular hafifçe küçülüp soluklaşır.
-class _AutoCarousel extends StatefulWidget {
-  final int itemCount;
-  final double height;
-  final Widget Function(BuildContext, int) builder;
-  const _AutoCarousel({
-    required this.itemCount,
-    required this.height,
-    required this.builder,
-  });
-  @override
-  State<_AutoCarousel> createState() => _AutoCarouselState();
-}
-
-class _AutoCarouselState extends State<_AutoCarousel> {
-  late final PageController _pc;
-  Timer? _timer;
-  double _page = 0;
-
-  @override
-  void initState() {
-    super.initState();
-    // 0.74 → merkez kart geniş, iki yan komşu hafifçe görünür (story vitrini).
-    _pc = PageController(viewportFraction: 0.74)
-      ..addListener(() {
-        if (_pc.hasClients && _pc.page != null) {
-          setState(() => _page = _pc.page!);
-        }
-      });
-    _start();
-  }
-
-  void _start() {
-    _timer?.cancel();
-    if (widget.itemCount <= 1) return;
-    _timer = Timer.periodic(const Duration(seconds: 4), (_) {
-      if (!mounted || !_pc.hasClients) return;
-      final next = ((_pc.page ?? 0).round() + 1) % widget.itemCount;
-      _pc.animateToPage(
-        next,
-        duration: const Duration(milliseconds: 550),
-        curve: Curves.easeInOut,
-      );
-    });
-  }
-
-  @override
-  void dispose() {
-    _timer?.cancel();
-    _pc.dispose();
-    super.dispose();
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return SizedBox(
-      height: widget.height,
-      child: NotificationListener<ScrollNotification>(
-        onNotification: (n) {
-          // Kullanıcı parmağıyla kaydırınca otomatik sayacı yeniden başlat.
-          if (n is UserScrollNotification) _start();
-          return false;
-        },
-        child: PageView.builder(
-          controller: _pc,
-          itemCount: widget.itemCount,
-          itemBuilder: (context, i) {
-            final delta = (_page - i).abs().clamp(0.0, 1.0);
-            final scale = 1.0 - delta * 0.16; // merkez 1.0 · komşu ~0.84
-            return Transform.scale(
-              scale: scale,
-              child: Opacity(
-                opacity: 1.0 - delta * 0.4, // merkez 1.0 · komşu ~0.6 soluk
-
-                child: widget.builder(context, i),
-              ),
-            );
-          },
         ),
       ),
     );

@@ -267,9 +267,16 @@ class _GuideTabState extends ConsumerState<_GuideTab>
   String _district = 'all';
   String _query = '';
   final Set<String> _filters = {};
+  final TextEditingController _searchController = TextEditingController();
 
   @override
   bool get wantKeepAlive => true;
+
+  @override
+  void dispose() {
+    _searchController.dispose();
+    super.dispose();
+  }
 
   String _defaultSlug(List<Province> provs, String? cityName) {
     if (cityName != null) {
@@ -349,11 +356,23 @@ class _GuideTabState extends ConsumerState<_GuideTab>
               padding: const EdgeInsets.symmetric(
                   horizontal: AppSpacing.base, vertical: AppSpacing.sm),
               child: TextField(
+                controller: _searchController,
                 onChanged: (v) => setState(() => _query = v),
                 decoration: InputDecoration(
                   hintText: 'mosques.search'.tr(),
                   prefixIcon: const Icon(AppIcons.search, size: 20),
+                  suffixIcon: _query.isNotEmpty
+                      ? IconButton(
+                          icon: const Icon(Icons.close_rounded, size: 18),
+                          onPressed: () {
+                            _searchController.clear();
+                            setState(() => _query = '');
+                          },
+                        )
+                      : null,
                   isDense: true,
+                  contentPadding: const EdgeInsets.symmetric(
+                      vertical: 10, horizontal: 12),
                   filled: true,
                   fillColor: c.surfaceAlt,
                   border: OutlineInputBorder(
@@ -362,6 +381,9 @@ class _GuideTabState extends ConsumerState<_GuideTab>
                   enabledBorder: OutlineInputBorder(
                       borderRadius: AppRadius.rLg,
                       borderSide: BorderSide(color: c.border)),
+                  focusedBorder: OutlineInputBorder(
+                      borderRadius: AppRadius.rLg,
+                      borderSide: BorderSide(color: c.gold, width: 1.4)),
                 ),
               ),
             ),
@@ -448,6 +470,7 @@ class _GuideTabState extends ConsumerState<_GuideTab>
           _slug = p.slug;
           _district = 'all';
           _query = '';
+          _searchController.clear();
           _filters.clear();
         }),
       ),

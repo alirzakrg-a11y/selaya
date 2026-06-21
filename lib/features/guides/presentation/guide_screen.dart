@@ -217,7 +217,7 @@ class _StepRow extends StatelessWidget {
                         .textTheme
                         .titleMedium
                         ?.copyWith(fontWeight: FontWeight.w700)),
-                const SizedBox(height: 4),
+                const Gap.xs(),
                 Text(step.body(lang),
                     maxLines: 3,
                     overflow: TextOverflow.ellipsis,

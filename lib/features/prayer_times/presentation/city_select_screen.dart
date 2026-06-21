@@ -220,6 +220,9 @@ class _SearchField extends StatelessWidget {
               ),
         filled: true,
         fillColor: c.surfaceAlt,
+        isDense: true,
+        contentPadding:
+            const EdgeInsets.symmetric(vertical: 10, horizontal: 12),
         border: OutlineInputBorder(
             borderRadius: AppRadius.rLg,
             borderSide: BorderSide(color: c.border)),
@@ -228,7 +231,7 @@ class _SearchField extends StatelessWidget {
             borderSide: BorderSide(color: c.border)),
         focusedBorder: OutlineInputBorder(
             borderRadius: AppRadius.rLg,
-            borderSide: BorderSide(color: c.gold.withValues(alpha: 0.6))),
+            borderSide: BorderSide(color: c.gold, width: 1.4)),
       ),
     );
   }

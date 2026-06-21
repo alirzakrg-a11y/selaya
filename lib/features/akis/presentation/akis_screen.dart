@@ -228,6 +228,43 @@ class AkisScreen extends ConsumerWidget {
           ),
           const Gap.md(),
           _Announcement(text: 'akis.announcementDemo'.tr()),
+          const Gap.md(),
+          const _SourceNote(),
+        ],
+      ),
+    );
+  }
+}
+
+/// Small source disclaimer shown under religious content (ayet/hadis/dua/bilgi).
+class _SourceNote extends StatelessWidget {
+  const _SourceNote();
+
+  @override
+  Widget build(BuildContext context) {
+    final c = context.colors;
+    return Container(
+      padding: const EdgeInsets.all(AppSpacing.md),
+      decoration: BoxDecoration(
+        color: c.gold.withValues(alpha: 0.06),
+        borderRadius: AppRadius.rMd,
+        border: Border.all(color: c.gold.withValues(alpha: 0.2)),
+      ),
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Icon(Icons.menu_book_rounded, color: c.gold, size: 18),
+          const Gap.sm(),
+          Expanded(
+            child: Text(
+              'Kaynak: Diyanet İşleri Başkanlığı İlmihali esas alınmıştır. '
+              'Ayrıntı için yetkili kaynaklara başvurun.',
+              style: Theme.of(context)
+                  .textTheme
+                  .bodySmall
+                  ?.copyWith(color: c.textTertiary, height: 1.4),
+            ),
+          ),
         ],
       ),
     );

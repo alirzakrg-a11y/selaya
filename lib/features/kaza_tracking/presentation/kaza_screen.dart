@@ -130,6 +130,31 @@ class KazaScreen extends ConsumerWidget {
                 onEdit: () => _editCount(context, ref, key, state.countOf(key)),
               ),
             ),
+          const Gap.md(),
+          Container(
+            padding: const EdgeInsets.all(AppSpacing.md),
+            decoration: BoxDecoration(
+              color: c.gold.withValues(alpha: 0.08),
+              borderRadius: AppRadius.rMd,
+              border: Border.all(color: c.gold.withValues(alpha: 0.25)),
+            ),
+            child: Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Icon(AppIcons.book, color: c.gold, size: 18),
+                const Gap.sm(),
+                Expanded(
+                  child: Text(
+                    'Kaynak: Diyanet İşleri Başkanlığı İlmihali esas alınmıştır. Ayrıntı için yetkili kaynaklara başvurun.',
+                    style: Theme.of(context)
+                        .textTheme
+                        .bodySmall
+                        ?.copyWith(color: c.textTertiary, height: 1.4),
+                  ),
+                ),
+              ],
+            ),
+          ),
         ],
       ),
     );

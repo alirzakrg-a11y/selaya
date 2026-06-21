@@ -254,7 +254,11 @@ class _SectionTitle extends StatelessWidget {
   Widget build(BuildContext context) {
     final c = context.colors;
     return Padding(
-      padding: const EdgeInsets.only(left: 4, bottom: 8, top: 4),
+      padding: const EdgeInsets.only(
+        left: AppSpacing.xs,
+        bottom: AppSpacing.sm,
+        top: AppSpacing.xs,
+      ),
       child: Text(
         '$text · $count',
         style: Theme.of(context).textTheme.labelMedium?.copyWith(

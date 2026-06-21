@@ -269,6 +269,8 @@ class _ZakatScreenState extends State<ZakatScreen> {
                     ? 'Canlı fiyat alınamadı — altın gram fiyatını elle girebilirsin.'
                     : 'Live price unavailable — enter the gold price manually.')),
       ),
+      const Gap.md(),
+      _sourceNote(context),
     ];
   }
 
@@ -337,6 +339,8 @@ class _ZakatScreenState extends State<ZakatScreen> {
                     ? 'Güncel fitre alınamadı — kişi başı tutarı elle girebilirsin.'
                     : 'Could not fetch fitra — enter the amount manually.')),
       ),
+      const Gap.md(),
+      _sourceNote(context),
     ];
   }
 
@@ -442,6 +446,38 @@ class _ZakatScreenState extends State<ZakatScreen> {
           ),
         ),
       ],
+    );
+  }
+
+  /// Dini hüküm kaynağı uyarısı (gold-tint kutu).
+  Widget _sourceNote(BuildContext context) {
+    final c = context.colors;
+    final tr = context.langCode == 'tr';
+    return Container(
+      padding: const EdgeInsets.all(AppSpacing.md),
+      decoration: BoxDecoration(
+        color: c.gold.withValues(alpha: 0.08),
+        borderRadius: AppRadius.rMd,
+        border: Border.all(color: c.gold.withValues(alpha: 0.25)),
+      ),
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Icon(Icons.menu_book_rounded, size: 18, color: c.gold),
+          const Gap.sm(),
+          Expanded(
+            child: Text(
+              tr
+                  ? 'Kaynak: Diyanet İşleri Başkanlığı İlmihali esas alınmıştır. Ayrıntı için yetkili kaynaklara başvurun.'
+                  : 'Source: based on the Diyanet İşleri Başkanlığı catechism. Consult authorized sources for details.',
+              style: Theme.of(context).textTheme.labelSmall?.copyWith(
+                color: c.textSecondary,
+                height: 1.45,
+              ),
+            ),
+          ),
+        ],
+      ),
     );
   }
 }
