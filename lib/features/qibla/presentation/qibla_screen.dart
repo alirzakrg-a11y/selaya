@@ -544,7 +544,7 @@ class _ThemePicker extends StatelessWidget {
   }
 }
 
-class _Compass extends StatelessWidget {
+class _Compass extends StatefulWidget {
   final double heading;
   final double bearing;
   final bool aligned;
@@ -557,8 +557,36 @@ class _Compass extends StatelessWidget {
   });
 
   @override
+  State<_Compass> createState() => _CompassState();
+}
+
+class _CompassState extends State<_Compass> {
+  // Sürekli (sarmalanmamış) tur değerleri: ibre/kadran 0°/360° sınırını
+  // geçerken AnimatedRotation kısa yoldan dönsün diye biriktirilir. Aksi hâlde
+  // (ham -heading/360 verilince) sınırda neredeyse tam tur ters yönden dönüyordu.
+  double _dialTurns = 0;
+  double _needleTurns = 0;
+
+  @override
+  void initState() {
+    super.initState();
+    _dialTurns = -widget.heading / 360;
+    _needleTurns = (widget.bearing - widget.heading) / 360;
+  }
+
+  @override
+  void didUpdateWidget(_Compass old) {
+    super.didUpdateWidget(old);
+    _dialTurns = shortestTurns(_dialTurns, -widget.heading / 360);
+    _needleTurns =
+        shortestTurns(_needleTurns, (widget.bearing - widget.heading) / 360);
+  }
+
+  @override
   Widget build(BuildContext context) {
     final c = context.colors;
+    final aligned = widget.aligned;
+    final themeColor = widget.themeColor;
     final accent = aligned ? c.success : themeColor;
     final size = MediaQuery.sizeOf(context).width * 0.78;
     return SizedBox(
@@ -581,7 +609,7 @@ class _Compass extends StatelessWidget {
           ),
           // rotating dial (counter-rotates with the device)
           AnimatedRotation(
-            turns: -heading / 360,
+            turns: _dialTurns,
             duration: const Duration(milliseconds: 250),
             child: CustomPaint(
               size: Size(size, size),
@@ -606,7 +634,7 @@ class _Compass extends StatelessWidget {
           ),
           // qibla needle (points toward the Kaaba relative to device)
           AnimatedRotation(
-            turns: (bearing - heading) / 360,
+            turns: _needleTurns,
             duration: const Duration(milliseconds: 250),
             child: SizedBox(
               width: size,

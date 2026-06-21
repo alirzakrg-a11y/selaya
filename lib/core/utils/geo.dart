@@ -70,6 +70,16 @@ SunPosition sunPosition(LatLng at, DateTime whenUtc) {
   return SunPosition(az, _rad2deg(alt));
 }
 
+/// Pusula/ibre animasyonu için: hedef tur değerini ([target]; tam tur = 1.0)
+/// birikmiş [current] değerine en yakın eş değere taşır; fark daima ±0.5 tur
+/// içinde kalır. Böylece AnimatedRotation 0/360 (0/1 tur) sınırında uzun
+/// yoldan (ters) dönmez, hep en kısa yoldan döner.
+double shortestTurns(double current, double target) {
+  var diff = (target - current) % 1.0;
+  if (diff > 0.5) diff -= 1.0;
+  return current + diff;
+}
+
 /// 16-point compass label key (for "Southeast" etc.). Returns an i18n key.
 String compassDirectionKey(double bearing) {
   // Only the qibla screen needs SE for Turkey demo; keep it simple.
