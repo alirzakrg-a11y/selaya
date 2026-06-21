@@ -1,8 +1,11 @@
+import 'dart:async';
+
 import 'package:easy_localization/easy_localization.dart' hide TextDirection;
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:just_audio/just_audio.dart';
+import 'package:vibration/vibration.dart';
 
 import '../../../core/di/providers.dart';
 import '../../../core/localization/localized_text.dart';
@@ -72,13 +75,22 @@ class _TesbihatScreenState extends ConsumerState<TesbihatScreen> {
   int _count = 0;
   bool _done = false;
   bool _sound = true;
+  bool _vibrate = true;
+  bool _hasVibrator = false;
+  // Tamamlanma anındaki artık (ritim) dokunuşlar "Yeniden başla"yı tetiklemesin.
+  bool _restartLocked = false;
+  Timer? _unlockTimer;
   final _player = AudioPlayer();
 
   @override
   void initState() {
     super.initState();
-    _sound =
-        ref.read(sharedPreferencesProvider).getBool(PrefKeys.dhikrSound) ?? true;
+    final prefs = ref.read(sharedPreferencesProvider);
+    _sound = prefs.getBool(PrefKeys.dhikrSound) ?? true;
+    _vibrate = prefs.getBool(PrefKeys.dhikrVibration) ?? true;
+    Vibration.hasVibrator().then((v) {
+      if (mounted) _hasVibrator = v == true;
+    });
     _preload();
   }
 
@@ -90,8 +102,28 @@ class _TesbihatScreenState extends ConsumerState<TesbihatScreen> {
 
   @override
   void dispose() {
+    _unlockTimer?.cancel();
     _player.dispose();
     super.dispose();
+  }
+
+  /// Gerçek titreşim — doğrudan VIBRATE motoru; HapticFeedback'in aksine sistemin
+  /// "dokunma titreşimi" ayarı kapalı olsa da titrer (Samsung'da çoğu kez kapalı).
+  void _buzz(int ms, int amp) {
+    if (!_vibrate) return;
+    if (_hasVibrator) {
+      Vibration.vibrate(duration: ms, amplitude: amp);
+    } else {
+      HapticFeedback.selectionClick();
+    }
+  }
+
+  void _toggleVibration() {
+    setState(() => _vibrate = !_vibrate);
+    ref
+        .read(sharedPreferencesProvider)
+        .setBool(PrefKeys.dhikrVibration, _vibrate);
+    if (_vibrate) _buzz(35, 200);
   }
 
   /// Her sayımda kısa tıkırtı (zikirmatikle aynı ses; aç/kapat kalıcı).
@@ -120,11 +152,18 @@ class _TesbihatScreenState extends ConsumerState<TesbihatScreen> {
     final z = _steps[_step];
     if (_count + 1 >= z.target) {
       // Adım tamamlandı → güçlü titreşim + sıradaki adım (veya bitti).
-      HapticFeedback.mediumImpact();
+      _buzz(45, 255);
       if (_step + 1 >= _steps.length) {
         setState(() {
           _count = z.target;
           _done = true;
+          _restartLocked = true;
+        });
+        // ~1 sn boyunca "Yeniden başla" kilitli kalsın ki bitişten sonraki
+        // istemsiz dokunuşlar tesbihatı hemen sıfırlamasın.
+        _unlockTimer?.cancel();
+        _unlockTimer = Timer(const Duration(milliseconds: 900), () {
+          if (mounted) setState(() => _restartLocked = false);
         });
       } else {
         setState(() {
@@ -133,7 +172,7 @@ class _TesbihatScreenState extends ConsumerState<TesbihatScreen> {
         });
       }
     } else {
-      HapticFeedback.lightImpact();
+      _buzz(18, 110);
       setState(() => _count++);
     }
   }
@@ -236,6 +275,16 @@ class _TesbihatScreenState extends ConsumerState<TesbihatScreen> {
               _sound ? Icons.volume_up_rounded : Icons.volume_off_rounded,
               color: context.colors.gold),
           onPressed: _toggleSound,
+        ),
+        IconButton(
+          tooltip: tr ? 'Titreşim' : 'Vibration',
+          icon: Icon(
+              _vibrate
+                  ? Icons.vibration_rounded
+                  : Icons.smartphone_rounded,
+              color:
+                  _vibrate ? context.colors.gold : context.colors.textTertiary),
+          onPressed: _toggleVibration,
         ),
         IconButton(
           tooltip: tr ? 'Bilgi' : 'Info',
@@ -413,7 +462,11 @@ class _TesbihatScreenState extends ConsumerState<TesbihatScreen> {
             ),
             const Gap.xl(),
             FilledButton.icon(
-              onPressed: _reset,
+              onPressed: () {
+                // Bitişten hemen sonraki istemsiz dokunuşları yok say.
+                if (_restartLocked) return;
+                _reset();
+              },
               icon: const Icon(Icons.refresh_rounded, size: 18),
               label: Text(tr ? 'Yeniden başla' : 'Start again'),
               style: FilledButton.styleFrom(

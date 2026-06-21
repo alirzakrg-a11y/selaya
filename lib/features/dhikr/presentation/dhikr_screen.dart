@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:just_audio/just_audio.dart';
+import 'package:vibration/vibration.dart';
 
 import '../../../core/data/content_providers.dart';
 import '../../../core/di/providers.dart';
@@ -88,6 +89,8 @@ class _DhikrScreenState extends ConsumerState<DhikrScreen> {
   String _currentAr = '';
   final Map<String, int> _sessionTally = {};
   bool _sound = true;
+  bool _vibrate = true;
+  bool _hasVibrator = false;
   String _soundType = 'tahta'; // bkz. _sounds listesi
   List<_Zikir> _custom = [];
   final _player = AudioPlayer();
@@ -99,6 +102,10 @@ class _DhikrScreenState extends ConsumerState<DhikrScreen> {
     super.initState();
     final prefs = ref.read(sharedPreferencesProvider);
     _sound = prefs.getBool(PrefKeys.dhikrSound) ?? true;
+    _vibrate = prefs.getBool(PrefKeys.dhikrVibration) ?? true;
+    Vibration.hasVibrator().then((v) {
+      if (mounted) _hasVibrator = v == true;
+    });
     _soundType = prefs.getString(PrefKeys.dhikrSoundType) ?? 'tahta';
     _bead = prefs.getInt(PrefKeys.dhikrBead) ?? 0;
     _custom = _loadCustom(prefs.getString(PrefKeys.dhikrCustom));
@@ -173,7 +180,7 @@ class _DhikrScreenState extends ConsumerState<DhikrScreen> {
   }
 
   void _increment() {
-    HapticFeedback.lightImpact();
+    _buzz(18, 110);
     _playBead();
     ref.read(sharedPreferencesProvider).setInt(_todayKey, _todayTotal + 1);
     setState(() {
@@ -181,12 +188,12 @@ class _DhikrScreenState extends ConsumerState<DhikrScreen> {
       if (_count >= _ringCount) {
         _count = 0;
         _tur++;
-        HapticFeedback.heavyImpact();
+        _buzz(45, 255);
       }
       if (_goalMode && _goalCount < widget.targetCount!) {
         _goalCount++;
         if (_goalCount == widget.targetCount) {
-          HapticFeedback.heavyImpact();
+          _buzz(60, 255);
           _markTaskDone();
           WidgetsBinding.instance.addPostFrameCallback((_) {
             if (mounted) {
@@ -253,6 +260,25 @@ class _DhikrScreenState extends ConsumerState<DhikrScreen> {
   void _toggleSound() {
     setState(() => _sound = !_sound);
     ref.read(sharedPreferencesProvider).setBool(PrefKeys.dhikrSound, _sound);
+  }
+
+  /// Gerçek titreşim — doğrudan VIBRATE motoru; sistemin "dokunma titreşimi"
+  /// ayarı kapalı olsa da titrer (Samsung'da HapticFeedback çoğu kez sessizdi).
+  void _buzz(int ms, int amp) {
+    if (!_vibrate) return;
+    if (_hasVibrator) {
+      Vibration.vibrate(duration: ms, amplitude: amp);
+    } else {
+      HapticFeedback.selectionClick();
+    }
+  }
+
+  void _toggleVibration() {
+    setState(() => _vibrate = !_vibrate);
+    ref
+        .read(sharedPreferencesProvider)
+        .setBool(PrefKeys.dhikrVibration, _vibrate);
+    if (_vibrate) _buzz(35, 200);
   }
 
   void _setBead(int i) {
@@ -754,6 +780,20 @@ class _DhikrScreenState extends ConsumerState<DhikrScreen> {
                 activeThumbColor: c.gold,
                 onChanged: (_) {
                   _toggleSound();
+                  setSheet(() {});
+                },
+              ),
+              SwitchListTile(
+                secondary: Icon(
+                    _vibrate
+                        ? Icons.vibration_rounded
+                        : Icons.smartphone_rounded,
+                    color: _vibrate ? c.gold : c.textTertiary),
+                title: Text(context.langCode == 'tr' ? 'Titreşim' : 'Vibration'),
+                value: _vibrate,
+                activeThumbColor: c.gold,
+                onChanged: (_) {
+                  _toggleVibration();
                   setSheet(() {});
                 },
               ),

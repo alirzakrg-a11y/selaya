@@ -38,6 +38,8 @@ abstract final class PrefKeys {
   static const String quranRecentSearches = 'quran_recent_searches'; // son aramalar
   static const String dhikrTotalPrefix = 'dhikr_total_';
   static const String dhikrSound = 'dhikr_sound'; // bool
+  static const String dhikrVibration =
+      'dhikr_vibration'; // bool: zikir/tesbihat sayacında dokununca titreşim
   static const String dhikrSoundType = 'dhikr_sound_type'; // 'tik' | 'boncuk'
   static const String dhikrBead = 'dhikr_bead'; // int (bead color index)
   static const String dhikrLeftHand = 'dhikr_left_hand'; // bool: left-hand mode
