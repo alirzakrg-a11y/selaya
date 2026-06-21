@@ -350,6 +350,13 @@ export default {
             'SELECT id FROM users WHERE email=? AND id<>?'
           ).bind(email, uid).first();
           if (clash) return json({ ok: false, error: 'email_taken' }, { status: 409 });
+          // Rumuz başka bir üyede kayıtlıysa engelle.
+          if (rumuz) {
+            const rclash = await env.DB.prepare(
+              'SELECT id FROM users WHERE rumuz=? COLLATE NOCASE AND id<>?'
+            ).bind(rumuz, uid).first();
+            if (rclash) return json({ ok: false, error: 'rumuz_taken' }, { status: 409 });
+          }
           await env.DB.prepare(
             'UPDATE users SET name=?, surname=?, email=?, rumuz=? WHERE id=?'
           ).bind(name, surname, email, rumuz || null, uid).run();
@@ -370,6 +377,11 @@ export default {
           if (password.length < 6) return json({ ok: false, error: 'weak_password' }, { status: 400 });
           const clash = await env.DB.prepare('SELECT id FROM users WHERE email=?').bind(email).first();
           if (clash) return json({ ok: false, error: 'email_taken' }, { status: 409 });
+          // Rumuz da kayıtlıysa engelle (büyük/küçük harf duyarsız) — çakışan kimlik olmasın.
+          if (rumuz) {
+            const rclash = await env.DB.prepare('SELECT id FROM users WHERE rumuz=? COLLATE NOCASE').bind(rumuz).first();
+            if (rclash) return json({ ok: false, error: 'rumuz_taken' }, { status: 409 });
+          }
           const np = await hashPassword(password);
           const id = crypto.randomUUID();
           await env.DB.prepare(
@@ -409,13 +421,21 @@ export default {
         // ---- DUA DUVARI MODERASYONU (#10) ----
         // Bekleyenler + son kararlananlar (moderatör bağlamı görsün).
         if (request.method === 'GET' && path === '/api/dua-pending') {
+          // Yazarın hesap bilgisi de gelsin (moderatör kim olduğunu + kayıtlı
+          // rumuzunu görsün → sahte/uyumsuz rumuz yakalanır).
           const pending = await env.DB.prepare(
-            "SELECT id, user_id, rumuz, text, amins, created_at FROM dua_wall " +
-            "WHERE status='pending' ORDER BY created_at ASC LIMIT 200"
+            "SELECT d.id, d.user_id, d.rumuz, d.text, d.amins, d.created_at, " +
+            "u.email AS author_email, u.name AS author_name, u.surname AS author_surname, " +
+            "u.rumuz AS author_rumuz, u.banned AS author_banned FROM dua_wall d " +
+            "LEFT JOIN users u ON u.id=d.user_id " +
+            "WHERE d.status='pending' ORDER BY d.created_at ASC LIMIT 200"
           ).all();
           const recent = await env.DB.prepare(
-            "SELECT id, user_id, rumuz, text, status, amins, created_at, decided_at FROM dua_wall " +
-            "WHERE status!='pending' ORDER BY decided_at DESC LIMIT 100"
+            "SELECT d.id, d.user_id, d.rumuz, d.text, d.status, d.amins, d.created_at, d.decided_at, " +
+            "u.email AS author_email, u.name AS author_name, u.surname AS author_surname, " +
+            "u.rumuz AS author_rumuz, u.banned AS author_banned FROM dua_wall d " +
+            "LEFT JOIN users u ON u.id=d.user_id " +
+            "WHERE d.status!='pending' ORDER BY d.decided_at DESC LIMIT 100"
           ).all();
           return json({
             ok: true,
@@ -485,6 +505,19 @@ export default {
             "VALUES (?,'panel-author',?,?,'approved',?,?,?)"
           ).bind(id, rumuz, text, amins, now, now).run();
           return json({ ok: true, id });
+        }
+        // ---- dua düzenle (rumuz / metin) — moderatör içeriği düzeltebilir ----
+        if (request.method === 'POST' && path === '/api/dua-update') {
+          const form = await request.formData();
+          const id = (form.get('id') || '').toString();
+          const rumuz = (form.get('rumuz') || '').toString().trim().slice(0, 40);
+          const text = (form.get('text') || '').toString().trim().replace(/\s+/g, ' ');
+          if (!id) return json({ ok: false, error: 'id_required' }, { status: 400 });
+          if (!rumuz) return json({ ok: false, error: 'rumuz_required' }, { status: 400 });
+          if (text.length < 3) return json({ ok: false, error: 'too_short' }, { status: 400 });
+          if (text.length > 280) return json({ ok: false, error: 'too_long' }, { status: 400 });
+          await env.DB.prepare('UPDATE dua_wall SET rumuz=?, text=? WHERE id=?').bind(rumuz, text, id).run();
+          return json({ ok: true });
         }
 
         // ---- metin içerik (ayet/hadis/dua/tebrik — DOSYASIZ) ----
@@ -582,6 +615,10 @@ export default {
 
           const type = file.type || 'application/octet-stream';
           const kind = type.startsWith('video') ? 'video' : type.startsWith('audio') ? 'audio' : 'image';
+          // Video boyut sınırı: 4 MB (sunucu tarafı güvence; istemci de kontrol eder).
+          if (kind === 'video' && file.size > 4 * 1024 * 1024) {
+            return json({ ok: false, error: 'video_too_large', message: 'Video en fazla 4 MB olabilir.' }, { status: 400 });
+          }
           const id = crypto.randomUUID();
           const key = 'uploads/' + collection + '/' + id + '.' + extOf(file.name, 'bin');
           await putFile(env, key, file);
@@ -664,14 +701,20 @@ export default {
           const id = decodeURIComponent(path.split('/').pop());
           const b = await request.json();
           const now = Date.now();
-          await env.DB.prepare(
-            'UPDATE content_items SET collection=?, kind=?, title=?, subtitle=?, sort=?, active=?, updated_at=? WHERE id=?'
-          ).bind(
+          // extra verilirse onu da güncelle (metin düzenlemede arabic/reference için).
+          const hasExtra = (b.extra !== undefined && b.extra !== null);
+          const args = [
             b.collection, b.kind || 'image',
             b.title == null ? null : b.title,
             b.subtitle == null ? null : b.subtitle,
-            b.sort || 0, b.active === 0 ? 0 : 1, now, id
-          ).run();
+            b.sort || 0, b.active === 0 ? 0 : 1,
+          ];
+          if (hasExtra) args.push(JSON.stringify(b.extra));
+          args.push(now, id);
+          await env.DB.prepare(
+            'UPDATE content_items SET collection=?, kind=?, title=?, subtitle=?, sort=?, active=?, ' +
+            (hasExtra ? 'extra=?, ' : '') + 'updated_at=? WHERE id=?'
+          ).bind(...args).run();
           return json({ ok: true });
         }
 
@@ -947,7 +990,7 @@ const PANEL_HTML = `<!doctype html>
     <div id="viewUsers" class="hide">
       <div class="card">
         <h3 style="margin:0 0 4px">➕ Yeni Üye Ekle</h3>
-        <p class="hint">Panelden elle üye oluştur. Kullanıcı bu e-posta + şifre ile uygulamada giriş yapabilir.</p>
+        <p class="hint">Panelden elle üye oluştur. Kullanıcı bu e-posta + şifre ile uygulamada giriş yapabilir. <b>E-posta ve rumuz benzersiz olmalı</b> — kayıtlıysa engellenir.</p>
         <div class="row">
           <div><label>Ad</label><input id="cuName" placeholder="Ad"></div>
           <div><label>Soyad</label><input id="cuSurname" placeholder="Soyad (opsiyonel)"></div>
@@ -1052,7 +1095,6 @@ const PANEL_HTML = `<!doctype html>
     ['wallpapers', 'Duvar Kâğıtları', 'Galeri ekranındaki duvar kâğıtları.'],
     ['feed', 'Videolar (Reels)', 'Akış/keşfet video reel\\'leri.'],
     ['stories', 'Hikâyeler', 'Ana ekran hikâye şeridi kapakları.'],
-    ['bg_videos', 'Arka Plan Videoları', 'Ana ekran/karşılama arka plan döngüleri.'],
     ['guide_abdest', 'Abdest Rehberi', 'Abdest adım görselleri.'],
     ['guide_namaz', 'Namaz Rehberi', 'Namaz adım görselleri.']
   ];
@@ -1068,7 +1110,7 @@ const PANEL_HTML = `<!doctype html>
     sel.innerHTML = COLLS.map(function(c){ return '<option value="' + c[0] + '">' + c[1] + '</option>'; }).join('');
     document.getElementById('catNav').innerHTML = COLLS.map(function(c){
       return '<div class="nav-item cat-nav" data-cat="' + c[0] + '" onclick="showCat(this.dataset.cat)">' + (CAT_ICONS[c[0]] || '📁') + ' ' + c[1] + '</div>';
-    }).join('') + '<div class="nav-item cat-nav" data-cat="audio_stories" onclick="showCat(this.dataset.cat)">🎧 Sesli Hikâyeler</div>';
+    }).join('');
     onCollectionChange();
   })();
 
@@ -1098,7 +1140,7 @@ const PANEL_HTML = `<!doctype html>
     el('coverWrap').style.display = 'none';
     el('upCover').value = '';
     var isVideo = (c === 'feed' || c === 'bg_videos');
-    el('fileHint').textContent = isVideo ? '(video seç — kapak ilk kareden otomatik)' : '';
+    el('fileHint').textContent = isVideo ? '(video seç — kapak ilk kareden otomatik · en fazla 4 MB)' : '';
     // Açıklama: Reels videolarda CAPTION (SELAYA altında görünür) → gösterilir.
     // bg_videos + saf görsel galerilerinde gerekmez.
     var noDesc = (c === 'bg_videos' || c === 'wallpapers' || c === 'stickers' || c === 'radio_art');
@@ -1220,6 +1262,7 @@ const PANEL_HTML = `<!doctype html>
       var ex = {}; try { ex = JSON.parse(it.extra || '{}'); } catch (e) {}
       var ref = ex.reference || ex.occasion || '';
       return '<div class="item" draggable="true" data-id="' + esc(it.id) + '"><span class="grip" title="Sürükle">⠿</span><div class="ph">📝</div><div class="meta"><b>' + esc((it.title || '').slice(0, 80)) + '</b>' + (ref ? '<span class="muted">' + esc(ref) + '</span>' : '') + '</div>' +
+        '<button class="ghost" data-id="' + esc(it.id) + '" onclick="editText(this.dataset.id)">✏️ Düzenle</button> ' +
         '<button class="danger" data-id="' + esc(it.id) + '" onclick="delText(this.dataset.id)">Sil</button></div>';
     }).join('');
     el('txList').innerHTML = h || '<p class="muted">Bu türde henüz metin yok. Yukarıdan ekleyebilirsin.</p>';
@@ -1232,7 +1275,41 @@ const PANEL_HTML = `<!doctype html>
     }).catch(function(e){ toast('Hata: ' + e); });
   }
   function delText(id){
+    if(!confirm('Bu metni silmek istediğine emin misin?')) return;
     api('items/' + encodeURIComponent(id), { method: 'DELETE' }).then(function(){ loadText(); });
+  }
+  // Metni düzenle: Türkçe metin + (ayet/hadis/dua için) Arapça & kaynak.
+  function editText(id){
+    var it=null; for(var k=0;k<ALL_ITEMS.length;k++){ if(ALL_ITEMS[k].id===id){ it=ALL_ITEMS[k]; break; } }
+    if(!it) return;
+    var ex={}; try{ ex=JSON.parse(it.extra||'{}'); }catch(e){}
+    var isGreeting=(it.collection==='greeting_msg');
+    var ov=document.createElement('div');
+    ov.style.cssText='position:fixed;inset:0;background:rgba(16,24,40,.45);display:flex;align-items:center;justify-content:center;z-index:50;padding:20px';
+    ov.innerHTML='<div style="background:#fff;border-radius:18px;padding:22px;max-width:430px;width:100%;box-shadow:0 14px 44px rgba(0,0,0,.22);max-height:90vh;overflow:auto">'+
+      '<h3 style="margin:0 0 12px">✏️ Metni Düzenle</h3>'+
+      (isGreeting?'':'<label>Arapça (opsiyonel)</label><textarea id="etArabic"></textarea>')+
+      '<label>Metin (Türkçe)</label><textarea id="etText"></textarea>'+
+      (isGreeting?'':'<label>Kaynak (opsiyonel)</label><input id="etRef">')+
+      '<div class="row" style="margin-top:18px"><button class="ghost" id="etCancel">Vazgeç</button><button id="etSave">Kaydet</button></div>'+
+      '</div>';
+    document.body.appendChild(ov);
+    if(!isGreeting){ ov.querySelector('#etArabic').value=ex.arabic||''; ov.querySelector('#etRef').value=ex.reference||''; }
+    ov.querySelector('#etText').value=it.title||'';
+    function close(){ ov.remove(); }
+    ov.addEventListener('click',function(e){ if(e.target===ov) close(); });
+    ov.querySelector('#etCancel').onclick=close;
+    ov.querySelector('#etSave').onclick=function(){
+      var text=ov.querySelector('#etText').value.trim();
+      if(!text){ toast('Metin gerekli'); return; }
+      var ref=isGreeting?'':ov.querySelector('#etRef').value;
+      var newExtra=isGreeting?{ occasion:ex.occasion }
+        :{ type:ex.type, arabic:ov.querySelector('#etArabic').value, reference:ref };
+      api('items/'+encodeURIComponent(id),{ method:'PUT', headers:{'Content-Type':'application/json'},
+        body: JSON.stringify({ collection:it.collection, kind:'text', title:text, subtitle:ref, sort:it.sort||0, active:it.active?1:0, extra:newExtra }) })
+      .then(function(res){ if(res.j&&res.j.ok){ toast('Güncellendi ✓'); close(); loadText(); } else { toast('Hata: '+((res.j&&res.j.error)||res.status)); } })
+      .catch(function(e){ toast('Hata: '+e); });
+    };
   }
 
   // --- Kullanıcılar (üyeler) ---
@@ -1252,7 +1329,7 @@ const PANEL_HTML = `<!doctype html>
         toast('Üye oluşturuldu ✓');
         el('cuName').value=''; el('cuSurname').value=''; el('cuEmail').value=''; el('cuPass').value=''; el('cuRumuz').value='';
         loadUsers();
-      } else { var er=(res.j&&res.j.error)||res.status; var mm={email_taken:'Bu e-posta zaten kayıtlı',invalid_email:'Geçersiz e-posta',weak_password:'Şifre en az 6 karakter olmalı',name_required:'Ad zorunlu'}; toast('Hata: '+(mm[er]||er)); }
+      } else { var er=(res.j&&res.j.error)||res.status; var mm={email_taken:'Bu e-posta zaten kayıtlı',rumuz_taken:'Bu rumuz zaten kullanılıyor',invalid_email:'Geçersiz e-posta',weak_password:'Şifre en az 6 karakter olmalı',name_required:'Ad zorunlu'}; toast('Hata: '+(mm[er]||er)); }
     }).catch(function(e){ el('cuStatus').textContent=''; toast('Hata: '+e); });
   }
   function createDua(){
@@ -1327,7 +1404,7 @@ const PANEL_HTML = `<!doctype html>
       fd.append('rumuz',ov.querySelector('#euRumuz').value.trim());
       api('user-update',{method:'POST',body:fd}).then(function(res){
         if(res.j&&res.j.ok){ toast('Güncellendi ✓'); close(); loadUsers(); }
-        else { var er=(res.j&&res.j.error)||res.status; var mm={email_taken:'Bu e-posta başka bir üyede kayıtlı',invalid_email:'Geçersiz e-posta',name_required:'Ad zorunlu'}; toast('Hata: '+(mm[er]||er)); }
+        else { var er=(res.j&&res.j.error)||res.status; var mm={email_taken:'Bu e-posta başka bir üyede kayıtlı',rumuz_taken:'Bu rumuz başka bir üyede kayıtlı',invalid_email:'Geçersiz e-posta',name_required:'Ad zorunlu'}; toast('Hata: '+(mm[er]||er)); }
       }).catch(function(e){ toast('Hata: '+e); });
     };
   }
@@ -1351,17 +1428,58 @@ const PANEL_HTML = `<!doctype html>
   }
 
   // --- Dua Duvarı moderasyonu (#10) ---
+  var DUA_ALL=[];
+  // Yazarın hesap bilgisi + kayıtlı rumuz uyumu (sahte/uyumsuz rumuz yakalanır).
+  function duaAuthorLine(d){
+    if(d.user_id==='panel-author') return '<span class="muted">🛠️ panelden eklendi</span>';
+    if(!d.author_email) return '<span class="muted" style="color:var(--danger)">⚠️ kullanıcı bulunamadı (silinmiş hesap)</span>';
+    var nm=((d.author_name||'')+' '+(d.author_surname||'')).trim()||'—';
+    var ar=(d.author_rumuz||'').trim();
+    var mism=ar && ((d.rumuz||'').toLowerCase()!==ar.toLowerCase());
+    var rn=ar ? (mism?' · <span style="color:var(--danger)">kayıtlı rumuz: @'+esc(ar)+' ⚠️</span>':' · <span class="ok">@'+esc(ar)+' ✓</span>') : ' · <span style="color:var(--danger)">rumuz yok</span>';
+    return '<span class="muted">👤 '+esc(nm)+' · '+esc(d.author_email)+rn+(d.author_banned?' · <b style="color:var(--danger)">BANLI</b>':'')+'</span>';
+  }
+  // Duayı düzenle (rumuz / metin).
+  function editDua(id){
+    var d=null; for(var k=0;k<DUA_ALL.length;k++){ if(DUA_ALL[k].id===id){ d=DUA_ALL[k]; break; } }
+    if(!d) return;
+    var ov=document.createElement('div');
+    ov.style.cssText='position:fixed;inset:0;background:rgba(16,24,40,.45);display:flex;align-items:center;justify-content:center;z-index:50;padding:20px';
+    ov.innerHTML='<div style="background:#fff;border-radius:18px;padding:22px;max-width:420px;width:100%;box-shadow:0 14px 44px rgba(0,0,0,.22)">'+
+      '<h3 style="margin:0 0 12px">✏️ Duayı Düzenle</h3>'+
+      '<label>Rumuz</label><input id="edRumuz">'+
+      '<label>Dua metni (en çok 280)</label><textarea id="edText"></textarea>'+
+      '<div class="row" style="margin-top:18px"><button class="ghost" id="edCancel">Vazgeç</button><button id="edSave">Kaydet</button></div>'+
+      '</div>';
+    document.body.appendChild(ov);
+    ov.querySelector('#edRumuz').value=d.rumuz||'';
+    ov.querySelector('#edText').value=d.text||'';
+    function close(){ ov.remove(); }
+    ov.addEventListener('click',function(e){ if(e.target===ov) close(); });
+    ov.querySelector('#edCancel').onclick=close;
+    ov.querySelector('#edSave').onclick=function(){
+      var fd=new FormData(); fd.append('id',id);
+      fd.append('rumuz',ov.querySelector('#edRumuz').value.trim());
+      fd.append('text',ov.querySelector('#edText').value.trim());
+      api('dua-update',{method:'POST',body:fd}).then(function(res){
+        if(res.j&&res.j.ok){ toast('Güncellendi ✓'); close(); loadDuaWall(); }
+        else { var er=(res.j&&res.j.error)||res.status; var mm={rumuz_required:'Rumuz gerekli',too_short:'Metin çok kısa',too_long:'En çok 280 karakter olmalı'}; toast('Hata: '+(mm[er]||er)); }
+      }).catch(function(e){ toast('Hata: '+e); });
+    };
+  }
   function loadDuaWall(){
     el('duaPendingBody').innerHTML='<p class="muted">Yükleniyor…</p>';
     api('dua-pending').then(function(res){
       var pend=(res.j&&res.j.pending)||[]; var rec=(res.j&&res.j.recent)||[];
+      DUA_ALL=pend.concat(rec);
       var badge=el('duaBadge');
       if(badge){ if(pend.length){ badge.style.display='inline-block'; badge.textContent=pend.length; } else { badge.style.display='none'; } }
       if(!pend.length){ el('duaPendingBody').innerHTML='<p class="muted">Onay bekleyen dua yok. 🎉</p>'; }
       else {
         el('duaPendingBody').innerHTML='<p class="muted" style="margin:0 0 8px">Bekleyen: <b>'+pend.length+'</b></p>'+pend.map(function(d){
           var id=esc(d.id); var uid=esc(d.user_id||'');
-          return '<div class="item"><div class="ph">🤲</div><div class="meta"><b>'+esc(d.rumuz)+'</b><span>'+esc(d.text)+'</span><span class="muted">'+fmtDate(d.created_at)+'</span></div>'+
+          return '<div class="item"><div class="ph">🤲</div><div class="meta"><b>'+esc(d.rumuz)+'</b><span>'+esc(d.text)+'</span>'+duaAuthorLine(d)+'<span class="muted">'+fmtDate(d.created_at)+'</span></div>'+
+            '<button class="ghost" title="Düzenle" data-id="'+id+'" onclick="editDua(this.dataset.id)">✏️</button> '+
             '<button data-id="'+id+'" onclick="approveDua(this.dataset.id)">Onayla</button> '+
             '<button class="ghost" data-id="'+id+'" onclick="rejectDua(this.dataset.id,false)">Reddet</button> '+
             '<button class="danger" data-id="'+id+'" onclick="rejectDua(this.dataset.id,true)">Sil</button> '+
@@ -1380,7 +1498,8 @@ const PANEL_HTML = `<!doctype html>
         } else {
           icon='🚫'; label='<span class="muted">reddedildi</span>'; actions='';
         }
-        return '<div class="item"><div class="ph">'+icon+'</div><div class="meta"><b>'+esc(d.rumuz)+'</b> '+label+'<span class="muted">'+esc(d.text)+'</span></div>'+
+        return '<div class="item"><div class="ph">'+icon+'</div><div class="meta"><b>'+esc(d.rumuz)+'</b> '+label+'<span class="muted">'+esc(d.text)+'</span>'+duaAuthorLine(d)+'</div>'+
+          '<button class="ghost" title="Düzenle" data-id="'+id+'" onclick="editDua(this.dataset.id)">✏️</button> '+
           actions+
           '<button class="danger" data-id="'+id+'" onclick="rejectDua(this.dataset.id,true)">Sil</button> '+
           '<button class="danger" data-uid="'+uid+'" data-id="'+id+'" onclick="banDuaUser(this.dataset.uid,this.dataset.id)">🚫 Banla</button></div>';
@@ -1666,6 +1785,12 @@ const PANEL_HTML = `<!doctype html>
   async function upload(){
     var f = el('upFile').files[0];
     if (!f){ toast('Önce dosya seç'); return; }
+    // Video boyut sınırı: 4 MB. Büyük videolar reddedilir (önce sıkıştır).
+    if (f.type && f.type.indexOf('video') === 0 && f.size > 4*1024*1024){
+      toast('Video en fazla 4 MB olabilir (şu an ' + fmtSize(f.size) + ')');
+      el('upStatus').innerHTML = '<span style="color:var(--danger)">Video 4 MB sınırını aşıyor (' + fmtSize(f.size) + '). Lütfen sıkıştırıp tekrar dene.</span>';
+      return;
+    }
     var btn = el('upBtn'); if (btn){ btn.disabled = true; btn.textContent = 'Yükleniyor…'; }
     function done(){ if (btn){ btn.disabled = false; btn.textContent = 'Yükle'; } }
     el('upStatus').textContent = 'Hazırlanıyor...';
