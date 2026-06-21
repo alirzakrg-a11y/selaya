@@ -33,36 +33,77 @@ class AccountScreen extends ConsumerWidget {
               padding: const EdgeInsets.fromLTRB(
                   AppSpacing.lg, AppSpacing.lg, AppSpacing.lg, AppSpacing.xxxl),
               children: [
-                const Gap.md(),
-                Center(
-                  child: CircleAvatar(
-                    radius: 44,
-                    backgroundColor: c.gold.withValues(alpha: 0.18),
-                    child: Text(user.initials,
-                        style: TextStyle(
-                            color: c.gold,
-                            fontSize: 30,
-                            fontWeight: FontWeight.w800)),
+                const Gap.sm(),
+                // Gradyan profil başlığı — avatar + ad + e-posta + rumuz rozeti.
+                Container(
+                  padding: const EdgeInsets.symmetric(
+                      vertical: AppSpacing.lg, horizontal: AppSpacing.md),
+                  decoration: BoxDecoration(
+                    borderRadius: AppRadius.rXl,
+                    gradient: LinearGradient(
+                      begin: Alignment.topLeft,
+                      end: Alignment.bottomRight,
+                      colors: [c.gold.withValues(alpha: 0.22), c.surfaceAlt],
+                    ),
+                    border: Border.all(color: c.gold.withValues(alpha: 0.3)),
                   ),
-                ),
-                const Gap.md(),
-                Text(user.fullName,
-                    textAlign: TextAlign.center,
-                    style: Theme.of(context)
-                        .textTheme
-                        .titleLarge
-                        ?.copyWith(fontWeight: FontWeight.w800)),
-                const Gap.xs(),
-                Text(user.email,
-                    textAlign: TextAlign.center,
-                    style: TextStyle(color: c.textSecondary)),
-                const Gap.xs(),
-                Center(
-                  child: TextButton.icon(
-                    onPressed: () => _showEditProfile(context, ref),
-                    icon: Icon(Icons.edit_rounded, size: 16, color: c.gold),
-                    label: Text('auth.editProfile'.tr(),
-                        style: TextStyle(color: c.gold)),
+                  child: Column(
+                    children: [
+                      CircleAvatar(
+                        radius: 42,
+                        backgroundColor: c.gold.withValues(alpha: 0.2),
+                        child: Text(user.initials,
+                            style: TextStyle(
+                                color: c.gold,
+                                fontSize: 30,
+                                fontWeight: FontWeight.w800)),
+                      ),
+                      const Gap.md(),
+                      Text(user.fullName,
+                          textAlign: TextAlign.center,
+                          style: Theme.of(context)
+                              .textTheme
+                              .titleLarge
+                              ?.copyWith(fontWeight: FontWeight.w800)),
+                      const Gap.xs(),
+                      Text(user.email,
+                          textAlign: TextAlign.center,
+                          style: TextStyle(color: c.textSecondary)),
+                      if (user.rumuz.trim().isNotEmpty) ...[
+                        const Gap.sm(),
+                        Container(
+                          padding: const EdgeInsets.symmetric(
+                              horizontal: 12, vertical: 6),
+                          decoration: BoxDecoration(
+                            color: c.gold.withValues(alpha: 0.16),
+                            borderRadius: BorderRadius.circular(99),
+                            border: Border.all(
+                                color: c.gold.withValues(alpha: 0.35)),
+                          ),
+                          child: Row(
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              Icon(Icons.front_hand_rounded,
+                                  size: 14, color: c.gold),
+                              const SizedBox(width: 5),
+                              Text('@${user.rumuz.trim()}',
+                                  style: TextStyle(
+                                      color: c.gold,
+                                      fontWeight: FontWeight.w700,
+                                      fontSize: 13)),
+                            ],
+                          ),
+                        ),
+                      ],
+                      const Gap.sm(),
+                      TextButton.icon(
+                        onPressed: () => _showEditProfile(context, ref),
+                        icon:
+                            Icon(Icons.edit_rounded, size: 16, color: c.gold),
+                        label: Text('auth.editProfile'.tr(),
+                            style: TextStyle(color: c.gold)),
+                      ),
+                    ],
                   ),
                 ),
                 const Gap.md(),

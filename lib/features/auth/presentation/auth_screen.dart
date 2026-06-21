@@ -105,6 +105,7 @@ class _AuthScreenState extends ConsumerState<AuthScreen> {
   @override
   Widget build(BuildContext context) {
     final c = context.colors;
+    final tr = context.locale.languageCode == 'tr';
     return SelayaScaffold(
       title: 'auth.title'.tr(),
       showBack: true,
@@ -113,6 +114,27 @@ class _AuthScreenState extends ConsumerState<AuthScreen> {
             AppSpacing.lg, AppSpacing.lg, AppSpacing.lg, AppSpacing.xxxl),
         children: [
           const Center(child: SelayaLogo(size: 72)),
+          const Gap.md(),
+          // Üyelik faydaları — kayıt olmayı teşvik eder.
+          Container(
+            padding: const EdgeInsets.symmetric(
+                vertical: AppSpacing.md, horizontal: AppSpacing.sm),
+            decoration: BoxDecoration(
+              color: c.surfaceAlt,
+              borderRadius: AppRadius.rLg,
+              border: Border.all(color: c.gold.withValues(alpha: 0.18)),
+            ),
+            child: Row(
+              children: [
+                _benefit(Icons.cloud_done_rounded,
+                    tr ? 'Bulut yedek' : 'Cloud backup'),
+                _benefit(Icons.devices_rounded,
+                    tr ? '2 cihaz senkron' : '2-device sync'),
+                _benefit(Icons.front_hand_rounded,
+                    tr ? 'Dua Duvarı' : 'Dua Wall'),
+              ],
+            ),
+          ),
           const Gap.lg(),
           _ModeToggle(
               register: _register,
@@ -132,14 +154,30 @@ class _AuthScreenState extends ConsumerState<AuthScreen> {
                 action: TextInputAction.next),
             const Gap.md(),
             _field(_rumuz, 'auth.rumuz'.tr(), Icons.front_hand_rounded,
-                action: TextInputAction.next),
+                action: TextInputAction.next,
+                onChanged: (_) => setState(() {})),
             Padding(
               padding: const EdgeInsets.only(left: 12, top: 4, bottom: 2),
-              child: Text(
-                'auth.rumuzHint'.tr(),
-                style: TextStyle(
-                    color: context.colors.textTertiary, fontSize: 11.5),
-              ),
+              child: _rumuz.text.trim().isEmpty
+                  ? Text('auth.rumuzHint'.tr(),
+                      style:
+                          TextStyle(color: c.textTertiary, fontSize: 11.5))
+                  : Row(
+                      children: [
+                        Icon(Icons.front_hand_rounded, size: 13, color: c.gold),
+                        const SizedBox(width: 4),
+                        Flexible(
+                          child: Text(
+                            '${tr ? 'Dua Duvarı\'nda: @' : 'On Dua Wall: @'}${_rumuz.text.trim()}',
+                            overflow: TextOverflow.ellipsis,
+                            style: TextStyle(
+                                color: c.gold,
+                                fontSize: 12,
+                                fontWeight: FontWeight.w700),
+                          ),
+                        ),
+                      ],
+                    ),
             ),
             const Gap.md(),
           ],
@@ -149,6 +187,7 @@ class _AuthScreenState extends ConsumerState<AuthScreen> {
           _field(_password, 'auth.password'.tr(), Icons.lock_outline_rounded,
               obscure: _obscure,
               onSubmitted: (_) => _submit(),
+              onChanged: _register ? (_) => setState(() {}) : null,
               suffix: IconButton(
                 icon: Icon(
                     _obscure
@@ -157,12 +196,7 @@ class _AuthScreenState extends ConsumerState<AuthScreen> {
                     size: 20),
                 onPressed: () => setState(() => _obscure = !_obscure),
               )),
-          if (_register)
-            Padding(
-              padding: const EdgeInsets.only(left: 4, top: 6),
-              child: Text('auth.pwHint'.tr(),
-                  style: TextStyle(color: c.textTertiary, fontSize: 12)),
-            ),
+          if (_register) _pwMeter(tr),
           if (!_register)
             Align(
               alignment: Alignment.centerRight,
@@ -228,7 +262,8 @@ class _AuthScreenState extends ConsumerState<AuthScreen> {
       Widget? suffix,
       TextInputType? keyboard,
       TextInputAction? action,
-      void Function(String)? onSubmitted}) {
+      void Function(String)? onSubmitted,
+      void Function(String)? onChanged}) {
     final c = context.colors;
     return TextField(
       controller: ctrl,
@@ -236,6 +271,7 @@ class _AuthScreenState extends ConsumerState<AuthScreen> {
       keyboardType: keyboard,
       textInputAction: action,
       onSubmitted: onSubmitted,
+      onChanged: onChanged,
       enabled: !_busy,
       decoration: InputDecoration(
         labelText: label,
@@ -249,6 +285,88 @@ class _AuthScreenState extends ConsumerState<AuthScreen> {
             borderRadius: AppRadius.rLg, borderSide: BorderSide(color: c.border)),
         focusedBorder: OutlineInputBorder(
             borderRadius: AppRadius.rLg, borderSide: BorderSide(color: c.gold)),
+      ),
+    );
+  }
+
+  /// Üyelik faydası — ikon + kısa etiket (faydalar şeridinde).
+  Widget _benefit(IconData icon, String label) {
+    final c = context.colors;
+    return Expanded(
+      child: Column(
+        children: [
+          Icon(icon, color: c.gold, size: 22),
+          const SizedBox(height: 5),
+          Text(label,
+              textAlign: TextAlign.center,
+              maxLines: 2,
+              style: TextStyle(
+                  color: c.textSecondary,
+                  fontSize: 11.5,
+                  height: 1.2,
+                  fontWeight: FontWeight.w600)),
+        ],
+      ),
+    );
+  }
+
+  /// Canlı şifre gücü göstergesi (üye ol modunda; boşken ipucu gösterir).
+  Widget _pwMeter(bool tr) {
+    final c = context.colors;
+    final pw = _password.text;
+    if (pw.isEmpty) {
+      return Padding(
+        padding: const EdgeInsets.only(left: 4, top: 6),
+        child: Text('auth.pwHint'.tr(),
+            style: TextStyle(color: c.textTertiary, fontSize: 12)),
+      );
+    }
+    final valid = isStrongPassword(pw);
+    final strong = pw.length >= 10 || RegExp(r'[^A-Za-z0-9]').hasMatch(pw);
+    final level = !valid ? 1 : (strong ? 3 : 2);
+    final color = level == 1
+        ? c.danger
+        : (level == 2 ? const Color(0xFFE0A030) : c.success);
+    final label = level == 1
+        ? (tr ? 'Zayıf' : 'Weak')
+        : (level == 2 ? (tr ? 'Orta' : 'Medium') : (tr ? 'Güçlü' : 'Strong'));
+    return Padding(
+      padding: const EdgeInsets.only(left: 4, top: 8),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Row(
+            children: [
+              for (var i = 1; i <= 3; i++) ...[
+                Expanded(
+                  child: Container(
+                    height: 4,
+                    decoration: BoxDecoration(
+                        color: i <= level ? color : c.border,
+                        borderRadius: BorderRadius.circular(2)),
+                  ),
+                ),
+                if (i < 3) const SizedBox(width: 5),
+              ],
+            ],
+          ),
+          const SizedBox(height: 5),
+          Row(
+            children: [
+              Text(label,
+                  style: TextStyle(
+                      color: color,
+                      fontSize: 11.5,
+                      fontWeight: FontWeight.w700)),
+              const SizedBox(width: 6),
+              Expanded(
+                child: Text('auth.pwHint'.tr(),
+                    overflow: TextOverflow.ellipsis,
+                    style: TextStyle(color: c.textTertiary, fontSize: 11.5)),
+              ),
+            ],
+          ),
+        ],
       ),
     );
   }
