@@ -17,6 +17,7 @@ import '../../calendar/presentation/widgets/hijri_month_grid.dart';
 import '../../prayer_times/data/prayer_repository.dart';
 import '../../womens_mode/data/womens_mode_controller.dart';
 import '../data/fasting_controller.dart';
+import '../data/fasting_info.dart';
 import '../domain/fasting_day.dart';
 
 class FastingScreen extends ConsumerStatefulWidget {
@@ -77,6 +78,102 @@ class _FastingScreenState extends ConsumerState<FastingScreen> {
     });
   }
 
+  /// Sünnet + yasak oruç günleri bilgi sayfası.
+  void _showFastingInfo() {
+    final c = context.colors;
+    final lang = context.langCode;
+    final tr = lang == 'tr';
+    showModalBottomSheet<void>(
+      context: context,
+      isScrollControlled: true,
+      builder: (_) => SafeArea(
+        child: DraggableScrollableSheet(
+          expand: false,
+          initialChildSize: 0.66,
+          maxChildSize: 0.92,
+          builder: (_, scroll) => ListView(
+            controller: scroll,
+            padding: const EdgeInsets.all(AppSpacing.lg),
+            children: [
+              Row(children: [
+                Icon(AppIcons.moon, color: c.gold),
+                const Gap.sm(),
+                Expanded(
+                  child: Text(tr ? 'Oruç Günleri' : 'Fasting Days',
+                      style: Theme.of(context).textTheme.titleLarge),
+                ),
+              ]),
+              const Gap.lg(),
+              for (final g in fastingGroups) ...[
+                Row(children: [
+                  Icon(g.icon,
+                      size: 18, color: g.forbidden ? c.danger : c.gold),
+                  const Gap.sm(),
+                  Expanded(
+                    child: Text(g.title(lang),
+                        style: Theme.of(context)
+                            .textTheme
+                            .titleSmall
+                            ?.copyWith(
+                                fontWeight: FontWeight.w800,
+                                color: g.forbidden ? c.danger : null)),
+                  ),
+                ]),
+                const Gap.sm(),
+                for (final item in g.items)
+                  Padding(
+                    padding: const EdgeInsets.only(bottom: AppSpacing.xs),
+                    child: Row(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Icon(
+                            g.forbidden
+                                ? Icons.close_rounded
+                                : Icons.check_rounded,
+                            size: 16,
+                            color: g.forbidden ? c.danger : c.success),
+                        const Gap.sm(),
+                        Expanded(
+                          child: Text(item[tr ? 0 : 1],
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .bodyMedium
+                                  ?.copyWith(
+                                      color: c.textSecondary, height: 1.4)),
+                        ),
+                      ],
+                    ),
+                  ),
+                const Gap.md(),
+              ],
+              Text(tr ? fastingMekruhTr : fastingMekruhEn,
+                  style: Theme.of(context)
+                      .textTheme
+                      .bodySmall
+                      ?.copyWith(color: c.textTertiary, height: 1.4)),
+              const Gap.md(),
+              Row(children: [
+                Icon(Icons.menu_book_rounded, size: 16, color: c.gold),
+                const Gap.sm(),
+                Expanded(
+                  child: Text(
+                      tr
+                          ? 'Kaynak: Diyanet İşleri Başkanlığı İlmihali çizgisinde.'
+                          : 'Based on the Diyanet İlmihali.',
+                      style: Theme.of(context)
+                          .textTheme
+                          .bodySmall
+                          ?.copyWith(color: c.textTertiary)),
+                ),
+              ]),
+              const Gap.sm(),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     final lang = context.langCode;
@@ -94,6 +191,13 @@ class _FastingScreenState extends ConsumerState<FastingScreen> {
     return SelayaScaffold(
       title: 'fasting.title'.tr(),
       showBack: true,
+      actions: [
+        IconButton(
+          tooltip: lang == 'tr' ? 'Oruç günleri' : 'Fasting days',
+          icon: Icon(Icons.info_outline_rounded, color: c.gold),
+          onPressed: _showFastingInfo,
+        ),
+      ],
       body: ListView(
         padding: const EdgeInsets.fromLTRB(
             AppSpacing.base, AppSpacing.sm, AppSpacing.base, AppSpacing.xxxl),

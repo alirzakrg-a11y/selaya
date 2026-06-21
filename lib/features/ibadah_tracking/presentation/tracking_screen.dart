@@ -187,6 +187,15 @@ class _TrackingScreenState extends ConsumerState<TrackingScreen> {
                           style: Theme.of(context).textTheme.titleLarge),
                       Text('tracking.streak'.tr(),
                           style: TextStyle(color: c.textSecondary)),
+                      const Gap.xs(),
+                      Text(
+                          lang == 'tr'
+                              ? 'Bugün ${_marks(today).length}/5 vakit'
+                              : 'Today ${_marks(today).length}/5',
+                          style: TextStyle(
+                              color: perfectToday ? c.success : c.gold,
+                              fontWeight: FontWeight.w700,
+                              fontSize: 13)),
                     ],
                   ),
                 ),

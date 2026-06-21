@@ -3,12 +3,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../../../core/localization/localized_text.dart';
 import '../../../core/theme/app_colors.dart';
 import '../../../core/theme/app_icons.dart';
 import '../../../core/theme/app_spacing.dart';
 import '../../../core/widgets/selaya_card.dart';
 import '../../../core/widgets/selaya_scaffold.dart';
 import '../data/kaza_controller.dart';
+import '../data/kaza_info.dart';
 
 class KazaScreen extends ConsumerWidget {
   const KazaScreen({super.key});
@@ -22,6 +24,13 @@ class KazaScreen extends ConsumerWidget {
     return SelayaScaffold(
       title: 'kaza.title'.tr(),
       showBack: true,
+      actions: [
+        IconButton(
+          tooltip: context.langCode == 'tr' ? 'Kazâ rehberi' : 'Qada guide',
+          icon: Icon(Icons.info_outline_rounded, color: c.gold),
+          onPressed: () => _showKazaInfo(context),
+        ),
+      ],
       body: ListView(
         padding: const EdgeInsets.fromLTRB(
             AppSpacing.base, AppSpacing.sm, AppSpacing.base, AppSpacing.xxxl),
@@ -79,6 +88,10 @@ class KazaScreen extends ConsumerWidget {
                 ],
               ),
             ),
+          ],
+          if (state.completed + state.total > 0) ...[
+            const Gap.sm(),
+            _KazaProgress(completed: state.completed, total: state.total),
           ],
           const Gap.sm(),
           SelayaCard(
@@ -226,6 +239,137 @@ class KazaScreen extends ConsumerWidget {
       controller.dispose();
     }
   }
+}
+
+/// Kazâ ilerleme çubuğu — kılınan / (kılınan + kalan).
+class _KazaProgress extends StatelessWidget {
+  final int completed;
+  final int total; // kalan borç
+  const _KazaProgress({required this.completed, required this.total});
+
+  @override
+  Widget build(BuildContext context) {
+    final c = context.colors;
+    final tr = context.langCode == 'tr';
+    final all = completed + total;
+    final pct = all == 0 ? 0.0 : completed / all;
+    return SelayaCard(
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Row(
+            children: [
+              Text(tr ? 'İlerleme' : 'Progress',
+                  style: Theme.of(context)
+                      .textTheme
+                      .titleSmall
+                      ?.copyWith(fontWeight: FontWeight.w700)),
+              const Spacer(),
+              Text('%${(pct * 100).round()}',
+                  style: TextStyle(color: c.gold, fontWeight: FontWeight.w800)),
+            ],
+          ),
+          const Gap.sm(),
+          ClipRRect(
+            borderRadius: BorderRadius.circular(99),
+            child: LinearProgressIndicator(
+              value: pct,
+              minHeight: 10,
+              backgroundColor: c.border,
+              valueColor: AlwaysStoppedAnimation(c.gold),
+            ),
+          ),
+          const Gap.xs(),
+          Text(
+              tr
+                  ? '$completed kılındı · $total kaldı'
+                  : '$completed done · $total left',
+              style: Theme.of(context)
+                  .textTheme
+                  .bodySmall
+                  ?.copyWith(color: c.textSecondary)),
+        ],
+      ),
+    );
+  }
+}
+
+/// Kazâ namazı rehberi sayfası (AppBar bilgi butonundan).
+void _showKazaInfo(BuildContext context) {
+  final c = context.colors;
+  final tr = context.langCode == 'tr';
+  final items = tr ? kazaInfoTr : kazaInfoEn;
+  showModalBottomSheet<void>(
+    context: context,
+    isScrollControlled: true,
+    builder: (_) => SafeArea(
+      child: DraggableScrollableSheet(
+        expand: false,
+        initialChildSize: 0.62,
+        maxChildSize: 0.92,
+        builder: (_, scroll) => ListView(
+          controller: scroll,
+          padding: const EdgeInsets.all(AppSpacing.lg),
+          children: [
+            Row(children: [
+              Icon(AppIcons.kerahat, color: c.gold),
+              const Gap.sm(),
+              Expanded(
+                child: Text(tr ? 'Kazâ Namazı Rehberi' : 'Make-up Prayer Guide',
+                    style: Theme.of(context).textTheme.titleLarge),
+              ),
+            ]),
+            const Gap.lg(),
+            for (var i = 0; i < items.length; i++)
+              Padding(
+                padding: const EdgeInsets.only(bottom: AppSpacing.md),
+                child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Container(
+                      width: 24,
+                      height: 24,
+                      alignment: Alignment.center,
+                      decoration: BoxDecoration(
+                          shape: BoxShape.circle,
+                          color: c.gold.withValues(alpha: 0.14)),
+                      child: Text('${i + 1}',
+                          style: TextStyle(
+                              color: c.gold,
+                              fontWeight: FontWeight.w800,
+                              fontSize: 12)),
+                    ),
+                    const Gap.md(),
+                    Expanded(
+                      child: Text(items[i],
+                          style: Theme.of(context)
+                              .textTheme
+                              .bodyMedium
+                              ?.copyWith(color: c.textSecondary, height: 1.5)),
+                    ),
+                  ],
+                ),
+              ),
+            Row(children: [
+              Icon(Icons.menu_book_rounded, size: 16, color: c.gold),
+              const Gap.sm(),
+              Expanded(
+                child: Text(
+                    tr
+                        ? 'Kaynak: Diyanet İşleri Başkanlığı İlmihali çizgisinde.'
+                        : 'Based on the Diyanet İlmihali.',
+                    style: Theme.of(context)
+                        .textTheme
+                        .bodySmall
+                        ?.copyWith(color: c.textTertiary)),
+              ),
+            ]),
+            const Gap.sm(),
+          ],
+        ),
+      ),
+    ),
+  );
 }
 
 class _KazaRow extends StatelessWidget {

@@ -217,6 +217,8 @@ class _Progress extends ConsumerWidget {
           ),
         ),
         const Gap.md(),
+        _JuzStrip(currentPage: s.currentPage),
+        const Gap.md(),
         FilledButton.icon(
           style: FilledButton.styleFrom(
               backgroundColor: c.gold,
@@ -335,6 +337,80 @@ class _Stat extends StatelessWidget {
                 .labelSmall
                 ?.copyWith(color: c.textTertiary)),
       ],
+    );
+  }
+}
+
+/// 30 cüzlük ilerleme şeridi — okunan cüzler altın dolu, içinde bulunulan cüz
+/// vurgulu. Cüz sınırları ≈ toplam sayfanın 30'a bölümü.
+class _JuzStrip extends StatelessWidget {
+  final int currentPage;
+  const _JuzStrip({required this.currentPage});
+
+  int _juzEnd(int n) => (n * hatimPageTotal / 30).round();
+
+  @override
+  Widget build(BuildContext context) {
+    final c = context.colors;
+    final tr = context.langCode == 'tr';
+    var done = 0;
+    for (var n = 1; n <= 30; n++) {
+      if (currentPage >= _juzEnd(n)) done++;
+    }
+    return SelayaCard(
+      padding: const EdgeInsets.all(AppSpacing.base),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Row(
+            children: [
+              Text(tr ? 'Cüzler' : 'Juz',
+                  style: Theme.of(context)
+                      .textTheme
+                      .titleSmall
+                      ?.copyWith(fontWeight: FontWeight.w700)),
+              const Spacer(),
+              Text('$done / 30',
+                  style: TextStyle(color: c.gold, fontWeight: FontWeight.w700)),
+            ],
+          ),
+          const Gap.sm(),
+          Wrap(
+            spacing: 6,
+            runSpacing: 6,
+            children: [
+              for (var n = 1; n <= 30; n++)
+                Builder(builder: (context) {
+                  final isDone = currentPage >= _juzEnd(n);
+                  final isCurrent = !isDone && currentPage >= _juzEnd(n - 1);
+                  return Container(
+                    width: 30,
+                    height: 30,
+                    alignment: Alignment.center,
+                    decoration: BoxDecoration(
+                      color: isDone
+                          ? c.gold
+                          : (isCurrent
+                              ? c.gold.withValues(alpha: 0.18)
+                              : c.surfaceAlt),
+                      borderRadius: BorderRadius.circular(8),
+                      border: Border.all(
+                          color: (isDone || isCurrent) ? c.gold : c.border,
+                          width: isCurrent ? 1.6 : 1),
+                    ),
+                    child: Text('$n',
+                        style: TextStyle(
+                            color: isDone
+                                ? c.onGold
+                                : (isCurrent ? c.gold : c.textTertiary),
+                            fontSize: 11,
+                            fontWeight: FontWeight.w700)),
+                  );
+                }),
+            ],
+          ),
+        ],
+      ),
     );
   }
 }

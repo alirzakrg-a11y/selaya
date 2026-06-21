@@ -9,6 +9,7 @@ import '../../../core/utils/thousands_formatter.dart';
 import '../../../core/widgets/selaya_card.dart';
 import '../../../core/widgets/selaya_scaffold.dart';
 import '../data/finance_api.dart';
+import '../data/zakat_info.dart';
 
 /// Zekât + Fitre hesaplayıcı. Zekât nisabı = 80.18 gr altın değeri; oran %2,5
 /// (1/40). Yalnız tahminî yardımcıdır — kesin hüküm için müftülüğe danışılır.
@@ -89,6 +90,66 @@ class _ZakatScreenState extends State<ZakatScreen> {
   String _money(BuildContext context, double v) =>
       '${NumberFormat.decimalPattern(context.locale.languageCode).format(double.parse(v.toStringAsFixed(2)))} ₺';
 
+  /// Zekât & fitre özet rehberi (AppBar bilgi butonundan).
+  void _showZakatInfo() {
+    final c = context.colors;
+    final lang = context.langCode;
+    final tr = lang == 'tr';
+    showModalBottomSheet<void>(
+      context: context,
+      isScrollControlled: true,
+      builder: (_) => SafeArea(
+        child: DraggableScrollableSheet(
+          expand: false,
+          initialChildSize: 0.72,
+          maxChildSize: 0.95,
+          builder: (_, scroll) => ListView(
+            controller: scroll,
+            padding: const EdgeInsets.all(AppSpacing.lg),
+            children: [
+              Row(children: [
+                Icon(Icons.payments_rounded, color: c.gold),
+                const Gap.sm(),
+                Expanded(
+                  child: Text(tr ? 'Zekât & Fitre Rehberi' : 'Zakat & Fitra Guide',
+                      style: Theme.of(context).textTheme.titleLarge),
+                ),
+              ]),
+              const Gap.lg(),
+              for (final item in zakatInfo) ...[
+                Text(item.title(lang),
+                    style: Theme.of(context).textTheme.titleSmall?.copyWith(
+                        color: c.gold, fontWeight: FontWeight.w800)),
+                const Gap.xs(),
+                Text(item.desc(lang),
+                    style: Theme.of(context)
+                        .textTheme
+                        .bodyMedium
+                        ?.copyWith(color: c.textSecondary, height: 1.5)),
+                const Gap.md(),
+              ],
+              Row(children: [
+                Icon(Icons.menu_book_rounded, size: 16, color: c.gold),
+                const Gap.sm(),
+                Expanded(
+                  child: Text(
+                      tr
+                          ? 'Kaynak: Diyanet İşleri Başkanlığı İlmihali çizgisinde. Kesin hüküm için müftülüğe danışınız.'
+                          : 'Based on the Diyanet İlmihali. Consult a mufti for a ruling.',
+                      style: Theme.of(context)
+                          .textTheme
+                          .bodySmall
+                          ?.copyWith(color: c.textTertiary)),
+                ),
+              ]),
+              const Gap.sm(),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     final tr = context.langCode == 'tr';
@@ -96,6 +157,11 @@ class _ZakatScreenState extends State<ZakatScreen> {
       title: 'zakat.title'.tr(),
       showBack: true,
       actions: [
+        IconButton(
+          tooltip: tr ? 'Zekât & fitre rehberi' : 'Zakat & fitra guide',
+          icon: Icon(Icons.info_outline_rounded, color: context.colors.gold),
+          onPressed: _showZakatInfo,
+        ),
         IconButton(
           tooltip: tr ? 'Güncel fiyatı yenile' : 'Refresh live price',
           icon: _loadingFin
