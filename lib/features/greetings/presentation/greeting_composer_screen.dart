@@ -15,6 +15,7 @@ import '../../../core/widgets/app_image.dart';
 import '../../../core/widgets/greeting_card.dart';
 import '../../../core/widgets/selaya_scaffold.dart';
 import '../../../core/widgets/states.dart';
+import '../../auth/data/auth_controller.dart';
 
 const _bgDefaults = [
   'assets/images/inspiration_2.jpg',
@@ -39,6 +40,8 @@ class _GreetingComposerScreenState
     extends ConsumerState<GreetingComposerScreen> {
   final _cardKey = GlobalKey();
   final _controller = TextEditingController();
+  final _toCtrl = TextEditingController(); // alıcı (Kime) — karta hitap satırı
+  final _fromCtrl = TextEditingController(); // gönderen (Kimden) — imza
   int _occasion = 0;
   int _bg = 0;
   int _fontIndex = 0;
@@ -52,9 +55,24 @@ class _GreetingComposerScreenState
     null, 'Amiri', 'Playfair Display', 'Dancing Script', 'Sora'
   ];
 
+  /// Karta hitap eden son metin: "Sevgili {alıcı}," + mesaj + "— {gönderen}".
+  String _composed(String lang) {
+    final tr = lang == 'tr';
+    final to = _toCtrl.text.trim();
+    final from = _fromCtrl.text.trim();
+    final body = _controller.text.trim();
+    final buf = StringBuffer();
+    if (to.isNotEmpty) buf.write('${tr ? 'Sevgili' : 'Dear'} $to,\n\n');
+    buf.write(body);
+    if (from.isNotEmpty) buf.write('\n\n${tr ? '—' : '—'} $from');
+    return buf.toString();
+  }
+
   @override
   void dispose() {
     _controller.dispose();
+    _toCtrl.dispose();
+    _fromCtrl.dispose();
     super.dispose();
   }
 
@@ -64,7 +82,8 @@ class _GreetingComposerScreenState
       await shareBoundaryAsImage(
         context,
         _cardKey,
-        shareText: '${_controller.text}\n\nSELAYA · Namaz Vakitlerinden Fazlası',
+        shareText:
+            '${_composed(context.langCode)}\n\nSELAYA · Namaz Vakitlerinden Fazlası',
         target: target,
       );
     } catch (_) {
@@ -90,6 +109,38 @@ class _GreetingComposerScreenState
     }
   }
 
+  /// Kompakt "Kime / Kimden" giriş alanı.
+  Widget _nameField(TextEditingController ctrl, String hint, IconData icon) {
+    final c = context.colors;
+    return TextField(
+      controller: ctrl,
+      maxLength: 30,
+      textCapitalization: TextCapitalization.words,
+      textInputAction: TextInputAction.done,
+      onChanged: (_) => setState(() {}),
+      style: TextStyle(color: c.textPrimary, fontSize: 14),
+      decoration: InputDecoration(
+        hintText: hint,
+        prefixIcon: Icon(icon, size: 18, color: c.gold),
+        isDense: true,
+        counterText: '',
+        filled: true,
+        fillColor: c.surfaceAlt,
+        contentPadding:
+            const EdgeInsets.symmetric(vertical: 12, horizontal: 8),
+        border: OutlineInputBorder(
+            borderRadius: AppRadius.rLg,
+            borderSide: BorderSide(color: c.border)),
+        enabledBorder: OutlineInputBorder(
+            borderRadius: AppRadius.rLg,
+            borderSide: BorderSide(color: c.border)),
+        focusedBorder: OutlineInputBorder(
+            borderRadius: AppRadius.rLg,
+            borderSide: BorderSide(color: c.gold, width: 1.4)),
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     final lang = context.langCode;
@@ -113,6 +164,11 @@ class _GreetingComposerScreenState
           final occ = occasions[_occasion];
           if (!_seeded && occ.messages.isNotEmpty) {
             _controller.text = occ.messages.first.text(lang);
+            // İmzayı (Kimden) giriş yapan kullanıcının adıyla otomatik doldur.
+            final u = ref.read(authControllerProvider).user;
+            if (u != null && u.name.trim().isNotEmpty) {
+              _fromCtrl.text = u.name.trim();
+            }
             _seeded = true;
           }
           final size = MediaQuery.sizeOf(context);
@@ -223,6 +279,27 @@ class _GreetingComposerScreenState
                       borderRadius: AppRadius.rLg,
                       borderSide: BorderSide(color: c.border)),
                 ),
+              ),
+              const Gap.md(),
+              // 3b) Kime / Kimden — kartın kişiye hitap etmesi için.
+              _Label(lang == 'tr'
+                  ? 'Kişiselleştir (kime / kimden)'
+                  : 'Personalize (to / from)'),
+              const Gap.sm(),
+              Row(
+                children: [
+                  Expanded(
+                    child: _nameField(
+                        _toCtrl,
+                        lang == 'tr' ? 'Kime (örn. Annem)' : 'To',
+                        Icons.favorite_outline_rounded),
+                  ),
+                  const Gap.sm(),
+                  Expanded(
+                    child: _nameField(_fromCtrl,
+                        lang == 'tr' ? 'Kimden (imza)' : 'From', Icons.draw_outlined),
+                  ),
+                ],
               ),
               const Gap.md(),
               // 4) Arka plan seçici
@@ -340,7 +417,7 @@ class _GreetingComposerScreenState
                       child: RepaintBoundary(
                         key: _cardKey,
                         child: GreetingCard(
-                          message: _controller.text,
+                          message: _composed(lang),
                           backgroundImage: backgrounds[_bg],
                           fontFamily: _fontFamilies[_fontIndex],
                           fontScale: _fontScale,
