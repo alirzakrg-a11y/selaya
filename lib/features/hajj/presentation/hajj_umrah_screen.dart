@@ -81,6 +81,22 @@ class _HajjUmrahScreenState extends ConsumerState<HajjUmrahScreen> {
                   onSelectionChanged: (s) => setState(() => _type = s.first),
                 ),
               ),
+              Padding(
+                padding: const EdgeInsets.only(
+                    left: AppSpacing.base + 4, bottom: AppSpacing.xs),
+                child: Align(
+                  alignment: Alignment.centerLeft,
+                  child: Text(
+                    tr
+                        ? '${_type == 'umre' ? 'Umre' : 'Hac'} menâsiki · ${steps.length} adım'
+                        : '${_type == 'umre' ? 'Umrah' : 'Hajj'} rites · ${steps.length} steps',
+                    style: Theme.of(context).textTheme.labelMedium?.copyWith(
+                        color: context.colors.gold,
+                        fontWeight: FontWeight.w700,
+                        letterSpacing: 0.5),
+                  ),
+                ),
+              ),
               Expanded(
                 child: steps.isEmpty
                     ? const SelayaEmpty(icon: Icons.mosque_rounded)
@@ -91,10 +107,46 @@ class _HajjUmrahScreenState extends ConsumerState<HajjUmrahScreen> {
                           AppSpacing.base,
                           AppSpacing.xxxl,
                         ),
-                        itemCount: steps.length,
+                        itemCount: steps.length + 1,
                         separatorBuilder: (_, _) => const Gap.sm(),
-                        itemBuilder: (_, i) =>
-                            _StepCard(step: steps[i], index: i),
+                        itemBuilder: (_, i) {
+                          if (i == steps.length) {
+                            final c = context.colors;
+                            return Padding(
+                              padding: const EdgeInsets.only(top: AppSpacing.sm),
+                              child: Container(
+                                padding: const EdgeInsets.all(AppSpacing.md),
+                                decoration: BoxDecoration(
+                                  color: c.gold.withValues(alpha: 0.08),
+                                  borderRadius: AppRadius.rSm,
+                                  border: Border.all(
+                                      color: c.gold.withValues(alpha: 0.25)),
+                                ),
+                                child: Row(
+                                  children: [
+                                    Icon(Icons.menu_book_rounded,
+                                        size: 16, color: c.gold),
+                                    const Gap.sm(),
+                                    Expanded(
+                                      child: Text(
+                                        tr
+                                            ? 'Kaynak: Diyanet İşleri Başkanlığı İlmihali / Hac rehberi esas alınmıştır. Menâsikin ayrıntısı için rehberinize / yetkili kaynaklara başvurun.'
+                                            : 'Source: based on the Diyanet hajj guide. For details of the rites, consult your guide / qualified sources.',
+                                        style: Theme.of(context)
+                                            .textTheme
+                                            .bodySmall
+                                            ?.copyWith(
+                                                color: c.textSecondary,
+                                                height: 1.4),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            );
+                          }
+                          return _StepCard(step: steps[i], index: i);
+                        },
                       ),
               ),
             ],
