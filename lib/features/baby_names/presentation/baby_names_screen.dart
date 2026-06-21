@@ -47,7 +47,7 @@ class _BabyNamesScreenState extends ConsumerState<BabyNamesScreen> {
   String _query = '';
   bool _favsOnly = false;
   late Set<String> _favs;
-  BabyName? _daily; // bir kez hesaplanır (oturum içinde sabit)
+  (BabyName?, BabyName?)? _dailyPair; // günün isimleri: (erkek, kız)
 
   @override
   void initState() {
@@ -80,21 +80,38 @@ class _BabyNamesScreenState extends ConsumerState<BabyNamesScreen> {
     return '${n.year}-${n.month}-${n.day}';
   }
 
-  /// Günün ismini döndürür; yeni günse rastgele seçer (öncekini HARİÇ tutarak).
-  BabyName _computeDaily(List<BabyName> all) {
+  /// Günün isimleri: bir erkek + bir kız. Yeni günse rastgele seçer (her cinste
+  /// önceki günün ismini HARİÇ tutarak); aynı gün içinde sabit kalır.
+  (BabyName?, BabyName?) _computeDaily(List<BabyName> all) {
     final prefs = ref.read(sharedPreferencesProvider);
     final today = _todayKey();
-    final lastName = prefs.getString('baby_name_last');
-    if (prefs.getString('baby_name_date') == today && lastName != null) {
-      final m = all.where((n) => n.name == lastName);
-      if (m.isNotEmpty) return m.first;
+    final males = all.where((n) => n.gender == 'm').toList();
+    final females = all.where((n) => n.gender != 'm').toList();
+    final lm = prefs.getString('baby_name_last_m');
+    final lf = prefs.getString('baby_name_last_f');
+
+    // Aynı gün → kayıtlı isimleri döndür.
+    if (prefs.getString('baby_name_date') == today) {
+      final m = males.where((n) => n.name == lm);
+      final f = females.where((n) => n.name == lf);
+      if (m.isNotEmpty || f.isNotEmpty) {
+        return (m.isNotEmpty ? m.first : null, f.isNotEmpty ? f.first : null);
+      }
     }
-    final pool = all.where((n) => n.name != lastName).toList();
-    final src = pool.isEmpty ? all : pool;
-    final pick = src[Random().nextInt(src.length)];
-    prefs.setString('baby_name_last', pick.name);
+
+    BabyName? pick(List<BabyName> pool, String? exclude) {
+      if (pool.isEmpty) return null;
+      final p = pool.where((n) => n.name != exclude).toList();
+      final src = p.isEmpty ? pool : p;
+      return src[Random().nextInt(src.length)];
+    }
+
+    final m = pick(males, lm);
+    final f = pick(females, lf);
+    if (m != null) prefs.setString('baby_name_last_m', m.name);
+    if (f != null) prefs.setString('baby_name_last_f', f.name);
     prefs.setString('baby_name_date', today);
-    return pick;
+    return (m, f);
   }
 
   @override
@@ -119,7 +136,7 @@ class _BabyNamesScreenState extends ConsumerState<BabyNamesScreen> {
         loading: () => const SelayaLoading(),
         error: (e, _) => SelayaError(error: e),
         data: (all) {
-          _daily ??= all.isEmpty ? null : _computeDaily(all);
+          _dailyPair ??= all.isEmpty ? (null, null) : _computeDaily(all);
           final q = _query.trim().toLowerCase();
           var list = _gender == 'all'
               ? all
@@ -138,7 +155,9 @@ class _BabyNamesScreenState extends ConsumerState<BabyNamesScreen> {
           }
           return Column(
             children: [
-              if (_daily != null) _dailyCard(context, _daily!, tr),
+              if (_dailyPair != null &&
+                  (_dailyPair!.$1 != null || _dailyPair!.$2 != null))
+                _dailyCard(context, _dailyPair!, tr),
               Padding(
                 padding: const EdgeInsets.fromLTRB(
                   AppSpacing.base,
@@ -245,16 +264,68 @@ class _BabyNamesScreenState extends ConsumerState<BabyNamesScreen> {
     );
   }
 
-  Widget _dailyCard(BuildContext context, BabyName n, bool tr) {
+  Widget _dailyCard(
+      BuildContext context, (BabyName?, BabyName?) pair, bool tr) {
     final c = context.colors;
+    final m = pair.$1;
+    final f = pair.$2;
+
+    Widget nameRow(BabyName n) {
+      final isF = n.gender != 'm';
+      return Padding(
+        padding: const EdgeInsets.symmetric(vertical: 5),
+        child: Row(
+          children: [
+            CircleAvatar(
+              radius: 15,
+              backgroundColor:
+                  (isF ? Colors.pink : c.gold).withValues(alpha: 0.16),
+              child: Icon(isF ? Icons.female_rounded : Icons.male_rounded,
+                  color: isF ? Colors.pink : c.gold, size: 17),
+            ),
+            const Gap.md(),
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(n.name,
+                      style: Theme.of(context)
+                          .textTheme
+                          .titleMedium
+                          ?.copyWith(fontWeight: FontWeight.w800)),
+                  Text(n.meaning,
+                      maxLines: 2,
+                      overflow: TextOverflow.ellipsis,
+                      style: Theme.of(context)
+                          .textTheme
+                          .bodySmall
+                          ?.copyWith(color: c.textSecondary, height: 1.35)),
+                ],
+              ),
+            ),
+            InkWell(
+              onTap: () => _toggleFav(n.name),
+              borderRadius: BorderRadius.circular(99),
+              child: Padding(
+                padding: const EdgeInsets.all(6),
+                child: Icon(
+                    _favs.contains(n.name)
+                        ? Icons.favorite_rounded
+                        : Icons.favorite_border_rounded,
+                    size: 19,
+                    color: _favs.contains(n.name) ? Colors.pink : c.textTertiary),
+              ),
+            ),
+          ],
+        ),
+      );
+    }
+
     return Container(
       margin: const EdgeInsets.fromLTRB(
-        AppSpacing.base,
-        AppSpacing.sm,
-        AppSpacing.base,
-        AppSpacing.xs,
-      ),
-      padding: const EdgeInsets.all(AppSpacing.base),
+          AppSpacing.base, AppSpacing.sm, AppSpacing.base, AppSpacing.xs),
+      padding: const EdgeInsets.fromLTRB(
+          AppSpacing.base, AppSpacing.sm, AppSpacing.base, AppSpacing.sm),
       decoration: BoxDecoration(
         gradient: LinearGradient(
           colors: [c.gold.withValues(alpha: 0.22), c.surfaceAlt],
@@ -264,43 +335,19 @@ class _BabyNamesScreenState extends ConsumerState<BabyNamesScreen> {
         borderRadius: AppRadius.rXl,
         border: Border.all(color: c.gold.withValues(alpha: 0.3)),
       ),
-      child: Row(
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Icon(
-            n.gender == 'f' ? Icons.female_rounded : Icons.male_rounded,
-            color: c.gold,
-            size: 30,
-          ),
-          const Gap.md(),
-          Expanded(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  tr ? 'Günün İsmi' : 'Name of the Day',
-                  style: Theme.of(context).textTheme.labelSmall?.copyWith(
-                    color: c.gold,
-                    fontWeight: FontWeight.w700,
-                    letterSpacing: 0.5,
-                  ),
-                ),
-                Text(
-                  n.name,
-                  style: Theme.of(
-                    context,
-                  ).textTheme.titleLarge?.copyWith(fontWeight: FontWeight.w800),
-                ),
-                const SizedBox(height: 2),
-                Text(
-                  n.meaning,
-                  style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                    color: c.textSecondary,
-                    height: 1.4,
-                  ),
-                ),
-              ],
-            ),
-          ),
+          Text(tr ? 'GÜNÜN İSİMLERİ' : 'NAMES OF THE DAY',
+              style: Theme.of(context).textTheme.labelSmall?.copyWith(
+                  color: c.gold,
+                  fontWeight: FontWeight.w700,
+                  letterSpacing: 0.5)),
+          const Gap.xs(),
+          if (m != null) nameRow(m),
+          if (m != null && f != null)
+            Divider(height: 1, color: c.gold.withValues(alpha: 0.18)),
+          if (f != null) nameRow(f),
         ],
       ),
     );
