@@ -3,16 +3,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:hijri/hijri_calendar.dart';
 
-import '../../../../core/data/content_providers.dart';
 import '../../../../core/localization/localized_text.dart';
 import '../../../../core/models/content.dart';
 import '../../../../core/theme/app_colors.dart';
 import '../../../../core/theme/app_icons.dart';
 import '../../../../core/theme/app_spacing.dart';
-import '../../../../core/utils/formatters.dart';
 import '../../../../core/widgets/selaya_card.dart';
-import '../../../../core/widgets/states.dart';
 import '../../../prayer_times/data/prayer_repository.dart';
+import '../../data/religious_days.dart';
+import '../religious_day_detail.dart';
 import 'hijri_month_grid.dart';
 
 /// Monthly calendar grid that highlights religious days (incl. multi-day spans)
@@ -48,62 +47,55 @@ class _CalendarMonthViewState extends ConsumerState<CalendarMonthView> {
   Widget build(BuildContext context) {
     final lang = context.langCode;
     final offset = ref.watch(hijriOffsetProvider);
-    final daysAsync = ref.watch(calendarDaysProvider);
+    final events = ref.watch(religiousDaysProvider);
     final now = DateTime.now();
 
-    return daysAsync.when(
-      loading: () => const SelayaLoading(),
-      error: (e, _) => SelayaError(error: e),
-      data: (events) {
-        CalendarDay? eventFor(DateTime day) {
-          final dd = DateTime(day.year, day.month, day.day);
-          for (final e in events) {
-            final s = DateTime(
-                e.gregorian.year, e.gregorian.month, e.gregorian.day);
-            final end = s.add(Duration(days: e.days - 1));
-            if (!dd.isBefore(s) && !dd.isAfter(end)) return e;
-          }
-          return null;
-        }
+    CalendarDay? eventFor(DateTime day) {
+      final dd = DateTime(day.year, day.month, day.day);
+      for (final e in events) {
+        final s =
+            DateTime(e.gregorian.year, e.gregorian.month, e.gregorian.day);
+        final end = s.add(Duration(days: e.days - 1));
+        if (!dd.isBefore(s) && !dd.isAfter(end)) return e;
+      }
+      return null;
+    }
 
-        return ListView(
-          padding: const EdgeInsets.fromLTRB(
-              AppSpacing.base, AppSpacing.sm, AppSpacing.base, AppSpacing.xxxl),
+    return ListView(
+      padding: const EdgeInsets.fromLTRB(
+          AppSpacing.base, AppSpacing.sm, AppSpacing.base, AppSpacing.xxxl),
+      children: [
+        Row(
           children: [
-            Row(
-              children: [
-                IconButton(
-                  icon: const Icon(AppIcons.back, size: 18),
-                  onPressed: () => _shift(-1),
-                ),
-                Expanded(
-                  child: Text(
-                    DateFormat('MMMM yyyy', lang)
-                        .format(DateTime(_year, _month)),
-                    textAlign: TextAlign.center,
-                    style: Theme.of(context).textTheme.titleLarge,
-                  ),
-                ),
-                IconButton(
-                  icon: const Icon(AppIcons.forward, size: 22),
-                  onPressed: () => _shift(1),
-                ),
-              ],
+            IconButton(
+              icon: const Icon(AppIcons.back, size: 18),
+              onPressed: () => _shift(-1),
             ),
-            const Gap.sm(),
-            SelayaCard(
-              padding: const EdgeInsets.all(AppSpacing.sm),
-              child: HijriMonthGrid(
-                year: _year,
-                month: _month,
-                lang: lang,
-                cellBuilder: (day) =>
-                    _cell(context, day, eventFor(day), offset, now, lang),
+            Expanded(
+              child: Text(
+                DateFormat('MMMM yyyy', lang).format(DateTime(_year, _month)),
+                textAlign: TextAlign.center,
+                style: Theme.of(context).textTheme.titleLarge,
               ),
             ),
+            IconButton(
+              icon: const Icon(AppIcons.forward, size: 22),
+              onPressed: () => _shift(1),
+            ),
           ],
-        );
-      },
+        ),
+        const Gap.sm(),
+        SelayaCard(
+          padding: const EdgeInsets.all(AppSpacing.sm),
+          child: HijriMonthGrid(
+            year: _year,
+            month: _month,
+            lang: lang,
+            cellBuilder: (day) =>
+                _cell(context, day, eventFor(day), offset, now, lang),
+          ),
+        ),
+      ],
     );
   }
 
@@ -117,7 +109,8 @@ class _CalendarMonthViewState extends ConsumerState<CalendarMonthView> {
     final highlight = event != null;
 
     return GestureDetector(
-      onTap: highlight ? () => _showEvent(context, event, lang) : null,
+      onTap:
+          highlight ? () => showReligiousDayDetail(context, event, lang) : null,
       child: Container(
         decoration: BoxDecoration(
           color: highlight
@@ -147,42 +140,4 @@ class _CalendarMonthViewState extends ConsumerState<CalendarMonthView> {
     );
   }
 
-  void _showEvent(BuildContext context, CalendarDay event, String lang) {
-    final c = context.colors;
-    showModalBottomSheet(
-      context: context,
-      builder: (_) => SafeArea(
-        child: Padding(
-          padding: const EdgeInsets.all(AppSpacing.lg),
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Row(
-                children: [
-                  Icon(AppIcons.moon, color: c.gold),
-                  const Gap.sm(),
-                  Expanded(
-                    child: Text(event.name(lang),
-                        style: Theme.of(context).textTheme.titleLarge),
-                  ),
-                ],
-              ),
-              const Gap.xs(),
-              Text('${formatGregorian(event.gregorian, lang)} • ${event.hijri}',
-                  style: Theme.of(context)
-                      .textTheme
-                      .bodySmall
-                      ?.copyWith(color: c.textTertiary)),
-              if (event.note(lang).isNotEmpty) ...[
-                const Gap.md(),
-                Text(event.note(lang),
-                    style: Theme.of(context).textTheme.bodyMedium),
-              ],
-            ],
-          ),
-        ),
-      ),
-    );
-  }
 }

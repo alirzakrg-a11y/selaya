@@ -1,10 +1,10 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:hijri/hijri_calendar.dart';
 
 import '../../../core/localization/localized_text.dart';
 import '../../../core/models/content.dart';
-import '../../../core/share/share_helper.dart';
 import '../../../core/theme/app_colors.dart';
 import '../../../core/theme/app_icons.dart';
 import '../../../core/theme/app_spacing.dart';
@@ -14,32 +14,17 @@ import '../../../core/widgets/selaya_scaffold.dart';
 import '../../../core/widgets/states.dart';
 import '../../prayer_times/data/prayer_repository.dart';
 import '../data/religious_days.dart';
+import 'religious_day_detail.dart';
 import 'widgets/calendar_month_view.dart';
 
-String greetingForDay(CalendarDay d, String lang) {
-  final tr = lang == 'tr';
-  switch (d.type) {
-    case 'kandil':
-      return tr
-          ? 'Kandiliniz mübarek olsun. Dualarınız kabul olsun.'
-          : 'May your holy night be blessed.';
-    case 'holiday':
-      return tr ? 'Bayramınız mübarek olsun, nice bayramlara.' : 'Eid Mubarak.';
-    case 'new_year':
-      return tr
-          ? 'Hicri yeni yılınız mübarek olsun.'
-          : 'Happy Islamic New Year.';
-    case 'fast':
-      if (d.name('tr').contains('Ramazan')) {
-        return tr
-            ? 'Hayırlı Ramazanlar. Oruçlarınız kabul olsun.'
-            : 'Ramadan Mubarak.';
-      }
-      return tr ? 'Hayırlı ve bereketli günler.' : 'A blessed day.';
-    default:
-      return tr ? 'Hayırlı ve bereketli günler.' : 'A blessed day.';
-  }
-}
+const _hMonthsTr = [
+  'Muharrem', 'Safer', 'Rebiülevvel', 'Rebiülahir', 'Cemaziyelevvel',
+  'Cemaziyelahir', 'Recep', 'Şaban', 'Ramazan', 'Şevval', 'Zilkade', 'Zilhicce'
+];
+const _hMonthsEn = [
+  'Muharram', 'Safar', 'Rabi I', 'Rabi II', 'Jumada I',
+  'Jumada II', 'Rajab', 'Shaban', 'Ramadan', 'Shawwal', 'Dhul-Qadah', 'Dhul-Hijjah'
+];
 
 class CalendarScreen extends StatelessWidget {
   const CalendarScreen({super.key});
@@ -93,17 +78,6 @@ class _ReligiousDaysViewState extends ConsumerState<_ReligiousDaysView> {
     _year = DateTime.now().year;
   }
 
-  void _share(CalendarDay d, String lang) {
-    // backgroundImage verilmez → paylaşım sayfası arka planı PANELDEKİ duvar
-    // kâğıdı havuzundan rastgele seçer (gömülü asset değil; akışla aynı yol).
-    showVerseShareSheet(
-      context,
-      text: greetingForDay(d, lang),
-      reference: formatGregorian(d.gregorian, lang),
-      label: d.name(lang),
-    );
-  }
-
   @override
   Widget build(BuildContext context) {
     final lang = context.langCode;
@@ -115,6 +89,7 @@ class _ReligiousDaysViewState extends ConsumerState<_ReligiousDaysView> {
 
     return Column(
       children: [
+        _nextHero(context, all, lang, offset, now),
         // year tabs + hijri toggle
         Padding(
           padding: const EdgeInsets.fromLTRB(
@@ -159,6 +134,132 @@ class _ReligiousDaysViewState extends ConsumerState<_ReligiousDaysView> {
     );
   }
 
+  /// Bugünün hicri tarihi + sıradaki dini güne geri sayım (üst kart).
+  Widget _nextHero(BuildContext context, List<CalendarDay> all, String lang,
+      int offset, DateTime now) {
+    final c = context.colors;
+    final tr = lang == 'tr';
+    final today = DateTime(now.year, now.month, now.day);
+    final h = HijriCalendar.fromDate(
+        offset == 0 ? today : today.add(Duration(days: offset)));
+    final hijriToday =
+        '${h.hDay} ${(tr ? _hMonthsTr : _hMonthsEn)[h.hMonth - 1]} ${h.hYear}';
+
+    CalendarDay? next;
+    for (final d in all) {
+      final start =
+          DateTime(d.gregorian.year, d.gregorian.month, d.gregorian.day);
+      final end = start.add(Duration(days: d.days - 1));
+      if (!end.isBefore(today)) {
+        next = d;
+        break;
+      }
+    }
+
+    final children = <Widget>[
+      Row(
+        children: [
+          Icon(AppIcons.calendar, size: 14, color: c.gold),
+          const Gap.xs(),
+          Text(tr ? 'Bugün' : 'Today',
+              style: TextStyle(
+                  color: c.gold,
+                  fontSize: 11,
+                  fontWeight: FontWeight.w700,
+                  letterSpacing: 0.5)),
+          const Gap.sm(),
+          Expanded(
+            child: Text('$hijriToday  ·  ${formatGregorian(today, lang)}',
+                maxLines: 1,
+                overflow: TextOverflow.ellipsis,
+                style: Theme.of(context)
+                    .textTheme
+                    .bodySmall
+                    ?.copyWith(color: c.textSecondary)),
+          ),
+        ],
+      ),
+    ];
+
+    if (next != null) {
+      final nx = next;
+      final daysLeft = DateTime(
+              nx.gregorian.year, nx.gregorian.month, nx.gregorian.day)
+          .difference(today)
+          .inDays;
+      final countdown = daysLeft <= 0
+          ? (tr ? 'Bugün' : 'Today')
+          : (tr ? '$daysLeft gün kaldı' : 'in $daysLeft days');
+      children.add(const Gap.md());
+      children.add(InkWell(
+        onTap: () => showReligiousDayDetail(context, nx, lang),
+        borderRadius: AppRadius.rLg,
+        child: Row(
+          children: [
+            Container(
+              width: 40,
+              height: 40,
+              decoration: BoxDecoration(
+                  shape: BoxShape.circle,
+                  color: c.gold.withValues(alpha: 0.16)),
+              child: Icon(AppIcons.moon, color: c.gold, size: 20),
+            ),
+            const Gap.md(),
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(tr ? 'SIRADAKİ' : 'NEXT',
+                      style: TextStyle(
+                          color: c.textTertiary,
+                          fontSize: 10,
+                          letterSpacing: 1,
+                          fontWeight: FontWeight.w700)),
+                  Text(nx.name(lang),
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
+                      style: Theme.of(context)
+                          .textTheme
+                          .titleSmall
+                          ?.copyWith(fontWeight: FontWeight.w800)),
+                ],
+              ),
+            ),
+            const Gap.sm(),
+            Container(
+              padding:
+                  const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+              decoration: BoxDecoration(
+                  color: c.gold.withValues(alpha: 0.16),
+                  borderRadius: BorderRadius.circular(99)),
+              child: Text(countdown,
+                  style: TextStyle(
+                      color: c.gold,
+                      fontWeight: FontWeight.w700,
+                      fontSize: 12)),
+            ),
+          ],
+        ),
+      ));
+    }
+
+    return Container(
+      margin: const EdgeInsets.fromLTRB(
+          AppSpacing.base, AppSpacing.md, AppSpacing.base, 0),
+      padding: const EdgeInsets.all(AppSpacing.base),
+      decoration: BoxDecoration(
+        gradient: LinearGradient(
+          colors: [c.gold.withValues(alpha: 0.18), c.surfaceAlt],
+          begin: Alignment.topLeft,
+          end: Alignment.bottomRight,
+        ),
+        borderRadius: AppRadius.rXl,
+        border: Border.all(color: c.gold.withValues(alpha: 0.25)),
+      ),
+      child: Column(children: children),
+    );
+  }
+
   List<Widget> _buildGrouped(BuildContext context, List<CalendarDay> days,
       String lang, int offset, DateTime now) {
     final c = context.colors;
@@ -187,7 +288,7 @@ class _ReligiousDaysViewState extends ConsumerState<_ReligiousDaysView> {
         child: Opacity(
           opacity: past ? 0.5 : 1,
           child: SelayaCard(
-            onTap: () => _share(d, lang),
+            onTap: () => showReligiousDayDetail(context, d, lang),
             child: Row(
               children: [
                 Container(
