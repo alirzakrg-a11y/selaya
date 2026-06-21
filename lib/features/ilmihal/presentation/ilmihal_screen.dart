@@ -6,6 +6,7 @@ import '../../../core/data/asset_json_loader.dart';
 import '../../../core/localization/localized_text.dart';
 import '../../../core/theme/app_colors.dart';
 import '../../../core/theme/app_spacing.dart';
+import '../../../core/widgets/selaya_card.dart';
 import '../../../core/widgets/selaya_scaffold.dart';
 import '../../../core/widgets/states.dart';
 
@@ -81,6 +82,11 @@ class _IlmihalScreenState extends ConsumerState<IlmihalScreen> {
           // Kategori başlıklarıyla grupla + sonuna kaynak notu.
           String? prevCat;
           final children = <Widget>[];
+          // Varsayılan görünümde (arama/filtre yokken) altın tanıtım başlığı.
+          if (q.isEmpty && _category == 'all') {
+            children.add(_IlmihalHero(count: all.length, tr: tr));
+            children.add(const Gap.md());
+          }
           for (final e in list) {
             if (e.category != prevCat) {
               prevCat = e.category;
@@ -186,6 +192,43 @@ class _IlmihalScreenState extends ConsumerState<IlmihalScreen> {
             ],
           );
         },
+      ),
+    );
+  }
+}
+
+/// Altın gradyanlı tanıtım başlığı (soru sayısı + kaynak).
+class _IlmihalHero extends StatelessWidget {
+  final int count;
+  final bool tr;
+  const _IlmihalHero({required this.count, required this.tr});
+  @override
+  Widget build(BuildContext context) {
+    final c = context.colors;
+    return SelayaCard(
+      gradient: LinearGradient(colors: c.goldGradient),
+      child: Row(
+        children: [
+          Icon(Icons.menu_book_rounded, color: c.onGold, size: 28),
+          const Gap.base(),
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(tr ? 'İlmihal' : 'Catechism',
+                    style: Theme.of(context).textTheme.titleSmall?.copyWith(
+                        color: c.onGold, fontWeight: FontWeight.w800)),
+                const Gap.xxs(),
+                Text(
+                    tr
+                        ? '$count soruda temel dinî bilgiler · Hanefî / Diyanet'
+                        : '$count answers on the essentials · Hanafi / Diyanet',
+                    style: TextStyle(
+                        color: c.onGold.withValues(alpha: 0.78), fontSize: 12)),
+              ],
+            ),
+          ),
+        ],
       ),
     );
   }
