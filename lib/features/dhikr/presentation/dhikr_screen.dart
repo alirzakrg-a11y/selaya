@@ -311,6 +311,7 @@ class _DhikrScreenState extends ConsumerState<DhikrScreen> {
     return SelayaScaffold(
       title: 'dhikr.title'.tr(),
       showBack: true,
+      actions: [_todayAction()],
       body: Column(
         children: [
           if (!_goalMode) _tabs(),
@@ -589,6 +590,147 @@ class _DhikrScreenState extends ConsumerState<DhikrScreen> {
         child: Padding(
           padding: const EdgeInsets.all(12),
           child: Icon(icon, color: c.gold, size: 22),
+        ),
+      ),
+    );
+  }
+
+  /// Bugünün toplam zikir sayısı için app bar rozeti — dokununca istatistik.
+  Widget _todayAction() {
+    final c = context.colors;
+    return Padding(
+      padding: const EdgeInsets.only(right: AppSpacing.sm),
+      child: Center(
+        child: GestureDetector(
+          onTap: _showStats,
+          child: Container(
+            padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+            decoration: BoxDecoration(
+              color: c.gold.withValues(alpha: 0.14),
+              borderRadius: BorderRadius.circular(999),
+              border: Border.all(color: c.gold.withValues(alpha: 0.35)),
+            ),
+            child: Row(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Icon(Icons.today_rounded, size: 14, color: c.gold),
+                const Gap.xxs(),
+                Text('$_todayTotal',
+                    style: TextStyle(
+                        color: c.gold,
+                        fontWeight: FontWeight.w800,
+                        fontSize: 13)),
+              ],
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+
+  /// Son 7 günün zikir toplamları (cihazda saklanan günlük sayaçlardan okunur).
+  List<(String, int, bool)> _last7() {
+    final prefs = ref.read(sharedPreferencesProvider);
+    final tr = context.langCode == 'tr';
+    const wdTr = ['Pt', 'Sa', 'Ça', 'Pe', 'Cu', 'Ct', 'Pa'];
+    const wdEn = ['M', 'T', 'W', 'T', 'F', 'S', 'S'];
+    final now = DateTime.now();
+    final today = DateTime(now.year, now.month, now.day);
+    final out = <(String, int, bool)>[];
+    for (var i = 6; i >= 0; i--) {
+      final d = today.subtract(Duration(days: i));
+      final key =
+          '${PrefKeys.dhikrTotalPrefix}${d.toIso8601String().substring(0, 10)}';
+      final label = (tr ? wdTr : wdEn)[d.weekday - 1];
+      out.add((label, prefs.getInt(key) ?? 0, i == 0));
+    }
+    return out;
+  }
+
+  /// Günlük + son 7 günlük zikir istatistiği sayfası (önceden gizliydi).
+  void _showStats() {
+    final c = context.colors;
+    final tr = context.langCode == 'tr';
+    final data = _last7();
+    final maxV = data.fold(0, (a, e) => e.$2 > a ? e.$2 : a);
+    final weekSum = data.fold(0, (a, e) => a + e.$2);
+    showModalBottomSheet<void>(
+      context: context,
+      builder: (_) => SafeArea(
+        child: Padding(
+          padding: const EdgeInsets.fromLTRB(
+              AppSpacing.lg, AppSpacing.lg, AppSpacing.lg, AppSpacing.base),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Row(children: [
+                Icon(Icons.insights_rounded, color: c.gold),
+                const Gap.sm(),
+                Text(tr ? 'Zikir İstatistiği' : 'Dhikr Stats',
+                    style: Theme.of(context).textTheme.titleMedium),
+              ]),
+              const Gap.lg(),
+              Text(tr ? 'BUGÜN' : 'TODAY',
+                  style: TextStyle(
+                      color: c.gold,
+                      fontWeight: FontWeight.w700,
+                      fontSize: 11,
+                      letterSpacing: 1)),
+              const Gap.xxs(),
+              Text('$_todayTotal',
+                  style: AppTypography.countdown(c.gold, fontSize: 44)),
+              const Gap.lg(),
+              Text('${tr ? 'Son 7 gün' : 'Last 7 days'}  ·  $weekSum',
+                  style: Theme.of(context)
+                      .textTheme
+                      .labelMedium
+                      ?.copyWith(color: c.textSecondary)),
+              const Gap.sm(),
+              SizedBox(
+                height: 96,
+                child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.end,
+                  children: [
+                    for (final (label, v, isToday) in data)
+                      Expanded(
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.end,
+                          children: [
+                            Text('$v',
+                                style: TextStyle(
+                                    color: c.textTertiary,
+                                    fontSize: 10,
+                                    fontWeight: FontWeight.w600)),
+                            const Gap.xxs(),
+                            Container(
+                              margin:
+                                  const EdgeInsets.symmetric(horizontal: 4),
+                              height: maxV == 0 ? 3 : (3 + 60 * v / maxV),
+                              decoration: BoxDecoration(
+                                color: isToday
+                                    ? c.gold
+                                    : c.gold.withValues(alpha: 0.3),
+                                borderRadius: BorderRadius.circular(6),
+                              ),
+                            ),
+                            const Gap.xs(),
+                            Text(label,
+                                style: TextStyle(
+                                    color: isToday ? c.gold : c.textTertiary,
+                                    fontSize: 11,
+                                    fontWeight: isToday
+                                        ? FontWeight.w800
+                                        : FontWeight.w500)),
+                          ],
+                        ),
+                      ),
+                  ],
+                ),
+              ),
+              const Gap.sm(),
+            ],
+          ),
         ),
       ),
     );
