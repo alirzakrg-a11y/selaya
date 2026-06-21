@@ -124,7 +124,7 @@ class RemindersScreen extends ConsumerWidget {
         ),
       ],
       body: list.isEmpty
-          ? _empty(context, tr)
+          ? _empty(context, ref, tr)
           : ListView.separated(
               padding: const EdgeInsets.fromLTRB(
                 AppSpacing.base,
@@ -144,7 +144,7 @@ class RemindersScreen extends ConsumerWidget {
     );
   }
 
-  Widget _empty(BuildContext context, bool tr) {
+  Widget _empty(BuildContext context, WidgetRef ref, bool tr) {
     final c = context.colors;
     return Center(
       child: Padding(
@@ -156,10 +156,22 @@ class RemindersScreen extends ConsumerWidget {
             const Gap.md(),
             Text(
               tr
-                  ? 'Henüz hatırlatıcı yok.\nSağ üstteki + ile kendi zikir/dua/not hatırlatıcını ekle.'
-                  : 'No reminders yet.\nTap + to add your own dhikr/dua/note reminder.',
+                  ? 'Henüz hatırlatıcı yok.\nKendi zikir/dua/not hatırlatıcını ekle.'
+                  : 'No reminders yet.\nAdd your own dhikr/dua/note reminder.',
               textAlign: TextAlign.center,
               style: TextStyle(color: c.textSecondary, height: 1.5),
+            ),
+            const Gap.lg(),
+            FilledButton.icon(
+              onPressed: () => _showAdd(context, ref, tr),
+              icon: const Icon(Icons.add_rounded),
+              label: Text(tr ? 'Hatırlatıcı Ekle' : 'Add Reminder'),
+              style: FilledButton.styleFrom(
+                backgroundColor: c.gold,
+                foregroundColor: c.onGold,
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
+              ),
             ),
           ],
         ),
@@ -303,6 +315,50 @@ class _AddReminderSheetState extends State<_AddReminderSheet> {
               ),
             ),
           ),
+          // Hızlı öneriler — dokununca metni doldurur (kullanıcı düzenleyebilir).
+          Wrap(
+            spacing: AppSpacing.sm,
+            runSpacing: AppSpacing.xs,
+            children: [
+              for (final p in (tr
+                  ? const [
+                      '100 Salavat',
+                      'Sabah zikri',
+                      'Akşam zikri',
+                      "Kur'an oku",
+                      'Estağfirullah',
+                      'Tefekkür',
+                    ]
+                  : const [
+                      '100 Salawat',
+                      'Morning dhikr',
+                      'Evening dhikr',
+                      'Read Quran',
+                      'Istighfar',
+                      'Reflect',
+                    ]))
+                GestureDetector(
+                  onTap: () => setState(() {
+                    _ctrl.text = p;
+                    _ctrl.selection = TextSelection.fromPosition(
+                        TextPosition(offset: p.length));
+                  }),
+                  child: Container(
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 12, vertical: 7),
+                    decoration: BoxDecoration(
+                      color: c.surfaceAlt,
+                      borderRadius: BorderRadius.circular(99),
+                      border: Border.all(color: c.border),
+                    ),
+                    child: Text(p,
+                        style:
+                            TextStyle(color: c.textSecondary, fontSize: 13)),
+                  ),
+                ),
+            ],
+          ),
+          const Gap.sm(),
           Row(
             children: [
               OutlinedButton.icon(

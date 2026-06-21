@@ -45,7 +45,8 @@ class SettingsScreen extends ConsumerWidget {
         padding: const EdgeInsets.fromLTRB(
             AppSpacing.base, AppSpacing.sm, AppSpacing.base, AppSpacing.xxxl),
         children: [
-          _SectionTitle('settings.appearance'.tr()),
+          _SectionTitle('settings.appearance'.tr(),
+              icon: Icons.palette_outlined),
           SelayaCard(
             child: Column(
               children: [
@@ -119,7 +120,8 @@ class SettingsScreen extends ConsumerWidget {
             ),
           ),
           const Gap.lg(),
-          _SectionTitle('settings.prayerSettings'.tr()),
+          _SectionTitle('settings.prayerSettings'.tr(),
+              icon: Icons.mosque_rounded),
           SelayaCard(
             child: Column(
               children: [
@@ -140,7 +142,7 @@ class SettingsScreen extends ConsumerWidget {
             ),
           ),
           const Gap.lg(),
-          _SectionTitle('settings.fineTune'.tr()),
+          _SectionTitle('settings.fineTune'.tr(), icon: Icons.tune_rounded),
           SelayaCard(
             child: Column(
               children: [
@@ -172,7 +174,8 @@ class SettingsScreen extends ConsumerWidget {
             ),
           ),
           const Gap.lg(),
-          _SectionTitle('settings.notifications'.tr()),
+          _SectionTitle('settings.notifications'.tr(),
+              icon: Icons.notifications_outlined),
           SelayaCard(
             child: Column(
               children: [
@@ -208,7 +211,8 @@ class SettingsScreen extends ConsumerWidget {
             ),
           ),
           const Gap.lg(),
-          _SectionTitle('settings.smartSilent'.tr()),
+          _SectionTitle('settings.smartSilent'.tr(),
+              icon: Icons.volume_off_rounded),
           SelayaCard(
             child: _SwitchRow(
               icon: AppIcons.mute,
@@ -228,10 +232,11 @@ class SettingsScreen extends ConsumerWidget {
             ),
           ),
           const Gap.lg(),
-          _SectionTitle('tracking.title'.tr()),
+          _SectionTitle('tracking.title'.tr(),
+              icon: Icons.check_circle_outline_rounded),
           const SelayaCard(child: _CheckinToggleRow()),
           const Gap.lg(),
-          _SectionTitle('womens.title'.tr()),
+          _SectionTitle('womens.title'.tr(), icon: Icons.female_rounded),
           SelayaCard(
             child: Column(
               children: [
@@ -280,7 +285,8 @@ class SettingsScreen extends ConsumerWidget {
             ),
           ),
           const Gap.lg(),
-          _SectionTitle('settings.about'.tr()),
+          _SectionTitle('settings.about'.tr(),
+              icon: Icons.info_outline_rounded),
           SelayaCard(
             onTap: () => _showAbout(context),
             child: Row(
@@ -811,16 +817,28 @@ class _FontSizeSelector extends StatelessWidget {
 
 class _SectionTitle extends StatelessWidget {
   final String title;
-  const _SectionTitle(this.title);
+  final IconData? icon;
+  const _SectionTitle(this.title, {this.icon});
   @override
-  Widget build(BuildContext context) => Padding(
-        padding: const EdgeInsets.only(bottom: AppSpacing.sm, left: 4),
-        child: Text(title,
-            style: Theme.of(context)
-                .textTheme
-                .labelMedium
-                ?.copyWith(color: context.colors.gold)),
-      );
+  Widget build(BuildContext context) {
+    final c = context.colors;
+    return Padding(
+      padding: const EdgeInsets.only(bottom: AppSpacing.sm, left: 4),
+      child: Row(
+        children: [
+          if (icon != null) ...[
+            Icon(icon, size: 15, color: c.gold),
+            const Gap.xs(),
+          ],
+          Text(title,
+              style: Theme.of(context)
+                  .textTheme
+                  .labelMedium
+                  ?.copyWith(color: c.gold)),
+        ],
+      ),
+    );
+  }
 }
 
 class _DividerLine extends StatelessWidget {

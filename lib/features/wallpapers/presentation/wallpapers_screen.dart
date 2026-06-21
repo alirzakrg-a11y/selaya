@@ -17,35 +17,75 @@ import '../../../core/widgets/like_button.dart';
 import '../../../core/widgets/selaya_scaffold.dart';
 import '../../../core/widgets/states.dart';
 
-class WallpapersScreen extends ConsumerWidget {
+class WallpapersScreen extends ConsumerStatefulWidget {
   const WallpapersScreen({super.key});
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  ConsumerState<WallpapersScreen> createState() => _WallpapersScreenState();
+}
+
+class _WallpapersScreenState extends ConsumerState<WallpapersScreen> {
+  bool _favsOnly = false; // AppBar kalbi: yalnızca beğenilenleri göster
+
+  @override
+  Widget build(BuildContext context) {
+    final tr = context.langCode == 'tr';
+    final c = context.colors;
     final wallpapers = ref.watch(wallpapersProvider);
+    final liked = ref.watch(likedKeysProvider);
 
     return SelayaScaffold(
       title: 'wallpapers.title'.tr(),
       showBack: true,
+      actions: [
+        IconButton(
+          tooltip: _favsOnly
+              ? (tr ? 'Tümü' : 'All')
+              : (tr ? 'Favorilerim' : 'Favorites'),
+          icon: Icon(
+            _favsOnly
+                ? Icons.favorite_rounded
+                : Icons.favorite_border_rounded,
+            color: _favsOnly ? const Color(0xFFE57373) : c.gold,
+          ),
+          onPressed: () => setState(() => _favsOnly = !_favsOnly),
+        ),
+      ],
       body: wallpapers.when(
         loading: () => const SelayaLoading(),
         error: (e, _) => SelayaError(error: e),
-        data: (list) => GridView.builder(
-          padding: const EdgeInsets.fromLTRB(
-            AppSpacing.base,
-            AppSpacing.sm,
-            AppSpacing.base,
-            AppSpacing.xxxl,
-          ),
-          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-            crossAxisCount: 2,
-            mainAxisSpacing: AppSpacing.md,
-            crossAxisSpacing: AppSpacing.md,
-            childAspectRatio: 0.62,
-          ),
-          itemCount: list.length,
-          itemBuilder: (context, i) => _WallpaperTile(list: list, index: i),
-        ),
+        data: (all) {
+          final list = _favsOnly
+              ? all
+                  .where((wp) => liked.contains('wallpaper:${wp.id}'))
+                  .toList()
+              : all;
+          if (list.isEmpty) {
+            return SelayaEmpty(
+              icon: Icons.favorite_border_rounded,
+              message: tr
+                  ? 'Henüz favori duvar kâğıdın yok.\nBeğendiklerin burada toplanır.'
+                  : 'No favorite wallpapers yet.',
+            );
+          }
+          return GridView.builder(
+            padding: const EdgeInsets.fromLTRB(
+              AppSpacing.base,
+              AppSpacing.sm,
+              AppSpacing.base,
+              AppSpacing.xxxl,
+            ),
+            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+              crossAxisCount: 2,
+              mainAxisSpacing: AppSpacing.md,
+              crossAxisSpacing: AppSpacing.md,
+              childAspectRatio: 0.62,
+            ),
+            itemCount: list.length,
+            itemBuilder: (context, i) =>
+                _WallpaperTile(list: list, index: i),
+          );
+        },
       ),
     );
   }
@@ -139,6 +179,7 @@ class _WallpaperDetailState extends ConsumerState<WallpaperDetail> {
     initialPage: widget.index,
   );
   late int _current = widget.index;
+  double _dragDy = 0; // aşağı sürükleyerek kapatma
 
   @override
   void dispose() {
@@ -223,11 +264,28 @@ class _WallpaperDetailState extends ConsumerState<WallpaperDetail> {
   Widget build(BuildContext context) {
     final lang = context.langCode;
     final wp = widget.list[_current];
+    final scale = (1 - (_dragDy / 1600)).clamp(0.9, 1.0);
     return Scaffold(
       backgroundColor: Colors.black,
-      body: Stack(
-        fit: StackFit.expand,
-        children: [
+      body: GestureDetector(
+        onVerticalDragUpdate: (d) {
+          final ny = (_dragDy + d.delta.dy).clamp(0.0, 700.0);
+          if (ny != _dragDy) setState(() => _dragDy = ny);
+        },
+        onVerticalDragEnd: (d) {
+          if (_dragDy > 140 || d.velocity.pixelsPerSecond.dy > 700) {
+            Navigator.of(context).pop();
+          } else {
+            setState(() => _dragDy = 0);
+          }
+        },
+        child: Transform.translate(
+          offset: Offset(0, _dragDy),
+          child: Transform.scale(
+            scale: scale,
+            child: Stack(
+              fit: StackFit.expand,
+              children: [
           // Swipe left/right through the whole wallpaper list.
           PageView.builder(
             controller: _controller,
@@ -312,7 +370,10 @@ class _WallpaperDetailState extends ConsumerState<WallpaperDetail> {
             ),
           ),
         ],
-      ),
+              ),
+            ),
+          ),
+        ),
     );
   }
 }
