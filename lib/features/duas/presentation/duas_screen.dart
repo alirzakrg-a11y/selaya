@@ -6,15 +6,23 @@ import '../../../core/data/content_providers.dart';
 import '../../../core/di/providers.dart';
 import '../../../core/localization/localized_text.dart';
 import '../../../core/models/content.dart';
-import '../../../core/share/share_helper.dart';
 import '../../../core/theme/app_colors.dart';
 import '../../../core/theme/app_icons.dart';
 import '../../../core/theme/app_spacing.dart';
-import '../../../core/theme/app_typography.dart';
 import '../../../core/widgets/content_detail_dialog.dart';
 import '../../../core/widgets/selaya_card.dart';
 import '../../../core/widgets/selaya_scaffold.dart';
 import '../../../core/widgets/states.dart';
+
+/// Dua kategorisi ikonu (liste satırı + kategori şeridi ortak kullanır).
+IconData _duaCatIcon(String cat) => switch (cat) {
+      'morning' => Icons.wb_twilight_rounded,
+      'evening' => Icons.nightlight_round,
+      'prayer' => Icons.mosque_rounded,
+      'daily' => Icons.event_repeat_rounded,
+      'protection' => Icons.shield_moon_rounded,
+      _ => Icons.apps_rounded,
+    };
 
 class DuasScreen extends ConsumerStatefulWidget {
   final String? openId; // verilirse: ekran açılınca o duanın popup'ı açılır
@@ -68,15 +76,6 @@ class _DuasScreenState extends ConsumerState<DuasScreen> {
   String _label(String cat) =>
       cat == 'all' ? 'common.seeAll'.tr() : 'duas.$cat'.tr();
 
-  static IconData _catIcon(String cat) => switch (cat) {
-    'morning' => Icons.wb_twilight_rounded,
-    'evening' => Icons.nightlight_round,
-    'prayer' => Icons.mosque_rounded,
-    'daily' => Icons.event_repeat_rounded,
-    'protection' => Icons.shield_moon_rounded,
-    _ => Icons.apps_rounded,
-  };
-
   @override
   Widget build(BuildContext context) {
     final lang = context.langCode;
@@ -105,7 +104,6 @@ class _DuasScreenState extends ConsumerState<DuasScreen> {
             length: 2,
             child: Column(
               children: [
-                _header(c, all.length),
               TabBar(
                 labelColor: c.gold,
                 unselectedLabelColor: c.textTertiary,
@@ -210,7 +208,7 @@ class _DuasScreenState extends ConsumerState<DuasScreen> {
                 width: 82,
                 child: _CatCard(
                   label: _label(cat),
-                  icon: _catIcon(cat),
+                  icon: _duaCatIcon(cat),
                   selected: cat == _category,
                   onTap: () => setState(() => _category = cat),
                 ),
@@ -240,65 +238,6 @@ class _DuasScreenState extends ConsumerState<DuasScreen> {
         : _DuaList(duas: favs, lang: lang, favs: _favs, onFav: _toggleFav);
   }
 
-  /// Gold-gradient visual header (like the Quran tab's), with a count subtitle.
-  Widget _header(SelayaColors c, int count) {
-    return Container(
-      margin: const EdgeInsets.fromLTRB(
-        AppSpacing.base,
-        AppSpacing.sm,
-        AppSpacing.base,
-        AppSpacing.sm,
-      ),
-      padding: const EdgeInsets.all(AppSpacing.base),
-      decoration: BoxDecoration(
-        gradient: LinearGradient(
-          colors: [c.gold.withValues(alpha: 0.22), c.surfaceAlt],
-          begin: Alignment.topLeft,
-          end: Alignment.bottomRight,
-        ),
-        borderRadius: AppRadius.rXl,
-        border: Border.all(color: c.gold.withValues(alpha: 0.25)),
-      ),
-      child: Row(
-        children: [
-          Container(
-            width: 46,
-            height: 46,
-            decoration: BoxDecoration(
-              shape: BoxShape.circle,
-              color: c.gold.withValues(alpha: 0.16),
-            ),
-            child: Icon(
-              Icons.volunteer_activism_rounded,
-              color: c.gold,
-              size: 24,
-            ),
-          ),
-          const Gap.md(),
-          Expanded(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  'duas.title'.tr(),
-                  style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                    fontWeight: FontWeight.w800,
-                  ),
-                ),
-                const SizedBox(height: 2),
-                Text(
-                  'duas.headerSubtitle'.tr(args: ['$count']),
-                  style: Theme.of(
-                    context,
-                  ).textTheme.bodySmall?.copyWith(color: c.textSecondary),
-                ),
-              ],
-            ),
-          ),
-        ],
-      ),
-    );
-  }
 }
 
 /// Dua kategorisi kartı — üstten çip yerine kart-tablo (kullanıcı 2026-06-17).
@@ -378,7 +317,7 @@ class _DuaList extends StatelessWidget {
         AppSpacing.xxxl,
       ),
       itemCount: duas.length,
-      separatorBuilder: (_, _) => const Gap.md(),
+      separatorBuilder: (_, _) => const Gap.sm(),
       itemBuilder: (context, i) => _DuaCard(
         dua: duas[i],
         allDuas: duas,
@@ -410,102 +349,66 @@ class _DuaCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final c = context.colors;
+    final preview = dua.text(lang).replaceAll('\n', ' ').trim();
     return SelayaCard(
       patterned: true,
-      // Dokununca popup açılır — oklarla gezilir + paylaş (namaz rehberi gibi).
+      padding: const EdgeInsets.all(AppSpacing.md),
+      // Dokununca tam detay popup'ı açılır (Arapça + okunuş + meal + paylaş + ◀▶).
       onTap: () => showDuaDetail(context, allDuas, index, lang),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
+      child: Row(
         children: [
-          Row(
-            children: [
-              Expanded(
-                child: Text(
-                  dua.title(lang),
-                  style: Theme.of(
-                    context,
-                  ).textTheme.titleMedium?.copyWith(color: c.gold),
-                ),
-              ),
-              // ⑭ Paylaş — duayı doğrudan paylaş (kart üzerinden).
-              InkWell(
-                onTap: () => showVerseShareSheet(
-                  context,
-                  arabic: dua.arabic.isEmpty ? null : dua.arabic,
-                  text: dua.text(lang),
-                  reference: dua.source,
-                  label: dua.title(lang),
-                ),
-                borderRadius: BorderRadius.circular(99),
-                child: Padding(
-                  padding: const EdgeInsets.all(4),
-                  child: Icon(
-                    Icons.ios_share_rounded,
-                    size: 18,
-                    color: c.textSecondary,
-                  ),
-                ),
-              ),
-              InkWell(
-                onTap: onFav,
-                borderRadius: BorderRadius.circular(99),
-                child: Padding(
-                  padding: const EdgeInsets.all(4),
-                  child: Icon(
-                    fav ? AppIcons.favoriteFilled : AppIcons.favorite,
-                    size: 20,
-                    color: fav ? c.danger : c.textTertiary,
-                  ),
-                ),
-              ),
-            ],
+          Container(
+            width: 42,
+            height: 42,
+            decoration: BoxDecoration(
+              shape: BoxShape.circle,
+              color: c.gold.withValues(alpha: 0.13),
+            ),
+            child: Icon(_duaCatIcon(dua.category), color: c.gold, size: 20),
           ),
           const Gap.md(),
-          // Tam genişlik şart: yoksa kısa Arapça (start-hizalı Column'da) içeriğe
-          // göre büzülüp SOLDA görünür → RTL sağa yaslama görünmez kalır.
-          SizedBox(
-            width: double.infinity,
-            child: Text(
-              dua.arabic,
-              textAlign: TextAlign.right,
-              textDirection: TextDirection.rtl,
-              style: AppTypography.arabic(fontSize: 26, color: c.textPrimary),
-            ),
-          ),
-          if (dua.transliteration.isNotEmpty) ...[
-            const Gap.sm(),
-            Text(
-              dua.transliteration,
-              style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                color: c.gold,
-                fontStyle: FontStyle.italic,
-              ),
-            ),
-          ],
-          const Gap.sm(),
-          Text(
-            dua.text(lang),
-            style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-              color: c.textSecondary,
-              height: 1.5,
-            ),
-          ),
-          if (dua.source.isNotEmpty) ...[
-            const Gap.sm(),
-            Row(
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Icon(Icons.menu_book_rounded, size: 14, color: c.gold),
-                const SizedBox(width: 5),
                 Text(
-                  '${lang == 'tr' ? 'Kaynak' : 'Source'}: ${dua.source}',
-                  style: Theme.of(context).textTheme.labelMedium?.copyWith(
-                    color: c.textTertiary,
-                    fontWeight: FontWeight.w600,
-                  ),
+                  dua.title(lang),
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
+                  style: Theme.of(context)
+                      .textTheme
+                      .titleSmall
+                      ?.copyWith(fontWeight: FontWeight.w700),
                 ),
+                if (preview.isNotEmpty) ...[
+                  const Gap.xxs(),
+                  Text(
+                    preview,
+                    maxLines: 2,
+                    overflow: TextOverflow.ellipsis,
+                    style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                          color: c.textSecondary,
+                          height: 1.35,
+                        ),
+                  ),
+                ],
               ],
             ),
-          ],
+          ),
+          const Gap.sm(),
+          InkWell(
+            onTap: onFav,
+            borderRadius: BorderRadius.circular(99),
+            child: Padding(
+              padding: const EdgeInsets.all(6),
+              child: Icon(
+                fav ? AppIcons.favoriteFilled : AppIcons.favorite,
+                size: 20,
+                color: fav ? c.danger : c.textTertiary,
+              ),
+            ),
+          ),
+          Icon(Icons.chevron_right_rounded, color: c.textTertiary, size: 20),
         ],
       ),
     );
