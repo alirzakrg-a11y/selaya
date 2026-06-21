@@ -423,18 +423,21 @@ export default {
         if (request.method === 'GET' && path === '/api/dua-pending') {
           // Yazarın hesap bilgisi de gelsin (moderatör kim olduğunu + kayıtlı
           // rumuzunu görsün → sahte/uyumsuz rumuz yakalanır).
-          const pending = await env.DB.prepare(
-            "SELECT d.id, d.user_id, d.rumuz, d.text, d.amins, d.created_at, " +
+          const AUTHCOLS =
             "u.email AS author_email, u.name AS author_name, u.surname AS author_surname, " +
-            "u.rumuz AS author_rumuz, u.banned AS author_banned FROM dua_wall d " +
-            "LEFT JOIN users u ON u.id=d.user_id " +
+            "u.rumuz AS author_rumuz, u.banned AS author_banned, u.ban_reason AS author_ban_reason, " +
+            "u.email_verified AS author_verified, u.created_at AS author_created, u.last_active AS author_last, " +
+            "ud.device AS author_device ";
+          const AUTHJOIN =
+            "LEFT JOIN users u ON u.id=d.user_id LEFT JOIN user_data ud ON ud.user_id=d.user_id ";
+          const pending = await env.DB.prepare(
+            "SELECT d.id, d.user_id, d.rumuz, d.text, d.amins, d.created_at, " + AUTHCOLS +
+            "FROM dua_wall d " + AUTHJOIN +
             "WHERE d.status='pending' ORDER BY d.created_at ASC LIMIT 200"
           ).all();
           const recent = await env.DB.prepare(
-            "SELECT d.id, d.user_id, d.rumuz, d.text, d.status, d.amins, d.created_at, d.decided_at, " +
-            "u.email AS author_email, u.name AS author_name, u.surname AS author_surname, " +
-            "u.rumuz AS author_rumuz, u.banned AS author_banned FROM dua_wall d " +
-            "LEFT JOIN users u ON u.id=d.user_id " +
+            "SELECT d.id, d.user_id, d.rumuz, d.text, d.status, d.amins, d.created_at, d.decided_at, " + AUTHCOLS +
+            "FROM dua_wall d " + AUTHJOIN +
             "WHERE d.status!='pending' ORDER BY d.decided_at DESC LIMIT 100"
           ).all();
           return json({
@@ -1467,6 +1470,48 @@ const PANEL_HTML = `<!doctype html>
       }).catch(function(e){ toast('Hata: '+e); });
     };
   }
+  // Duaya tıklayınca yazarın tam hesap bilgileri (moderasyon görünümü).
+  function showDuaAuthor(id){
+    var d=null; for(var k=0;k<DUA_ALL.length;k++){ if(DUA_ALL[k].id===id){ d=DUA_ALL[k]; break; } }
+    if(!d) return;
+    var uid=d.user_id||'';
+    var mine=DUA_ALL.filter(function(x){ return (x.user_id||'')===uid; });
+    function row(k,v){ return '<div style="display:flex;justify-content:space-between;gap:14px;padding:8px 0;border-top:1px solid var(--line)"><span class="muted">'+k+'</span><span style="text-align:right;word-break:break-word;font-weight:600">'+v+'</span></div>'; }
+    var body, showBan=false, showUnban=false;
+    if(uid==='panel-author'){ body='<p class="hint">🛠️ Bu dua panelden eklendi — gerçek bir kullanıcı hesabı yok.</p>'; }
+    else if(!d.author_email){ body='<p class="hint" style="color:var(--danger)">⚠️ Kullanıcı bulunamadı — hesap silinmiş olabilir.</p>'; }
+    else {
+      var full=((d.author_name||'')+' '+(d.author_surname||'')).trim()||'—';
+      var ar=(d.author_rumuz||'').trim();
+      var mism=ar && (d.rumuz||'').toLowerCase()!==ar.toLowerCase();
+      var rr='';
+      rr+=row('Ad Soyad', esc(full));
+      rr+=row('E-posta', esc(d.author_email));
+      rr+=row('Kayıtlı rumuz', ar ? ('@'+esc(ar)+(mism?' <span style="color:var(--danger)">⚠️ duadaki @'+esc(d.rumuz)+' ile farklı</span>':' <span class="ok">✓ uyumlu</span>')) : '<span style="color:var(--danger)">yok</span>');
+      rr+=row('E-posta doğrulandı', d.author_verified ? '<span class="ok">evet</span>' : 'hayır');
+      rr+=row('Durum', d.author_banned ? '<span style="color:var(--danger)">🚫 BANLI'+(d.author_ban_reason?' — '+esc(d.author_ban_reason):'')+'</span>' : '<span class="ok">aktif</span>');
+      rr+=row('Kayıt tarihi', fmtDate(d.author_created));
+      rr+=row('Son aktif', fmtDate(d.author_last));
+      if(d.author_device) rr+=row('Cihaz', esc(d.author_device));
+      rr+=row('Bu listedeki duası', mine.length+' adet');
+      body='<div>'+rr+'</div>';
+      if(d.author_banned) showUnban=true; else showBan=true;
+    }
+    var act='<div class="row" style="margin-top:18px">';
+    if(showBan) act+='<button class="danger" id="daBan">🚫 Banla (+ dualarını sil)</button>';
+    if(showUnban) act+='<button class="ghost" id="daUnban">✓ Yasağı Kaldır</button>';
+    act+='<button class="ghost" id="daClose">Kapat</button></div>';
+    var ov=document.createElement('div');
+    ov.style.cssText='position:fixed;inset:0;background:rgba(16,24,40,.45);display:flex;align-items:center;justify-content:center;z-index:50;padding:20px';
+    ov.innerHTML='<div style="background:#fff;border-radius:18px;padding:22px;max-width:430px;width:100%;box-shadow:0 14px 44px rgba(0,0,0,.22);max-height:90vh;overflow:auto">'+
+      '<h3 style="margin:0 0 10px">👤 Kullanıcı Bilgileri</h3>'+body+act+'</div>';
+    document.body.appendChild(ov);
+    function close(){ ov.remove(); }
+    ov.addEventListener('click',function(e){ if(e.target===ov) close(); });
+    var c1=ov.querySelector('#daClose'); if(c1) c1.onclick=close;
+    var bb=ov.querySelector('#daBan'); if(bb) bb.onclick=function(){ close(); banDuaUser(uid, id); };
+    var bu=ov.querySelector('#daUnban'); if(bu) bu.onclick=function(){ close(); unbanUser(uid, d.author_email||''); };
+  }
   function loadDuaWall(){
     el('duaPendingBody').innerHTML='<p class="muted">Yükleniyor…</p>';
     api('dua-pending').then(function(res){
@@ -1478,7 +1523,7 @@ const PANEL_HTML = `<!doctype html>
       else {
         el('duaPendingBody').innerHTML='<p class="muted" style="margin:0 0 8px">Bekleyen: <b>'+pend.length+'</b></p>'+pend.map(function(d){
           var id=esc(d.id); var uid=esc(d.user_id||'');
-          return '<div class="item"><div class="ph">🤲</div><div class="meta"><b>'+esc(d.rumuz)+'</b><span>'+esc(d.text)+'</span>'+duaAuthorLine(d)+'<span class="muted">'+fmtDate(d.created_at)+'</span></div>'+
+          return '<div class="item"><div class="ph">🤲</div><div class="meta" data-aid="'+id+'" style="cursor:pointer" title="Kullanıcı bilgilerini gör" onclick="showDuaAuthor(this.dataset.aid)"><b>'+esc(d.rumuz)+'</b><span>'+esc(d.text)+'</span>'+duaAuthorLine(d)+'<span class="muted">'+fmtDate(d.created_at)+' · ℹ️ tıkla</span></div>'+
             '<button class="ghost" title="Düzenle" data-id="'+id+'" onclick="editDua(this.dataset.id)">✏️</button> '+
             '<button data-id="'+id+'" onclick="approveDua(this.dataset.id)">Onayla</button> '+
             '<button class="ghost" data-id="'+id+'" onclick="rejectDua(this.dataset.id,false)">Reddet</button> '+
@@ -1498,7 +1543,7 @@ const PANEL_HTML = `<!doctype html>
         } else {
           icon='🚫'; label='<span class="muted">reddedildi</span>'; actions='';
         }
-        return '<div class="item"><div class="ph">'+icon+'</div><div class="meta"><b>'+esc(d.rumuz)+'</b> '+label+'<span class="muted">'+esc(d.text)+'</span>'+duaAuthorLine(d)+'</div>'+
+        return '<div class="item"><div class="ph">'+icon+'</div><div class="meta" data-aid="'+id+'" style="cursor:pointer" title="Kullanıcı bilgilerini gör" onclick="showDuaAuthor(this.dataset.aid)"><b>'+esc(d.rumuz)+'</b> '+label+'<span class="muted">'+esc(d.text)+' · ℹ️ tıkla</span>'+duaAuthorLine(d)+'</div>'+
           '<button class="ghost" title="Düzenle" data-id="'+id+'" onclick="editDua(this.dataset.id)">✏️</button> '+
           actions+
           '<button class="danger" data-id="'+id+'" onclick="rejectDua(this.dataset.id,true)">Sil</button> '+
