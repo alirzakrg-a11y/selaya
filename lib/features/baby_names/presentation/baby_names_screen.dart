@@ -2,7 +2,9 @@ import 'dart:math';
 
 import 'package:easy_localization/easy_localization.dart' hide TextDirection;
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:share_plus/share_plus.dart';
 
 import '../../../core/data/asset_json_loader.dart';
 import '../../../core/di/providers.dart';
@@ -43,7 +45,29 @@ class _BabyNamesScreenState extends ConsumerState<BabyNamesScreen> {
   final TextEditingController _searchCtrl = TextEditingController();
   String _gender = 'all';
   String _query = '';
+  bool _favsOnly = false;
+  late Set<String> _favs;
   BabyName? _daily; // bir kez hesaplanır (oturum içinde sabit)
+
+  @override
+  void initState() {
+    super.initState();
+    _favs = (ref
+                .read(sharedPreferencesProvider)
+                .getStringList('baby_name_favs') ??
+            const <String>[])
+        .toSet();
+  }
+
+  void _toggleFav(String name) {
+    setState(() {
+      _favs.contains(name) ? _favs.remove(name) : _favs.add(name);
+    });
+    ref
+        .read(sharedPreferencesProvider)
+        .setStringList('baby_name_favs', _favs.toList());
+    HapticFeedback.selectionClick();
+  }
 
   @override
   void dispose() {
@@ -80,6 +104,17 @@ class _BabyNamesScreenState extends ConsumerState<BabyNamesScreen> {
     return SelayaScaffold(
       title: 'babyNames.title'.tr(),
       showBack: true,
+      actions: [
+        IconButton(
+          tooltip: tr ? 'Favoriler' : 'Favorites',
+          icon: Icon(
+              _favsOnly
+                  ? Icons.favorite_rounded
+                  : Icons.favorite_border_rounded,
+              color: _favsOnly ? Colors.pink : context.colors.textTertiary),
+          onPressed: () => setState(() => _favsOnly = !_favsOnly),
+        ),
+      ],
       body: async.when(
         loading: () => const SelayaLoading(),
         error: (e, _) => SelayaError(error: e),
@@ -97,6 +132,9 @@ class _BabyNamesScreenState extends ConsumerState<BabyNamesScreen> {
                       n.meaning.toLowerCase().contains(q),
                 )
                 .toList();
+          }
+          if (_favsOnly) {
+            list = list.where((n) => _favs.contains(n.name)).toList();
           }
           return Column(
             children: [
@@ -181,7 +219,13 @@ class _BabyNamesScreenState extends ConsumerState<BabyNamesScreen> {
               const Gap.sm(),
               Expanded(
                 child: list.isEmpty
-                    ? const SelayaEmpty()
+                    ? SelayaEmpty(
+                        icon: _favsOnly ? Icons.favorite_border_rounded : null,
+                        message: _favsOnly
+                            ? (tr
+                                ? 'Henüz favori isim yok.\nBeğendiğin ismi ♡ ile ekle.'
+                                : 'No favorite names yet.')
+                            : null)
                     : ListView.separated(
                         padding: const EdgeInsets.fromLTRB(
                           AppSpacing.base,
@@ -302,6 +346,30 @@ class _BabyNamesScreenState extends ConsumerState<BabyNamesScreen> {
                   ),
                 ),
               ],
+            ),
+          ),
+          InkWell(
+            onTap: () => _toggleFav(n.name),
+            borderRadius: BorderRadius.circular(99),
+            child: Padding(
+              padding: const EdgeInsets.all(6),
+              child: Icon(
+                _favs.contains(n.name)
+                    ? Icons.favorite_rounded
+                    : Icons.favorite_border_rounded,
+                size: 20,
+                color: _favs.contains(n.name) ? Colors.pink : c.textTertiary,
+              ),
+            ),
+          ),
+          InkWell(
+            onTap: () => SharePlus.instance.share(
+                ShareParams(text: '${n.name} — ${n.meaning}\n\nSELAYA')),
+            borderRadius: BorderRadius.circular(99),
+            child: Padding(
+              padding: const EdgeInsets.all(6),
+              child: Icon(Icons.ios_share_rounded,
+                  size: 18, color: c.textTertiary),
             ),
           ),
         ],

@@ -23,11 +23,18 @@ typedef _TextItem = ({String arabic, String text, String source, String label});
 
 /// "Beğendiklerim" — kalbe dokunduğun her şey (ayet/hadis/dua/video/duvar kâğıdı)
 /// tek yerde. Beğeniler hesaba senkronlanır (likedKeys), burada da görünür.
-class LikedScreen extends ConsumerWidget {
+class LikedScreen extends ConsumerStatefulWidget {
   const LikedScreen({super.key});
+  @override
+  ConsumerState<LikedScreen> createState() => _LikedScreenState();
+}
+
+class _LikedScreenState extends ConsumerState<LikedScreen> {
+  String _filter = 'all'; // tür filtresi: all/surahs/videos/verses/hadiths/duas/wallpapers
+  bool _show(String k) => _filter == 'all' || _filter == k;
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  Widget build(BuildContext context) {
     final lang = context.langCode;
     // Beğeniler (kalp) + İlham ekranındaki YER İMLERİ (bookmark) — ikisi de aynı
     // anahtar formatında ('verse:id' / 'hadith:id' / 'dua:id'); birleştirip
@@ -126,6 +133,20 @@ class LikedScreen extends ConsumerWidget {
         likedWalls.length +
         likedSurahs.length;
 
+    // Tür filtresi çipleri (yalnız dolu kategoriler).
+    final cats = <(String, String, int)>[
+      if (likedSurahs.isNotEmpty)
+        ('surahs', 'liked.surahs'.tr(), likedSurahs.length),
+      if (vids.isNotEmpty) ('videos', 'liked.videos'.tr(), vids.length),
+      if (verses.isNotEmpty) ('verses', 'liked.verses'.tr(), verses.length),
+      if (hadithItems.isNotEmpty)
+        ('hadiths', 'liked.hadiths'.tr(), hadithItems.length),
+      if (duaItems.isNotEmpty) ('duas', 'liked.duas'.tr(), duaItems.length),
+      if (likedWalls.isNotEmpty)
+        ('wallpapers', 'liked.wallpapers'.tr(), likedWalls.length),
+    ];
+    if (_filter != 'all' && !cats.any((e) => e.$1 == _filter)) _filter = 'all';
+
     return SelayaScaffold(
       title: 'liked.title'.tr(),
       showBack: true,
@@ -139,7 +160,8 @@ class LikedScreen extends ConsumerWidget {
                 AppSpacing.xxxl,
               ),
               children: [
-                if (likedSurahs.isNotEmpty) ...[
+                if (cats.length >= 2) _filterChips(cats),
+                if (_show('surahs') && likedSurahs.isNotEmpty) ...[
                   _SectionTitle('liked.surahs'.tr(), likedSurahs.length),
                   for (final s in likedSurahs)
                     _MediaCard(
@@ -152,7 +174,7 @@ class LikedScreen extends ConsumerWidget {
                     ),
                   const Gap.lg(),
                 ],
-                if (vids.isNotEmpty) ...[
+                if (_show('videos') && vids.isNotEmpty) ...[
                   _SectionTitle('liked.videos'.tr(), vids.length),
                   for (final f in vids)
                     _MediaCard(
@@ -164,10 +186,12 @@ class LikedScreen extends ConsumerWidget {
                     ),
                   const Gap.lg(),
                 ],
-                ..._textSection('liked.verses'.tr(), verses),
-                ..._textSection('liked.hadiths'.tr(), hadithItems),
-                ..._textSection('liked.duas'.tr(), duaItems),
-                if (likedWalls.isNotEmpty) ...[
+                if (_show('verses'))
+                  ..._textSection('liked.verses'.tr(), verses),
+                if (_show('hadiths'))
+                  ..._textSection('liked.hadiths'.tr(), hadithItems),
+                if (_show('duas')) ..._textSection('liked.duas'.tr(), duaItems),
+                if (_show('wallpapers') && likedWalls.isNotEmpty) ...[
                   _SectionTitle('liked.wallpapers'.tr(), likedWalls.length),
                   for (final w in likedWalls)
                     _MediaCard(
@@ -192,6 +216,48 @@ class LikedScreen extends ConsumerWidget {
                 ],
               ],
             ),
+    );
+  }
+
+  /// Tür filtre çipleri (Tümü + dolu kategoriler).
+  Widget _filterChips(List<(String, String, int)> cats) {
+    final c = context.colors;
+    final tr = context.langCode == 'tr';
+    Widget chip(String key, String label, bool sel) => Padding(
+          padding: const EdgeInsets.only(right: AppSpacing.sm),
+          child: GestureDetector(
+            onTap: () => setState(() => _filter = key),
+            child: AnimatedContainer(
+              duration: const Duration(milliseconds: 150),
+              alignment: Alignment.center,
+              padding:
+                  const EdgeInsets.symmetric(horizontal: 14, vertical: 7),
+              decoration: BoxDecoration(
+                color: sel ? c.gold : c.surfaceAlt,
+                borderRadius: BorderRadius.circular(99),
+                border: Border.all(color: sel ? c.gold : c.border),
+              ),
+              child: Text(label,
+                  style: TextStyle(
+                      color: sel ? c.onGold : c.textSecondary,
+                      fontWeight: FontWeight.w600,
+                      fontSize: 13)),
+            ),
+          ),
+        );
+    return Padding(
+      padding: const EdgeInsets.only(bottom: AppSpacing.sm),
+      child: SizedBox(
+        height: 36,
+        child: ListView(
+          scrollDirection: Axis.horizontal,
+          children: [
+            chip('all', tr ? 'Tümü' : 'All', _filter == 'all'),
+            for (final (key, label, count) in cats)
+              chip(key, '$label · $count', _filter == key),
+          ],
+        ),
+      ),
     );
   }
 
