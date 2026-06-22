@@ -877,6 +877,22 @@
   "communityHatim": {
     "title": "Community Khatm"
   },
+  "quiz": {
+    "title": "Knowledge Quiz",
+    "intro": "A 10-question round on the Prophet's life, worship, the Qur'an and the prophets. 10 points per correct answer — play daily to grow your streak.",
+    "pickCategory": "PICK A CATEGORY",
+    "start": "Start Quiz",
+    "question": "Question",
+    "next": "Next",
+    "finish": "Finish",
+    "retry": "Play Again",
+    "points": "Points",
+    "streak": "Streak",
+    "best": "Best",
+    "resGreat": "Mashallah, excellent!",
+    "resGood": "Nice! A bit more study and you'll ace it.",
+    "resTry": "Learning is what matters — try again!"
+  },
   "hatim": {
     "title": "Khatm Tracker",
     "emptyTitle": "Begin Your Khatm Journey",

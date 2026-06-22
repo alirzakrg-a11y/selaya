@@ -877,6 +877,22 @@
   "communityHatim": {
     "title": "Topluluk Hatmi"
   },
+  "quiz": {
+    "title": "Bilgi Yarışması",
+    "intro": "Siyer, ibadet, Kur'an ve peygamberler üzerine 10 soruluk bir tur. Doğru cevap başına 10 puan; her gün oynayarak serini büyüt.",
+    "pickCategory": "KATEGORİ SEÇ",
+    "start": "Yarışmaya Başla",
+    "question": "Soru",
+    "next": "Sonraki",
+    "finish": "Bitir",
+    "retry": "Tekrar Oyna",
+    "points": "Puan",
+    "streak": "Seri",
+    "best": "En İyi",
+    "resGreat": "Mâşâallah, harikasın!",
+    "resGood": "Güzel! Biraz daha çalışırsan tam yaparsın.",
+    "resTry": "Önemli olan öğrenmek — tekrar dene!"
+  },
   "hatim": {
     "title": "Hatim Takibi",
     "emptyTitle": "Hatim Yolculuğuna Başla",

@@ -14,6 +14,7 @@ import '../../features/dhikr/presentation/dhikr_screen.dart';
 import '../../features/dua_wall/presentation/dua_wall_screen.dart';
 import '../../features/hatim/presentation/hatim_screen.dart';
 import '../../features/community_hatim/presentation/community_hatim_screen.dart';
+import '../../features/quiz/presentation/quiz_screen.dart';
 import '../../features/duas/presentation/duas_screen.dart';
 import '../../features/fasting_tracking/presentation/fasting_screen.dart';
 import '../../features/inspiration/presentation/inspiration_list_screen.dart';
@@ -161,6 +162,7 @@ final routerProvider = Provider<GoRouter>((ref) {
       fs(Routes.tasks, (_, _) => const DailyTasksScreen()),
       fs(Routes.hatim, (_, _) => const HatimScreen()),
       fs(Routes.communityHatim, (_, _) => const CommunityHatimScreen()),
+      fs(Routes.quiz, (_, _) => const QuizScreen()),
       fs(Routes.abdestGuide, (_, _) => const AbdestRehberiScreen()),
       fs(Routes.guideDetail, (_, s) {
         final a = s.extra as ({Guide guide, String collection});
