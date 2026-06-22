@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hijri/hijri_calendar.dart';
+import 'package:share_plus/share_plus.dart';
 
 import '../../../core/localization/localized_text.dart';
 import '../../../core/router/routes.dart';
@@ -87,6 +88,14 @@ class _RamadanScreenState extends ConsumerState<RamadanScreen> {
             cdIcon = Icons.bedtime_rounded;
           }
           final remaining = target.difference(now);
+          // Oruç ilerlemesi (imsak→iftar arası gündüz) — görsel çubuk için.
+          double? fastProgress;
+          if (now.isAfter(t.imsak) && now.isBefore(t.maghrib)) {
+            final total = t.maghrib.difference(t.imsak).inSeconds;
+            fastProgress = total > 0
+                ? (now.difference(t.imsak).inSeconds / total).clamp(0.0, 1.0)
+                : null;
+          }
 
           final juz = (isRamadan ? ramadanDay : 1).clamp(1, 30);
           final juzPage = ((juz - 1) * 20 + 1).clamp(1, 604);
@@ -168,6 +177,73 @@ class _RamadanScreenState extends ConsumerState<RamadanScreen> {
                         ),
                       ],
                     ],
+                    // Oruç ilerleme çubuğu (gündüz)
+                    if (fastProgress != null) ...[
+                      const Gap.md(),
+                      Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 4),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.stretch,
+                          children: [
+                            Row(
+                              mainAxisAlignment:
+                                  MainAxisAlignment.spaceBetween,
+                              children: [
+                                Text(tr ? 'Oruç ilerlemesi' : 'Fast progress',
+                                    style: TextStyle(
+                                        color: c.textSecondary, fontSize: 12)),
+                                Text('%${(fastProgress * 100).round()}',
+                                    style: TextStyle(
+                                        color: c.gold,
+                                        fontWeight: FontWeight.w800,
+                                        fontSize: 12)),
+                              ],
+                            ),
+                            const SizedBox(height: 5),
+                            ClipRRect(
+                              borderRadius: BorderRadius.circular(99),
+                              child: LinearProgressIndicator(
+                                value: fastProgress,
+                                minHeight: 7,
+                                backgroundColor: c.border,
+                                valueColor: AlwaysStoppedAnimation(c.gold),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ],
+                    // Ramazan dışında: canlı sahur/iftar geri sayım pili
+                    if (!isRamadan) ...[
+                      const Gap.sm(),
+                      Container(
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 12, vertical: 7),
+                        decoration: BoxDecoration(
+                          color: c.surface,
+                          borderRadius: BorderRadius.circular(99),
+                          border: Border.all(color: c.border),
+                        ),
+                        child: Row(
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            Icon(cdIcon, size: 15, color: c.gold),
+                            const SizedBox(width: 6),
+                            Text('$cdLabel: ',
+                                style: TextStyle(
+                                    color: c.textSecondary, fontSize: 12.5)),
+                            Text(_dur(remaining),
+                                style: TextStyle(
+                                    color: c.textPrimary,
+                                    fontWeight: FontWeight.w800,
+                                    fontSize: 12.5,
+                                    fontFeatures: const [
+                                      FontFeature.tabularFigures()
+                                    ])),
+                          ],
+                        ),
+                      ),
+                    ],
                     const Gap.md(),
                     // İmsak / İftar saatleri
                     Row(
@@ -241,6 +317,20 @@ class _RamadanScreenState extends ConsumerState<RamadanScreen> {
                               color: c.gold,
                               letterSpacing: 0.8,
                               fontWeight: FontWeight.w700)),
+                      const Spacer(),
+                      InkWell(
+                        borderRadius: BorderRadius.circular(99),
+                        onTap: () => SharePlus.instance.share(ShareParams(
+                          text: 'اللَّهُمَّ لَكَ صُمْتُ وَعَلَىٰ رِزْقِكَ أَفْطَرْتُ\n\n'
+                              'Allâhümme leke sumtü ve alâ rızkıke eftartü\n\n'
+                              '${tr ? '"Allah\'ım! Senin (rızan) için oruç tuttum ve senin rızkınla orucumu açtım."' : '"O Allah! For You I fasted and with Your provision I broke my fast."'}\n\nSELAYA',
+                        )),
+                        child: Padding(
+                          padding: const EdgeInsets.all(4),
+                          child: Icon(Icons.ios_share_rounded,
+                              size: 18, color: c.textSecondary),
+                        ),
+                      ),
                     ]),
                     const Gap.sm(),
                     Center(
@@ -277,6 +367,79 @@ class _RamadanScreenState extends ConsumerState<RamadanScreen> {
                   ],
                 ),
               ),
+              const Gap.md(),
+              // ── RAMAZAN'DA ──
+              SelayaCard(
+                padding: const EdgeInsets.fromLTRB(AppSpacing.base,
+                    AppSpacing.sm, AppSpacing.base, AppSpacing.sm),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.only(top: 6, bottom: 2),
+                      child: Row(children: [
+                        Icon(Icons.nightlight_round, size: 18, color: c.gold),
+                        const SizedBox(width: 6),
+                        Text(tr ? 'RAMAZAN\'DA' : 'IN RAMADAN',
+                            style: Theme.of(context).textTheme.labelMedium?.copyWith(
+                                color: c.gold,
+                                letterSpacing: 0.8,
+                                fontWeight: FontWeight.w700)),
+                      ]),
+                    ),
+                    InkWell(
+                      onTap: () => context.push(Routes.zakat),
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(vertical: 10),
+                        child: Row(children: [
+                          Icon(Icons.volunteer_activism_rounded,
+                              size: 19, color: c.gold),
+                          const Gap.md(),
+                          Expanded(
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(tr ? 'Fitre & Zekât' : 'Fitra & Zakat',
+                                    style: Theme.of(context)
+                                        .textTheme
+                                        .titleSmall
+                                        ?.copyWith(
+                                            fontWeight: FontWeight.w700)),
+                                Text(
+                                    tr
+                                        ? 'Bayramdan önce hesapla ve ver'
+                                        : 'Calculate & give before Eid',
+                                    style: Theme.of(context)
+                                        .textTheme
+                                        .bodySmall
+                                        ?.copyWith(color: c.textSecondary)),
+                              ],
+                            ),
+                          ),
+                          Icon(Icons.chevron_right_rounded,
+                              size: 18, color: c.textTertiary),
+                        ]),
+                      ),
+                    ),
+                    Divider(height: 1, color: c.border),
+                    _infoRow(
+                        c,
+                        Icons.mosque_rounded,
+                        tr ? 'Teravih namazı' : 'Taraweeh',
+                        tr
+                            ? 'Yatsıdan sonra kılınan müekked sünnet (20 rekât).'
+                            : 'A confirmed sunnah prayer after isha (20 rakat).'),
+                    Divider(height: 1, color: c.border),
+                    _infoRow(
+                        c,
+                        Icons.star_rounded,
+                        tr ? 'Kadir Gecesi' : 'Laylat al-Qadr',
+                        tr
+                            ? 'Son on gecede aranır; bin aydan hayırlıdır.'
+                            : 'Sought in the last ten nights; better than a thousand months.'),
+                  ],
+                ),
+              ),
             ],
           );
         },
@@ -307,6 +470,34 @@ class _RamadanScreenState extends ConsumerState<RamadanScreen> {
             shape: BoxShape.circle, color: c.gold.withValues(alpha: 0.14)),
         child: Icon(icon, color: c.gold, size: 22),
       );
+
+  Widget _infoRow(dynamic c, IconData icon, String title, String desc) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 10),
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Icon(icon, size: 19, color: c.gold),
+          const Gap.md(),
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(title,
+                    style: Theme.of(context)
+                        .textTheme
+                        .titleSmall
+                        ?.copyWith(fontWeight: FontWeight.w700)),
+                Text(desc,
+                    style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                        color: c.textSecondary, height: 1.4)),
+              ],
+            ),
+          ),
+        ],
+      ),
+    );
+  }
 }
 
 /// Bugün oruç tuttum işaretleme — fasting_tracking deposunu kullanır.
@@ -325,6 +516,18 @@ class _FastToggleState extends ConsumerState<_FastToggle> {
     final today = DateTime.now();
     final fasted = store.statusFor(today) == FastStatus.fasted;
     final streak = store.streak(wm);
+    final monthCount =
+        store.countInMonth(today.year, today.month, FastStatus.fasted);
+    final parts = <String>[];
+    if (streak > 0) {
+      parts.add(tr ? '🔥 $streak günlük seri' : '🔥 $streak-day streak');
+    }
+    if (monthCount > 0) {
+      parts.add(tr ? 'bu ay $monthCount gün' : '$monthCount this month');
+    }
+    final subtitle = parts.isEmpty
+        ? (tr ? 'İşaretlemek için dokun' : 'Tap to mark')
+        : parts.join(' · ');
     return SelayaCard(
       onTap: () async {
         await store.setStatus(
@@ -361,14 +564,7 @@ class _FastToggleState extends ConsumerState<_FastToggle> {
                         .textTheme
                         .titleSmall
                         ?.copyWith(fontWeight: FontWeight.w700)),
-                Text(
-                    streak > 0
-                        ? (tr
-                            ? '🔥 $streak günlük seri'
-                            : '🔥 $streak-day streak')
-                        : (tr
-                            ? 'İşaretlemek için dokun'
-                            : 'Tap to mark'),
+                Text(subtitle,
                     style: Theme.of(context)
                         .textTheme
                         .bodySmall
