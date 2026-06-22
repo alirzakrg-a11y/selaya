@@ -55,6 +55,7 @@ class MoreScreen extends ConsumerWidget {
       _Entry(AppIcons.qibla, 'qibla.title', Routes.qibla),
     ]),
     _Section('more.secTimes', [
+      _Entry(Icons.nightlight_round, 'ramadan.title', Routes.ramadan),
       _Entry(Icons.wb_twilight_rounded, 'imsakiye.title', Routes.imsakiye),
       _Entry(AppIcons.calendar, 'calendar.title', Routes.calendar),
       _Entry(AppIcons.mosque, 'mosques.title', Routes.mosques),

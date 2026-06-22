@@ -37,6 +37,7 @@ import '../../features/onboarding/presentation/intro_screen.dart';
 import '../../features/onboarding/presentation/onboarding_screen.dart';
 import '../../features/onboarding/presentation/splash_screen.dart';
 import '../../features/premium/presentation/premium_screen.dart';
+import '../../features/ramadan/presentation/ramadan_screen.dart';
 import '../../features/prayer_times/presentation/city_select_screen.dart';
 import '../../features/prayer_times/presentation/imsakiye_screen.dart';
 import '../../features/prayer_times/presentation/prayer_times_screen.dart';
@@ -117,6 +118,7 @@ final routerProvider = Provider<GoRouter>((ref) {
           (_, s) => DuasScreen(openId: s.uri.queryParameters['open'])),
       fs(Routes.tesbihat, (_, _) => const TesbihatScreen()),
       fs(Routes.zakat, (_, _) => const ZakatScreen()),
+      fs(Routes.ramadan, (_, _) => const RamadanScreen()),
       fs(Routes.babyNames, (_, _) => const BabyNamesScreen()),
       fs(Routes.quranSearch, (_, _) => const QuranSearchScreen()),
       fs(Routes.ilmihal, (_, _) => const IlmihalScreen()),
