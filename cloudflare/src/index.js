@@ -7,6 +7,7 @@
 
 import { handleAuth, hashPassword } from './auth.js';
 import { handleDuaWall } from './dua_wall.js';
+import { handleHatim } from './hatim.js';
 
 const CORS = {
   'Access-Control-Allow-Origin': '*',
@@ -118,6 +119,10 @@ export default {
       // DUA DUVARI (#10) — üyeler dua paylaşır, panelde onaylanınca yayınlanır.
       const duaResp = await handleDuaWall(request, env, path);
       if (duaResp) return duaResp;
+
+      // TOPLULUK HATMİ — üyeler cüz alır/okur; 30 cüz dolunca hatim tamamlanır.
+      const hatimResp = await handleHatim(request, env, path);
+      if (hatimResp) return hatimResp;
 
       // FİNANS — canlı gram altın (₺) + Diyanet fitre (zekât/fitre hesabı için).
       // 30 dk edge cache: kaynağı yormaz, uygulama her açılışta güncel çeker.

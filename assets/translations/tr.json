@@ -865,6 +865,9 @@
     "chooseBackground": "Arka plan",
     "preview": "Önizleme"
   },
+  "communityHatim": {
+    "title": "Topluluk Hatmi"
+  },
   "hatim": {
     "title": "Hatim Takibi",
     "emptyTitle": "Hatim Yolculuğuna Başla",

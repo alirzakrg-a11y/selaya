@@ -865,6 +865,9 @@
     "chooseBackground": "Background",
     "preview": "Preview"
   },
+  "communityHatim": {
+    "title": "Community Khatm"
+  },
   "hatim": {
     "title": "Khatm Tracker",
     "emptyTitle": "Begin Your Khatm Journey",

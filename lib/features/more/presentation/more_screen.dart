@@ -63,6 +63,7 @@ class MoreScreen extends ConsumerWidget {
     _Section('more.secTracking', [
       _Entry(Icons.local_fire_department_rounded, 'streak.title', Routes.streak),
       _Entry(Icons.auto_stories_rounded, 'hatim.title', Routes.hatim),
+      _Entry(Icons.groups_rounded, 'communityHatim.title', Routes.communityHatim),
       _Entry(AppIcons.chart, 'tracking.title', Routes.tracking),
       _Entry(AppIcons.fasting, 'fasting.title', Routes.fasting),
       _Entry(AppIcons.kerahat, 'kaza.title', Routes.kaza),

@@ -59,7 +59,8 @@ abstract final class Routes {
   static const namazGuide = '/namaz-guide'; // namaz rehberi hub (#17)
   static const namazHowTo = '/namaz-howto'; // adım adım namaz rehberi
   static const imsakiye = '/imsakiye'; // 2 aylık imsakiye (imsak/iftar)
-  static const hatim = '/hatim'; // Hatim Takibi
+  static const hatim = '/hatim'; // Hatim Takibi (kişisel)
+  static const communityHatim = '/community-hatim'; // Topluluk Hatmi
   static const widgetsGallery = '/widgets';
   static const homeLayout = '/home-layout'; // ana ekranı düzenle
   static const featuredEdit = '/featured-edit'; // öne çıkanlar içeriği
