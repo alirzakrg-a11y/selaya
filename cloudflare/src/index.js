@@ -528,6 +528,82 @@ export default {
           return json({ ok: true });
         }
 
+        // ---- TOPLULUK HATMİ (admin: tüm kampanyalar + cüz detayı + yönetim) ----
+        if (request.method === 'GET' && path === '/api/hatim') {
+          // Tablolar yoksa (app henüz hiç çağırmadıysa) güvenli oluştur.
+          await env.DB.batch([
+            env.DB.prepare("CREATE TABLE IF NOT EXISTS hatim_campaigns (id TEXT PRIMARY KEY, title TEXT NOT NULL, intention TEXT, status TEXT NOT NULL DEFAULT 'active', created_by TEXT, created_rumuz TEXT, created_at INTEGER NOT NULL DEFAULT 0, completed_at INTEGER)"),
+            env.DB.prepare("CREATE TABLE IF NOT EXISTS hatim_juz (campaign_id TEXT NOT NULL, juz_no INTEGER NOT NULL, user_id TEXT, rumuz TEXT, status TEXT NOT NULL DEFAULT 'open', claimed_at INTEGER, done_at INTEGER, PRIMARY KEY (campaign_id, juz_no))"),
+          ]);
+          const camps = await env.DB.prepare(
+            "SELECT id,title,intention,status,created_by,created_rumuz,created_at,completed_at " +
+            "FROM hatim_campaigns ORDER BY (status='active') DESC, created_at DESC LIMIT 100"
+          ).all();
+          const out = [];
+          for (const c of camps.results || []) {
+            const j = await env.DB.prepare(
+              "SELECT j.juz_no, j.status, j.rumuz, j.claimed_at, j.done_at, " +
+              "u.email AS claimer_email, u.name AS claimer_name FROM hatim_juz j " +
+              "LEFT JOIN users u ON u.id=j.user_id WHERE j.campaign_id=? ORDER BY j.juz_no"
+            ).bind(c.id).all();
+            const juz = j.results || [];
+            out.push({
+              ...c,
+              done: juz.filter((x) => x.status === 'done').length,
+              claimed: juz.filter((x) => x.status === 'claimed').length,
+              juz,
+            });
+          }
+          return json({ ok: true, campaigns: out });
+        }
+        // Kampanya sil (+ cüzleri).
+        if (request.method === 'POST' && path === '/api/hatim-delete') {
+          const form = await request.formData();
+          const id = (form.get('id') || '').toString();
+          if (!id) return json({ ok: false, error: 'id_required' }, { status: 400 });
+          await env.DB.prepare('DELETE FROM hatim_juz WHERE campaign_id=?').bind(id).run();
+          await env.DB.prepare('DELETE FROM hatim_campaigns WHERE id=?').bind(id).run();
+          return json({ ok: true });
+        }
+        // Bir cüzü sıfırla (open) — terk edilmiş/yanlış claim'i admin açar.
+        if (request.method === 'POST' && path === '/api/hatim-juz-reset') {
+          const form = await request.formData();
+          const id = (form.get('id') || '').toString();
+          const juz = parseInt(form.get('juz') || '0', 10);
+          if (!id || !(juz >= 1 && juz <= 30)) {
+            return json({ ok: false, error: 'bad_input' }, { status: 400 });
+          }
+          await env.DB.prepare(
+            "UPDATE hatim_juz SET status='open', user_id=NULL, rumuz=NULL, claimed_at=NULL, done_at=NULL WHERE campaign_id=? AND juz_no=?"
+          ).bind(id, juz).run();
+          // Kampanya 'completed' idiyse bir cüz açıldığı için tekrar aktif olur.
+          await env.DB.prepare(
+            "UPDATE hatim_campaigns SET status='active', completed_at=NULL WHERE id=? AND status='completed'"
+          ).bind(id).run();
+          return json({ ok: true });
+        }
+        // Panelden hatim başlat (resmî/niyetli).
+        if (request.method === 'POST' && path === '/api/hatim-create') {
+          const form = await request.formData();
+          const title = (form.get('title') || '').toString().trim().slice(0, 80);
+          const intention = (form.get('intention') || '').toString().trim().slice(0, 120);
+          if (title.length < 2) return json({ ok: false, error: 'title_required' }, { status: 400 });
+          const id = 'htm-' + crypto.randomUUID();
+          const now = Date.now();
+          await env.DB.prepare(
+            "INSERT INTO hatim_campaigns (id,title,intention,status,created_by,created_rumuz,created_at) " +
+            "VALUES (?,?,?,'active','panel','Panel',?)"
+          ).bind(id, title, intention, now).run();
+          const stmts = [];
+          for (let n = 1; n <= 30; n++) {
+            stmts.push(env.DB.prepare(
+              "INSERT OR IGNORE INTO hatim_juz (campaign_id,juz_no,status) VALUES (?,?, 'open')"
+            ).bind(id, n));
+          }
+          await env.DB.batch(stmts);
+          return json({ ok: true, id });
+        }
+
         // ---- metin içerik (ayet/hadis/dua/tebrik — DOSYASIZ) ----
         if (request.method === 'POST' && path === '/api/text') {
           const form = await request.formData();
@@ -832,6 +908,10 @@ const PANEL_HTML = `<!doctype html>
   .muted{ color:var(--mut); font-size:12px; word-break:break-all; }
   .search{ margin:0 0 13px; background:#fbfbfc; }
   .search:focus{ background:#fff; }
+  .hgrid{ display:grid; grid-template-columns:repeat(10,1fr); gap:5px; margin-top:4px; }
+  .hjuz{ aspect-ratio:1; border-radius:8px; display:flex; align-items:center; justify-content:center; font-weight:700; font-size:13px; cursor:pointer; transition:.12s; }
+  .hjuz:hover{ filter:brightness(.96); }
+  @media(max-width:560px){ .hgrid{ grid-template-columns:repeat(6,1fr); } }
   .tabs{ display:none; }
   details{ border:1px solid var(--line); border-radius:14px; margin-bottom:10px; overflow:hidden; background:#fff; }
   summary{ cursor:pointer; padding:13px 15px; font-weight:700; color:var(--txt); list-style:none; display:flex; align-items:center; gap:8px; }
@@ -893,6 +973,7 @@ const PANEL_HTML = `<!doctype html>
     <div class="nav-item" id="tabStatsBtn" onclick="showTab('stats')">📊 Kullanım</div>
     <div class="nav-item" id="tabUsersBtn" onclick="showTab('users')">👤 Kullanıcılar</div>
     <div class="nav-item" id="tabDuaBtn" onclick="showTab('dua')">🤲 Dua Duvarı<span id="duaBadge" style="margin-left:auto;background:#e0556b;color:#fff;font-size:11px;font-weight:700;border-radius:999px;padding:1px 7px;display:none"></span></div>
+    <div class="nav-item" id="tabHatimBtn" onclick="showTab('hatim')">📖 Topluluk Hatmi</div>
     <div class="nav-item" onclick="logout()">🚪 Çıkış</div>
   </aside>
   <main class="main">
@@ -1049,6 +1130,27 @@ const PANEL_HTML = `<!doctype html>
       </div>
     </div>
 
+    <!-- ============ TOPLULUK HATMİ ============ -->
+    <div id="viewHatim" class="hide">
+      <div class="card">
+        <h3 style="margin:0 0 4px">➕ Hatim Başlat</h3>
+        <p class="hint">Resmî/niyetli bir topluluk hatmi başlat. 30 cüz açılır; üyeler uygulamadan alıp okur. (En az bir "Topluluk Hatmi" hep açıktır; biri tamamlanınca yenisi otomatik açılır.)</p>
+        <div class="row">
+          <div><label>Başlık</label><input id="htTitle" placeholder="Örn: Ramazan Hatmi"></div>
+          <div><label>Niyet (opsiyonel)</label><input id="htIntent" placeholder="Örn: Merhumlarımız için"></div>
+        </div>
+        <div style="margin-top:14px"><button onclick="hatimCreate()">Hatim Başlat</button> <span id="htStatus" class="muted"></span></div>
+      </div>
+      <div class="card">
+        <div class="row" style="align-items:center">
+          <h3 style="margin:0">📖 Hatimler</h3>
+          <button class="ghost" style="flex:0 0 auto" onclick="loadHatim()">Yenile</button>
+        </div>
+        <p class="hint">Her hatmin 30 cüzü — <b style="color:var(--gold)">altın</b>: boş · <b style="color:#e0a441">turuncu</b>: okunuyor · <b style="color:var(--ok)">yeşil</b>: okundu. Bir cüze tıkla → <b>okuyanın hesap bilgisi</b> + sıfırla. <b>Sil</b> hatmi kaldırır.</p>
+        <div id="hatimBody"><p class="muted">Yükleniyor…</p></div>
+      </div>
+    </div>
+
     <!-- ============ METİN İÇERİK ============ -->
     <div id="viewText" class="hide">
       <div class="card">
@@ -1160,7 +1262,7 @@ const PANEL_HTML = `<!doctype html>
     if (noTitle) el('upTitle').value = '';
   }
 
-  var TAB_TITLES = { text:'Metin İçerik', notify:'Bildirimler', stats:'Kullanım', users:'Kullanıcılar', dua:'Dua Duvarı' };
+  var TAB_TITLES = { text:'Metin İçerik', notify:'Bildirimler', stats:'Kullanım', users:'Kullanıcılar', dua:'Dua Duvarı', hatim:'Topluluk Hatmi' };
   function setActiveNav(node){
     document.querySelectorAll('.nav-item').forEach(function(n){ n.classList.remove('active'); });
     if (node) node.classList.add('active');
@@ -1191,6 +1293,7 @@ const PANEL_HTML = `<!doctype html>
     el('viewText').classList.toggle('hide', t !== 'text');
     el('viewUsers').classList.toggle('hide', t !== 'users');
     el('viewDua').classList.toggle('hide', t !== 'dua');
+    el('viewHatim').classList.toggle('hide', t !== 'hatim');
     setActiveNav(el('tab' + t.charAt(0).toUpperCase() + t.slice(1) + 'Btn'));
     var pt = el('pageTitle'); if (pt) pt.textContent = TAB_TITLES[t] || '';
     toggleSidebar(false);
@@ -1199,6 +1302,7 @@ const PANEL_HTML = `<!doctype html>
     if (t === 'text') loadText();
     if (t === 'users') loadUsers();
     if (t === 'dua') loadDuaWall();
+    if (t === 'hatim') loadHatim();
   }
   function toggleSidebar(open){
     var sb = el('sidebar'); if (!sb) return;
@@ -1608,6 +1712,71 @@ const PANEL_HTML = `<!doctype html>
       if(res.j&&res.j.ok){ toast('Yasak kaldırıldı ✓'); loadUsers(); }
       else { toast('Hata: '+((res.j&&res.j.error)||res.status)); }
     }).catch(function(e){ toast('Hata: '+e); });
+  }
+
+  // --- Topluluk Hatmi (admin: tüm kampanyalar + cüz detayı + yönetim) ---
+  var HATIM = [];
+  function loadHatim(){
+    el('hatimBody').innerHTML='<p class="muted">Yükleniyor…</p>';
+    api('hatim').then(function(res){
+      HATIM=(res.j&&res.j.campaigns)||[];
+      if(!HATIM.length){ el('hatimBody').innerHTML='<p class="muted">Henüz hatim yok.</p>'; return; }
+      var active=HATIM.filter(function(c){return c.status==='active';}).length;
+      el('hatimBody').innerHTML='<p class="muted" style="margin:0 0 10px">Toplam <b>'+HATIM.length+'</b> hatim · <b>'+active+'</b> aktif</p>'+HATIM.map(renderHatimCampaign).join('');
+    }).catch(function(e){ el('hatimBody').innerHTML='<p class="muted">Hata: '+e+'</p>'; });
+  }
+  function renderHatimCampaign(c){
+    var id=esc(c.id);
+    var statusBadge = c.status==='completed'
+      ? '<span class="badge" style="color:var(--ok);background:#eafaf1;border-color:#bfe8d0">✓ tamamlandı</span>'
+      : '<span class="badge">aktif</span>';
+    var cells=(c.juz||[]).map(function(j){
+      var col,bg;
+      if(j.status==='done'){ col='var(--ok)'; bg='#eafaf1'; }
+      else if(j.status==='claimed'){ col='#d6912a'; bg='#fdf3e3'; }
+      else { col='var(--gold)'; bg='var(--gold-soft)'; }
+      return '<div class="hjuz" data-cid="'+id+'" data-juz="'+j.juz_no+'" onclick="showHatimClaimer(this.dataset.cid,this.dataset.juz)" style="background:'+bg+';border:1px solid '+col+';color:'+col+'">'+j.juz_no+'</div>';
+    }).join('');
+    return '<div class="card" style="margin:0 0 12px">'+
+      '<div class="row" style="align-items:center;margin-bottom:4px"><h3 style="margin:0;flex:1">'+esc(c.title)+' '+statusBadge+'</h3>'+
+      '<span class="badge">'+(c.done||0)+'/30</span>'+
+      '<button class="danger" data-id="'+id+'" onclick="hatimDelete(this.dataset.id)">Sil</button></div>'+
+      (c.intention?'<p class="muted" style="margin:0 0 4px">🎯 '+esc(c.intention)+'</p>':'')+
+      '<p class="muted" style="margin:0 0 8px">Başlatan: '+esc(c.created_rumuz||'—')+' · '+fmtDate(c.created_at)+' · okunuyor: '+(c.claimed||0)+'</p>'+
+      '<div class="hgrid">'+cells+'</div></div>';
+  }
+  function showHatimClaimer(cid,juz){
+    var c=null; for(var k=0;k<HATIM.length;k++){ if(HATIM[k].id===cid){ c=HATIM[k]; break; } }
+    if(!c) return;
+    var j=null, list=c.juz||[]; for(var i=0;i<list.length;i++){ if(String(list[i].juz_no)===String(juz)){ j=list[i]; break; } }
+    if(!j) return;
+    if(j.status==='open'){ toast(juz+'. cüz boş (henüz alınmadı)'); return; }
+    var info=j.status==='done'?'✅ okundu':'📖 okunuyor';
+    var who=j.rumuz?('@'+j.rumuz):'(rumuz yok)';
+    var detail=(j.claimer_name?j.claimer_name+' · ':'')+(j.claimer_email||'(hesap bulunamadı)');
+    if(!confirm(juz+'. cüz — '+info+'\\nOkuyan: '+who+'\\n'+detail+'\\n\\nBu cüzü SIFIRLA (boşalt → başkası alabilsin)?')) return;
+    var fd=new FormData(); fd.append('id',cid); fd.append('juz',juz);
+    api('hatim-juz-reset',{method:'POST',body:fd}).then(function(res){
+      if(res.j&&res.j.ok){ toast('Cüz sıfırlandı ✓'); loadHatim(); } else { toast('Hata: '+((res.j&&res.j.error)||res.status)); }
+    }).catch(function(e){ toast('Hata: '+e); });
+  }
+  function hatimDelete(id){
+    if(!confirm('Bu hatmi ve tüm cüzlerini silmek istediğine emin misin?')) return;
+    var fd=new FormData(); fd.append('id',id);
+    api('hatim-delete',{method:'POST',body:fd}).then(function(res){
+      if(res.j&&res.j.ok){ toast('Silindi ✓'); loadHatim(); } else { toast('Hata'); }
+    }).catch(function(e){ toast('Hata: '+e); });
+  }
+  function hatimCreate(){
+    var title=el('htTitle').value.trim();
+    if(title.length<2){ toast('Başlık gerekli'); return; }
+    el('htStatus').textContent='Ekleniyor…';
+    var fd=new FormData(); fd.append('title',title); fd.append('intention',el('htIntent').value.trim());
+    api('hatim-create',{method:'POST',body:fd}).then(function(res){
+      el('htStatus').textContent='';
+      if(res.j&&res.j.ok){ toast('Hatim başlatıldı ✓'); el('htTitle').value=''; el('htIntent').value=''; loadHatim(); }
+      else { toast('Hata: '+((res.j&&res.j.error)||res.status)); }
+    }).catch(function(e){ el('htStatus').textContent=''; toast('Hata: '+e); });
   }
 
   // --- Kullanım istatistikleri (free tier takibi) ---
