@@ -700,6 +700,7 @@
     "mosqueSilent": "Auto-silence at the Mosque",
     "mosqueSilentDesc": "Mutes the phone automatically when you approach a mosque and restores it when you leave.",
     "mosqueSilentHint": "On. Needs Location + Do Not Disturb access. Allow location \"All the time\" for background muting; otherwise it only mutes when you open the app near a mosque.",
+    "mosqueSilentDenied": "Turned off — location permission was denied.",
     "about": "About",
     "version": "Version",
     "aboutDesc": "SELAYA is a holistic Islamic lifestyle assistant bringing together prayer times, qibla, Quran, dhikr and much more. Share it with your loved ones.",

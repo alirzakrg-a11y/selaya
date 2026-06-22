@@ -10,6 +10,7 @@ import 'core/router/app_router.dart';
 import 'core/router/routes.dart';
 import 'core/services/mosque_silent_service.dart';
 import 'core/services/notification_service.dart';
+import 'core/services/smart_silent_service.dart';
 import 'core/services/permissions_controller.dart';
 import 'core/services/widget_service.dart';
 import 'core/services/widget_updater.dart';
@@ -85,13 +86,26 @@ class _SelayaAppState extends ConsumerState<SelayaApp>
     ref.read(permissionsControllerProvider.notifier).refresh();
     // "Camide otomatik sessize al" açıksa: yakındaki camileri tazele + geofence'i
     // yeniden kur + anlık mesafe kontrolü uygula (seyahatte takip etsin; arka
-    // plan izni yoksa en azından açılışta cami yanındaysa sustursun). Kapalıysa
-    // no-op.
+    // plan izni yoksa en azından açılışta cami yanındaysa sustursun). İzin yoksa
+    // toggle'ı kendi kapatır. Kapalıysa no-op.
     ref.read(mosqueSilentControllerProvider.notifier).refresh();
+    // Zaman-bazlı Akıllı Sessiz açık ama DND izni yoksa zili değiştiremez →
+    // kullanıcı izni vermeden döndüyse toggle'ı dürüstçe kapat.
+    _reconcileSmartSilent();
     if (mounted) {
       pushHomeWidgets(ref, context.locale.languageCode);
       _checkPendingAdhan();
     }
+  }
+
+  /// Zaman-bazlı Akıllı Sessiz açık ama DND / bildirim-politikası izni yoksa
+  /// zili hiç değiştiremez → kullanıcı izni vermeden döndüyse toggle'ı kapat
+  /// (dürüstçe yansısın, açık-ama-çalışmıyor durumu kalmasın).
+  Future<void> _reconcileSmartSilent() async {
+    if (!ref.read(settingsProvider).smartSilent) return;
+    if (await ref.read(smartSilentServiceProvider).hasAccess()) return;
+    await ref.read(settingsProvider.notifier).setSmartSilent(false);
+    await ref.read(prayerSchedulerProvider).rescheduleAll();
   }
 
   /// Hesap başka cihazda açıldığı için bu cihaz düşürüldüyse (en fazla 2 cihaz)

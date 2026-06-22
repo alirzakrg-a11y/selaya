@@ -241,12 +241,16 @@ class SettingsScreen extends ConsumerWidget {
                   subtitle: 'settings.mosqueSilentDesc'.tr(),
                   value: ref.watch(mosqueSilentControllerProvider),
                   onChanged: (v) async {
-                    await ref
+                    // setEnabled returns the FINAL state — false if a required
+                    // permission was denied, so the toggle won't stay falsely on.
+                    final on = await ref
                         .read(mosqueSilentControllerProvider.notifier)
                         .setEnabled(v);
                     if (v && context.mounted) {
                       ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                        content: Text('settings.mosqueSilentHint'.tr()),
+                        content: Text(on
+                            ? 'settings.mosqueSilentHint'.tr()
+                            : 'settings.mosqueSilentDenied'.tr()),
                         behavior: SnackBarBehavior.floating,
                       ));
                     }

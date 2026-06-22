@@ -68,7 +68,9 @@ class MosqueSilentController extends Notifier<bool> {
       ref.read(sharedPreferencesProvider).getBool(PrefKeys.mosqueSilent) ??
       false;
 
-  Future<void> setEnabled(bool v) async {
+  /// Returns the FINAL on/off state — may be false even when [v] is true if a
+  /// mandatory permission (location) was denied, so the UI reflects reality.
+  Future<bool> setEnabled(bool v) async {
     await ref.read(sharedPreferencesProvider).setBool(PrefKeys.mosqueSilent, v);
     state = v;
     if (v) {
@@ -76,33 +78,55 @@ class MosqueSilentController extends Notifier<bool> {
     } else {
       await ref.read(mosqueSilentServiceProvider).clear();
     }
+    return state;
+  }
+
+  /// Turn the toggle back off (a required permission was denied) so the switch
+  /// honestly reflects that the feature can't run, and drop any geofences.
+  Future<void> _revertOff() async {
+    await ref.read(sharedPreferencesProvider).setBool(PrefKeys.mosqueSilent, false);
+    state = false;
+    await ref.read(mosqueSilentServiceProvider).clear();
   }
 
   /// Re-fetch nearby mosques, (re)register geofences, and apply the immediate
   /// proximity state. Called on enable and on every app resume; no-op when off.
   /// [interactive] (only on the explicit enable) may prompt for permissions.
+  /// If a mandatory permission is missing it turns the toggle back off (location
+  /// right away; DND on the next resume, since DND is granted from Settings).
   Future<void> refresh({bool interactive = false}) async {
     if (!state) return;
-    // Need DND / notification-policy access to change the ringer (shared with
-    // the time-based Smart Silent).
+    final perm = ref.read(permissionServiceProvider);
+    // 1) Foreground location is mandatory — without it we can't tell we're near
+    //    a mosque. Ask on the explicit enable; if denied, turn the toggle off.
+    if (!await perm.locationGranted()) {
+      if (interactive) {
+        final out = await perm.requestLocation();
+        if (!out.isGranted) {
+          await _revertOff();
+          return;
+        }
+      } else {
+        await _revertOff();
+        return;
+      }
+    }
+    // 2) DND / notification-policy is mandatory to mute the ringer (shared with
+    //    the time-based Smart Silent). It's granted from a Settings screen, so
+    //    on the explicit enable we open it and keep the toggle on; if the user
+    //    comes back without granting, the next resume turns the toggle off.
     final silent = ref.read(smartSilentServiceProvider);
     if (!await silent.hasAccess()) {
-      if (interactive) await silent.requestAccess();
+      if (interactive) {
+        await silent.requestAccess();
+        return;
+      }
+      await _revertOff();
       return;
     }
-    final perm = ref.read(permissionServiceProvider);
-    if (interactive) {
-      // Foreground location first (geolocator dialog) …
-      if (!await perm.locationGranted()) {
-        final out = await perm.requestLocation();
-        if (!out.isGranted) return;
-      }
-      // … then the separate "Allow all the time" grant (Android 11+ sends the
-      // user to Settings) so the geofence can fire in the background. Best
-      // effort — without it we silently fall back to the foreground check.
-      await perm.requestBackgroundLocation();
-    }
-    if (!await perm.locationGranted()) return;
+    // 3) Optional: background location ("Allow all the time") for passive
+    //    geofencing. Best effort — the foreground check works without it.
+    if (interactive) await perm.requestBackgroundLocation();
     // Fresh fix on the explicit enable; the short location cache is fine on
     // resume (and avoids a GPS lock on every app open).
     final pos = await ref
