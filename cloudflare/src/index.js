@@ -585,8 +585,8 @@ export default {
         // Panelden hatim başlat (resmî/niyetli).
         if (request.method === 'POST' && path === '/api/hatim-create') {
           const form = await request.formData();
-          const title = (form.get('title') || '').toString().trim().slice(0, 80);
-          const intention = (form.get('intention') || '').toString().trim().slice(0, 120);
+          const title = (form.get('title') || '').toString().trim().slice(0, 120);
+          const intention = (form.get('intention') || '').toString().trim().slice(0, 160);
           if (title.length < 2) return json({ ok: false, error: 'title_required' }, { status: 400 });
           const id = 'htm-' + crypto.randomUUID();
           const now = Date.now();
@@ -908,6 +908,14 @@ const PANEL_HTML = `<!doctype html>
   .muted{ color:var(--mut); font-size:12px; word-break:break-all; }
   .search{ margin:0 0 13px; background:#fbfbfc; }
   .search:focus{ background:#fff; }
+  .ovl{ position:fixed; inset:0; background:rgba(16,24,40,.45); display:flex; align-items:center; justify-content:center; z-index:60; padding:20px; }
+  .modalbox{ background:#fff; border-radius:18px; padding:22px; max-width:440px; width:100%; box-shadow:0 16px 50px rgba(0,0,0,.24); max-height:90vh; overflow:auto; }
+  .modalbox h3{ margin:0 0 10px; font-size:17px; }
+  .modalbox .danger{ padding:11px 18px; font-size:14px; }
+  .kv{ display:flex; justify-content:space-between; gap:14px; padding:9px 0; border-top:1px solid var(--line); font-size:13.5px; }
+  .kv:first-of-type{ border-top:0; }
+  .kv > span{ color:var(--mut); flex:0 0 auto; }
+  .kv > b{ text-align:right; word-break:break-word; }
   .hgrid{ display:grid; grid-template-columns:repeat(10,1fr); gap:5px; margin-top:4px; }
   .hjuz{ aspect-ratio:1; border-radius:8px; display:flex; align-items:center; justify-content:center; font-weight:700; font-size:13px; cursor:pointer; transition:.12s; }
   .hjuz:hover{ filter:brightness(.96); }
@@ -1239,6 +1247,34 @@ const PANEL_HTML = `<!doctype html>
     else if(nf){ nf.remove(); }
   }
 
+  // --- Şık modal popup'lar (Chrome'un native confirm/alert/prompt'u yerine) ---
+  function _modal(inner){
+    var ov=document.createElement('div'); ov.className='ovl';
+    ov.innerHTML='<div class="modalbox">'+inner+'</div>';
+    document.body.appendChild(ov);
+    ov.addEventListener('click',function(e){ if(e.target===ov) ov.remove(); });
+    return ov;
+  }
+  function uiConfirm(msg, onYes, opts){
+    opts=opts||{};
+    var ov=_modal('<h3>'+esc(opts.title||'Onay')+'</h3><p class="hint" style="white-space:pre-line;font-size:13.5px">'+esc(msg)+'</p><div class="row" style="margin-top:18px"><button class="ghost" data-x>Vazgeç</button><button class="'+(opts.danger?'danger':'')+'" data-y>'+esc(opts.yes||'Onayla')+'</button></div>');
+    ov.querySelector('[data-x]').onclick=function(){ ov.remove(); };
+    ov.querySelector('[data-y]').onclick=function(){ ov.remove(); if(onYes) onYes(); };
+  }
+  function uiAlert(msg, title){
+    var ov=_modal('<h3>'+esc(title||'Bilgi')+'</h3><p class="hint" style="white-space:pre-line;font-size:13.5px">'+esc(msg)+'</p><div class="row" style="margin-top:18px"><button data-x>Tamam</button></div>');
+    ov.querySelector('[data-x]').onclick=function(){ ov.remove(); };
+  }
+  function uiPrompt(msg, def, onSubmit, opts){
+    opts=opts||{};
+    var ov=_modal('<h3>'+esc(opts.title||'')+'</h3><p class="hint" style="font-size:13.5px">'+esc(msg)+'</p><input id="_pmtIn"><div class="row" style="margin-top:18px"><button class="ghost" data-x>Vazgeç</button><button data-y>'+esc(opts.yes||'Tamam')+'</button></div>');
+    var inp=ov.querySelector('#_pmtIn'); inp.value=def||''; setTimeout(function(){ inp.focus(); },50);
+    function go(){ var v=inp.value; ov.remove(); if(onSubmit) onSubmit(v); }
+    inp.onkeydown=function(e){ if(e.key==='Enter') go(); };
+    ov.querySelector('[data-x]').onclick=function(){ ov.remove(); };
+    ov.querySelector('[data-y]').onclick=go;
+  }
+
   function onCollectionChange(){
     var c = val('upCollection');
     el('collDesc').textContent = DESCS[c] || '';
@@ -1387,8 +1423,9 @@ const PANEL_HTML = `<!doctype html>
     }).catch(function(e){ toast('Hata: ' + e); });
   }
   function delText(id){
-    if(!confirm('Bu metni silmek istediğine emin misin?')) return;
-    api('items/' + encodeURIComponent(id), { method: 'DELETE' }).then(function(){ loadText(); });
+    uiConfirm('Bu metni silmek istediğine emin misin?', function(){
+      api('items/' + encodeURIComponent(id), { method: 'DELETE' }).then(function(){ loadText(); });
+    }, {danger:true, yes:'Sil'});
   }
   // Metni düzenle: Türkçe metin + (ayet/hadis/dua için) Arapça & kaynak.
   function editText(id){
@@ -1521,22 +1558,24 @@ const PANEL_HTML = `<!doctype html>
     };
   }
   function resetUserPw(id,email){
-    var np=prompt('"'+email+'" için yeni şifre (en az 6 karakter):');
-    if(np===null) return;
-    if(np.length<6){ toast('Şifre en az 6 karakter olmalı'); return; }
-    var fd=new FormData(); fd.append('id',id); fd.append('password',np);
-    api('user-reset-password',{method:'POST',body:fd}).then(function(res){
-      if(res.j&&res.j.ok){ try{ if(navigator.clipboard) navigator.clipboard.writeText(np); }catch(e){} alert('Şifre sıfırlandı ✓ (yeni şifre panoya kopyalandı)\\n\\nKullanıcıya ilet:\\n'+email+'\\nYeni şifre: '+np); }
-      else { toast('Hata: '+((res.j&&res.j.error)||res.status)); }
-    }).catch(function(e){ toast('Hata: '+e); });
+    uiPrompt('"'+email+'" için yeni şifre (en az 6 karakter):', '', function(np){
+      if(np===null) return;
+      if(np.length<6){ toast('Şifre en az 6 karakter olmalı'); return; }
+      var fd=new FormData(); fd.append('id',id); fd.append('password',np);
+      api('user-reset-password',{method:'POST',body:fd}).then(function(res){
+        if(res.j&&res.j.ok){ try{ if(navigator.clipboard) navigator.clipboard.writeText(np); }catch(e){} uiAlert('Yeni şifre panoya kopyalandı.\\n\\nKullanıcıya ilet:\\n'+email+'\\nYeni şifre: '+np, 'Şifre Sıfırlandı ✓'); }
+        else { toast('Hata: '+((res.j&&res.j.error)||res.status)); }
+      }).catch(function(e){ toast('Hata: '+e); });
+    }, {title:'Şifre Sıfırla', yes:'Sıfırla'});
   }
   function deleteUser(id,email){
-    if(!confirm('"'+email+'" hesabını ve TÜM verisini kalıcı silmek istediğine emin misin? (KVKK)')) return;
-    var fd=new FormData(); fd.append('id',id);
-    api('user-delete',{method:'POST',body:fd}).then(function(res){
-      if(res.j&&res.j.ok){ toast('Silindi ✓'); loadUsers(); }
-      else { toast('Hata: '+((res.j&&res.j.error)||res.status)); }
-    }).catch(function(e){ toast('Hata: '+e); });
+    uiConfirm('"'+email+'" hesabını ve TÜM verisini kalıcı silmek istediğine emin misin? (KVKK)', function(){
+      var fd=new FormData(); fd.append('id',id);
+      api('user-delete',{method:'POST',body:fd}).then(function(res){
+        if(res.j&&res.j.ok){ toast('Silindi ✓'); loadUsers(); }
+        else { toast('Hata: '+((res.j&&res.j.error)||res.status)); }
+      }).catch(function(e){ toast('Hata: '+e); });
+    }, {danger:true, yes:'Hesabı Sil', title:'Üyeyi Sil'});
   }
 
   // --- Dua Duvarı moderasyonu (#10) ---
@@ -1668,12 +1707,15 @@ const PANEL_HTML = `<!doctype html>
     }).catch(function(e){ toast('Hata: '+e); });
   }
   function rejectDua(id,del){
-    if(del && !confirm('Bu duayı tamamen silmek istediğine emin misin?')) return;
-    var fd=new FormData(); fd.append('id',id); if(del) fd.append('delete','1');
-    api('dua-reject',{method:'POST',body:fd}).then(function(res){
-      if(res.j&&res.j.ok){ toast(del?'Silindi ✓':'Reddedildi ✓'); loadDuaWall(); }
-      else { toast('Hata: '+((res.j&&res.j.error)||res.status)); }
-    }).catch(function(e){ toast('Hata: '+e); });
+    function doIt(){
+      var fd=new FormData(); fd.append('id',id); if(del) fd.append('delete','1');
+      api('dua-reject',{method:'POST',body:fd}).then(function(res){
+        if(res.j&&res.j.ok){ toast(del?'Silindi ✓':'Reddedildi ✓'); loadDuaWall(); }
+        else { toast('Hata: '+((res.j&&res.j.error)||res.status)); }
+      }).catch(function(e){ toast('Hata: '+e); });
+    }
+    if(del){ uiConfirm('Bu duayı tamamen silmek istediğine emin misin?', doIt, {danger:true, yes:'Sil'}); }
+    else doIt();
   }
   // Gizle/Göster: yayındaki duayı duvardan kaldır (geri alınabilir) ya da geri yayınla.
   function hideDua(id,hide){
@@ -1687,31 +1729,35 @@ const PANEL_HTML = `<!doctype html>
   // daha giremez, "engellendiniz" görür + TÜM dua duvarı gönderileri silinir (sunucu).
   function banDuaUser(uid,id){
     if(!uid){ toast('Kullanıcı bilgisi yok'); return; }
-    if(!confirm('Bu kullanıcı banlanacak; uygulamaya bir daha giremeyecek ve tüm duaları silinecek. Emin misin?')) return;
-    var reason=prompt('Ban sebebi (opsiyonel — kullanıcıya gösterilmez):','Uygunsuz içerik');
-    if(reason===null) return;
-    var fd=new FormData(); fd.append('id',uid); fd.append('reason',reason);
-    api('user-ban',{method:'POST',body:fd}).then(function(res){
-      if(res.j&&res.j.ok){ toast('Kullanıcı banlandı + duaları silindi ✓'); loadDuaWall(); }
-      else { toast('Hata: '+((res.j&&res.j.error)||res.status)); }
-    }).catch(function(e){ toast('Hata: '+e); });
+    uiConfirm('Bu kullanıcı banlanacak; uygulamaya bir daha giremeyecek ve tüm duaları silinecek. Emin misin?', function(){
+      uiPrompt('Ban sebebi (opsiyonel — kullanıcıya gösterilmez):', 'Uygunsuz içerik', function(reason){
+        if(reason===null) return;
+        var fd=new FormData(); fd.append('id',uid); fd.append('reason',reason);
+        api('user-ban',{method:'POST',body:fd}).then(function(res){
+          if(res.j&&res.j.ok){ toast('Kullanıcı banlandı + duaları silindi ✓'); loadDuaWall(); }
+          else { toast('Hata: '+((res.j&&res.j.error)||res.status)); }
+        }).catch(function(e){ toast('Hata: '+e); });
+      }, {title:'Ban sebebi', yes:'Banla'});
+    }, {danger:true, yes:'Devam', title:'Kullanıcıyı Banla'});
   }
   function banUser(id,email){
-    var reason=prompt('"'+email+'" — ban sebebi (opsiyonel):','');
-    if(reason===null) return;
-    var fd=new FormData(); fd.append('id',id); fd.append('reason',reason);
-    api('user-ban',{method:'POST',body:fd}).then(function(res){
-      if(res.j&&res.j.ok){ toast('Banlandı ✓'); loadUsers(); }
-      else { toast('Hata: '+((res.j&&res.j.error)||res.status)); }
-    }).catch(function(e){ toast('Hata: '+e); });
+    uiPrompt('"'+email+'" — ban sebebi (opsiyonel):', '', function(reason){
+      if(reason===null) return;
+      var fd=new FormData(); fd.append('id',id); fd.append('reason',reason);
+      api('user-ban',{method:'POST',body:fd}).then(function(res){
+        if(res.j&&res.j.ok){ toast('Banlandı ✓'); loadUsers(); }
+        else { toast('Hata: '+((res.j&&res.j.error)||res.status)); }
+      }).catch(function(e){ toast('Hata: '+e); });
+    }, {title:'Üyeyi Banla', yes:'Banla'});
   }
   function unbanUser(id,email){
-    if(!confirm('"'+email+'" yasağını kaldır (af)?')) return;
-    var fd=new FormData(); fd.append('id',id);
-    api('user-unban',{method:'POST',body:fd}).then(function(res){
-      if(res.j&&res.j.ok){ toast('Yasak kaldırıldı ✓'); loadUsers(); }
-      else { toast('Hata: '+((res.j&&res.j.error)||res.status)); }
-    }).catch(function(e){ toast('Hata: '+e); });
+    uiConfirm('"'+email+'" yasağını kaldır (af)?', function(){
+      var fd=new FormData(); fd.append('id',id);
+      api('user-unban',{method:'POST',body:fd}).then(function(res){
+        if(res.j&&res.j.ok){ toast('Yasak kaldırıldı ✓'); loadUsers(); }
+        else { toast('Hata: '+((res.j&&res.j.error)||res.status)); }
+      }).catch(function(e){ toast('Hata: '+e); });
+    }, {yes:'Yasağı Kaldır', title:'Af'});
   }
 
   // --- Topluluk Hatmi (admin: tüm kampanyalar + cüz detayı + yönetim) ---
@@ -1750,22 +1796,36 @@ const PANEL_HTML = `<!doctype html>
     if(!c) return;
     var j=null, list=c.juz||[]; for(var i=0;i<list.length;i++){ if(String(list[i].juz_no)===String(juz)){ j=list[i]; break; } }
     if(!j) return;
-    if(j.status==='open'){ toast(juz+'. cüz boş (henüz alınmadı)'); return; }
-    var info=j.status==='done'?'✅ okundu':'📖 okunuyor';
-    var who=j.rumuz?('@'+j.rumuz):'(rumuz yok)';
-    var detail=(j.claimer_name?j.claimer_name+' · ':'')+(j.claimer_email||'(hesap bulunamadı)');
-    if(!confirm(juz+'. cüz — '+info+'\\nOkuyan: '+who+'\\n'+detail+'\\n\\nBu cüzü SIFIRLA (boşalt → başkası alabilsin)?')) return;
-    var fd=new FormData(); fd.append('id',cid); fd.append('juz',juz);
-    api('hatim-juz-reset',{method:'POST',body:fd}).then(function(res){
-      if(res.j&&res.j.ok){ toast('Cüz sıfırlandı ✓'); loadHatim(); } else { toast('Hata: '+((res.j&&res.j.error)||res.status)); }
-    }).catch(function(e){ toast('Hata: '+e); });
+    if(j.status==='open'){ uiAlert(juz+'. cüz henüz alınmadı — boş.', juz+'. Cüz'); return; }
+    var st = j.status==='done'
+      ? '<span style="color:var(--ok);font-weight:700">✅ Okundu</span>'
+      : '<span style="color:#d6912a;font-weight:700">📖 Okunuyor</span>';
+    var rows='<div class="kv"><span>Durum</span><b>'+st+'</b></div>'+
+      '<div class="kv"><span>Rumuz</span><b>'+(j.rumuz?'@'+esc(j.rumuz):'(yok)')+'</b></div>'+
+      '<div class="kv"><span>Ad</span><b>'+esc(j.claimer_name||'—')+'</b></div>'+
+      '<div class="kv"><span>E-posta</span><b>'+esc(j.claimer_email||'(hesap bulunamadı)')+'</b></div>'+
+      (j.claimed_at?'<div class="kv"><span>Aldığı</span><b>'+fmtDate(j.claimed_at)+'</b></div>':'')+
+      (j.done_at?'<div class="kv"><span>Okuduğu</span><b>'+fmtDate(j.done_at)+'</b></div>':'');
+    var ov=_modal('<h3>📖 '+juz+'. Cüz — okuyan</h3>'+rows+
+      '<div class="row" style="margin-top:18px"><button class="ghost" data-x>Kapat</button><button class="danger" data-r>Cüzü Sıfırla</button></div>');
+    ov.querySelector('[data-x]').onclick=function(){ ov.remove(); };
+    ov.querySelector('[data-r]').onclick=function(){
+      ov.remove();
+      uiConfirm('Bu cüz boşaltılsın mı? Başkası alabilir.', function(){
+        var fd=new FormData(); fd.append('id',cid); fd.append('juz',juz);
+        api('hatim-juz-reset',{method:'POST',body:fd}).then(function(res){
+          if(res.j&&res.j.ok){ toast('Cüz sıfırlandı ✓'); loadHatim(); } else { toast('Hata'); }
+        }).catch(function(e){ toast('Hata: '+e); });
+      }, {danger:true, yes:'Sıfırla', title:'Cüzü Sıfırla'});
+    };
   }
   function hatimDelete(id){
-    if(!confirm('Bu hatmi ve tüm cüzlerini silmek istediğine emin misin?')) return;
-    var fd=new FormData(); fd.append('id',id);
-    api('hatim-delete',{method:'POST',body:fd}).then(function(res){
-      if(res.j&&res.j.ok){ toast('Silindi ✓'); loadHatim(); } else { toast('Hata'); }
-    }).catch(function(e){ toast('Hata: '+e); });
+    uiConfirm('Bu hatmi ve tüm cüzlerini silmek istediğine emin misin?', function(){
+      var fd=new FormData(); fd.append('id',id);
+      api('hatim-delete',{method:'POST',body:fd}).then(function(res){
+        if(res.j&&res.j.ok){ toast('Silindi ✓'); loadHatim(); } else { toast('Hata'); }
+      }).catch(function(e){ toast('Hata: '+e); });
+    }, {danger:true, yes:'Sil', title:'Hatmi Sil'});
   }
   function hatimCreate(){
     var title=el('htTitle').value.trim();
@@ -2140,19 +2200,20 @@ const PANEL_HTML = `<!doctype html>
     var b = e.target.closest ? e.target.closest('button') : null;
     if (!b) return;
     var id = b.getAttribute('data-id');
-    if (b.getAttribute('data-act') === 'del'){ if (confirm('Bu öğe silinsin mi?')) api('items/' + id, { method:'DELETE' }).then(loadItems); }
+    if (b.getAttribute('data-act') === 'del'){ uiConfirm('Bu öğe silinsin mi?', function(){ api('items/' + id, { method:'DELETE' }).then(loadItems); }, {danger:true, yes:'Sil'}); }
     else if (b.getAttribute('data-act') === 'edit'){
-      var nt = prompt('Başlık:', b.getAttribute('data-title') || '');
-      if (nt === null) return;
       var col = b.getAttribute('data-col');
       // Açıklama: video + saf görsel galerilerinde (duvar kâğıdı, sticker, rehber…)
       // gerekmez (upload formunda da gizli) → sorma, mevcut değeri koru.
       var noDesc = (col === 'bg_videos' || col === 'wallpapers' || col === 'stickers' || col === 'radio_art');
-      var ns;
-      if (noDesc) { ns = b.getAttribute('data-sub') || ''; }
-      else { ns = prompt('Açıklama:', b.getAttribute('data-sub') || ''); if (ns === null) return; }
-      api('items/' + id, { method:'PUT', headers:{ 'Content-Type':'application/json' },
-        body: JSON.stringify({ title: nt, subtitle: ns, collection: col, kind: b.getAttribute('data-kind'), active: parseInt(b.getAttribute('data-active') || '1', 10), sort: parseInt(b.getAttribute('data-sort') || '0', 10) }) }).then(loadItems);
+      function saveItem(nt, ns){
+        api('items/' + id, { method:'PUT', headers:{ 'Content-Type':'application/json' },
+          body: JSON.stringify({ title: nt, subtitle: ns, collection: col, kind: b.getAttribute('data-kind'), active: parseInt(b.getAttribute('data-active') || '1', 10), sort: parseInt(b.getAttribute('data-sort') || '0', 10) }) }).then(loadItems);
+      }
+      uiPrompt('Başlık:', b.getAttribute('data-title') || '', function(nt){
+        if (noDesc) { saveItem(nt, b.getAttribute('data-sub') || ''); }
+        else { uiPrompt('Açıklama:', b.getAttribute('data-sub') || '', function(ns){ saveItem(nt, ns); }, {title:'Açıklama'}); }
+      }, {title:'Başlık'});
     }
     else if (b.getAttribute('data-act') === 'replace'){
       var inp = document.createElement('input');
@@ -2173,7 +2234,7 @@ const PANEL_HTML = `<!doctype html>
       api('items/' + id, { method:'PUT', headers:{ 'Content-Type':'application/json' },
         body: JSON.stringify({ active: parseInt(b.getAttribute('data-active'), 10), collection: b.getAttribute('data-col'), kind: b.getAttribute('data-kind') }) }).then(loadItems);
     }
-    else if (b.getAttribute('data-nact') === 'del'){ if (confirm('Bu bildirim silinsin mi?')) api('notifications/' + id, { method:'DELETE' }).then(loadNotifications); }
+    else if (b.getAttribute('data-nact') === 'del'){ uiConfirm('Bu bildirim silinsin mi?', function(){ api('notifications/' + id, { method:'DELETE' }).then(loadNotifications); }, {danger:true, yes:'Sil'}); }
   });
 
   if (TOKEN) loadItems();

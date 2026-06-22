@@ -249,8 +249,101 @@ class CommunityHatimScreen extends ConsumerWidget {
             itemBuilder: (context, i) =>
                 _juzCell(context, ref, camp, camp.juz[i], tr, c),
           ),
+          // Senin aldığın, henüz okumadığın cüzler — net "Okudum" butonu
+          // (kullanıcı kareye tekrar dokunmayı akıl edemeyebilir).
+          ..._myJuzSection(context, ref, camp, tr, c),
         ],
       ),
+    );
+  }
+
+  List<Widget> _myJuzSection(BuildContext context, WidgetRef ref,
+      HatimCampaign camp, bool tr, dynamic c) {
+    final myOpen =
+        camp.juz.where((j) => j.mine && j.status != 'done').toList();
+    if (myOpen.isEmpty) return const [];
+    return [
+      const Gap.md(),
+      Container(
+        width: double.infinity,
+        padding: const EdgeInsets.all(AppSpacing.md),
+        decoration: BoxDecoration(
+          color: c.gold.withValues(alpha: 0.08),
+          borderRadius: AppRadius.rMd,
+          border: Border.all(color: c.gold.withValues(alpha: 0.3)),
+        ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Row(children: [
+              Icon(Icons.bookmark_added_rounded, size: 17, color: c.gold),
+              const Gap.xs(),
+              Expanded(
+                child: Text(tr ? 'Senin cüzlerin' : 'Your juz',
+                    style: Theme.of(context)
+                        .textTheme
+                        .titleSmall
+                        ?.copyWith(fontWeight: FontWeight.w800, color: c.gold)),
+              ),
+              Text(tr ? 'okuyunca işaretle →' : 'mark when read →',
+                  style: TextStyle(color: c.textTertiary, fontSize: 11)),
+            ]),
+            const Gap.sm(),
+            for (final j in myOpen) _myJuzRow(context, ref, camp, j, tr, c),
+          ],
+        ),
+      ),
+    ];
+  }
+
+  Widget _myJuzRow(BuildContext context, WidgetRef ref, HatimCampaign camp,
+      HatimJuz j, bool tr, dynamic c) {
+    final page = ((j.juzNo - 1) * 20 + 1).clamp(1, 604);
+    return Padding(
+      padding: const EdgeInsets.only(top: AppSpacing.xs),
+      child: Row(children: [
+        Container(
+          width: 32,
+          height: 32,
+          alignment: Alignment.center,
+          decoration: BoxDecoration(
+            color: c.gold.withValues(alpha: 0.16),
+            borderRadius: AppRadius.rSm,
+          ),
+          child: Text('${j.juzNo}',
+              style: TextStyle(
+                  color: c.gold, fontWeight: FontWeight.w800, fontSize: 14)),
+        ),
+        const Gap.sm(),
+        Expanded(
+          child: Text(tr ? '${j.juzNo}. cüz' : 'Juz ${j.juzNo}',
+              style: Theme.of(context).textTheme.bodyMedium),
+        ),
+        TextButton.icon(
+          onPressed: () => context.push(Routes.mushaf, extra: page),
+          icon: const Icon(Icons.menu_book_rounded, size: 16),
+          label: Text(tr ? 'Oku' : 'Read'),
+          style: TextButton.styleFrom(
+            foregroundColor: c.textSecondary,
+            visualDensity: VisualDensity.compact,
+            padding: const EdgeInsets.symmetric(horizontal: 8),
+          ),
+        ),
+        const Gap.xs(),
+        FilledButton.icon(
+          onPressed: () => _run(
+              context, ref, (t) => HatimApi.markDone(t, camp.id, j.juzNo),
+              ok: tr ? '${j.juzNo}. cüz okundu ✓' : 'Juz ${j.juzNo} done ✓'),
+          icon: const Icon(Icons.check_rounded, size: 16),
+          label: Text(tr ? 'Okudum' : 'Done'),
+          style: FilledButton.styleFrom(
+            backgroundColor: c.success,
+            foregroundColor: Colors.white,
+            visualDensity: VisualDensity.compact,
+            padding: const EdgeInsets.symmetric(horizontal: 12),
+          ),
+        ),
+      ]),
     );
   }
 
@@ -409,10 +502,14 @@ class CommunityHatimScreen extends ConsumerWidget {
             const Gap.md(),
             TextField(
               controller: titleC,
-              maxLength: 80,
+              maxLength: 120,
+              maxLines: 2,
+              minLines: 1,
               decoration: InputDecoration(
                 labelText: tr ? 'Başlık' : 'Title',
-                hintText: tr ? 'Örn: Ramazan Hatmi' : 'e.g. Ramadan Khatm',
+                hintText: tr
+                    ? 'Örn: Merhume anneannem Ayşe Hanım için hatim'
+                    : 'e.g. Ramadan Khatm',
                 filled: true,
                 fillColor: cc.surfaceAlt,
                 border: OutlineInputBorder(
@@ -421,7 +518,9 @@ class CommunityHatimScreen extends ConsumerWidget {
             ),
             TextField(
               controller: intentC,
-              maxLength: 120,
+              maxLength: 160,
+              maxLines: 2,
+              minLines: 1,
               decoration: InputDecoration(
                 labelText: tr ? 'Niyet (opsiyonel)' : 'Intention (optional)',
                 hintText: tr ? 'Örn: Merhum dedem için' : 'e.g. For my late grandfather',

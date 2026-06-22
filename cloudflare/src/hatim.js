@@ -135,8 +135,8 @@ export async function handleHatim(request, env, path) {
   if (request.method === 'POST' && path === '/v1/hatim/create') {
     const b = await readJson(request);
     if (!b) return json({ ok: false, error: 'bad_body' }, 400);
-    const title = (b.title || '').toString().trim().slice(0, 80);
-    const intention = (b.intention || '').toString().trim().slice(0, 120);
+    const title = (b.title || '').toString().trim().slice(0, 120);
+    const intention = (b.intention || '').toString().trim().slice(0, 160);
     if (title.length < 2) return json({ ok: false, error: 'title_required' }, 400);
     const mine = await env.DB.prepare(
       "SELECT COUNT(*) AS n FROM hatim_campaigns WHERE created_by=? AND status='active'"
