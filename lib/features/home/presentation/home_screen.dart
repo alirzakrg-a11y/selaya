@@ -49,15 +49,15 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
   @override
   void initState() {
     super.initState();
-    // After a fard prayer's time passes, ask once (on the next home open)
-    // whether it was prayed → logs to İbadet Takibi (#4).
+    // On home open, collect every fard prayer whose time has passed today and
+    // show one popup to tick the ones prayed → logs to İbadet Takibi (#4).
     WidgetsBinding.instance.addPostFrameCallback((_) => _askPrayerCheckIn());
   }
 
   Future<void> _askPrayerCheckIn() async {
-    final slot = await pendingPrayerCheckIn(ref);
-    if (slot == null || !mounted || !context.mounted) return;
-    await showPrayerCheckIn(context, ref, slot);
+    final pending = await pendingPrayerCheckIns(ref);
+    if (pending.isEmpty || !mounted || !context.mounted) return;
+    await showPrayerCheckInBatch(context, ref, pending);
   }
 
   @override

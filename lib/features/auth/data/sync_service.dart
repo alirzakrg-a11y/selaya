@@ -55,6 +55,12 @@ class _Scope {
         k == PrefKeys.lastSyncAt) {
       return false;
     }
+    // "Namazı kıldın mı?" gün-içi sorma-bayrağı (tracking_asked_<gün>) cihaza
+    // özeldir; cihazlar arası anlamı yok. Senkronlanırsa 'tracking_' prefix'iyle
+    // eşleşip 2. cihazda gerçekten kılınan namazların sorulmamasına (sessiz
+    // eksik-kayıt) yol açar — bu yüzden açıkça hariç tutulur. Gerçek takip
+    // verisi (tracking_<gün>) bu önekle başlamadığı için senkronlanmaya devam.
+    if (k.startsWith(PrefKeys.trackingAskedPrefix)) return false;
     return exact.contains(k) || prefixes.any(k.startsWith);
   }
 }
