@@ -8,6 +8,7 @@ import 'package:share_plus/share_plus.dart';
 import '../../../core/di/providers.dart';
 import '../../../core/localization/localized_text.dart';
 import '../../../core/router/routes.dart';
+import '../../../core/services/mosque_silent_service.dart';
 import '../../../core/services/permission_service.dart';
 import '../../../core/services/smart_silent_service.dart';
 import '../../../core/theme/app_colors.dart';
@@ -214,21 +215,44 @@ class SettingsScreen extends ConsumerWidget {
           _SectionTitle('settings.smartSilent'.tr(),
               icon: Icons.volume_off_rounded),
           SelayaCard(
-            child: _SwitchRow(
-              icon: AppIcons.mute,
-              label: 'settings.smartSilent'.tr(),
-              subtitle: 'settings.smartSilentDesc'.tr(),
-              value: settings.smartSilent,
-              onChanged: (v) async {
-                await ctrl.setSmartSilent(v);
-                final svc = ref.read(smartSilentServiceProvider);
-                // Muting the ringer needs DND / notification-policy access;
-                // send the user to grant it the first time they enable this.
-                if (v && !await svc.hasAccess()) {
-                  await svc.requestAccess();
-                }
-                await ref.read(prayerSchedulerProvider).rescheduleAll();
-              },
+            child: Column(
+              children: [
+                _SwitchRow(
+                  icon: AppIcons.mute,
+                  label: 'settings.smartSilent'.tr(),
+                  subtitle: 'settings.smartSilentDesc'.tr(),
+                  value: settings.smartSilent,
+                  onChanged: (v) async {
+                    await ctrl.setSmartSilent(v);
+                    final svc = ref.read(smartSilentServiceProvider);
+                    // Muting the ringer needs DND / notification-policy access;
+                    // send the user to grant it the first time they enable this.
+                    if (v && !await svc.hasAccess()) {
+                      await svc.requestAccess();
+                    }
+                    await ref.read(prayerSchedulerProvider).rescheduleAll();
+                  },
+                ),
+                // Camide otomatik sessize al (konum/geofence). Açınca konum +
+                // DND iznini ister, yakındaki camileri bulup geofence kurar.
+                _SwitchRow(
+                  icon: Icons.mosque_rounded,
+                  label: 'settings.mosqueSilent'.tr(),
+                  subtitle: 'settings.mosqueSilentDesc'.tr(),
+                  value: ref.watch(mosqueSilentControllerProvider),
+                  onChanged: (v) async {
+                    await ref
+                        .read(mosqueSilentControllerProvider.notifier)
+                        .setEnabled(v);
+                    if (v && context.mounted) {
+                      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                        content: Text('settings.mosqueSilentHint'.tr()),
+                        behavior: SnackBarBehavior.floating,
+                      ));
+                    }
+                  },
+                ),
+              ],
             ),
           ),
           const Gap.lg(),

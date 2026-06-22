@@ -2,6 +2,8 @@
     <uses-permission android:name="android.permission.INTERNET"/>
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
+    <!-- Camide otomatik sessize alma (geofence arka planda tetiklensin diye) -->
+    <uses-permission android:name="android.permission.ACCESS_BACKGROUND_LOCATION"/>
     <uses-permission android:name="android.permission.POST_NOTIFICATIONS"/>
     <!-- Prayer notification scheduling (Round-7) -->
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>
@@ -176,6 +178,11 @@
         <!-- Smart Silent (#6.2): AlarmManager fires this to mute/restore the ringer -->
         <receiver
             android:name=".SmartSilentReceiver"
+            android:exported="false" />
+
+        <!-- Camide otomatik sessize alma: geofence ENTER/EXIT'te zili kıs/geri al -->
+        <receiver
+            android:name=".MosqueGeofenceReceiver"
             android:exported="false" />
 
         <!-- Reschedule prayer alarms + refresh the ongoing notification when the

@@ -61,4 +61,7 @@ flutter {
 
 dependencies {
     coreLibraryDesugaring("com.android.tools:desugar_jdk_libs:2.1.4")
+    // Camide otomatik sessize alma — geofence (GeofencingClient). geolocator bunu
+    // içeride kullanıyor ama app modülüne açmıyor → açıkça ekliyoruz.
+    implementation("com.google.android.gms:play-services-location:21.3.0")
 }

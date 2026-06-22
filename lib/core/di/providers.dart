@@ -86,6 +86,8 @@ abstract final class PrefKeys {
       'online_prayer_times_synced_at'; // epoch ms — 12 saatlik tazelik bekçisi
   static const String smartSilent =
       'smart_silent'; // bool: auto-silence during prayer & Friday
+  static const String mosqueSilent =
+      'mosque_silent'; // bool: auto-silence near a mosque (geofence)
   static const String kandilNotif =
       'kandil_notif'; // bool: kandil & religious-day notifications
   static const String cumaNotif = 'cuma_notif'; // bool: Friday (Cuma) reminder

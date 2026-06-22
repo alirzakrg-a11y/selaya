@@ -18,6 +18,9 @@ import android.provider.Settings
 import android.view.WindowManager
 import androidx.core.content.ContextCompat
 import androidx.core.content.FileProvider
+import com.google.android.gms.location.Geofence
+import com.google.android.gms.location.GeofencingRequest
+import com.google.android.gms.location.LocationServices
 import com.ryanheise.audioservice.AudioServiceActivity
 import io.flutter.embedding.engine.FlutterEngine
 import io.flutter.plugin.common.MethodCall
@@ -288,6 +291,31 @@ class MainActivity : AudioServiceActivity() {
                     else -> result.notImplemented()
                 }
             }
+
+        // Mosque auto-silence: register geofences around nearby mosques so the
+        // ringer mutes on ENTER / restores on EXIT (own muted-state in prefs
+        // "selaya_mosque_silent"). `applyNow` is the foreground immediate check.
+        MethodChannel(flutterEngine.dartExecutor.binaryMessenger, "selaya/mosque_silent")
+            .setMethodCallHandler { call, result ->
+                when (call.method) {
+                    "register" -> {
+                        @Suppress("UNCHECKED_CAST")
+                        val mosques = call.argument<List<Map<String, Any>>>("mosques")
+                            ?: emptyList()
+                        registerMosqueGeofences(mosques)
+                        result.success(true)
+                    }
+                    "applyNow" -> {
+                        mosqueApplyNow(call.argument<Boolean>("near") ?: false)
+                        result.success(true)
+                    }
+                    "clear" -> {
+                        clearMosqueGeofences()
+                        result.success(true)
+                    }
+                    else -> result.notImplemented()
+                }
+            }
     }
 
     // ── Ongoing prayer foreground service bridge ───────────────────────────────
@@ -404,6 +432,86 @@ class MainActivity : AudioServiceActivity() {
             } catch (_: Exception) {}
         }
         prefs.edit().putBoolean("muted", false).apply()
+    }
+
+    // ── Mosque auto-silence: geofences that mute/restore around mosques ─────────
+    private val mosqueGeoReq = 91000
+
+    private fun mosqueGeoPendingIntent(): PendingIntent {
+        val intent = Intent(this, MosqueGeofenceReceiver::class.java)
+        // Geofencing delivers transition extras into the PendingIntent, so on
+        // Android 12+ it must be MUTABLE.
+        var flags = PendingIntent.FLAG_UPDATE_CURRENT
+        if (Build.VERSION.SDK_INT >= 31) flags = flags or PendingIntent.FLAG_MUTABLE
+        return PendingIntent.getBroadcast(this, mosqueGeoReq, intent, flags)
+    }
+
+    private fun registerMosqueGeofences(list: List<Map<String, Any>>) {
+        val client = LocationServices.getGeofencingClient(this)
+        val pi = mosqueGeoPendingIntent()
+        try { client.removeGeofences(pi) } catch (_: Exception) {}
+        if (list.isEmpty()) return
+        val fences = list.mapNotNull { m ->
+            val id = m["id"] as? String ?: return@mapNotNull null
+            val lat = (m["lat"] as? Number)?.toDouble() ?: return@mapNotNull null
+            val lng = (m["lng"] as? Number)?.toDouble() ?: return@mapNotNull null
+            val radius = (m["radius"] as? Number)?.toFloat() ?: 80f
+            Geofence.Builder()
+                .setRequestId(id)
+                .setCircularRegion(lat, lng, radius)
+                .setExpirationDuration(Geofence.NEVER_EXPIRE)
+                .setTransitionTypes(
+                    Geofence.GEOFENCE_TRANSITION_ENTER or Geofence.GEOFENCE_TRANSITION_EXIT
+                )
+                .build()
+        }
+        if (fences.isEmpty()) return
+        val request = GeofencingRequest.Builder()
+            .setInitialTrigger(GeofencingRequest.INITIAL_TRIGGER_ENTER)
+            .addGeofences(fences)
+            .build()
+        try {
+            client.addGeofences(request, pi)
+        } catch (_: SecurityException) {
+            // Background location not granted — the foreground applyNow still works.
+        } catch (_: Exception) {}
+    }
+
+    private fun clearMosqueGeofences() {
+        try {
+            LocationServices.getGeofencingClient(this)
+                .removeGeofences(mosqueGeoPendingIntent())
+        } catch (_: Exception) {}
+        mosqueApplyNow(false) // restore the ringer if we had muted
+    }
+
+    private fun mosqueApplyNow(near: Boolean) {
+        val granted = Build.VERSION.SDK_INT < 23 ||
+            (getSystemService(Context.NOTIFICATION_SERVICE) as? NotificationManager)
+                ?.isNotificationPolicyAccessGranted ?: false
+        if (!granted) return
+        val am = getSystemService(Context.AUDIO_SERVICE) as? AudioManager ?: return
+        val prefs = getSharedPreferences("selaya_mosque_silent", Context.MODE_PRIVATE)
+        if (near) {
+            if (!prefs.getBoolean("muted", false)) {
+                val cur = am.ringerMode
+                val prev = if (cur == AudioManager.RINGER_MODE_SILENT)
+                    AudioManager.RINGER_MODE_NORMAL else cur
+                prefs.edit().putInt("prev_mode", prev).putBoolean("muted", true).apply()
+            }
+            try { am.ringerMode = AudioManager.RINGER_MODE_SILENT } catch (_: Exception) {}
+        } else {
+            if (prefs.getBoolean("muted", false)) {
+                // Defer to the time-based Smart Silent if it still wants silence.
+                val timeMuted = getSharedPreferences("selaya_silent", Context.MODE_PRIVATE)
+                    .getBoolean("muted", false)
+                if (!timeMuted) {
+                    val prev = prefs.getInt("prev_mode", AudioManager.RINGER_MODE_NORMAL)
+                    try { am.ringerMode = prev } catch (_: Exception) {}
+                }
+                prefs.edit().putBoolean("muted", false).apply()
+            }
+        }
     }
 
     /** Broadcast an update to every NIDA home-screen widget provider. */

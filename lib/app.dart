@@ -8,6 +8,7 @@ import 'core/data/notifications_sync.dart';
 import 'core/di/providers.dart';
 import 'core/router/app_router.dart';
 import 'core/router/routes.dart';
+import 'core/services/mosque_silent_service.dart';
 import 'core/services/notification_service.dart';
 import 'core/services/permissions_controller.dart';
 import 'core/services/widget_service.dart';
@@ -82,6 +83,11 @@ class _SelayaAppState extends ConsumerState<SelayaApp>
     // Keep the shared permission/service status fresh — a grant made in system
     // settings (exact alarm, battery, full-screen) is reflected on resume.
     ref.read(permissionsControllerProvider.notifier).refresh();
+    // "Camide otomatik sessize al" açıksa: yakındaki camileri tazele + geofence'i
+    // yeniden kur + anlık mesafe kontrolü uygula (seyahatte takip etsin; arka
+    // plan izni yoksa en azından açılışta cami yanındaysa sustursun). Kapalıysa
+    // no-op.
+    ref.read(mosqueSilentControllerProvider.notifier).refresh();
     if (mounted) {
       pushHomeWidgets(ref, context.locale.languageCode);
       _checkPendingAdhan();
