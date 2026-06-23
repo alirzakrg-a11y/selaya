@@ -94,7 +94,10 @@ class QuizStatsController extends Notifier<QuizStats> {
   /// [keys]'i son-görülenlere ekle (en fazla 40 tut, FIFO).
   Future<void> addSeen(Iterable<String> keys) async {
     final p = ref.read(sharedPreferencesProvider);
-    final list = [...(p.getStringList(_kRecent) ?? const []), ...keys];
+    final list = <String>[
+      ...(p.getStringList(_kRecent) ?? const <String>[]),
+      ...keys,
+    ];
     final capped = list.length > 40 ? list.sublist(list.length - 40) : list;
     await p.setStringList(_kRecent, capped);
   }
