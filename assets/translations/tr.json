@@ -891,7 +891,21 @@
     "best": "En İyi",
     "resGreat": "Mâşâallah, harikasın!",
     "resGood": "Güzel! Biraz daha çalışırsan tam yaparsın.",
-    "resTry": "Önemli olan öğrenmek — tekrar dene!"
+    "resTry": "Önemli olan öğrenmek — tekrar dene!",
+    "weekly": "Haftalık Yarışma",
+    "weeklyDesc": "Bu haftanın 15 sorusu — herkese aynı, geri sayımlı. Hızlı ve doğru cevapla puanını yükselt, skorun liderlik tablosuna yazılsın.",
+    "startWeekly": "Haftalık Başla",
+    "practice": "PRATİK",
+    "startPractice": "Pratik Başlat (10 soru)",
+    "leaderboard": "Sıralama",
+    "seeLeaderboard": "Sıralamayı Gör",
+    "weeklyScore": "Haftalık skor",
+    "timeUp": "Süre doldu.",
+    "submitting": "Skor gönderiliyor…",
+    "signInToRank": "Sıralamaya girmek için giriş yap (rumuz gerekli).",
+    "weekOf": "Hafta",
+    "yourRank": "Senin sıran: {}.",
+    "emptyBoard": "Bu hafta henüz kimse oynamadı. İlk sen ol!"
   },
   "hatim": {
     "title": "Hatim Takibi",

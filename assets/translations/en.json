@@ -891,7 +891,21 @@
     "best": "Best",
     "resGreat": "Mashallah, excellent!",
     "resGood": "Nice! A bit more study and you'll ace it.",
-    "resTry": "Learning is what matters — try again!"
+    "resTry": "Learning is what matters — try again!",
+    "weekly": "Weekly Challenge",
+    "weeklyDesc": "This week's 15 questions — same for everyone, timed. Answer fast and right to climb the leaderboard.",
+    "startWeekly": "Start Weekly",
+    "practice": "PRACTICE",
+    "startPractice": "Start Practice (10 questions)",
+    "leaderboard": "Leaderboard",
+    "seeLeaderboard": "View Leaderboard",
+    "weeklyScore": "Weekly score",
+    "timeUp": "Time's up.",
+    "submitting": "Submitting score…",
+    "signInToRank": "Sign in to appear on the leaderboard (nickname required).",
+    "weekOf": "Week",
+    "yourRank": "Your rank: {}.",
+    "emptyBoard": "No one has played this week yet. Be the first!"
   },
   "hatim": {
     "title": "Khatm Tracker",

@@ -62,6 +62,7 @@ abstract final class Routes {
   static const hatim = '/hatim'; // Hatim Takibi (kişisel)
   static const communityHatim = '/community-hatim'; // Topluluk Hatmi
   static const quiz = '/quiz'; // İslami Bilgi Yarışması
+  static const quizLeaderboard = '/quiz-leaderboard'; // Haftalık sıralama
   static const widgetsGallery = '/widgets';
   static const homeLayout = '/home-layout'; // ana ekranı düzenle
   static const featuredEdit = '/featured-edit'; // öne çıkanlar içeriği

@@ -1,14 +1,19 @@
+import 'dart:async';
 import 'dart:math';
 
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 
+import '../../../core/router/routes.dart';
 import '../../../core/theme/app_colors.dart';
 import '../../../core/theme/app_spacing.dart';
 import '../../../core/widgets/selaya_card.dart';
 import '../../../core/widgets/selaya_scaffold.dart';
 import '../../../core/widgets/states.dart';
+import '../../auth/data/auth_controller.dart';
+import '../data/quiz_api.dart';
 import '../data/quiz_models.dart';
 
 const _catLabels = <String, String>{
@@ -22,8 +27,8 @@ const _catLabels = <String, String>{
 
 enum _Phase { idle, playing, result }
 
-/// One question prepared for a round: options are shuffled so positions can't be
-/// memorised, and [correct] points at the shuffled index of the right answer.
+enum _Mode { practice, weekly }
+
 class _SQ {
   final QuizQuestion q;
   final List<String> options;
@@ -38,55 +43,120 @@ class QuizScreen extends ConsumerStatefulWidget {
 }
 
 class _QuizScreenState extends ConsumerState<QuizScreen> {
-  static const _roundSize = 10;
+  static const _practiceSize = 10;
+  static const _weeklySize = 15;
+  static const _seconds = 20;
   final _rng = Random();
 
   String _cat = 'all';
   _Phase _phase = _Phase.idle;
+  _Mode _mode = _Mode.practice;
   List<_SQ> _session = const [];
   int _index = 0;
-  int? _selected;
+  int? _selected; // null = cevaplanmadı, -1 = süre doldu, 0..3 = seçilen
   int _correct = 0;
+  int _score = 0; // haftalık puan (hız bonuslu)
+  int _secondsLeft = _seconds;
+  Timer? _timer;
+  bool _submitting = false;
 
-  void _start(List<QuizQuestion> all) {
-    final pool = (_cat == 'all'
-        ? List<QuizQuestion>.from(all)
-        : all.where((q) => q.category == _cat).toList())
-      ..shuffle(_rng);
-    final picked = pool.take(_roundSize).toList();
+  @override
+  void dispose() {
+    _timer?.cancel();
+    super.dispose();
+  }
+
+  void _startTimer() {
+    _timer?.cancel();
+    _secondsLeft = _seconds;
+    _timer = Timer.periodic(const Duration(seconds: 1), (t) {
+      if (!mounted) {
+        t.cancel();
+        return;
+      }
+      setState(() => _secondsLeft--);
+      if (_secondsLeft <= 0) {
+        t.cancel();
+        _onTimeout();
+      }
+    });
+  }
+
+  void _start(List<QuizQuestion> all, _Mode mode) {
+    final week = quizWeekKey();
+    List<QuizQuestion> picked;
+    Random optRng;
+    if (mode == _Mode.weekly) {
+      picked = weeklyQuestions(all, week, _weeklySize);
+      optRng = Random(weekSeed(week)); // herkese aynı sorular + şık sırası
+    } else {
+      final pool = (_cat == 'all'
+          ? List<QuizQuestion>.from(all)
+          : all.where((q) => q.category == _cat).toList())
+        ..shuffle(_rng);
+      picked = pool.take(_practiceSize).toList();
+      optRng = _rng;
+    }
     _session = picked.map((q) {
-      final idx = List<int>.generate(q.options.length, (i) => i)..shuffle(_rng);
+      final idx = List<int>.generate(q.options.length, (i) => i)
+        ..shuffle(optRng);
       return _SQ(q, [for (final i in idx) q.options[i]],
           idx.indexOf(q.correctIndex));
     }).toList();
     setState(() {
+      _mode = mode;
       _phase = _Phase.playing;
       _index = 0;
       _selected = null;
       _correct = 0;
+      _score = 0;
     });
+    _startTimer();
   }
 
   void _answer(int i) {
     if (_selected != null) return;
+    _timer?.cancel();
     setState(() {
       _selected = i;
-      if (i == _session[_index].correct) _correct++;
+      if (i == _session[_index].correct) {
+        _correct++;
+        if (_mode == _Mode.weekly) _score += 100 + _secondsLeft * 5;
+      }
     });
   }
 
-  void _next() {
+  void _onTimeout() {
+    if (_selected != null) return;
+    setState(() => _selected = -1);
+  }
+
+  Future<void> _next() async {
     if (_index + 1 >= _session.length) {
-      ref
+      _timer?.cancel();
+      await ref
           .read(quizStatsProvider.notifier)
           .recordRound(correct: _correct, total: _session.length);
-      setState(() => _phase = _Phase.result);
+      if (_mode == _Mode.weekly) await _submitWeekly();
+      if (mounted) setState(() => _phase = _Phase.result);
     } else {
       setState(() {
         _index++;
         _selected = null;
       });
+      _startTimer();
     }
+  }
+
+  Future<void> _submitWeekly() async {
+    final auth = ref.read(authControllerProvider);
+    if (auth.token == null || auth.user == null) return;
+    setState(() => _submitting = true);
+    try {
+      await QuizApi.submit(auth.token!, _score, _correct, _session.length);
+      ref.invalidate(quizLeaderboardProvider);
+    } catch (_) {}
+    if (mounted) setState(() => _submitting = false);
   }
 
   @override
@@ -103,8 +173,10 @@ class _QuizScreenState extends ConsumerState<QuizScreen> {
             case _Phase.idle:
               return _Idle(
                 cat: _cat,
-                onCat: (c) => setState(() => _cat = c),
-                onStart: () => _start(all),
+                onCat: (v) => setState(() => _cat = v),
+                onWeekly: () => _start(all, _Mode.weekly),
+                onPractice: () => _start(all, _Mode.practice),
+                onLeaderboard: () => context.push(Routes.quizLeaderboard),
               );
             case _Phase.playing:
               return _buildPlaying(context);
@@ -120,30 +192,55 @@ class _QuizScreenState extends ConsumerState<QuizScreen> {
     final c = context.colors;
     final sq = _session[_index];
     final answered = _selected != null;
+    final low = _secondsLeft <= 5;
     return ListView(
       padding: const EdgeInsets.fromLTRB(
           AppSpacing.base, AppSpacing.md, AppSpacing.base, AppSpacing.xxxl),
       children: [
-        // İlerleme + skor
         Row(children: [
           Text('${'quiz.question'.tr()} ${_index + 1}/${_session.length}',
               style: TextStyle(
                   color: c.textSecondary, fontWeight: FontWeight.w600)),
           const Spacer(),
+          if (_mode == _Mode.weekly) ...[
+            Icon(Icons.stars_rounded, size: 16, color: c.gold),
+            const Gap.xs(),
+            Text('$_score',
+                style:
+                    TextStyle(color: c.gold, fontWeight: FontWeight.w800)),
+            const Gap.md(),
+          ],
           Icon(Icons.check_circle_rounded, size: 16, color: c.success),
           const Gap.xs(),
-          Text('$_correct', style: TextStyle(color: c.success, fontWeight: FontWeight.w800)),
+          Text('$_correct',
+              style:
+                  TextStyle(color: c.success, fontWeight: FontWeight.w800)),
         ]),
         const Gap.sm(),
-        ClipRRect(
-          borderRadius: BorderRadius.circular(99),
-          child: LinearProgressIndicator(
-            value: (_index + (answered ? 1 : 0)) / _session.length,
-            minHeight: 6,
-            backgroundColor: c.border,
-            valueColor: AlwaysStoppedAnimation(c.gold),
+        // Geri sayım
+        Row(children: [
+          Icon(Icons.timer_outlined,
+              size: 16, color: low ? c.danger : c.textSecondary),
+          const Gap.xs(),
+          Text('$_secondsLeft sn',
+              style: TextStyle(
+                  color: low ? c.danger : c.textSecondary,
+                  fontWeight: FontWeight.w700,
+                  fontSize: 13)),
+          const Gap.sm(),
+          Expanded(
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(99),
+              child: LinearProgressIndicator(
+                value: answered ? 0 : _secondsLeft / _seconds,
+                minHeight: 6,
+                backgroundColor: c.border,
+                valueColor:
+                    AlwaysStoppedAnimation(low ? c.danger : c.gold),
+              ),
+            ),
           ),
-        ),
+        ]),
         const Gap.lg(),
         SelayaCard(
           padding: const EdgeInsets.all(AppSpacing.lg),
@@ -196,12 +293,17 @@ class _QuizScreenState extends ConsumerState<QuizScreen> {
               Icon(
                   _selected == sq.correct
                       ? Icons.check_circle_rounded
-                      : Icons.info_rounded,
+                      : _selected == -1
+                          ? Icons.timer_off_rounded
+                          : Icons.info_rounded,
                   size: 18,
                   color: _selected == sq.correct ? c.success : c.gold),
               const Gap.sm(),
               Expanded(
-                child: Text(sq.q.explanation,
+                child: Text(
+                    _selected == -1
+                        ? '${'quiz.timeUp'.tr()} ${sq.q.explanation}'
+                        : sq.q.explanation,
                     style: TextStyle(
                         color: c.textSecondary, fontSize: 13, height: 1.4)),
               ),
@@ -230,6 +332,8 @@ class _QuizScreenState extends ConsumerState<QuizScreen> {
     final c = context.colors;
     final total = _session.length;
     final pct = total == 0 ? 0.0 : _correct / total;
+    final weekly = _mode == _Mode.weekly;
+    final loggedIn = ref.watch(authControllerProvider).user != null;
     final (msg, emoji) = pct >= 0.8
         ? ('quiz.resGreat'.tr(), '🌟')
         : pct >= 0.5
@@ -260,12 +364,43 @@ class _QuizScreenState extends ConsumerState<QuizScreen> {
               color: c.success.withValues(alpha: 0.12),
               borderRadius: BorderRadius.circular(99),
             ),
-            child: Text('+${_correct * 10} ${'quiz.points'.tr()}',
-                style: TextStyle(
-                    color: c.success, fontWeight: FontWeight.w800)),
+            child: Text(
+                weekly
+                    ? '${'quiz.weeklyScore'.tr()}: $_score'
+                    : '+${_correct * 10} ${'quiz.points'.tr()}',
+                style:
+                    TextStyle(color: c.success, fontWeight: FontWeight.w800)),
           ),
         ),
+        if (weekly && _submitting) ...[
+          const Gap.md(),
+          Center(
+              child: Text('quiz.submitting'.tr(),
+                  style: TextStyle(color: c.textTertiary, fontSize: 13))),
+        ],
+        if (weekly && !loggedIn) ...[
+          const Gap.md(),
+          Center(
+            child: Text('quiz.signInToRank'.tr(),
+                textAlign: TextAlign.center,
+                style: TextStyle(color: c.textTertiary, fontSize: 13)),
+          ),
+        ],
         const Gap.xl(),
+        if (weekly)
+          SizedBox(
+            width: double.infinity,
+            child: FilledButton.icon(
+              onPressed: () => context.push(Routes.quizLeaderboard),
+              icon: const Icon(Icons.emoji_events_rounded, size: 18),
+              label: Text('quiz.seeLeaderboard'.tr()),
+              style: FilledButton.styleFrom(
+                  backgroundColor: c.gold,
+                  foregroundColor: c.onGold,
+                  padding: const EdgeInsets.symmetric(vertical: 14)),
+            ),
+          ),
+        const Gap.md(),
         Row(children: [
           Expanded(
             child: OutlinedButton(
@@ -280,7 +415,7 @@ class _QuizScreenState extends ConsumerState<QuizScreen> {
           const Gap.md(),
           Expanded(
             child: FilledButton(
-              onPressed: () => _start(all),
+              onPressed: () => _start(all, _mode),
               style: FilledButton.styleFrom(
                   backgroundColor: c.gold,
                   foregroundColor: c.onGold,
@@ -297,8 +432,16 @@ class _QuizScreenState extends ConsumerState<QuizScreen> {
 class _Idle extends ConsumerWidget {
   final String cat;
   final ValueChanged<String> onCat;
-  final VoidCallback onStart;
-  const _Idle({required this.cat, required this.onCat, required this.onStart});
+  final VoidCallback onWeekly;
+  final VoidCallback onPractice;
+  final VoidCallback onLeaderboard;
+  const _Idle({
+    required this.cat,
+    required this.onCat,
+    required this.onWeekly,
+    required this.onPractice,
+    required this.onLeaderboard,
+  });
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -308,7 +451,6 @@ class _Idle extends ConsumerWidget {
       padding: const EdgeInsets.fromLTRB(
           AppSpacing.base, AppSpacing.md, AppSpacing.base, AppSpacing.xxxl),
       children: [
-        // İstatistik şeridi
         SelayaCard(
           patterned: true,
           padding: const EdgeInsets.all(AppSpacing.lg),
@@ -319,10 +461,47 @@ class _Idle extends ConsumerWidget {
           ]),
         ),
         const Gap.lg(),
-        Text('quiz.intro'.tr(),
-            style: TextStyle(color: c.textSecondary, height: 1.45)),
+        // HAFTALIK YARIŞMA
+        SelayaCard(
+          padding: const EdgeInsets.all(AppSpacing.lg),
+          child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+            Row(children: [
+              Icon(Icons.emoji_events_rounded, color: c.gold),
+              const Gap.sm(),
+              Text('quiz.weekly'.tr(),
+                  style: Theme.of(context)
+                      .textTheme
+                      .titleMedium
+                      ?.copyWith(fontWeight: FontWeight.w800)),
+            ]),
+            const Gap.sm(),
+            Text('quiz.weeklyDesc'.tr(),
+                style: TextStyle(color: c.textSecondary, height: 1.4, fontSize: 13)),
+            const Gap.md(),
+            Row(children: [
+              Expanded(
+                child: FilledButton.icon(
+                  onPressed: onWeekly,
+                  icon: const Icon(Icons.play_arrow_rounded, size: 18),
+                  label: Text('quiz.startWeekly'.tr()),
+                  style: FilledButton.styleFrom(
+                      backgroundColor: c.gold,
+                      foregroundColor: c.onGold,
+                      padding: const EdgeInsets.symmetric(vertical: 13)),
+                ),
+              ),
+              const Gap.sm(),
+              IconButton.outlined(
+                onPressed: onLeaderboard,
+                icon: Icon(Icons.leaderboard_rounded, color: c.gold),
+                tooltip: 'quiz.leaderboard'.tr(),
+              ),
+            ]),
+          ]),
+        ),
         const Gap.lg(),
-        Text('quiz.pickCategory'.tr(),
+        // PRATİK
+        Text('quiz.practice'.tr(),
             style: Theme.of(context)
                 .textTheme
                 .labelMedium
@@ -342,25 +521,22 @@ class _Idle extends ConsumerWidget {
                     color: cat == e.key ? c.gold : c.textSecondary,
                     fontWeight: FontWeight.w600),
                 backgroundColor: c.surfaceAlt,
-                side: BorderSide(
-                    color: cat == e.key ? c.gold : c.border),
+                side: BorderSide(color: cat == e.key ? c.gold : c.border),
                 shape: const StadiumBorder(),
               ),
           ],
         ),
-        const Gap.xl(),
+        const Gap.md(),
         SizedBox(
           width: double.infinity,
-          child: FilledButton.icon(
-            onPressed: onStart,
-            icon: const Icon(Icons.play_arrow_rounded),
-            label: Text('quiz.start'.tr()),
-            style: FilledButton.styleFrom(
-                backgroundColor: c.gold,
-                foregroundColor: c.onGold,
-                padding: const EdgeInsets.symmetric(vertical: 15),
-                textStyle:
-                    const TextStyle(fontSize: 16, fontWeight: FontWeight.w700)),
+          child: OutlinedButton.icon(
+            onPressed: onPractice,
+            icon: const Icon(Icons.school_rounded, size: 18),
+            label: Text('quiz.startPractice'.tr()),
+            style: OutlinedButton.styleFrom(
+                foregroundColor: c.gold,
+                side: BorderSide(color: c.gold.withValues(alpha: 0.5)),
+                padding: const EdgeInsets.symmetric(vertical: 13)),
           ),
         ),
       ],

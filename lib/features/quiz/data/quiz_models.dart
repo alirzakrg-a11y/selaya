@@ -1,7 +1,35 @@
+import 'dart:math';
+
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../core/data/asset_json_loader.dart';
 import '../../../core/di/providers.dart';
+
+/// ISO-8601 hafta anahtarı (YYYY-Www) — backend (quiz.js) ile birebir aynı.
+String quizWeekKey([DateTime? at]) {
+  final now = (at ?? DateTime.now()).toUtc();
+  final date = DateTime.utc(now.year, now.month, now.day);
+  final thursday = date.add(Duration(days: 4 - date.weekday)); // Mon=1..Sun=7
+  final yearStart = DateTime.utc(thursday.year, 1, 1);
+  final weekNo = ((thursday.difference(yearStart).inDays + 1) / 7).ceil();
+  return '${thursday.year}-W${weekNo.toString().padLeft(2, '0')}';
+}
+
+int weekSeed(String week) {
+  var h = 0;
+  for (final c in week.codeUnits) {
+    h = (h * 31 + c) & 0x7fffffff;
+  }
+  return h;
+}
+
+/// Deterministik haftalık set: aynı hafta herkese aynı [count] soru, hafta
+/// değişince yenilenir (week tohumuyla karıştırılır).
+List<QuizQuestion> weeklyQuestions(
+    List<QuizQuestion> pool, String week, int count) {
+  final list = List<QuizQuestion>.from(pool)..shuffle(Random(weekSeed(week)));
+  return list.take(count).toList();
+}
 
 /// One quiz question (bundled, verified Islamic knowledge).
 class QuizQuestion {

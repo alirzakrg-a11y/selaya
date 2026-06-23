@@ -8,6 +8,7 @@
 import { handleAuth, hashPassword } from './auth.js';
 import { handleDuaWall } from './dua_wall.js';
 import { handleHatim } from './hatim.js';
+import { handleQuiz } from './quiz.js';
 
 const CORS = {
   'Access-Control-Allow-Origin': '*',
@@ -123,6 +124,10 @@ export default {
       // TOPLULUK HATMİ — üyeler cüz alır/okur; 30 cüz dolunca hatim tamamlanır.
       const hatimResp = await handleHatim(request, env, path);
       if (hatimResp) return hatimResp;
+
+      // BİLGİ YARIŞMASI — haftalık skor gönderimi + liderlik tablosu.
+      const quizResp = await handleQuiz(request, env, path);
+      if (quizResp) return quizResp;
 
       // FİNANS — canlı gram altın (₺) + Diyanet fitre (zekât/fitre hesabı için).
       // 30 dk edge cache: kaynağı yormaz, uygulama her açılışta güncel çeker.
@@ -604,6 +609,32 @@ export default {
           return json({ ok: true, id });
         }
 
+        // ---- BİLGİ YARIŞMASI: haftalık sıralama (admin) ----
+        if (request.method === 'GET' && path === '/api/quiz-leaderboard') {
+          // Tablo yoksa (kimse oynamadıysa) boş dön.
+          await env.DB.prepare(
+            "CREATE TABLE IF NOT EXISTS quiz_scores (user_id TEXT NOT NULL, week TEXT NOT NULL, " +
+            "rumuz TEXT, score INTEGER NOT NULL DEFAULT 0, correct INTEGER, total INTEGER, " +
+            "updated_at INTEGER, PRIMARY KEY (user_id, week))"
+          ).run();
+          const url = new URL(request.url);
+          const weeksRes = await env.DB.prepare(
+            "SELECT week, COUNT(*) AS n FROM quiz_scores GROUP BY week ORDER BY week DESC LIMIT 30"
+          ).all();
+          const weeks = (weeksRes.results || []).map((r) => ({ week: r.week, n: r.n }));
+          const week = url.searchParams.get('week') || (weeks[0] && weeks[0].week) || '';
+          let rows = [];
+          if (week) {
+            const r = await env.DB.prepare(
+              "SELECT q.rumuz, q.score, q.correct, q.total, q.updated_at, u.email " +
+              "FROM quiz_scores q LEFT JOIN users u ON u.id=q.user_id " +
+              "WHERE q.week=? ORDER BY q.score DESC, q.updated_at ASC LIMIT 200"
+            ).bind(week).all();
+            rows = r.results || [];
+          }
+          return json({ ok: true, week, weeks, rows });
+        }
+
         // ---- metin içerik (ayet/hadis/dua/tebrik — DOSYASIZ) ----
         if (request.method === 'POST' && path === '/api/text') {
           const form = await request.formData();
@@ -982,6 +1013,7 @@ const PANEL_HTML = `<!doctype html>
     <div class="nav-item" id="tabUsersBtn" onclick="showTab('users')">👤 Kullanıcılar</div>
     <div class="nav-item" id="tabDuaBtn" onclick="showTab('dua')">🤲 Dua Duvarı<span id="duaBadge" style="margin-left:auto;background:#e0556b;color:#fff;font-size:11px;font-weight:700;border-radius:999px;padding:1px 7px;display:none"></span></div>
     <div class="nav-item" id="tabHatimBtn" onclick="showTab('hatim')">📖 Topluluk Hatmi</div>
+    <div class="nav-item" id="tabQuizBtn" onclick="showTab('quiz')">🎯 Bilgi Yarışması</div>
     <div class="nav-item" onclick="logout()">🚪 Çıkış</div>
   </aside>
   <main class="main">
@@ -1159,6 +1191,19 @@ const PANEL_HTML = `<!doctype html>
       </div>
     </div>
 
+    <!-- ============ BİLGİ YARIŞMASI (sıralama) ============ -->
+    <div id="viewQuiz" class="hide">
+      <div class="card">
+        <div class="row" style="align-items:center">
+          <h3 style="margin:0">🎯 Haftalık Sıralama</h3>
+          <select id="quizWeek" onchange="loadQuizBoard(this.value)" style="flex:0 0 auto;min-width:150px"></select>
+          <button class="ghost" style="flex:0 0 auto" onclick="loadQuizBoard()">Yenile</button>
+        </div>
+        <p class="hint">Bilgi Yarışması'nda her hafta (ISO hafta) kullanıcıların EN İYİ skorları. Skor = doğru×100 + hız bonusu. Madalyalar ilk üç sıradır.</p>
+        <div id="quizBody"><p class="muted">Yükleniyor…</p></div>
+      </div>
+    </div>
+
     <!-- ============ METİN İÇERİK ============ -->
     <div id="viewText" class="hide">
       <div class="card">
@@ -1298,7 +1343,7 @@ const PANEL_HTML = `<!doctype html>
     if (noTitle) el('upTitle').value = '';
   }
 
-  var TAB_TITLES = { text:'Metin İçerik', notify:'Bildirimler', stats:'Kullanım', users:'Kullanıcılar', dua:'Dua Duvarı', hatim:'Topluluk Hatmi' };
+  var TAB_TITLES = { text:'Metin İçerik', notify:'Bildirimler', stats:'Kullanım', users:'Kullanıcılar', dua:'Dua Duvarı', hatim:'Topluluk Hatmi', quiz:'Bilgi Yarışması' };
   function setActiveNav(node){
     document.querySelectorAll('.nav-item').forEach(function(n){ n.classList.remove('active'); });
     if (node) node.classList.add('active');
@@ -1330,6 +1375,7 @@ const PANEL_HTML = `<!doctype html>
     el('viewUsers').classList.toggle('hide', t !== 'users');
     el('viewDua').classList.toggle('hide', t !== 'dua');
     el('viewHatim').classList.toggle('hide', t !== 'hatim');
+    el('viewQuiz').classList.toggle('hide', t !== 'quiz');
     setActiveNav(el('tab' + t.charAt(0).toUpperCase() + t.slice(1) + 'Btn'));
     var pt = el('pageTitle'); if (pt) pt.textContent = TAB_TITLES[t] || '';
     toggleSidebar(false);
@@ -1339,6 +1385,7 @@ const PANEL_HTML = `<!doctype html>
     if (t === 'users') loadUsers();
     if (t === 'dua') loadDuaWall();
     if (t === 'hatim') loadHatim();
+    if (t === 'quiz') loadQuizBoard();
   }
   function toggleSidebar(open){
     var sb = el('sidebar'); if (!sb) return;
@@ -1837,6 +1884,35 @@ const PANEL_HTML = `<!doctype html>
       if(res.j&&res.j.ok){ toast('Hatim başlatıldı ✓'); el('htTitle').value=''; el('htIntent').value=''; loadHatim(); }
       else { toast('Hata: '+((res.j&&res.j.error)||res.status)); }
     }).catch(function(e){ el('htStatus').textContent=''; toast('Hata: '+e); });
+  }
+
+  // --- Bilgi Yarışması haftalık sıralama (admin) ---
+  function loadQuizBoard(week){
+    el('quizBody').innerHTML='<p class="muted">Yükleniyor…</p>';
+    api('quiz-leaderboard'+(week?('?week='+encodeURIComponent(week)):'')).then(function(res){
+      var j=res.j||{}; var weeks=j.weeks||[]; var sel=el('quizWeek');
+      sel.innerHTML = weeks.length
+        ? weeks.map(function(w){ return '<option value="'+esc(w.week)+'"'+(w.week===j.week?' selected':'')+'>'+esc(w.week)+' ('+w.n+' kişi)</option>'; }).join('')
+        : '<option>—</option>';
+      var rows=j.rows||[];
+      if(!rows.length){ el('quizBody').innerHTML='<p class="muted">Bu hafta için kayıt yok.</p>'; return; }
+      var h='<table style="width:100%;border-collapse:collapse"><thead><tr>'+
+        '<th style="text-align:left;padding:8px 6px;color:var(--mut);font-size:12px">#</th>'+
+        '<th style="text-align:left;padding:8px 6px;color:var(--mut);font-size:12px">Rumuz</th>'+
+        '<th style="text-align:left;padding:8px 6px;color:var(--mut);font-size:12px">E-posta</th>'+
+        '<th style="text-align:right;padding:8px 6px;color:var(--mut);font-size:12px">Doğru</th>'+
+        '<th style="text-align:right;padding:8px 6px;color:var(--mut);font-size:12px">Skor</th></tr></thead><tbody>';
+      rows.forEach(function(r,i){
+        var medal = i===0?'🥇':i===1?'🥈':i===2?'🥉':(i+1)+'.';
+        h+='<tr style="border-top:1px solid var(--line)">'+
+          '<td style="padding:8px 6px;font-weight:700">'+medal+'</td>'+
+          '<td style="padding:8px 6px;font-weight:600">@'+esc(r.rumuz||'—')+'</td>'+
+          '<td style="padding:8px 6px;color:var(--mut);font-size:12px">'+esc(r.email||'—')+'</td>'+
+          '<td style="padding:8px 6px;text-align:right">'+(r.correct||0)+'/'+(r.total||0)+'</td>'+
+          '<td style="padding:8px 6px;text-align:right;font-weight:800;color:var(--gold)">'+(r.score||0)+'</td></tr>';
+      });
+      el('quizBody').innerHTML=h+'</tbody></table>';
+    }).catch(function(e){ el('quizBody').innerHTML='<p class="muted">Hata: '+e+'</p>'; });
   }
 
   // --- Kullanım istatistikleri (free tier takibi) ---
