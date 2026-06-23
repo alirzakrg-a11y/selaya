@@ -36,7 +36,6 @@ abstract final class Routes {
   static const premium = '/premium';
   static const citySelect = '/city-select';
   static const notificationSettings = '/notification-settings';
-  static const audioStories = '/audio-stories';
   static const fasting = '/fasting';
   static const ramadan = '/ramadan'; // Ramazan Modu (sahur/iftar + mukabele)
   static const greetings = '/greetings';

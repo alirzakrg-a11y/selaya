@@ -42,7 +42,6 @@ abstract final class PrefKeys {
       'dhikr_vibration'; // bool: zikir/tesbihat sayacında dokununca titreşim
   static const String dhikrSoundType = 'dhikr_sound_type'; // 'tik' | 'boncuk'
   static const String dhikrBead = 'dhikr_bead'; // int (bead color index)
-  static const String dhikrLeftHand = 'dhikr_left_hand'; // bool: left-hand mode
   static const String dhikrCustom =
       'dhikr_custom'; // json list of custom zikirs
   static const String qiblaTheme = 'qibla_theme'; // int (compass theme index)
@@ -102,9 +101,6 @@ abstract final class PrefKeys {
   // Fasting tracker
   static const String fastingPrefix =
       'fasting_'; // fasting_yyyy-MM-dd -> "fasted"|"kaza"
-
-  // Audio stories — recently played (csv of "catId:index", most recent first)
-  static const String recentAudio = 'recent_audio';
 
   // Qada (kaza) prayer tracker
   static const String kazaCounts = 'kaza_counts'; // json {prayerKey:int}
