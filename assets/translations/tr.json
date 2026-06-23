@@ -879,10 +879,13 @@
   },
   "quiz": {
     "title": "Bilgi Yarışması",
-    "intro": "Siyer, ibadet, Kur'an ve peygamberler üzerine 10 soruluk bir tur. Doğru cevap başına 10 puan; her gün oynayarak serini büyüt.",
-    "pickCategory": "KATEGORİ SEÇ",
-    "start": "Yarışmaya Başla",
     "question": "Soru",
+    "secondsShort": "sn",
+    "needRumuz": "Skorun kaydedilmedi — sıralamaya girmek için bir rumuz belirle.",
+    "setRumuz": "Rumuz Belirle",
+    "submitFailed": "Skor gönderilemedi (bağlantı). Tekrar dene.",
+    "retrySubmit": "Tekrar Gönder",
+    "cat": { "all": "Tümü", "siyer": "Siyer", "ibadet": "İbadet", "kuran": "Kur'an", "peygamberler": "Peygamberler", "genel": "Genel" },
     "next": "Sonraki",
     "finish": "Bitir",
     "retry": "Tekrar Oyna",
@@ -905,7 +908,8 @@
     "signInToRank": "Sıralamaya girmek için giriş yap (rumuz gerekli).",
     "weekOf": "Hafta",
     "yourRank": "Senin sıran: {}.",
-    "emptyBoard": "Bu hafta henüz kimse oynamadı. İlk sen ol!"
+    "emptyBoard": "Bu hafta henüz kimse oynamadı. İlk sen ol!",
+    "homeCta": "Haftalık yarışmaya katıl, puan topla!"
   },
   "hatim": {
     "title": "Hatim Takibi",

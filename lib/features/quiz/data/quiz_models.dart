@@ -85,6 +85,19 @@ class QuizStatsController extends Notifier<QuizStats> {
   static const _kAnswered = 'quiz_total_answered';
   static const _kCorrect = 'quiz_total_correct';
   static const _kLastDay = 'quiz_last_day';
+  static const _kRecent = 'quiz_recent';
+
+  /// Son görülen soruların anahtarları (pratikte yakın tekrarı önlemek için).
+  List<String> recentKeys() =>
+      ref.read(sharedPreferencesProvider).getStringList(_kRecent) ?? const [];
+
+  /// [keys]'i son-görülenlere ekle (en fazla 40 tut, FIFO).
+  Future<void> addSeen(Iterable<String> keys) async {
+    final p = ref.read(sharedPreferencesProvider);
+    final list = [...(p.getStringList(_kRecent) ?? const []), ...keys];
+    final capped = list.length > 40 ? list.sublist(list.length - 40) : list;
+    await p.setStringList(_kRecent, capped);
+  }
 
   @override
   QuizStats build() {

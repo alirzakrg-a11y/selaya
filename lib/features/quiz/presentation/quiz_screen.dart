@@ -16,14 +16,9 @@ import '../../auth/data/auth_controller.dart';
 import '../data/quiz_api.dart';
 import '../data/quiz_models.dart';
 
-const _catLabels = <String, String>{
-  'all': 'Tümü',
-  'siyer': 'Siyer',
-  'ibadet': 'İbadet',
-  'kuran': 'Kur\'an',
-  'peygamberler': 'Peygamberler',
-  'genel': 'Genel',
-};
+const _catKeys = ['all', 'siyer', 'ibadet', 'kuran', 'peygamberler', 'genel'];
+String _catLabel(String key) =>
+    _catKeys.contains(key) ? 'quiz.cat.$key'.tr() : key;
 
 enum _Phase { idle, playing, result }
 
@@ -59,6 +54,7 @@ class _QuizScreenState extends ConsumerState<QuizScreen> {
   int _secondsLeft = _seconds;
   Timer? _timer;
   bool _submitting = false;
+  String? _submitErr; // null=ok, 'rumuz_required' | 'network' | diğer kod
 
   @override
   void dispose() {
@@ -90,11 +86,23 @@ class _QuizScreenState extends ConsumerState<QuizScreen> {
       picked = weeklyQuestions(all, week, _weeklySize);
       optRng = Random(weekSeed(week)); // herkese aynı sorular + şık sırası
     } else {
-      final pool = (_cat == 'all'
+      final base = _cat == 'all'
           ? List<QuizQuestion>.from(all)
-          : all.where((q) => q.category == _cat).toList())
+          : all.where((q) => q.category == _cat).toList();
+      // Son görülenleri ele (aynı sorular sık gelmesin); yeterli taze yoksa
+      // tüm havuza düş.
+      final recent =
+          ref.read(quizStatsProvider.notifier).recentKeys().toSet();
+      final fresh = base.where((q) => !recent.contains(q.question)).toList()
         ..shuffle(_rng);
-      picked = pool.take(_practiceSize).toList();
+      if (fresh.length < _practiceSize) {
+        // Taze yetmiyorsa görülenleri SONA ekle (önce taze tüketilsin, sadece
+        // gerekirse görülenle tamamla — komple havuza düşüp aynıları verme).
+        final seen = base.where((q) => recent.contains(q.question)).toList()
+          ..shuffle(_rng);
+        fresh.addAll(seen);
+      }
+      picked = fresh.take(_practiceSize).toList();
       optRng = _rng;
     }
     _session = picked.map((q) {
@@ -103,6 +111,9 @@ class _QuizScreenState extends ConsumerState<QuizScreen> {
       return _SQ(q, [for (final i in idx) q.options[i]],
           idx.indexOf(q.correctIndex));
     }).toList();
+    if (mode == _Mode.practice) {
+      ref.read(quizStatsProvider.notifier).addSeen(picked.map((q) => q.question));
+    }
     setState(() {
       _mode = mode;
       _phase = _Phase.playing;
@@ -110,6 +121,7 @@ class _QuizScreenState extends ConsumerState<QuizScreen> {
       _selected = null;
       _correct = 0;
       _score = 0;
+      _submitErr = null;
     });
     _startTimer();
   }
@@ -151,12 +163,25 @@ class _QuizScreenState extends ConsumerState<QuizScreen> {
   Future<void> _submitWeekly() async {
     final auth = ref.read(authControllerProvider);
     if (auth.token == null || auth.user == null) return;
-    setState(() => _submitting = true);
+    setState(() {
+      _submitting = true;
+      _submitErr = null;
+    });
+    String? err;
     try {
       await QuizApi.submit(auth.token!, _score, _correct, _session.length);
       ref.invalidate(quizLeaderboardProvider);
-    } catch (_) {}
-    if (mounted) setState(() => _submitting = false);
+    } on QuizException catch (e) {
+      err = e.code; // 'rumuz_required' | 'unauthorized' | 'banned' | …
+    } catch (_) {
+      err = 'network';
+    }
+    if (mounted) {
+      setState(() {
+        _submitting = false;
+        _submitErr = err;
+      });
+    }
   }
 
   @override
@@ -226,7 +251,7 @@ class _QuizScreenState extends ConsumerState<QuizScreen> {
                 color: c.gold.withValues(alpha: 0.14),
                 borderRadius: BorderRadius.circular(99),
               ),
-              child: Text(_catLabels[sq.q.category] ?? sq.q.category,
+              child: Text(_catLabel(sq.q.category),
                   style: TextStyle(
                       color: c.gold, fontSize: 11, fontWeight: FontWeight.w700)),
             ),
@@ -244,7 +269,7 @@ class _QuizScreenState extends ConsumerState<QuizScreen> {
           Icon(Icons.timer_outlined,
               size: 16, color: low ? c.danger : c.textSecondary),
           const Gap.xs(),
-          Text('$_secondsLeft sn',
+          Text('$_secondsLeft ${'quiz.secondsShort'.tr()}',
               style: TextStyle(
                   color: low ? c.danger : c.textSecondary,
                   fontWeight: FontWeight.w700,
@@ -385,6 +410,41 @@ class _QuizScreenState extends ConsumerState<QuizScreen> {
                 style: TextStyle(color: c.textTertiary, fontSize: 13)),
           ),
         ],
+        // Skor gönderilemedi: rumuz gerekiyor ya da bağlantı/başka hata.
+        if (weekly && loggedIn && _submitErr != null) ...[
+          const Gap.md(),
+          Container(
+            padding: const EdgeInsets.all(AppSpacing.md),
+            decoration: BoxDecoration(
+              color: c.danger.withValues(alpha: 0.10),
+              borderRadius: AppRadius.rMd,
+              border: Border.all(color: c.danger.withValues(alpha: 0.35)),
+            ),
+            child: Column(children: [
+              Text(
+                _submitErr == 'rumuz_required'
+                    ? 'quiz.needRumuz'.tr()
+                    : 'quiz.submitFailed'.tr(),
+                textAlign: TextAlign.center,
+                style: TextStyle(color: c.textSecondary, fontSize: 13),
+              ),
+              const Gap.sm(),
+              if (_submitErr == 'rumuz_required')
+                OutlinedButton(
+                  onPressed: () => context.push(Routes.duaWall),
+                  style: OutlinedButton.styleFrom(foregroundColor: c.gold),
+                  child: Text('quiz.setRumuz'.tr()),
+                )
+              else
+                OutlinedButton.icon(
+                  onPressed: _submitting ? null : _submitWeekly,
+                  icon: const Icon(Icons.refresh_rounded, size: 16),
+                  label: Text('quiz.retrySubmit'.tr()),
+                  style: OutlinedButton.styleFrom(foregroundColor: c.gold),
+                ),
+            ]),
+          ),
+        ],
         const Gap.xl(),
         if (weekly)
           SizedBox(
@@ -510,17 +570,17 @@ class _Idle extends ConsumerWidget {
           spacing: 8,
           runSpacing: 8,
           children: [
-            for (final e in _catLabels.entries)
+            for (final k in _catKeys)
               ChoiceChip(
-                label: Text(e.value),
-                selected: cat == e.key,
-                onSelected: (_) => onCat(e.key),
+                label: Text(_catLabel(k)),
+                selected: cat == k,
+                onSelected: (_) => onCat(k),
                 selectedColor: c.gold.withValues(alpha: 0.2),
                 labelStyle: TextStyle(
-                    color: cat == e.key ? c.gold : c.textSecondary,
+                    color: cat == k ? c.gold : c.textSecondary,
                     fontWeight: FontWeight.w600),
                 backgroundColor: c.surfaceAlt,
-                side: BorderSide(color: cat == e.key ? c.gold : c.border),
+                side: BorderSide(color: cat == k ? c.gold : c.border),
                 shape: const StadiumBorder(),
               ),
           ],

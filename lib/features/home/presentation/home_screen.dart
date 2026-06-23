@@ -32,6 +32,7 @@ import '../../ibadah_tracking/data/prayer_checkin.dart';
 import '../../prayer_times/presentation/widgets/next_prayer_card.dart';
 import '../../prayer_times/presentation/widgets/prayer_clock_dial.dart';
 import '../../prayer_times/presentation/widgets/prayer_strip.dart';
+import '../../quiz/data/quiz_models.dart';
 import '../../prayer_times/presentation/widgets/prayer_timeline_gauge.dart';
 import '../../stories/presentation/story_rail.dart';
 import '../../weather/data/weather_service.dart';
@@ -130,6 +131,11 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
             child: _SeeMoreButton(onTap: () => context.push(Routes.more)),
           ),
           const Gap.lg(),
+        ];
+      case 'quiz':
+        return const [
+          Padding(padding: AppSpacing.screen, child: _QuizCard()),
+          Gap.lg(),
         ];
       case 'verseHadithPair':
         return const [_VerseHadithPair(), Gap.lg()];
@@ -1556,6 +1562,52 @@ class _WidgetPromoCard extends StatelessWidget {
 
 /// ⑳ Anasayfada duvar kâğıtlarının altında kısa bir günlük bilgi (1-2 satır,
 /// güne göre döner). Akış'taki "Bunu biliyor muydun"un küçük anasayfa hâli.
+/// Ana ekran "Bilgi Yarışması" kartı — puan/seri özeti + yarışmaya yönlendirir.
+class _QuizCard extends ConsumerWidget {
+  const _QuizCard();
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final c = context.colors;
+    final stats = ref.watch(quizStatsProvider);
+    final sub = stats.points > 0
+        ? '${stats.points} ${'quiz.points'.tr()} · 🔥 ${stats.streak}'
+        : 'quiz.homeCta'.tr();
+    return SelayaCard(
+      onTap: () => context.push(Routes.quiz),
+      borderRadius: AppRadius.rLg,
+      padding: const EdgeInsets.all(AppSpacing.md),
+      child: Row(children: [
+        Container(
+          padding: const EdgeInsets.all(9),
+          decoration: BoxDecoration(
+            shape: BoxShape.circle,
+            gradient: LinearGradient(colors: [c.gold, c.goldBright]),
+          ),
+          child: Icon(Icons.quiz_rounded, color: c.bg, size: 20),
+        ),
+        const Gap.base(),
+        Expanded(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text('quiz.title'.tr(),
+                  style: Theme.of(context)
+                      .textTheme
+                      .titleSmall
+                      ?.copyWith(fontWeight: FontWeight.w700)),
+              Text(sub,
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
+                  style: TextStyle(color: c.textSecondary, fontSize: 12)),
+            ],
+          ),
+        ),
+        Icon(AppIcons.forward, color: c.gold),
+      ]),
+    );
+  }
+}
+
 class _DailyFact extends StatelessWidget {
   const _DailyFact();
   static const _facts = <(String, String)>[

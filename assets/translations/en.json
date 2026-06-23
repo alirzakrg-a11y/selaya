@@ -879,10 +879,13 @@
   },
   "quiz": {
     "title": "Knowledge Quiz",
-    "intro": "A 10-question round on the Prophet's life, worship, the Qur'an and the prophets. 10 points per correct answer — play daily to grow your streak.",
-    "pickCategory": "PICK A CATEGORY",
-    "start": "Start Quiz",
     "question": "Question",
+    "secondsShort": "s",
+    "needRumuz": "Score not saved — set a nickname to appear on the leaderboard.",
+    "setRumuz": "Set Nickname",
+    "submitFailed": "Couldn't submit your score (connection). Try again.",
+    "retrySubmit": "Retry",
+    "cat": { "all": "All", "siyer": "Seerah", "ibadet": "Worship", "kuran": "Qur'an", "peygamberler": "Prophets", "genel": "General" },
     "next": "Next",
     "finish": "Finish",
     "retry": "Play Again",
@@ -905,7 +908,8 @@
     "signInToRank": "Sign in to appear on the leaderboard (nickname required).",
     "weekOf": "Week",
     "yourRank": "Your rank: {}.",
-    "emptyBoard": "No one has played this week yet. Be the first!"
+    "emptyBoard": "No one has played this week yet. Be the first!",
+    "homeCta": "Join the weekly challenge and earn points!"
   },
   "hatim": {
     "title": "Khatm Tracker",

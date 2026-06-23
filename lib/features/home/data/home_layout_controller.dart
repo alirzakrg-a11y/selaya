@@ -13,6 +13,7 @@ const homeSectionKeys = [
   'prayerStrip',
   'nearestMosque',
   'featured',
+  'quiz', // İslami Bilgi Yarışması kartı
   'quickPair',
   'verseHadithPair', // Günün Ayeti + Hadisi YAN YANA (eski verseOfDay+hadithOfDay)
   'dailyDua',
@@ -32,6 +33,7 @@ const homeSectionLabels = {
   'prayerStrip': 'home.secPrayerStrip',
   'nearestMosque': 'home.nearestMosque',
   'featured': 'home.featured',
+  'quiz': 'quiz.title',
   'verseHadithPair': 'home.secVerseHadith',
   'dailyDua': 'akis.duaOfDay',
   'mediaPair': 'home.secMedia',
