@@ -22,21 +22,6 @@ class MosqueSilentService {
 
   bool get _supported => Platform.isAndroid;
 
-  /// (Re)register geofences for [mosques]. Replaces any previous set.
-  Future<void> register(
-      List<({String id, double lat, double lng, double radius})>
-          mosques) async {
-    if (!_supported) return;
-    try {
-      await _ch.invokeMethod('register', {
-        'mosques': [
-          for (final m in mosques)
-            {'id': m.id, 'lat': m.lat, 'lng': m.lng, 'radius': m.radius}
-        ],
-      });
-    } catch (_) {}
-  }
-
   /// Immediately mute ([near] = true) or restore ([near] = false) based on the
   /// current foreground proximity check.
   Future<void> applyNow(bool near) async {
@@ -124,40 +109,20 @@ class MosqueSilentController extends Notifier<bool> {
       await _revertOff();
       return;
     }
-    // 3) Optional: background location ("Allow all the time") for passive
-    //    geofencing. Best effort — the foreground check works without it.
-    if (interactive) await perm.requestBackgroundLocation();
-    // Fresh fix on the explicit enable; the short location cache is fine on
-    // resume (and avoids a GPS lock on every app open).
+    // 3) Konum + en yakın camiler → ANLIK mesafe kontrolü (FOREGROUND-ONLY).
+    //    Arka plan konumu / geofence KULLANILMIYOR (Play Store incelemesi
+    //    ACCESS_BACKGROUND_LOCATION ile çok zorlaşıyor) → özellik yalnızca
+    //    uygulama açık/öne gelince susturur (ayar ipucu bunu söyler).
     final pos = await ref
         .read(locationServiceProvider)
         .currentPosition(allowCache: !interactive);
     if (pos == null) return;
     final mosques = await ref.read(overpassServiceProvider).findNearby(pos);
     if (mosques.isEmpty) return;
-    final nearest = mosques.take(_maxMosques).toList();
-    final svc = ref.read(mosqueSilentServiceProvider);
-    // GeofencingClient.addGeofences throws (silently caught) without background
-    // location, and geofences only TRIGGER in the background when it's granted.
-    // So register only when "Allow all the time" is on; otherwise clear any
-    // stale geofences and rely purely on the foreground proximity check below.
-    if (await perm.backgroundLocationGranted()) {
-      await svc.register([
-        for (var i = 0; i < nearest.length; i++)
-          (
-            id: 'mosque_$i',
-            lat: nearest[i].lat,
-            lng: nearest[i].lng,
-            radius: _radiusM,
-          ),
-      ]);
-    } else {
-      await svc.register(const []);
-    }
-    // Foreground immediate apply (works even without a background-location
-    // grant): are we currently inside any mosque's radius?
-    final near = nearest.any((m) => m.distanceKm * 1000 <= _radiusM);
-    await svc.applyNow(near);
+    final near = mosques
+        .take(_maxMosques)
+        .any((m) => m.distanceKm * 1000 <= _radiusM);
+    await ref.read(mosqueSilentServiceProvider).applyNow(near);
   }
 }
 

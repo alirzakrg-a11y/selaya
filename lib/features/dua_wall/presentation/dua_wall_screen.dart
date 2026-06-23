@@ -5,6 +5,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:share_plus/share_plus.dart';
 
+import '../../../core/di/providers.dart';
 import '../../../core/localization/localized_text.dart';
 import '../../../core/router/routes.dart';
 import '../../../core/theme/app_colors.dart';
@@ -27,6 +28,7 @@ class DuaWallScreen extends ConsumerStatefulWidget {
 class _DuaWallScreenState extends ConsumerState<DuaWallScreen> {
   final List<DuaPost> _duas = [];
   final Set<String> _amined = {};
+  final Set<String> _blocked = {}; // engellenen rumuzlar (cihaz-yerel, UGC)
   bool _loading = true;
   bool _loadingMore = false;
   bool _end = false;
@@ -35,6 +37,9 @@ class _DuaWallScreenState extends ConsumerState<DuaWallScreen> {
   @override
   void initState() {
     super.initState();
+    _blocked.addAll(
+        ref.read(sharedPreferencesProvider).getStringList('dua_blocked') ??
+            const <String>[]);
     _load();
   }
 
@@ -49,7 +54,7 @@ class _DuaWallScreenState extends ConsumerState<DuaWallScreen> {
       setState(() {
         _duas
           ..clear()
-          ..addAll(list);
+          ..addAll(list.where((d) => !_blocked.contains(d.rumuz)));
         _loading = false;
         _end = list.length < 30;
       });
@@ -69,7 +74,7 @@ class _DuaWallScreenState extends ConsumerState<DuaWallScreen> {
       final list = await DuaWallApi.list(before: _duas.last.createdAt);
       if (!mounted) return;
       setState(() {
-        _duas.addAll(list);
+        _duas.addAll(list.where((d) => !_blocked.contains(d.rumuz)));
         _end = list.length < 30;
         _loadingMore = false;
       });
@@ -360,6 +365,58 @@ class _DuaWallScreenState extends ConsumerState<DuaWallScreen> {
     }
   }
 
+  /// Bir duayı şikayet et (UGC moderasyonu). Onaylı bir sorgu sonra API'ye gider.
+  Future<void> _report(DuaPost post) async {
+    final tr = context.langCode == 'tr';
+    final auth = ref.read(authControllerProvider);
+    if (!auth.loggedIn) {
+      _toast(tr ? 'Şikayet için giriş yapın.' : 'Sign in to report.');
+      return;
+    }
+    final ok = await showDialog<bool>(
+      context: context,
+      builder: (ctx) => AlertDialog(
+        title: Text(tr ? 'Şikayet et' : 'Report'),
+        content: Text(tr
+            ? 'Bu duayı uygunsuz olarak bildir? Yeterli şikayette otomatik gizlenir.'
+            : 'Report this dua as inappropriate? It is auto-hidden after enough reports.'),
+        actions: [
+          TextButton(
+              onPressed: () => Navigator.pop(ctx, false),
+              child: Text(tr ? 'Vazgeç' : 'Cancel')),
+          FilledButton(
+              onPressed: () => Navigator.pop(ctx, true),
+              child: Text(tr ? 'Şikayet et' : 'Report')),
+        ],
+      ),
+    );
+    if (ok != true) return;
+    try {
+      await DuaWallApi.report(auth.token!, post.id);
+      if (mounted) {
+        _toast(tr ? 'Şikayetin alındı. Teşekkürler.' : 'Report received. Thank you.');
+      }
+    } catch (_) {
+      if (mounted) _toast(tr ? 'Şikayet gönderilemedi.' : "Couldn't send report.");
+    }
+  }
+
+  /// Bir kullanıcıyı (rumuz) engelle — duaları bu cihazda gizlenir (yerel).
+  Future<void> _block(DuaPost post) async {
+    final tr = context.langCode == 'tr';
+    final rumuz = post.rumuz;
+    _blocked.add(rumuz);
+    await ref
+        .read(sharedPreferencesProvider)
+        .setStringList('dua_blocked', _blocked.toList());
+    setState(() => _duas.removeWhere((d) => d.rumuz == rumuz));
+    if (mounted) {
+      _toast(tr
+          ? '@$rumuz engellendi. Duaları gizlendi.'
+          : '@$rumuz blocked. Their posts are hidden.');
+    }
+  }
+
   /// Üstte duran "dua paylaş" davet kutusu — dokununca compose akışı (giriş +
   /// rumuz kontrolü _onCompose'da). Listeyle birlikte kayar.
   Widget _composePrompt(bool tr) {
@@ -498,6 +555,8 @@ class _DuaWallScreenState extends ConsumerState<DuaWallScreen> {
                                 post: d,
                                 amined: _amined.contains(d.id),
                                 onAmin: () => _onAmin(d),
+                                onReport: () => _report(d),
+                                onBlock: () => _block(d),
                                 tr: tr,
                               );
                             },
@@ -512,11 +571,15 @@ class _DuaCard extends StatelessWidget {
   final DuaPost post;
   final bool amined;
   final VoidCallback onAmin;
+  final VoidCallback onReport;
+  final VoidCallback onBlock;
   final bool tr;
   const _DuaCard({
     required this.post,
     required this.amined,
     required this.onAmin,
+    required this.onReport,
+    required this.onBlock,
     required this.tr,
   });
 
@@ -564,6 +627,35 @@ class _DuaCard extends StatelessWidget {
               ),
               Text(_ago(),
                   style: TextStyle(color: c.textTertiary, fontSize: 11.5)),
+              PopupMenuButton<String>(
+                icon: Icon(Icons.more_vert_rounded,
+                    size: 18, color: c.textTertiary),
+                padding: EdgeInsets.zero,
+                splashRadius: 18,
+                onSelected: (v) {
+                  if (v == 'report') {
+                    onReport();
+                  } else if (v == 'block') {
+                    onBlock();
+                  }
+                },
+                itemBuilder: (_) => [
+                  PopupMenuItem(
+                      value: 'report',
+                      child: Row(children: [
+                        const Icon(Icons.flag_outlined, size: 18),
+                        const Gap.sm(),
+                        Text(tr ? 'Şikayet et' : 'Report'),
+                      ])),
+                  PopupMenuItem(
+                      value: 'block',
+                      child: Row(children: [
+                        const Icon(Icons.block_rounded, size: 18),
+                        const Gap.sm(),
+                        Text(tr ? 'Kullanıcıyı engelle' : 'Block user'),
+                      ])),
+                ],
+              ),
             ],
           ),
           const Gap.sm(),

@@ -120,6 +120,15 @@ class AuthController extends Notifier<AuthState> {
     await prefs.remove(PrefKeys.authUser);
     state = const AuthState();
   }
+
+  /// Hesabı kalıcı sil (şifre teyitli) → sunucudaki tüm veri silinir, ardından
+  /// yerel oturum kapatılır. Hata olursa [AuthException] fırlatır.
+  Future<void> deleteAccount(String password) async {
+    final token = state.token;
+    if (token == null) return;
+    await AuthApi.deleteAccount(token, password);
+    await logout();
+  }
 }
 
 final authControllerProvider = NotifierProvider<AuthController, AuthState>(

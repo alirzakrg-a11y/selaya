@@ -1,7 +1,17 @@
+import java.util.Properties
+import java.io.FileInputStream
+
 plugins {
     id("com.android.application")
     // The Flutter Gradle Plugin must be applied after the Android and Kotlin Gradle plugins.
     id("dev.flutter.flutter-gradle-plugin")
+}
+
+// Release imza bilgileri android/key.properties'ten (git'e GİRMEZ).
+val keystoreProperties = Properties()
+val keystorePropertiesFile = rootProject.file("key.properties")
+if (keystorePropertiesFile.exists()) {
+    keystoreProperties.load(FileInputStream(keystorePropertiesFile))
 }
 
 android {
@@ -21,23 +31,33 @@ android {
         // You can update the following values to match your application needs.
         // For more information, see: https://flutter.dev/to/review-gradle-config.
         minSdk = flutter.minSdkVersion
-        // Target Android 13 (33), not the toolchain's latest, on purpose: a
-        // prayer-alarm app needs reliable background alarms + a persistent
-        // notification. Targeting 34+ pulls in Android 14's dismissible-FGS
-        // notifications and stricter foreground/background limits; 33 keeps the
-        // ongoing notification non-dismissible and the alarms dependable, while
-        // still requiring the runtime notification permission. (compileSdk stays
-        // latest, so API 34+ symbols still build.)
-        targetSdk = 33
+        // Google Play yeni uygulama/güncelleme için targetSdk 34 (Android 14)
+        // şart. NOT: Android 14'te devam-eden (FGS) namaz bildirimi artık
+        // kaydırılıp kapatılabilir hale gelir; alarmlar USE_EXACT_ALARM ile
+        // çalışmaya devam eder. FGS türleri manifeste tanımlı (special_use /
+        // mediaPlayback). Cihazda alarm + ongoing davranışı doğrulanmalı.
+        targetSdk = 34
         versionCode = flutter.versionCode
         versionName = flutter.versionName
     }
 
+    signingConfigs {
+        create("release") {
+            keyAlias = keystoreProperties["keyAlias"] as String?
+            keyPassword = keystoreProperties["keyPassword"] as String?
+            storeFile = (keystoreProperties["storeFile"] as String?)?.let { file(it) }
+            storePassword = keystoreProperties["storePassword"] as String?
+        }
+    }
+
     buildTypes {
         release {
-            // TODO: Add your own signing config for the release build.
-            // Signing with the debug keys for now, so `flutter run --release` works.
-            signingConfig = signingConfigs.getByName("debug")
+            // key.properties varsa release upload keystore'uyla imzala (Play),
+            // yoksa debug'a düş (yerel `flutter run --release` için).
+            signingConfig = if (keystorePropertiesFile.exists())
+                signingConfigs.getByName("release")
+            else
+                signingConfigs.getByName("debug")
             // Do NOT shrink resources: the adhan sounds in res/raw are referenced
             // only by name (RawResourceAndroidNotificationSound → getIdentifier),
             // so the resource shrinker can't see they're used and strips them —

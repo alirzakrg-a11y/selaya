@@ -145,34 +145,6 @@ class PermissionService {
     return PermissionOutcome.denied;
   }
 
-  /// Android 10+ background location ("Allow all the time"), needed for the
-  /// mosque geofence to silence the phone while the app is backgrounded. On
-  /// Android 11+ this is two-step: foreground must be granted first, then the
-  /// system shows a separate "all the time" choice. Best-effort — returns the
-  /// granted state; the mosque feature degrades to a foreground-only check
-  /// (silence on app open near a mosque) when background is denied. No-op → true
-  /// on iOS.
-  Future<bool> requestBackgroundLocation() async {
-    if (!Platform.isAndroid) return true;
-    if (!await locationGranted()) {
-      final p = await Geolocator.requestPermission();
-      if (p != LocationPermission.always &&
-          p != LocationPermission.whileInUse) {
-        return false;
-      }
-    }
-    final bg = await Permission.locationAlways.request();
-    return bg.isGranted;
-  }
-
-  /// Whether background location ("Allow all the time") is currently granted.
-  /// The mosque geofence only fires while the app is backgrounded when this is
-  /// true; otherwise the feature degrades to a foreground-only proximity check.
-  Future<bool> backgroundLocationGranted() async {
-    if (!Platform.isAndroid) return true;
-    return Permission.locationAlways.isGranted;
-  }
-
   /// Opens the OS app-settings page (used when an outcome is [needsSettings]).
   Future<bool> openSettings() => openAppSettings();
 }

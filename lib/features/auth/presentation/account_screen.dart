@@ -190,8 +190,94 @@ class AccountScreen extends ConsumerWidget {
                             RoundedRectangleBorder(borderRadius: AppRadius.rLg)),
                   ),
                 ),
+                const Gap.sm(),
+                // Hesabı kalıcı sil (KVKK + Play zorunluluğu).
+                TextButton.icon(
+                  onPressed: () => _confirmDelete(context, ref),
+                  icon: Icon(Icons.delete_forever_rounded,
+                      size: 18, color: c.danger),
+                  label: Text('auth.deleteAccount'.tr(),
+                      style: TextStyle(color: c.danger)),
+                ),
               ],
             ),
+    );
+  }
+
+  Future<void> _confirmDelete(BuildContext context, WidgetRef ref) async {
+    final c = context.colors;
+    final pwCtrl = TextEditingController();
+    bool busy = false;
+    String? err;
+    await showDialog<void>(
+      context: context,
+      builder: (ctx) => StatefulBuilder(
+        builder: (ctx, setSt) {
+          Future<void> run() async {
+            if (pwCtrl.text.isEmpty) {
+              setSt(() => err = 'auth.deletePwRequired'.tr());
+              return;
+            }
+            setSt(() {
+              busy = true;
+              err = null;
+            });
+            try {
+              await ref
+                  .read(authControllerProvider.notifier)
+                  .deleteAccount(pwCtrl.text);
+              await ref.read(syncControllerProvider.notifier).resetLocal();
+              if (ctx.mounted) Navigator.pop(ctx);
+              if (context.mounted) {
+                context.pop();
+                ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(content: Text('auth.deleteDone'.tr())));
+              }
+            } on AuthException catch (e) {
+              setSt(() {
+                busy = false;
+                err = e.code == 'wrong_password'
+                    ? 'auth.deleteWrongPw'.tr()
+                    : 'auth.deleteFailed'.tr();
+              });
+            } catch (_) {
+              setSt(() {
+                busy = false;
+                err = 'auth.deleteFailed'.tr();
+              });
+            }
+          }
+
+          return AlertDialog(
+            backgroundColor: c.surface,
+            title: Text('auth.deleteAccount'.tr()),
+            content: Column(mainAxisSize: MainAxisSize.min, children: [
+              Text('auth.deleteWarn'.tr(),
+                  style: TextStyle(color: c.textSecondary, height: 1.4)),
+              const Gap.md(),
+              TextField(
+                controller: pwCtrl,
+                obscureText: true,
+                enabled: !busy,
+                decoration: InputDecoration(
+                  labelText: 'auth.password'.tr(),
+                  errorText: err,
+                ),
+              ),
+            ]),
+            actions: [
+              TextButton(
+                  onPressed: busy ? null : () => Navigator.pop(ctx),
+                  child: Text('common.cancel'.tr())),
+              FilledButton(
+                onPressed: busy ? null : run,
+                style: FilledButton.styleFrom(backgroundColor: c.danger),
+                child: Text('auth.deleteConfirm'.tr()),
+              ),
+            ],
+          );
+        },
+      ),
     );
   }
 

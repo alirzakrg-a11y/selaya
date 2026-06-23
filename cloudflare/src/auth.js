@@ -238,7 +238,8 @@ async function sendResetEmail(env, email, code) {
 // Auth rotası ise Response döner, değilse null (index.js akışı devam etsin).
 export async function handleAuth(request, env, path) {
   if (!path.startsWith('/v1/auth/') &&
-      path !== '/v1/me' && path !== '/v1/me/data' && path !== '/v1/me/password') {
+      path !== '/v1/me' && path !== '/v1/me/data' && path !== '/v1/me/password' &&
+      path !== '/v1/me/delete') {
     return null;
   }
   if (!env.AUTH_SECRET) return json({ ok: false, error: 'server_misconfig' }, 500);
@@ -386,11 +387,38 @@ export async function handleAuth(request, env, path) {
   }
 
   // ---- PROFİL & VERİ (Bearer şart) ----
-  if (path === '/v1/me' || path === '/v1/me/data' || path === '/v1/me/password') {
+  if (path === '/v1/me' || path === '/v1/me/data' || path === '/v1/me/password' ||
+      path === '/v1/me/delete') {
     const payload = await requireUser(request, env);
     if (payload === 'banned') return json({ ok: false, error: 'banned' }, 403);
     if (!payload) return json({ ok: false, error: 'unauthorized' }, 401);
     const uid = payload.sub;
+
+    // ---- HESABI SİL (KVKK + Play): şifre teyitli, tüm kullanıcı verisini siler ----
+    if (path === '/v1/me/delete' && request.method === 'POST') {
+      const b = await readJson(request);
+      const pw = ((b && b.password) || '').toString();
+      const u = await env.DB.prepare('SELECT * FROM users WHERE id=?').bind(uid).first();
+      if (!u) return json({ ok: false, error: 'not_found' }, 404);
+      if (!(await verifyPassword(pw, u.pass_salt, u.pass_hash, u.iters))) {
+        return json({ ok: false, error: 'wrong_password' }, 401);
+      }
+      // Yardımcı tablolar (özellik hiç kullanılmadıysa tablo olmayabilir →
+      // tek tek dene, hatayı yut). hatim cüzleri serbest bırakılır.
+      const aux = [
+        'DELETE FROM user_devices WHERE user_id=?',
+        'DELETE FROM dua_wall WHERE user_id=?',
+        'DELETE FROM quiz_scores WHERE user_id=?',
+        "UPDATE hatim_juz SET status='open', user_id=NULL, rumuz=NULL, claimed_at=NULL, done_at=NULL WHERE user_id=?",
+      ];
+      for (const sql of aux) {
+        try { await env.DB.prepare(sql).bind(uid).run(); } catch (_) {}
+      }
+      // Çekirdek: bulut senkron verisi + hesap.
+      await env.DB.prepare('DELETE FROM user_data WHERE user_id=?').bind(uid).run();
+      await env.DB.prepare('DELETE FROM users WHERE id=?').bind(uid).run();
+      return json({ ok: true });
+    }
 
     // ---- ŞİFRE DEĞİŞTİR (girişli kullanıcı; eski şifre doğrulanır) ----
     if (path === '/v1/me/password' && request.method === 'POST') {

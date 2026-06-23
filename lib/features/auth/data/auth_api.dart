@@ -158,6 +158,28 @@ class AuthApi {
     throw AuthException((d['error'] ?? 'unknown').toString());
   }
 
+  /// Hesabı kalıcı sil (şifre teyitli). Tüm kullanıcı verisi sunucudan silinir.
+  static Future<void> deleteAccount(String token, String password) async {
+    http.Response res;
+    try {
+      res = await http
+          .post(
+            _u('/v1/me/delete'),
+            headers: {
+              'Content-Type': 'application/json',
+              'Authorization': 'Bearer $token',
+            },
+            body: jsonEncode({'password': password}),
+          )
+          .timeout(_timeout);
+    } catch (_) {
+      throw AuthException('network');
+    }
+    final d = _decode(res);
+    if (res.statusCode == 200 && d['ok'] == true) return;
+    throw AuthException((d['error'] ?? 'unknown').toString());
+  }
+
   /// Profil güncelle (ad/soyad) → güncel AuthUser döner.
   static Future<AuthUser> updateProfile(
     String token,

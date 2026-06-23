@@ -98,6 +98,27 @@ export async function handleDuaWall(request, env, path) {
     return json({ ok: true, amins: (cur && cur.amins) || 1 });
   }
 
+  // ---- ŞİKAYET ET (UGC moderasyonu — Play zorunluluğu) ----
+  if (request.method === 'POST' && path === '/v1/dua-wall/report') {
+    const b = await readJson(request);
+    const id = (b && b.id || '').toString();
+    if (!id) return json({ ok: false, error: 'id_required' }, 400);
+    // 'reports' kolonu yoksa ekle (tek seferlik, idempotent).
+    try {
+      await env.DB.prepare(
+        'ALTER TABLE dua_wall ADD COLUMN reports INTEGER NOT NULL DEFAULT 0'
+      ).run();
+    } catch (_) {}
+    await env.DB.prepare(
+      'UPDATE dua_wall SET reports = COALESCE(reports,0) + 1 WHERE id=?'
+    ).bind(id).run();
+    // 3+ şikayet → otomatik gizle (yayından kalkar; panelde tekrar incelenir).
+    await env.DB.prepare(
+      "UPDATE dua_wall SET status='hidden' WHERE id=? AND COALESCE(reports,0) >= 3 AND status='approved'"
+    ).bind(id).run();
+    return json({ ok: true });
+  }
+
   // ---- DUA GÖNDER (onaya düşer) ----
   if (request.method === 'POST' && path === '/v1/dua-wall') {
     const b = await readJson(request);

@@ -123,6 +123,26 @@ class DuaWallApi {
     throw DuaWallException((d['error'] ?? 'unknown').toString());
   }
 
+  /// Bir duayı şikayet et (UGC moderasyonu). 3+ şikayette otomatik gizlenir.
+  static Future<void> report(String token, String id) async {
+    http.Response res;
+    try {
+      res = await http
+          .post(_u('/v1/dua-wall/report'),
+              headers: {
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer $token',
+              },
+              body: jsonEncode({'id': id}))
+          .timeout(_timeout);
+    } catch (_) {
+      throw DuaWallException('network');
+    }
+    final d = _decode(res);
+    if (res.statusCode == 200 && d['ok'] == true) return;
+    throw DuaWallException((d['error'] ?? 'unknown').toString());
+  }
+
   /// Rumuz (takma ad) belirle/güncelle. Geçerli rumuzu döner.
   static Future<String> setRumuz(String token, String rumuz) async {
     http.Response res;
