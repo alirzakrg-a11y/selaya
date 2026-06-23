@@ -311,42 +311,6 @@ class CalendarDay {
   );
 }
 
-class AiSource {
-  final String type; // quran | hadith | diyanet
-  final String ref;
-  const AiSource(this.type, this.ref);
-  factory AiSource.fromJson(Map<String, dynamic> j) =>
-      AiSource(j['type'] as String, j['ref'] as String);
-}
-
-class AiQa {
-  final String id;
-  final String category;
-  final List<AiSource> sources;
-  final List<String> keywords;
-  final Map<String, dynamic> translations;
-  const AiQa(
-    this.id,
-    this.category,
-    this.sources,
-    this.keywords,
-    this.translations,
-  );
-
-  String question(String l) => translations.mapFor(l)['question'] as String;
-  String answer(String l) => translations.mapFor(l)['answer'] as String;
-
-  factory AiQa.fromJson(Map<String, dynamic> j) => AiQa(
-    j['id'] as String,
-    j['category'] as String? ?? 'general',
-    ((j['sources'] as List?) ?? const [])
-        .map((e) => AiSource.fromJson((e as Map).cast<String, dynamic>()))
-        .toList(),
-    ((j['keywords'] as List?) ?? const []).map((e) => e.toString()).toList(),
-    _tr(j),
-  );
-}
-
 class Wallpaper {
   final String id;
   final String category;

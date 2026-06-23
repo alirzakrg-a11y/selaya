@@ -18,7 +18,6 @@ import '../../../core/theme/app_icons.dart';
 import '../../../core/theme/app_spacing.dart';
 import '../../../core/theme/app_typography.dart';
 import '../../../core/utils/formatters.dart';
-import '../../../core/widgets/animated_ai_icon.dart';
 import '../../../core/widgets/app_image.dart';
 import '../../../core/widgets/feature_icon.dart';
 import '../../../core/widgets/like_button.dart';
@@ -169,11 +168,6 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
           ),
           const _VideoRail(),
           const Gap.lg(),
-        ];
-      case 'ai':
-        return const [
-          Padding(padding: AppSpacing.screen, child: _AiCard()),
-          Gap.md(),
         ];
       case 'quickPair':
         return const [
@@ -1251,72 +1245,8 @@ class _VideoPosterPlaceholder extends StatelessWidget {
   }
 }
 
-class _AiCard extends StatelessWidget {
-  const _AiCard();
-
-  @override
-  Widget build(BuildContext context) {
-    final c = context.colors;
-    return SelayaCard(
-      onTap: () => context.push(Routes.ai),
-      padding: EdgeInsets.zero,
-      child: ClipRRect(
-        borderRadius: AppRadius.rXl,
-        child: Stack(
-          children: [
-            Positioned(
-              right: -10,
-              top: -10,
-              child: Icon(
-                AppIcons.sparkles,
-                size: 120,
-                color: c.gold.withValues(alpha: 0.12),
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.all(AppSpacing.lg),
-              child: Row(
-                children: [
-                  Container(
-                    padding: const EdgeInsets.all(12),
-                    decoration: BoxDecoration(
-                      shape: BoxShape.circle,
-                      gradient: LinearGradient(colors: [c.gold, c.goldBright]),
-                    ),
-                    child: AnimatedAiIcon(color: c.bg, size: 26),
-                  ),
-                  const Gap.base(),
-                  Expanded(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          'home.askSelayaTitle'.tr(),
-                          style: Theme.of(context).textTheme.titleMedium
-                              ?.copyWith(fontWeight: FontWeight.w700),
-                        ),
-                        const Gap.xxs(),
-                        Text(
-                          'home.askSelayaDesc'.tr(),
-                          style: TextStyle(
-                            color: c.textSecondary,
-                            fontSize: 13,
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  Icon(AppIcons.forward, color: c.textTertiary),
-                ],
-              ),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-}
-
+// _AiCard (SELAYA AI Asistanı promo kartı) KALDIRILDI — AI asistanı komple
+// çıkarıldı (kullanıcı 2026-06-23).
 // _AudioStoriesCard (Sesli Hikâyeler promo kartı) KALDIRILDI — sesli hikâye
 // özelliği komple çıkarıldı (kullanıcı 2026-06-15).
 

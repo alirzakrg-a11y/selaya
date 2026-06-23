@@ -28,7 +28,6 @@ abstract final class Routes {
   static const calendar = '/calendar';
   static const tracking = '/tracking';
   static const wallpapers = '/wallpapers';
-  static const ai = '/ai';
   static const mosques = '/mosques';
   static const feed = '/feed'; // reels (video) — reached from Akış & More
   static const akis = '/akis'; // content stream tab (#19)

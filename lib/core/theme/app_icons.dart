@@ -59,8 +59,6 @@ abstract final class AppIcons {
   static const IconData crown = Icons.workspace_premium_rounded;
   static const IconData prayerRug = Icons.self_improvement_rounded;
   static const IconData tasbih = Icons.touch_app_rounded;
-  static const IconData aiChat = Icons.smart_toy_rounded;
-  static const IconData aiMagic = Icons.auto_awesome_rounded;
   static const IconData sparkles = Icons.auto_awesome_rounded;
   static const IconData book = Icons.menu_book_rounded;
   static const IconData wallpaper = Icons.wallpaper_rounded;

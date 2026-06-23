@@ -9,7 +9,6 @@ import '../../auth/data/auth_controller.dart';
 import '../../../core/theme/app_colors.dart';
 import '../../../core/theme/app_icons.dart';
 import '../../../core/theme/app_spacing.dart';
-import '../../../core/widgets/animated_ai_icon.dart';
 import '../../../core/widgets/feature_icon.dart';
 import '../../../core/widgets/selaya_card.dart';
 import '../../../core/widgets/selaya_scaffold.dart';
@@ -107,8 +106,6 @@ class MoreScreen extends ConsumerWidget {
           ),
           const Gap.lg(),
           const _AccountCard(),
-          const Gap.sm(),
-          const _AiBanner(),
           const Gap.lg(),
           for (final s in _sections) ...[
             _SectionTitle(s.titleKey.tr()),
@@ -173,49 +170,7 @@ class _Grid extends StatelessWidget {
   }
 }
 
-class _AiBanner extends StatelessWidget {
-  const _AiBanner();
-  @override
-  Widget build(BuildContext context) {
-    final c = context.colors;
-    // Küçük + temaya uyumlu (eskiden büyük sabit-renk banner'dı).
-    return SelayaCard(
-      onTap: () => context.push(Routes.ai),
-      borderRadius: AppRadius.rLg,
-      padding: const EdgeInsets.all(AppSpacing.md),
-      child: Row(
-        children: [
-          Container(
-            padding: const EdgeInsets.all(9),
-            decoration: BoxDecoration(
-              shape: BoxShape.circle,
-              gradient: LinearGradient(colors: [c.gold, c.goldBright]),
-            ),
-            child: AnimatedAiIcon(color: c.bg, size: 20),
-          ),
-          const Gap.base(),
-          Expanded(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text('ai.title'.tr(),
-                    style: Theme.of(context)
-                        .textTheme
-                        .titleSmall
-                        ?.copyWith(fontWeight: FontWeight.w700)),
-                Text('home.askSelayaDesc'.tr(),
-                    maxLines: 1,
-                    overflow: TextOverflow.ellipsis,
-                    style: TextStyle(color: c.textSecondary, fontSize: 12)),
-              ],
-            ),
-          ),
-          Icon(AppIcons.forward, color: c.gold),
-        ],
-      ),
-    );
-  }
-}
+// _AiBanner (SELAYA AI Asistanı kartı) KALDIRILDI — AI asistanı komple çıkarıldı.
 
 /// Üyelik kartı — giriş yapılmışsa "Hesabım" (ad+e-posta), değilse "Giriş/Üye ol".
 class _AccountCard extends ConsumerWidget {

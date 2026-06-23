@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
-import '../../features/ai_assistant/presentation/ai_screen.dart';
 import '../../features/akis/presentation/akis_screen.dart';
 import '../../features/asma_ul_husna/presentation/asma_screen.dart';
 import '../../features/auth/presentation/account_screen.dart';
@@ -144,7 +143,6 @@ final routerProvider = Provider<GoRouter>((ref) {
       fs(Routes.calendar, (_, _) => const CalendarScreen()),
       fs(Routes.tracking, (_, _) => const TrackingScreen()),
       fs(Routes.wallpapers, (_, _) => const WallpapersScreen()),
-      fs(Routes.ai, (_, _) => const AiScreen()),
       fs(Routes.mosques, (_, _) => const MosquesScreen()),
       fs(Routes.feed,
           (_, s) => FeedScreen(initialIndex: s.extra is int ? s.extra as int : 0)),

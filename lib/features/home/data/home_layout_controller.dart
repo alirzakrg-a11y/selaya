@@ -19,7 +19,6 @@ const homeSectionKeys = [
   'dailyDua',
   'mediaPair', // Videolar + Duvar Kâğıdı YAN YANA (eski videos+wallpaper)
   'widgetPromo',
-  'ai',
 ];
 // ⑲ 'inspiration' (Günün İlhamı) anasayfadan KALDIRILDI → yerine 'dailyDua'
 // (Günün Duası) kalıyor; ilham içeriği zaten Akış'ta gösteriliyor.
@@ -37,7 +36,6 @@ const homeSectionLabels = {
   'verseHadithPair': 'home.secVerseHadith',
   'dailyDua': 'akis.duaOfDay',
   'mediaPair': 'home.secMedia',
-  'ai': 'home.askSelayaTitle',
   'quickPair': 'home.quickPair',
   'widgetPromo': 'home.addWidgetTitle',
 };

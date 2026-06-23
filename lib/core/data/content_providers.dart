@@ -205,12 +205,6 @@ final activeReligiousDayProvider =
       return null;
     });
 
-final aiQaProvider = FutureProvider<List<AiQa>>(
-  (ref) => ref
-      .watch(assetJsonLoaderProvider)
-      .loadModels('$_data/ai_qa.json', AiQa.fromJson),
-);
-
 /// Sadece panelde mevcut duvar kâğıtları.
 final wallpapersProvider = FutureProvider<List<Wallpaper>>((ref) async {
   final extras = ref.watch(collectionProvider('wallpapers'));

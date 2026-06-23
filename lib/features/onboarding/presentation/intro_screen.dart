@@ -27,7 +27,6 @@ class IntroScreen extends StatelessWidget {
     _Feature(AppIcons.quran, 'intro.f2Title', 'intro.f2Desc'),
     _Feature(AppIcons.qibla, 'intro.f3Title', 'intro.f3Desc'),
     _Feature(AppIcons.sparkles, 'intro.f4Title', 'intro.f4Desc'),
-    _Feature(AppIcons.aiChat, 'intro.f5Title', 'intro.f5Desc'),
   ];
 
   @override

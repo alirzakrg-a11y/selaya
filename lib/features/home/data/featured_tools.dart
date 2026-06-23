@@ -23,7 +23,6 @@ const featuredTools = <String, FeaturedTool>{
       FeaturedTool(Icons.wb_twilight_rounded, 'imsakiye.title', Routes.imsakiye),
   'quran': FeaturedTool(AppIcons.quran, 'quran.title', Routes.quran),
   'dhikr': FeaturedTool(AppIcons.tasbih, 'dhikr.title', Routes.dhikr),
-  'ai': FeaturedTool(AppIcons.aiMagic, 'ai.title', Routes.ai),
   'wallpaper':
       FeaturedTool(AppIcons.wallpaper, 'wallpapers.title', Routes.wallpapers),
   'kaza': FeaturedTool(AppIcons.history, 'kaza.title', Routes.kaza),
@@ -48,14 +47,13 @@ const featuredToolKeys = [
   'dhikr', 'imsakiye', 'quran', 'yasin', 'duas', 'asma',
   'tracking', 'kaza', 'mosques', 'wallpaper', 'calendar',
   // Gerisi (varsayılan gizli — Daha Fazla'da görünür):
-  'hatim', 'ai', 'greetings', 'qibla', 'fasting', 'widgets',
+  'hatim', 'greetings', 'qibla', 'fasting', 'widgets',
   'abdest', 'namaz',
 ];
 
 /// Varsayılan gizli (ilk 12 görünür, gerisi kullanıcı eklerse).
 const _defaultHidden = {
   'hatim',
-  'ai',
   'greetings',
   'qibla',
   'fasting',

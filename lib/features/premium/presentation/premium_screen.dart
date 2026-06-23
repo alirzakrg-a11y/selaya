@@ -22,7 +22,6 @@ class _PremiumScreenState extends State<PremiumScreen> {
     (AppIcons.close, 'premium.featureAdfree'),
     (AppIcons.moon, 'premium.featureThemes'),
     (AppIcons.wallpaper, 'premium.featureWidgets'),
-    (AppIcons.aiChat, 'premium.featureAi'),
   ];
 
   @override

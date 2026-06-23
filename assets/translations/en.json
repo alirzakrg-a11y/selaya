@@ -344,8 +344,6 @@
     "f3Desc": "Precise direction to the Kaaba from where you are.",
     "f4Title": "Daily Content",
     "f4Desc": "Verses, hadith, duas, stories and wallpapers.",
-    "f5Title": "SELAYA AI",
-    "f5Desc": "Quran and Hadith-sourced answers to your questions.",
     "start": "Let's Begin"
   },
   "home": {
@@ -357,7 +355,7 @@
     "discover": "Discover",
     "videos": "Videos",
     "quickPair": "Greeting Card",
-    "appTagline": "SELAYA Islamic Assistant",
+    "appTagline": "Prayer Times & Islamic Life",
     "fewAds": "few ads",
     "weather": "Weather",
     "nearestMosque": "Nearest mosque",
@@ -369,8 +367,6 @@
     "shareIdeaTitle": "Help us improve",
     "shareIdeaDesc": "Share your ideas and let's grow SELAYA together.",
     "dailyWallpaper": "Wallpaper of the Day",
-    "askSelayaTitle": "SELAYA AI Assistant",
-    "askSelayaDesc": "Ask religious questions, get sourced answers.",
     "audioStoriesDesc": "Listen and find peace — plays in the background too.",
     "secStories": "Stories",
     "secReligiousDay": "Religious Day",
@@ -380,10 +376,6 @@
     "secGreeting": "Greeting",
     "secVerseHadith": "Verse & Hadith",
     "secMedia": "Video & Wallpaper",
-    "askSelayaCta": "Ask a Question",
-    "selayaPlusTitle": "SELAYA PLUS",
-    "selayaPlusDesc": "Discover ad-free usage, exclusive themes and much more!",
-    "selayaPlusCta": "Explore",
     "wordOfDay": "Word of the Day"
   },
   "prayer": {
@@ -550,18 +542,6 @@
     "noFavorites": "No favorite duas yet. Tap the heart icon to add.",
     "searchHint": "Search duas…",
     "headerSubtitle": "{} duas • daily, protection and prayer supplications"
-  },
-  "ai": {
-    "title": "SELAYA AI Assistant",
-    "subtitle": "Ask religious questions, get sourced answers",
-    "greeting": "Hello 👋 I can help with prayer, fasting, zakat, hajj, wudu/ghusl, Quran, dua and many religious topics. What would you like to ask?",
-    "disclaimer": "SELAYA AI is for informational purposes only and is not a mufti or a source of fatwa. Consult a qualified scholar for important matters.",
-    "inputHint": "Type your question…",
-    "examples": "Example questions",
-    "sources": "Sources",
-    "quranRef": "Quran",
-    "hadithRef": "Hadith",
-    "diyanetRef": "Diyanet"
   },
   "wallpapers": {
     "title": "Wallpapers",
@@ -734,7 +714,6 @@
     "featureAdfree": "Ad-free experience",
     "featureThemes": "Premium themes",
     "featureWidgets": "Advanced widgets",
-    "featureAi": "Extended AI usage",
     "monthly": "Monthly",
     "yearly": "Yearly",
     "perMonth": "/mo",
@@ -892,7 +871,14 @@
     "setRumuz": "Set Nickname",
     "submitFailed": "Couldn't submit your score (connection). Try again.",
     "retrySubmit": "Retry",
-    "cat": { "all": "All", "siyer": "Seerah", "ibadet": "Worship", "kuran": "Qur'an", "peygamberler": "Prophets", "genel": "General" },
+    "cat": {
+      "all": "All",
+      "siyer": "Seerah",
+      "ibadet": "Worship",
+      "kuran": "Qur'an",
+      "peygamberler": "Prophets",
+      "genel": "General"
+    },
     "next": "Next",
     "finish": "Finish",
     "retry": "Play Again",

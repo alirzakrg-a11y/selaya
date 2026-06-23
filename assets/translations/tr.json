@@ -344,8 +344,6 @@
     "f3Desc": "Bulunduğun yerden hassas Kâbe yönü.",
     "f4Title": "Günlük İçerik",
     "f4Desc": "Ayet, hadis, dua, hikayeler ve duvar kağıtları.",
-    "f5Title": "SELAYA AI",
-    "f5Desc": "Dini sorularına Kur'an ve hadis kaynaklı cevaplar.",
     "start": "Hadi Başlayalım"
   },
   "home": {
@@ -357,7 +355,7 @@
     "discover": "Keşfet",
     "videos": "Videolar",
     "quickPair": "Tebrik Kartı",
-    "appTagline": "SELAYA İslami Asistan",
+    "appTagline": "Namaz Vakti & İslami Yaşam",
     "fewAds": "az reklam",
     "weather": "Hava Durumu",
     "nearestMosque": "En yakın cami",
@@ -369,8 +367,6 @@
     "shareIdeaTitle": "Bizi geliştir",
     "shareIdeaDesc": "Fikirlerini paylaş, SELAYA'yı birlikte büyütelim.",
     "dailyWallpaper": "Günün Duvar Kağıdı",
-    "askSelayaTitle": "SELAYA AI Asistan",
-    "askSelayaDesc": "Dini sorularını sor, kaynaklı cevaplar al.",
     "audioStoriesDesc": "Dinle, huzur bul — arka planda da çalar.",
     "secStories": "Hikâyeler",
     "secReligiousDay": "Dini Gün Kartı",
@@ -380,10 +376,6 @@
     "secGreeting": "Karşılama",
     "secVerseHadith": "Ayet & Hadis",
     "secMedia": "Video & Duvar Kâğıdı",
-    "askSelayaCta": "Soru Sor",
-    "selayaPlusTitle": "SELAYA PLUS",
-    "selayaPlusDesc": "Reklamsız kullanım, özel temalar ve daha fazlası için hemen keşfet!",
-    "selayaPlusCta": "Keşfet",
     "wordOfDay": "Günün Sözü"
   },
   "prayer": {
@@ -550,18 +542,6 @@
     "noFavorites": "Henüz favori dua eklemediniz. Kalp simgesine dokunarak ekleyin.",
     "searchHint": "Dua ara…",
     "headerSubtitle": "{} dua • günlük, koruma ve namaz duaları"
-  },
-  "ai": {
-    "title": "SELAYA AI Asistan",
-    "subtitle": "Dini sorularını sor, kaynaklı cevaplar al",
-    "greeting": "Merhaba 👋 Namaz, oruç, zekât, hac, abdest/gusül, Kur'an, dua ve birçok dinî konuda sana yardımcı olabilirim. Ne sormak istersin?",
-    "disclaimer": "SELAYA AI yalnızca bilgilendirme amaçlıdır ve müftü/fetva makamı değildir. Önemli konularda yetkili bir din görevlisine danışın.",
-    "inputHint": "Sorunuzu yazın…",
-    "examples": "Örnek sorular",
-    "sources": "Kaynaklar",
-    "quranRef": "Kur'an",
-    "hadithRef": "Hadis",
-    "diyanetRef": "Diyanet"
   },
   "wallpapers": {
     "title": "Duvar Kağıtları",
@@ -734,7 +714,6 @@
     "featureAdfree": "Reklamsız deneyim",
     "featureThemes": "Premium temalar",
     "featureWidgets": "Gelişmiş widget'lar",
-    "featureAi": "Genişletilmiş AI kullanımı",
     "monthly": "Aylık",
     "yearly": "Yıllık",
     "perMonth": "/ay",
@@ -892,7 +871,14 @@
     "setRumuz": "Rumuz Belirle",
     "submitFailed": "Skor gönderilemedi (bağlantı). Tekrar dene.",
     "retrySubmit": "Tekrar Gönder",
-    "cat": { "all": "Tümü", "siyer": "Siyer", "ibadet": "İbadet", "kuran": "Kur'an", "peygamberler": "Peygamberler", "genel": "Genel" },
+    "cat": {
+      "all": "Tümü",
+      "siyer": "Siyer",
+      "ibadet": "İbadet",
+      "kuran": "Kur'an",
+      "peygamberler": "Peygamberler",
+      "genel": "Genel"
+    },
     "next": "Sonraki",
     "finish": "Bitir",
     "retry": "Tekrar Oyna",

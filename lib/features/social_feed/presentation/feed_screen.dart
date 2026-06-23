@@ -224,7 +224,7 @@ class _FeedPageState extends ConsumerState<_FeedPage> {
     final wasPlaying = _video?.value.isPlaying ?? false;
     _video?.pause();
     if (mounted) setState(() => _paused = true);
-    const appName = 'SELAYA İslami Asistan';
+    const appName = 'SELAYA';
     final shareText = caption.trim().isEmpty
         ? '$appName · selaya.app'
         : '$caption\n\n$appName · selaya.app';
