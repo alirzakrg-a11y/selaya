@@ -1,7 +1,10 @@
+import 'dart:convert';
+
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
+import 'package:share_plus/share_plus.dart';
 
 import '../../../core/router/routes.dart';
 import '../../../core/theme/app_colors.dart';
@@ -176,6 +179,24 @@ class AccountScreen extends ConsumerWidget {
                     Icon(Icons.chevron_right_rounded, color: c.textTertiary),
                   ]),
                 ),
+                const Gap.sm(),
+                // GDPR/KVKK veri taşınabilirliği: kullanıcı tüm verisini indirir.
+                SelayaCard(
+                  onTap: () => _exportData(context, ref),
+                  padding: const EdgeInsets.all(AppSpacing.md),
+                  child: Row(children: [
+                    Icon(Icons.download_rounded, color: c.gold),
+                    const Gap.md(),
+                    Expanded(
+                      child: Text('auth.exportData'.tr(),
+                          style: Theme.of(context)
+                              .textTheme
+                              .titleSmall
+                              ?.copyWith(fontWeight: FontWeight.w600)),
+                    ),
+                    Icon(Icons.chevron_right_rounded, color: c.textTertiary),
+                  ]),
+                ),
                 const Gap.xl(),
                 SizedBox(
                   height: 52,
@@ -202,6 +223,39 @@ class AccountScreen extends ConsumerWidget {
               ],
             ),
     );
+  }
+
+  /// GDPR/KVKK veri taşınabilirliği — kullanıcının tüm verisini JSON olarak
+  /// paylaş/indir (hesap profili + buluttaki senkron verisi).
+  Future<void> _exportData(BuildContext context, WidgetRef ref) async {
+    final auth = ref.read(authControllerProvider);
+    final user = auth.user;
+    if (auth.token == null || user == null) return;
+    ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text('auth.exportPreparing'.tr())));
+    try {
+      final synced = await AuthApi.getData(auth.token!);
+      final export = {
+        'app': 'SELAYA',
+        'account': {
+          'name': user.name,
+          'surname': user.surname,
+          'email': user.email,
+          'rumuz': user.rumuz,
+        },
+        'syncedData': synced.data,
+        'syncedAt': synced.updatedAt,
+      };
+      final jsonStr = const JsonEncoder.withIndent('  ').convert(export);
+      if (!context.mounted) return;
+      await SharePlus.instance.share(
+          ShareParams(text: jsonStr, subject: 'SELAYA - verilerim'));
+    } catch (_) {
+      if (context.mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(content: Text('auth.exportFailed'.tr())));
+      }
+    }
   }
 
   Future<void> _confirmDelete(BuildContext context, WidgetRef ref) async {

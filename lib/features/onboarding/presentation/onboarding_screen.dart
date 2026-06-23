@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 import '../../../core/di/providers.dart';
 import '../../../core/localization/localized_text.dart';
@@ -298,6 +299,17 @@ class _TermsRow extends StatelessWidget {
                       .textTheme
                       .bodyMedium
                       ?.copyWith(height: 1.6, color: context.colors.textSecondary)),
+              const Gap.md(),
+              SizedBox(
+                width: double.infinity,
+                child: OutlinedButton.icon(
+                  onPressed: () => launchUrl(
+                      Uri.parse('https://selaya.app/privacy'),
+                      mode: LaunchMode.externalApplication),
+                  icon: const Icon(Icons.open_in_new_rounded, size: 18),
+                  label: Text('settings.privacyPolicy'.tr()),
+                ),
+              ),
               const Gap.md(),
             ],
           ),

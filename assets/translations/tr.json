@@ -82,7 +82,10 @@
     "err_email_send_failed": "E-posta gönderilemedi, tekrar dene.",
     "err_too_soon": "Az önce bir kod gönderildi. Lütfen 1 dakika bekle ve e-postanı (spam dahil) kontrol et.",
     "pwHint": "En az 6 karakter, en az 1 harf ve 1 rakam.",
-    "err_unknown": "Bir şeyler ters gitti. Tekrar dene."
+    "err_unknown": "Bir şeyler ters gitti. Tekrar dene.",
+    "exportData": "Verilerimi İndir",
+    "exportPreparing": "Verilerin hazırlanıyor…",
+    "exportFailed": "Veri indirilemedi"
   },
   "common": {
     "appName": "SELAYA",
@@ -706,7 +709,9 @@
     "dstDesc": "Tüm vakitleri elle 1 saat ileri al.",
     "hatimReminder": "Hatim Hatırlatması",
     "hatimReminderDesc": "Günlük hatim sayfalarını okumayı hatırlat.",
-    "hatimReminderTime": "Hatırlatma saati"
+    "hatimReminderTime": "Hatırlatma saati",
+    "privacyPolicy": "Gizlilik Politikası",
+    "privacyOpenFail": "Politika açılamadı"
   },
   "premium": {
     "title": "SELAYA Plus",

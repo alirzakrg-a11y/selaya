@@ -4,6 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 import 'package:share_plus/share_plus.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 import '../../../core/di/providers.dart';
 import '../../../core/localization/localized_text.dart';
@@ -361,9 +362,36 @@ class SettingsScreen extends ConsumerWidget {
               ],
             ),
           ),
+          const Gap.sm(),
+          // Gizlilik Politikası (KVKK/GDPR + Play): yayındaki politikayı açar.
+          SelayaCard(
+            onTap: () => _openPrivacy(context),
+            child: Row(children: [
+              Icon(Icons.privacy_tip_outlined, color: c.gold),
+              const Gap.md(),
+              Expanded(
+                child: Text('settings.privacyPolicy'.tr(),
+                    style: Theme.of(context)
+                        .textTheme
+                        .titleSmall
+                        ?.copyWith(fontWeight: FontWeight.w600)),
+              ),
+              Icon(Icons.open_in_new_rounded, size: 18, color: c.textTertiary),
+            ]),
+          ),
         ],
       ),
     );
+  }
+
+  Future<void> _openPrivacy(BuildContext context) async {
+    final uri = Uri.parse('https://selaya.app/privacy');
+    if (!await launchUrl(uri, mode: LaunchMode.externalApplication)) {
+      if (context.mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(content: Text('settings.privacyOpenFail'.tr())));
+      }
+    }
   }
 
   void _pickMethod(BuildContext context, WidgetRef ref, CalcMethod current) {

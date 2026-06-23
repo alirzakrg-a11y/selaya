@@ -82,7 +82,10 @@
     "err_email_send_failed": "Couldn't send the email, try again.",
     "err_too_soon": "A code was just sent. Please wait a minute and check your email (including spam).",
     "pwHint": "At least 6 characters, with a letter and a number.",
-    "err_unknown": "Something went wrong. Try again."
+    "err_unknown": "Something went wrong. Try again.",
+    "exportData": "Download My Data",
+    "exportPreparing": "Preparing your data…",
+    "exportFailed": "Could not export your data"
   },
   "common": {
     "appName": "SELAYA",
@@ -706,7 +709,9 @@
     "dstDesc": "Manually shift all times forward by one hour.",
     "hatimReminder": "Khatm Reminder",
     "hatimReminderDesc": "Remind me to read my daily khatm pages.",
-    "hatimReminderTime": "Reminder time"
+    "hatimReminderTime": "Reminder time",
+    "privacyPolicy": "Privacy Policy",
+    "privacyOpenFail": "Could not open the policy"
   },
   "premium": {
     "title": "SELAYA Plus",
