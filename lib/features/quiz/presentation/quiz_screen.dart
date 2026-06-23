@@ -45,7 +45,7 @@ class QuizScreen extends ConsumerStatefulWidget {
 class _QuizScreenState extends ConsumerState<QuizScreen> {
   static const _practiceSize = 10;
   static const _weeklySize = 15;
-  static const _seconds = 20;
+  static const _seconds = 10;
   final _rng = Random();
 
   String _cat = 'all';
@@ -192,7 +192,7 @@ class _QuizScreenState extends ConsumerState<QuizScreen> {
     final c = context.colors;
     final sq = _session[_index];
     final answered = _selected != null;
-    final low = _secondsLeft <= 5;
+    final low = _secondsLeft <= 3;
     return ListView(
       padding: const EdgeInsets.fromLTRB(
           AppSpacing.base, AppSpacing.md, AppSpacing.base, AppSpacing.xxxl),
@@ -216,32 +216,7 @@ class _QuizScreenState extends ConsumerState<QuizScreen> {
               style:
                   TextStyle(color: c.success, fontWeight: FontWeight.w800)),
         ]),
-        const Gap.sm(),
-        // Geri sayım
-        Row(children: [
-          Icon(Icons.timer_outlined,
-              size: 16, color: low ? c.danger : c.textSecondary),
-          const Gap.xs(),
-          Text('$_secondsLeft sn',
-              style: TextStyle(
-                  color: low ? c.danger : c.textSecondary,
-                  fontWeight: FontWeight.w700,
-                  fontSize: 13)),
-          const Gap.sm(),
-          Expanded(
-            child: ClipRRect(
-              borderRadius: BorderRadius.circular(99),
-              child: LinearProgressIndicator(
-                value: answered ? 0 : _secondsLeft / _seconds,
-                minHeight: 6,
-                backgroundColor: c.border,
-                valueColor:
-                    AlwaysStoppedAnimation(low ? c.danger : c.gold),
-              ),
-            ),
-          ),
-        ]),
-        const Gap.lg(),
+        const Gap.md(),
         SelayaCard(
           padding: const EdgeInsets.all(AppSpacing.lg),
           child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
@@ -263,6 +238,30 @@ class _QuizScreenState extends ConsumerState<QuizScreen> {
                     ?.copyWith(fontWeight: FontWeight.w700, height: 1.35)),
           ]),
         ),
+        const Gap.sm(),
+        // Geri sayım — sorunun ALTINDA
+        Row(children: [
+          Icon(Icons.timer_outlined,
+              size: 16, color: low ? c.danger : c.textSecondary),
+          const Gap.xs(),
+          Text('$_secondsLeft sn',
+              style: TextStyle(
+                  color: low ? c.danger : c.textSecondary,
+                  fontWeight: FontWeight.w700,
+                  fontSize: 13)),
+          const Gap.sm(),
+          Expanded(
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(99),
+              child: LinearProgressIndicator(
+                value: answered ? 0 : _secondsLeft / _seconds,
+                minHeight: 6,
+                backgroundColor: c.border,
+                valueColor: AlwaysStoppedAnimation(low ? c.danger : c.gold),
+              ),
+            ),
+          ),
+        ]),
         const Gap.md(),
         for (var i = 0; i < sq.options.length; i++)
           _OptionTile(
