@@ -2,11 +2,13 @@ import 'package:flutter/widgets.dart';
 
 /// Helpers for resolving inline bilingual content stored in demo JSON as
 /// `{ "tr": ..., "en": ... }`. Top-level fields stay language-invariant;
-/// only the `translations` block is localized. Falls back to `tr`.
+/// only the `translations` block is localized. İçerik verisi yalnız tr/en
+/// çevirili olduğundan, UI dili ar/de/id/fr ise İNGİLİZCE'ye düşülür (Türkçe
+/// yerine — uluslararası kullanıcı için daha doğru); o da yoksa tr.
 extension LocalizedMapX on Map<String, dynamic> {
   /// Returns the localized sub-value (String or Map) for [locale].
   V forLocale<V>(String locale) {
-    final value = this[locale] ?? this['tr'] ?? this['en'] ?? values.first;
+    final value = this[locale] ?? this['en'] ?? this['tr'] ?? values.first;
     return value as V;
   }
 

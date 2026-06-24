@@ -668,35 +668,80 @@ class _AboutSheet extends StatelessWidget {
 }
 
 class _LangToggle extends StatelessWidget {
+  // Desteklenen diller — yerel (native) adlarıyla. main.dart supportedLocales ile
+  // aynı sırada tutulmalı.
+  static const _langs = <(String, String)>[
+    ('tr', 'Türkçe'),
+    ('en', 'English'),
+    ('ar', 'العربية'),
+    ('de', 'Deutsch'),
+    ('id', 'Bahasa Indonesia'),
+    ('fr', 'Français'),
+  ];
+
   @override
   Widget build(BuildContext context) {
     final c = context.colors;
     final current = context.locale.languageCode;
-    Widget chip(String code, String label) {
-      final sel = current == code;
-      return GestureDetector(
-        onTap: () => context.setLocale(Locale(code)),
-        child: Container(
-          padding: const EdgeInsets.symmetric(
-              horizontal: AppSpacing.base, vertical: AppSpacing.xs),
-          decoration: BoxDecoration(
-            color: sel ? c.gold : Colors.transparent,
-            borderRadius: BorderRadius.circular(99),
-          ),
-          child: Text(label,
+    final name = _langs
+        .firstWhere((l) => l.$1 == current, orElse: () => _langs.first)
+        .$2;
+    return GestureDetector(
+      onTap: () => _pick(context, current),
+      child: Container(
+        padding: const EdgeInsets.symmetric(
+            horizontal: AppSpacing.base, vertical: AppSpacing.xs),
+        decoration: BoxDecoration(
+            color: c.surface, borderRadius: BorderRadius.circular(99)),
+        child: Row(mainAxisSize: MainAxisSize.min, children: [
+          Text(name,
               style: TextStyle(
-                  color: sel ? c.onGold : c.textSecondary,
-                  fontWeight: FontWeight.w700,
-                  fontSize: 13)),
-        ),
-      );
-    }
+                  color: c.gold, fontWeight: FontWeight.w700, fontSize: 13)),
+          const Gap.xs(),
+          Icon(Icons.expand_more_rounded, size: 16, color: c.textTertiary),
+        ]),
+      ),
+    );
+  }
 
-    return Container(
-      padding: const EdgeInsets.all(3),
-      decoration: BoxDecoration(
-          color: c.surface, borderRadius: BorderRadius.circular(99)),
-      child: Row(children: [chip('tr', 'TR'), chip('en', 'EN')]),
+  void _pick(BuildContext context, String current) {
+    final c = context.colors;
+    showModalBottomSheet(
+      context: context,
+      backgroundColor: c.surface,
+      shape: const RoundedRectangleBorder(
+          borderRadius: BorderRadius.vertical(top: Radius.circular(20))),
+      builder: (sheetCtx) => SafeArea(
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            const Gap.md(),
+            Text('settings.language'.tr(),
+                style: Theme.of(context)
+                    .textTheme
+                    .titleMedium
+                    ?.copyWith(fontWeight: FontWeight.w700)),
+            const Gap.sm(),
+            for (final l in _langs)
+              ListTile(
+                title: Text(l.$2,
+                    style: TextStyle(
+                        fontWeight: l.$1 == current
+                            ? FontWeight.w700
+                            : FontWeight.w500,
+                        color: l.$1 == current ? c.gold : c.textPrimary)),
+                trailing: l.$1 == current
+                    ? Icon(Icons.check_rounded, color: c.gold)
+                    : null,
+                onTap: () {
+                  context.setLocale(Locale(l.$1));
+                  Navigator.pop(sheetCtx);
+                },
+              ),
+            const Gap.md(),
+          ],
+        ),
+      ),
     );
   }
 }

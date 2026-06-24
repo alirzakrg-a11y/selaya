@@ -102,7 +102,12 @@ Future<void> main() async {
         audioHandlerProvider.overrideWithValue(audioHandler),
       ],
       child: EasyLocalization(
-        supportedLocales: const [Locale('tr'), Locale('en')],
+        // tr/en + ar (RTL) + de/id/fr. Arapça için Flutter otomatik sağdan-sola
+        // (Directionality) uygular; ekran düzenleri start/end ile RTL'e uyumlu.
+        supportedLocales: const [
+          Locale('tr'), Locale('en'), Locale('ar'),
+          Locale('de'), Locale('id'), Locale('fr'),
+        ],
         path: 'assets/translations',
         fallbackLocale: const Locale('tr'),
         startLocale: const Locale('tr'),
