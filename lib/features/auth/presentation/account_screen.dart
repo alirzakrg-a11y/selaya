@@ -225,8 +225,8 @@ class AccountScreen extends ConsumerWidget {
     );
   }
 
-  /// GDPR/KVKK veri taşınabilirliği — kullanıcının tüm verisini JSON olarak
-  /// paylaş/indir (hesap profili + buluttaki senkron verisi).
+  /// GDPR/KVKK erişim & taşınabilirlik hakkı — verisini önce okunabilir bir
+  /// özet olarak gösterir; isteyen ham JSON'u da paylaşabilir.
   Future<void> _exportData(BuildContext context, WidgetRef ref) async {
     final auth = ref.read(authControllerProvider);
     final user = auth.user;
@@ -235,7 +235,10 @@ class AccountScreen extends ConsumerWidget {
         SnackBar(content: Text('auth.exportPreparing'.tr())));
     try {
       final synced = await AuthApi.getData(auth.token!);
-      final export = {
+      if (!context.mounted) return;
+      final isTr = context.locale.languageCode == 'tr';
+      final readable = _readableExport(user, synced.data, synced.updatedAt, isTr);
+      final jsonStr = const JsonEncoder.withIndent('  ').convert({
         'app': 'SELAYA',
         'account': {
           'name': user.name,
@@ -245,17 +248,203 @@ class AccountScreen extends ConsumerWidget {
         },
         'syncedData': synced.data,
         'syncedAt': synced.updatedAt,
-      };
-      final jsonStr = const JsonEncoder.withIndent('  ').convert(export);
-      if (!context.mounted) return;
-      await SharePlus.instance.share(
-          ShareParams(text: jsonStr, subject: 'SELAYA - verilerim'));
+      });
+      _showDataSheet(context, readable, jsonStr);
     } catch (_) {
       if (context.mounted) {
         ScaffoldMessenger.of(context).showSnackBar(
             SnackBar(content: Text('auth.exportFailed'.tr())));
       }
     }
+  }
+
+  /// Senkron verisini (tipli zarf: {t,v}) insan-okur bir metne çevirir.
+  String _readableExport(
+      dynamic user, Map<String, dynamic> data, int syncedAt, bool isTr) {
+    String l(String tr, String en) => isTr ? tr : en;
+
+    // Tipli zarfı aç: {'t':..,'v':..} -> v
+    dynamic raw(String key) {
+      final e = data[key];
+      if (e is Map && e.containsKey('v')) return e['v'];
+      return e;
+    }
+
+    String onOff(String key) {
+      final v = raw(key);
+      if (v == null) return '—';
+      final on = v == true || v == 'true' || v == 1;
+      return on ? l('Açık', 'On') : l('Kapalı', 'Off');
+    }
+
+    int count(String key) {
+      final v = raw(key);
+      if (v is List) return v.length;
+      if (v is String && v.trim().isNotEmpty) {
+        return v.split(',').where((s) => s.trim().isNotEmpty).length;
+      }
+      return 0;
+    }
+
+    String two(int n) => n.toString().padLeft(2, '0');
+    String dt(int ms) {
+      if (ms <= 0) return '—';
+      final d = DateTime.fromMillisecondsSinceEpoch(ms);
+      return '${two(d.day)}.${two(d.month)}.${d.year} ${two(d.hour)}:${two(d.minute)}';
+    }
+
+    String mapVal(String key, Map<String, String> m, String fallback) {
+      final v = '${raw(key) ?? ''}';
+      return m[v] ?? (v.isEmpty ? fallback : v);
+    }
+
+    final b = StringBuffer();
+    void h(String title) => b.writeln('\n━━━━━  $title  ━━━━━');
+    void row(String label, String value) => b.writeln('• $label: $value');
+
+    b.writeln('SELAYA — ${l('Verilerim', 'My Data')}');
+    final now = DateTime.now();
+    b.writeln(
+        '${l('Dışa aktarma', 'Exported')}: ${two(now.day)}.${two(now.month)}.${now.year}');
+
+    h(l('HESAP', 'ACCOUNT'));
+    row(l('Ad', 'First name'), '${user.name ?? '—'}');
+    row(l('Soyad', 'Last name'), '${user.surname ?? '—'}');
+    row(l('E-posta', 'Email'), '${user.email ?? '—'}');
+    row(l('Rumuz', 'Nickname'), '${user.rumuz ?? '—'}');
+
+    h(l('GÖRÜNÜM', 'APPEARANCE'));
+    row(l('Tema', 'Theme'),
+        mapVal('theme_mode', {
+          'dark': l('Koyu', 'Dark'),
+          'light': l('Açık', 'Light'),
+          'system': l('Sistem', 'System'),
+        }, '—'));
+    row('AMOLED', onOff('amoled'));
+    row(l('Renk paleti', 'Color palette'),
+        mapVal('app_palette', {
+          'gold': l('Altın', 'Gold'),
+          'green': l('Yeşil', 'Green'),
+        }, l('Altın', 'Gold')));
+
+    h(l('NAMAZ', 'PRAYER'));
+    row(l('Hesaplama yöntemi', 'Calc. method'),
+        mapVal('calc_method', {'diyanet': 'Diyanet'}, '—'));
+    row(l('İkindi (Hanefi)', 'Asr (Hanafi)'), onOff('hanafi_asr'));
+
+    h(l('BİLDİRİMLER', 'NOTIFICATIONS'));
+    row(l('Namaz uyarıları', 'Prayer alerts'), onOff('prayer_alerts'));
+    row(l('Sürekli bildirim', 'Ongoing bar'), onOff('ongoing_notif'));
+    row(l('Günlük ayet', 'Daily verse'), onOff('daily_ayah_notif'));
+    row(l('Günlük hadis', 'Daily hadith'), onOff('daily_hadith_notif'));
+    row(l('Ezan tam-ekran alarm', 'Full-screen adhan'),
+        onOff('full_screen_adhan'));
+    row(l('Titreşim', 'Vibration'), onOff('notif_vibration'));
+    row(l('Akıllı sessiz', 'Smart silent'), onOff('smart_silent'));
+    row(l('Kandil bildirimi', 'Holy nights'), onOff('kandil_notif'));
+    row(l('Cuma hatırlatma', 'Friday reminder'), onOff('cuma_notif'));
+    row(l('Ramazan modu', 'Ramadan mode'),
+        mapVal('ramadan_mode', {
+          'auto': l('Otomatik', 'Auto'),
+          'on': l('Açık', 'On'),
+          'off': l('Kapalı', 'Off'),
+        }, l('Otomatik', 'Auto')));
+
+    h(l('İÇERİĞİM', 'MY CONTENT'));
+    row(l("Kur'an yer imleri", "Qur'an bookmarks"), '${count('quran_bookmarks')}');
+    row(l('Dua favorileri', 'Prayer favorites'), '${count('dua_favorites')}');
+    row(l('Ayet/hadis favorileri', 'Verse/hadith favorites'),
+        '${count('inspiration_favorites')}');
+    row(l('Beğeniler', 'Likes'), '${count('liked_keys')}');
+    final mushaf = raw('mushaf_last_page');
+    if (mushaf != null) {
+      row(l('Mushaf son sayfa', 'Last mushaf page'), '$mushaf');
+    }
+
+    h(l('SENKRON', 'SYNC'));
+    row(l('Son bulut yedeği', 'Last cloud backup'), dt(syncedAt));
+
+    b.writeln(
+        '\n${l('Bu, kişisel verilerinin bir kopyasıdır (KVKK/GDPR erişim hakkı).', 'This is a copy of your personal data (GDPR/KVKK right of access).')}');
+    return b.toString();
+  }
+
+  /// Okunabilir özeti uygulama içinde gösterir; Paylaş + Ham JSON seçenekli.
+  void _showDataSheet(BuildContext context, String readable, String jsonStr) {
+    final c = context.colors;
+    showModalBottomSheet(
+      context: context,
+      isScrollControlled: true,
+      backgroundColor: c.surface,
+      shape: const RoundedRectangleBorder(
+          borderRadius: BorderRadius.vertical(top: Radius.circular(AppRadius.lg))),
+      builder: (sheetCtx) => DraggableScrollableSheet(
+        expand: false,
+        initialChildSize: 0.7,
+        maxChildSize: 0.92,
+        minChildSize: 0.4,
+        builder: (_, scroll) => Padding(
+          padding: const EdgeInsets.all(AppSpacing.lg),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              Row(children: [
+                Icon(Icons.shield_outlined, color: c.gold, size: 20),
+                const Gap.sm(),
+                Expanded(
+                  child: Text('auth.exportData'.tr(),
+                      style: Theme.of(context)
+                          .textTheme
+                          .titleMedium
+                          ?.copyWith(fontWeight: FontWeight.w700)),
+                ),
+                IconButton(
+                    onPressed: () => Navigator.of(sheetCtx).pop(),
+                    icon: Icon(Icons.close_rounded, color: c.textTertiary)),
+              ]),
+              const Gap.sm(),
+              Expanded(
+                child: Container(
+                  width: double.infinity,
+                  padding: const EdgeInsets.all(AppSpacing.md),
+                  decoration: BoxDecoration(
+                    color: c.surfaceAlt,
+                    borderRadius: BorderRadius.circular(AppRadius.md),
+                    border: Border.all(color: c.border),
+                  ),
+                  child: SingleChildScrollView(
+                    controller: scroll,
+                    child: SelectableText(readable,
+                        style: Theme.of(context)
+                            .textTheme
+                            .bodyMedium
+                            ?.copyWith(height: 1.5, color: c.textSecondary)),
+                  ),
+                ),
+              ),
+              const Gap.md(),
+              Row(children: [
+                Expanded(
+                  child: FilledButton.icon(
+                    onPressed: () => SharePlus.instance.share(
+                        ShareParams(text: readable, subject: 'SELAYA — ${'auth.exportData'.tr()}')),
+                    icon: const Icon(Icons.ios_share_rounded, size: 18),
+                    label: Text('common.share'.tr()),
+                  ),
+                ),
+                const Gap.sm(),
+                OutlinedButton(
+                  onPressed: () => SharePlus.instance.share(
+                      ShareParams(text: jsonStr, subject: 'SELAYA — JSON')),
+                  child: const Text('JSON'),
+                ),
+              ]),
+              const Gap.sm(),
+            ],
+          ),
+        ),
+      ),
+    );
   }
 
   Future<void> _confirmDelete(BuildContext context, WidgetRef ref) async {
