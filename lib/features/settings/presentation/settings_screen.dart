@@ -670,26 +670,25 @@ class _AboutSheet extends StatelessWidget {
 class _LangToggle extends StatelessWidget {
   // Desteklenen diller — yerel (native) adlarıyla. main.dart supportedLocales ile
   // aynı sırada tutulmalı.
-  static const _langs = <(String, String)>[
-    ('tr', 'Türkçe'),
-    ('en', 'English'),
-    ('ar', 'العربية'),
-    ('de', 'Deutsch'),
-    ('id', 'Bahasa Indonesia'),
-    ('fr', 'Français'),
-    ('ur', 'اردو'),
-    ('bn', 'বাংলা'),
-    ('fa', 'فارسی'),
-    ('ru', 'Русский'),
+  static const _langs = <(String, String, String)>[
+    ('tr', '🇹🇷', 'Türkçe'),
+    ('en', '🇬🇧', 'English'),
+    ('ar', '🇸🇦', 'العربية'),
+    ('de', '🇩🇪', 'Deutsch'),
+    ('id', '🇮🇩', 'Bahasa Indonesia'),
+    ('fr', '🇫🇷', 'Français'),
+    ('ur', '🇵🇰', 'اردو'),
+    ('bn', '🇧🇩', 'বাংলা'),
+    ('fa', '🇮🇷', 'فارسی'),
+    ('ru', '🇷🇺', 'Русский'),
   ];
 
   @override
   Widget build(BuildContext context) {
     final c = context.colors;
     final current = context.locale.languageCode;
-    final name = _langs
-        .firstWhere((l) => l.$1 == current, orElse: () => _langs.first)
-        .$2;
+    final cur =
+        _langs.firstWhere((l) => l.$1 == current, orElse: () => _langs.first);
     return GestureDetector(
       onTap: () => _pick(context, current),
       child: Container(
@@ -698,7 +697,9 @@ class _LangToggle extends StatelessWidget {
         decoration: BoxDecoration(
             color: c.surface, borderRadius: BorderRadius.circular(99)),
         child: Row(mainAxisSize: MainAxisSize.min, children: [
-          Text(name,
+          Text(cur.$2, style: const TextStyle(fontSize: 15)),
+          const Gap.xs(),
+          Text(cur.$3,
               style: TextStyle(
                   color: c.gold, fontWeight: FontWeight.w700, fontSize: 13)),
           const Gap.xs(),
@@ -728,7 +729,8 @@ class _LangToggle extends StatelessWidget {
             const Gap.sm(),
             for (final l in _langs)
               ListTile(
-                title: Text(l.$2,
+                leading: Text(l.$2, style: const TextStyle(fontSize: 24)),
+                title: Text(l.$3,
                     style: TextStyle(
                         fontWeight: l.$1 == current
                             ? FontWeight.w700
