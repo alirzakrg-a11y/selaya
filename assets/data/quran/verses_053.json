@@ -6,7 +6,14 @@
     "audio": "https://everyayah.com/data/Alafasy_128kbps/053001.mp3",
     "translations": {
       "tr": "Batmakta olan yıldıza and olsun ki,",
-      "en": "By the star when it descends,"
+      "en": "By the star when it descends,",
+      "de": "Bei dem Stern, wenn er sinkt!",
+      "fr": "Par l'étoile à son déclin!",
+      "id": "Demi bintang ketika terbenam.",
+      "ur": "تارے کی قسم جب غائب ہونے لگے",
+      "bn": "নক্ষত্রের কসম, যখন অস্তমিত হয়।",
+      "fa": "سوگند به ستاره هنگامی که افول می‌کند،",
+      "ru": "Клянусь звездой, когда она падает (или частью Корана, когда она нисходит)!"
     }
   },
   {
@@ -16,7 +23,14 @@
     "audio": "https://everyayah.com/data/Alafasy_128kbps/053002.mp3",
     "translations": {
       "tr": "Arkadaşınız (Muhammed) sapmamış ve azmamıştır.",
-      "en": "Your companion [Muhammad] has not strayed, nor has he erred,"
+      "en": "Your companion [Muhammad] has not strayed, nor has he erred,",
+      "de": "Nicht in die Irre geht euer Gefährte, und auch nicht einem Irrtum ist er erlegen,",
+      "fr": "Votre compagnon ne s'est pas égaré et n'a pas été induit en erreur",
+      "id": "kawanmu (Muhammad) tidak sesat dan tidak pula keliru.",
+      "ur": "کہ تمہارے رفیق (محمدﷺ) نہ رستہ بھولے ہیں نہ بھٹکے ہیں",
+      "bn": "তোমাদের সংগী পথভ্রষ্ট হননি এবং বিপথগামীও হননি।",
+      "fa": "که هرگز دوست شما [= محمّد «ص»] منحرف نشده و مقصد را گم نکرده است،",
+      "ru": "Не заблудился ваш товарищ и не сошел с пути."
     }
   },
   {
@@ -26,7 +40,14 @@
     "audio": "https://everyayah.com/data/Alafasy_128kbps/053003.mp3",
     "translations": {
       "tr": "O, kendiliğinden konuşmamaktadır.",
-      "en": "Nor does he speak from [his own] inclination."
+      "en": "Nor does he speak from [his own] inclination.",
+      "de": "und er redet nicht aus (eigener) Neigung.",
+      "fr": "et il ne prononce rien sous l'effet de la passion;",
+      "id": "dan tiadalah yang diucapkannya itu (Al-Quran) menurut kemauan hawa nafsunya.",
+      "ur": "اور نہ خواہش نفس سے منہ سے بات نکالتے ہیں",
+      "bn": "এবং প্রবৃত্তির তাড়নায় কথা বলেন না।",
+      "fa": "و هرگز از روی هوای نفس سخن نمی‌گوید!",
+      "ru": "Он не говорит по прихоти."
     }
   },
   {
@@ -36,7 +57,14 @@
     "audio": "https://everyayah.com/data/Alafasy_128kbps/053004.mp3",
     "translations": {
       "tr": "Onun konuşması ancak, bildirilen bir vahy iledir.",
-      "en": "It is not but a revelation revealed,"
+      "en": "It is not but a revelation revealed,",
+      "de": "Es ist nur eine Offenbarung, die eingegeben wird.",
+      "fr": "ce n'est rien d'autre qu'une révélation inspirée.",
+      "id": "Ucapannya itu tiada lain hanyalah wahyu yang diwahyukan (kepadanya).",
+      "ur": "یہ (قرآن) تو حکم خدا ہے جو (ان کی طرف) بھیجا جاتا ہے",
+      "bn": "কোরআন ওহী, যা প্রত্যাদেশ হয়।",
+      "fa": "آنچه می‌گوید چیزی جز وحی که بر او نازل شده نیست!",
+      "ru": "Это - всего лишь внушаемое ему откровение."
     }
   },
   {
@@ -46,7 +74,14 @@
     "audio": "https://everyayah.com/data/Alafasy_128kbps/053005.mp3",
     "translations": {
       "tr": "Ona, çetin kuvvetlere sahip ve güçlü olan Cebrail öğretmiştir; en yüksek ufukta iken doğruluvermiş.",
-      "en": "Taught to him by one intense in strength -"
+      "en": "Taught to him by one intense in strength -",
+      "de": "Belehrt hat ihn der Besitzer starker Kräfte,",
+      "fr": "Que lui a enseigné [l'Ange Gabriel] à la force prodigieuse,",
+      "id": "yang diajarkan kepadanya oleh (Jibril) yang sangat kuat.",
+      "ur": "ان کو نہایت قوت والے نے سکھایا",
+      "bn": "তাঁকে শিক্ষা দান করে এক শক্তিশালী ফেরেশতা,",
+      "fa": "آن کس که قدرت عظیمی دارد [= جبرئیل امین‌] او را تعلیم داده است؛",
+      "ru": "Научил его обладающий могучей силой"
     }
   },
   {
@@ -56,7 +91,14 @@
     "audio": "https://everyayah.com/data/Alafasy_128kbps/053006.mp3",
     "translations": {
       "tr": "Ona, çetin kuvvetlere sahip ve güçlü olan Cebrail öğretmiştir; en yüksek ufukta iken doğruluvermiş.",
-      "en": "One of soundness. And he rose to [his] true form"
+      "en": "One of soundness. And he rose to [his] true form",
+      "de": "der (geistige) Macht besitzt. So stand Er da",
+      "fr": "doué de sagacité; c'est alors qu'il se montra sous sa forme réelle [angélique],",
+      "id": "yang mempunyai akal yang cerdas; dan (Jibril itu) menampakkan diri dengan rupa yang asli.",
+      "ur": "(یعنی جبرائیل) طاقتور نے پھر وہ پورے نظر آئے",
+      "bn": "সহজাত শক্তিসম্পন্ন, সে নিজ আকৃতিতে প্রকাশ পেল।",
+      "fa": "همان کس که توانایی فوق العاده دارد؛ او سلطه یافت...",
+      "ru": "и прекрасным сложением (или благоразумием). Он вознесся (или выпрямился)"
     }
   },
   {
@@ -66,7 +108,14 @@
     "audio": "https://everyayah.com/data/Alafasy_128kbps/053007.mp3",
     "translations": {
       "tr": "Ona, çetin kuvvetlere sahip ve güçlü olan Cebrail öğretmiştir; en yüksek ufukta iken doğruluvermiş.",
-      "en": "While he was in the higher [part of the] horizon."
+      "en": "While he was in the higher [part of the] horizon.",
+      "de": "und war am obersten Gesichtskreis.",
+      "fr": "alors qu'il se trouvait à l'horizon supérieur.",
+      "id": "sedang dia berada di ufuk yang tinggi.",
+      "ur": "اور وہ (آسمان کے) اونچے کنارے میں تھے",
+      "bn": "উর্ধ্ব দিগন্তে,",
+      "fa": "در حالی که در اُفق اعلی قرار داشت!",
+      "ru": "на наивысшем горизонте."
     }
   },
   {
@@ -76,7 +125,14 @@
     "audio": "https://everyayah.com/data/Alafasy_128kbps/053008.mp3",
     "translations": {
       "tr": "Sonra yaklaşmış ve inmiştir.",
-      "en": "Then he approached and descended"
+      "en": "Then he approached and descended",
+      "de": "Hierauf kam er näher und stieg herunter,",
+      "fr": "Puis il se rapprocha et descendit encore plus bas,",
+      "id": "Kemudian dia mendekat, lalu bertambah dekat lagi.",
+      "ur": "پھر قریب ہوئے اوراَور آگے بڑھے",
+      "bn": "অতঃপর নিকটবর্তী হল ও ঝুলে গেল।",
+      "fa": "سپس نزدیکتر و نزدیکتر شد...",
+      "ru": "Потом он приблизился и спустился."
     }
   },
   {
@@ -86,7 +142,14 @@
     "audio": "https://everyayah.com/data/Alafasy_128kbps/053009.mp3",
     "translations": {
       "tr": "Araları iki yay aralığı kadar veya daha da yakın oldu.",
-      "en": "And was at a distance of two bow lengths or nearer."
+      "en": "And was at a distance of two bow lengths or nearer.",
+      "de": "so daß er (nur) zwei Bogenlängen entfernt war oder noch näher.",
+      "fr": "et fut à deux portées d'arc, ou plus près encore.",
+      "id": "maka jadilah dia dekat (pada Muhammad sejarak) dua ujung busur panah atau lebih dekat (lagi).",
+      "ur": "تو دو کمان کے فاصلے پر یا اس سے بھی کم",
+      "bn": "তখন দুই ধনুকের ব্যবধান ছিল অথবা আরও কম।",
+      "fa": "تا آنکه فاصله او (با پیامبر) به اندازه فاصله دو کمان یا کمتر بود؛",
+      "ru": "Он находился от него (Джибрил от Мухаммада или Мухаммад от Аллаха) на расстоянии двух луков или даже ближе."
     }
   },
   {
@@ -96,7 +159,14 @@
     "audio": "https://everyayah.com/data/Alafasy_128kbps/053010.mp3",
     "translations": {
       "tr": "Allah o anda kuluna vahyedeceğini etti.",
-      "en": "And he revealed to His Servant what he revealed."
+      "en": "And he revealed to His Servant what he revealed.",
+      "de": "Da gab Er Seinem Diener (als Offenbarung) ein, was Er eingab.",
+      "fr": "Il révéla à Son serviteur ce qu'Il révéla.",
+      "id": "Lalu dia menyampaikan kepada hamba-Nya (Muhammad) apa yang telah Allah wahyukan.",
+      "ur": "پھر خدا نے اپنے بندے کی طرف جو بھیجا سو بھیجا",
+      "bn": "তখন আল্লাহ তাঁর দাসের প্রতি যা প্রত্যাদেশ করবার, তা প্রত্যাদেশ করলেন।",
+      "fa": "در اینجا خداوند آنچه را وحی کردنی بود به بنده‌اش وحی نمود.",
+      "ru": "Он внушил Его рабу откровение,"
     }
   },
   {
@@ -106,7 +176,14 @@
     "audio": "https://everyayah.com/data/Alafasy_128kbps/053011.mp3",
     "translations": {
       "tr": "Gözünün gördüğünü gönlü yalanlamadı.",
-      "en": "The heart did not lie [about] what it saw."
+      "en": "The heart did not lie [about] what it saw.",
+      "de": "Nicht hat sein Herz erlogen, was es sah.",
+      "fr": "Le cœur n'a pas menti en ce qu'il a vu.",
+      "id": "Hatinya tidak mendustakan apa yang telah dilihatnya.",
+      "ur": "جو کچھ انہوں نے دیکھا ان کے دل نے اس کو جھوٹ نہ مانا",
+      "bn": "রসূলের অন্তর মিথ্যা বলেনি যা সে দেখেছে।",
+      "fa": "قلب (پاک او) در آنچه دید هرگز دروغ نگفت.",
+      "ru": "и сердце не солгало о том, что он увидел."
     }
   },
   {
@@ -116,7 +193,14 @@
     "audio": "https://everyayah.com/data/Alafasy_128kbps/053012.mp3",
     "translations": {
       "tr": "Ey inkarcılar! Onun gördüğü şey hakkında kendisi ile tartışır mısınız?",
-      "en": "So will you dispute with him over what he saw?"
+      "en": "So will you dispute with him over what he saw?",
+      "de": "Wollt ihr denn mit ihm streiten über das, was er sieht?",
+      "fr": "Lui contestez-vous donc ce qu'il voit?",
+      "id": "Maka apakah kaum (musyrik Mekah) hendak membantahnya tentang apa yang telah dilihatnya?",
+      "ur": "کیا جو کچھ وہ دیکھتے ہیں تم اس میں ان سے جھگڑتے ہو؟",
+      "bn": "তোমরা কি বিষয়ে বিতর্ক করবে যা সে দেখেছে?",
+      "fa": "آیا با او درباره آنچه (با چشم خود) دیده مجادله می‌کنید؟!",
+      "ru": "Неужели вы будете препираться с ним о том, что он увидел?"
     }
   },
   {
@@ -126,7 +210,14 @@
     "audio": "https://everyayah.com/data/Alafasy_128kbps/053013.mp3",
     "translations": {
       "tr": "And olsun ki o, Cebrail'i sınırın sonunda başka bir inişinde de görmüştür.",
-      "en": "And he certainly saw him in another descent"
+      "en": "And he certainly saw him in another descent",
+      "de": "Und er sah ihn ja ein anderes Mal herabkommen,",
+      "fr": "Il l'a pourtant vu, lors d'une autre descente,",
+      "id": "Dan sesungguhnya Muhammad telah melihat Jibril itu (dalam rupanya yang asli) pada waktu yang lain,",
+      "ur": "اور انہوں نے اس کو ایک بار بھی دیکھا ہے",
+      "bn": "নিশ্চয় সে তাকে আরেকবার দেখেছিল,",
+      "fa": "و بار دیگر نیز او را مشاهده کرد،",
+      "ru": "Он уже видел его другое нисхождение"
     }
   },
   {
@@ -136,7 +227,14 @@
     "audio": "https://everyayah.com/data/Alafasy_128kbps/053014.mp3",
     "translations": {
       "tr": "And olsun ki o, Cebrail'i sınırın sonunda başka bir inişinde de görmüştür.",
-      "en": "At the Lote Tree of the Utmost Boundary -"
+      "en": "At the Lote Tree of the Utmost Boundary -",
+      "de": "beim Sidr-Baum des Endziels,",
+      "fr": "près de la Sidrat-ul-Muntahâ,",
+      "id": "(yaitu) di Sidratil Muntaha.",
+      "ur": "پرلی حد کی بیری کے پاس",
+      "bn": "সিদরাতুলমুন্তাহার নিকটে,",
+      "fa": "نزد «سدرة المنتهی»،",
+      "ru": "у Лотоса крайнего предела,"
     }
   },
   {
@@ -146,7 +244,14 @@
     "audio": "https://everyayah.com/data/Alafasy_128kbps/053015.mp3",
     "translations": {
       "tr": "Orada Me'va cenneti vardır.",
-      "en": "Near it is the Garden of Refuge -"
+      "en": "Near it is the Garden of Refuge -",
+      "de": "bei dem der Garten der Zuflucht ist.",
+      "fr": "près d'elle se trouve le jardin de Ma'w?:",
+      "id": "Di dekatnya ada surga tempat tinggal,",
+      "ur": "اسی کے پاس رہنے کی جنت ہے",
+      "bn": "যার কাছে অবস্থিত বসবাসের জান্নাত।",
+      "fa": "که «جنت المأوی» در آنجاست!",
+      "ru": "возле которого находится Сад пристанища."
     }
   },
   {
@@ -156,7 +261,14 @@
     "audio": "https://everyayah.com/data/Alafasy_128kbps/053016.mp3",
     "translations": {
       "tr": "Sidre'yi bürüyen bürüyordu.",
-      "en": "When there covered the Lote Tree that which covered [it]."
+      "en": "When there covered the Lote Tree that which covered [it].",
+      "de": "Als den Sidr-Baum überdeckte, was (ihn) überdeckte,",
+      "fr": "au moment où le lotus était couvert de ce qui le couvrait.",
+      "id": "(Muhammad melihat Jibril) ketika Sidratil Muntaha diliputi oleh sesuatu yang meliputinya.",
+      "ur": "جب کہ اس بیری پر چھا رہا تھا جو چھا رہا تھا",
+      "bn": "যখন বৃক্ষটি দ্বারা আচ্ছন্ন হওয়ার, তদ্দ্বারা আচ্ছন্ন ছিল।",
+      "fa": "در آن هنگام که چیزی [= نور خیره‌کننده‌ای‌] سدرة المنتهی را پوشانده بود،",
+      "ru": "Тогда Лотос покрыло то, что покрыло (золотая саранча, или группы ангелов, или повеление Аллаха)."
     }
   },
   {
@@ -166,7 +278,14 @@
     "audio": "https://everyayah.com/data/Alafasy_128kbps/053017.mp3",
     "translations": {
       "tr": "Gözü oradan ne kaydı ve ne de onu aştı.",
-      "en": "The sight [of the Prophet] did not swerve, nor did it transgress [its limit]."
+      "en": "The sight [of the Prophet] did not swerve, nor did it transgress [its limit].",
+      "de": "da wich der Blick nicht ab, noch überschritt er das Maß.",
+      "fr": "la vue n'a nullement dévié ni outrepassé la mesure.",
+      "id": "Penglihatannya (muhammad) tidak berpaling dari yang dilihatnya itu dan tidak (pula) melampauinya.",
+      "ur": "ان کی آنکھ نہ تو اور طرف مائل ہوئی اور نہ (حد سے) آگے بڑھی",
+      "bn": "তাঁর দৃষ্টিবিভ্রম হয় নি এবং সীমালংঘনও করেনি।",
+      "fa": "چشم او هرگز منحرف نشد و طغیان نکرد (آنچه دید واقعیّت بود)!",
+      "ru": "Его же взор не уклонился в сторону и не излишествовал,"
     }
   },
   {
@@ -176,7 +295,14 @@
     "audio": "https://everyayah.com/data/Alafasy_128kbps/053018.mp3",
     "translations": {
       "tr": "And olsun ki Rabbinin varlığının büyük delillerini gördü.",
-      "en": "He certainly saw of the greatest signs of his Lord."
+      "en": "He certainly saw of the greatest signs of his Lord.",
+      "de": "Wahrlich, er sah von den Zeichen seines Herrn die größten.",
+      "fr": "Il a bien vu certaines des grandes merveilles de son Seigneur.",
+      "id": "Sesungguhnya dia telah melihat sebahagian tanda-tanda (kekuasaan) Tuhannya yang paling besar.",
+      "ur": "انہوں نے اپنے پروردگار (کی قدرت) کی کتنی ہی بڑی بڑی نشانیاں دیکھیں",
+      "bn": "নিশ্চয় সে তার পালনকর্তার মহান নিদর্শনাবলী অবলোকন করেছে।",
+      "fa": "او پاره‌ای از آیات و نشانه‌های بزرگ پروردگارش را دید!",
+      "ru": "и он увидел величайшие из знамений своего Господа."
     }
   },
   {
@@ -186,7 +312,14 @@
     "audio": "https://everyayah.com/data/Alafasy_128kbps/053019.mp3",
     "translations": {
       "tr": "Ey inkarcılar! Şimdi Lat, Uzza ve bundan başka üçüncüleri olan Menat'ın ne olduğunu söyler misiniz?",
-      "en": "So have you considered al-Lat and al-'Uzza?"
+      "en": "So have you considered al-Lat and al-'Uzza?",
+      "de": "Was meint ihr wohl zu al-Lat und al-'Uzza",
+      "fr": "Que vous en semble [des divinités], Lât et Uuzzâ",
+      "id": "Maka apakah patut kamu (hai orang-orang musyrik) menganggap al Lata dan al Uzza,",
+      "ur": "بھلا تم لوگوں نے لات اور عزیٰ کو دیکھا",
+      "bn": "তোমরা কি ভেবে দেখেছ লাত ও ওযযা সম্পর্কে।",
+      "fa": "به من خبر دهید آیا بتهای «لات» و «عزّی»...",
+      "ru": "Не видели ли вы аль-Лат и аль-Уззу,"
     }
   },
   {
@@ -196,7 +329,14 @@
     "audio": "https://everyayah.com/data/Alafasy_128kbps/053020.mp3",
     "translations": {
       "tr": "Ey inkarcılar! Şimdi Lat, Uzza ve bundan başka üçüncüleri olan Menat'ın ne olduğunu söyler misiniz?",
-      "en": "And Manat, the third - the other one?"
+      "en": "And Manat, the third - the other one?",
+      "de": "und auch zu Manat, dieser anderen, der dritten?",
+      "fr": "ainsi que Manât, cette troisième autre?",
+      "id": "dan Manah yang ketiga, yang paling terkemudian (sebagai anak perempuan Allah)?",
+      "ur": "اور تیسرے منات کو (کہ یہ بت کہیں خدا ہوسکتے ہیں)",
+      "bn": "এবং তৃতীয় আরেকটি মানাত সম্পর্কে?",
+      "fa": "و «منات» که سوّمین آنهاست (دختران خدا هستند)؟!",
+      "ru": "и еще третью - Манат?"
     }
   },
   {
@@ -206,7 +346,14 @@
     "audio": "https://everyayah.com/data/Alafasy_128kbps/053021.mp3",
     "translations": {
       "tr": "Demek erkekler sizin, dişiler Allah'ın mı?",
-      "en": "Is the male for you and for Him the female?"
+      "en": "Is the male for you and for Him the female?",
+      "de": "Ist denn für euch das, was männlich ist, und für Ihn das, was weiblich ist (bestimmt)?",
+      "fr": "Sera-ce à vous le garçon et à Lui la fille?",
+      "id": "Apakah (patut) untuk kamu (anak) laki-laki dan untuk Allah (anak) perempuan?",
+      "ur": "(مشرکو!) کیا تمہارے لئے تو بیٹے اور خدا کے لئے بیٹیاں",
+      "bn": "পুত্র-সন্তান কি তোমাদের জন্যে এবং কন্যা-সন্তান আল্লাহর জন্য?",
+      "fa": "آیا سهم شما پسر است و سهم او دختر؟! (در حالی که بزعم شما دختران کم ارزش‌ترند!)",
+      "ru": "Неужели у вас - потомки мужского пола, а у Него - женского?"
     }
   },
   {
@@ -216,7 +363,14 @@
     "audio": "https://everyayah.com/data/Alafasy_128kbps/053022.mp3",
     "translations": {
       "tr": "Öyleyse bu haksız bir paylaşma;",
-      "en": "That, then, is an unjust division."
+      "en": "That, then, is an unjust division.",
+      "de": "Das wäre dann eine ungerechte Verteilung.",
+      "fr": "Que voilà donc un partage injuste!",
+      "id": "Yang demikian itu tentulah suatu pembagian yang tidak adil.",
+      "ur": "یہ تقسیم تو بہت بےانصافی کی ہے",
+      "bn": "এমতাবস্থায় এটা তো হবে খুবই অসংগত বন্টন।",
+      "fa": "در این صورت این تقسیمی ناعادلانه است!",
+      "ru": "Это было бы несправедливым распределением."
     }
   },
   {
@@ -226,7 +380,14 @@
     "audio": "https://everyayah.com/data/Alafasy_128kbps/053023.mp3",
     "translations": {
       "tr": "Bunlar sizin ve babalarınızın taktığı adlardan başka bir şey değildir. Allah onları destekleyen bir delil indirmemiştir. Onlar sadece sanıya ve canlarının istediğine uymaktadırlar. Oysa onlara Rablerinden and olsun ki doğruluk rehberi gelmiştir.",
-      "en": "They are not but [mere] names you have named them - you and your forefathers - for which Allah has sent down no authority. They follow not except assumption and what [their] souls desire, and there has already come to them from their Lord guidance."
+      "en": "They are not but [mere] names you have named them - you and your forefathers - for which Allah has sent down no authority. They follow not except assumption and what [their] souls desire, and there has already come to them from their Lord guidance.",
+      "de": "Das sind nur Namen, die ihr genannt habt, ihr und eure Väter, für die Allah (aber) keine Ermächtigung herabgesandt hat. Sie folgen nur Vermutungen und dem, wozu sie selbst neigen, wo doch bereits von ihrem Herrn die Rechtleitung zu ihnen gekommen ist.",
+      "fr": "Ce ne sont que des noms que vous avez inventés, vous et vos ancêtres. Allah n'a fait descendre aucune preuve à leur sujet. Ils ne suivent que la conjecture et les passions de [leurs] âmes, alors que la guidée leur est venue de leur Seigneur.",
+      "id": "Itu tidak lain hanyalah nama-nama yang kamu dan bapak-bapak kamu mengadakannya; Allah tidak menurunkan suatu keteranganpun untuk (menyembah)nya. Mereka tidak lain hanyalah mengikuti sangkaan-sangkaan, dan apa yang diingini oleh hawa nafsu mereka dan sesungguhnya telah datang petunjuk kepada mereka dari Tuhan mereka.",
+      "ur": "وہ تو صرف نام ہی نام ہیں جو تم نے اور تمہارے باپ دادا نے گھڑ لئے ہیں۔ خدا نے تو ان کی کوئی سند نازل نہیں کی۔ یہ لوگ محض ظن (فاسد) اور خواہشات نفس کے پیچھے چل رہے ہیں۔ حالانکہ ان کے پروردگار کی طرف سے ان کے پاس ہدایت آچکی ہے",
+      "bn": "এগুলো কতগুলো নাম বৈ নয়, যা তোমরা এবং তোমাদের পূর্ব-পুরুষদের রেখেছ। এর সমর্থনে আল্লাহ কোন দলীল নাযিল করেননি। তারা অনুমান এবং প্রবৃত্তিরই অনুসরণ করে। অথচ তাদের কাছে তাদের পালনকর্তার পক্ষ থেকে পথ নির্দেশ এসেছে।",
+      "fa": "اینها فقط نامهایی است که شما و پدرانتان بر آنها گذاشته‌اید (نامهایی بی‌محتوا و اسمهایی بی مسمّا)، و هرگز خداوند دلیل و حجتی بر آن نازل نکرده؛ آنان فقط از گمانهای بی‌اساس و هوای نفس پیروی می‌کنند در حالی که هدایت از سوی پروردگارشان برای آنها آمده است!",
+      "ru": "Они - всего лишь имена, которыми нарекли их вы и ваши отцы, относительно которых Аллах не ниспослал никакого доказательства. Они следуют лишь предположениям и тому, чего желают души, хотя верное руководство от их Господа уже явилось к ним."
     }
   },
   {
@@ -236,7 +397,14 @@
     "audio": "https://everyayah.com/data/Alafasy_128kbps/053024.mp3",
     "translations": {
       "tr": "Yoksa, her umduğu şey insanın mıdır?",
-      "en": "Or is there for man whatever he wishes?"
+      "en": "Or is there for man whatever he wishes?",
+      "de": "Oder soll (etwa) der Mensch haben, was (immer) er (sich) wünscht?",
+      "fr": "Ou bien l'homme aura-t-il tout ce qu'il désire?",
+      "id": "Atau apakah manusia akan mendapat segala yang dicita-citakannya?",
+      "ur": "کیا جس چیز کی انسان آرزو کرتا ہے وہ اسے ضرور ملتی ہے",
+      "bn": "মানুষ যা চায়, তাই কি পায়?",
+      "fa": "یا آنچه انسان تمنّا دارد به آن می‌رسد؟!",
+      "ru": "Или же для человека уготовано то, чего он желает?"
     }
   },
   {
@@ -246,7 +414,14 @@
     "audio": "https://everyayah.com/data/Alafasy_128kbps/053025.mp3",
     "translations": {
       "tr": "Hayatın ilki de sonu da Allah'ındır.",
-      "en": "Rather, to Allah belongs the Hereafter and the first [life]."
+      "en": "Rather, to Allah belongs the Hereafter and the first [life].",
+      "de": "So gehört Allah das Jenseits und das Diesseits.",
+      "fr": "A Allah appartiennent la vie future et la vie d'ici-bas.",
+      "id": "(Tidak), maka hanya bagi Allah kehidupan akhirat dan kehidupan dunia.",
+      "ur": "آخرت اور دنیا تو الله ہی کے ہاتھ میں ہے",
+      "bn": "অতএব, পরবর্তী ও পূর্ববর্তী সব মঙ্গলই আল্লাহর হাতে।",
+      "fa": "در حالی که آخرت و دنیا از آن خداست!",
+      "ru": "Аллаху принадлежит Последняя жизнь и жизнь первая."
     }
   },
   {
@@ -256,7 +431,14 @@
     "audio": "https://everyayah.com/data/Alafasy_128kbps/053026.mp3",
     "translations": {
       "tr": "Allah, dilediğine ve hoşnut olduğuna izin vermedikçe, göklerde bulunan nice meleklerin şefaati bir şeye yaramaz.",
-      "en": "And how many angels there are in the heavens whose intercession will not avail at all except [only] after Allah has permitted [it] to whom He wills and approves."
+      "en": "And how many angels there are in the heavens whose intercession will not avail at all except [only] after Allah has permitted [it] to whom He wills and approves.",
+      "de": "Und wie viele Engel gibt es in den Himmeln, deren Fürsprache nichts nützt, außer nachdem Allah es erlaubt hat, wem Er will und wer Sein Wohlgefallen findet.",
+      "fr": "Et que d'Anges dans les cieux dont l'intercession ne sert à rien, sinon qu'après qu'Allah l'aura permis, en faveur de qui Il veut et qu'Il agrée.",
+      "id": "Dan berapa banyaknya malaikat di langit, syafa'at mereka sedikitpun tidak berguna, kecuali sesudah Allah mengijinkan bagi orang yang dikehendaki dan diridhai (Nya).",
+      "ur": "اور آسمانوں میں بہت سے فرشتے ہیں جن کی سفارش کچھ بھی فائدہ نہیں دیتی مگر اس وقت کہ خدا جس کے لئے چاہے اجازت بخشے اور (سفارش) پسند کرے",
+      "bn": "আকাশে অনেক ফেরেশতা রয়েছে। তাদের কোন সুপারিশ ফলপ্রসূ হয় না যতক্ষণ আল্লাহ যার জন্যে ইচ্ছা ও যাকে পছন্দ করেন, অনুমতি না দেন।",
+      "fa": "و چه بسیار فرشتگان آسمانها که شفاعت آنها سودی نمی‌بخشد مگر پس از آنکه خدا برای هر کس بخواهد و راضی باشد اجازه (شفاعت) دهد!",
+      "ru": "Сколько же на небесах ангелов, заступничество которых не принесет никакой пользы, пока Аллах не позволит заступиться за тех, за кого Он пожелает и кем Он доволен!"
     }
   },
   {
@@ -266,7 +448,14 @@
     "audio": "https://everyayah.com/data/Alafasy_128kbps/053027.mp3",
     "translations": {
       "tr": "Doğrusu ahirete inanmayanlar, meleklere \"dişi\" adını takarlar.",
-      "en": "Indeed, those who do not believe in the Hereafter name the angels female names,"
+      "en": "Indeed, those who do not believe in the Hereafter name the angels female names,",
+      "de": "Diejenigen, die an das Jenseits nicht glauben, benennen die Engel fürwahr mit Namen, wie weibliche Wesen benannt werden.",
+      "fr": "Ceux qui ne croient pas en l'au-delà donnent aux Anges des noms de femmes,",
+      "id": "Sesungguhnya orang-orang yang tiada beriman kepada kehidupan akhirat, mereka benar-benar menamakan malaikat itu dengan nama perempuan.",
+      "ur": "جو لوگ آخرت پر ایمان نہیں لاتے وہ فرشتوں کو (خدا کی) لڑکیوں کے نام سے موسوم کرتے ہیں",
+      "bn": "যারা পরকালে বিশ্বাস করে না, তারাই ফেরেশতাকে নারীবাচক নাম দিয়ে থাকে।",
+      "fa": "کسانی که به آخرت ایمان ندارند، فرشتگان را دختر (خدا) نامگذاری می‌کنند!",
+      "ru": "Воистину, те, которые не веруют в Последнюю жизнь, называют ангелов женщинами."
     }
   },
   {
@@ -276,7 +465,14 @@
     "audio": "https://everyayah.com/data/Alafasy_128kbps/053028.mp3",
     "translations": {
       "tr": "Oysa onların bu hususta bir bilgileri yoktur, sadece sanıya uyarlar. Sanı ise şüphesiz gerçeği ifade etmez.",
-      "en": "And they have thereof no knowledge. They follow not except assumption, and indeed, assumption avails not against the truth at all."
+      "en": "And they have thereof no knowledge. They follow not except assumption, and indeed, assumption avails not against the truth at all.",
+      "de": "Sie haben jedoch kein Wissen hierüber. Sie folgen nur Vermutungen; die Vermutungen nützen aber nichts gegenüber der Wahrheit.",
+      "fr": "alors qu'ils n'en ont aucune science: ils ne suivent que la conjecture, alors que la conjecture ne sert à rien contre la vérité.",
+      "id": "Dan mereka tidak mempunyai sesuatu pengetahuanpun tentang itu. Mereka tidak lain hanyalah mengikuti persangkaan sedang sesungguhnya persangkaan itu tiada berfaedah sedikitpun terhadap kebenaran.",
+      "ur": "حالانکہ ان کو اس کی کچھ خبر نہیں۔ وہ صرف ظن پر چلتے ہیں۔ اور ظن یقین کے مقابلے میں کچھ کام نہیں آتا",
+      "bn": "অথচ এ বিষয়ে তাদের কোন জ্ঞান নেই। তারা কেবল অনুমানের উপর চলে। অথচ সত্যের ব্যাপারে অনুমান মোটেই ফলপ্রসূ নয়।",
+      "fa": "آنها هرگز به این سخن دانشی ندارند، تنها از گمان بی‌پایه پیروی می‌کنند با اینکه «گمان» هرگز انسان را از حقّ بی‌نیاز نمی‌کند!",
+      "ru": "У них нет об этом никакого знания. Они следуют лишь предположениям, хотя предположения не могут заменить истину."
     }
   },
   {
@@ -286,7 +482,14 @@
     "audio": "https://everyayah.com/data/Alafasy_128kbps/053029.mp3",
     "translations": {
       "tr": "Bizi anmaktan yüz çevirenlere ve dünya hayatından başka bir şey istemeyenlere aldırma.",
-      "en": "So turn away from whoever turns his back on Our message and desires not except the worldly life."
+      "en": "So turn away from whoever turns his back on Our message and desires not except the worldly life.",
+      "de": "Laß nun ab von jemandem, der sich von Unserer Ermahnung abkehrt und nur das diesseitige Leben will.",
+      "fr": "Ecarte-toi donc, de celui qui tourne le dos à Notre rappel et qui ne désire que la vie présente.",
+      "id": "Maka berpalinglah (hai Muhammad) dari orang yang berpaling dari peringatan Kami, dan tidak mengingini kecuali kehidupan duniawi.",
+      "ur": "تو جو ہماری یاد سے روگردانی اور صرف دنیا ہی کی زندگی کا خواہاں ہو اس سے تم بھی منہ پھیر لو",
+      "bn": "অতএব যে আমার স্মরণে বিমুখ এবং কেবল পার্থিব জীবনই কামনা করে তার তরফ থেকে আপনি মুখ ফিরিয়ে নিন।",
+      "fa": "حال که چنین است از کسی که از یاد ما روی می‌گرداند و جز زندگی مادی دنیا را نمی‌طلبد، اعراض کن!",
+      "ru": "Отвернись же от того, кто отвернулся от Нашего Напоминания и не пожелал ничего, кроме мирской жизни."
     }
   },
   {
@@ -296,7 +499,14 @@
     "audio": "https://everyayah.com/data/Alafasy_128kbps/053030.mp3",
     "translations": {
       "tr": "Bu onların ulaştıkları bilginin seviyesini gösterir. Doğrusu Rabbin yolundan sapmış olanı pek iyi bilir, doğru yolda olanı da çok iyi bilir.",
-      "en": "That is their sum of knowledge. Indeed, your Lord is most knowing of who strays from His way, and He is most knowing of who is guided."
+      "en": "That is their sum of knowledge. Indeed, your Lord is most knowing of who strays from His way, and He is most knowing of who is guided.",
+      "de": "Das ist ihr erreichter Wissensstand. Gewiß, dein Herr kennt sehr wohl wer von Seinem Weg abirrt, und Er kennt sehr wohl die Rechtgeleiteten.",
+      "fr": "Voilà toute la portée de leur savoir. Certes ton Seigneur connaît parfaitement celui qui s'égare de Son chemin et Il connaît parfaitement qui est bien guidé.",
+      "id": "Itulah sejauh-jauh pengetahuan mereka. Sesungguhnya Tuhanmu, Dialah yang paling mengetahui siapa yang tersesat dari jalan-Nya dan Dia pulalah yang paling mengetahui siapa yang mendapat petunjuk.",
+      "ur": "ان کے علم کی انتہا یہی ہے۔ تمہارا پروردگار اس کو بھی خوب جانتا ہے جو اس کے رستے سے بھٹک گیا اور اس سے بھی خوب واقف ہے جو رستے پر چلا",
+      "bn": "তাদের জ্ঞানের পরিধি এ পর্যন্তই। নিশ্চয় আপনার পালনকর্তা ভাল জানেন, কে তাঁর পথ থেকে বিচ্যুত হয়েছে এবং তিনিই ভাল জানেন কে সুপথপ্রাপ্ত হয়েছে।",
+      "fa": "این آخرین حدّ آگاهی آنهاست؛ پروردگار تو کسانی را که از راه او گمراه شده‌اند بهتر می‌شناسد، و (همچنین) هدایت‌یافتگان را از همه بهتر می‌شناسد!",
+      "ru": "Таков предел их познаний. Воистину, твоему Господу лучше знать тех, кто сбился с Его пути, и лучше знать тех, кто последовал прямым путем."
     }
   },
   {
@@ -306,7 +516,14 @@
     "audio": "https://everyayah.com/data/Alafasy_128kbps/053031.mp3",
     "translations": {
       "tr": "Göklerde olanlar ve yerde olanlar Allah'ındır ki O, kötülük yapanlara işlerinin karşılığını verir; iyi davrananlara, ufak tefek kabahatleri bir yana büyük günahlardan ve hayasızlıklardan kaçınanlara işlediklerinden daha iyisiyle karşılığını verir. Doğrusu Rabbinin bağışı boldur. Sizi yerden var ederken ve siz annelerinizin karınlarında cenin halinde iken sizleri çok iyi bilen O'dur. Kendinizi temize çıkarmayın. O, sakınanı çok iyi bilir.",
-      "en": "And to Allah belongs whatever is in the heavens and whatever is in the earth - that He may recompense those who do evil with [the penalty of] what they have done and recompense those who do good with the best [reward] -"
+      "en": "And to Allah belongs whatever is in the heavens and whatever is in the earth - that He may recompense those who do evil with [the penalty of] what they have done and recompense those who do good with the best [reward] -",
+      "de": "Allah gehört (alles), was in den Himmeln und was auf der Erde ist, auf daß Er denjenigen, die Böses tun, das vergelte, was sie tun, und daß Er denjenigen, die Gutes tun, mit dem (Allerbesten vergelte.",
+      "fr": "A Allah appartient ce qui est dans les cieux et sur la terre afin qu'Il rétribue ceux qui font le mal selon ce qu'ils œuvrent, et récompense ceux qui font le bien par la meilleure [récompense],",
+      "id": "Dan hanya kepunyaan Allah-lah apa yang ada di langit dan apa yang ada di bumi supaya Dia memberi balasan kepada orang-orang yang berbuat jahat terhadap apa yang telah mereka kerjakan dan memberi balasan kepada orang-orang yang berbuat baik dengan pahala yang lebih baik (surga).",
+      "ur": "اور جو کچھ آسمانوں میں ہے اور جو کچھ زمین میں ہے سب خدا ہی کا ہے (اور اس نے خلقت کو) اس لئے (پیدا کیا ہے) کہ جن لوگوں نے برے کام کئے ان کو ان کے اعمال کا (برا) بدلا دے اور جنہوں نے نیکیاں کیں ان کو نیک بدلہ دے",
+      "bn": "নভোমন্ডল ও ভূমন্ডলে যা কিছু আছে, সবই আল্লাহর, যাতে তিনি মন্দকর্মীদেরকে তাদের কর্মের প্রতিফল দেন এবং সৎকর্মীদেরকে দেন ভাল ফল।",
+      "fa": "و برای خداست آنچه در آسمانها و آنچه در زمین است تا بدکاران را به کیفر کارهای بدشان برساند و نیکوکاران را در برابر اعمال نیکشان پاداش دهد!",
+      "ru": "Аллаху принадлежит то, что на небесах, и то, что на земле, дабы Он воздал злодеям за то, что они совершили, и воздал творившим добро Наилучшим (Раем)."
     }
   },
   {
@@ -316,7 +533,14 @@
     "audio": "https://everyayah.com/data/Alafasy_128kbps/053032.mp3",
     "translations": {
       "tr": "Göklerde olanlar ve yerde olanlar Allah'ındır ki O, kötülük yapanlara işlerinin karşılığını verir; iyi davrananlara, ufak tefek kabahatleri bir yana büyük günahlardan ve hayasızlıklardan kaçınanlara işlediklerinden daha iyisiyle karşılığını verir. Doğrusu Rabbinin bağışı boldur. Sizi yerden var ederken ve siz annelerinizin karınlarında cenin halinde iken sizleri çok iyi bilen O'dur. Kendinizi temize çıkarmayın. O, sakınanı çok iyi bilir.",
-      "en": "Those who avoid the major sins and immoralities, only [committing] slight ones. Indeed, your Lord is vast in forgiveness. He was most knowing of you when He produced you from the earth and when you were fetuses in the wombs of your mothers. So do not claim yourselves to be pure; He is most knowing of who fears Him."
+      "en": "Those who avoid the major sins and immoralities, only [committing] slight ones. Indeed, your Lord is vast in forgiveness. He was most knowing of you when He produced you from the earth and when you were fetuses in the wombs of your mothers. So do not claim yourselves to be pure; He is most knowing of who fears Him.",
+      "de": "Diejenigen, die schwerwiegende Sünden und Abscheulichkeiten meiden, außer leichten Verfehlungen... Gewiß, dein Herr ist Allumfassend in (Seiner) Vergebung. Er weiß sehr wohl über euch Bescheid, als Er euch aus der Erde hervorgebracht hat und als ihr Keimlinge in den Leibern eurer Mütter gewesen seid. So erklärt nicht euch selbst für lauter. Er weiß sehr wohl, wer gottesfürchtig ist.",
+      "fr": "ceux qui évitent les plus grands péchés ainsi que les turpitudes et [qui ne commettent] que des fautes légères. Certes, le pardon de Ton Seigneur est immense. C'est Lui qui vous connaît le mieux quand Il vous a produits de terre, et aussi quand vous étiez des embryons dans les ventres de vos mères. Ne vantez pas vous-mêmes votre pureté; c'est Lui qui connaît mieux ceux qui [Le] craignent.",
+      "id": "(Yaitu) orang-orang yang menjauhi dosa-dosa besar dan perbuatan keji yang selain dari kesalahan-kesalahan kecil. Sesungguhnya Tuhanmu maha luas ampunan-Nya. Dan Dia lebih mengetahui (tentang keadaan)mu ketika Dia menjadikan kamu dari tanah dan ketika kamu masih janin dalam perut ibumu; maka janganlah kamu mengatakan dirimu suci. Dialah yang paling mengetahui tentang orang yang bertakwa.",
+      "ur": "جو صغیرہ گناہوں کے سوا بڑے بڑے گناہوں اور بےحیائی کی باتوں سے اجتناب کرتے ہیں۔ بےشک تمہارا پروردگار بڑی بخشش والا ہے۔ وہ تم کو خوب جانتا ہے۔ جب اس نے تم کو مٹی سے پیدا کیا اور جب تم اپنی ماؤں کے پیٹ میں بچّے تھے۔ تو اپنے آپ کو پاک صاف نہ جتاؤ۔ جو پرہیزگار ہے وہ اس سے خوب واقف ہے",
+      "bn": "যারা বড় বড় গোনাহ ও অশ্লীলকার্য থেকে বেঁচে থাকে ছোটখাট অপরাধ করলেও নিশ্চয় আপনার পালনকর্তার ক্ষমা সুদূর বিস্তৃত। তিনি তোমাদের সম্পর্কে ভাল জানেন, যখন তিনি তোমাদেরকে সৃষ্টি করেছেন মৃত্তিকা থেকে এবং যখন তোমরা মাতৃগর্ভে কচি শিশু ছিলে। অতএব তোমরা আত্নপ্রশংসা করো না। তিনি ভাল জানেন কে সংযমী।",
+      "fa": "همانها که از گناهان بزرگ و اعمال زشت دوری می‌کنند، جز گناهان صغیره (که گاه آلوده آن می‌شوند)؛ آمرزش پروردگار تو گسترده است؛ او نسبت به شما از همه آگاهتر است از آن هنگام که شما را از زمین آفرید و در آن موقع که بصورت جنینهایی در شکم مادرانتان بودید؛ پس خودستایی نکنید، او پرهیزگاران را بهتر می‌شناسد!",
+      "ru": "Они избегают великих грехов и мерзостей, кроме мелких и немногочисленных проступков. Воистину, твой Господь обладает необъятным прощением. Ему было лучше знать о вас, когда Он сотворил вас из земли и когда вы были зародышами в утробах ваших матерей. Не восхваляйте самих себя, ибо Ему лучше знать тех, кто богобоязнен."
     }
   },
   {
@@ -326,7 +550,14 @@
     "audio": "https://everyayah.com/data/Alafasy_128kbps/053033.mp3",
     "translations": {
       "tr": "Yüz çevireni ve malından biraz verip sonra vermemekte direneni gördün mü?\"",
-      "en": "Have you seen the one who turned away"
+      "en": "Have you seen the one who turned away",
+      "de": "Was meinst du wohl zu demjenigen, der sich abkehrt",
+      "fr": "Vois-tu celui qui s'est détourné,",
+      "id": "Maka apakah kamu melihat orang yang berpaling (dari Al-Quran)?",
+      "ur": "بھلا تم نے اس شخص کو دیکھا جس نے منہ پھیر لیا",
+      "bn": "আপনি কি তাকে দেখেছেন, যে মুখ ফিরিয়ে নেয়।",
+      "fa": "آیا دیدی آن کس را که (از اسلام -یا انفاق-) روی گردان شد؟!",
+      "ru": "Видел ли ты того, кто отвернулся,"
     }
   },
   {
@@ -336,7 +567,14 @@
     "audio": "https://everyayah.com/data/Alafasy_128kbps/053034.mp3",
     "translations": {
       "tr": "Yüz çevireni ve malından biraz verip sonra vermemekte direneni gördün mü?\"",
-      "en": "And gave a little and [then] refrained?"
+      "en": "And gave a little and [then] refrained?",
+      "de": "und (nur) wenig gibt und dann (ganz) aussetzt?",
+      "fr": "donné peu et a [finalement] cessé de donner?",
+      "id": "serta memberi sedikit dan tidak mau memberi lagi?",
+      "ur": "اور تھوڑا سا دیا (پھر) ہاتھ روک لیا",
+      "bn": "এবং দেয় সামান্যই ও পাষাণ হয়ে যায়।",
+      "fa": "و کمی عطا کرد، و از بیشتر امساک نمود!",
+      "ru": "дал мало и прекратил давать вовсе?"
     }
   },
   {
@@ -346,7 +584,14 @@
     "audio": "https://everyayah.com/data/Alafasy_128kbps/053035.mp3",
     "translations": {
       "tr": "Görülmeyenin ilmi yanında da o mu görüyor?",
-      "en": "Does he have knowledge of the unseen, so he sees?"
+      "en": "Does he have knowledge of the unseen, so he sees?",
+      "de": "Besitzt er (etwa) Wissen über das Verborgene, daß er sehen könnte?",
+      "fr": "Détient-il la science de l'Inconnaissable en sorte qu'il voit?",
+      "id": "Apakah dia mempunyai pengetahuan tentang yang ghaib, sehingga dia mengetahui (apa yang dikatakan)?",
+      "ur": "کیا اس کے پاس غیب کا علم ہے کہ وہ اس کو دیکھ رہا ہے",
+      "bn": "তার কাছে কি অদৃশ্যের জ্ঞান আছে যে, সে দেখে?",
+      "fa": "آیا نزد او علم غیب است و می‌بیند (که دیگران می‌توانند گناهان او را بر دوش گیرند)؟!",
+      "ru": "Разве он обладает таким знанием о сокровенном, что он видит его?"
     }
   },
   {
@@ -356,7 +601,14 @@
     "audio": "https://everyayah.com/data/Alafasy_128kbps/053036.mp3",
     "translations": {
       "tr": "Yoksa Musa'nın ve sözünü yerine getiren İbrahim'in kitablarında olanlar kendisine bildirilmedi mi ki?",
-      "en": "Or has he not been informed of what was in the scriptures of Moses"
+      "en": "Or has he not been informed of what was in the scriptures of Moses",
+      "de": "Oder wurde ihm nicht kundgetan, was auf den Blättern Musas steht",
+      "fr": "Ne lui a-t-on pas annoncé ce qu'il y avait dans les feuilles de Moïse",
+      "id": "Ataukah belum diberitakan kepadanya apa yang ada dalam lembaran-lembaran Musa?",
+      "ur": "کیا جو باتیں موسیٰ کے صحیفوں میں ہیں ان کی اس کو خبر نہیں پہنچی",
+      "bn": "তাকে কি জানানো হয়নি যা আছে মূসার কিতাবে,",
+      "fa": "یا از آنچه در کتب موسی نازل گردیده با خبر نشده است؟!",
+      "ru": "Разве ему не поведали о том, что было в свитках Мусы (Моисея)"
     }
   },
   {
@@ -366,7 +618,14 @@
     "audio": "https://everyayah.com/data/Alafasy_128kbps/053037.mp3",
     "translations": {
       "tr": "Yoksa Musa'nın ve sözünü yerine getiren İbrahim'in kitablarında olanlar kendisine bildirilmedi mi ki?",
-      "en": "And [of] Abraham, who fulfilled [his obligations] -"
+      "en": "And [of] Abraham, who fulfilled [his obligations] -",
+      "de": "und Ibrahims, der (seine Pflichten) erfüllte?",
+      "fr": "et celles d'Abraham qui a tenu parfaitement [sa promesse de transmettre]",
+      "id": "dan lembaran-lembaran Ibrahim yang selalu menyempurnakan janji?",
+      "ur": "اور ابراہیمؑ کی جنہوں نے (حق طاعت ورسالت) پورا کیا",
+      "bn": "এবং ইব্রাহীমের কিতাবে, যে তার দায়িত্ব পালন করেছিল?",
+      "fa": "و در کتب ابراهیم، همان کسی که وظیفه خود را بطور کامل ادا کرد،",
+      "ru": "и Ибрахима (Авраама), который выполнил повеления Аллаха полностью?"
     }
   },
   {
@@ -376,7 +635,14 @@
     "audio": "https://everyayah.com/data/Alafasy_128kbps/053038.mp3",
     "translations": {
       "tr": "Hiç bir günahkar başkasının günah yükünü yüklenmez;",
-      "en": "That no bearer of burdens will bear the burden of another"
+      "en": "That no bearer of burdens will bear the burden of another",
+      "de": "(Nämlich,) daß keine lasttragende (Seele) die Last einer anderen auf sich nehmen wird",
+      "fr": "qu'aucune [âme] ne portera le fardeau (le péché) d'autrui,",
+      "id": "(yaitu) bahwasanya seorang yang berdosa tidak akan memikul dosa orang lain,",
+      "ur": "یہ کہ کوئی شخص دوسرے (کے گناہ) کا بوجھ نہیں اٹھائے گا",
+      "bn": "কিতাবে এই আছে যে, কোন ব্যক্তি কারও গোনাহ নিজে বহন করবে না।",
+      "fa": "که هیچ کس بار گناه دیگری را بر دوش نمی‌گیرد،",
+      "ru": "Ни одна душа не понесет чужого бремени."
     }
   },
   {
@@ -386,7 +652,14 @@
     "audio": "https://everyayah.com/data/Alafasy_128kbps/053039.mp3",
     "translations": {
       "tr": "İnsan ancak çalıştığına erişir.",
-      "en": "And that there is not for man except that [good] for which he strives"
+      "en": "And that there is not for man except that [good] for which he strives",
+      "de": "und daß es für den Menschen nichts anderes geben wird als das, worum er sich (selbst) bemüht,",
+      "fr": "et qu'en vérité, l'homme n'obtient que [le fruit] de ses efforts;",
+      "id": "dan bahwasanya seorang manusia tiada memperoleh selain apa yang telah diusahakannya,",
+      "ur": "اور یہ کہ انسان کو وہی ملتا ہے جس کی وہ کوشش کرتا ہے",
+      "bn": "এবং মানুষ তাই পায়, যা সে করে,",
+      "fa": "و اینکه برای انسان بهره‌ای جز سعی و کوشش او نیست،",
+      "ru": "Человек получит только то, к чему он стремился."
     }
   },
   {
@@ -396,7 +669,14 @@
     "audio": "https://everyayah.com/data/Alafasy_128kbps/053040.mp3",
     "translations": {
       "tr": "Onun çalışması şüphesiz görülecektir.",
-      "en": "And that his effort is going to be seen -"
+      "en": "And that his effort is going to be seen -",
+      "de": "daß sein Bemühen gesehen werden wird,",
+      "fr": "et que son effort, en vérité, lui sera présenté (le jour du Jugement).",
+      "id": "dan bahwasanya usaha itu kelak akan diperlihatkan (kepadanya).",
+      "ur": "اور یہ کہ اس کی کوشش دیکھی جائے گی",
+      "bn": "তার কর্ম শীঘ্রই দেখা হবে।",
+      "fa": "و اینکه تلاش او بزودی دیده می‌شود،",
+      "ru": "Его устремления будут увидены,"
     }
   },
   {
@@ -406,7 +686,14 @@
     "audio": "https://everyayah.com/data/Alafasy_128kbps/053041.mp3",
     "translations": {
       "tr": "Sonra ona karşılığı eksiksiz verilecektir.",
-      "en": "Then he will be recompensed for it with the fullest recompense"
+      "en": "Then he will be recompensed for it with the fullest recompense",
+      "de": "daß ihm hierauf nach vollem Maß vergolten wird",
+      "fr": "Ensuite il en sera récompensé pleinement,",
+      "id": "Kemudian akan diberi balasan kepadanya dengan balasan yang paling sempurna,",
+      "ur": "پھر اس کو اس کا پورا پورا بدلا دیا جائے گا",
+      "bn": "অতঃপর তাকে পূর্ণ প্রতিদান দেয়া হবে।",
+      "fa": "سپس به او جزای کافی داده خواهد شد!",
+      "ru": "а затем он получит воздаяние сполна."
     }
   },
   {
@@ -416,7 +703,14 @@
     "audio": "https://everyayah.com/data/Alafasy_128kbps/053042.mp3",
     "translations": {
       "tr": "Doğrusu son varış Rabbinedir.",
-      "en": "And that to your Lord is the finality"
+      "en": "And that to your Lord is the finality",
+      "de": "und daß zu deinem Herrn das Endziel sein wird",
+      "fr": "et que tout aboutit, en vérité, vers ton Seigneur,",
+      "id": "dan bahwasanya kepada Tuhanmulah kesudahan (segala sesuatu),",
+      "ur": "اور یہ کہ تمہارے پروردگار ہی کے پاس پہنچنا ہے",
+      "bn": "তোমার পালনকর্তার কাছে সবকিছুর সমাপ্তি,",
+      "fa": "(و آیا از کتب پیشین انبیا به او نرسیده است) که همه امور به پروردگارت منتهی می‌گردد؟!",
+      "ru": "К твоему Господу предстоит конечный исход (или твоему Господу принадлежит конечный предел)."
     }
   },
   {
@@ -426,7 +720,14 @@
     "audio": "https://everyayah.com/data/Alafasy_128kbps/053043.mp3",
     "translations": {
       "tr": "Doğrusu, güldüren de ağlatan da O'dur.",
-      "en": "And that it is He who makes [one] laugh and weep"
+      "en": "And that it is He who makes [one] laugh and weep",
+      "de": "und daß Er es ist, Der lachen und weinen läßt,",
+      "fr": "et que c'est Lui qui a fait rire et qui a fait pleurer,",
+      "id": "dan bahwasanya Dialah yang menjadikan orang tertawa dan menangis,",
+      "ur": "اور یہ کہ وہ ہنساتا اور رلاتا ہے",
+      "bn": "এবং তিনিই হাসান ও কাঁদান",
+      "fa": "و اینکه اوست که خنداند و گریاند،",
+      "ru": "Он заставляет смеяться и плакать."
     }
   },
   {
@@ -436,7 +737,14 @@
     "audio": "https://everyayah.com/data/Alafasy_128kbps/053044.mp3",
     "translations": {
       "tr": "Doğrusu dirilten de öldüren de O'dur.",
-      "en": "And that it is He who causes death and gives life"
+      "en": "And that it is He who causes death and gives life",
+      "de": "und daß Er es ist, Der sterben läßt und wieder lebendig macht,",
+      "fr": "et que c'est Lui qui a fait mourir et qui a ramené à la vie,",
+      "id": "dan bahwasanya Dialah yang mematikan dan menghidupkan,",
+      "ur": "اور یہ کہ وہی مارتا اور جلاتا ہے",
+      "bn": "এবং তিনিই মারেন ও বাঁচান,",
+      "fa": "و اوست که میراند و زنده کرد،",
+      "ru": "Он умерщвляет и оживляет."
     }
   },
   {
@@ -446,7 +754,14 @@
     "audio": "https://everyayah.com/data/Alafasy_128kbps/053045.mp3",
     "translations": {
       "tr": "Doğrusu, atıldığında meniden erkek ve dişiyi, iki çifti yaratan O'dur.",
-      "en": "And that He creates the two mates - the male and female -"
+      "en": "And that He creates the two mates - the male and female -",
+      "de": "daß Er beide Teile des Paares, das Männliche und das Weibliche, erschafft",
+      "fr": "et que c'est Lui qui a crée les deux éléments de couple, le mâle et la femelle,",
+      "id": "dan bahwasanya Dialah yang menciptakan berpasang-pasangan pria dan wanita.",
+      "ur": "اور یہ کہ وہی نر اور مادہ دو قسم (کے حیوان) پیدا کرتا ہے",
+      "bn": "এবং তিনিই সৃষ্টি করেন যুগল-পুরুষ ও নারী।",
+      "fa": "و اوست که دو زوج نر و مادّه را آفرید...",
+      "ru": "Он сотворил пару - мужчину и женщину (или самца и самку) -"
     }
   },
   {
@@ -456,7 +771,14 @@
     "audio": "https://everyayah.com/data/Alafasy_128kbps/053046.mp3",
     "translations": {
       "tr": "Doğrusu, atıldığında meniden erkek ve dişiyi, iki çifti yaratan O'dur.",
-      "en": "From a sperm-drop when it is emitted"
+      "en": "From a sperm-drop when it is emitted",
+      "de": "aus einem Samentropfen, wenn er ausgespritzt wird,",
+      "fr": "d'une goutte de sperme quand elle est éjaculée",
+      "id": "dari air mani, apabila dipancarkan.",
+      "ur": "(یعنی) نطفے سے جو (رحم میں) ڈالا جاتا ہے",
+      "bn": "একবিন্দু বীর্য থেকে যখন স্খলিত করা হয়।",
+      "fa": "از نطفه‌ای هنگامی که خارج می‌شود (و در رحم می‌ریزد)،",
+      "ru": "из капли, которая извергается."
     }
   },
   {
@@ -466,7 +788,14 @@
     "audio": "https://everyayah.com/data/Alafasy_128kbps/053047.mp3",
     "translations": {
       "tr": "Doğrusu ölümden sonra tekrar dirilten de O'dur.",
-      "en": "And that [incumbent] upon Him is the next creation"
+      "en": "And that [incumbent] upon Him is the next creation",
+      "de": "und daß Ihm die letzte Schöpfung obliegt",
+      "fr": "et que la seconde création Lui incombe,",
+      "id": "Dan bahwasanya Dialah yang menetapkan kejadian yang lain (kebangkitan sesudah mati),",
+      "ur": "اور یہ کہ (قیامت کو) اسی پر دوبارہ اٹھانا لازم ہے",
+      "bn": "পুনরুত্থানের দায়িত্ব তাঁরই,",
+      "fa": "و اینکه بر خداست ایجاد عالم دیگر (تا عدالت اجرا گردد)،",
+      "ru": "На Нем лежит сотворение в другой раз."
     }
   },
   {
@@ -476,7 +805,14 @@
     "audio": "https://everyayah.com/data/Alafasy_128kbps/053048.mp3",
     "translations": {
       "tr": "Doğrusu zengin eden de varlıklı kılan da O'dur.",
-      "en": "And that it is He who enriches and suffices"
+      "en": "And that it is He who enriches and suffices",
+      "de": "und daß Er es ist, Der reich macht und Der genügsam macht,",
+      "fr": "et c'est Lui qui a enrichi et qui a fait acquérir.",
+      "id": "dan bahwasanya Dia yang memberikan kekayaan dan memberikan kecukupan,",
+      "ur": "اور یہ کہ وہی دولت مند بناتا اور مفلس کرتا ہے",
+      "bn": "এবং তিনিই ধনবান করেন ও সম্পদ দান করেন।",
+      "fa": "و اینکه اوست که بی‌نیاز کرد و سرمایه باقی بخشید،",
+      "ru": "Он избавляет от нужды (или дарует богатство) и наделяет собственностью (или удовлетворяет)."
     }
   },
   {
@@ -486,7 +822,14 @@
     "audio": "https://everyayah.com/data/Alafasy_128kbps/053049.mp3",
     "translations": {
       "tr": "Doğrusu Şira yıldızının Rabbi O'dur.",
-      "en": "And that it is He who is the Lord of Sirius"
+      "en": "And that it is He who is the Lord of Sirius",
+      "de": "und daß Er es ist, Der der Herr des Hundssterns ist,",
+      "fr": "Et c'est Lui qui est le Seigneur de Sirius,",
+      "id": "dan bahwasanya Dialah yang Tuhan (yang memiliki) bintang syi'ra,",
+      "ur": "اور یہ کہ وہی شعریٰ کا مالک ہے",
+      "bn": "তিনি শিরা নক্ষত্রের মালিক।",
+      "fa": "و اینکه اوست پروردگار ستاره «شعرا»!",
+      "ru": "Он - Господь Сириуса."
     }
   },
   {
@@ -496,7 +839,14 @@
     "audio": "https://everyayah.com/data/Alafasy_128kbps/053050.mp3",
     "translations": {
       "tr": "İlk Ad milletini, Semud milletini yok edip geri bırakmayan O'dur.",
-      "en": "And that He destroyed the first [people of] 'Aad"
+      "en": "And that He destroyed the first [people of] 'Aad",
+      "de": "daß Er die früheren 'Ad vernichtete",
+      "fr": "et c'est Lui qui a fait périr les anciens 'Aad,",
+      "id": "dan bahwasanya Dia telah membinasakan kaum 'Aad yang pertama,",
+      "ur": "اور یہ کہ اسی نے عاد اول کو ہلاک کر ڈالا",
+      "bn": "তিনিই প্রথম আদ সম্প্রদায়কে ধ্বংস করেছেন,",
+      "fa": "(و آیا به انسان نرسیده است که در کتب انبیای پیشین آمده) که خداوند قوم «عاد نخستین» را هلاک کرد؟!",
+      "ru": "Он погубил первых адитов,"
     }
   },
   {
@@ -506,7 +856,14 @@
     "audio": "https://everyayah.com/data/Alafasy_128kbps/053051.mp3",
     "translations": {
       "tr": "İlk Ad milletini, Semud milletini yok edip geri bırakmayan O'dur.",
-      "en": "And Thamud - and He did not spare [them] -"
+      "en": "And Thamud - and He did not spare [them] -",
+      "de": "und (auch) die Tamud; so ließ Er nichts übrig;",
+      "fr": "ainsi que les Thamûd, et Il fit que rien n'en subsistât,",
+      "id": "dan kaum Tsamud. Maka tidak seorangpun yang ditinggalkan-Nya (hidup).",
+      "ur": "اور ثمود کو بھی۔ غرض کسی کو باقی نہ چھوڑا",
+      "bn": "এবং সামুদকেও; অতঃপর কাউকে অব্যহতি দেননি।",
+      "fa": "و همچنین قوم «ثمود» را، و کسی از آنان را باقی نگذارد!",
+      "ru": "ничего не оставил от самудян,"
     }
   },
   {
@@ -516,7 +873,14 @@
     "audio": "https://everyayah.com/data/Alafasy_128kbps/053052.mp3",
     "translations": {
       "tr": "Daha önce de Nuh milletini yok eden O'dur; çünkü onlar çok zalim ve pek taşkın kimselerdi.",
-      "en": "And the people of Noah before. Indeed, it was they who were [even] more unjust and oppressing."
+      "en": "And the people of Noah before. Indeed, it was they who were [even] more unjust and oppressing.",
+      "de": "und zuvor das Volk Nuhs - gewiß, sie waren ja noch ungerechter und übermäßiger (in ihrem Frevel).",
+      "fr": "ainsi que le peuple de Noé antérieurement, car ils étaient encore plus injustes et plus violents,",
+      "id": "Dan kaum Nuh sebelum itu. Sesungguhnya mereka adalah orang-orang yang paling zalim dan paling durhaka,",
+      "ur": "اور ان سے پہلے قوم نوحؑ کو بھی۔ کچھ شک نہیں کہ وہ لوگ بڑے ہی ظالم اور بڑے ہی سرکش تھے",
+      "bn": "এবং তাদের পূর্বে নূহের সম্প্রদায়কে, তারা ছিল আরও জালেম ও অবাধ্য।",
+      "fa": "و نیز قوم نوح را پیش از آنها، چرا که آنان از همه ظالمتر و طغیانگرتر بودند!",
+      "ru": "а еще раньше погубил народ Нуха (Ноя). Воистину, они были еще более несправедливы и непокорны."
     }
   },
   {
@@ -526,7 +890,14 @@
     "audio": "https://everyayah.com/data/Alafasy_128kbps/053053.mp3",
     "translations": {
       "tr": "Lut milletinin kasabalarını yere batıran, onları gömdükçe gömen O'dur.",
-      "en": "And the overturned towns He hurled down"
+      "en": "And the overturned towns He hurled down",
+      "de": "Und die umgestürzte Stadt ließ Er stürzen.",
+      "fr": "de même qu'Il anéantit les villes renversées.",
+      "id": "dan negeri-negeri kaum Luth yang telah dihancurkan Allah.",
+      "ur": "اور اسی نے الٹی ہوئی بستیوں کو دے پٹکا",
+      "bn": "তিনিই জনপদকে শুন্যে উত্তোলন করে নিক্ষেপ করেছেন।",
+      "fa": "و نیز شهرهای زیر و رو شده (قوم لوط) را فرو کوبید،",
+      "ru": "Он низверг опрокинутые селения (селения народа Лута),"
     }
   },
   {
@@ -536,7 +907,14 @@
     "audio": "https://everyayah.com/data/Alafasy_128kbps/053054.mp3",
     "translations": {
       "tr": "Lut milletinin kasabalarını yere batıran, onları gömdükçe gömen O'dur.",
-      "en": "And covered them by that which He covered."
+      "en": "And covered them by that which He covered.",
+      "de": "Und so überdeckte sie, was (sie dann) überdeckte.",
+      "fr": "Et les recouvrit de ce dont Il les recouvrit.",
+      "id": "lalu Allah menimpakan atas negeri itu azab besar yang menimpanya.",
+      "ur": "پھر ان پر چھایا جو چھایا",
+      "bn": "অতঃপর তাকে আচ্ছন্ন করে নেয় যা আচ্ছন্ন করার।",
+      "fa": "سپس آنها را با عذاب سنگین پوشانید!",
+      "ru": "которые покрыло то, что покрыло."
     }
   },
   {
@@ -546,7 +924,14 @@
     "audio": "https://everyayah.com/data/Alafasy_128kbps/053055.mp3",
     "translations": {
       "tr": "Ey kişi! Rabbinin hangi nimetinden şüpheye düşersin?",
-      "en": "Then which of the favors of your Lord do you doubt?"
+      "en": "Then which of the favors of your Lord do you doubt?",
+      "de": "Welche der Wohltaten deines Herrn willst du nun bestreiten?",
+      "fr": "Lequel donc des bienfaits de ton Seigneur mets-tu en doute?",
+      "id": "Maka terhadap nikmat Tuhanmu yang manakah kamu ragu-ragu?",
+      "ur": "تو (اے انسان) تو اپنے پروردگار کی کون سی نعمت پر جھگڑے گا",
+      "bn": "অতঃপর তুমি তোমার পালনকর্তার কোন অনুগ্রহকে মিথ্যা বলবে?",
+      "fa": "(بگو:) در کدام یک از نعمتهای پروردگارت تردید داری؟!",
+      "ru": "В каких же милостях твоего Господа ты сомневаешься?"
     }
   },
   {
@@ -556,7 +941,14 @@
     "audio": "https://everyayah.com/data/Alafasy_128kbps/053056.mp3",
     "translations": {
       "tr": "İşte ilk uyaranlar gibi bu da bir uyarandır.",
-      "en": "This [Prophet] is a warner like the former warners."
+      "en": "This [Prophet] is a warner like the former warners.",
+      "de": "Das ist ein Warner wie die früheren Warner.",
+      "fr": "Voici un avertisseur analogue aux avertisseurs anciens:",
+      "id": "Ini (Muhammad) adalah seorang pemberi peringatan di antara pemberi-pemberi peringatan yang terdahulu.",
+      "ur": "یہ (محمدﷺ) بھی اگلے ڈر سنانے والوں میں سے ایک ڈر سنانے والے ہیں",
+      "bn": "অতীতের সতর্ককারীদের মধ্যে সে-ও একজন সতর্ককারী।",
+      "fa": "این (پیامبر) بیم‌دهنده‌ای از بیم‌دهندگان پیشین است!",
+      "ru": "Этот предостерегающий увещеватель такой же, как и первые предостерегающие увещеватели."
     }
   },
   {
@@ -566,7 +958,14 @@
     "audio": "https://everyayah.com/data/Alafasy_128kbps/053057.mp3",
     "translations": {
       "tr": "Kıyamet yaklaştıkça yaklaşmıştır.",
-      "en": "The Approaching Day has approached."
+      "en": "The Approaching Day has approached.",
+      "de": "Es steht bevor die immer näher kommende (Stunde des Gerichts);",
+      "fr": "l'Imminente (L'heure du Jugement) s'approche.",
+      "id": "Telah dekat terjadinya hari kiamat.",
+      "ur": "آنے والی (یعنی قیامت) قریب آ پہنچی",
+      "bn": "কেয়ামত নিকটে এসে গেছে।",
+      "fa": "آنچه باید نزدیک شود، نزدیک شده است (و قیامت فرامی‌رسد)،",
+      "ru": "Приближающееся (День воскресения) приблизилось,"
     }
   },
   {
@@ -576,7 +975,14 @@
     "audio": "https://everyayah.com/data/Alafasy_128kbps/053058.mp3",
     "translations": {
       "tr": "Onu Allah'tan başka ortaya koyacak yoktur.",
-      "en": "Of it, [from those] besides Allah, there is no remover."
+      "en": "Of it, [from those] besides Allah, there is no remover.",
+      "de": "niemand außer Allah kann sie beheben.",
+      "fr": "Rien d'autre en dehors d'Allah ne peut la dévoiler.",
+      "id": "Tidak ada yang akan menyatakan terjadinya hari itu selain Allah.",
+      "ur": "اس (دن کی تکلیفوں) کو خدا کے سوا کوئی دور نہیں کرسکے گا",
+      "bn": "আল্লাহ ব্যতীত কেউ একে প্রকাশ করতে সক্ষম নয়।",
+      "fa": "و هیچ کس جز خدا نمی‌تواند سختیهای آن را برطرف سازد!",
+      "ru": "и никто, кроме Аллаха, не способен отвратить его."
     }
   },
   {
@@ -586,7 +992,14 @@
     "audio": "https://everyayah.com/data/Alafasy_128kbps/053059.mp3",
     "translations": {
       "tr": "Bu söze mi şaşıyorsunuz?",
-      "en": "Then at this statement do you wonder?"
+      "en": "Then at this statement do you wonder?",
+      "de": "Wundert ihr euch denn über diese Aussage",
+      "fr": "Quoi! vous étonnez-vous de ce discours (le Coran)?",
+      "id": "Maka apakah kamu merasa heran terhadap pemberitaan ini?",
+      "ur": "اے منکرین خدا) کیا تم اس کلام سے تعجب کرتے ہو؟",
+      "bn": "তোমরা কি এই বিষয়ে আশ্চর্যবোধ করছ?",
+      "fa": "آیا از این سخن تعجّب می‌کنید،",
+      "ru": "Неужели вы удивляетесь этому повествованию,"
     }
   },
   {
@@ -596,7 +1009,14 @@
     "audio": "https://everyayah.com/data/Alafasy_128kbps/053060.mp3",
     "translations": {
       "tr": "Gülüyorsunuz... Ağlamıyorsunuz.",
-      "en": "And you laugh and do not weep"
+      "en": "And you laugh and do not weep",
+      "de": "und lacht ihr, und weint ihr nicht,",
+      "fr": "Et vous [en] riez et n'[en] pleurez point?",
+      "id": "Dan kamu mentertawakan dan tidak menangis?",
+      "ur": "اور ہنستے ہو اور روتے نہیں؟",
+      "bn": "এবং হাসছ-ক্রন্দন করছ না?",
+      "fa": "و می‌خندید و نمی‌گریید،",
+      "ru": "смеетесь, а не плачете,"
     }
   },
   {
@@ -606,7 +1026,14 @@
     "audio": "https://everyayah.com/data/Alafasy_128kbps/053061.mp3",
     "translations": {
       "tr": "Habersiz oyalanmaktasınız.",
-      "en": "While you are proudly sporting?"
+      "en": "While you are proudly sporting?",
+      "de": "und seid ihr noch belustigt?",
+      "fr": "absorbés [que vous êtes] par votre distraction.",
+      "id": "Sedang kamu melengahkan(nya)?",
+      "ur": "اور تم غفلت میں پڑ رہے ہو",
+      "bn": "তোমরা ক্রীড়া-কৌতুক করছ,",
+      "fa": "و پیوسته در غفلت و هوسرانی به سر می‌برید؟!",
+      "ru": "и забавляетесь (или поете; или надменно задираете головы)?"
     }
   },
   {
@@ -616,7 +1043,14 @@
     "audio": "https://everyayah.com/data/Alafasy_128kbps/053062.mp3",
     "translations": {
       "tr": "Artık secdeye varın, Allah'a kulluk edin.",
-      "en": "So prostrate to Allah and worship [Him]."
+      "en": "So prostrate to Allah and worship [Him].",
+      "de": "Werft euch doch vor Allah nieder und dient (Ihm).",
+      "fr": "Prosternez-vous donc à Allah et adorez-Le.",
+      "id": "Maka bersujudlah kepada Allah dan sembahlah (Dia).",
+      "ur": "تو خدا کے آگے سجدہ کرو اور (اسی کی) عبادت کرو",
+      "bn": "অতএব আল্লাহকে সেজদা কর এবং তাঁর এবাদত কর।",
+      "fa": "حال که چنین است همه برای خدا سجده کنید و او را بپرستید!",
+      "ru": "Падите же ниц перед Аллахом и поклоняйтесь!"
     }
   }
 ]

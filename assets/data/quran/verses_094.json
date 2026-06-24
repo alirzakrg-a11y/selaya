@@ -6,7 +6,14 @@
     "audio": "https://everyayah.com/data/Alafasy_128kbps/094001.mp3",
     "translations": {
       "tr": "Senin gönlünü açmadık mı?",
-      "en": "Did We not expand for you, [O Muhammad], your breast?"
+      "en": "Did We not expand for you, [O Muhammad], your breast?",
+      "de": "Haben Wir dir nicht deine Brust aufgetan",
+      "fr": "N'avons-Nous pas ouvert pour toi ta poitrine?",
+      "id": "Bukankah Kami telah melapangkan untukmu dadamu?,",
+      "ur": "(اے محمدﷺ) کیا ہم نے تمہارا سینہ کھول نہیں دیا؟ (بےشک کھول دیا)",
+      "bn": "আমি কি আপনার বক্ষ উম্মুক্ত করে দেইনি?",
+      "fa": "آیا ما سینه تو را گشاده نساختیم،",
+      "ru": "Разве Мы не раскрыли для тебя грудь твою?"
     }
   },
   {
@@ -16,7 +23,14 @@
     "audio": "https://everyayah.com/data/Alafasy_128kbps/094002.mp3",
     "translations": {
       "tr": "Belini büken yükünü üzerinden almadık mı?",
-      "en": "And We removed from you your burden"
+      "en": "And We removed from you your burden",
+      "de": "und dir deine Last abgenommen,",
+      "fr": "Et ne t'avons-Nous pas déchargé du fardeau",
+      "id": "dan Kami telah menghilangkan daripadamu bebanmu,",
+      "ur": "اور تم پر سے بوجھ بھی اتار دیا",
+      "bn": "আমি লাঘব করেছি আপনার বোঝা,",
+      "fa": "و بار سنگین تو را از تو برنداشتیم؟!",
+      "ru": "и не сняли с тебя ношу,"
     }
   },
   {
@@ -26,7 +40,14 @@
     "audio": "https://everyayah.com/data/Alafasy_128kbps/094003.mp3",
     "translations": {
       "tr": "Belini büken yükünü üzerinden almadık mı?",
-      "en": "Which had weighed upon your back"
+      "en": "Which had weighed upon your back",
+      "de": "die deinen Rücken niederdrückte,",
+      "fr": "qui accablait ton dos?",
+      "id": "yang memberatkan punggungmu?",
+      "ur": "جس نے تمہاری پیٹھ توڑ رکھی تھی",
+      "bn": "যা ছিল আপনার জন্যে অতিশয় দুঃসহ।",
+      "fa": "همان باری که سخت بر پشت تو سنگینی می‌کرد!",
+      "ru": "которая отягощала твою спину?"
     }
   },
   {
@@ -36,7 +57,14 @@
     "audio": "https://everyayah.com/data/Alafasy_128kbps/094004.mp3",
     "translations": {
       "tr": "Senin şanını yükseltmedik mi?",
-      "en": "And raised high for you your repute."
+      "en": "And raised high for you your repute.",
+      "de": "und dir dein Ansehen erhöht?",
+      "fr": "Et exalté pour toi ta renommée?",
+      "id": "Dan Kami tinggikan bagimu sebutan (nama)mu,",
+      "ur": "اور تمہارا ذکر بلند کیا",
+      "bn": "আমি আপনার আলোচনাকে সমুচ্চ করেছি।",
+      "fa": "و آوازه تو را بلند ساختیم!",
+      "ru": "Разве Мы не возвеличили для тебя славу твою?"
     }
   },
   {
@@ -46,7 +74,14 @@
     "audio": "https://everyayah.com/data/Alafasy_128kbps/094005.mp3",
     "translations": {
       "tr": "Elbette güçlükle beraber şüphesiz bir kolaylık vardır.",
-      "en": "For indeed, with hardship [will be] ease."
+      "en": "For indeed, with hardship [will be] ease.",
+      "de": "Also gewiß, mit der Erschwernis ist Erleichterung,",
+      "fr": "A côté de la difficulté est, certes, une facilité!",
+      "id": "Karena sesungguhnya sesudah kesulitan itu ada kemudahan,",
+      "ur": "ہاں ہاں مشکل کے ساتھ آسانی بھی ہے",
+      "bn": "নিশ্চয় কষ্টের সাথে স্বস্তি রয়েছে।",
+      "fa": "به یقین با (هر) سختی آسانی است!",
+      "ru": "Воистину, за каждой тягостью наступает облегчение."
     }
   },
   {
@@ -56,7 +91,14 @@
     "audio": "https://everyayah.com/data/Alafasy_128kbps/094006.mp3",
     "translations": {
       "tr": "Gerçekten, güçlükle beraber bir kolaylık vardır.",
-      "en": "Indeed, with hardship [will be] ease."
+      "en": "Indeed, with hardship [will be] ease.",
+      "de": "gewiß, mit der Erschwernis ist Erleichterung.",
+      "fr": "A côté de la difficulté est, certes, une facilité!",
+      "id": "sesungguhnya sesudah kesulitan itu ada kemudahan.",
+      "ur": "(اور) بے شک مشکل کے ساتھ آسانی ہے",
+      "bn": "নিশ্চয় কষ্টের সাথে স্বস্তি রয়েছে।",
+      "fa": "(آری) مسلّماً با (هر) سختی آسانی است،",
+      "ru": "За каждой тягостью наступает облегчение."
     }
   },
   {
@@ -66,7 +108,14 @@
     "audio": "https://everyayah.com/data/Alafasy_128kbps/094007.mp3",
     "translations": {
       "tr": "Öyleyse, bir işi bitirince diğerine giriş;",
-      "en": "So when you have finished [your duties], then stand up [for worship]."
+      "en": "So when you have finished [your duties], then stand up [for worship].",
+      "de": "Wenn du nun fertig bist, dann strenge dich an",
+      "fr": "Quand tu te libères, donc, lève-toi,",
+      "id": "Maka apabila kamu telah selesai (dari sesuatu urusan), kerjakanlah dengan sungguh-sungguh (urusan) yang lain,",
+      "ur": "تو جب فارغ ہوا کرو تو (عبادت میں) محنت کیا کرو",
+      "bn": "অতএব, যখন অবসর পান পরিশ্রম করুন।",
+      "fa": "پس هنگامی که از کار مهمّی فارغ می‌شوی به مهم دیگری پرداز،",
+      "ru": "Посему, как только освободишься, будь деятелен (как только освободишься от мирских дел, усердно поклоняйся Аллаху, или как только завершишь намаз, усердно взывай к Аллаху с молитвами)"
     }
   },
   {
@@ -76,7 +125,14 @@
     "audio": "https://everyayah.com/data/Alafasy_128kbps/094008.mp3",
     "translations": {
       "tr": "Ve ümit edeceğini yalnız Rabbinden iste.",
-      "en": "And to your Lord direct [your] longing."
+      "en": "And to your Lord direct [your] longing.",
+      "de": "und nach deinem Herrn richte dein Begehren aus.",
+      "fr": "et à ton Seigneur aspire.",
+      "id": "dan hanya kepada Tuhanmulah hendaknya kamu berharap.",
+      "ur": "اور اپنے پروردگار کی طرف متوجہ ہو جایا کرو",
+      "bn": "এবং আপনার পালনকর্তার প্রতি মনোনিবেশ করুন।",
+      "fa": "و به سوی پروردگارت توجّه کن!",
+      "ru": "и устремись к своему Господу."
     }
   }
 ]

@@ -6,7 +6,14 @@
     "audio": "https://everyayah.com/data/Alafasy_128kbps/082001.mp3",
     "translations": {
       "tr": "Gök yarıldığı zaman,",
-      "en": "When the sky breaks apart"
+      "en": "When the sky breaks apart",
+      "de": "Wenn der Himmel zerbricht",
+      "fr": "Quand le ciel se rompra,",
+      "id": "Apabila langit terbelah,",
+      "ur": "جب آسمان پھٹ جائے گا",
+      "bn": "যখন আকাশ বিদীর্ণ হবে,",
+      "fa": "آن زمان که آسمان [= کرات آسمانی‌] از هم شکافته شود،",
+      "ru": "Когда небо расколется,"
     }
   },
   {
@@ -16,7 +23,14 @@
     "audio": "https://everyayah.com/data/Alafasy_128kbps/082002.mp3",
     "translations": {
       "tr": "Yıldızlar dağılıp döküldüğü zaman,",
-      "en": "And when the stars fall, scattering,"
+      "en": "And when the stars fall, scattering,",
+      "de": "und wenn die Sterne sich zerstreuen",
+      "fr": "et que les étoiles se disperseront,",
+      "id": "dan apabila bintang-bintang jatuh berserakan,",
+      "ur": "اور جب تارے جھڑ پڑیں گے",
+      "bn": "যখন নক্ষত্রসমূহ ঝরে পড়বে,",
+      "fa": "و آن زمان که ستارگان پراکنده شوند و فرو ریزند،",
+      "ru": "когда тела небесные осыплются,"
     }
   },
   {
@@ -26,7 +40,14 @@
     "audio": "https://everyayah.com/data/Alafasy_128kbps/082003.mp3",
     "translations": {
       "tr": "Denizler kaynaştığı zaman,",
-      "en": "And when the seas are erupted"
+      "en": "And when the seas are erupted",
+      "de": "und wenn die Meere gesprengt werden",
+      "fr": "et que les mers confondront leurs eaux,",
+      "id": "dan apabila lautan menjadikan meluap,",
+      "ur": "اور جب دریا بہہ (کر ایک دوسرے سے مل) جائیں گے",
+      "bn": "যখন সমুদ্রকে উত্তাল করে তোলা হবে,",
+      "fa": "و آن زمان که دریاها به هم پیوسته شود،",
+      "ru": "когда моря перельются и смешаются (или высохнут),"
     }
   },
   {
@@ -36,7 +57,14 @@
     "audio": "https://everyayah.com/data/Alafasy_128kbps/082004.mp3",
     "translations": {
       "tr": "Kabirlerin içi dışa çıktığı zaman,",
-      "en": "And when the [contents of] graves are scattered,"
+      "en": "And when the [contents of] graves are scattered,",
+      "de": "und wenn die Gräber durchwühlt werden,",
+      "fr": "et que les tombeaux seront bouleversés,",
+      "id": "dan apabila kuburan-kuburan dibongkar,",
+      "ur": "اور جب قبریں اکھیڑ دی جائیں گی",
+      "bn": "এবং যখন কবরসমূহ উম্মোচিত হবে,",
+      "fa": "و آن زمان که قبرها زیر و رو گردد (و مردگان خارج شوند)،",
+      "ru": "когда могилы перевернутся,"
     }
   },
   {
@@ -46,7 +74,14 @@
     "audio": "https://everyayah.com/data/Alafasy_128kbps/082005.mp3",
     "translations": {
       "tr": "İnsanoğlu, ne yaptığını ve ne yapmadığını görür.",
-      "en": "A soul will [then] know what it has put forth and kept back."
+      "en": "A soul will [then] know what it has put forth and kept back.",
+      "de": "wird eine (jede) Seele erfahren, was sie vorausgeschickt und zurückgestellt hat.",
+      "fr": "toute âme saura alors ce qu'elle a accompli et ce qu'elle a remis de faire à plus tard.",
+      "id": "maka tiap-tiap jiwa akan mengetahui apa yang telah dikerjakan dan yang dilalaikannya.",
+      "ur": "تب ہر شخص معلوم کرلے گا کہ اس نے آگے کیا بھیجا تھا اور پیچھے کیا چھوڑا تھا",
+      "bn": "তখন প্রত্যেকে জেনে নিবে সে কি অগ্রে প্রেরণ করেছে এবং কি পশ্চাতে ছেড়ে এসেছে।",
+      "fa": "(در آن زمان) هر کس می‌داند آنچه را از پیش فرستاده و آنچه را برای بعد گذاشته است.",
+      "ru": "тогда каждая душа узнает, что она совершила и что оставила после себя."
     }
   },
   {
@@ -56,7 +91,14 @@
     "audio": "https://everyayah.com/data/Alafasy_128kbps/082006.mp3",
     "translations": {
       "tr": "Ey insanoğlu! Seni yaratıp sonra şekil veren, düzenleyen, mütenasip kılan, istediği şekilde seni terkip eden, çok cömert olan Rabbine karşı seni aldatan nedir?",
-      "en": "O mankind, what has deceived you concerning your Lord, the Generous,"
+      "en": "O mankind, what has deceived you concerning your Lord, the Generous,",
+      "de": "O Mensch, was hat dich hinsichtlich deines edelmütigen Herrn getäuscht,",
+      "fr": "O homme! Qu'est-ce qui t'a trompé au sujet de ton Seigneur, le Noble,",
+      "id": "Hai manusia, apakah yang telah memperdayakan kamu (berbuat durhaka) terhadap Tuhanmu Yang Maha Pemurah.",
+      "ur": "اے انسان تجھ کو اپنے پروردگار کرم گستر کے باب میں کس چیز نے دھوکا دیا",
+      "bn": "হে মানুষ, কিসে তোমাকে তোমার মহামহিম পালনকর্তা সম্পর্কে বিভ্রান্ত করল?",
+      "fa": "ای انسان! چه چیز تو را در برابر پروردگار کریمت مغرور ساخته است؟!",
+      "ru": "О человек! Что ввело тебя в заблуждение относительно твоего Великодушного Господа,"
     }
   },
   {
@@ -66,7 +108,14 @@
     "audio": "https://everyayah.com/data/Alafasy_128kbps/082007.mp3",
     "translations": {
       "tr": "Ey insanoğlu! Seni yaratıp sonra şekil veren, düzenleyen, mütenasip kılan, istediği şekilde seni terkip eden, çok cömert olan Rabbine karşı seni aldatan nedir?",
-      "en": "Who created you, proportioned you, and balanced you?"
+      "en": "Who created you, proportioned you, and balanced you?",
+      "de": "Der dich erschaffen und da(bei) zurechtgeformt und wohlgebildet gemacht hat.",
+      "fr": "qui t'a créé, puis modelé et constitué harmonieusement?",
+      "id": "Yang telah menciptakan kamu lalu menyempurnakan kejadianmu dan menjadikan (susunan tubuh)mu seimbang,",
+      "ur": "(وہی تو ہے) جس نے تجھے بنایا اور (تیرے اعضا کو) ٹھیک کیا اور (تیرے قامت کو) معتدل رکھا",
+      "bn": "যিনি তোমাকে সৃষ্টি করেছেন, অতঃপর তোমাকে সুবিন্যস্ত করেছেন এবং সুষম করেছেন।",
+      "fa": "همان خدایی که تو را آفرید و سامان داد و منظّم ساخت،",
+      "ru": "Который сотворил тебя и сделал твой облик совершенным и соразмеренным?"
     }
   },
   {
@@ -76,7 +125,14 @@
     "audio": "https://everyayah.com/data/Alafasy_128kbps/082008.mp3",
     "translations": {
       "tr": "Ey insanoğlu! Seni yaratıp sonra şekil veren, düzenleyen, mütenasip kılan, istediği şekilde seni terkip eden, çok cömert olan Rabbine karşı seni aldatan nedir?",
-      "en": "In whatever form He willed has He assembled you."
+      "en": "In whatever form He willed has He assembled you.",
+      "de": "und dich, in welcher Gestalt Er wollte, zusammengefügt hat?",
+      "fr": "Il t'a façonné dans la forme qu'Il a voulue.",
+      "id": "dalam bentuk apa saja yang Dia kehendaki, Dia menyusun tubuhmu.",
+      "ur": "اور جس صورت میں چاہا تجھے جوڑ دیا",
+      "bn": "যিনি তোমাকে তাঁর ইচ্ছামত আকৃতিতে গঠন করেছেন।",
+      "fa": "و در هر صورتی که خواست تو را ترکیب نمود.",
+      "ru": "Он сложил тебя в том облике, в каком пожелал."
     }
   },
   {
@@ -86,7 +142,14 @@
     "audio": "https://everyayah.com/data/Alafasy_128kbps/082009.mp3",
     "translations": {
       "tr": "Hayır, hayır; doğrusu siz dini yalanlıyorsunuz.",
-      "en": "No! But you deny the Recompense."
+      "en": "No! But you deny the Recompense.",
+      "de": "Keineswegs! Vielmehr erklärt ihr das Gericht für Lüge.",
+      "fr": "Non...! [malgré tout] vous traitez la Rétribution de mensonge;",
+      "id": "Bukan hanya durhaka saja, bahkan kamu mendustakan hari pembalasan.",
+      "ur": "مگر ہیہات تم لوگ جزا کو جھٹلاتے ہو",
+      "bn": "কখনও বিভ্রান্ত হয়ো না; বরং তোমরা দান-প্রতিদানকে মিথ্যা মনে কর।",
+      "fa": "(آری) آن گونه که شما می‌پندارید نیست؛ بلکه شما روز جزا را منکرید!",
+      "ru": "Но нет! Вы же считаете ложью воздаяние."
     }
   },
   {
@@ -96,7 +159,14 @@
     "audio": "https://everyayah.com/data/Alafasy_128kbps/082010.mp3",
     "translations": {
       "tr": "Oysa, yaptıklarınızı bilen değerli yazıcılar sizi gözetlemektedirler.",
-      "en": "And indeed, [appointed] over you are keepers,"
+      "en": "And indeed, [appointed] over you are keepers,",
+      "de": "Über euch sind wahrlich Hüter (eingesetzt),",
+      "fr": "alors que veillent sur vous des gardiens,",
+      "id": "Padahal sesungguhnya bagi kamu ada (malaikat-malaikat) yang mengawasi (pekerjaanmu),",
+      "ur": "حالانکہ تم پر نگہبان مقرر ہیں",
+      "bn": "অবশ্যই তোমাদের উপর তত্ত্বাবধায়ক নিযুক্ত আছে।",
+      "fa": "و بی‌شک نگاهبانانی بر شما گمارده شده...",
+      "ru": "Воистину, над вами есть хранители -"
     }
   },
   {
@@ -106,7 +176,14 @@
     "audio": "https://everyayah.com/data/Alafasy_128kbps/082011.mp3",
     "translations": {
       "tr": "Oysa, yaptıklarınızı bilen değerli yazıcılar sizi gözetlemektedirler.",
-      "en": "Noble and recording;"
+      "en": "Noble and recording;",
+      "de": "edle, die (alles) aufschreiben",
+      "fr": "de nobles scribes,",
+      "id": "yang mulia (di sisi Allah) dan mencatat (pekerjaan-pekerjaanmu itu),",
+      "ur": "عالی قدر (تمہاری باتوں کے) لکھنے والے",
+      "bn": "সম্মানিত আমল লেখকবৃন্দ।",
+      "fa": "والا مقام و نویسنده (اعمال نیک و بد شما)،",
+      "ru": "благородные писцы,"
     }
   },
   {
@@ -116,7 +193,14 @@
     "audio": "https://everyayah.com/data/Alafasy_128kbps/082012.mp3",
     "translations": {
       "tr": "Oysa, yaptıklarınızı bilen değerli yazıcılar sizi gözetlemektedirler.",
-      "en": "They know whatever you do."
+      "en": "They know whatever you do.",
+      "de": "und die wissen, was ihr tut.",
+      "fr": "qui savent ce que vous faites.",
+      "id": "mereka mengetahui apa yang kamu kerjakan.",
+      "ur": "جو تم کرتے ہو وہ اسے جانتے ہیں",
+      "bn": "তারা জানে যা তোমরা কর।",
+      "fa": "که می‌دانند شما چه می‌کنید!",
+      "ru": "которые знают о том, что вы совершаете."
     }
   },
   {
@@ -126,7 +210,14 @@
     "audio": "https://everyayah.com/data/Alafasy_128kbps/082013.mp3",
     "translations": {
       "tr": "İyiler şüphesiz nimet içindedirler.",
-      "en": "Indeed, the righteous will be in pleasure,"
+      "en": "Indeed, the righteous will be in pleasure,",
+      "de": "Die Frommen werden wahrlich in Wonne sein.",
+      "fr": "Les bons seront, certes, dans un [jardin] de délice,",
+      "id": "Sesungguhnya orang-orang yang banyak berbakti benar-benar berada dalam surga yang penuh kenikmatan,",
+      "ur": "بے شک نیکوکار نعمتوں (کی بہشت) میں ہوں گے۔",
+      "bn": "সৎকর্মশীলগণ থাকবে জান্নাতে।",
+      "fa": "به یقین نیکان در نعمتی فراوانند.",
+      "ru": "Воистину, благочестивые окажутся в блаженстве."
     }
   },
   {
@@ -136,7 +227,14 @@
     "audio": "https://everyayah.com/data/Alafasy_128kbps/082014.mp3",
     "translations": {
       "tr": "Allah'ın buyruğundan çıkanlar cehennemdedirler.",
-      "en": "And indeed, the wicked will be in Hellfire."
+      "en": "And indeed, the wicked will be in Hellfire.",
+      "de": "Und die Sittenlosen werden wahrlich in einem Höllenbrand sein,",
+      "fr": "et les libertins seront, certes, dans une fournaise",
+      "id": "dan sesungguhnya orang-orang yang durhaka benar-benar berada dalam neraka.",
+      "ur": "اور بدکردار دوزخ میں",
+      "bn": "এবং দুষ্কর্মীরা থাকবে জাহান্নামে;",
+      "fa": "و بدکاران در دوزخند،",
+      "ru": "Воистину, грешники окажутся в Аду,"
     }
   },
   {
@@ -146,7 +244,14 @@
     "audio": "https://everyayah.com/data/Alafasy_128kbps/082015.mp3",
     "translations": {
       "tr": "Din Günü oraya girerler.",
-      "en": "They will [enter to] burn therein on the Day of Recompense,"
+      "en": "They will [enter to] burn therein on the Day of Recompense,",
+      "de": "dem sie am Tag des Gerichts ausgesetzt werden",
+      "fr": "où ils brûleront, le jour de la Rétribution",
+      "id": "Mereka masuk ke dalamnya pada hari pembalasan.",
+      "ur": "(یعنی) جزا کے دن اس میں داخل ہوں گے",
+      "bn": "তারা বিচার দিবসে তথায় প্রবেশ করবে।",
+      "fa": "روز جزا وارد آن می‌شوند و می‌سوزند،",
+      "ru": "куда они войдут в День воздаяния."
     }
   },
   {
@@ -156,7 +261,14 @@
     "audio": "https://everyayah.com/data/Alafasy_128kbps/082016.mp3",
     "translations": {
       "tr": "Oradan bir daha ayrılamazlar.",
-      "en": "And never therefrom will they be absent."
+      "en": "And never therefrom will they be absent.",
+      "de": "und dem sie nicht abwesend sein werden.",
+      "fr": "incapables de s'en échapper.",
+      "id": "Dan mereka sekali-kali tidak dapat keluar dari neraka itu.",
+      "ur": "اور اس سے چھپ نہیں سکیں گے",
+      "bn": "তারা সেখান থেকে পৃথক হবে না।",
+      "fa": "و آنان هرگز از آن غایب و دور نیستند!",
+      "ru": "Они не смогут избежать этого."
     }
   },
   {
@@ -166,7 +278,14 @@
     "audio": "https://everyayah.com/data/Alafasy_128kbps/082017.mp3",
     "translations": {
       "tr": "Din gününün ne olduğunu sen nereden bilirsin?",
-      "en": "And what can make you know what is the Day of Recompense?"
+      "en": "And what can make you know what is the Day of Recompense?",
+      "de": "Und was läßt dich wissen, was der Tag des Gerichts ist?",
+      "fr": "Et qui te dira ce qu'est le jour de la Rétribution?",
+      "id": "Tahukah kamu apakah hari pembalasan itu?",
+      "ur": "اور تمہیں کیا معلوم کہ جزا کا دن کیسا ہے؟",
+      "bn": "আপনি জানেন, বিচার দিবস কি?",
+      "fa": "تو چه می‌دانی روز جزا چیست؟!",
+      "ru": "Откуда ты мог знать, что такое День воздаяния?"
     }
   },
   {
@@ -176,7 +295,14 @@
     "audio": "https://everyayah.com/data/Alafasy_128kbps/082018.mp3",
     "translations": {
       "tr": "Evet, din gününün ne olduğunu nereden bileceksin?",
-      "en": "Then, what can make you know what is the Day of Recompense?"
+      "en": "Then, what can make you know what is the Day of Recompense?",
+      "de": "Abermals: Was läßt dich wissen, was der Tag des Gerichts ist?",
+      "fr": "Encore une fois, qui te dira ce qu'est le jour de la Rétribution?",
+      "id": "Sekali lagi, tahukah kamu apakah hari pembalasan itu?",
+      "ur": "پھر تمہیں کیا معلوم کہ جزا کا دن کیسا ہے؟",
+      "bn": "অতঃপর আপনি জানেন, বিচার দিবস কি?",
+      "fa": "باز چه می‌دانی روز جزا چیست؟!",
+      "ru": "Да, откуда ты мог знать, что такое День воздаяния?"
     }
   },
   {
@@ -186,7 +312,14 @@
     "audio": "https://everyayah.com/data/Alafasy_128kbps/082019.mp3",
     "translations": {
       "tr": "O gün, kimsenin kimseye hiçbir fayda sağlamayacağı bir gündür. O gün buyruk, yalnız Allah'ındır.",
-      "en": "It is the Day when a soul will not possess for another soul [power to do] a thing; and the command, that Day, is [entirely] with Allah."
+      "en": "It is the Day when a soul will not possess for another soul [power to do] a thing; and the command, that Day, is [entirely] with Allah.",
+      "de": "Am Tag, da keine Seele für eine (andere) Seele etwas (auszurichten) vermag; und der Befehl wird an jenem Tag Allah (allein) zustehen.",
+      "fr": "Le jour où aucune âme ne pourra rien en faveur d'une autre âme. Et ce jour-là, le commandement sera à Allah.",
+      "id": "(Yaitu) hari (ketika) seseorang tidak berdaya sedikitpun untuk menolong orang lain. Dan segala urusan pada hari itu dalam kekuasaan Allah.",
+      "ur": "جس روز کوئی کسی کا بھلا نہ کر سکے گا اور حکم اس روز خدا ہی کا ہو گا",
+      "bn": "যেদিন কেউ কারও কোন উপকার করতে পারবে না এবং সেদিন সব কতৃꦣ2468;্ব হবে আল্লাহর।",
+      "fa": "روزی است که هیچ کس قادر بر انجام کاری به سود دیگری نیست، و همه امور در آن روز از آن خداست!",
+      "ru": "В тот день ни одна душа не сможет ничем помочь другой, и власть в тот день будет принадлежать Аллаху."
     }
   }
 ]

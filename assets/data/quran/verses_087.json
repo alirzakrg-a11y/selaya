@@ -6,7 +6,14 @@
     "audio": "https://everyayah.com/data/Alafasy_128kbps/087001.mp3",
     "translations": {
       "tr": "Yüce Rabbinin adını tesbih et.",
-      "en": "Exalt the name of your Lord, the Most High,"
+      "en": "Exalt the name of your Lord, the Most High,",
+      "de": "Preise den Namen deines höchsten Herrn,",
+      "fr": "Glorifie le nom de ton Seigneur, le Très Haut,",
+      "id": "Sucikanlah nama Tuhanmu Yang Maha Tingi,",
+      "ur": "(اے پیغمبر) اپنے پروردگار جلیل الشان کے نام کی تسبیح کرو",
+      "bn": "আপনি আপনার মহান পালনকর্তার নামের পবিত্রতা বর্ণনা করুন",
+      "fa": "منزّه شمار نام پروردگار بلندمرتبه‌ات را!",
+      "ru": "Славь имя Господа твоего Всевышнего,"
     }
   },
   {
@@ -16,7 +23,14 @@
     "audio": "https://everyayah.com/data/Alafasy_128kbps/087002.mp3",
     "translations": {
       "tr": "O, yaratıp şekil vermiştir.",
-      "en": "Who created and proportioned"
+      "en": "Who created and proportioned",
+      "de": "Der erschafft und dann zurechtformt",
+      "fr": "Celui Qui a créé et agencé harmonieusement,",
+      "id": "yang menciptakan, dan menyempurnakan (penciptaan-Nya),",
+      "ur": "جس نے (انسان کو) بنایا پھر (اس کے اعضاء کو) درست کیا",
+      "bn": "যিনি সৃষ্টি করেছেন ও সুবিন্যস্ত করেছেন।",
+      "fa": "همان خداوندی که آفرید و منظم کرد،",
+      "ru": "Который сотворил все сущее и всему придал соразмерность,"
     }
   },
   {
@@ -26,7 +40,14 @@
     "audio": "https://everyayah.com/data/Alafasy_128kbps/087003.mp3",
     "translations": {
       "tr": "O, her şeyi ölçüyle yapıp doğru yolu göstermiştir.",
-      "en": "And who destined and [then] guided"
+      "en": "And who destined and [then] guided",
+      "de": "und Der das Maß festsetzt und dann rechtleitet",
+      "fr": "qui a décrété et guidé,",
+      "id": "dan yang menentukan kadar (masing-masing) dan memberi petunjuk,",
+      "ur": "اور جس نے (اس کا) اندازہ ٹہرایا (پھر اس کو) رستہ بتایا",
+      "bn": "এবং যিনি সুপরিমিত করেছেন ও পথ প্রদর্শন করেছেন",
+      "fa": "و همان که اندازه‌گیری کرد و هدایت نمود،",
+      "ru": "Который предопределил судьбу творений и указал путь,"
     }
   },
   {
@@ -36,7 +57,14 @@
     "audio": "https://everyayah.com/data/Alafasy_128kbps/087004.mp3",
     "translations": {
       "tr": "O, yeşillikler bitirmiştir.",
-      "en": "And who brings out the pasture"
+      "en": "And who brings out the pasture",
+      "de": "und Der die Weide hervorbringt",
+      "fr": "et qui a fait pousser le pâturage,",
+      "id": "dan yang menumbuhkan rumput-rumputan,",
+      "ur": "اور جس نے چارہ اگایا",
+      "bn": "এবং যিনি তৃণাদি উৎপন্ন করেছেন,",
+      "fa": "و آن کس را که چراگاه را به وجود آورد،",
+      "ru": "Который взрастил пастбища,"
     }
   },
   {
@@ -46,7 +74,14 @@
     "audio": "https://everyayah.com/data/Alafasy_128kbps/087005.mp3",
     "translations": {
       "tr": "Sonra da onları siyah çerçöpe çevirmiştir.",
-      "en": "And [then] makes it black stubble."
+      "en": "And [then] makes it black stubble.",
+      "de": "und sie dann zu dunkelbrauner Spreu macht.",
+      "fr": "et en a fait ensuite un foin sombre.",
+      "id": "lalu dijadikan-Nya rumput-rumput itu kering kehitam-hitaman.",
+      "ur": "پھر اس کو سیاہ رنگ کا کوڑا کر دیا",
+      "bn": "অতঃপর করেছেন তাকে কাল আবর্জনা।",
+      "fa": "سپس آن را خشک و تیره قرار داد!",
+      "ru": "а потом превратил их в темный сор."
     }
   },
   {
@@ -56,7 +91,14 @@
     "audio": "https://everyayah.com/data/Alafasy_128kbps/087006.mp3",
     "translations": {
       "tr": "Sana Kuran'ı Biz okutacağız ve asla unutmayacaksın;",
-      "en": "We will make you recite, [O Muhammad], and you will not forget,"
+      "en": "We will make you recite, [O Muhammad], and you will not forget,",
+      "de": "Wir werden dich lesen lassen, und dann wirst du nichts vergessen,",
+      "fr": "Nous te ferons réciter (le Coran), de sorte que tu n'oublieras",
+      "id": "Kami akan membacakan (Al Quran) kepadamu (Muhammad) maka kamu tidak akan lupa,",
+      "ur": "ہم تمہیں پڑھا دیں گے کہ تم فراموش نہ کرو گے",
+      "bn": "আমি আপনাকে পাঠ করাতে থাকব, ফলে আপনি বিস্মৃত হবেন না",
+      "fa": "ما بزودی (قرآن را) بر تو می‌خوانیم و هرگز فراموش نخواهی کرد،",
+      "ru": "Мы позволим тебе прочесть Коран, и ты не забудешь ничего,"
     }
   },
   {
@@ -66,7 +108,14 @@
     "audio": "https://everyayah.com/data/Alafasy_128kbps/087007.mp3",
     "translations": {
       "tr": "Allah'ın dilediği bundan müstesnadır. Doğrusu açığı da, gizliyi de bilen O'dur.",
-      "en": "Except what Allah should will. Indeed, He knows what is declared and what is hidden."
+      "en": "Except what Allah should will. Indeed, He knows what is declared and what is hidden.",
+      "de": "außer dem, was Allah will. Er weiß ja, was laut vernehmbar geäußert wird und was verborgen bleibt.",
+      "fr": "que ce qu'Allah veut. Car, Il connaît ce qui paraît au grand jour ainsi que ce qui est caché.",
+      "id": "kecuali kalau Allah menghendaki. Sesungguhnya Dia mengetahui yang terang dan yang tersembunyi.",
+      "ur": "مگر جو خدا چاہے۔ وہ کھلی بات کو بھی جانتا ہے اور چھپی کو بھی",
+      "bn": "আল্লাহ যা ইচ্ছা করেন তা ব্যতীত। নিশ্চয় তিনি জানেন প্রকাশ্য ও গোপন বিষয়।",
+      "fa": "مگر آنچه را خدا بخواهد، که او آشکار و نهان را می‌داند!",
+      "ru": "кроме того, что пожелает Аллах. Он знает явное и то, что сокрыто."
     }
   },
   {
@@ -76,7 +125,14 @@
     "audio": "https://everyayah.com/data/Alafasy_128kbps/087008.mp3",
     "translations": {
       "tr": "Kolay olanı yapmayı sana kolaylaştırırız.",
-      "en": "And We will ease you toward ease."
+      "en": "And We will ease you toward ease.",
+      "de": "Und Wir werden dir den Weg zum Leichteren leicht machen.",
+      "fr": "Nous te mettrons sur la voie la plus facile.",
+      "id": "dan Kami akan memberi kamu taufik ke jalan yang mudah,",
+      "ur": "ہم تم کو آسان طریقے کی توفیق دیں گے",
+      "bn": "আমি আপনার জন্যে সহজ শরীয়ত সহজতর করে দেবো।",
+      "fa": "و ما تو را برای انجام هر کار خیر آماده می‌کنیم!",
+      "ru": "Мы облегчим тебе путь к легчайшему."
     }
   },
   {
@@ -86,7 +142,14 @@
     "audio": "https://everyayah.com/data/Alafasy_128kbps/087009.mp3",
     "translations": {
       "tr": "Faydalı olacaksa insanlara öğüt ver.",
-      "en": "So remind, if the reminder should benefit;"
+      "en": "So remind, if the reminder should benefit;",
+      "de": "So ermahne -, wenn die Ermahnung nützt.",
+      "fr": "Rappelle, donc, où le Rappel doit être utile.",
+      "id": "oleh sebab itu berikanlah peringatan karena peringatan itu bermanfaat,",
+      "ur": "سو جہاں تک نصیحت (کے) نافع (ہونے کی امید) ہو نصیحت کرتے رہو",
+      "bn": "উপদেশ ফলপ্রসূ হলে উপদেশ দান করুন,",
+      "fa": "پس تذکّر ده اگر تذکّر مفید باشد!",
+      "ru": "Наставляй же людей, если напоминание принесет пользу."
     }
   },
   {
@@ -96,7 +159,14 @@
     "audio": "https://everyayah.com/data/Alafasy_128kbps/087010.mp3",
     "translations": {
       "tr": "Allah'tan korkan öğüt alacaktır.",
-      "en": "He who fears [Allah] will be reminded."
+      "en": "He who fears [Allah] will be reminded.",
+      "de": "Bedenken wird jemand, der gottesfürchtig ist.",
+      "fr": "Quiconque craint (Allah) s'[en] rappellera,",
+      "id": "orang yang takut (kepada Allah) akan mendapat pelajaran,",
+      "ur": "جو خوف رکھتا ہے وہ تو نصیحت پکڑے گا",
+      "bn": "যে ভয় করে, সে উপদেশ গ্রহণ করবে,",
+      "fa": "و بزودی کسی که از خدا می‌ترسد متذکّر می‌شود.",
+      "ru": "Воспримет его тот, кто страшится,"
     }
   },
   {
@@ -106,7 +176,14 @@
     "audio": "https://everyayah.com/data/Alafasy_128kbps/087011.mp3",
     "translations": {
       "tr": "Bedbaht olan ondan kaçınacaktır.",
-      "en": "But the wretched one will avoid it -"
+      "en": "But the wretched one will avoid it -",
+      "de": "Meiden aber wird es der Unseligste,",
+      "fr": "et s'en écartera le grand malheureux,",
+      "id": "dan orang-orang yang celaka (kafir) akan menjauhinya.",
+      "ur": "اور (بےخوف) بدبخت پہلو تہی کرے گا",
+      "bn": "আর যে, হতভাগা, সে তা উপেক্ষা করবে,",
+      "fa": "امّا بدبخت‌ترین افراد از آن دوری می‌گزیند،",
+      "ru": "и уклонится от него самый несчастный,"
     }
   },
   {
@@ -116,7 +193,14 @@
     "audio": "https://everyayah.com/data/Alafasy_128kbps/087012.mp3",
     "translations": {
       "tr": "O, en büyük ateşe yaslanacaktır.",
-      "en": "[He] who will [enter and] burn in the greatest Fire,"
+      "en": "[He] who will [enter and] burn in the greatest Fire,",
+      "de": "der dem größten (Höllen)feuer ausgesetzt sein wird;",
+      "fr": "qui brûlera dans le plus grand Feu,",
+      "id": "(Yaitu) orang yang akan memasuki api yang besar (neraka).",
+      "ur": "جو (قیامت کو) بڑی (تیز) آگ میں داخل ہو گا",
+      "bn": "সে মহা-অগ্নিতে প্রবেশ করবে।",
+      "fa": "همان کسی که در آتش بزرگ وارد می‌شود،",
+      "ru": "который войдет в Огонь величайший."
     }
   },
   {
@@ -126,7 +210,14 @@
     "audio": "https://everyayah.com/data/Alafasy_128kbps/087013.mp3",
     "translations": {
       "tr": "O, orada ne ölecektir ne de dirilecektir.",
-      "en": "Neither dying therein nor living."
+      "en": "Neither dying therein nor living.",
+      "de": "darin wird er hierauf weder sterben noch leben.",
+      "fr": "où il ne mourra ni ne vivra.",
+      "id": "Kemudian dia tidak akan mati di dalamnya dan tidak (pula) hidup.",
+      "ur": "پھر وہاں نہ مرے گا اور نہ جئے گا",
+      "bn": "অতঃপর সেখানে সে মরবেও না, জীবিতও থাকবে না।",
+      "fa": "سپس در آن آتش نه می‌میرد و نه زنده می‌شود!",
+      "ru": "Не умрет он там и не будет жить."
     }
   },
   {
@@ -136,7 +227,14 @@
     "audio": "https://everyayah.com/data/Alafasy_128kbps/087014.mp3",
     "translations": {
       "tr": "Arınmış olan, Rabbinin adını anıp namaz kılan, saadete erişecektir.",
-      "en": "He has certainly succeeded who purifies himself"
+      "en": "He has certainly succeeded who purifies himself",
+      "de": "Wohl ergehen wird es ja jemandem, der sich läutert,",
+      "fr": "Réussit, certes, celui qui se purifie,",
+      "id": "Sesungguhnya beruntunglah orang yang membersihkan diri (dengan beriman),",
+      "ur": "بے شک وہ مراد کو پہنچ گیا جو پاک ہوا",
+      "bn": "নিশ্চয় সাফল্য লাভ করবে সে, যে শুদ্ধ হয়",
+      "fa": "به یقین کسی که پاکی جست (و خود را تزکیه کرد)، رستگار شد.",
+      "ru": "Преуспел тот, кто очистился,"
     }
   },
   {
@@ -146,7 +244,14 @@
     "audio": "https://everyayah.com/data/Alafasy_128kbps/087015.mp3",
     "translations": {
       "tr": "Arınmış olan, Rabbinin adını anıp namaz kılan, saadete erişecektir.",
-      "en": "And mentions the name of his Lord and prays."
+      "en": "And mentions the name of his Lord and prays.",
+      "de": "und des Namens seines Herrn gedenkt; so betet er.",
+      "fr": "et se rappelle le nom de son Seigneur, puis célèbre la Salât.",
+      "id": "dan dia ingat nama Tuhannya, lalu dia sembahyang.",
+      "ur": "اور اپنے پروردگار کے نام کا ذکر کرتا رہا اور نماز پڑھتا رہا",
+      "bn": "এবং তার পালনকর্তার নাম স্মরণ করে, অতঃপর নামায আদায় করে।",
+      "fa": "و (آن که) نام پروردگارش را یاد کرد سپس نماز خواند!",
+      "ru": "поминал имя своего Господа и совершал намаз."
     }
   },
   {
@@ -156,7 +261,14 @@
     "audio": "https://everyayah.com/data/Alafasy_128kbps/087016.mp3",
     "translations": {
       "tr": "Ama sizler dünya hayatını tercih ediyorsunuz.",
-      "en": "But you prefer the worldly life,"
+      "en": "But you prefer the worldly life,",
+      "de": "Nein! Vielmehr zieht ihr das diesseitige Leben vor,",
+      "fr": "Mais, vous préférez plutôt la vie présente,",
+      "id": "Tetapi kamu (orang-orang kafir) memilih kehidupan duniawi.",
+      "ur": "مگر تم لوگ تو دنیا کی زندگی کو اختیار کرتے ہو",
+      "bn": "বস্তুতঃ তোমরা পার্থিব জীবনকে অগ্রাধিকার দাও,",
+      "fa": "ولی شما زندگی دنیا را مقدم می‌دارید،",
+      "ru": "Но нет! Вы отдаете предпочтение мирской жизни,"
     }
   },
   {
@@ -166,7 +278,14 @@
     "audio": "https://everyayah.com/data/Alafasy_128kbps/087017.mp3",
     "translations": {
       "tr": "Oysa ahiret daha iyi ve daha bakidir.",
-      "en": "While the Hereafter is better and more enduring."
+      "en": "While the Hereafter is better and more enduring.",
+      "de": "während das Jenseits besser und beständiger ist.",
+      "fr": "alors que l'au-delà est meilleur et plus durable.",
+      "id": "Sedang kehidupan akhirat adalah lebih baik dan lebih kekal.",
+      "ur": "حالانکہ آخرت بہت بہتر اور پائندہ تر ہے",
+      "bn": "অথচ পরকালের জীবন উৎকৃষ্ট ও স্থায়ী।",
+      "fa": "در حالی که آخرت بهتر و پایدارتر است!",
+      "ru": "хотя Последняя жизнь - лучше и дольше."
     }
   },
   {
@@ -176,7 +295,14 @@
     "audio": "https://everyayah.com/data/Alafasy_128kbps/087018.mp3",
     "translations": {
       "tr": "Doğrusu bu hükümler ilk sahifelerde, İbrahim ve Musa'nın sahifelerinde de vardır.",
-      "en": "Indeed, this is in the former scriptures,"
+      "en": "Indeed, this is in the former scriptures,",
+      "de": "Dies ist wahrlich in den früheren Blättern (enthalten),",
+      "fr": "Ceci se trouve, certes, dans les Feuilles anciennes,",
+      "id": "Sesungguhnya ini benar-benar terdapat dalam kitab-kitab yang dahulu,",
+      "ur": "یہ بات پہلے صحیفوں میں (مرقوم) ہے",
+      "bn": "এটা লিখিত রয়েছে পূর্ববতী কিতাবসমূহে;",
+      "fa": "این دستورها در کتب آسمانی پیشین (نیز) آمده است،",
+      "ru": "Воистину, это записано в первых свитках -"
     }
   },
   {
@@ -186,7 +312,14 @@
     "audio": "https://everyayah.com/data/Alafasy_128kbps/087019.mp3",
     "translations": {
       "tr": "Doğrusu bu hükümler ilk sahifelerde, İbrahim ve Musa'nın sahifelerinde de vardır.",
-      "en": "The scriptures of Abraham and Moses."
+      "en": "The scriptures of Abraham and Moses.",
+      "de": "den Blättern Ibrahims und Musas.",
+      "fr": "les Feuilles d'Abraham et de Moïse.",
+      "id": "(yaitu) Kitab-kitab Ibrahim dan Musa",
+      "ur": "(یعنی) ابراہیم اور موسیٰ کے صحیفوں میں",
+      "bn": "ইব্রাহীম ও মূসার কিতাবসমূহে।",
+      "fa": "در کتب ابراهیم و موسی.",
+      "ru": "свитках Ибрахима (Авраама) и Мусы (Моисея)."
     }
   }
 ]

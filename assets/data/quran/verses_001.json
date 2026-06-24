@@ -6,7 +6,14 @@
     "audio": "https://everyayah.com/data/Alafasy_128kbps/001001.mp3",
     "translations": {
       "tr": "Rahmân ve Rahîm olan Allah'ın adıyla.",
-      "en": "In the name of Allah, the Most Gracious, the Most Merciful."
+      "en": "In the name of Allah, the Most Gracious, the Most Merciful.",
+      "de": "Im Namen Allahs, des Allerbarmers, des Barmherzigen.",
+      "fr": "Au nom d'Allah, le Tout Miséricordieux, le Très Miséricordieux.",
+      "id": "Dengan menyebut nama Allah Yang Maha Pemurah lagi Maha Penyayang.",
+      "ur": "شروع الله کا نام لے کر جو بڑا مہربان نہایت رحم والا ہے",
+      "bn": "শুরু করছি আল্লাহর নামে যিনি পরম করুণাময়, অতি দয়ালু।",
+      "fa": "به نام خداوند بخشنده بخشایشگر",
+      "ru": "Во имя Аллаха, Милостивого, Милосердного!"
     }
   },
   {
@@ -16,7 +23,14 @@
     "audio": "https://everyayah.com/data/Alafasy_128kbps/001002.mp3",
     "translations": {
       "tr": "Hamd, âlemlerin Rabbi Allah'a mahsustur.",
-      "en": "All praise is due to Allah, Lord of the worlds."
+      "en": "All praise is due to Allah, Lord of the worlds.",
+      "de": "(Alles) Lob gehört Allah, dem Herrn der Welten,",
+      "fr": "Louange à Allah, Seigneur de l'univers.",
+      "id": "Segala puji bagi Allah, Tuhan semesta alam.",
+      "ur": "سب طرح کی تعریف خدا ہی کو (سزاوار) ہے جو تمام مخلوقات کا پروردگار ہے",
+      "bn": "যাবতীয় প্রশংসা আল্লাহ তাআলার যিনি সকল সৃষ্টি জগতের পালনকর্তা।",
+      "fa": "ستایش مخصوص خداوندی است که پروردگار جهانیان است.",
+      "ru": "Хвала Аллаху, Господу миров,"
     }
   },
   {
@@ -26,7 +40,14 @@
     "audio": "https://everyayah.com/data/Alafasy_128kbps/001003.mp3",
     "translations": {
       "tr": "O, Rahmân'dır, Rahîm'dir.",
-      "en": "The Most Gracious, the Most Merciful."
+      "en": "The Most Gracious, the Most Merciful.",
+      "de": "dem Allerbarmer, dem Barmherzigen,",
+      "fr": "Le Tout Miséricordieux, le Très Miséricordieux,",
+      "id": "Maha Pemurah lagi Maha Penyayang.",
+      "ur": "بڑا مہربان نہایت رحم والا",
+      "bn": "যিনি নিতান্ত মেহেরবান ও দয়ালু।",
+      "fa": "(خداوندی که) بخشنده و بخشایشگر است (و رحمت عام و خاصش همگان را فرا گرفته).",
+      "ru": "Милостивому, Милосердному,"
     }
   },
   {
@@ -36,7 +57,14 @@
     "audio": "https://everyayah.com/data/Alafasy_128kbps/001004.mp3",
     "translations": {
       "tr": "Hesap gününün sahibidir.",
-      "en": "Master of the Day of Judgment."
+      "en": "Master of the Day of Judgment.",
+      "de": "dem Herrscher am Tag des Gerichts.",
+      "fr": "Maître du Jour de la rétribution.",
+      "id": "Yang menguasai di Hari Pembalasan.",
+      "ur": "انصاف کے دن کا حاکم",
+      "bn": "যিনি বিচার দিনের মালিক।",
+      "fa": "(خداوندی که) مالک روز جزاست.",
+      "ru": "Властелину Дня воздаяния!"
     }
   },
   {
@@ -46,7 +74,14 @@
     "audio": "https://everyayah.com/data/Alafasy_128kbps/001005.mp3",
     "translations": {
       "tr": "Yalnız sana kulluk eder, yalnız senden yardım dileriz.",
-      "en": "You alone we worship, and You alone we ask for help."
+      "en": "You alone we worship, and You alone we ask for help.",
+      "de": "Dir allein dienen wir, und zu Dir allein flehen wir um Hilfe.",
+      "fr": "C'est Toi [Seul] que nous adorons, et c'est Toi [Seul] dont nous implorons secours.",
+      "id": "Hanya Engkaulah yang kami sembah, dan hanya kepada Engkaulah kami meminta pertolongan.",
+      "ur": "(اے پروردگار) ہم تیری ہی عبادت کرتے ہیں اور تجھ ہی سے مدد مانگتے ہیں",
+      "bn": "আমরা একমাত্র তোমারই ইবাদত করি এবং শুধুমাত্র তোমারই সাহায্য প্রার্থনা করি।",
+      "fa": "(پروردگارا!) تنها تو را می‌پرستیم؛ و تنها از تو یاری می‌جوییم.",
+      "ru": "Тебе одному мы поклоняемся и Тебя одного молим о помощи."
     }
   },
   {
@@ -56,7 +91,14 @@
     "audio": "https://everyayah.com/data/Alafasy_128kbps/001006.mp3",
     "translations": {
       "tr": "Bizi doğru yola ilet.",
-      "en": "Guide us to the straight path."
+      "en": "Guide us to the straight path.",
+      "de": "Leite uns den geraden Weg,",
+      "fr": "Guide-nous dans le droit chemin,",
+      "id": "Tunjukilah kami jalan yang lurus,",
+      "ur": "ہم کو سیدھے رستے چلا",
+      "bn": "আমাদেরকে সরল পথ দেখাও,",
+      "fa": "ما را به راه راست هدایت کن...",
+      "ru": "Веди нас прямым путем,"
     }
   },
   {
@@ -66,7 +108,14 @@
     "audio": "https://everyayah.com/data/Alafasy_128kbps/001007.mp3",
     "translations": {
       "tr": "Kendilerine nimet verdiklerinin yoluna; gazaba uğrayanların ve sapkınların yoluna değil.",
-      "en": "The path of those You have blessed, not of those who earned anger or went astray."
+      "en": "The path of those You have blessed, not of those who earned anger or went astray.",
+      "de": "den Weg derjenigen, denen Du Gunst erwiesen hast, nicht derjenigen, die (Deinen) Zorn erregt haben, und nicht der Irregehenden!",
+      "fr": "le chemin de ceux que Tu as comblés de faveurs, non pas de ceux qui ont encouru Ta colère, ni des égarés.",
+      "id": "(yaitu) Jalan orang-orang yang telah Engkau beri nikmat kepada mereka; bukan (jalan) mereka yang dimurkai dan bukan (pula jalan) mereka yang sesat.",
+      "ur": "ان لوگوں کے رستے جن پر تو اپنا فضل وکرم کرتا رہا نہ ان کے جن پر غصے ہوتا رہا اور نہ گمراہوں کے",
+      "bn": "সে সমস্ত লোকের পথ, যাদেরকে তুমি নেয়ামত দান করেছ। তাদের পথ নয়, যাদের প্রতি তোমার গজব নাযিল হয়েছে এবং যারা পথভ্রষ্ট হয়েছে।",
+      "fa": "راه کسانی که آنان را مشمول نعمت خود ساختی؛ نه کسانی که بر آنان غضب کرده‌ای؛ و نه گمراهان.",
+      "ru": "путем тех, кого Ты облагодетельствовал, не тех, на кого пал гнев, и не заблудших."
     }
   }
 ]

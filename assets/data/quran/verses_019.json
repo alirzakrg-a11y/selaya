@@ -6,7 +6,14 @@
     "audio": "https://everyayah.com/data/Alafasy_128kbps/019001.mp3",
     "translations": {
       "tr": "Kaf, Ha, Ya, Ayn, Sad.",
-      "en": "Kaf, Ha, Ya, 'Ayn, Sad."
+      "en": "Kaf, Ha, Ya, 'Ayn, Sad.",
+      "de": "Kaf-Ha-Ya-'Ayn-Sad.",
+      "fr": "Kâf, Hâ', Yâ', 'Aîn, Sâd.",
+      "id": "Kaaf Haa Yaa 'Ain Shaad.",
+      "ur": "کہیٰعص",
+      "bn": "কাফ-হা-ইয়া-আইন-সাদ",
+      "fa": "کهیعص‌",
+      "ru": "Каф. Ха. Йа. Айн. Сад."
     }
   },
   {
@@ -16,7 +23,14 @@
     "audio": "https://everyayah.com/data/Alafasy_128kbps/019002.mp3",
     "translations": {
       "tr": "Bu, Rabbinin kulu Zekeriya'ya olan rahmetini anmadır.",
-      "en": "[This is] a mention of the mercy of your Lord to His servant Zechariah"
+      "en": "[This is] a mention of the mercy of your Lord to His servant Zechariah",
+      "de": "(Diese Verse sind) zum Gedenken an die Barmherzigkeit deines Herrn zu Seinem Diener Zakariyya.",
+      "fr": "C'est un récit de la miséricorde de ton Seigneur envers Son serviteur Zacharie.",
+      "id": "(Yang dibacakan ini adalah) penjelasan tentang rahmat Tuhan kamu kepada hamba-Nya, Zakaria,",
+      "ur": "(یہ) تمہارے پروردگار کی مہربانی کا بیان (ہے جو اس نے) اپنے بندے زکریا پر (کی تھی)",
+      "bn": "এটা আপনার পালনকর্তার অনুগ্রহের বিবরণ তাঁর বান্দা যাকারিয়ার প্রতি।",
+      "fa": "(این) یادی است از رحمت پروردگار تو نسبت به بنده‌اش زکریا...",
+      "ru": "Это является напоминанием о милости твоего Господа, оказанной Его рабу Закарии (Захарии)."
     }
   },
   {
@@ -26,7 +40,14 @@
     "audio": "https://everyayah.com/data/Alafasy_128kbps/019003.mp3",
     "translations": {
       "tr": "O Rabbine içinden yalvarmıştı.",
-      "en": "When he called to his Lord a private supplication."
+      "en": "When he called to his Lord a private supplication.",
+      "de": "Als er zu seinem Herrn im Verborgenen rief",
+      "fr": "Lorsqu'il invoqua son Seigneur d'une invocation secrète,",
+      "id": "yaitu tatkala ia berdoa kepada Tuhannya dengan suara yang lembut.",
+      "ur": "جب انہوں نے اپنے پروردگار کو دبی آواز سے پکارا",
+      "bn": "যখন সে তাঁর পালনকর্তাকে আহবান করেছিল নিভৃতে।",
+      "fa": "در آن هنگام که پروردگارش را در خلوتگاه (عبادت) پنهان خواند...",
+      "ru": "Вот он воззвал к своему Господу в тайне"
     }
   },
   {
@@ -36,7 +57,14 @@
     "audio": "https://everyayah.com/data/Alafasy_128kbps/019004.mp3",
     "translations": {
       "tr": "Şöyle demişti: \"Rabbim! Gerçekten kemiklerim zayıfladı, saçlarım ağardı. Rabbim! Sana yalvarmakla şimdiye kadar bedbaht olup bir şeyden mahrum kalmadım.\"",
-      "en": "He said, \"My Lord, indeed my bones have weakened, and my head has filled with white, and never have I been in my supplication to You, my Lord, unhappy."
+      "en": "He said, \"My Lord, indeed my bones have weakened, and my head has filled with white, and never have I been in my supplication to You, my Lord, unhappy.",
+      "de": "(und) sagte: \"Mein Herr, schwach sind mir die Knochen geworden, und in Altersgrauheit entfacht ist der Kopf. Und ich war im Bittgebet zu Dir, mein Herr, (noch) nie unglücklich.",
+      "fr": "et dit: «O mon Seigneur, mes os sont affaiblis et ma tête s'est enflammée de cheveux blancs. [Cependant], je n'ai jamais été malheureux [déçu] en te priant, ô mon Seigneur.",
+      "id": "Ia berkata \"Ya Tuhanku, sesungguhnya tulangku telah lemah dan kepalaku telah ditumbuhi uban, dan aku belum pernah kecewa dalam berdoa kepada Engkau, ya Tuhanku.",
+      "ur": "(اور) کہا کہ اے میرے پروردگار میری ہڈیاں بڑھاپے کے سبب کمزور ہوگئی ہیں اور سر (ہے کہ) بڑھاپے (کی وجہ سے) شعلہ مارنے لگا ہے اور اے میرے پروردگار میں تجھ سے مانگ کر کبھی محروم نہیں رہا",
+      "bn": "সে বললঃ হে আমার পালনকর্তা আমার অস্থি বয়স-ভারাবনত হয়েছে; বার্ধক্যে মস্তক সুশুভ্র হয়েছে; হে আমার পালনকর্তা! আপনাকে ডেকে আমি কখনও বিফলমনোরথ হইনি।",
+      "fa": "گفت: «پروردگارا! استخوانم سست شده؛ و شعله پیری تمام سرم را فراگرفته؛ و من هرگز در دعای تو، از اجابت محروم نبوده‌ام!",
+      "ru": "и сказал: «Господи! Воистину, кости мои ослабели, а седина уже распространилась по моей голове. А ведь раньше благодаря молитвам к Тебе, Господи, я не был несчастен."
     }
   },
   {
@@ -46,7 +74,14 @@
     "audio": "https://everyayah.com/data/Alafasy_128kbps/019005.mp3",
     "translations": {
       "tr": "Doğrusu, benden sonra yerime geçecek yakınlarımın iyi hareket etmeyeceklerinden korkuyorum. Karım da kısırdır. Katından bana bir oğul bağışla ki, bana ve Yakub oğullarına mirasçı olsun. Rabbim! Onun, rızanı kazanmasını da sağla.\"",
-      "en": "And indeed, I fear the successors after me, and my wife has been barren, so give me from Yourself an heir"
+      "en": "And indeed, I fear the successors after me, and my wife has been barren, so give me from Yourself an heir",
+      "de": "Gewiß, ich fürchte die Verwandten nach mir, und meine Frau ist unfruchtbar. So schenke mir von Dir aus einen nahen Verwandten,",
+      "fr": "Je crains [le comportement] de mes héritiers, après moi. Et ma propre femme est stérile. Accorde-moi, de Ta part, un descendant",
+      "id": "Dan sesungguhnya aku khawatir terhadap mawaliku sepeninggalku, sedang isteriku adalah seorang yang mandul, maka anugerahilah aku dari sisi Engkau seorang putera,",
+      "ur": "اور میں اپنے بعد اپنے بھائی بندوں سے ڈرتا ہوں اور میری بیوی بانجھ ہے تو مجھے اپنے پاس سے ایک وارث عطا فرما",
+      "bn": "আমি ভয় করি আমার পর আমার স্বগোত্রকে এবং আমার স্ত্রী বন্ধ্যা; কাজেই আপনি নিজের পক্ষ থেকে আমাকে এক জন কর্তব্য পালনকারী দান করুন।",
+      "fa": "و من از بستگانم بعد از خودم بیمناکم (که حق پاسداری از آیین تو را نگاه ندارند)! و (از طرفی) همسرم نازا و عقیم است؛ تو از نزد خود جانشینی به من ببخش...",
+      "ru": "Я опасаюсь того, что натворят мои родственники после меня, потому что жена моя бесплодна. Даруй же мне от Тебя наследника,"
     }
   },
   {
@@ -56,7 +91,14 @@
     "audio": "https://everyayah.com/data/Alafasy_128kbps/019006.mp3",
     "translations": {
       "tr": "Doğrusu, benden sonra yerime geçecek yakınlarımın iyi hareket etmeyeceklerinden korkuyorum. Karım da kısırdır. Katından bana bir oğul bağışla ki, bana ve Yakub oğullarına mirasçı olsun. Rabbim! Onun, rızanı kazanmasını da sağla.\"",
-      "en": "Who will inherit me and inherit from the family of Jacob. And make him, my Lord, pleasing [to You].\""
+      "en": "Who will inherit me and inherit from the family of Jacob. And make him, my Lord, pleasing [to You].\"",
+      "de": "der mich beerbt und von der Sippe Ya'qubs erbt, und mach ihn, mein Herr, (Dir) wohlgefällig.\"",
+      "fr": "qui hérite de moi et hérite de la famille de Jacob. Et fais qu'il te soit agréable, ô mon Seigneur».",
+      "id": "yang akan mewarisi aku dan mewarisi sebahagian keluarga Ya'qub; dan jadikanlah ia, ya Tuhanku, seorang yang diridhai\".",
+      "ur": "جو میری اور اولاد یعقوب کی میراث کا مالک ہو۔ اور (اے) میرے پروردگار اس کو خوش اطوار بنائیو",
+      "bn": "সে আমার স্থলাভিষিক্ত হবে ইয়াকুব বংশের এবং হে আমার পালনকর্তা, তাকে করুন সন্তোষজনক।",
+      "fa": "که وارث من و دودمان یعقوب باشد؛ و او را مورد رضایتت قرار ده!»",
+      "ru": "который наследует мне и семейству Йакуба (Иакова). И сделай его, Господи, угодником»."
     }
   },
   {
@@ -66,7 +108,14 @@
     "audio": "https://everyayah.com/data/Alafasy_128kbps/019007.mp3",
     "translations": {
       "tr": "Allah: \"Ey Zekeriya! Sana, Yahya isminde bir oğlanı müjdeliyoruz. Bu adı daha önce kimseye vermemiştik\" buyurdu.",
-      "en": "[He was told], \"O Zechariah, indeed We give you good tidings of a boy whose name will be John. We have not assigned to any before [this] name.\""
+      "en": "[He was told], \"O Zechariah, indeed We give you good tidings of a boy whose name will be John. We have not assigned to any before [this] name.\"",
+      "de": "\"O Zakariyya, Wir verkünden dir einen Jungen, dessen Name Yahya ist, wie Wir zuvor noch niemandem Kennzeichen gleich den seinen gegeben haben.\"",
+      "fr": "«O Zacharie, Nous t'annonçons la bonne nouvelle d'un fils. Son nom sera Yahya [Jean]. Nous ne lui avons pas donné auparavant d'homonyme».",
+      "id": "Hai Zakaria, sesungguhnya Kami memberi kabar gembira kepadamu akan (beroleh) seorang anak yang namanya Yahya, yang sebelumnya Kami belum pernah menciptakan orang yang serupa dengan dia.",
+      "ur": "اے زکریا ہم تم کو ایک لڑکے کی بشارت دیتے ہیں جس کا نام یحییٰ ہے۔ اس سے پہلے ہم نے اس نام کا کوئی شخص پیدا نہیں کیا",
+      "bn": "হে যাকারিয়া, আমি তোমাকে এক পুত্রের সুসংবাদ দিচ্ছি, তার নাম হবে ইয়াহইয়া। ইতিপূর্বে এই নামে আমি কারও নাম করণ করিনি।",
+      "fa": "ای زکریا! ما تو را به فرزندی بشارت می‌دهیم که نامش «یحیی» است؛ و پیش از این، همنامی برای او قرار نداده‌ایم!",
+      "ru": "О Закария (Захария)! Воистину, Мы радуем тебя вестью о мальчике, имя которому Йахья (Иоанн). Мы не создавали прежде никого с таким именем (или никого подобного ему)."
     }
   },
   {
@@ -76,7 +125,14 @@
     "audio": "https://everyayah.com/data/Alafasy_128kbps/019008.mp3",
     "translations": {
       "tr": "Zekeriya: \"Rabbim! Karım kısır, ben de son derece kocamışken nasıl oğlum olabilir?\" dedi.",
-      "en": "He said, \"My Lord, how will I have a boy when my wife has been barren and I have reached extreme old age?\""
+      "en": "He said, \"My Lord, how will I have a boy when my wife has been barren and I have reached extreme old age?\"",
+      "de": "Er sagte: \"Mein Herr, wie soll ich einen Jungen haben, wo meine Frau unfruchtbar ist und ich vom hohen Alter bereits einen Dürrezustand erreicht habe?\"",
+      "fr": "Et [Zacharie dit]: «O mon Seigneur, comment aurai-je un fils, quand ma femme est stérile et que je suis très avancé en vieillesse?»",
+      "id": "Zakaria berkata: \"Ya Tuhanku, bagaimana akan ada anak bagiku, padahal isteriku adalah seorang yang mandul dan aku (sendiri) sesungguhnya sudah mencapai umur yang sangat tua\".",
+      "ur": "انہوں نے کہا پروردگار میرے ہاں کس طرح لڑکا ہوگا۔ جس حال میں میری بیوی بانجھ ہے اور میں بڑھاپے کی انتہا کو پہنچ گیا ہوں",
+      "bn": "সে বললঃ হে আমার পালনকর্তা কেমন করে আমার পুত্র হবে অথচ আমার স্ত্রী যে বন্ধ্যা, আর আমিও যে বার্ধক্যের শেষ প্রান্তে উপনীত।",
+      "fa": "گفت: «پروردگارا! چگونه برای من فرزندی خواهد بود؟! در حالی که همسرم نازا و عقیم است، و من نیز از شدّت پیری افتاده شده‌ام!»",
+      "ru": "Он сказал: «Господи! Как может быть у меня мальчик, если моя жена бесплодна, а я уже достиг дряхлого возраста?»."
     }
   },
   {
@@ -86,7 +142,14 @@
     "audio": "https://everyayah.com/data/Alafasy_128kbps/019009.mp3",
     "translations": {
       "tr": "Allah: \"Rabbin böyle buyurdu; Çünkü bu bana kolaydır, nitekim sen yokken daha önce seni yaratmıştım\" dedi.",
-      "en": "[An angel] said, \"Thus [it will be]; your Lord says, 'It is easy for Me, for I created you before, while you were nothing.' \""
+      "en": "[An angel] said, \"Thus [it will be]; your Lord says, 'It is easy for Me, for I created you before, while you were nothing.' \"",
+      "de": "Er sagte: \"So wird es sein. Dein Herr sagt: ,Das ist Mir ein leichtes; und auch dich habe Ich ja zuvor erschaffen, als du noch nichts warst'.\"",
+      "fr": "[Allah] lui dit: «Ainsi sera-t-il! Ton Seigneur a dit: «Ceci m'est facile. Et avant cela, Je t'ai créé alors que tu n'étais rien».",
+      "id": "Tuhan berfirman: \"Demikianlah\". Tuhan berfirman: \"Hal itu adalah mudah bagi-Ku; dan sesunguhnya telah Aku ciptakan kamu sebelum itu, padahal kamu (di waktu itu) belum ada sama sekali\".",
+      "ur": "حکم ہوا کہ اسی طرح (ہوگا) تمہارے پروردگار نے فرمایا ہے کہ مجھے یہ آسان ہے اور میں پہلے تم کو بھی تو پیدا کرچکا ہوں اور تم کچھ چیز نہ تھے",
+      "bn": "তিনি বললেনঃ এমনিতেই হবে। তোমার পালনকর্তা বলে দিয়েছেনঃ এটা আমার পক্ষে সহজ। আমি তো পুর্বে তোমাকে সৃষ্টি করেছি এবং তুমি কিছুই ছিলে না।",
+      "fa": "فرمود: «پروردگارت این گونه گفته (و اراده کرده)! این بر من آسان است؛ و قبلاً تو را آفریدم در حالی که چیزی نبودی!»",
+      "ru": "Он сказал: «Все так и будет! Господь твой сказал: «Это для Меня легко, ведь прежде Я сотворил тебя самого, хотя тебя вообще не было»»."
     }
   },
   {
@@ -96,7 +159,14 @@
     "audio": "https://everyayah.com/data/Alafasy_128kbps/019010.mp3",
     "translations": {
       "tr": "Zekeriya \"Rabbim! Öyleyse bana bir alamet ver\" dedi. Allah: \"Senin alametin, sağlam ve sıhhatli olduğun halde üç gün üç gece insanlarla konuşamamandır\" buyurdu.",
-      "en": "[Zechariah] said, \"My Lord, make for me a sign.\" He said, \"Your sign is that you will not speak to the people for three nights, [being] sound.\""
+      "en": "[Zechariah] said, \"My Lord, make for me a sign.\" He said, \"Your sign is that you will not speak to the people for three nights, [being] sound.\"",
+      "de": "Er sagte: \"Mein Herr, setze mir ein Zeichen.\" Er sagte: \"Dein Zeichen ist, daß du drei Nächte lang, obwohl gesund, nicht zu den Menschen sprechen wirst.\"",
+      "fr": "«O mon Seigneur, dit [Zacharie], accorde-moi un signe». «Ton signe, dit [Allah,] sera que tu ne pourras pas parler aux gens pendant trois nuits tout en étant bien portant.",
+      "id": "Zakaria berkata: \"Ya Tuhanku, berilah aku suatu tanda\". Tuhan berfirman: \"Tanda bagimu ialah bahwa kamu tidak dapat bercakap-cakap dengan manusia selama tiga malam, padahal kamu sehat\".",
+      "ur": "کہا کہ پروردگار میرے لئے کوئی نشانی مقرر فرما۔ فرمایا نشانی یہ ہے کہ تم صحیح وسالم ہو کر تین (رات دن) لوگوں سے بات نہ کرسکو گے",
+      "bn": "সে বললঃ হে আমার পালনকর্তা, আমাকে একটি নির্দশন দিন। তিনি বললেন তোমার নিদর্শন এই যে, তুমি সুস্থ অবস্থায় তিন দিন মানুষের সাথে কথাবার্তা বলবে না।",
+      "fa": "عرض کرد: «پروردگارا! نشانه‌ای برای من قرار ده!» فرمود: «نشانه تو این است که سه شبانه روز قدرت تکلّم (با مردم) نخواهی داشت؛ در حالی که زبانت سالم است!»",
+      "ru": "Он сказал: «Господи! Назначь для меня знамение». Он сказал: «Знамением для тебя станет то, что ты не будешь говорить с людьми в течение трех ночей, будучи в полном здравии»."
     }
   },
   {
@@ -106,7 +176,14 @@
     "audio": "https://everyayah.com/data/Alafasy_128kbps/019011.mp3",
     "translations": {
       "tr": "Zekeriya bunun üzerine mabedden çıkıp milletine: \"Sabah akşam Allah'ı tesbih edin\" diye işarette bulundu.",
-      "en": "So he came out to his people from the prayer chamber and signaled to them to exalt [Allah] in the morning and afternoon."
+      "en": "So he came out to his people from the prayer chamber and signaled to them to exalt [Allah] in the morning and afternoon.",
+      "de": "So kam er zu seinem Volk aus dem Gebetsraum heraus und gab ihnen dann zu verstehen: \"Preist morgens und abends.\"",
+      "fr": "Il sortit donc du sanctuaire vers son peuple; puis il leur fit signe de prier matin et soir.",
+      "id": "Maka ia keluar dari mihrab menuju kaumnya, lalu ia memberi isyarat kepada mereka; hendaklah kamu bertasbih di waktu pagi dan petang.",
+      "ur": "پھر وہ (عبادت کے) حجرے سے نکل کر اپنی قوم کے پاس آئے تو ان سے اشارے سے کہا کہ صبح وشام (خدا کو) یاد کرتے رہو",
+      "bn": "অতঃপর সে কক্ষ থেকে বের হয়ে তার সম্প্রদায়ের কাছে এল এবং ইঙ্গিতে তাদেরকে সকাল সন্ধ্যায় আল্লাহকে স্মরণ করতে বললঃ",
+      "fa": "او از محراب عبادتش به سوی مردم بیرون آمد؛ و با اشاره به آنها گفت: «(بشکرانه این موهبت،) صبح و شام خدا را تسبیح گویید!»",
+      "ru": "Он вышел из молельни к своему народу и дал им понять: «Воздавайте хвалу по утрам и перед закатом!»."
     }
   },
   {
@@ -116,7 +193,14 @@
     "audio": "https://everyayah.com/data/Alafasy_128kbps/019012.mp3",
     "translations": {
       "tr": "\"Ey Yahya! Kitaba kuvvetle sarıl\" deyip daha çocukken ona hikmet, katımızdan kalp yumuşaklığı ve safiyet verdik. O, Allah'tan sakınan ve anasına babasına karşı iyi davranan bir kimse idi, baş kaldıran bir zorba değildi.",
-      "en": "[Allah] said, \"O John, take the Scripture with determination.\" And We gave him judgement [while yet] a boy"
+      "en": "[Allah] said, \"O John, take the Scripture with determination.\" And We gave him judgement [while yet] a boy",
+      "de": "\"O Yahya, nimm die Schrift mit (aller) Kraft.\" Und Wir gaben ihm schon als Kind die Urteilskraft",
+      "fr": "... «O Yahya, tiens fermement au Livre (la Thora)!» Nous lui donnâmes la sagesse alors qu'il était enfant,",
+      "id": "Hai Yahya, ambillah Al Kitab (Taurat) itu dengan sungguh-sungguh. Dan kami berikan kepadanya hikmah selagi ia masih kanak-kanak,",
+      "ur": "اے یحییٰ (ہماری) کتاب کو زور سے پکڑے رہو۔ اور ہم نے ان کو لڑکپن میں دانائی عطا فرمائی تھی",
+      "bn": "হে ইয়াহইয়া দৃঢ়তার সাথে এই গ্রন্থ ধারণ কর। আমি তাকে শৈশবেই বিচারবুদ্ধি দান করেছিলাম।",
+      "fa": "ای یحیی! کتاب (خدا) را با قوّت بگیر! و ما فرمان نبوّت (و عقل کافی) در کودکی به او دادیم!",
+      "ru": "О Йахья (Иоанн)! Крепко держи Писание. Мы одарили его мудростью, пока он был еще ребенком,"
     }
   },
   {
@@ -126,7 +210,14 @@
     "audio": "https://everyayah.com/data/Alafasy_128kbps/019013.mp3",
     "translations": {
       "tr": "\"Ey Yahya! Kitaba kuvvetle sarıl\" deyip daha çocukken ona hikmet, katımızdan kalp yumuşaklığı ve safiyet verdik. O, Allah'tan sakınan ve anasına babasına karşı iyi davranan bir kimse idi, baş kaldıran bir zorba değildi.",
-      "en": "And affection from Us and purity, and he was fearing of Allah"
+      "en": "And affection from Us and purity, and he was fearing of Allah",
+      "de": "und Mitgefühl von Uns aus und Lauterkeit. Er war gottesfürchtig",
+      "fr": "ainsi que la tendresse de Notre part et la pureté. Il était pieux,",
+      "id": "dan rasa belas kasihan yang mendalam dari sisi Kami dan kesucian (dan dosa). Dan ia adalah seorang yang bertakwa,",
+      "ur": "اور اپنے پاس شفقت اور پاکیزگی دی تھی۔ اور پرہیزگار تھے",
+      "bn": "এবং নিজের পক্ষ থেকে আগ্রহ ও পবিত্রতা দিয়েছি। সে ছিল পরহেযগার।",
+      "fa": "و رحمت و محبتّی از ناحیه خود به او بخشیدیم، و پاکی (دل و جان)! و او پرهیزگار بود!",
+      "ru": "а также состраданием от Нас и чистотой. Он был богобоязнен,"
     }
   },
   {
@@ -136,7 +227,14 @@
     "audio": "https://everyayah.com/data/Alafasy_128kbps/019014.mp3",
     "translations": {
       "tr": "\"Ey Yahya! Kitaba kuvvetle sarıl\" deyip daha çocukken ona hikmet, katımızdan kalp yumuşaklığı ve safiyet verdik. O, Allah'tan sakınan ve anasına babasına karşı iyi davranan bir kimse idi, baş kaldıran bir zorba değildi.",
-      "en": "And dutiful to his parents, and he was not a disobedient tyrant."
+      "en": "And dutiful to his parents, and he was not a disobedient tyrant.",
+      "de": "und gütig gegen seine Eltern, und er war weder gewalttätig noch widerspenstig.",
+      "fr": "et dévoué envers ses père et mère; et ne fut ni violent ni désobéissant.",
+      "id": "dan seorang yang berbakti kepada kedua orang tuanya, dan bukanlah ia orang yang sombong lagi durhaka.",
+      "ur": "اور ماں باپ کے ساتھ نیکی کرنے والے تھے اور سرکش اور نافرمان نہیں تھے",
+      "bn": "পিতা-মাতার অনুগত এবং সে উদ্ধত, নাফরমান ছিল না।",
+      "fa": "او نسبت به پدر و مادرش نیکوکار بود؛ و جبّار (و متکّبر) و عصیانگر نبود!",
+      "ru": "почтителен к родителям и не был гордецом и ослушником."
     }
   },
   {
@@ -146,7 +244,14 @@
     "audio": "https://everyayah.com/data/Alafasy_128kbps/019015.mp3",
     "translations": {
       "tr": "Doğduğu günde, öleceği günde ve dirileceği günde ona selam olsun.",
-      "en": "And peace be upon him the day he was born and the day he dies and the day he is raised alive."
+      "en": "And peace be upon him the day he was born and the day he dies and the day he is raised alive.",
+      "de": "Und Friede sei auf ihm am Tag, da er geboren wurde, und am Tag, da er stirbt, und am Tag, da er wieder zum Leben auferweckt wird.",
+      "fr": "Que la paix soit sur lui le jour où il naquit, le jour où il mourra, et le jour où il sera ressuscité vivant!",
+      "id": "Kesejahteraan atas dirinya pada hari ia dilahirkan dan pada hari ia meninggal dan pada hari ia dibangkitkan hidup kembali.",
+      "ur": "اور جس دن وہ پیدا ہوئے اور جس دن وفات پائیں گے اور جس دن زندہ کرکے اٹھائے جائیں گے۔ ان پر سلام اور رحمت (ہے)",
+      "bn": "তার প্রতি শান্তি-যেদিন সে জন্মগ্রহণ করে এবং যেদিন মৃত্যুবরণ করবে এবং যেদিন জীবিতাবস্থায় পুনরুত্থিত হবে।",
+      "fa": "سلام بر او، آن روز که تولّد یافت، و آن روز که می‌میرد، و آن روز که زنده برانگیخته می‌شود!",
+      "ru": "Мир ему в тот день, когда он родился, в тот день, когда он скончался, и в тот день, когда он будет воскрешен к жизни!"
     }
   },
   {
@@ -156,7 +261,14 @@
     "audio": "https://everyayah.com/data/Alafasy_128kbps/019016.mp3",
     "translations": {
       "tr": "Kitabda Meryem'i de an. O, ailesinden ayrılarak, doğu yönünde bir yere çekilmişti.",
-      "en": "And mention, [O Muhammad], in the Book [the story of] Mary, when she withdrew from her family to a place toward the east."
+      "en": "And mention, [O Muhammad], in the Book [the story of] Mary, when she withdrew from her family to a place toward the east.",
+      "de": "Und gedenke im Buch Maryams, als sie sich von ihren Angehörigen an einen östlichen Ort zurückzog.",
+      "fr": "Mentionne, dans le Livre (le Coran), Marie, quand elle se retira de sa famille en un lieu vers l'Orient.",
+      "id": "Dan ceritakanlah (kisah) Maryam di dalam Al Quran, yaitu ketika ia menjauhkan diri dari keluarganya ke suatu tempat di sebelah timur,",
+      "ur": "اور کتاب (قرآن) میں مریم کا بھی مذکور کرو، جب وہ اپنے لوگوں سے الگ ہو کر مشرق کی طرف چلی گئیں",
+      "bn": "এই কিতাবে মারইয়ামের কথা বর্ণনা করুন, যখন সে তার পরিবারের লোকজন থেকে পৃথক হয়ে পূর্বদিকে এক স্থানে আশ্রয় নিল।",
+      "fa": "و در این کتاب (آسمانی)، مریم را یاد کن، آن هنگام که از خانواده‌اش جدا شد، و در ناحیه شرقی (بیت المقدس) قرار گرفت؛",
+      "ru": "Помяни в Писании Марьям (Марию). Вот она ушла от своей семьи на восток"
     }
   },
   {
@@ -166,7 +278,14 @@
     "audio": "https://everyayah.com/data/Alafasy_128kbps/019017.mp3",
     "translations": {
       "tr": "Sonra, insanlardan gizlenmek için bir perde germişti. Cebrail'i göndermiştik de ona tam bir insan olarak görünmüştü.",
-      "en": "And she took, in seclusion from them, a screen. Then We sent to her Our Angel, and he represented himself to her as a well-proportioned man."
+      "en": "And she took, in seclusion from them, a screen. Then We sent to her Our Angel, and he represented himself to her as a well-proportioned man.",
+      "de": "Sie nahm sich einen Vorhang vor ihnen. Da sandten Wir Unseren Geist zu ihr. Er stellte sich ihr als wohlgestaltetes menschliches Wesen dar.",
+      "fr": "Elle mit entre elle et eux un voile. Nous lui envoyâmes Notre Esprit (Gabriel), qui se présenta à elle sous la forme d'un homme parfait.",
+      "id": "maka ia mengadakan tabir (yang melindunginya) dari mereka; lalu Kami mengutus roh Kami kepadanya, maka ia menjelma di hadapannya (dalam bentuk) manusia yang sempurna.",
+      "ur": "تو انہوں نے ان کی طرف سے پردہ کرلیا۔ (اس وقت) ہم نے ان کی طرف اپنا فرشتہ بھیجا۔ تو ان کے سامنے ٹھیک آدمی (کی شکل) بن گیا",
+      "bn": "অতঃপর তাদের থেকে নিজেকে আড়াল করার জন্যে সে পর্দা করলো। অতঃপর আমি তার কাছে আমার রূহ প্রেরণ করলাম, সে তার নিকট পুর্ণ মানবাকৃতিতে আত্নপ্রকাশ করল।",
+      "fa": "و میان خود و آنان حجابی افکند (تا خلوتگاهش از هر نظر برای عبادت آماده باشد). در این هنگام، ما روح خود را بسوی او فرستادیم؛ و او در شکل انسانی بی‌عیب و نقص، بر مریم ظاهر شد!",
+      "ru": "и укрылась от них за завесой. Мы же послали к ней Нашего Духа (Джибрила), и он предстал перед ней в облике прекрасно сложенного человека."
     }
   },
   {
@@ -176,7 +295,14 @@
     "audio": "https://everyayah.com/data/Alafasy_128kbps/019018.mp3",
     "translations": {
       "tr": "Meryem: \"Eğer Allah'tan sakınan bir kimse isen, senden Rahman'a sığınırım\" dedi.",
-      "en": "She said, \"Indeed, I seek refuge in the Most Merciful from you, [so leave me], if you should be fearing of Allah.\""
+      "en": "She said, \"Indeed, I seek refuge in the Most Merciful from you, [so leave me], if you should be fearing of Allah.\"",
+      "de": "Sie sagte: \"Ich suche beim Allerbarmer Schutz vor dir, wenn du gottesfürchtig bist.\"",
+      "fr": "Elle dit: «Je me réfugie contre toi auprès du Tout Miséricordieux. Si tu es pieux, [ne m'approche point].»",
+      "id": "Maryam berkata: \"Sesungguhnya aku berlindung dari padamu kepada Tuhan Yang Maha pemurah, jika kamu seorang yang bertakwa\".",
+      "ur": "مریم بولیں کہ اگر تم پرہیزگار ہو تو میں تم سے خدا کی پناہ مانگتی ہوں",
+      "bn": "মারইয়াম বললঃ আমি তোমা থেকে দয়াময়ের আশ্রয় প্রার্থনা করি যদি তুমি আল্লাহভীরু হও।",
+      "fa": "او (سخت ترسید و) گفت: «من از شرّ تو، به خدای رحمان پناه می‌برم اگر پرهیزگاری!",
+      "ru": "Она сказала: «Я прибегаю к Милостивому, чтобы Он защитил меня от тебя, если только ты богобоязнен»."
     }
   },
   {
@@ -186,7 +312,14 @@
     "audio": "https://everyayah.com/data/Alafasy_128kbps/019019.mp3",
     "translations": {
       "tr": "Cebrail: \"Ben temiz bir oğlan bağışlamak için Rabbinin sana gönderdiği elçiden başkası değilim\" dedi.",
-      "en": "He said, \"I am only the messenger of your Lord to give you [news of] a pure boy.\""
+      "en": "He said, \"I am only the messenger of your Lord to give you [news of] a pure boy.\"",
+      "de": "Er sagte: \"Ich bin nur der Gesandte deines Herrn, um dir einen lauteren Jungen zu schenken.\"",
+      "fr": "Il dit: «Je suis en fait un Messager de ton Seigneur pour te faire don d'un fils pur».",
+      "id": "Ia (jibril) berkata: \"Sesungguhnya aku ini hanyalah seorang utusan Tuhanmu, untuk memberimu seorang anak laki-laki yang suci\".",
+      "ur": "انہوں نے کہا کہ میں تو تمہارے پروردگار کا بھیجا ہوا (یعنی فرشتہ) ہوں (اور اس لئے آیا ہوں) کہ تمہیں پاکیزہ لڑکا بخشوں",
+      "bn": "সে বললঃ আমি তো শুধু তোমার পালনকর্তা প্রেরিত, যাতে তোমাকে এক পবিত্র পুত্র দান করে যাব।",
+      "fa": "گفت: «من فرستاده پروردگار توام؛ (آمده‌ام) تا پسر پاکیزه‌ای به تو ببخشم!»",
+      "ru": "Он сказал: «Воистину, я послан твоим Господом, чтобы даровать тебе чистого мальчика»."
     }
   },
   {
@@ -196,7 +329,14 @@
     "audio": "https://everyayah.com/data/Alafasy_128kbps/019020.mp3",
     "translations": {
       "tr": "Meryem: \"Bana bir insan temas etmemişken, ben kötü kadın da olmadığım halde nasıl oğlum olabilir?\" dedi.",
-      "en": "She said, \"How can I have a boy while no man has touched me and I have not been unchaste?\""
+      "en": "She said, \"How can I have a boy while no man has touched me and I have not been unchaste?\"",
+      "de": "Sie sagte: \"Wie soll mir ein Junge gegeben werden, wo mich doch kein menschliches Wesen berührt hat und ich keine Hure bin.\"",
+      "fr": "Elle dit: «Comment aurais-je un fils, quand aucun homme ne m'a touchée, et que je ne suis pas prostituée?»",
+      "id": "Maryam berkata: \"Bagaimana akan ada bagiku seorang anak laki-laki, sedang tidak pernah seorang manusiapun menyentuhku dan aku bukan (pula) seorang pezina!\"",
+      "ur": "مریم نے کہا کہ میرے ہاں لڑکا کیونکر ہوگا مجھے کسی بشر نے چھوا تک نہیں اور میں بدکار بھی نہیں ہوں",
+      "bn": "মরিইয়াম বললঃ কিরূপে আমার পুত্র হবে, যখন কোন মানব আমাকে স্পর্শ করেনি এবং আমি ব্যভিচারিণীও কখনও ছিলাম না ?",
+      "fa": "گفت: «چگونه ممکن است فرزندی برای من باشد؟! در حالی که تاکنون انسانی با من تماس نداشته، و زن آلوده‌ای هم نبوده‌ام!»",
+      "ru": "Она сказала: «Как у меня может быть мальчик, если меня не касался мужчина, и я не была блудницей?»."
     }
   },
   {
@@ -206,7 +346,14 @@
     "audio": "https://everyayah.com/data/Alafasy_128kbps/019021.mp3",
     "translations": {
       "tr": "Cebrail: \"Bu böyledir, çünkü Rabbin, 'Bu bana kolaydır, onu insanlar için bir mucize ve katımızdan da bir rahmet kılacağız; hem bu önceden kararlaştırılmış bir iştir' diyor\" dedi.",
-      "en": "He said, \"Thus [it will be]; your Lord says, 'It is easy for Me, and We will make him a sign to the people and a mercy from Us. And it is a matter [already] decreed.' \""
+      "en": "He said, \"Thus [it will be]; your Lord says, 'It is easy for Me, and We will make him a sign to the people and a mercy from Us. And it is a matter [already] decreed.' \"",
+      "de": "Er sagte: \"So wird es sein. Dein Herr sagt: ,Das ist Mir ein leichtes, und damit Wir ihn zu einem Zeichen für die Menschen und zu einer Barmherzigkeit von Uns machen'. Und es ist eine beschlossene Angelegenheit.\"",
+      "fr": "Il dit: «Ainsi sera-t-il! Cela M'est facile, a dit ton Seigneur! Et Nous ferons de lui un signe pour les gens, et une miséricorde de Notre part. C'est une affaire déjà décidée».",
+      "id": "Jibril berkata: \"Demikianlah\". Tuhanmu berfirman: \"Hal itu adalah mudah bagi-Ku; dan agar dapat Kami menjadikannya suatu tanda bagi manusia dan sebagai rahmat dari Kami; dan hal itu adalah suatu perkara yang sudah diputuskan\".",
+      "ur": "(فرشتے نے) کہا کہ یونہی (ہوگا) تمہارے پروردگار نے فرمایا کہ یہ مجھے آسان ہے۔ اور (میں اسے اسی طریق پر پیدا کروں گا) تاکہ اس کو لوگوں کے لئے اپنی طرف سے نشانی اور (ذریعہٴ) رحمت اور (مہربانی) بناؤں اور یہ کام مقرر ہوچکا ہے",
+      "bn": "সে বললঃ এমনিতেই হবে। তোমার পালনকর্তা বলেছেন, এটা আমার জন্যে সহজ সাধ্য এবং আমি তাকে মানুষের জন্যে একটি নিদর্শন ও আমার পক্ষ থেকে অনুগ্রহ স্বরূপ করতে চাই। এটা তো এক স্থিরীকৃত ব্যাপার।",
+      "fa": "گفت: «مطلب همین است! پروردگارت فرموده: این کار بر من آسان است! (ما او را می‌آفرینیم، تا قدرت خویش را آشکار سازیم؛) و او را برای مردم نشانه‌ای قرار دهیم؛ و رحمتی باشد از سوی ما! و این امری است پایان یافته (و جای گفتگو ندارد)!»",
+      "ru": "Он сказал: «Вот так! Господь твой сказал: «Это для Меня легко. Мы сделаем его знамением для людей и милостью от Нас. Это дело уже предрешено!»»"
     }
   },
   {
@@ -216,7 +363,14 @@
     "audio": "https://everyayah.com/data/Alafasy_128kbps/019022.mp3",
     "translations": {
       "tr": "Meryem oğlana gebe kaldı, o haliyle uzak bir yere çekildi.",
-      "en": "So she conceived him, and she withdrew with him to a remote place."
+      "en": "So she conceived him, and she withdrew with him to a remote place.",
+      "de": "So empfing sie ihn und zog sich mit ihm zu einem fernen Ort zurück.",
+      "fr": "Elle devint donc enceinte [de l'enfant], et elle se retira avec lui en un lieu éloigné.",
+      "id": "Maka Maryam mengandungnya, lalu ia menyisihkan diri dengan kandungannya itu ke tempat yang jauh.",
+      "ur": "تو وہ اس (بچّے) کے ساتھ حاملہ ہوگئیں اور اسے لے کر ایک دور جگہ چلی گئیں",
+      "bn": "অতঃপর তিনি গর্ভে সন্তান ধারণ করলেন এবং তৎসহ এক দূরবর্তী স্থানে চলে গেলেন।",
+      "fa": "سرانجام (مریم) به او باردار شد؛ و او را به نقطه دور دستی برد (و خلوت گزید)",
+      "ru": "Она понесла его (забеременела) и отправилась с ним в отдаленное место."
     }
   },
   {
@@ -226,7 +380,14 @@
     "audio": "https://everyayah.com/data/Alafasy_128kbps/019023.mp3",
     "translations": {
       "tr": "Doğum sancısı onu bir hurma ağacının dibine gitmeğe mecbur etti. \"Keşke ben bundan önce ölmüş olsaydım da unutulup gitseydim\" dedi.",
-      "en": "And the pains of childbirth drove her to the trunk of a palm tree. She said, \"Oh, I wish I had died before this and was in oblivion, forgotten.\""
+      "en": "And the pains of childbirth drove her to the trunk of a palm tree. She said, \"Oh, I wish I had died before this and was in oblivion, forgotten.\"",
+      "de": "Die Wehen ließen sie zum Palmenstamm gehen. Sie sagte: \"O wäre ich doch zuvor gestorben und ganz und gar in Vergessenheit geraten!\"",
+      "fr": "Puis les douleurs de l'enfantement l'amenèrent au tronc du palmier, et elle dit: «Malheur à moi! Que je fusse morte avant cet instant! Et que je fusse totalement oubliée!»",
+      "id": "Maka rasa sakit akan melahirkan anak memaksa ia (bersandar) pada pangkal pohon kurma, dia berkata: \"Aduhai, alangkah baiknya aku mati sebelum ini, dan aku menjadi barang yang tidak berarti, lagi dilupakan\".",
+      "ur": "پھر درد زہ ان کو کھجور کے تنے کی طرف لے آیا۔ کہنے لگیں کہ کاش میں اس سے پہلے مرچکتی اور بھولی بسری ہوگئی ہوتی",
+      "bn": "প্রসব বেদনা তাঁকে এক খেজুর বৃক্ষ-মূলে আশ্রয় নিতে বাধ্য করল। তিনি বললেনঃ হায়, আমি যদি কোনরূপে এর পূর্বে মরে যেতাম এবং মানুষের স্মৃতি থেকে বিলুপ্ত হয়ে, যেতাম!",
+      "fa": "درد زایمان او را به کنار تنه درخت خرمایی کشاند؛ (آنقدر ناراحت شد که) گفت: «ای کاش پیش از این مرده بودم، و بکلّی فراموش می‌شدم!»",
+      "ru": "Родовые схватки привели ее к стволу финиковой пальмы, и она сказала: «Лучше бы я умерла до этого и была навсегда забытой!»."
     }
   },
   {
@@ -236,7 +397,14 @@
     "audio": "https://everyayah.com/data/Alafasy_128kbps/019024.mp3",
     "translations": {
       "tr": "Onun altından bir ses kendisine şöyle seslendi: \"Sakın üzülme, Rabbin içinde bulunanı şerefli kılmıştır. Hurma ağacını kendine doğru silkele, üstüne taze hurma dökülsün.",
-      "en": "But he called her from below her, \"Do not grieve; your Lord has provided beneath you a stream."
+      "en": "But he called her from below her, \"Do not grieve; your Lord has provided beneath you a stream.",
+      "de": "Da rief er ihr von unten her zu: \"Sei nicht traurig; dein Herr hat ja unter dir ein Bächlein geschaffen.",
+      "fr": "Alors, il l'appela d'au-dessous d'elle, [lui disant:] «Ne t'afflige pas. Ton Seigneur a placé à tes pieds une source.",
+      "id": "Maka Jibril menyerunya dari tempat yang rendah: \"Janganlah kamu bersedih hati, sesungguhnya Tuhanmu telah menjadikan anak sungai di bawahmu.",
+      "ur": "اس وقت ان کے نیچے کی جانب سے فرشتے نے ان کو آواز دی کہ غمناک نہ ہو تمہارے پروردگار نے تمہارے نیچے ایک چشمہ جاری کردیا ہے",
+      "bn": "অতঃপর ফেরেশতা তাকে নিম্নদিক থেকে আওয়ায দিলেন যে, তুমি দুঃখ করো না। তোমার পালনকর্তা তোমার পায়ের তলায় একটি নহর জারি করেছেন।",
+      "fa": "ناگهان از طرف پایین پایش او را صدا زد که: «غمگین مباش! پروردگارت زیر پای تو چشمه آبی (گوارا) قرار داده است!",
+      "ru": "Тогда он (Иса или Джибрил) воззвал к ней из-под нее: «Не печалься! Господь твой создал под тобой ручей."
     }
   },
   {
@@ -246,7 +414,14 @@
     "audio": "https://everyayah.com/data/Alafasy_128kbps/019025.mp3",
     "translations": {
       "tr": "Onun altından bir ses kendisine şöyle seslendi: \"Sakın üzülme, Rabbin içinde bulunanı şerefli kılmıştır. Hurma ağacını kendine doğru silkele, üstüne taze hurma dökülsün.",
-      "en": "And shake toward you the trunk of the palm tree; it will drop upon you ripe, fresh dates."
+      "en": "And shake toward you the trunk of the palm tree; it will drop upon you ripe, fresh dates.",
+      "de": "Und schüttle zu dir den Palmenstamm, so läßt er frische, reife Datteln auf dich herabfallen.",
+      "fr": "Secoue vers toi le tronc du palmier: il fera tomber sur toi des dattes fraîches et mûres.",
+      "id": "Dan goyanglah pangkal pohon kurma itu ke arahmu, niscaya pohon itu akan menggugurkan buah kurma yang masak kepadamu,",
+      "ur": "اور کھجور کے تنے کو پکڑ کر اپنی طرف ہلاؤ تم پر تازہ تازہ کھجوریں جھڑ پڑیں گی",
+      "bn": "আর তুমি নিজের দিকে খেজুর গাছের কান্ডে নাড়া দাও, তা থেকে তোমার উপর সুপক্ক খেজুর পতিত হবে।",
+      "fa": "و این تنه نخل را به طرف خود تکان ده، رطب تازه‌ای بر تو فرو می‌ریزد!",
+      "ru": "Потряси на себя ствол пальмы, и на тебя попадают свежие финики."
     }
   },
   {
@@ -256,7 +431,14 @@
     "audio": "https://everyayah.com/data/Alafasy_128kbps/019026.mp3",
     "translations": {
       "tr": "Ye iç, gözün aydın olsun. İnsanlardan birini görecek olursan 'Ben Rahman için oruç adadım, bugün hiçbir insanla konuşmayacağım' de.\"",
-      "en": "So eat and drink and be contented. And if you see from among humanity anyone, say, 'Indeed, I have vowed to the Most Merciful abstention, so I will not speak today to [any] man.' \""
+      "en": "So eat and drink and be contented. And if you see from among humanity anyone, say, 'Indeed, I have vowed to the Most Merciful abstention, so I will not speak today to [any] man.' \"",
+      "de": "So iß und trink und sei frohen Mutes'. Und wenn du nun jemanden von den Menschen sehen solltest, dann sag: Ich habe dem Allerbarmer Fasten gelobt, so werde ich heute mit keinem Menschenwesen sprechen.\"",
+      "fr": "Mange donc et bois et que ton œil se réjouisse! Si tu vois quelqu'un d'entre les humains, dis [lui:] «Assurément, j'ai voué un jeûne au Tout Miséricordieux: je ne parlerai donc aujourd'hui à aucun être humain».",
+      "id": "maka makan, minum dan bersenang hatilah kamu. Jika kamu melihat seorang manusia, maka katakanlah: \"Sesungguhnya aku telah bernazar berpuasa untuk Tuhan Yang Maha Pemurah, maka aku tidak akan berbicara dengan seorang manusiapun pada hari ini\".",
+      "ur": "تو کھاؤ اور پیو اور آنکھیں ٹھنڈی کرو۔ اگر تم کسی آدمی کو دیکھو تو کہنا کہ میں نے خدا کے لئے روزے کی منت مانی تو آج میں کسی آدمی سے ہرگز کلام نہیں کروں گی",
+      "bn": "যখন আহার কর, পান কর এবং চক্ষু শীতল কর। যদি মানুষের মধ্যে কাউকে তুমি দেখ, তবে বলে দিওঃ আমি আল্লাহর উদ্দেশে রোযা মানত করছি। সুতরাং আজ আমি কিছুতেই কোন মানুষের সাথে কথা বলব না।",
+      "fa": "(از این غذای لذیذ) بخور؛ و (از آن آب گوارا) بنوش؛ و چشمت را (به این مولود جدید) روشن دار! و هرگاه کسی از انسانها را دیدی، (با اشاره) بگو: من برای خداوند رحمان روزه‌ای نذر کرده‌ام؛ بنابراین امروز با هیچ انسانی هیچ سخن نمی‌گویم! (و بدان که این نوزاد، خودش از تو دفاع خواهد کرد!)»",
+      "ru": "Ешь, пей и радуйся! Если же увидишь кого-либо из людей, то скажи: «Я дала Милостивому обет хранить молчание и не стану сегодня разговаривать с людьми»»."
     }
   },
   {
@@ -266,7 +448,14 @@
     "audio": "https://everyayah.com/data/Alafasy_128kbps/019027.mp3",
     "translations": {
       "tr": "Çocuğu alıp kavmine getirdi, onlar: \"Meryem! Utanılacak bir şey yaptın. Ey Harun'un kızkardeşi! Baban kötü bir kimse değildi, annen de iffetsiz değildi\" dediler.",
-      "en": "Then she brought him to her people, carrying him. They said, \"O Mary, you have certainly done a thing unprecedented."
+      "en": "Then she brought him to her people, carrying him. They said, \"O Mary, you have certainly done a thing unprecedented.",
+      "de": "Dann kam sie mit ihm zu ihrem Volk, ihn (mit sich) tragend. Sie sagten: \"O Maryam, du hast da ja etwas Unerhörtes begangen.",
+      "fr": "Puis elle vint auprès des siens en le portant [le bébé]. Ils dirent: «O Marie, tu as fait une chose monstrueuse!",
+      "id": "Maka Maryam membawa anak itu kepada kaumnya dengan menggendongnya. Kaumnya berkata: \"Hai Maryam, sesungguhnya kamu telah melakukan sesuatu yang amat mungkar.",
+      "ur": "پھر وہ اس (بچّے) کو اٹھا کر اپنی قوم کے لوگوں کے پاس لے آئیں۔ وہ کہنے لگے کہ مریم یہ تو تُونے برا کام کیا",
+      "bn": "অতঃপর তিনি সন্তানকে নিয়ে তার সম্প্রদায়ের কাছে উপস্থিত হলেন। তারা বললঃ হে মারইয়াম, তুমি একটি অঘটন ঘটিয়ে বসেছ।",
+      "fa": "(مریم) در حالی که او را در آغوش گرفته بود، نزد قومش آورد؛ گفتند: «ای مریم! کار بسیار عجیب و بدی انجام دادی!",
+      "ru": "Она пришла к своим родным, неся его. Они сказали: «О Марьям (Мария)! Ты совершила тяжкий (или небывалый, или удивительный) проступок."
     }
   },
   {
@@ -276,7 +465,14 @@
     "audio": "https://everyayah.com/data/Alafasy_128kbps/019028.mp3",
     "translations": {
       "tr": "Çocuğu alıp kavmine getirdi, onlar: \"Meryem! Utanılacak bir şey yaptın. Ey Harun'un kızkardeşi! Baban kötü bir kimse değildi, annen de iffetsiz değildi\" dediler.",
-      "en": "O sister of Aaron, your father was not a man of evil, nor was your mother unchaste.\""
+      "en": "O sister of Aaron, your father was not a man of evil, nor was your mother unchaste.\"",
+      "de": "O Schwester Haruns, dein Vater war doch kein sündiger Mann, noch war deine Mutter eine Hure.\"",
+      "fr": "«Sœur de Hârûn, ton père n'était pas un homme de mal et ta mère n'était pas une prostituée».",
+      "id": "Hai saudara perempuan Harun, ayahmu sekali-kali bukanlah seorang yang jahat dan ibumu sekali-kali bukanlah seorang pezina\",",
+      "ur": "اے ہارون کی بہن نہ تو تیرا باپ ہی بداطوار آدمی تھا اور نہ تیری ماں ہی بدکار تھی",
+      "bn": "হে হারূণ-ভাগিনী, তোমার পিতা অসৎ ব্যক্তি ছিলেন না এবং তোমার মাতাও ছিল না ব্যভিচারিনী।",
+      "fa": "ای خواهر هارون! نه پدرت مرد بدی بود، و نه مادرت زن بد کاره‌ای!!»",
+      "ru": "О сестра Харуна (Аарона)! Твой отец не был скверным человеком, и мать твоя не была блудницей»."
     }
   },
   {
@@ -286,7 +482,14 @@
     "audio": "https://everyayah.com/data/Alafasy_128kbps/019029.mp3",
     "translations": {
       "tr": "Meryem çocuğu gösterdi. \"Biz beşikteki çocukla nasıl konuşabiliriz?\" dediler.",
-      "en": "So she pointed to him. They said, \"How can we speak to one who is in the cradle a child?\""
+      "en": "So she pointed to him. They said, \"How can we speak to one who is in the cradle a child?\"",
+      "de": "Da zeigte sie auf ihn. Sie sagten: \"Wie können wir mit jemandem sprechen, der noch ein Kind in der Wiege ist?\"",
+      "fr": "Elle fit alors un signe vers lui [le bébé]. Ils dirent: «Comment parlerions-nous à un bébé au berceau?»",
+      "id": "maka Maryam menunjuk kepada anaknya. Mereka berkata: \"Bagaimana kami akan berbicara dengan anak kecil yang masih di dalam ayunan?\"",
+      "ur": "تو مریم نے اس لڑکے کی طرف اشارہ کیا۔ وہ بولے کہ ہم اس سے کہ گود کا بچہ ہے کیونکر بات کریں",
+      "bn": "অতঃপর তিনি হাতে সন্তানের দিকে ইঙ্গিত করলেন। তারা বললঃ যে কোলের শিশু তার সাথে আমরা কেমন করে কথা বলব?",
+      "fa": "(مریم) به او اشاره کرد؛ گفتند: «چگونه با کودکی که در گاهواره است سخن بگوییم؟!»",
+      "ru": "Она показала на него, и они сказали: «Как мы можем говорить с младенцем в колыбели?»."
     }
   },
   {
@@ -296,7 +499,14 @@
     "audio": "https://everyayah.com/data/Alafasy_128kbps/019030.mp3",
     "translations": {
       "tr": "Çocuk: \"Ben şüphesiz Allah'ın kuluyum. Bana kitap verdi ve beni peygamber yaptı, nerede olursam olayım beni mübarek kıldı. Yaşadığım müddetçe namaz kılmamı, zekat vermemi ve anneme iyi davranmamı emretti. Beni bedbaht bir zorba kılmadı. Doğduğum günde, öleceğim günde, dirileceğim günde bana selam olsun\" dedi.",
-      "en": "[Jesus] said, \"Indeed, I am the servant of Allah. He has given me the Scripture and made me a prophet."
+      "en": "[Jesus] said, \"Indeed, I am the servant of Allah. He has given me the Scripture and made me a prophet.",
+      "de": "Er sagte: \"Ich bin wahrlich Allahs Diener; Er hat mir die Schrift gegeben und mich zu einem Propheten gemacht.",
+      "fr": "Mais (le bébé) dit: «Je suis vraiment le serviteur d'Allah. Il m'a donné le Livre et m'a désigné Prophète.",
+      "id": "Berkata Isa: \"Sesungguhnya aku ini hamba Allah, Dia memberiku Al Kitab (Injil) dan Dia menjadikan aku seorang nabi,",
+      "ur": "بچے نے کہا کہ میں خدا کا بندہ ہوں اس نے مجھے کتاب دی ہے اور نبی بنایا ہے",
+      "bn": "সন্তান বললঃ আমি তো আল্লাহর দাস। তিনি আমাকে কিতাব দিয়েছেন এবং আমাকে নবী করেছেন।",
+      "fa": "(ناگهان عیسی زبان به سخن گشود و) گفت: «من بنده خدایم؛ او کتاب (آسمانی) به من داده؛ و مرا پیامبر قرار داده است!",
+      "ru": "Он сказал: «Воистину, я - раб Аллаха. Он даровал мне Писание и сделал меня пророком."
     }
   },
   {
@@ -306,7 +516,14 @@
     "audio": "https://everyayah.com/data/Alafasy_128kbps/019031.mp3",
     "translations": {
       "tr": "Çocuk: \"Ben şüphesiz Allah'ın kuluyum. Bana kitap verdi ve beni peygamber yaptı, nerede olursam olayım beni mübarek kıldı. Yaşadığım müddetçe namaz kılmamı, zekat vermemi ve anneme iyi davranmamı emretti. Beni bedbaht bir zorba kılmadı. Doğduğum günde, öleceğim günde, dirileceğim günde bana selam olsun\" dedi.",
-      "en": "And He has made me blessed wherever I am and has enjoined upon me prayer and zakah as long as I remain alive"
+      "en": "And He has made me blessed wherever I am and has enjoined upon me prayer and zakah as long as I remain alive",
+      "de": "Und gesegnet hat Er mich gemacht, wo immer ich bin, und angeordnet hat Er mir, das Gebet (zu verrichten) und die Abgabe (zu entrichten), solange ich lebe,",
+      "fr": "Où que je sois, Il m'a rendu béni; et Il m'a recommandé, tant que je vivrai, la prière et la Zakât;",
+      "id": "dan Dia menjadikan aku seorang yang diberkati di mana saja aku berada, dan Dia memerintahkan kepadaku (mendirikan) shalat dan (menunaikan) zakat selama aku hidup;",
+      "ur": "اور میں جہاں ہوں (اور جس حال میں ہوں) مجھے صاحب برکت کیا ہے اور جب تک زندہ ہوں مجھ کو نماز اور زکوٰة کا ارشاد فرمایا ہے",
+      "bn": "আমি যেখানেই থাকি, তিনি আমাকে বরকতময় করেছেন। তিনি আমাকে নির্দেশ দিয়েছেন, যতদিন জীবিত থাকি, ততদিন নামায ও যাকাত আদায় করতে।",
+      "fa": "و مرا -هر جا که باشم- وجودی پربرکت قرار داده؛ و تا زمانی که زنده‌ام، مرا به نماز و زکات توصیه کرده است!",
+      "ru": "Он сделал меня благословенным, где бы я ни был, и заповедал мне совершать намаз и раздавать закят, пока я буду жив."
     }
   },
   {
@@ -316,7 +533,14 @@
     "audio": "https://everyayah.com/data/Alafasy_128kbps/019032.mp3",
     "translations": {
       "tr": "Çocuk: \"Ben şüphesiz Allah'ın kuluyum. Bana kitap verdi ve beni peygamber yaptı, nerede olursam olayım beni mübarek kıldı. Yaşadığım müddetçe namaz kılmamı, zekat vermemi ve anneme iyi davranmamı emretti. Beni bedbaht bir zorba kılmadı. Doğduğum günde, öleceğim günde, dirileceğim günde bana selam olsun\" dedi.",
-      "en": "And [made me] dutiful to my mother, and He has not made me a wretched tyrant."
+      "en": "And [made me] dutiful to my mother, and He has not made me a wretched tyrant.",
+      "de": "und gütig gegen meine Mutter zu sein. Und Er hat mich weder gewalttätig noch unglücklich gemacht.",
+      "fr": "et la bonté envers ma mère. Il ne m'a fait ni violent ni malheureux.",
+      "id": "dan berbakti kepada ibuku, dan Dia tidak menjadikan aku seorang yang sombong lagi celaka.",
+      "ur": "اور (مجھے) اپنی ماں کے ساتھ نیک سلوک کرنے والا (بنایا ہے) اور سرکش وبدبخت نہیں بنایا",
+      "bn": "এবং জননীর অনুগত থাকতে এবং আমাকে তিনি উদ্ধত ও হতভাগ্য করেননি।",
+      "fa": "و مرا نسبت به مادرم نیکوکار قرار داده؛ و جبّار و شقی قرار نداده است!",
+      "ru": "Он сделал меня почтительным к моей матери и не сделал меня надменным и несчастным."
     }
   },
   {
@@ -326,7 +550,14 @@
     "audio": "https://everyayah.com/data/Alafasy_128kbps/019033.mp3",
     "translations": {
       "tr": "Çocuk: \"Ben şüphesiz Allah'ın kuluyum. Bana kitap verdi ve beni peygamber yaptı, nerede olursam olayım beni mübarek kıldı. Yaşadığım müddetçe namaz kılmamı, zekat vermemi ve anneme iyi davranmamı emretti. Beni bedbaht bir zorba kılmadı. Doğduğum günde, öleceğim günde, dirileceğim günde bana selam olsun\" dedi.",
-      "en": "And peace is on me the day I was born and the day I will die and the day I am raised alive.\""
+      "en": "And peace is on me the day I was born and the day I will die and the day I am raised alive.\"",
+      "de": "Und der Friede sei auf mir am Tag, da ich geboren wurde, und am Tag, da ich sterbe, und am Tag da ich wieder zum Leben auferweckt werde.\"",
+      "fr": "Et que la paix soit sur moi le jour où je naquis, le jour où je mourrai, et le jour où je serai ressuscité vivant.»",
+      "id": "Dan kesejahteraan semoga dilimpahkan kepadaku, pada hari aku dilahirkan, pada hari aku meninggal dan pada hari aku dibangkitkan hidup kembali\".",
+      "ur": "اور جس دن میں پیدا ہوا اور جس دن مروں گا اور جس دن زندہ کرکے اٹھایا جاؤں گا مجھ پر سلام (ورحمت) ہے",
+      "bn": "আমার প্রতি সালাম যেদিন আমি জন্মগ্রহণ করেছি, যেদিন মৃত্যুবরণ করব এবং যেদিন পুনরুজ্জীবিত হয়ে উত্থিত হব।",
+      "fa": "و سلام (خدا) بر من، در آن روز که متولّد شدم، و در آن روز که می‌میرم، و آن روز که زنده برانگیخته خواهم شد!»",
+      "ru": "Мир мне в тот день, когда я родился, в тот день, когда я скончаюсь, и в тот день, когда я буду воскрешен к жизни»."
     }
   },
   {
@@ -336,7 +567,14 @@
     "audio": "https://everyayah.com/data/Alafasy_128kbps/019034.mp3",
     "translations": {
       "tr": "İşte hakkında şüpheye düştükleri Meryem oğlu İsa gerçek söze göre budur.",
-      "en": "That is Jesus, the son of Mary - the word of truth about which they are in dispute."
+      "en": "That is Jesus, the son of Mary - the word of truth about which they are in dispute.",
+      "de": "Das ist 'Isa, der Sohn Maryams: (Es ist) das Wort der Wahrheit, woran sie zweifeln.",
+      "fr": "Tel est Issa (Jésus), fils de Marie: parole de vérité, dont ils doutent.",
+      "id": "Itulah Isa putera Maryam, yang mengatakan perkataan yang benar, yang mereka berbantah-bantahan tentang kebenarannya.",
+      "ur": "یہ مریم کے بیٹے عیسیٰ ہیں (اور یہ) سچی بات ہے جس میں لوگ شک کرتے ہیں",
+      "bn": "এই মারইয়ামের পুত্র ঈসা। সত্যকথা, যে সম্পর্কে লোকেরা বিতর্ক করে।",
+      "fa": "این است عیسی پسر مریم؛ گفتار حقّی که در آن تردید می‌کنند!",
+      "ru": "Таков Иса (Иисус), сын Марьям (Марьям)! Слово Истины, относительно которого они препираются."
     }
   },
   {
@@ -346,7 +584,14 @@
     "audio": "https://everyayah.com/data/Alafasy_128kbps/019035.mp3",
     "translations": {
       "tr": "Allah çocuk edinmez, O münezzehtir. Bir işin olmasına hükmederse ona ancak \"Ol\" der, o da olur.",
-      "en": "It is not [befitting] for Allah to take a son; exalted is He! When He decrees an affair, He only says to it, \"Be,\" and it is."
+      "en": "It is not [befitting] for Allah to take a son; exalted is He! When He decrees an affair, He only says to it, \"Be,\" and it is.",
+      "de": "Es steht Allah nicht an, Sich ein Kind zu nehmen. Preis sei Ihm! Wenn Er eine Angelegenheit bestimmt, so sagt Er dazu nur: ,Sei!', und so ist es.",
+      "fr": "Il ne convient pas à Allah de S'attribuer un fils. Gloire et Pureté à Lui! Quand Il décide d'une chose, Il dit seulement: «Sois!» et elle est.",
+      "id": "Tidak layak bagi Allah mempunyai anak, Maha Suci Dia. Apabila Dia telah menetapkan sesuatu, maka Dia hanya berkata kepadanya: \"Jadilah\", maka jadilah ia.",
+      "ur": "خدا کو سزاوار نہیں کہ کسی کو بیٹا بنائے۔ وہ پاک ہے جب کسی چیز کا ارادہ کرتا ہے تو اس کو یہی کہتا ہے کہ ہوجا تو وہ ہوجاتی ہے",
+      "bn": "আল্লাহ এমন নন যে, সন্তান গ্রহণ করবেন, তিনি পবিত্র ও মহিমাময় সত্তা, তিনি যখন কোন কাজ করা সিদ্ধান্ত করেন, তখন একথাই বলেনঃ হও এবং তা হয়ে যায়।",
+      "fa": "هرگز برای خدا شایسته نبود که فرزندی اختیار کند! منزّه است او! هرگاه چیزی را فرمان دهد، می‌گوید: «موجود باش!» همان دم موجود می‌شود!",
+      "ru": "Не подобает Аллаху иметь сына. Пречист Он! Когда Он принимает решение, то стоит Ему сказать: «Будь!». - как это сбывается."
     }
   },
   {
@@ -356,7 +601,14 @@
     "audio": "https://everyayah.com/data/Alafasy_128kbps/019036.mp3",
     "translations": {
       "tr": "\"Doğrusu Allah benim de sizin de Rabbinizdir. O'na kulluk edin, bu doğru yoldur.\"",
-      "en": "[Jesus said], \"And indeed, Allah is my Lord and your Lord, so worship Him. That is a straight path.\""
+      "en": "[Jesus said], \"And indeed, Allah is my Lord and your Lord, so worship Him. That is a straight path.\"",
+      "de": "('Isa sagte:) \"Und gewiß, Allah ist mein Herr und euer Herr; so dient Ihm. Das ist ein gerader Weg.\"",
+      "fr": "Certes, Allah est mon Seigneur tout comme votre Seigneur. Adorez-le donc. Voilà un droit chemin».",
+      "id": "Sesungguhnya Allah adalah Tuhanku dan Tuhanmu, maka sembahIah Dia oleh kamu sekalian. Ini adalah jalan yang lurus.",
+      "ur": "اور بےشک خدا ہی میرا اور تمہارا پروردگار ہے تو اسی کی عبادت کرو۔ یہی سیدھا رستہ ہے",
+      "bn": "তিনি আরও বললেনঃ নিশ্চয় আল্লাহ আমার পালনকর্তা ও তোমাদের পালনকর্তা। অতএব, তোমরা তার এবাদত কর। এটা সরল পথ।",
+      "fa": "و خداوند، پروردگار من و شماست! او را پرستش کنید؛ این است راه راست!",
+      "ru": "Иса (Иисус) сказал: «Воистину, Аллах - мой Господь и ваш Господь. Поклоняйтесь же Ему. Это и есть прямой путь»."
     }
   },
   {
@@ -366,7 +618,14 @@
     "audio": "https://everyayah.com/data/Alafasy_128kbps/019037.mp3",
     "translations": {
       "tr": "Fırkalar, kendi aralarında anlaşmazlığa düştüler. Vay o büyük günü görecek kafirlerin haline!",
-      "en": "Then the factions differed [concerning Jesus] from among them, so woe to those who disbelieved - from the scene of a tremendous Day."
+      "en": "Then the factions differed [concerning Jesus] from among them, so woe to those who disbelieved - from the scene of a tremendous Day.",
+      "de": "Doch die Gruppierungen wurden uneinig untereinander; dann wehe denjenigen, die ungläubig sind, vor dem Erleben eines gewaltigen Tages!",
+      "fr": "[par la suite,] les sectes divergèrent entre elles. Alors, malheur aux mécréants lors de la vue d'un jour terrible!",
+      "id": "Maka berselisihlah golongan-golongan (yang ada) di antara mereka. Maka kecelakaanlah bagi orang-orang kafir pada waktu menyaksikan hari yang besar.",
+      "ur": "پھر (اہل کتاب کے) فرقوں نے باہم اختلاف کیا۔ سو جو لوگ کافر ہوئے ہیں ان کو بڑے دن (یعنی قیامت کے روز) حاضر ہونے سے خرابی ہے",
+      "bn": "অতঃপর তাদের মধ্যে দলগুলো পৃথক পৃথক পথ অবলম্বন করল। সুতরাং মহাদিবস আগমনকালে কাফেরদের জন্যে ধবংস।",
+      "fa": "ولی (بعد از او) گروه‌هایی از میان پیروانش اختلاف کردند؛ وای به حال کافران از مشاهده روز بزرگ (رستاخیز)!",
+      "ru": "Но секты разошлись во мнениях между собой. Горе же неверующим, которые встретят Великий день!"
     }
   },
   {
@@ -376,7 +635,14 @@
     "audio": "https://everyayah.com/data/Alafasy_128kbps/019038.mp3",
     "translations": {
       "tr": "Bize geldikleri gün neler görüp neler işitecekler! Ama zalimler bugün apaçık bir sapıklık içindedirler.",
-      "en": "How [clearly] they will hear and see the Day they come to Us, but the wrongdoers today are in clear error."
+      "en": "How [clearly] they will hear and see the Day they come to Us, but the wrongdoers today are in clear error.",
+      "de": "Wie vorzüglich werden sie hören und sehen am Tag, da sie zu Uns kommen werden! Aber die Ungerechten befinden sich heute in einem deutlichen Irrtum.",
+      "fr": "Comme ils entendront et verront bien le jour où ils viendront à Nous! Mais aujourd'hui, les injustes sont dans un égarement évident.",
+      "id": "Alangkah terangnya pendengaran mereka dan alangkah tajamnya penglihatan mereka pada hari mereka datang kepada Kami. Tetapi orang-orang yang zalim pada hari ini (di dunia) berada dalam kesesatan yang nyata.",
+      "ur": "وہ جس دن ہمارے سامنے آئیں گے۔ کیسے سننے والے اور کیسے دیکھنے والے ہوں گے مگر ظالم آج صریح گمراہی میں ہیں",
+      "bn": "সেদিন তারা কি চমৎকার শুনবে এবং দেখবে, যেদিন তারা আমার কাছে আগমন করবে। কিন্তু আজ জালেমরা প্রকাশ্য বিভ্রান্তিতে রয়েছে।",
+      "fa": "در آن روز که نزد ما می‌آیند، چه گوشهای شنوا و چه چشمهای بینایی پیدا می‌کنند! ولی این ستمگران امروز در گمراهی آشکارند!",
+      "ru": "Как же ясно они будут слышать и видеть в тот день, когда они явятся к Нам! Но сегодня беззаконники пребывают в очевидном заблуждении."
     }
   },
   {
@@ -386,7 +652,14 @@
     "audio": "https://everyayah.com/data/Alafasy_128kbps/019039.mp3",
     "translations": {
       "tr": "Hala gaflet içinde bulunanları ve hala inanmayanları işin bitmiş olacağı o hasret günü ile uyar.",
-      "en": "And warn them, [O Muhammad], of the Day of Regret, when the matter will be concluded; and [yet], they are in [a state of] heedlessness, and they do not believe."
+      "en": "And warn them, [O Muhammad], of the Day of Regret, when the matter will be concluded; and [yet], they are in [a state of] heedlessness, and they do not believe.",
+      "de": "Warne sie vor dem Tag der gramvollen Reue, wenn die Angelegenheit entschieden sein wird, während sie (all dessen) unachtsam sind, und während sie (noch) nicht glauben.",
+      "fr": "Et avertis-les du jour du Regret, quand tout sera réglé; alors qu'ils sont [dans ce monde] inattentifs et qu'ils ne croient pas.",
+      "id": "Dan berilah mereka peringatan tentang hari penyesalan, (yaitu) ketika segala perkara telah diputus. Dan mereka dalam kelalaian dan mereka tidak (pula) beriman.",
+      "ur": "اور ان کو حسرت (وافسوس) کے دن سے ڈراؤ جب بات فیصل کردی جائے گی۔ اور (ہیہات) وہ غفلت میں (پڑے ہوئے ہیں) اور ایمان نہیں لاتے",
+      "bn": "আপনি তাদেরকে পরিতাপের দিবস সম্পর্কে হুশিয়ার করে দিন যখন সব ব্যাপারের মীমাংসা হয়ে যাবে। এখন তারা অনবধানতায় আছে এবং তারা বিশ্বাস স্থাপন করছে না।",
+      "fa": "آنان را از روز حسرت [= روز رستاخیز که برای همه مایه تأسف است‌] بترسان، در آن هنگام که همه چیز پایان می‌یابد! و آنها در غفلتند و ایمان نمی‌آورند!",
+      "ru": "Предупреди их о Дне печали, когда решение уже будет принято. Но они проявляют беспечность и не веруют."
     }
   },
   {
@@ -396,7 +669,14 @@
     "audio": "https://everyayah.com/data/Alafasy_128kbps/019040.mp3",
     "translations": {
       "tr": "Şüphesiz Biz bütün yeryüzüne ve üzerinde bulunanlara varis olacağız. Onlar Bize döneceklerdir.",
-      "en": "Indeed, it is We who will inherit the earth and whoever is on it, and to Us they will be returned."
+      "en": "Indeed, it is We who will inherit the earth and whoever is on it, and to Us they will be returned.",
+      "de": "Gewiß, Wir sind es, die Wir die Erde und (all die,) die auf ihr sind, erben werden. Und zu Uns werden sie zurückgebracht.",
+      "fr": "C'est Nous, en vérité, qui hériterons la terre et tout ce qui s'y trouve, et c'est à Nous qu'ils seront ramenés.",
+      "id": "Sesungguhnya Kami mewarisi bumi dan semua orang-orang yang ada di atasnya, dan hanya kepada Kamilah mereka dikembalikan.",
+      "ur": "ہم ہی زمین کے اور جو لوگ اس پر (بستے) ہیں ان کے وارث ہیں۔ اور ہماری ہی طرف ان کو لوٹنا ہوگا",
+      "bn": "আমিই চুড়ান্ত মালিকানার অধিকারী হব পৃথিবীর এবং তার উপর যারা আছে তাদের এবং আমারই কাছে তারা প্রত্যাবর্তিত হবে।",
+      "fa": "ما، زمین و تمام کسانی را که بر آن هستند، به ارث می‌بریم؛ و همگی بسوی ما بازگردانده می‌شوند!",
+      "ru": "Воистину, Мы унаследуем землю и тех, кто на ней, и они вернутся к Нам!"
     }
   },
   {
@@ -406,7 +686,14 @@
     "audio": "https://everyayah.com/data/Alafasy_128kbps/019041.mp3",
     "translations": {
       "tr": "Kitap'da İbrahim'e dair anlattıklarımızı da an, o şüphesiz dosdoğru bir peygamberdi.",
-      "en": "And mention in the Book [the story of] Abraham. Indeed, he was a man of truth and a prophet."
+      "en": "And mention in the Book [the story of] Abraham. Indeed, he was a man of truth and a prophet.",
+      "de": "Und gedenke im Buch Ibrahims. Er war ein Wahrhaftiger und Prophet.",
+      "fr": "Et mentionne dans le Livre, Abraham. C'était un très véridique et un Prophète.",
+      "id": "Ceritakanlah (Hai Muhammad) kisah Ibrahim di dalam Al Kitab (Al Quran) ini. Sesungguhnya ia adalah seorang yang sangat membenarkan lagi seorang Nabi.",
+      "ur": "اور کتاب میں ابراہیم کو یاد کرو۔ بےشک وہ نہایت سچے پیغمبر تھے",
+      "bn": "আপনি এই কিতাবে ইব্রাহীমের কথা বর্ণনা করুন। নিশ্চয় তিনি ছিলেন সত্যবাদী, নবী।",
+      "fa": "در این کتاب، ابراهیم را یاد کن، که او بسیار راستگو، و پیامبر (خدا) بود!",
+      "ru": "Помяни в Писании Ибрахима (Авраама). Он был правдивейшим человеком и пророком."
     }
   },
   {
@@ -416,7 +703,14 @@
     "audio": "https://everyayah.com/data/Alafasy_128kbps/019042.mp3",
     "translations": {
       "tr": "Babasına şöyle demişti: \"Babacığım! İşitmeyen, görmeyen ve sana bir faydası olmayan şeylere niçin tapıyorsun?\"",
-      "en": "[Mention] when he said to his father, \"O my father, why do you worship that which does not hear and does not see and will not benefit you at all?"
+      "en": "[Mention] when he said to his father, \"O my father, why do you worship that which does not hear and does not see and will not benefit you at all?",
+      "de": "Als er zu seinem Vater sagte: \"O mein lieber Vater, warum dienst du dem, was nicht hört und nicht sieht und dir nichts nützt?",
+      "fr": "Lorsqu'il dit à son père: «O mon père, pourquoi adores-tu ce qui n'entend ni ne voit, et ne te profite en rien?",
+      "id": "Ingatlah ketika ia berkata kepada bapaknya; \"Wahai bapakku, mengapa kamu menyembah sesuatu yang tidak mendengar, tidak melihat dan tidak dapat menolong kamu sedikitpun?",
+      "ur": "جب انہوں نے اپنے باپ سے کہا کہ ابّا آپ ایسی چیزوں کو کیوں پوجتے ہیں جو نہ سنیں اور نہ دیکھیں اور نہ آپ کے کچھ کام آسکیں",
+      "bn": "যখন তিনি তার পিতাকে বললেনঃ হে আমার পিতা, যে শোনে না, দেখে না এবং তোমার কোন উপকারে আসে না, তার এবাদত কেন কর?",
+      "fa": "هنگامی که به پدرش گفت: «ای پدر! چرا چیزی را می‌پرستی که نه می‌شنود، و نه می‌بیند، و نه هیچ مشکلی را از تو حلّ می‌کند؟!",
+      "ru": "Вот он сказал своему отцу: «Отец мой! Почему ты поклоняешься тому, что не слышит и не видит и не принесет тебе никакого избавления?"
     }
   },
   {
@@ -426,7 +720,14 @@
     "audio": "https://everyayah.com/data/Alafasy_128kbps/019043.mp3",
     "translations": {
       "tr": "\"Babacığım! Doğrusu sana gelmeyen bir ilim bana geldi. Bana uy, seni doğru yola eriştireyim.\"",
-      "en": "O my father, indeed there has come to me of knowledge that which has not come to you, so follow me; I will guide you to an even path."
+      "en": "O my father, indeed there has come to me of knowledge that which has not come to you, so follow me; I will guide you to an even path.",
+      "de": "O mein lieber Vater, gewiß, zu mir ist vom Wissen gekommen, was nicht zu dir gekommen ist. So folge mir, dann leite ich dich einen ebenen Weg.",
+      "fr": "O mon père, il m'est venu de la science ce que tu n'as pas reçu; suis-moi, donc, je te guiderai sur une voie droite.",
+      "id": "Wahai bapakku, sesungguhnya telah datang kepadaku sebahagian ilmu pengetahuan yang tidak datang kepadamu, maka ikutilah aku, niscaya aku akan menunjukkan kepadamu jalan yang lurus.",
+      "ur": "ابّا مجھے ایسا علم ملا ہے جو آپ کو نہیں ملا ہے تو میرے ساتھ ہوجیئے میں آپ کو سیدھی راہ پر چلا دوں گا",
+      "bn": "হে আমার পিতা, আমার কাছে এমন জ্ঞান এসেছে; যা তোমার কাছে আসেনি, সুতরাং আমার অনুসরণ কর, আমি তোমাকে সরল পথ দেখাব।",
+      "fa": "ای پدر! دانشی برای من آمده که برای تو نیامده است؛ بنابر این از من پیروی کن، تا تو را به راه راست هدایت کنم!",
+      "ru": "Отец мой! Мне открылось знание, которое не было открыто тебе. Последуй же за мной, и я поведу тебя верным путем."
     }
   },
   {
@@ -436,7 +737,14 @@
     "audio": "https://everyayah.com/data/Alafasy_128kbps/019044.mp3",
     "translations": {
       "tr": "\"Babacığım! Şeytana tapma, çünkü şeytan Rahman'a baş kaldırmıştır\"",
-      "en": "O my father, do not worship Satan. Indeed Satan has ever been, to the Most Merciful, disobedient."
+      "en": "O my father, do not worship Satan. Indeed Satan has ever been, to the Most Merciful, disobedient.",
+      "de": "O mein lieber Vater, diene nicht dem Satan. Gewiß, der Satan ist gegen den Allerbarmer widerspenstig.",
+      "fr": "O mon père, n'adore pas le Diable, car le Diable désobéit au Tout Miséricordieux.",
+      "id": "Wahai bapakku, janganlah kamu menyembah syaitan. Sesungguhnya syaitan itu durhaka kepada Tuhan Yang Maha Pemurah.",
+      "ur": "ابّا شیطان کی پرستش نہ کیجیئے۔ بےشک شیطان خدا کا نافرمان ہے",
+      "bn": "হে আমার পিতা, শয়তানের এবাদত করো না। নিশ্চয় শয়তান দয়াময়ের অবাধ্য।",
+      "fa": "ای پدر! شیطان را پرستش مکن، که شیطان نسبت به خداوند رحمان، عصیانگر بود!",
+      "ru": "Отец мой! Не поклоняйся дьяволу, поскольку он ослушался Милостивого."
     }
   },
   {
@@ -446,7 +754,14 @@
     "audio": "https://everyayah.com/data/Alafasy_128kbps/019045.mp3",
     "translations": {
       "tr": "\"Babacığım! Doğrusu sana Rahman katından bir azabın gelmesinden korkuyorum ki böylece şeytanın dostu olarak kalırsın.\"",
-      "en": "O my father, indeed I fear that there will touch you a punishment from the Most Merciful so you would be to Satan a companion [in Hellfire].\""
+      "en": "O my father, indeed I fear that there will touch you a punishment from the Most Merciful so you would be to Satan a companion [in Hellfire].\"",
+      "de": "O mein lieber Vater, ich fürchte, daß dir Strafe vom Allerbarmer widerfährt, so daß du zu einem Gefolgsmann des Satans wirst.\"",
+      "fr": "O mon père, je crains qu'un châtiment venant du Tout Miséricordieux ne te touche et que tu ne deviennes un allié du Diable».",
+      "id": "Wahai bapakku, sesungguhnya aku khawatir bahwa kamu akan ditimpa azab dari Tuhan Yang Maha Pemurah, maka kamu menjadi kawan bagi syaitan\".",
+      "ur": "ابّا مجھے ڈر لگتا ہے کہ آپ کو خدا کا عذاب آپکڑے تو آپ شیطان کے ساتھی ہوجائیں",
+      "bn": "হে আমার পিতা, আমি আশঙ্কা করি, দয়াময়ের একটি আযাব তোমাকে স্পর্শ করবে, অতঃপর তুমি শয়তানের সঙ্গী হয়ে যাবে।",
+      "fa": "ای پدر! من از این می‌ترسم که از سوی خداوند رحمان عذابی به تو رسد، در نتیجه از دوستان شیطان باشی!»",
+      "ru": "Отец мой! Я боюсь, что тебя постигнет наказание от Милостивого и что ты станешь помощником дьявола."
     }
   },
   {
@@ -456,7 +771,14 @@
     "audio": "https://everyayah.com/data/Alafasy_128kbps/019046.mp3",
     "translations": {
       "tr": "Babası: \"Ey İbrahim! Sen benim tanrılarımdan yüz çevirmek mi istiyorsun? Bundan vazgeçmezsen mutlaka seni taşlarım; uzun bir süre benden uzaklaş git.\" dedi.",
-      "en": "[His father] said, \"Have you no desire for my gods, O Abraham? If you do not desist, I will surely stone you, so avoid me a prolonged time.\""
+      "en": "[His father] said, \"Have you no desire for my gods, O Abraham? If you do not desist, I will surely stone you, so avoid me a prolonged time.\"",
+      "de": "Er sagte: \"Verschmähst du meine Götter, o Ibrahim? Wenn du nicht aufhörst, werde ich dich ganz gewiß steinigen. Und meide mich eine Zeitlang.\"",
+      "fr": "Il dit: «O Abraham, aurais-tu du dédain pour mes divinités? Si tu ne cesses pas, certes je te lapiderai, éloigne-toi de moi pour bien longtemps».",
+      "id": "Berkata bapaknya: \"Bencikah kamu kepada tuhan-tuhanku, hai Ibrahim? Jika kamu tidak berhenti, maka niscaya kamu akan kurajam, dan tinggalkanlah aku buat waktu yang lama\".",
+      "ur": "اس نے کہا ابراہیم کیا تو میرے معبودوں سے برگشتہ ہے؟ اگر تو باز نہ آئے گا تو میں تجھے سنگسار کردوں گا اور تو ہمیشہ کے لئے مجھ سے دور ہوجا",
+      "bn": "পিতা বললঃ যে ইব্রাহীম, তুমি কি আমার উপাস্যদের থেকে মুখ ফিরিয়ে নিচ্ছ? যদি তুমি বিরত না হও, আমি অবশ্যই প্রস্তরাঘাতে তোমার প্রাণনাশ করব। তুমি চিরতরে আমার কাছ থেকে দূর হয়ে যাও।",
+      "fa": "گفت: «ای ابراهیم! آیا تو از معبودهای من روی گردانی؟! اگر (از این کار) دست برنداری، تو را سنگسار می‌کنم! و برای مدّتی طولانی از من دور شو!»",
+      "ru": "Он сказал: «Неужели ты отворачиваешься от моих богов, Ибрахим (Авраам)? Если ты не перестанешь, то я непременно побью тебя камнями. Оставь же меня надолго!»."
     }
   },
   {
@@ -466,7 +788,14 @@
     "audio": "https://everyayah.com/data/Alafasy_128kbps/019047.mp3",
     "translations": {
       "tr": "İbrahim şöyle cevap verdi: \"Sana selam olsun. Senin için Rabbim'den mağfiret dileyeceğim, çünkü O, bana karşı çok lütufkardır.\"",
-      "en": "[Abraham] said, \"Peace will be upon you. I will ask forgiveness for you of my Lord. Indeed, He is ever gracious to me."
+      "en": "[Abraham] said, \"Peace will be upon you. I will ask forgiveness for you of my Lord. Indeed, He is ever gracious to me.",
+      "de": "Er sagte: \"Friede sei auf dir! Ich werde meinen Herrn für dich um Vergebung bitten; gewiß, Er ist zu mir sehr entgegenkommend.",
+      "fr": "«Paix sur toi», dit Abraham. «J'implorerai mon Seigneur de te pardonner car Il m'a toujours comblé de Ses bienfaits.",
+      "id": "Berkata Ibrahim: \"Semoga keselamatan dilimpahkan kepadamu, aku akan memintakan ampun bagimu kepada Tuhanku. Sesungguhnya Dia sangat baik kepadaku.",
+      "ur": "ابراہیم نے سلام علیک کہا (اور کہا کہ) میں آپ کے لئے اپنے پروردگار سے بخشش مانگوں گا۔ بےشک وہ مجھ پر نہایت مہربان ہے",
+      "bn": "ইব্রাহীম বললেনঃ তোমার উপর শান্তি হোক, আমি আমার পালনকর্তার কাছে তোমার জন্যে ক্ষমা প্রার্থনা করব। নিশ্চয় তিনি আমার প্রতি মেহেরবান।",
+      "fa": "(ابراهیم) گفت: «سلام بر تو! من بزودی از پروردگارم برایت تقاضای عفو می‌کنم؛ چرا که او همواره نسبت به من مهربان بوده است!",
+      "ru": "Он сказал: «Мир тебе! Я буду просить моего Господа простить тебя. Воистину, Он снисходителен ко мне."
     }
   },
   {
@@ -476,7 +805,14 @@
     "audio": "https://everyayah.com/data/Alafasy_128kbps/019048.mp3",
     "translations": {
       "tr": "\"Sizi Allah'tan başka taptıklarınızla bırakıp çekilir, Rabbime yalvarırım. Rabbime yalvarışımda mahrum kalmayacağımı umarım.\"",
-      "en": "And I will leave you and those you invoke other than Allah and will invoke my Lord. I expect that I will not be in invocation to my Lord unhappy.\""
+      "en": "And I will leave you and those you invoke other than Allah and will invoke my Lord. I expect that I will not be in invocation to my Lord unhappy.\"",
+      "de": "Ich werde mich von euch und von dem, was ihr anstatt Allahs anruft, fernhalten und nur meinen Herrn anrufen. Vielleicht werde ich im Bittgebet zu meinem Herrn nicht unglücklich sein.\"",
+      "fr": "Je me sépare de vous, ainsi que de ce que vous invoquez, en dehors d'Allah, et j'invoquerai mon Seigneur. J'espère ne pas être malheureux dans mon appel à mon Seigneur».",
+      "id": "Dan aku akan menjauhkan diri darimu dan dari apa yang kamu seru selain Allah, dan aku akan berdoa kepada Tuhanku, mudah-mudahan aku tidak akan kecewa dengan berdoa kepada Tuhanku\".",
+      "ur": "اور میں آپ لوگوں سے اور جن کو آپ خدا کے سوا پکارا کرتے ہیں ان سے کنارہ کرتا ہوں اور اپنے پروردگار ہی کو پکاروں گا۔ امید ہے کہ میں اپنے پروردگار کو پکار کر محروم نہیں رہوں گا",
+      "bn": "আমি পরিত্যাগ করছি তোমাদেরকে এবং তোমরা আল্লাহ ব্যতীত যাদের এবাদত কর তাদেরকে; আমি আমার পালনকর্তার এবাদত করব। আশা করি, আমার পালনকর্তার এবাদত করে আমি বঞ্চিত হব না।",
+      "fa": "و از شما، و آنچه غیر خدا می‌خوانید، کناره‌گیری می‌کنم؛ و پروردگارم را می‌خوانم؛ و امیدوارم در خواندن پروردگارم بی‌پاسخ نمانم!»",
+      "ru": "Я удаляюсь от вас и от того, чему вы поклоняетесь помимо Аллаха, и обращаюсь с мольбой к моему Господу. Быть может, благодаря молитвам к моему Господу я не буду несчастен»."
     }
   },
   {
@@ -486,7 +822,14 @@
     "audio": "https://everyayah.com/data/Alafasy_128kbps/019049.mp3",
     "translations": {
       "tr": "İbrahim onları Allah'tan başka taptıklarıyla başbaşa bırakıp çekilince ona İshak ve Yakub'u bahşettik ve her birini peygamber yaptık.",
-      "en": "So when he had left them and those they worshipped other than Allah, We gave him Isaac and Jacob, and each [of them] We made a prophet."
+      "en": "So when he had left them and those they worshipped other than Allah, We gave him Isaac and Jacob, and each [of them] We made a prophet.",
+      "de": "Als er sich nun von ihnen und von dem, dem sie anstatt Allahs dienten, fernhielt, schenkten Wir ihm Ishaq und Ya'qub; und alle (beide) machten Wir zu Propheten.",
+      "fr": "Puis, lorsqu'il se fut séparé d'eux et de ce qu'ils adoraient en dehors d'Allah, Nous lui fîmes don d'Isaac et de Jacob; et de chacun Nous fîmes un prophète.",
+      "id": "Maka ketika Ibrahim sudah menjauhkan diri dari mereka dan dari apa yang mereka sembah selain Allah, Kami anugerahkan kepadanya Ishak, dan Ya'qub. Dan masing-masingnya Kami angkat menjadi nabi.",
+      "ur": "اور جب ابراہیم ان لوگوں سے اور جن کی وہ خدا کے سوا پرستش کرتے تھے اُن سے الگ ہوگئے تو ہم نے ان کو اسحاق اور (اسحاق کو) یعقوب بخشے۔ اور سب کو پیغمبر بنایا",
+      "bn": "অতঃপর তিনি যখন তাদেরকে এবং তার আল্লাহ ব্যতীত যাদের এবাদত করত, তাদের সবাইকে পরিত্যাগ করলেন, তখন আমি তাকে দান করলাম ইসহাক ও ইয়াকুব এবং প্রত্যেককে নবী করলাম।",
+      "fa": "هنگامی که از آنان و آنچه غیر خدا می‌پرستیدند کناره‌گیری کرد، ما اسحاق و یعقوب را به او بخشیدیم؛ و هر یک را پیامبری (بزرگ) قرار دادیم!",
+      "ru": "Когда он удалился от них и от того, чему они поклонялись помимо Аллаха, Мы даровали ему Исхака (Исаака) и Йакуба (Иакова). Каждого из них Мы сделали пророком."
     }
   },
   {
@@ -496,7 +839,14 @@
     "audio": "https://everyayah.com/data/Alafasy_128kbps/019050.mp3",
     "translations": {
       "tr": "Onlara rahmetimizden bağışta bulunduk. Onların her dilde üstün şekilde anılmalarını sağladık.",
-      "en": "And We gave them of Our mercy, and we made for them a reputation of high honor."
+      "en": "And We gave them of Our mercy, and we made for them a reputation of high honor.",
+      "de": "Und Wir schenkten ihnen (etwas) von Unserer Barmherzigkeit, und Wir verliehen ihnen einen hohen Ruf an Wahrhaftigkeit.",
+      "fr": "Et Nous leur donnâmes de par Notre miséricorde, et Nous leur accordâmes un langage sublime de vérité.",
+      "id": "Dan Kami anugerahkan kepada mereka sebagian dari rahmat Kami dan Kami jadikan mereka buah tutur yang baik lagi tinggi.",
+      "ur": "اور ان کو اپنی رحمت سے (بہت سی چیزیں) عنایت کیں۔ اور ان کا ذکر جمیل بلند کیا",
+      "bn": "আমি তাদেরকে দান করলাম আমার অনুগ্রহ এবং তাদেরকে দিলাম সমুচ্চ সুখ্যাতি।",
+      "fa": "و از رحمت خود به آنان عطا کردیم؛ و برای آنها نام نیک و مقام برجسته‌ای (در میان همه امّتها) قرار دادیم!",
+      "ru": "Мы одарили их из Нашей милости и оставили о них правдивую молву."
     }
   },
   {
@@ -506,7 +856,14 @@
     "audio": "https://everyayah.com/data/Alafasy_128kbps/019051.mp3",
     "translations": {
       "tr": "Kitap'da Musa'ya dair anlattıklarımızı da an. O seçkin kılınmış bir insan, tarafımızdan gönderilmiş bir peygamberdi.",
-      "en": "And mention in the Book, Moses. Indeed, he was chosen, and he was a messenger and a prophet."
+      "en": "And mention in the Book, Moses. Indeed, he was chosen, and he was a messenger and a prophet.",
+      "de": "Und gedenke im Buch Musas. Gewiß, er war auserlesen, und er war ein Gesandter und Prophet.",
+      "fr": "Et mentionne dans le Livre Moïse. C'était vraiment un élu, et c'était un Messager et un prophète.",
+      "id": "Dan ceritakanlah (hai Muhammad kepada mereka), kisah Musa di dalam Al Kitab (Al Quran) ini. Sesungguhnya ia adalah seorang yang dipilih dan seorang rasul dan nabi.",
+      "ur": "اور کتاب میں موسیٰ کا بھی ذکر کرو۔ بےشک وہ (ہمارے) برگزیدہ اور پیغمبر مُرسل تھے",
+      "bn": "এই কিতাবে মূসার কথা বর্ণনা করুন, তিনি ছিলেন মনোনীত এবং তিনি ছিলেন রাসূল, নবী।",
+      "fa": "و در این کتاب (آسمانی) از موسی یاد کن، که او مخلص بود، و رسول و پیامبری والا مقام!",
+      "ru": "Помяни в Писании Мусу (Моисея). Воистину, он был избранником (или искренним) и был посланником и пророком."
     }
   },
   {
@@ -516,7 +873,14 @@
     "audio": "https://everyayah.com/data/Alafasy_128kbps/019052.mp3",
     "translations": {
       "tr": "Ona Tur'un sağ yanından seslenmiş ve konuşmak için onu yaklaştırmıştık.",
-      "en": "And We called him from the side of the mount at [his] right and brought him near, confiding [to him]."
+      "en": "And We called him from the side of the mount at [his] right and brought him near, confiding [to him].",
+      "de": "Wir riefen ihn von der rechten Seite des Berges und ließen ihn zu vertraulichem Gespräch näherkommen.",
+      "fr": "Du côté droit du Mont (Sinaï) Nous l'appelâmes et Nous le fîmes approcher tel un confident.",
+      "id": "Dan Kami telah memanggilnya dari sebelah kanan gunung Thur dan Kami telah mendekatkannya kepada Kami di waktu dia munajat (kepada Kami).",
+      "ur": "اور ہم نے ان کو طور کی داہنی جانب پکارا اور باتیں کرنے کے لئے نزدیک بلایا",
+      "bn": "আমি তাকে আহবান করলাম তূর পাহাড়ের ডান দিক থেকে এবং গুঢ়তত্ত্ব আলোচনার উদ্দেশে তাকে নিকটবর্তী করলাম।",
+      "fa": "ما او را از طرف راست (کوه) طور فراخواندیم؛ و نجواکنان او را (به خود) نزدیک ساختیم؛",
+      "ru": "Мы подали ему глас с правой стороны горы и подозвали его поближе тихим голосом."
     }
   },
   {
@@ -526,7 +890,14 @@
     "audio": "https://everyayah.com/data/Alafasy_128kbps/019053.mp3",
     "translations": {
       "tr": "Rahmetimizden, kardeşi Harun'u bir peygamber olarak ona bağışladık.",
-      "en": "And We gave him out of Our mercy his brother Aaron as a prophet."
+      "en": "And We gave him out of Our mercy his brother Aaron as a prophet.",
+      "de": "Und Wir schenkten ihm aus Unserer Barmherzigkeit seinen Bruder Harun als Propheten.",
+      "fr": "Et par Notre miséricorde, Nous lui donnâmes Aaron son frère comme prophète.",
+      "id": "Dan Kami telah menganugerahkan kepadanya sebagian rahmat Kami, yaitu saudaranya, Harun menjadi seorang nabi.",
+      "ur": "اور اپنی مہربانی سے اُن کو اُن کا بھائی ہارون پیغمبر عطا کیا",
+      "bn": "আমি নিজ অনুগ্রহে তাঁকে দান করলাম তাঁর ভাই হারুনকে নবীরূপে।",
+      "fa": "و ما از رحمت خود، برادرش هارون را -که پیامبر بود- به او بخشیدیم.",
+      "ru": "По милости Своей Мы сделали для него его брата Харуна (Аарона) пророком."
     }
   },
   {
@@ -536,7 +907,14 @@
     "audio": "https://everyayah.com/data/Alafasy_128kbps/019054.mp3",
     "translations": {
       "tr": "Kitap'da İsmail'e dair anlattıklarımızı da an. Çünkü o sözünde doğru bir kimse idi, tarafımızdan gönderilmiş bir peygamberdi.",
-      "en": "And mention in the Book, Ishmael. Indeed, he was true to his promise, and he was a messenger and a prophet."
+      "en": "And mention in the Book, Ishmael. Indeed, he was true to his promise, and he was a messenger and a prophet.",
+      "de": "Und gedenke im Buch Isma'ils. Gewiß, er war wahrhaftig in seinem Versprechen, und er war ein Gesandter und Prophet.",
+      "fr": "Et mentionne Ismaël, dans le Livre. Il était fidèle à ses promesses; et c'était un Messager et un prophète.",
+      "id": "Dan ceritakanlah (hai Muhammad kepada mereka) kisah Ismail (yang tersebut) di dalam Al Quran. Sesungguhnya ia adalah seorang yang benar janjinya, dan dia adalah seorang rasul dan nabi.",
+      "ur": "اور کتاب میں اسمٰعیل کا بھی ذکر کرو وہ وعدے کے سچے اور ہمارے بھیجے ہوئے نبی تھے",
+      "bn": "এই কিতাবে ইসমাঈলের কথা বর্ণনা করুন, তিনি প্রতিশ্রুতি পালনে সত্যাশ্রয়ী এবং তিনি ছিলেন রসূল, নবী।",
+      "fa": "و در این کتاب (آسمانی) از اسماعیل (نیز) یاد کن، که او در وعده‌هایش صادق، و رسول و پیامبری (بزرگ) بود!",
+      "ru": "Помяни в Писании Исмаила (Измаила). Воистину, он был правдивым в обещаниях и был посланником и пророком."
     }
   },
   {
@@ -546,7 +924,14 @@
     "audio": "https://everyayah.com/data/Alafasy_128kbps/019055.mp3",
     "translations": {
       "tr": "Çevresinde bulunanlara namaz kılmalarını, zekat vermelerini emrederdi. Rabbinin katında hoşnutluğa ermişti.",
-      "en": "And he used to enjoin on his people prayer and zakah and was to his Lord pleasing."
+      "en": "And he used to enjoin on his people prayer and zakah and was to his Lord pleasing.",
+      "de": "Und er pflegte seinen Angehörigen das Gebet und die Abgabe zu befehlen, und er war seinem Herrn wohlgefällig.",
+      "fr": "Et il commandait à sa famille la prière et la Zakât; et il était agréé auprès de son Seigneur.",
+      "id": "Dan ia menyuruh ahlinya untuk bersembahyang dan menunaikan zakat, dan ia adalah seorang yang diridhai di sisi Tuhannya.",
+      "ur": "اور اپنے گھر والوں کو نماز اور زکوٰة کا حکم کرتے تھے اور اپنے پروردگار کے ہاں پسندیدہ (وبرگزیدہ) تھے",
+      "bn": "তিনি তাঁর পরিবারবর্গকে নামায ও যাকাত আদায়ের নির্দেশ দিতেন এবং তিনি তাঁর পালনকর্তার কাছে পছন্দনীয় ছিলেন।",
+      "fa": "او همواره خانواده‌اش را به نماز و زکات فرمان می‌داد؛ و همواره مورد رضایت پروردگارش بود.",
+      "ru": "Он велел своей семье совершать намаз и выплачивать закят, а его Господь был доволен им."
     }
   },
   {
@@ -556,7 +941,14 @@
     "audio": "https://everyayah.com/data/Alafasy_128kbps/019056.mp3",
     "translations": {
       "tr": "Kitap'da İdris'i de zikret, çünkü o dosdoğru bir peygamberdi.",
-      "en": "And mention in the Book, Idrees. Indeed, he was a man of truth and a prophet."
+      "en": "And mention in the Book, Idrees. Indeed, he was a man of truth and a prophet.",
+      "de": "Und gedenke im Buch Idris'. Er war ein Wahrhaftiger und Prophet.",
+      "fr": "Et mentionne Idris, dans le Livre. C'était un véridique et un prophète.",
+      "id": "Dan ceritakanlah (hai Muhammad kepada mereka, kisah) Idris (yang tersebut) di dalam Al Quran. Sesungguhnya ia adalah seorang yang sangat membenarkan dan seorang nabi.",
+      "ur": "اور کتاب میں ادریس کا بھی ذکر کرو۔ وہ بھی نہایت سچے نبی تھے",
+      "bn": "এই কিতাবে ইদ্রীসের কথা আলোচনা করুন, তিনি ছিলেন সত্যবাদী নবী।",
+      "fa": "و در این کتاب، از ادریس (نیز) یاد کن، او بسیار راستگو و پیامبر (بزرگی) بود.",
+      "ru": "Помяни в Писании Идриса. Воистину, он был правдивейшим человеком и пророком."
     }
   },
   {
@@ -566,7 +958,14 @@
     "audio": "https://everyayah.com/data/Alafasy_128kbps/019057.mp3",
     "translations": {
       "tr": "Biz onu yüce bir yere yükselttik.",
-      "en": "And We raised him to a high station."
+      "en": "And We raised him to a high station.",
+      "de": "Und Wir hoben ihn zu einem hohen Ort empor.",
+      "fr": "Et Nous l'élevâmes à un haut rang.",
+      "id": "Dan Kami telah mengangkatnya ke martabat yang tinggi.",
+      "ur": "اور ہم نے ان کو اونچی جگہ اُٹھا لیا تھا",
+      "bn": "আমি তাকে উচ্চে উন্নীত করেছিলাম।",
+      "fa": "و ما او را به مقام والایی رساندیم.",
+      "ru": "Мы вознесли его на высокое место."
     }
   },
   {
@@ -576,7 +975,14 @@
     "audio": "https://everyayah.com/data/Alafasy_128kbps/019058.mp3",
     "translations": {
       "tr": "İşte bunlar Allah'ın kendilerine nimetler sunduğu peygamberler; Adem'in soyundan, Nuh ile beraber taşıdıklarımızdan; İbrahim ve İsmail'in neslinden ve doğru yola erdirdiğimizden, seçip beğendiklerimizdendirler. Rahman'ın ayetleri onlara okunduğu zaman ağlayarak secdeye kapanırlardı.",
-      "en": "Those were the ones upon whom Allah bestowed favor from among the prophets of the descendants of Adam and of those We carried [in the ship] with Noah, and of the descendants of Abraham and Israel, and of those whom We guided and chose. When the verses of the Most Merciful were recited to them, they fell in prostration and weeping."
+      "en": "Those were the ones upon whom Allah bestowed favor from among the prophets of the descendants of Adam and of those We carried [in the ship] with Noah, and of the descendants of Abraham and Israel, and of those whom We guided and chose. When the verses of the Most Merciful were recited to them, they fell in prostration and weeping.",
+      "de": "Das sind diejenigen, denen Allah Gunst erwiesen hat, unter den Propheten aus der Nachkommenschaft Adams und von denjenigen, die Wir mit Nuh trugen, und aus der Nachkommenschaft Ibrahims und Isra'ils, und von denjenigen, die Wir rechtgeleitet und erwählt haben. Als ihnen die Zeichen des Allerbarmers verlesen wurden, fielen sie ehrerbietig und weinend nieder.",
+      "fr": "Voilà ceux qu'Allah a comblés de faveurs, parmi les prophètes, parmi les descendants d'Adam, et aussi parmi ceux que Nous avons transportés en compagnie de Noé, et parmi la descendance d'Abraham et d'Israël, et parmi ceux que Nous avons guidés et choisis. Quand les versets du Tout Miséricordieux leur étaient récités, ils tombaient prosternés en pleurant.",
+      "id": "Mereka itu adalah orang-orang yang telah diberi nikmat oleh Allah, yaitu para nabi dari keturunan Adam, dan dari orang-orang yang Kami angkat bersama Nuh, dan dari keturunan Ibrahim dan Israil, dan dari orang-orang yang telah Kami beri petunjuk dan telah Kami pilih. Apabila dibacakan ayat-ayat Allah Yang Maha Pemurah kepada mereka, maka mereka menyungkur dengan bersujud dan menangis.",
+      "ur": "یہ وہ لوگ ہیں جن پر خدا نے اپنے پیغمبروں میں سے فضل کیا۔ (یعنی) اولاد آدم میں سے اور ان لوگوں میں سے جن کو نوح کے ساتھ (کشتی میں) سوار کیا اور ابراہیم اور یعقوب کی اولاد میں سے اور ان لوگوں میں سے جن کو ہم نے ہدایت دی اور برگزیدہ کیا۔ جب ان کے سامنے ہماری آیتیں پڑھی جاتی تھیں تو سجدے میں گر پڑتے اور روتے رہتے تھے",
+      "bn": "এরাই তারা-নবীগণের মধ্য থেকে যাদেরকে আল্লাহ তা’আলা নেয়ামত দান করেছেন। এরা আদমের বংশধর এবং যাদেরকে আমি নূহের সাথে নৌকায় আরোহন করিয়েছিলাম, তাদের বংশধর, এবং ইব্রাহীম ও ইসরাঈলের বংশধর এবং যাদেরকে আমি পথ প্রদর্শন করেছি ও মনোনীত করেছি, তাদের বংশোদ্ভূত। তাদের কাছে যখন দয়াময় আল্লাহর আয়াতসমূহ পাঠ করা হত, তখন তারা সেজদায় লুটিয়ে পড়ত এবং ক্রন্দন করত।",
+      "fa": "آنها پیامبرانی بودند که خداوند مشمول نعمتشان قرار داده بود، از فرزندان آدم، و از کسانی که با نوح بر کشتی سوار کردیم، و از دودمان ابراهیم و یعقوب، و از کسانی که هدایت کردیم و برگزیدیم. آنها کسانی بودند که وقتی آیات خداوند رحمان بر آنان خوانده می‌شد به خاک می‌افتادند، در حالی که سجده می‌کردند و گریان بودند.",
+      "ru": "Это - те, кого облагодетельствовал Аллах, из числа пророков, которые были потомками Адама и тех, кого Мы спасли вместе с Нухом (Ноем), и потомками Ибрахима (Авраама) и Исраила (Израиля), и из числа тех, кого Мы наставили на прямой путь и избрали. Когда им читали аяты Милостивого, они падали ниц и рыдали."
     }
   },
   {
@@ -586,7 +992,14 @@
     "audio": "https://everyayah.com/data/Alafasy_128kbps/019059.mp3",
     "translations": {
       "tr": "Onların ardından, namazı bırakan, şehvetlerine uyan bir nesil geldi. İşte bunlar azgınlıklarının karşılığını göreceklerdir.",
-      "en": "But there came after them successors who neglected prayer and pursued desires; so they are going to meet evil -"
+      "en": "But there came after them successors who neglected prayer and pursued desires; so they are going to meet evil -",
+      "de": "Dann folgten nach ihnen Nachfolger, die das Gebet vernachlässigten und den Begierden folgten. So werden sie (den Lohn für ihre) Verirrung vorfinden,",
+      "fr": "Puis leur succédèrent des générations qui délaissèrent la prière et suivirent leurs passions. Ils se trouveront en perdition,",
+      "id": "Maka datanglah sesudah mereka, pengganti (yang jelek) yang menyia-nyiakan shalat dan memperturutkan hawa nafsunya, maka mereka kelak akan menemui kesesatan,",
+      "ur": "پھر ان کے بعد چند ناخلف ان کے جانشیں ہوئے جنہوں نے نماز کو (چھوڑ دیا گویا اسے) کھو دیا۔ اور خواہشات نفسانی کے پیچھے لگ گئے۔ سو عنقریب ان کو گمراہی (کی سزا) ملے گی",
+      "bn": "অতঃপর তাদের পরে এল অপদার্থ পরবর্তীরা। তারা নামায নষ্ট করল এবং কুপ্রবৃত্তির অনুবর্তী হল। সুতরাং তারা অচিরেই পথভ্রষ্টতা প্রত্যক্ষ করবে।",
+      "fa": "امّا پس از آنان، فرزندان ناشایسته‌ای روی کار آمدند که نماز را تباه کردند، و از شهوات پیروی نمودند؛ و بزودی (مجازات) گمراهی خود را خواهند دید!",
+      "ru": "После них пришли потомки, которые перестали совершать намаз и стали потакать желаниям. Все они понесут убыток (или будут испытывать тяготы; или понесут наказание за невежество; или встретят зло),"
     }
   },
   {
@@ -596,7 +1009,14 @@
     "audio": "https://everyayah.com/data/Alafasy_128kbps/019060.mp3",
     "translations": {
       "tr": "Ancak tevbe eden, inanıp yararlı iş yapanlar bunun dışındadır. Bunlar hiçbir haksızlığa uğratılmadan, Rahman'ın kullarına gaybde vadettiği cennete, Adn cennetlerine gireceklerdir. Şüphesiz, O'nun sözü yerini bulacaktır.",
-      "en": "Except those who repent, believe and do righteousness; for those will enter Paradise and will not be wronged at all."
+      "en": "Except those who repent, believe and do righteousness; for those will enter Paradise and will not be wronged at all.",
+      "de": "außer demjenigen, der bereut und glaubt und rechtschaffen handelt. Jene werden in den (Paradies)garten eingehen und ihnen wird in nichts Unrecht zugefügt",
+      "fr": "sauf celui qui se repent, croit et fait le bien: ceux-là entreront dans le Paradis et ne seront point lésés,",
+      "id": "kecuali orang yang bertaubat, beriman dan beramal saleh, maka mereka itu akan masuk surga dan tidak dianiaya (dirugikan) sedikitpun,",
+      "ur": "ہاں جس نے توبہ کی اور ایمان لایا اور عمل نیک کئے تو اسے لوگ بہشت میں داخل ہوں گے اور ان کا ذرا نقصان نہ کیا جائے گا",
+      "bn": "কিন্তু তারা ব্যতীত, যারা তওবা করেছে, বিশ্বাস স্থাপন করেছে। সুতরাং তারা জান্নাতে প্রবেশ করবে এবং তাদের উপর কোন জুলুম করা হবে না।",
+      "fa": "مگر آنان که توبه کنند، و ایمان بیاورند، و کار شایسته انجام دهند؛ چنین کسانی داخل بهشت می‌شوند، و کمترین ستمی به آنان نخواهد شد.",
+      "ru": "кроме тех, которые раскаялись, уверовали и поступали праведно. Они войдут в Рай, и с ними нисколько не поступят несправедливо."
     }
   },
   {
@@ -606,7 +1026,14 @@
     "audio": "https://everyayah.com/data/Alafasy_128kbps/019061.mp3",
     "translations": {
       "tr": "Ancak tevbe eden, inanıp yararlı iş yapanlar bunun dışındadır. Bunlar hiçbir haksızlığa uğratılmadan, Rahman'ın kullarına gaybde vadettiği cennete, Adn cennetlerine gireceklerdir. Şüphesiz, O'nun sözü yerini bulacaktır.",
-      "en": "[Therein are] gardens of perpetual residence which the Most Merciful has promised His servants in the unseen. Indeed, His promise has ever been coming."
+      "en": "[Therein are] gardens of perpetual residence which the Most Merciful has promised His servants in the unseen. Indeed, His promise has ever been coming.",
+      "de": "in die Gärten Edens, die der Allerbarmer Seinen Dienern im Verborgenen versprochen hat. Sein Versprechen wird bestimmt erfüllt.",
+      "fr": "aux jardins du séjour (éternel) que le Tout Miséricordieux a promis à Ses serviteurs, [qui ont cru] au mystère. Car Sa promesse arrivera sans nul doute.",
+      "id": "yaitu surga 'Adn yang telah dijanjikan oleh Tuhan Yang Maha Pemurah kepada hamba-hamba-Nya, sekalipun (surga itu) tidak nampak. Sesungguhnya janji Allah itu pasti akan ditepati.",
+      "ur": "(یعنی) بہشت جاودانی (میں) جس کا خدا نے اپنے بندوں سے وعدہ کیا ہے (اور جو ان کی آنکھوں سے) پوشیدہ (ہے) ۔ بےشک اس کا وعدہ (نیکوکاروں کے سامنے) آنے والا ہے",
+      "bn": "তাদের স্থায়ী বসবাস হবে যার ওয়াদা দয়াময় আল্লাহ তাঁর বান্দাদেরকে অদৃশ্যভাবে দিয়েছেন। অবশ্যই তাঁর ওয়াদার তারা পৌঁছাবে।",
+      "fa": "وارد باغهایی جاودانی می‌شوند که خداوند رحمان بندگانش را به آن وعده داده است؛ هر چند آن را ندیده‌اند؛ مسلماً وعده خدا تحقق یافتنی است!",
+      "ru": "Это будут сады Эдема, обещанные Милостивым Его рабам, которые не видели их воочию. Воистину, обещание Его исполнится."
     }
   },
   {
@@ -616,7 +1043,14 @@
     "audio": "https://everyayah.com/data/Alafasy_128kbps/019062.mp3",
     "translations": {
       "tr": "Orada boş sözler değil sadece esenlik veren sözler işitirler. Orada rızıklarını sabah akşam hazır bulurlar.",
-      "en": "They will not hear therein any ill speech - only [greetings of] peace - and they will have their provision therein, morning and afternoon."
+      "en": "They will not hear therein any ill speech - only [greetings of] peace - and they will have their provision therein, morning and afternoon.",
+      "de": "Sie hören darin keine unbedachte Rede, sondern nur: \"Frieden!\" Und sie haben darin ihre Versorgung morgens und abends.",
+      "fr": "On n'y entend nulle parole insignifiante; seulement: «Salâm»; et ils auront là leur nourriture, matin et soir.",
+      "id": "Mereka tidak mendengar perkataan yang tak berguna di dalam surga, kecuali ucapan salam. Bagi mereka rezekinya di surga itu tiap-tiap pagi dan petang.",
+      "ur": "وہ اس میں سلام کے سوا کوئی بیہودہ کلام نہ سنیں گے، اور ان کے لئے صبح وشام کا کھانا تیار ہوگا",
+      "bn": "তারা সেখানে সালাম ব্যতীত কোন অসার কথাবার্তা শুনবে না এবং সেখানে সকাল-সন্ধ্যা তাদের জন্যে রুযী থাকবে।",
+      "fa": "در آن جا هرگز گفتار لغو و بیهوده‌ای نمی‌شنوند؛ و جز سلام در آن جا سخنی نیست؛ و هر صبح و شام، روزی آنان در بهشت مقرّر است.",
+      "ru": "Они не услышат там празднословия, но услышат приветствие миром. Для них там приготовлен их удел утром и после полудня."
     }
   },
   {
@@ -626,7 +1060,14 @@
     "audio": "https://everyayah.com/data/Alafasy_128kbps/019063.mp3",
     "translations": {
       "tr": "Kullarımızdan Allah'a karşı gelmekten sakınanları mirasçı kılacağımız Cennet işte budur.",
-      "en": "That is Paradise, which We give as inheritance to those of Our servants who were fearing of Allah."
+      "en": "That is Paradise, which We give as inheritance to those of Our servants who were fearing of Allah.",
+      "de": "Das ist der (Paradies)garten, den Wir denjenigen von Unseren Dienern zum Erbe geben, die gottesfürchtig sind.",
+      "fr": "Voilà le Paradis dont Nous ferons hériter ceux de Nos serviteurs qui auront été pieux.",
+      "id": "Itulah surga yang akan Kami wariskan kepada hamba-hamba Kami yang selalu bertakwa.",
+      "ur": "یہی وہ جنت ہے جس کا ہم اپنے بندوں میں سے ایسے شخص کو وارث بنائیں گے جو پرہیزگار ہوگا",
+      "bn": "এটা ঐ জান্নাত যার অধিকারী করব আমার বান্দাদের মধ্যে পরহেযগারদেরকে।",
+      "fa": "این همان بهشتی است که به بندگان پرهیزگار خود، به ارث می‌دهیم.",
+      "ru": "Таков Рай, который Мы отдадим в наследство тем из Наших рабов, которые были богобоязненны."
     }
   },
   {
@@ -636,7 +1077,14 @@
     "audio": "https://everyayah.com/data/Alafasy_128kbps/019064.mp3",
     "translations": {
       "tr": "Cebrail: \"Biz ancak Rabbinin buyruğu ile ineriz, geçmişimizi geleceğimizi ve ikisinin arasındakileri bilmek O'na mahsustur. Rabbin unutkan değildir.\"",
-      "en": "[Gabriel said], \"And we [angels] descend not except by the order of your Lord. To Him belongs that before us and that behind us and what is in between. And never is your Lord forgetful -"
+      "en": "[Gabriel said], \"And we [angels] descend not except by the order of your Lord. To Him belongs that before us and that behind us and what is in between. And never is your Lord forgetful -",
+      "de": "(Und die Engel sagen:) \"Wir kommen nur auf Befehl deines Herrn herab. Ihm gehört (alles), was vor uns und was hinter uns und was dazwischen ist; und dein Herr ist gewiß nicht vergeßlich,'",
+      "fr": "«Nous ne descendons que sur ordre de ton Seigneur. A Lui tout ce qui est devant nous, tout ce qui est derrière nous et tout ce qui est entre les deux. Ton Seigneur n'oublie rien.",
+      "id": "Dan tidaklah kami (Jibril) turun, kecuali dengan perintah Tuhanmu. Kepunyaan-Nya-lah apa-apa yang ada di hadapan kita, apa-apa yang ada di belakang kita dan apa-apa yang ada di antara keduanya, dan tidaklah Tuhanmu lupa.",
+      "ur": "اور (فرشتوں نے پیغمبر کو جواب دیا کہ) ہم تمہارے پروردگار کے حکم سوا اُتر نہیں سکتے۔ جو کچھ ہمارے آگے ہے اور پیچھے ہے اور جو ان کے درمیان ہے سب اسی کا ہے اور تمہارا پروردگار بھولنے والا نہیں",
+      "bn": "(জিব্রাইল বললঃ) আমি আপনার পালনকর্তার আদেশ ব্যতীত অবতরণ করি না, যা আমাদের সামনে আছে, যা আমাদের পশ্চাতে আছে এবং যা এ দুই-এর মধ্যস্থলে আছে, সবই তাঁর এবং আপনার পালনকর্তা বিস্মৃত হওয়ার নন।",
+      "fa": "(پس از تأخیر وحی، جبرئیل به پیامبر عرض کرد:) ما جز بفرمان پروردگار تو، نازل نمی‌شویم؛ آنچه پیش روی ما، و پشت سر ما، و آنچه میان این دو می‌باشد، همه از آن اوست؛ و پروردگارت هرگز فراموشکار نبوده (و نیست)!",
+      "ru": "Ангелы сказали: «Мы нисходим только по велению твоего Господа. Ему принадлежит то, что перед нами, и то, что позади нас, и то, что между ними. Господь твой не забывчив»."
     }
   },
   {
@@ -646,7 +1094,14 @@
     "audio": "https://everyayah.com/data/Alafasy_128kbps/019065.mp3",
     "translations": {
       "tr": "O, göklerin, yerin ve ikisi arasında bulunanların Rabbidir. Öyleyse Ona ibadette sabırlı ol. Hiç O'na benzeyen bir şey bilir misin?",
-      "en": "Lord of the heavens and the earth and whatever is between them - so worship Him and have patience for His worship. Do you know of any similarity to Him?\""
+      "en": "Lord of the heavens and the earth and whatever is between them - so worship Him and have patience for His worship. Do you know of any similarity to Him?\"",
+      "de": "(Er), der Herr der Himmel und der Erde und dessen, was dazwischen ist. So diene Ihm und sei beharrlich in Seinem Dienst. Weißt du (etwa) einen, der Kennzeichen gleich den Seinen besäße?1\"",
+      "fr": "Il est le Seigneur des cieux et de la terre et de tout ce qui est entre eux. Adore-Le donc, et sois constant dans Son adoration. Lui connais-tu un homonyme?»",
+      "id": "Tuhan (yang menguasai) langit dan bumi dan apa-apa yang ada di antara keduanya, maka sembahlah Dia dan berteguh hatilah dalam beribadat kepada-Nya. Apakah kamu mengetahui ada seorang yang sama dengan Dia (yang patut disembah)?",
+      "ur": "(یعنی) آسمان اور زمین کا اور جو ان دونوں کے درمیان ہے سب کا پروردگار ہے۔ تو اسی کی عبادت کرو اور اسی کی عبادت پر ثابت قدم رہو۔ بھلا تم کوئی اس کا ہم نام جانتے ہو",
+      "bn": "তিনি নভোমন্ডল, ভূমন্ডলে এতদুভয়ের মধ্যবর্তী সবার পালনকর্তা। সুতরাং তাঁরই বন্দেগী করুন এবং তাতে দৃঢ় থাকুন আপনি কি তাঁর সমনাম কাউকে জানেন?",
+      "fa": "همان پروردگار آسمانها و زمین، و آنچه میان آن دو قرار دارد! او را پرستش کن؛ و در راه عبادتش شکیبا باش! آیا مثل و مانندی برای او می‌یابی؟!",
+      "ru": "Господь небес, земли и того, что между ними! Поклоняйся же Ему и будь стоек в поклонении Ему. Знаешь ли ты другого с таким именем (или подобного Ему)?"
     }
   },
   {
@@ -656,7 +1111,14 @@
     "audio": "https://everyayah.com/data/Alafasy_128kbps/019066.mp3",
     "translations": {
       "tr": "İnsan: \"Ben öldüğümde mi diriltileceğim?\" der.",
-      "en": "And the disbeliever says, \"When I have died, am I going to be brought forth alive?\""
+      "en": "And the disbeliever says, \"When I have died, am I going to be brought forth alive?\"",
+      "de": "Der Mensch sagt: \"Werde ich, wenn ich erst einmal gestorben bin, wirklich wieder lebendig hervorgebracht werden?\"",
+      "fr": "Et l'homme dit: «Une fois mort, me sortira-t-on vivant?»",
+      "id": "Dan berkata manusia: \"Betulkah apabila aku telah mati, bahwa aku sungguh-sungguh akan dibangkitkan menjadi hidup kembali?\"",
+      "ur": "اور (کافر) انسان کہتا ہے کہ جب میں مر جاؤ گا تو کیا زندہ کرکے نکالا جاؤں گا؟",
+      "bn": "মানুষ বলেঃ আমার মৃত্যু হলে পর আমি কি জীবিত অবস্থায় পুনরুত্থিত হব?",
+      "fa": "انسان می‌گوید: «آیا پس از مردن، زنده (از قبر) بیرون خواهم آمد؟!»",
+      "ru": "Человек говорит: «Неужели после того, как я умру, я выйду из могилы живым?»."
     }
   },
   {
@@ -666,7 +1128,14 @@
     "audio": "https://everyayah.com/data/Alafasy_128kbps/019067.mp3",
     "translations": {
       "tr": "Bu insan kendisi önceden bir şey değilken onu yaratmış olduğumuzu hatırlamaz mi?",
-      "en": "Does man not remember that We created him before, while he was nothing?"
+      "en": "Does man not remember that We created him before, while he was nothing?",
+      "de": "Gedenkt der Mensch denn nicht, daß Wir ihn zuvor erschaffen haben, da er (noch) nichts war?",
+      "fr": "L'homme ne se rappelle-t-il pas qu'avant cela, c'est Nous qui l'avons créé, alors qu'il n'était rien?",
+      "id": "Dan tidakkah manusia itu memikirkan bahwa sesungguhnya Kami telah menciptakannya dahulu, sedang ia tidak ada sama sekali?",
+      "ur": "کیا (ایسا) انسان یاد نہیں کرتا کہ ہم نے اس کو پہلے بھی پیدا کیا تھا اور وہ کچھ بھی چیز نہ تھا",
+      "bn": "মানুষ কি স্মরণ করে না যে, আমি তাকে ইতি পূর্বে সৃষ্টি করেছি এবং সে তখন কিছুই ছিল না।",
+      "fa": "آیا انسان به خاطر نمی‌آورد که ما پیش از این او را آفریدیم در حالی که چیزی نبود؟!",
+      "ru": "Разве человек не помнит, что еще раньше Мы создали его, хотя его вообще не было?"
     }
   },
   {
@@ -676,7 +1145,14 @@
     "audio": "https://everyayah.com/data/Alafasy_128kbps/019068.mp3",
     "translations": {
       "tr": "Rabbine and olsun ki Biz onları mutlaka uydukları şeytanlarla beraber haşredeceğiz. Sonra cehennemin yanında diz çöktürerek hazır bulunduracağız.",
-      "en": "So by your Lord, We will surely gather them and the devils; then We will bring them to be present around Hell upon their knees."
+      "en": "So by your Lord, We will surely gather them and the devils; then We will bring them to be present around Hell upon their knees.",
+      "de": "Bei deinem Herrn, Wir werden sie ganz gewiß versammeln, (sie) und die Satane. Hierauf werden Wir sie ganz gewiß rings um die Hölle herum auf den Knien herbeibringen.",
+      "fr": "Par ton Seigneur! Assurément, Nous les rassemblerons, eux et les diables. Puis, Nous les placerons autour de l'Enfer, agenouillés.",
+      "id": "Demi Tuhanmu, sesungguhnya akan Kami bangkitkan mereka bersama syaitan, kemudian akan Kami datangkan mereka ke sekeliling Jahannam dengan berlutut.",
+      "ur": "تمہارے پروردگار کی قسم! ہم ان کو جمع کریں گے اور شیطانوں کو بھی۔ پھر ان سب کو جہنم کے گرد حاضر کریں گے (اور وہ) گھٹنوں پر گرے ہوئے (ہوں گے)",
+      "bn": "সুতরাং আপনার পালনকর্তার কসম, আমি অবশ্যই তাদেরকে এবং শয়তানদেরকে একত্রে সমবেত করব, অতঃপর অবশ্যই তাদেরকে নতজানু অবস্থায় জাহান্নামের চারপাশে উপস্থিত করব।",
+      "fa": "سوگند به پروردگارت که همه آنها را همراه با شیاطین در قیامت جمع می‌کنیم؛ سپس همه را -در حالی که به زانو درآمده‌اند- گرداگرد جهنم حاضر می‌سازیم.",
+      "ru": "Клянусь твоим Господом, Мы непременно соберем их и дьяволов, а затем поставим их вокруг Геенны на колени."
     }
   },
   {
@@ -686,7 +1162,14 @@
     "audio": "https://everyayah.com/data/Alafasy_128kbps/019069.mp3",
     "translations": {
       "tr": "Sonra her toplumdan Rahman'a en çok kimin baş kaldırdığını ortaya koyacağız.",
-      "en": "Then We will surely extract from every sect those of them who were worst against the Most Merciful in insolence."
+      "en": "Then We will surely extract from every sect those of them who were worst against the Most Merciful in insolence.",
+      "de": "Hierauf werden Wir aus jedem Lager ganz gewiß denjenigen herausnehmen, der sich dem Allerbarmer am heftigsten widersetzt hat.",
+      "fr": "Ensuite, Nous arracherons de chaque groupe ceux d'entre eux qui étaient les plus obstinés contre le Tout Miséricordieux.",
+      "id": "Kemudian pasti akan Kami tarik dari tiap-tiap golongan siapa di antara mereka yang sangat durhaka kepada Tuhan Yang Maha Pemurah.",
+      "ur": "پھر ہر جماعت میں سے ہم ایسے لوگوں کو کھینچ نکالیں گے جو خدا سے سخت سرکشی کرتے تھے",
+      "bn": "অতঃপর প্রত্যেক সম্প্রদায়ের মধ্যে যে দয়াময় আল্লাহর সর্বাধিক অবাধ্য আমি অবশ্যই তাকে পৃথক করে নেব।",
+      "fa": "سپس از هر گروه و جمعیّتی، کسانی را که در برابر خداوند رحمان از همه سرکش تر بوده‌اند، جدا می‌کنیم.",
+      "ru": "Потом Мы выведем из каждой общины того, кто больше других ослушался Милостивого."
     }
   },
   {
@@ -696,7 +1179,14 @@
     "audio": "https://everyayah.com/data/Alafasy_128kbps/019070.mp3",
     "translations": {
       "tr": "Cehenneme girmeye en layık olanları Biz biliriz.",
-      "en": "Then, surely it is We who are most knowing of those most worthy of burning therein."
+      "en": "Then, surely it is We who are most knowing of those most worthy of burning therein.",
+      "de": "Dann wissen Wir wahrlich am besten über diejenigen Bescheid, die es am ehesten verdienen, ihr ausgesetzt zu sein.",
+      "fr": "Puis nous sommes Le meilleur à savoir ceux qui méritent le plus d'y être brûlés.",
+      "id": "Dan kemudian Kami sungguh lebih mengetahui orang-orang yang seharusnya dimasukkan ke dalam neraka.",
+      "ur": "اور ہم ان لوگوں سے خوب واقف ہیں جو ان میں داخل ہونے کے زیادہ لائق ہیں",
+      "bn": "অতঃপর তাদের মধ্যে যারা জাহান্নামে প্রবেশের অধিক যোগ্য, আমি তাদের বিষয়ে ভালোভাবে জ্ঞাত আছি।",
+      "fa": "بعد از آن، ما بخوبی از کسانی که برای سوختن در آتش سزاوارترند، آگاهتریم!",
+      "ru": "Нам лучше знать, кому более подобает гореть там (или кто более других заслуживает войти туда)."
     }
   },
   {
@@ -706,7 +1196,14 @@
     "audio": "https://everyayah.com/data/Alafasy_128kbps/019071.mp3",
     "translations": {
       "tr": "Sizden cehenneme uğramayacak yoktur. Bu, Rabbinin yapmayı üzerine aldığı kesinleşmiş bir hükümdür.",
-      "en": "And there is none of you except he will come to it. This is upon your Lord an inevitability decreed."
+      "en": "And there is none of you except he will come to it. This is upon your Lord an inevitability decreed.",
+      "de": "Und es gibt keinen unter euch, der nicht daran vorbeigehen würde. Dies obliegt deinem Herrn unabänderlich beschlossen.",
+      "fr": "Il n'y a personne parmi vous qui ne passera pas par [L'Enfer]: Car [il s'agit là] pour ton Seigneur d'une sentence irrévocable.",
+      "id": "Dan tidak ada seorangpun dari padamu, melainkan mendatangi neraka itu. Hal itu bagi Tuhanmu adalah suatu kemestian yang sudah ditetapkan.",
+      "ur": "اور تم میں کوئی (شخص) نہیں مگر اسے اس پر گزرنا ہوگا۔ یہ تمہارے پروردگار پر لازم اور مقرر ہے",
+      "bn": "তোমাদের মধ্যে এমন কেউ নেই যে তথায় পৌছবে না। এটা আপনার পালনকর্তার অনিবার্য ফায়সালা।",
+      "fa": "و همه شما (بدون استثنا) وارد جهنم می‌شوید؛ این امری است حتمی و قطعی بر پروردگارت!",
+      "ru": "Каждый из вас войдет туда. Таково окончательное решение твоего Господа."
     }
   },
   {
@@ -716,7 +1213,14 @@
     "audio": "https://everyayah.com/data/Alafasy_128kbps/019072.mp3",
     "translations": {
       "tr": "Sonra Biz Allah'a karşı gelmekten sakınmış olanları kurtarır, zalimleri de orada diz üstü çökmüş olarak bırakırız.",
-      "en": "Then We will save those who feared Allah and leave the wrongdoers within it, on their knees."
+      "en": "Then We will save those who feared Allah and leave the wrongdoers within it, on their knees.",
+      "de": "Hierauf erretten Wir diejenigen, die gottesfürchtig waren, und lassen die Ungerechten in ihr auf den Knien zurück.",
+      "fr": "Ensuite, Nous délivrerons ceux qui étaient pieux et Nous y laisserons les injustes agenouillés.",
+      "id": "Kemudian Kami akan menyelamatkan orang-orang yang bertakwa dan membiarkan orang-orang yang zalim di dalam neraka dalam keadaan berlutut.",
+      "ur": "پھر ہم پرہیزگاروں کو نجات دیں گے۔ اور ظالموں کو اس میں گھٹنوں کے بل پڑا ہوا چھوڑ دیں گے",
+      "bn": "অতঃপর আমি পরহেযগারদেরকে উদ্ধার করব এবং জালেমদেরকে সেখানে নতজানু অবস্থায় ছেড়ে দেব।",
+      "fa": "سپس آنها را که تقوا پیشه کردند از آن رهایی می‌بخشیم؛ و ظالمان را -در حالی که (از ضعف و ذلّت) به زانو درآمده‌اند- در آن رها می‌سازیم.",
+      "ru": "Потом Мы спасем богобоязненных, а беззаконников оставим там стоять на коленях."
     }
   },
   {
@@ -726,7 +1230,14 @@
     "audio": "https://everyayah.com/data/Alafasy_128kbps/019073.mp3",
     "translations": {
       "tr": "Ayetlerimiz kendilerine apaçık okunduğu zaman inkar edenler inananlara: \"Bu iki takımın hangisinin makamı daha iyi ve yeri daha güzeldir?\" derler.",
-      "en": "And when Our verses are recited to them as clear evidences, those who disbelieve say to those who believe, \"Which of [our] two parties is best in position and best in association?\""
+      "en": "And when Our verses are recited to them as clear evidences, those who disbelieve say to those who believe, \"Which of [our] two parties is best in position and best in association?\"",
+      "de": "Und wenn ihnen Unsere Zeichen als klare Beweise verlesen werden, sagen diejenigen, die ungläubig sind, zu denjenigen, die glauben: \"Welcher der beiden Gruppen hat nun eine bessere Stellung und eine schönere Gesellschaft?\"",
+      "fr": "Et lorsque Nos versets évidents leur sont récités les mécréants disent à ceux qui croient: «Lequel des deux groupes a la situation la plus confortable et la meilleure compagnie?»",
+      "id": "Dan apabila dibacakan kepada mereka ayat-ayat Kami yang terang (maksudnya), niscaya orang-orang yang kafir berkata kepada orang-orang yang beriman: \"Manakah di antara kedua golongan (kafir dan mukmin) yang lebih baik tempat tinggalnya dan lebih indah tempat pertemuan(nya)?\"",
+      "ur": "اور جب ان لوگوں کے سامنے ہماری آیتیں پڑھی جاتی ہیں تو جو کافر ہیں وہ مومنوں سے کہتے ہیں کہ دونوں فریق میں سے مکان کس کے اچھے اور مجلسیں کس کی بہتر ہیں",
+      "bn": "যখন তাদের কাছে আমার সুস্পষ্ট আয়াতসমূহ তেলাওয়াত করা হয়, তখন কাফেররা মুমিনদেরকে বলেঃ দুই দলের মধ্যে কোনটি মর্তবায় শ্রেষ্ঠ এবং কার মজলিস উত্তম?",
+      "fa": "و هنگامی که آیات روشن ما بر آنان خوانده می‌شود، کافران به مؤمنان می‌گویند: «کدام یک از دو گروه [= ما و شما] جایگاهش بهتر، و جلسات انس و مشورتش زیباتر، و بخشش او بیشتر است؟!»",
+      "ru": "Когда им читают Наши ясные аяты, неверующие говорят верующим: «Какая из двух групп занимает более высокое положение и более достойное место?»."
     }
   },
   {
@@ -736,7 +1247,14 @@
     "audio": "https://everyayah.com/data/Alafasy_128kbps/019074.mp3",
     "translations": {
       "tr": "Onlardan önce nice nesilleri yok ettik ki, onlar varlıkça ve gösterişçe bunlardan daha üstündüler.",
-      "en": "And how many a generation have We destroyed before them who were better in possessions and [outward] appearance?"
+      "en": "And how many a generation have We destroyed before them who were better in possessions and [outward] appearance?",
+      "de": "Aber wie viele Geschlechter vernichteten Wir vor ihnen, die besser an Ausstattung und Aussehen waren!",
+      "fr": "Combien de générations, avant eux, avons-Nous fait périr, qui les surpassaient en biens et en apparence?",
+      "id": "Berapa banyak umat yang telah Kami binasakan sebelum mereka, sedang mereka adalah lebih bagus alat rumah tangganya dan lebih sedap di pandang mata.",
+      "ur": "اور ہم نے ان سے پہلے بہت سی اُمتیں ہلاک کردیں۔ وہ لوگ (ان سے) ٹھاٹھ اور نمود میں کہیں اچھے تھے",
+      "bn": "তাদের পূর্বে কত মানব গোষ্ঠীকে আমি বিনাশ করেছি, তারা তাদের চাইতে সম্পদে ও জাঁক-জমকে শ্রেষ্ঠ ছিল।",
+      "fa": "چه بسیار اقوامی را پیش از آنان نابود کردیم که هم مال و ثروتشان از آنها بهتر بود، و هم ظاهرشان آراسته‌تر!",
+      "ru": "Сколько же поколений до них Мы погубили! Они превосходили их богатством (или утварью) и внешностью."
     }
   },
   {
@@ -746,7 +1264,14 @@
     "audio": "https://everyayah.com/data/Alafasy_128kbps/019075.mp3",
     "translations": {
       "tr": "De ki: \"Sapıklıkta olanı Rahman ne kadar ertelese bile, sonunda tehdit edildikleri azabı ya da kıyamet gününü gördükleri zaman onlar kimin yerinin daha kötü ve taraftarlarının daha güçsüz olduğunu bilecektir.\"",
-      "en": "Say, \"Whoever is in error - let the Most Merciful extend for him an extension [in wealth and time] until, when they see that which they were promised - either punishment [in this world] or the Hour [of resurrection] - they will come to know who is worst in position and weaker in soldiers.\""
+      "en": "Say, \"Whoever is in error - let the Most Merciful extend for him an extension [in wealth and time] until, when they see that which they were promised - either punishment [in this world] or the Hour [of resurrection] - they will come to know who is worst in position and weaker in soldiers.\"",
+      "de": "Sag: Wer sich im Irrtum befindet, den möge der Allerbarmer lange darin gewähren lassen. Wenn sie dann sehen, was ihnen angedroht ist, entweder die Strafe oder die Stunde, da werden sie wissen, wer sich in einer (noch) schlechteren Lage befindet und die schwächere Heerschar hat.",
+      "fr": "Dis: «Celui qui est dans l'égarement, que le Tout Miséricordieux prolonge sa vie pour un certain temps, jusqu'à ce qu'ils voient soit le châtiment, soit l'Heure dont ils sont menacés. Alors, ils sauront qui a la pire situation et la troupe la plus faible».",
+      "id": "Katakanlah: \"Barang siapa yang berada di dalam kesesatan, maka biarlah Tuhan yang Maha Pemurah memperpanjang tempo baginya; sehingga apabila mereka telah melihat apa yang diancamkan kepadanya, baik siksa maupun kiamat, maka mereka akan mengetahui siapa yang lebih jelek kedudukannya dan lebih lemah penolong-penolongnya\".",
+      "ur": "کہہ دو کہ جو شخص گمراہی میں پڑا ہوا ہے خدا اس کو آہستہ آہستہ مہلت دیئے جاتا ہے۔ یہاں تک کہ جب اس چیز کو دیکھ لیں گے جس کا ان سے وعدہ کیا جاتا ہے خواہ عذاب اور خواہ قیامت۔ تو (اس وقت) جان لیں گے کہ مکان کس کا برا ہے اور لشکر کس کا کمزور ہے",
+      "bn": "বলুন, যারা পথভ্রষ্টতায় আছে, দয়াময় আল্লাহ তাদেরকে যথেষ্ট অবকাশ দেবেন; এমনকি অবশেষে তারা প্রত্যক্ষ করবে যে বিষয়ে তাদেরকে ওয়াদা দেয়া হচ্ছে, তা আযাব হোক অথবা কেয়ামতই হোক। সুতরাং তখন তারা জানতে পারবে কে মর্তবায় নিকৃষ্ট ও দলবলে দূর্বল।",
+      "fa": "بگو: «کسی که در گمراهی است، باید خداوند به او مهلت دهد تا زمانی که وعده الهی را با چشم خود ببینند: یا عذاب (این دنیا)، یا (عذاب) قیامت! (آن روز) خواهند دانست چه کسی جایش بدتر، و لشکرش ناتوانتر است!»",
+      "ru": "Скажи: «Да продлит Милостивый жизнь заблудших до тех пор, пока они не увидят обещанные мучения или Час. Тогда они узнают, чье место хуже и чье воинство слабее»."
     }
   },
   {
@@ -756,7 +1281,14 @@
     "audio": "https://everyayah.com/data/Alafasy_128kbps/019076.mp3",
     "translations": {
       "tr": "Allah doğru yolda olanların doğruluğunu artırır. Baki kalacak yararlı işler Rabbinin katında sevap olarak da daha iyidir, sonuç olarak da daha iyidir.",
-      "en": "And Allah increases those who were guided, in guidance, and the enduring good deeds are better to your Lord for reward and better for recourse."
+      "en": "And Allah increases those who were guided, in guidance, and the enduring good deeds are better to your Lord for reward and better for recourse.",
+      "de": "Und Allah mehrt denjenigen, die rechtgeleitet sind, ihre Rechtleitung. Das Bleibende aber, die rechtschaffenen Werke - sie sind bei deinem Herrn besser in der Belohnung und besser als Rückkehr.",
+      "fr": "Allah accroît la rectitude de ceux qui suivent le bon chemin, et les bonnes œuvres durables méritent auprès de ton Seigneur une meilleure récompense et une meilleure destination.",
+      "id": "Dan Allah akan menambah petunjuk kepada mereka yang telah mendapat petunjuk. Dan amal-amal saleh yang kekal itu lebih baik pahalanya di sisi Tuhanmu dan lebih baik kesudahannya.",
+      "ur": "اور جو لوگ ہدایت یاب ہیں خدا ان کو زیادہ ہدایت دیتا ہے۔ اور نیکیاں جو باقی رہنے والی ہیں وہ تمہارے پروردگار کے صلے کے لحاظ سے خوب اور انجام کے اعتبار سے بہتر ہیں",
+      "bn": "যারা সৎপথে চলে আল্লাহ তাদের পথপ্রাপ্তি বৃদ্ধি করেন এবং স্থায়ী সৎকর্মসমূহ তোমার পালনকর্তার কাছে সওয়াবের দিক দিয়ে শ্রেষ্ঠ এবং প্রতিদান হিসেবেও শ্রেষ্ট।",
+      "fa": "(امّا) کسانی که در راه هدایت گام نهادند، خداوند بر هدایتشان می‌افزاید؛ و آثار شایسته‌ای که (از انسان) باقی می‌ماند، ثوابش در پیشگاه پروردگارت بهتر، و عاقبتش خوبتر است!",
+      "ru": "Аллах увеличивает приверженность прямому пути тех, кто следует прямым путем. А нетленные благодеяния лучше перед твоим Господом по вознаграждению и по исходу."
     }
   },
   {
@@ -766,7 +1298,14 @@
     "audio": "https://everyayah.com/data/Alafasy_128kbps/019077.mp3",
     "translations": {
       "tr": "Ayetlerimizi inkar eden ve \"bana elbette mal ve çocuk verilecektir\" diyeni gördün mu?",
-      "en": "Then, have you seen he who disbelieved in Our verses and said, \"I will surely be given wealth and children [in the next life]?\""
+      "en": "Then, have you seen he who disbelieved in Our verses and said, \"I will surely be given wealth and children [in the next life]?\"",
+      "de": "Was meinst du wohl zu demjenigen, der Unsere Zeichen verleugnet und sagt: \"Mir werden ganz gewiß Besitz und Kinder gegeben\"?",
+      "fr": "As-tu vu celui qui ne croit pas à Nos versets et dit: «On me donnera certes des biens et des enfants»?",
+      "id": "Maka apakah kamu telah melihat orang yang kafir kepada ayat-ayat Kami dan ia mengatakan: \"Pasti aku akan diberi harta dan anak\".",
+      "ur": "بھلا تم نے اس شخص کو دیکھا جس نے ہماری آیتوں سے کفر کیا اور کہنے لگا کہ (اگر میں ازسرنو زندہ ہوا بھی تو یہی) مال اور اولاد مجھے (وہاں) ملے گا",
+      "bn": "আপনি কি তাকে লক্ষ্য করেছেন যে, আমার নিদর্শনাবলীতে বিশ্বাস করে না এবং বলেঃ আমাকে অর্থ-সম্পদ ও সন্তান-সন্ততি অবশ্যই দেয়া হবে।",
+      "fa": "آیا دیدی کسی را که به آیات ما کافر شد، و گفت: «اموال و فرزندان فراوانی به من داده خواهد شد»؟!",
+      "ru": "Видел ли ты того, кто не уверовал в Наши знамения и сказал: «Я непременно буду одарен богатством и детьми?»."
     }
   },
   {
@@ -776,7 +1315,14 @@
     "audio": "https://everyayah.com/data/Alafasy_128kbps/019078.mp3",
     "translations": {
       "tr": "O görülmeyeni mi biliyor, yoksa Rahman katından bir söz mü almıştır?",
-      "en": "Has he looked into the unseen, or has he taken from the Most Merciful a promise?"
+      "en": "Has he looked into the unseen, or has he taken from the Most Merciful a promise?",
+      "de": "Hat er etwa Einblick in das Verborgene gewonnen, oder hat er vom Allerbarmer eine Verpflichtung entgegengenommen?",
+      "fr": "Est-il au courant de l'Inconnaissable ou a-t-il pris un engagement avec le Tout Miséricordieux?",
+      "id": "Adakah ia melihat yang ghaib atau ia telah membuat perjanjian di sisi Tuhan Yang Maha Pemurah?,",
+      "ur": "کیا اس نے غیب کی خبر پالی ہے یا خدا کے یہاں (سے) عہد لے لیا ہے؟",
+      "bn": "সে কি অদৃশ্য বিষয় জেনে ফেলেছে, অথবা দয়াময় আল্লাহর নিকট থেকে কোন প্রতিশ্রুতি প্রাপ্ত হয়েছে?",
+      "fa": "آیا او از غیب آگاه گشته، یا نزد خدا عهد و پیمانی گرفته است؟!",
+      "ru": "Разве он знал сокровенное или заключил завет с Милостивым?"
     }
   },
   {
@@ -786,7 +1332,14 @@
     "audio": "https://everyayah.com/data/Alafasy_128kbps/019079.mp3",
     "translations": {
       "tr": "Hayır, söylediğini yazacağız ve onun azabını uzattıkça uzatacağız.",
-      "en": "No! We will record what he says and extend for him from the punishment extensively."
+      "en": "No! We will record what he says and extend for him from the punishment extensively.",
+      "de": "Keineswegs! Wir werden aufschreiben, was er sagt, und ihm die Strafe noch verlängern.",
+      "fr": "Bien au contraire! Nous enregistrerons ce qu'il dit et accroîtrons son châtiment.",
+      "id": "sekali-kali tidak, Kami akan menulis apa yang ia katakan, dan benar-benar Kami akan memperpanjang azab untuknya,",
+      "ur": "ہرگز نہیں۔ یہ جو کچھ کہتا ہے ہم اس کو لکھتے جاتے اور اس کے لئے آہستہ آہستہ عذاب بڑھاتے جاتے ہیں",
+      "bn": "না, এটা ঠিক নয়। সে যা বলে আমি তা লিখে রাখব এবং তার শাস্তি দীর্ঘায়িত করতে থাকব।",
+      "fa": "هرگز چنین نیست! ما بزودی آنچه را می‌گوید می‌نویسیم و عذاب را بر او مستمرّ خواهیم داشت!",
+      "ru": "Нет! Мы запишем его слова и увеличим его мучения."
     }
   },
   {
@@ -796,7 +1349,14 @@
     "audio": "https://everyayah.com/data/Alafasy_128kbps/019080.mp3",
     "translations": {
       "tr": "Bahsettikleri şeyler Bize kalacaktır, kendisi Bize tek olarak gelecektir.",
-      "en": "And We will inherit him [in] what he mentions, and he will come to Us alone."
+      "en": "And We will inherit him [in] what he mentions, and he will come to Us alone.",
+      "de": "Und Wir erben von ihm das, was er sagt, während er einzeln zu Uns kommt.",
+      "fr": "C'est Nous qui hériterons ce dont il parle, tandis qu'il viendra à Nous, tout seul.",
+      "id": "dan Kami akan mewarisi apa yang ia katakan itu, dan ia akan datang kepada Kami dengan seorang diri.",
+      "ur": "اور جو چیزیں یہ بتاتا ہے ان کے ہم وارث ہوں گے اور یہ اکیلا ہمارے سامنے آئے گا",
+      "bn": "সে যা বলে, মৃত্যুর পর আমি তা নিয়ে নেব এবং সে আমার কাছে আসবে একাকী।",
+      "fa": "آنچه را او می‌گوید (از اموال و فرزندان)، از او به ارث می‌بریم، و به صورت تنها نزد ما خواهد آمد!",
+      "ru": "Мы унаследуем от него то, о чем он говорил, и он явится к Нам в одиночестве."
     }
   },
   {
@@ -806,7 +1366,14 @@
     "audio": "https://everyayah.com/data/Alafasy_128kbps/019081.mp3",
     "translations": {
       "tr": "Onlar kendilerine kuvvet ve şeref kazandırsın diye, Allah'ı bırakarak tanrılar edindiler.",
-      "en": "And they have taken besides Allah [false] deities that they would be for them [a source of] honor."
+      "en": "And they have taken besides Allah [false] deities that they would be for them [a source of] honor.",
+      "de": "Und sie haben sich anstatt Allahs Götter genommen, damit sie ihnen zu Macht gereichen.",
+      "fr": "Ils ont adopté des divinités en dehors d'Allah pour qu'ils leur soient des protecteurs (contre le châtiment).",
+      "id": "Dan mereka telah mengambil sembahan-sembahan selain Allah, agar sembahan-sembahan itu menjadi pelindung bagi mereka,",
+      "ur": "اور ان لوگوں نے خدا کے سوا اور معبود بنالئے ہیں تاکہ وہ ان کے لئے (موجب عزت و) مدد ہوں",
+      "bn": "তারা আল্লাহ ব্যতীত অন্যান্য ইলাহ গ্রহণ করেছে, যাতে তারা তাদের জন্যে সাহায্যকারী হয়।",
+      "fa": "و آنان غیر از خدا، معبودانی را برای خود برگزیدند تا مایه عزّتشان باشد! (چه پندار خامی!)",
+      "ru": "Они стали поклоняться наряду с Аллахом другим богам, чтобы те одарили их могуществом."
     }
   },
   {
@@ -816,7 +1383,14 @@
     "audio": "https://everyayah.com/data/Alafasy_128kbps/019082.mp3",
     "translations": {
       "tr": "Hayır, tanrıları kendilerinin ibadetlerini inkar edecekler ve onlara düşman olacaklardır.",
-      "en": "No! Those \"gods\" will deny their worship of them and will be against them opponents [on the Day of Judgement]."
+      "en": "No! Those \"gods\" will deny their worship of them and will be against them opponents [on the Day of Judgement].",
+      "de": "Keineswegs! Sie werden den von ihnen (empfangenen) Dienst verleugnen und werden ihnen Gegner sein.",
+      "fr": "Bien au contraire! [ces divinités] renieront leur adoration et seront pour eux des adversaires.",
+      "id": "sekali-kali tidak. Kelak mereka (sembahan-sembahan) itu akan mengingkari penyembahan (pengikut-pengikutnya) terhadapnya, dan mereka (sembahan-sembahan) itu akan menjadi musuh bagi mereka.",
+      "ur": "ہرگز نہیں وہ (معبودان باطل) ان کی پرستش سے انکار کریں گے اور ان کے دشمن (ومخالف) ہوں گے",
+      "bn": "কখনই নয়, তারা তাদের এবাদত অস্বীকার করবে এবং তাদের বিপক্ষে চলে যাবে।",
+      "fa": "هرگز چنین نیست! به زودی (معبودها) منکر عبادت آنان خواهند شد؛ (بلکه) بر ضدّشان قیام می‌کنند!",
+      "ru": "Но нет! Они отрекутся от поклонения им и станут их противниками."
     }
   },
   {
@@ -826,7 +1400,14 @@
     "audio": "https://everyayah.com/data/Alafasy_128kbps/019083.mp3",
     "translations": {
       "tr": "Kafirlerin üzerine onları kışkırtan şeytanlar gönderdiğimizi bilmiyor musun?",
-      "en": "Do you not see that We have sent the devils upon the disbelievers, inciting them to [evil] with [constant] incitement?"
+      "en": "Do you not see that We have sent the devils upon the disbelievers, inciting them to [evil] with [constant] incitement?",
+      "de": "Siehst du nicht, daß Wir die Satane gegen die Ungläubigen gesandt haben, damit sie sie heftig aufreizen?",
+      "fr": "N'as-tu pas vu que Nous avons envoyé contre les mécréants des diables qui les excitent furieusement [à désobéir]?",
+      "id": "Tidakkah kamu lihat, bahwasanya Kami telah mengirim syaitan-syaitan itu kepada orang-orang kafir untuk menghasung mereka berbuat maksiat dengan sungguh-sungguh?,",
+      "ur": "کیا تم نے نہیں دیکھا کہ ہم نے شیطانوں کو کافروں پر چھوڑ رکھا ہے کہ ان کو برانگیختہ کرتے رہتے ہیں",
+      "bn": "আপনি কি লক্ষ্য করেননি যে, আমি কাফেরদের উপর শয়তানদেরকে ছেড়ে দিয়েছি। তারা তাদেরকে বিশেষভাবে (মন্দকর্মে) উৎসাহিত করে।",
+      "fa": "آیا ندیدی که ما شیاطین را بسوی کافران فرستادیم تا آنان را شدیداً تحریک کنند؟!",
+      "ru": "Разве ты не видишь, что Мы послали к неверующим дьяволов, чтобы те подстрекали их?"
     }
   },
   {
@@ -836,7 +1417,14 @@
     "audio": "https://everyayah.com/data/Alafasy_128kbps/019084.mp3",
     "translations": {
       "tr": "Öyleyse onların acele yok olmalarını isteme. Biz onların günlerini saydıkça sayıyoruz.",
-      "en": "So be not impatient over them. We only count out to them a [limited] number."
+      "en": "So be not impatient over them. We only count out to them a [limited] number.",
+      "de": "So wünsche nichts gegen sie zu beschleunigen; Wir zählen ihnen schon (die Tage) ab.",
+      "fr": "Ne te hâte donc pas contre eux: Nous tenons un compte précis de [tous leurs actes].",
+      "id": "maka janganlah kamu tergesa-gesa memintakan siksa terhadap mereka, karena sesungguhnya Kami hanya menghitung datangnya (hari siksaan) untuk mereka dengan perhitungan yang teliti.",
+      "ur": "تو تم ان پر (عذاب کے لئے) جلدی نہ کرو۔ اور ہم تو ان کے لئے (دن) شمار کر رہے ہیں",
+      "bn": "সুতরাং তাদের ব্যাপারে আপনি তাড়াহুড়া করবেন না। আমি তো তাদের গণনা পূর্ণ করছি মাত্র।",
+      "fa": "پس درباره آنان شتاب مکن؛ ما آنها (و اعمالشان) را به دقت شماره میکنیم!",
+      "ru": "Посему не торопись с ними! Мы ведем для них счет."
     }
   },
   {
@@ -846,7 +1434,14 @@
     "audio": "https://everyayah.com/data/Alafasy_128kbps/019085.mp3",
     "translations": {
       "tr": "sakınanları o gün Rahman'ın huzurunda O'na gelmiş konuklar olarak toplarız, suçluları suya götürür gibi cehenneme süreriz.",
-      "en": "On the Day We will gather the righteous to the Most Merciful as a delegation"
+      "en": "On the Day We will gather the righteous to the Most Merciful as a delegation",
+      "de": "An einem Tag, da Wir die Gottesfürchtigen als eine (geehrte) Abordnung zum Allerbarmer versammeln",
+      "fr": "(Rappelle-toi) le jour où Nous rassemblerons les pieux sur des montures et en grande pompe, auprès du Tout Miséricordieux,",
+      "id": "(Ingatlah) hari (ketika) Kami mengumpulkan orang-orang yang takwa kepada Tuhan Yang Maha Pemurah sebagai perutusan yang terhormat,",
+      "ur": "جس روز ہم پرہیزگاروں کو خدا کے سامنے (بطور) مہمان جمع کریں گے",
+      "bn": "সেদিন দয়াময়ের কাছে পরহেযগারদেরকে অতিথিরূপে সমবেত করব,",
+      "fa": "در آن روز که پرهیزگاران را دسته جمعی بسوی خداوند رحمان (و پاداشهای او) محشور می‌کنیم...",
+      "ru": "В тот день Мы соберем благочестивых перед Милостивым почтенной делегацией,"
     }
   },
   {
@@ -856,7 +1451,14 @@
     "audio": "https://everyayah.com/data/Alafasy_128kbps/019086.mp3",
     "translations": {
       "tr": "sakınanları o gün Rahman'ın huzurunda O'na gelmiş konuklar olarak toplarız, suçluları suya götürür gibi cehenneme süreriz.",
-      "en": "And will drive the criminals to Hell in thirst"
+      "en": "And will drive the criminals to Hell in thirst",
+      "de": "und die Übeltäter, wie eine durstige Herde zur Tränke zur Hölle treiben,",
+      "fr": "et pousserons les criminels à l'Enfer comme (un troupeau) à l'abreuvoir,",
+      "id": "dan Kami akan menghalau orang-orang yang durhaka ke neraka Jahannam dalam keadaan dahaga.",
+      "ur": "اور گنہگاروں کو دوزخ کی طرف پیاسے ہانک لے جائیں گے",
+      "bn": "এবং অপরাধীদেরকে পিপাসার্ত অবস্থায় জাহান্নামের দিকে হাঁকিয়ে নিয়ে যাব।",
+      "fa": "و مجرمان را (همچون شتران تشنه‌کامی که به سوی آبگاه می‌روند) به جهنّم می‌رانیم...",
+      "ru": "а грешников погоним в Геенну, словно на водопой."
     }
   },
   {
@@ -866,7 +1468,14 @@
     "audio": "https://everyayah.com/data/Alafasy_128kbps/019087.mp3",
     "translations": {
       "tr": "Rahman'ın katında bir ahd almış olandan başkası asla şefaatte bulunamıyacaktır.",
-      "en": "None will have [power of] intercession except he who had taken from the Most Merciful a covenant."
+      "en": "None will have [power of] intercession except he who had taken from the Most Merciful a covenant.",
+      "de": "verfugen sie nicht über die Fürsprache, außer demjenigen, der vom Allerbarmer eine (diesbezügliche) Verpflichtung entgegengenommen hat.",
+      "fr": "ils ne disposeront d'aucune intercession, sauf celui qui aura pris un engagement avec le Tout Miséricordieux.",
+      "id": "Mereka tidak berhak mendapat syafa'at kecuali orang yang telah mengadakan perjanjian di sisi Tuhan Yang Maha Pemurah.",
+      "ur": "(تو لوگ) کسی کی سفارش کا اختیار نہ رکھیں گے مگر جس نے خدا سے اقرار لیا ہو",
+      "bn": "যে দয়াময় আল্লাহর কাছ থেকে প্রতিশ্রুতি গ্রহণ করেছে, সে ব্যতীত আর কেউ সুপারিশ করার অধিকারী হবে না।",
+      "fa": "آنان هرگز مالک شفاعت نیستند؛ مگر کسی که نزد خداوند رحمان، عهد و پیمانی دارد.",
+      "ru": "Никто не обретет права заступничества, кроме тех, у кого был завет с Аллахом."
     }
   },
   {
@@ -876,7 +1485,14 @@
     "audio": "https://everyayah.com/data/Alafasy_128kbps/019088.mp3",
     "translations": {
       "tr": "Bazı kimseler: \"Rahman çocuk edindi\" dediler",
-      "en": "And they say, \"The Most Merciful has taken [for Himself] a son.\""
+      "en": "And they say, \"The Most Merciful has taken [for Himself] a son.\"",
+      "de": "Und sie sagen: \"Der Allerbarmer hat Sich Kinder genommen.\"",
+      "fr": "Et ils ont dit: «Le Tout Miséricordieux S'est attribué un enfant!»",
+      "id": "Dan mereka berkata: \"Tuhan Yang Maha Pemurah mengambil (mempunyai) anak\".",
+      "ur": "اور کہتے ہیں کہ خدا بیٹا رکھتا ہے",
+      "bn": "তারা বলেঃ দয়াময় আল্লাহ সন্তান গ্রহণ করেছেন।",
+      "fa": "و گفتند: «خداوند رحمان فرزندی برای خود برگزیده است».",
+      "ru": "Они говорят: «Милостивый взял Себе сына»."
     }
   },
   {
@@ -886,7 +1502,14 @@
     "audio": "https://everyayah.com/data/Alafasy_128kbps/019089.mp3",
     "translations": {
       "tr": "And olsun ki, ortaya pek kötü bir şey attınız.",
-      "en": "You have done an atrocious thing."
+      "en": "You have done an atrocious thing.",
+      "de": "Ihr habt ja eine abscheuliche Sache begangen.",
+      "fr": "Vous avancez certes là une chose abominable!",
+      "id": "Sesungguhnya kamu telah mendatangkan sesuatu perkara yang sangat mungkar,",
+      "ur": "(ایسا کہنے والو یہ تو) تم بری بات (زبان پر) لائے ہو",
+      "bn": "নিশ্চয় তোমরা তো এক অদ্ভুত কান্ড করেছ।",
+      "fa": "راستی مطلب زشت و زننده‌ای گفتید!",
+      "ru": "Этим вы совершаете ужасное злодеяние."
     }
   },
   {
@@ -896,7 +1519,14 @@
     "audio": "https://everyayah.com/data/Alafasy_128kbps/019090.mp3",
     "translations": {
       "tr": "Rahman'a çocuk isnat etmelerinden ötürü neredeyse gökler parçalanacak, yer yarılacak, dağlar göçecekti.",
-      "en": "The heavens almost rupture therefrom and the earth splits open and the mountains collapse in devastation"
+      "en": "The heavens almost rupture therefrom and the earth splits open and the mountains collapse in devastation",
+      "de": "Beinahe brechen davon die Himmel auseinander, und (beinahe) spaltet sich die Erde, und (beinahe) stürzen die Berge in Trümmern zusammen,",
+      "fr": "Peu s'en faut que les cieux ne s'entrouvrent à ces mots, que la terre ne se fende et que les montagnes ne s'écroulent,",
+      "id": "hampir-hampir langit pecah karena ucapan itu, dan bumi belah, dan gunung-gunung runtuh,",
+      "ur": "قریب ہے کہ اس (افتراء) سے آسمان پھٹ پڑیں اور زمین شق ہوجائے اور پہاڑ پارہ پارہ ہو کر گر پڑیں",
+      "bn": "হয় তো এর কারণেই এখনই নভোমন্ডল ফেটে পড়বে, পৃথিবী খন্ড-বিখন্ড হবে এবং পর্বতমালা চূর্ণ-বিচুর্ণ হবে।",
+      "fa": "نزدیک است به خاطر این سخن آسمانها از هم متلاشی گردد، و زمین شکافته شود، و کوه‌ها بشدّت فرو ریزد...",
+      "ru": "Небо готово расколоться, земля готова разверзнуться, а горы готовы рассыпаться в прах от того,"
     }
   },
   {
@@ -906,7 +1536,14 @@
     "audio": "https://everyayah.com/data/Alafasy_128kbps/019091.mp3",
     "translations": {
       "tr": "Rahman'a çocuk isnat etmelerinden ötürü neredeyse gökler parçalanacak, yer yarılacak, dağlar göçecekti.",
-      "en": "That they attribute to the Most Merciful a son."
+      "en": "That they attribute to the Most Merciful a son.",
+      "de": "daß sie dem Allerbarmer Kinder zuschreiben.",
+      "fr": "du fait qu'ils ont attribué un enfant au Tout Miséricordieux,",
+      "id": "karena mereka mendakwakan Allah Yang Maha Pemurah mempunyai anak.",
+      "ur": "کہ انہوں نے خدا کے لئے بیٹا تجویز کیا",
+      "bn": "এ কারণে যে, তারা দয়াময় আল্লাহর জন্যে সন্তান আহবান করে।",
+      "fa": "از این رو که برای خداوند رحمان فرزندی قائل شدند!",
+      "ru": "что они приписывают Милостивому сына."
     }
   },
   {
@@ -916,7 +1553,14 @@
     "audio": "https://everyayah.com/data/Alafasy_128kbps/019092.mp3",
     "translations": {
       "tr": "Oysa Rahman'a çocuk edinmek yaraşmaz, çünkü göklerde ve yerde olan her şey Rahman'a baş eğmiş kul olarak gelecektir.",
-      "en": "And it is not appropriate for the Most Merciful that He should take a son."
+      "en": "And it is not appropriate for the Most Merciful that He should take a son.",
+      "de": "Es ziemt dem Allerbarmer nicht, Sich Kinder zu nehmen.",
+      "fr": "alors qu'il ne convient nullement au Tout Miséricordieux d'avoir un enfant!",
+      "id": "Dan tidak layak bagi Tuhan Yang Maha Pemurah mengambil (mempunyai) anak.",
+      "ur": "اور خدا کو شایاں نہیں کہ کسی کو بیٹا بنائے",
+      "bn": "অথচ সন্তান গ্রহণ করা দয়াময়ের জন্য শোভনীয় নয়।",
+      "fa": "در حالی که هرگز برای خداوند رحمان سزاوار نیست که فرزندی برگزیند!",
+      "ru": "Не подобает Милостивому иметь сына!"
     }
   },
   {
@@ -926,7 +1570,14 @@
     "audio": "https://everyayah.com/data/Alafasy_128kbps/019093.mp3",
     "translations": {
       "tr": "Oysa Rahman'a çocuk edinmek yaraşmaz, çünkü göklerde ve yerde olan her şey Rahman'a baş eğmiş kul olarak gelecektir.",
-      "en": "There is no one in the heavens and earth but that he comes to the Most Merciful as a servant."
+      "en": "There is no one in the heavens and earth but that he comes to the Most Merciful as a servant.",
+      "de": "Niemand in den Himmeln und auf der Erde wird zum Allerbarmer anders denn als Diener kommen (können).",
+      "fr": "Tous ceux qui sont dans les cieux et sur la terre se rendront auprès du Tout Miséricordieux, [sans exception], en serviteurs.",
+      "id": "Tidak ada seorangpun di langit dan di bumi, kecuali akan datang kepada Tuhan Yang Maha Pemurah selaku seorang hamba.",
+      "ur": "تمام شخص جو آسمانوں اور زمین میں ہیں سب خدا کے روبرو بندے ہو کر آئیں گے",
+      "bn": "নভোমন্ডল ও ভূ-মন্ডলে কেউ নেই যে, দয়াময় আল্লাহর কাছে দাস হয়ে উপস্থিত হবে না।",
+      "fa": "تمام کسانی که در آسمانها و زمین هستند، بنده اویند!",
+      "ru": "Каждый, кто на небесах и на земле, явится к Милостивому только в качестве раба."
     }
   },
   {
@@ -936,7 +1587,14 @@
     "audio": "https://everyayah.com/data/Alafasy_128kbps/019094.mp3",
     "translations": {
       "tr": "And olsun ki onların adedini bilmiş ve teker teker saymıştır.",
-      "en": "He has enumerated them and counted them a [full] counting."
+      "en": "He has enumerated them and counted them a [full] counting.",
+      "de": "Er hat sie erfaßt und sie genau gezählt.",
+      "fr": "Il les a certes dénombrés et bien comptés.",
+      "id": "Sesungguhnya Allah telah menentukan jumlah mereka dan menghitung mereka dengan hitungan yang teliti.",
+      "ur": "اُس نے ان (سب) کو (اپنے علم سے) گھیر رکھا اور (ایک ایک کو) شمار کر رکھا ہے",
+      "bn": "তাঁর কাছে তাদের পরিসংখ্যান রয়েছে এবং তিনি তাদেরকে গণনা করে রেখেছেন।",
+      "fa": "خداوند همه آنها را احصا کرده، و به دقّت شمرده است!",
+      "ru": "Он знает их число и пересчитал их."
     }
   },
   {
@@ -946,7 +1604,14 @@
     "audio": "https://everyayah.com/data/Alafasy_128kbps/019095.mp3",
     "translations": {
       "tr": "Kıyamet günü hepsi O'na tek olarak gelecektir.",
-      "en": "And all of them are coming to Him on the Day of Resurrection alone."
+      "en": "And all of them are coming to Him on the Day of Resurrection alone.",
+      "de": "Und sie alle werden zu Ihm am Tag der Auferstehung einzeln kommen.",
+      "fr": "Et au Jour de la Résurrection, chacun d'eux se rendra seul auprès de Lui.",
+      "id": "Dan tiap-tiap mereka akan datang kepada Allah pada hari kiamat dengan sendiri-sendiri.",
+      "ur": "اور سب قیامت کے دن اس کے سامنے اکیلے اکیلے حاضر ہوں گے",
+      "bn": "কেয়ামতের দিন তাদের সবাই তাঁর কাছে একাকী অবস্থায় আসবে।",
+      "fa": "و همگی روز رستاخیز، تک و تنها نزد او حاضر می‌شوند!",
+      "ru": "Каждый из них явится к Нему в День воскресения в одиночестве."
     }
   },
   {
@@ -956,7 +1621,14 @@
     "audio": "https://everyayah.com/data/Alafasy_128kbps/019096.mp3",
     "translations": {
       "tr": "İnanıp yararlı iş işleyenleri Rahman sevgili kılacaktır.",
-      "en": "Indeed, those who have believed and done righteous deeds - the Most Merciful will appoint for them affection."
+      "en": "Indeed, those who have believed and done righteous deeds - the Most Merciful will appoint for them affection.",
+      "de": "Gewiß, denjenigen, die glauben und rechtschaffene Werke tun, wird der Allerbarmer Liebe bereiten.",
+      "fr": "A ceux qui croient et font de bonnes œuvres, le Tout Miséricordieux accordera Son amour.",
+      "id": "Sesungguhnya orang-orang yang beriman dan beramal saleh, kelak Allah Yang Maha Pemurah akan menanamkan dalam (hati) mereka rasa kasih sayang.",
+      "ur": "اور جو لوگ ایمان لائے اور عمل نیک کئے خدا ان کی محبت (مخلوقات کے دل میں) پیدا کردے گا",
+      "bn": "যারা বিশ্বাস স্থাপন করে এবং সৎকর্ম সম্পাদন করে, তাদেরকে দয়াময় আল্লাহ ভালবাসা দেবেন।",
+      "fa": "مسلّماً کسانی که ایمان آورده و کارهای شایسته انجام داده‌اند، خداوند رحمان محبّتی برای آنان در دلها قرار می‌دهد!",
+      "ru": "Тех, которые уверовали и совершали праведные деяния, Милостивый одарит любовью."
     }
   },
   {
@@ -966,7 +1638,14 @@
     "audio": "https://everyayah.com/data/Alafasy_128kbps/019097.mp3",
     "translations": {
       "tr": "Biz Kuran'ı Allah'a karşı gelmekten sakınanları müjdelemen ve inatçı milleti uyarman için senin dilinde indirerek kolaylaştırdık.",
-      "en": "So, [O Muhammad], We have only made Qur'an easy in the Arabic language that you may give good tidings thereby to the righteous and warn thereby a hostile people."
+      "en": "So, [O Muhammad], We have only made Qur'an easy in the Arabic language that you may give good tidings thereby to the righteous and warn thereby a hostile people.",
+      "de": "Wir haben ihn eigens leicht gemacht in deiner Sprache, damit du durch ihn den Gottesfürchtigen frohe Botschaft verkündest und durch ihn hartnäckige Leute warnst.",
+      "fr": "Nous l'avons rendu (le Coran) facile [à comprendre] en ta langue, afin que tu annonces par lui la bonne nouvelle aux gens pieux, et que, tu avertisses un peuple irréductible.",
+      "id": "Maka sesungguhnya telah Kami mudahkan Al Quran itu dengan bahasamu, agar kamu dapat memberi kabar gembira dengan Al Quran itu kepada orang-orang yang bertakwa, dan agar kamu memberi peringatan dengannya kepada kaum yang membangkang.",
+      "ur": "(اے پیغمبر) ہم نے یہ (قرآن) تمہاری زبان میں آسان (نازل) کیا ہے تاکہ تم اس سے پرہیزگاروں کو خوشخبری پہنچا دو اور جھگڑالوؤں کو ڈر سنا دو",
+      "bn": "আমি কোরআনকে আপনার ভাষায় সহজ করে দিয়েছি, যাতে আপনি এর দ্বারা পরহেযগারদেরকে সুসংবাদ দেন এবং কলহকারী সম্প্রদায়কে সতর্ক করেন।",
+      "fa": "و ما فقط آن [= قرآن‌] را بر زبان تو آسان ساختیم تا پرهیزگاران را بوسیله آن بشارت دهی، و دشمنان سرسخت را با آنان انذار کنی.",
+      "ru": "Мы облегчили его (Коран) на твоем языке для того, чтобы ты обрадовал им богобоязненных людей и предостерег им злостных спорщиков."
     }
   },
   {
@@ -976,7 +1655,14 @@
     "audio": "https://everyayah.com/data/Alafasy_128kbps/019098.mp3",
     "translations": {
       "tr": "Onlardan önce nice nesilleri yok ettik, şimdi onlardan hiçbirini duyuyor veya bir ses işitiyor musun?",
-      "en": "And how many have We destroyed before them of generations? Do you perceive of them anyone or hear from them a sound?"
+      "en": "And how many have We destroyed before them of generations? Do you perceive of them anyone or hear from them a sound?",
+      "de": "Und wie viele Geschlechter haben Wir vor ihnen vernichtet! Nimmst du noch irgend jemanden von ihnen wahr, oder hörst du von ihnen noch den geringsten Laut?",
+      "fr": "Que de générations avant eux avons-Nous fait périr! En retrouves-tu un seul individu? ou en entends-tu le moindre murmure?",
+      "id": "Dan berapa banyak telah Kami binasakan umat-umat sebelum mereka. Adakah kamu melihat seorangpun dari mereka atau kamu dengar suara mereka yang samar-samar?",
+      "ur": "اور ہم نے اس سے پہلے بہت سے گروہوں کو ہلاک کردیا ہے۔ بھلا تم ان میں سے کسی کو دیکھتے ہو یا (کہیں) ان کی بھنک سنتے ہو",
+      "bn": "তাদের পূর্বে আমি কত মানবগোষ্ঠীকে ধ্বংস করেছি। আপনি কি তাদের কাহারও সাড়া পান, অথবা তাদের ক্ষীনতম আওয়ায ও শুনতে পান?",
+      "fa": "چه بسیار اقوام (بی‌ایمان و گنهکاری) را که پیش از آنان هلاک کردیم؛ آیا احدی از آنها را احساس می‌کنی؟! یا کمترین صدایی از آنان می‌شنوی؟!",
+      "ru": "Сколько поколений до них Мы подвергли гибели! Разве ты ощущаешь присутствие кого-нибудь из них или слышишь их шепот?"
     }
   }
 ]

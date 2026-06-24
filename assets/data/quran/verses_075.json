@@ -6,7 +6,14 @@
     "audio": "https://everyayah.com/data/Alafasy_128kbps/075001.mp3",
     "translations": {
       "tr": "Kıyamet gününe yemin ederim.",
-      "en": "I swear by the Day of Resurrection"
+      "en": "I swear by the Day of Resurrection",
+      "de": "Nein! Ich schwöre beim Tag der Auferstehung.",
+      "fr": "Non!... Je jure par le Jour de la Résurrection!",
+      "id": "Aku bersumpah demi hari kiamat,",
+      "ur": "ہم کو روز قیامت کی قسم",
+      "bn": "আমি শপথ করি কেয়ামত দিবসের,",
+      "fa": "سوگند به روز قیامت،",
+      "ru": "Нет, клянусь Днем воскресения!"
     }
   },
   {
@@ -16,7 +23,14 @@
     "audio": "https://everyayah.com/data/Alafasy_128kbps/075002.mp3",
     "translations": {
       "tr": "Ve nedamet çeken nefse yemin ederim.",
-      "en": "And I swear by the reproaching soul [to the certainty of resurrection]."
+      "en": "And I swear by the reproaching soul [to the certainty of resurrection].",
+      "de": "Nein! Ich schwöre bei der Seele, die sich selbst tadelt.",
+      "fr": "Mais non!, Je jure par l'âme qui ne cesse de se blâmer.",
+      "id": "dan aku bersumpah dengan jiwa yang amat menyesali (dirinya sendiri).",
+      "ur": "اور نفس لوامہ کی (کہ سب لوگ اٹھا کر) کھڑے کئے جائیں گے",
+      "bn": "আরও শপথ করি সেই মনের, যে নিজেকে ধিক্কার দেয়-",
+      "fa": "و سوگند به (نفس لوّامه و) وجدان بیدار و ملامتگر (که رستاخیز حقّ است)!",
+      "ru": "Клянусь душой попрекающей!"
     }
   },
   {
@@ -26,7 +40,14 @@
     "audio": "https://everyayah.com/data/Alafasy_128kbps/075003.mp3",
     "translations": {
       "tr": "İnsan, kemiklerini bir araya toplayamayız mı sanıyor?",
-      "en": "Does man think that We will not assemble his bones?"
+      "en": "Does man think that We will not assemble his bones?",
+      "de": "Meint der Mensch (etwa), daß Wir seine Knochen nicht zusammenfügen werden?",
+      "fr": "L'homme, pense-t-il que Nous ne réunirons jamais ses os?",
+      "id": "Apakah manusia mengira, bahwa Kami tidak akan mengumpulkan (kembali) tulang belulangnya?",
+      "ur": "کیا انسان یہ خیال کرتا ہے کہ ہم اس کی (بکھری ہوئی) ہڈیاں اکٹھی نہیں کریں گے؟",
+      "bn": "মানুষ কি মনে করে যে আমি তার অস্থিসমূহ একত্রিত করব না?",
+      "fa": "آیا انسان می‌پندارد که هرگز استخوانهای او را جمع نخواهیم کرد؟!",
+      "ru": "Неужели человек полагает, что Мы не соберем его костей?"
     }
   },
   {
@@ -36,7 +57,14 @@
     "audio": "https://everyayah.com/data/Alafasy_128kbps/075004.mp3",
     "translations": {
       "tr": "Evet, Biz onu, parmak uçlarına varıncaya kadar bütün incelikleriyle yeniden yapmaya kadiriz.",
-      "en": "Yes. [We are] Able [even] to proportion his fingertips."
+      "en": "Yes. [We are] Able [even] to proportion his fingertips.",
+      "de": "Ja doch! (Wir) haben die Macht dazu, seine Fingerspitzen zurechtzuformen.",
+      "fr": "Mais si! Nous sommes Capable de remettre à leur place les extrémités de ses doigts.",
+      "id": "Bukan demikian, sebenarnya Kami kuasa menyusun (kembali) jari jemarinya dengan sempurna.",
+      "ur": "ضرور کریں گے (اور) ہم اس بات پر قادر ہیں کہ اس کی پور پور درست کردیں",
+      "bn": "পরন্ত আমি তার অংগুলিগুলো পর্যন্ত সঠিকভাবে সন্নিবেশিত করতে সক্ষম।",
+      "fa": "آری قادریم که (حتّی خطوط سر) انگشتان او را موزون و مرتّب کنیم!",
+      "ru": "Конечно! Мы способны восстановить даже кончики его пальцев (или сделать всего его пальцы одинаковыми, так что он не сможет пользоваться ими, как прежде)."
     }
   },
   {
@@ -46,7 +74,14 @@
     "audio": "https://everyayah.com/data/Alafasy_128kbps/075005.mp3",
     "translations": {
       "tr": "Ama, insanoğlu gelecekte de suç işlemek ister de: \"Kıyamet günü ne zamanmış! \" der.",
-      "en": "But man desires to continue in sin."
+      "en": "But man desires to continue in sin.",
+      "de": "Aber nein! Der Mensch will (fortdauernd) vor sich hin lasterhaft sein.",
+      "fr": "L'homme voudrait plutôt continuer à vivre en libertin.",
+      "id": "Bahkan manusia itu hendak membuat maksiat terus menerus.",
+      "ur": "مگر انسان چاہتا ہے کہ آگے کو خود سری کرتا جائے",
+      "bn": "বরং মানুষ তার ভবিষ্যত জীবনেও ধৃষ্টতা করতে চায়",
+      "fa": "(انسان شک در معاد ندارد) بلکه او می‌خواهد (آزاد باشد و بدون ترس از دادگاه قیامت) در تمام عمر گناه کند!",
+      "ru": "Но человек желает и впредь совершать грехи."
     }
   },
   {
@@ -56,7 +91,14 @@
     "audio": "https://everyayah.com/data/Alafasy_128kbps/075006.mp3",
     "translations": {
       "tr": "Ama, insanoğlu gelecekte de suç işlemek ister de: \"Kıyamet günü ne zamanmış! \" der.",
-      "en": "He asks, \"When is the Day of Resurrection?\""
+      "en": "He asks, \"When is the Day of Resurrection?\"",
+      "de": "Er fragt: \"Wann wird bloß der Tag der Auferstehung sein?\"",
+      "fr": "Il interroge: «A quand, le Jour de la Résurrection?»",
+      "id": "Ia berkata: \"Bilakah hari kiamat itu?\"",
+      "ur": "پوچھتا ہے کہ قیامت کا دن کب ہوگا؟",
+      "bn": "সে প্রশ্ন করে-কেয়ামত দিবস কবে?",
+      "fa": "(از این رو) می‌پرسد: «قیامت کی خواهد بود»!",
+      "ru": "Он спрашивает, когда же наступит День воскресения?"
     }
   },
   {
@@ -66,7 +108,14 @@
     "audio": "https://everyayah.com/data/Alafasy_128kbps/075007.mp3",
     "translations": {
       "tr": "Gözün kamaştığı, ayın tutulduğu, güneş ve ayın bir araya getirildiği zaman, işte o gün insan: \"kaçacak yer nerede?\" der.",
-      "en": "So when vision is dazzled"
+      "en": "So when vision is dazzled",
+      "de": "Wenn dann der Blick verwirrt ist",
+      "fr": "Lorsque la vue sera éblouie,",
+      "id": "Maka apabila mata terbelalak (ketakutan),",
+      "ur": "جب آنکھیں چندھیا جائیں",
+      "bn": "যখন দৃষ্টি চমকে যাবে,",
+      "fa": "(بگو:) در آن هنگام که چشمها از شدّت وحشت به گردش درآید،",
+      "ru": "Когда взор будет ошеломлен,"
     }
   },
   {
@@ -76,7 +125,14 @@
     "audio": "https://everyayah.com/data/Alafasy_128kbps/075008.mp3",
     "translations": {
       "tr": "Gözün kamaştığı, ayın tutulduğu, güneş ve ayın bir araya getirildiği zaman, işte o gün insan: \"kaçacak yer nerede?\" der.",
-      "en": "And the moon darkens"
+      "en": "And the moon darkens",
+      "de": "und der Mond sich verfinstert",
+      "fr": "et que la lune s'éclipsera,",
+      "id": "dan apabila bulan telah hilang cahayanya,",
+      "ur": "اور چاند گہنا جائے",
+      "bn": "চন্দ্র জ্যোতিহীন হয়ে যাবে।",
+      "fa": "و ماه بی‌نور گردد،",
+      "ru": "луна затмится,"
     }
   },
   {
@@ -86,7 +142,14 @@
     "audio": "https://everyayah.com/data/Alafasy_128kbps/075009.mp3",
     "translations": {
       "tr": "Gözün kamaştığı, ayın tutulduğu, güneş ve ayın bir araya getirildiği zaman, işte o gün insan: \"kaçacak yer nerede?\" der.",
-      "en": "And the sun and the moon are joined,"
+      "en": "And the sun and the moon are joined,",
+      "de": "und Sonne und Mond zusammengebracht werden,",
+      "fr": "et que le soleil et la lune seront réunis,",
+      "id": "dan matahari dan bulan dikumpulkan,",
+      "ur": "اور سورج اور چاند جمع کردیئے جائیں",
+      "bn": "এবং সূর্য ও চন্দ্রকে একত্রিত করা হবে-",
+      "fa": "و خورشید و ماه یک جا جمع شوند،",
+      "ru": "а солнце и луна сойдутся."
     }
   },
   {
@@ -96,7 +159,14 @@
     "audio": "https://everyayah.com/data/Alafasy_128kbps/075010.mp3",
     "translations": {
       "tr": "Gözün kamaştığı, ayın tutulduğu, güneş ve ayın bir araya getirildiği zaman, işte o gün insan: \"kaçacak yer nerede?\" der.",
-      "en": "Man will say on that Day, \"Where is the [place of] escape?\""
+      "en": "Man will say on that Day, \"Where is the [place of] escape?\"",
+      "de": "wird der Mensch an jenem Tag sagen: \"Wohin soll die Flucht sein?\"",
+      "fr": "l'homme, ce jour-là, dira: «Où fuir?»",
+      "id": "pada hari itu manusia berkata: \"Ke mana tempat berlari?\"",
+      "ur": "اس دن انسان کہے گا کہ (اب) کہاں بھاگ جاؤں؟",
+      "bn": "সে দিন মানুষ বলবেঃ পলায়নের জায়গা কোথায় ?",
+      "fa": "آن روز انسان می‌گوید: «راه فرار کجاست؟!»",
+      "ru": "В тот день человек скажет: «Куда бежать?»."
     }
   },
   {
@@ -106,7 +176,14 @@
     "audio": "https://everyayah.com/data/Alafasy_128kbps/075011.mp3",
     "translations": {
       "tr": "Hayır; hayır; bir sığınak yoktur.",
-      "en": "No! There is no refuge."
+      "en": "No! There is no refuge.",
+      "de": "Keineswegs! (Es gibt) keine Zuflucht.",
+      "fr": "Non! Point de refuge!",
+      "id": "sekali-kali tidak! Tidak ada tempat berlindung!",
+      "ur": "بےشک کہیں پناہ نہیں",
+      "bn": "না কোথাও আশ্রয়স্থল নেই।",
+      "fa": "هرگز چنین نیست، راه فرار و پناهگاهی وجود ندارد!",
+      "ru": "О нет! Не будет убежища!"
     }
   },
   {
@@ -116,7 +193,14 @@
     "audio": "https://everyayah.com/data/Alafasy_128kbps/075012.mp3",
     "translations": {
       "tr": "O gün, sen, Rabbinin huzuruna varıp durursun.",
-      "en": "To your Lord, that Day, is the [place of] permanence."
+      "en": "To your Lord, that Day, is the [place of] permanence.",
+      "de": "Zu deinem Herrn wird an jenem Tag der Weg zum Aufenthaltsort (führen).",
+      "fr": "Vers ton Seigneur sera, ce jour-là, le retour.",
+      "id": "Hanya kepada Tuhanmu sajalah pada hari itu tempat kembali.",
+      "ur": "اس روز پروردگار ہی کے پاس ٹھکانا ہے",
+      "bn": "আপনার পালনকর্তার কাছেই সেদিন ঠাঁই হবে।",
+      "fa": "آن روز قرارگاه نهایی تنها بسوی پروردگار تو است؛",
+      "ru": "В тот день возвращение будет к твоему Господу."
     }
   },
   {
@@ -126,7 +210,14 @@
     "audio": "https://everyayah.com/data/Alafasy_128kbps/075013.mp3",
     "translations": {
       "tr": "O gün, insanoğluna önde ve sonda yaptığı ne varsa bildirilir.",
-      "en": "Man will be informed that Day of what he sent ahead and kept back."
+      "en": "Man will be informed that Day of what he sent ahead and kept back.",
+      "de": "Dem Menschen wird an jenem Tag kundgetan, was er vorausgeschickt und zurückgestellt hat.",
+      "fr": "L'homme sera informé ce jour-là de ce qu'il aura avancé et de ce qu'il aura remis à plus tard.",
+      "id": "Pada hari itu diberitakan kepada manusia apa yang telah dikerjakannya dan apa yang dilalaikannya.",
+      "ur": "اس دن انسان کو جو (عمل) اس نے آگے بھیجے اور پیچھے چھوڑے ہوں گے سب بتا دیئے جائیں گے",
+      "bn": "সেদিন মানুষকে অবহিত করা হবে সে যা সামনে প্রেরণ করেছে ও পশ্চাতে ছেড়ে দিয়েছে।",
+      "fa": "و در آن روز انسان را از تمام کارهایی که از پیش یا پس فرستاده آگاه می‌کنند!",
+      "ru": "В тот день человеку возвестят о том, что он совершил заранее и что оставил после себя."
     }
   },
   {
@@ -136,7 +227,14 @@
     "audio": "https://everyayah.com/data/Alafasy_128kbps/075014.mp3",
     "translations": {
       "tr": "Özürlerini sayıp dökse de, insanoğlu, artık kendi kendinin şahididir.",
-      "en": "Rather, man, against himself, will be a witness,"
+      "en": "Rather, man, against himself, will be a witness,",
+      "de": "Aber nein! Der Mensch wird bezüglich seiner selbst durchblicken,",
+      "fr": "Mais l'homme sera un témoin perspicace contre lui-même,",
+      "id": "Bahkan manusia itu menjadi saksi atas dirinya sendiri,",
+      "ur": "بلکہ انسان آپ اپنا گواہ ہے",
+      "bn": "বরং মানুষ নিজেই তার নিজের সম্পর্কে চক্ষুমান।",
+      "fa": "بلکه انسان خودش از وضع خود آگاه است،",
+      "ru": "Но человек будет свидетельствовать против самого себя,"
     }
   },
   {
@@ -146,7 +244,14 @@
     "audio": "https://everyayah.com/data/Alafasy_128kbps/075015.mp3",
     "translations": {
       "tr": "Özürlerini sayıp dökse de, insanoğlu, artık kendi kendinin şahididir.",
-      "en": "Even if he presents his excuses."
+      "en": "Even if he presents his excuses.",
+      "de": "auch wenn er seine Entschuldigungen vorbrächte .",
+      "fr": "quand même il présenterait ses excuses.",
+      "id": "meskipun dia mengemukakan alasan-alasannya.",
+      "ur": "اگرچہ عذر ومعذرت کرتا رہے",
+      "bn": "যদিও সে তার অজুহাত পেশ করতে চাইবে।",
+      "fa": "هر چند (در ظاهر) برای خود عذرهایی بتراشد!",
+      "ru": "даже если он будет оправдываться."
     }
   },
   {
@@ -156,7 +261,14 @@
     "audio": "https://everyayah.com/data/Alafasy_128kbps/075016.mp3",
     "translations": {
       "tr": "Cebrail sana Kuran okurken, unutmamak için acele edip onunla beraber söyleme, yalnız dinle.",
-      "en": "Move not your tongue with it, [O Muhammad], to hasten with recitation of the Qur'an."
+      "en": "Move not your tongue with it, [O Muhammad], to hasten with recitation of the Qur'an.",
+      "de": "Bewege deine Zunge nicht damit, um ihn übereilt weiterzugeben.",
+      "fr": "Ne remue pas ta langue pour hâter sa récitation:",
+      "id": "Janganlah kamu gerakkan lidahmu untuk (membaca) Al Quran karena hendak cepat-cepat (menguasai)nya.",
+      "ur": "اور (اے محمدﷺ) وحی کے پڑھنے کے لئے اپنی زبان نہ چلایا کرو کہ اس کو جلد یاد کرلو",
+      "bn": "তাড়াতাড়ি শিখে নেয়ার জন্যে আপনি দ্রুত ওহী আবৃত্তি করবেন না।",
+      "fa": "زبانت را بخاطر عجله برای خواندن آن [= قرآن‌] حرکت مده،",
+      "ru": "Не шевели своим языком, повторяя его (Коран), чтобы поскорее запомнить."
     }
   },
   {
@@ -166,7 +278,14 @@
     "audio": "https://everyayah.com/data/Alafasy_128kbps/075017.mp3",
     "translations": {
       "tr": "Doğrusu o vahyolunanı kalbine yerleştirmek ve onu sana okutturmak Bize düşer.",
-      "en": "Indeed, upon Us is its collection [in your heart] and [to make possible] its recitation."
+      "en": "Indeed, upon Us is its collection [in your heart] and [to make possible] its recitation.",
+      "de": "Uns obliegt es, ihn zusammenzustellen und ihn vorlesen zu lassen.",
+      "fr": "Son rassemblement (dans ton cœur et sa fixation dans ta mémoire) Nous incombent, ainsi que la façon de le réciter.",
+      "id": "Sesungguhnya atas tanggungan Kamilah mengumpulkannya (di dadamu) dan (membuatmu pandai) membacanya.",
+      "ur": "اس کا جمع کرنا اور پڑھانا ہمارے ذمے ہے",
+      "bn": "এর সংরক্ষণ ও পাঠ আমারই দায়িত্ব।",
+      "fa": "چرا که جمع‌کردن و خواندن آن بر عهده ماست!",
+      "ru": "Нам надлежит собрать его и прочесть."
     }
   },
   {
@@ -176,7 +295,14 @@
     "audio": "https://everyayah.com/data/Alafasy_128kbps/075018.mp3",
     "translations": {
       "tr": "Biz onu Cebrail'e okuttuğumuz zaman, onun okumasını dinle.",
-      "en": "So when We have recited it [through Gabriel], then follow its recitation."
+      "en": "So when We have recited it [through Gabriel], then follow its recitation.",
+      "de": "Und (erst) wenn Wir ihn vorgelesen haben, dann folge du der Art seines Vortragens\".",
+      "fr": "Quand donc Nous le récitons, suis sa récitation.",
+      "id": "Apabila Kami telah selesai membacakannya maka ikutilah bacaannya itu.",
+      "ur": "جب ہم وحی پڑھا کریں تو تم (اس کو سنا کرو اور) پھر اسی طرح پڑھا کرو",
+      "bn": "অতঃপর আমি যখন তা পাঠ করি, তখন আপনি সেই পাঠের অনুসরণ করুন।",
+      "fa": "پس هر گاه آن را خواندیم، از خواندن آن پیروی کن!",
+      "ru": "Когда же Мы прочтем его, то читай его следом."
     }
   },
   {
@@ -186,7 +312,14 @@
     "audio": "https://everyayah.com/data/Alafasy_128kbps/075019.mp3",
     "translations": {
       "tr": "Sonra onu sana açıklamak Bize düşer.",
-      "en": "Then upon Us is its clarification [to you]."
+      "en": "Then upon Us is its clarification [to you].",
+      "de": "Hierauf obliegt es Uns, ihn klar darzulegen.",
+      "fr": "A Nous, ensuite incombera son explication.",
+      "id": "Kemudian, sesungguhnya atas tanggungan Kamilah penjelasannya.",
+      "ur": "پھر اس (کے معانی) کا بیان بھی ہمارے ذمے ہے",
+      "bn": "এরপর বিশদ বর্ণনা আমারই দায়িত্ব।",
+      "fa": "سپس بیان و (توضیح) آن (نیز) بر عهده ماست!",
+      "ru": "Нам надлежит разъяснять его."
     }
   },
   {
@@ -196,7 +329,14 @@
     "audio": "https://everyayah.com/data/Alafasy_128kbps/075020.mp3",
     "translations": {
       "tr": "Hayır, hayır! Sizler, çabuk elde edeceğiniz dünya nimetlerini seversiniz.",
-      "en": "No! But you love the immediate"
+      "en": "No! But you love the immediate",
+      "de": "Keineswegs! Vielmehr liebt ihr das schnell Eintreffende,",
+      "fr": "Mais vous aimez plutôt [la vie] éphémère,",
+      "id": "Sekali-kali janganlah demikian. Sebenarnya kamu (hai manusia) mencintai kehidupan dunia,",
+      "ur": "مگر (لوگو) تم دنیا کو دوست رکھتے ہو",
+      "bn": "কখনও না, বরং তোমরা পার্থিব জীবনকে ভালবাস",
+      "fa": "چنین نیست که شما می‌پندارید (و دلایل معاد را کافی نمی‌دانید)؛ بلکه شما دنیای زودگذر را دوست دارید (و هوسرانی بی‌قید و شرط را)!",
+      "ru": "Но нет! Вы любите жизнь ближнюю"
     }
   },
   {
@@ -206,7 +346,14 @@
     "audio": "https://everyayah.com/data/Alafasy_128kbps/075021.mp3",
     "translations": {
       "tr": "Ahireti bırakırsınız.",
-      "en": "And leave the Hereafter."
+      "en": "And leave the Hereafter.",
+      "de": "und laßt das Jenseits (außer acht).",
+      "fr": "et vous délaissez l'au-delà.",
+      "id": "dan meninggalkan (kehidupan) akhirat.",
+      "ur": "اور آخرت کو ترک کئے دیتے ہو",
+      "bn": "এবং পরকালকে উপেক্ষা কর।",
+      "fa": "و آخرت را رها می‌کنید!",
+      "ru": "и пренебрегаете Последней жизнью."
     }
   },
   {
@@ -216,7 +363,14 @@
     "audio": "https://everyayah.com/data/Alafasy_128kbps/075022.mp3",
     "translations": {
       "tr": "O gün bir takım yüzler Rablerine bakıp parlayacaktır.",
-      "en": "[Some] faces, that Day, will be radiant,"
+      "en": "[Some] faces, that Day, will be radiant,",
+      "de": "(Die einen) Gesichter werden an jenem Tag strahlen,",
+      "fr": "Ce jour-là, il y aura des visages resplendissants",
+      "id": "Wajah-wajah (orang-orang mukmin) pada hari itu berseri-seri.",
+      "ur": "اس روز بہت سے منہ رونق دار ہوں گے",
+      "bn": "সেদিন অনেক মুখমন্ডল উজ্জ্বল হবে।",
+      "fa": "(آری) در آن روز صورتهایی شاداب و مسرور است،",
+      "ru": "Одни лица в тот день будут сиять"
     }
   },
   {
@@ -226,7 +380,14 @@
     "audio": "https://everyayah.com/data/Alafasy_128kbps/075023.mp3",
     "translations": {
       "tr": "O gün bir takım yüzler Rablerine bakıp parlayacaktır.",
-      "en": "Looking at their Lord."
+      "en": "Looking at their Lord.",
+      "de": "zu ihrem Herrn schauen.",
+      "fr": "qui regarderont leur Seigneur;",
+      "id": "Kepada Tuhannyalah mereka melihat.",
+      "ur": "اور) اپنے پروردگار کے محو دیدار ہوں گے",
+      "bn": "তারা তার পালনকর্তার দিকে তাকিয়ে থাকবে।",
+      "fa": "و به پروردگارش می‌نگرد!",
+      "ru": "и взирать на своего Господа."
     }
   },
   {
@@ -236,7 +397,14 @@
     "audio": "https://everyayah.com/data/Alafasy_128kbps/075024.mp3",
     "translations": {
       "tr": "O gün bir takım yüzler de asıktır.",
-      "en": "And [some] faces, that Day, will be contorted,"
+      "en": "And [some] faces, that Day, will be contorted,",
+      "de": "Und (die anderen) Gesichter werden an jenem Tag finster sein;",
+      "fr": "et il y aura ce jour-là, des visages assombris,",
+      "id": "Dan wajah-wajah (orang kafir) pada hari itu muram,",
+      "ur": "اور بہت سے منہ اس دن اداس ہوں گے",
+      "bn": "আর অনেক মুখমন্ডল সেদিন উদাস হয়ে পড়বে।",
+      "fa": "و در آن روز صورتهایی عبوس و در هم کشیده است،",
+      "ru": "Другие же лица в тот день будут омрачены."
     }
   },
   {
@@ -246,7 +414,14 @@
     "audio": "https://everyayah.com/data/Alafasy_128kbps/075025.mp3",
     "translations": {
       "tr": "Kendisinin belkemiğinin kırılacağını sanır.",
-      "en": "Expecting that there will be done to them [something] backbreaking."
+      "en": "Expecting that there will be done to them [something] backbreaking.",
+      "de": "die meinen, es würde ihnen das Rückgrat gebrochen.",
+      "fr": "qui s'attendent à subir une catastrophe.",
+      "id": "mereka yakin bahwa akan ditimpakan kepadanya malapetaka yang amat dahsyat.",
+      "ur": "خیال کریں گے کہ ان پر مصیبت واقع ہونے کو ہے",
+      "bn": "তারা ধারণা করবে যে, তাদের সাথে কোমর-ভাঙ্গা আচরণ করা হবে।",
+      "fa": "زیرا می‌داند عذابی در پیش دارد که پشت را در هم می‌شکند!",
+      "ru": "Они убедятся о том, что их поразит беда."
     }
   },
   {
@@ -256,7 +431,14 @@
     "audio": "https://everyayah.com/data/Alafasy_128kbps/075026.mp3",
     "translations": {
       "tr": "Dikkat edin; can boğaza gelip köprücük kemiklerine dayandığı zaman: \"Çare bulan yok mudur?\" denir.",
-      "en": "No! When the soul has reached the collar bones"
+      "en": "No! When the soul has reached the collar bones",
+      "de": "Keineswegs! Wenn sie das Schlüsselbein erreicht",
+      "fr": "Mais non! Quand [l'âme] en arrive aux clavicules",
+      "id": "Sekali-kali jangan. Apabila nafas (seseorang) telah (mendesak) sampai ke kerongkongan,",
+      "ur": "دیکھو جب جان گلے تک پہنچ جائے",
+      "bn": "কখনও না, যখন প্রাণ কন্ঠাগত হবে।",
+      "fa": "چنین نیست (که انسان می‌پندارد! او ایمان نمی‌آورد) تا موقعی که جان به گلوگاهش رسد،",
+      "ru": "Но нет! Когда душа достигнет ключицы,"
     }
   },
   {
@@ -266,7 +448,14 @@
     "audio": "https://everyayah.com/data/Alafasy_128kbps/075027.mp3",
     "translations": {
       "tr": "Dikkat edin; can boğaza gelip köprücük kemiklerine dayandığı zaman: \"Çare bulan yok mudur?\" denir.",
-      "en": "And it is said, \"Who will cure [him]?\""
+      "en": "And it is said, \"Who will cure [him]?\"",
+      "de": "und gesagt wird: \"Wer ist ein Zauberer (, der ihn retten kann)?\",",
+      "fr": "et qu'on dit: «Qui est exorciseur?»",
+      "id": "dan dikatakan (kepadanya): \"Siapakah yang dapat menyembuhkan?\",",
+      "ur": "اور لوگ کہنے لگیں (اس وقت) کون جھاڑ پھونک کرنے والا ہے",
+      "bn": "এবং বলা হবে, কে ঝাড়বে",
+      "fa": "و گفته شود: «آیا کسی هست که (این بیمار را از مرگ) نجات دهد؟!»",
+      "ru": "будет сказано: «Кто же прочтет заклинание?»."
     }
   },
   {
@@ -276,7 +465,14 @@
     "audio": "https://everyayah.com/data/Alafasy_128kbps/075028.mp3",
     "translations": {
       "tr": "Artık ayrılık vaktinin geldiğini sanır.",
-      "en": "And the dying one is certain that it is the [time of] separation"
+      "en": "And the dying one is certain that it is the [time of] separation",
+      "de": "und wenn er meint, daß es (jetzt) die Trennung sei,",
+      "fr": "et qu'il [l'agonisant] est convaincu que c'est la séparation (la mort),",
+      "id": "dan dia yakin bahwa sesungguhnya itulah waktu perpisahan (dengan dunia),",
+      "ur": "اور اس (جان بلب) نے سمجھا کہ اب سب سے جدائی ہے",
+      "bn": "এবং সে মনে করবে যে, বিদায়ের ক্ষণ এসে গেছে।",
+      "fa": "و به جدائی از دنیا یقین پیدا کند،",
+      "ru": "Умирающий поймет, что наступило расставание."
     }
   },
   {
@@ -286,7 +482,14 @@
     "audio": "https://everyayah.com/data/Alafasy_128kbps/075029.mp3",
     "translations": {
       "tr": "Bacaklar birbirine dolaşır.",
-      "en": "And the leg is wound about the leg,"
+      "en": "And the leg is wound about the leg,",
+      "de": "und wenn (bei ihm) sich das eine Bein um das andere legt,",
+      "fr": "et que la jambe s'enlace à la jambe,",
+      "id": "dan bertaut betis (kiri) dan betis (kanan),",
+      "ur": "اور پنڈلی سے پنڈلی لپٹ جائے",
+      "bn": "এবং গোছা গোছার সাথে জড়িত হয়ে যাবে।",
+      "fa": "و ساق پاها (از سختی جان‌دادن) به هم بپیچد!",
+      "ru": "Голень сойдется с голенью (тяготы мирской жизни объединятся с тяготами последней жизни или голени человека будут сложены вместе в саване),"
     }
   },
   {
@@ -296,7 +499,14 @@
     "audio": "https://everyayah.com/data/Alafasy_128kbps/075030.mp3",
     "translations": {
       "tr": "O gün sevk Rabbin huzurunadır.",
-      "en": "To your Lord, that Day, will be the procession."
+      "en": "To your Lord, that Day, will be the procession.",
+      "de": "zu deinem Herrn wird an jenem Tag das Treiben sein.",
+      "fr": "c'est vers ton Seigneur, ce jour-là que tu seras conduit.",
+      "id": "kepada Tuhanmulah pada hari itu kamu dihalau.",
+      "ur": "اس دن تجھ کو اپنے پروردگار کی طرف چلنا ہے",
+      "bn": "সেদিন, আপনার পালনকর্তার নিকট সবকিছু নীত হবে।",
+      "fa": "(آری) در آن روز مسیر همه بسوی (دادگاه) پروردگارت خواهد بود!",
+      "ru": "и в тот день его пригонят к твоему Господу."
     }
   },
   {
@@ -306,7 +516,14 @@
     "audio": "https://everyayah.com/data/Alafasy_128kbps/075031.mp3",
     "translations": {
       "tr": "O, Peygamberi doğrulamamış, namaz kılmamış, ama yalanlayıp yüz çevirmiş, sonra da salına salına kendinden yana olanlara gitmişti.",
-      "en": "And the disbeliever had not believed, nor had he prayed."
+      "en": "And the disbeliever had not believed, nor had he prayed.",
+      "de": "Doch hielt er nicht (die Botschaft) für wahr noch betete er,",
+      "fr": "Mais il n'a ni cru, ni fait la Salât;",
+      "id": "Dan ia tidak mau membenarkan (Rasul dan Al Quran) dan tidak mau mengerjakan shalat,",
+      "ur": "تو اس (ناعاقبت) اندیش نے نہ تو (کلام خدا) کی تصدیق کی نہ نماز پڑھی",
+      "bn": "সে বিশ্বাস করেনি এবং নামায পড়েনি;",
+      "fa": "(در آن روز گفته می‌شود:) او هرگز ایمان نیاورد و نماز نخواند،",
+      "ru": "Он не уверовал и не совершал намаз."
     }
   },
   {
@@ -316,7 +533,14 @@
     "audio": "https://everyayah.com/data/Alafasy_128kbps/075032.mp3",
     "translations": {
       "tr": "O, Peygamberi doğrulamamış, namaz kılmamış, ama yalanlayıp yüz çevirmiş, sonra da salına salına kendinden yana olanlara gitmişti.",
-      "en": "But [instead], he denied and turned away."
+      "en": "But [instead], he denied and turned away.",
+      "de": "sondern er erklärte (sie) für Lüge, und er kehrte sich ab.",
+      "fr": "par contre, il a démenti et tourné le dos,",
+      "id": "tetapi ia mendustakan (Rasul) dam berpaling (dari kebenaran),",
+      "ur": "بلکہ جھٹلایا اور منہ پھیر لیا",
+      "bn": "পরন্ত মিথ্যারোপ করেছে ও পৃষ্ঠ প্রদর্শন করেছে।",
+      "fa": "بلکه تکذیب کرد و روی‌گردان شد،",
+      "ru": "Напротив, он счел это ложью и отвернулся,"
     }
   },
   {
@@ -326,7 +550,14 @@
     "audio": "https://everyayah.com/data/Alafasy_128kbps/075033.mp3",
     "translations": {
       "tr": "O, Peygamberi doğrulamamış, namaz kılmamış, ama yalanlayıp yüz çevirmiş, sonra da salına salına kendinden yana olanlara gitmişti.",
-      "en": "And then he went to his people, swaggering [in pride]."
+      "en": "And then he went to his people, swaggering [in pride].",
+      "de": "Hierauf ging er zu seinen Angehörigen, stolzierend.",
+      "fr": "puis il s'en est allé vers sa famille, marchant avec orgueil.",
+      "id": "kemudian ia pergi kepada ahlinya dengan berlagak (sombong).",
+      "ur": "پھر اپنے گھر والوں کے پاس اکڑتا ہوا چل دیا",
+      "bn": "অতঃপর সে দম্ভভরে পরিবার-পরিজনের নিকট ফিরে গিয়েছে।",
+      "fa": "سپس بسوی خانواده خود بازگشت در حالی که متکبّرانه قدم برمی‌داشت!",
+      "ru": "а затем горделиво отправился к своей семье."
     }
   },
   {
@@ -336,7 +567,14 @@
     "audio": "https://everyayah.com/data/Alafasy_128kbps/075034.mp3",
     "translations": {
       "tr": "Sana yazıklar olsun, yazıklar!",
-      "en": "Woe to you, and woe!"
+      "en": "Woe to you, and woe!",
+      "de": "- \"Wehe dir, ja wehe!",
+      "fr": "«Malheur à toi, malheur!»",
+      "id": "Kecelakaanlah bagimu (hai orang kafir) dan kecelakaanlah bagimu,",
+      "ur": "افسوس ہے تجھ پر پھر افسوس ہے",
+      "bn": "তোমার দুর্ভোগের উপর দুর্ভোগ।",
+      "fa": "(با این اعمال) عذاب الهی برای تو شایسته‌تر است، شایسته‌تر!",
+      "ru": "Горе тебе, горе!"
     }
   },
   {
@@ -346,7 +584,14 @@
     "audio": "https://everyayah.com/data/Alafasy_128kbps/075035.mp3",
     "translations": {
       "tr": "Daha ne olsun, sana yazıklar olsun, yazıklar!",
-      "en": "Then woe to you, and woe!"
+      "en": "Then woe to you, and woe!",
+      "de": "Abermals: Wehe dir, ja wehe!\"",
+      "fr": "Et encore malheur à toi, malheur!",
+      "id": "kemudian kecelakaanlah bagimu (hai orang kafir) dan kecelakaanlah bagimu.",
+      "ur": "پھر افسوس ہے تجھ پر پھر افسوس ہے",
+      "bn": "অতঃপর, তোমার দুর্ভোগের উপর দূর্ভোগ।",
+      "fa": "سپس عذاب الهی برای تو شایسته‌تر است، شایسته‌تر!",
+      "ru": "Еще раз горе тебе, горе!"
     }
   },
   {
@@ -356,7 +601,14 @@
     "audio": "https://everyayah.com/data/Alafasy_128kbps/075036.mp3",
     "translations": {
       "tr": "İnsanoğlu kendisinin başıboş bırakılacağını mı sanır?",
-      "en": "Does man think that he will be left neglected?"
+      "en": "Does man think that he will be left neglected?",
+      "de": "Meint der Mensch (etwa), daß er außer acht gelassen wird?",
+      "fr": "L'homme pense-t-il qu'on le laissera sans obligation à observer?",
+      "id": "Apakah manusia mengira, bahwa ia akan dibiarkan begitu saja (tanpa pertanggung jawaban)?",
+      "ur": "کیا انسان خیال کرتا ہے کہ یوں ہی چھوڑ دیا جائے گا؟",
+      "bn": "মানুষ কি মনে করে যে, তাকে এমনি ছেড়ে দেয়া হবে?",
+      "fa": "آیا انسان گمان می‌کند بی‌هدف رها می‌شود؟!",
+      "ru": "Неужели человек полагает, что он будет оставлен без присмотра?"
     }
   },
   {
@@ -366,7 +618,14 @@
     "audio": "https://everyayah.com/data/Alafasy_128kbps/075037.mp3",
     "translations": {
       "tr": "O, katılan bir meni damlası değil miydi?",
-      "en": "Had he not been a sperm from semen emitted?"
+      "en": "Had he not been a sperm from semen emitted?",
+      "de": "Ist er nicht ein Tropfen von Samenflüssigkeit, die ausgespritzt wird,",
+      "fr": "N'était-il pas une goutte de sperme éjaculé?",
+      "id": "Bukankah dia dahulu setetes mani yang ditumpahkan (ke dalam rahim),",
+      "ur": "کیا وہ منی کا جو رحم میں ڈالی جاتی ہے ایک قطرہ نہ تھا؟",
+      "bn": "সে কি স্খলিত বীর্য ছিল না?",
+      "fa": "آیا او نطفه‌ای از منی که در رحم ریخته می‌شود نبود؟!",
+      "ru": "Разве он не был каплей из семени источаемого?"
     }
   },
   {
@@ -376,7 +635,14 @@
     "audio": "https://everyayah.com/data/Alafasy_128kbps/075038.mp3",
     "translations": {
       "tr": "Sonra kan pıhtısı olmuş, sonra Allah onu yaratıp şekil vermişti.",
-      "en": "Then he was a clinging clot, and [Allah] created [his form] and proportioned [him]"
+      "en": "Then he was a clinging clot, and [Allah] created [his form] and proportioned [him]",
+      "de": "hierauf ein Anhängsel gewesen? Da hat Er erschaffen und zurechtgeformt",
+      "fr": "Et ensuite une adhérence Puis [Allah] l'a créée et formée harmonieusement;",
+      "id": "kemudian mani itu menjadi segumpal darah, lalu Allah menciptakannya, dan menyempurnakannya,",
+      "ur": "پھر لوتھڑا ہوا پھر (خدا نے) اس کو بنایا پھر (اس کے اعضا کو) درست کیا",
+      "bn": "অতঃপর সে ছিল রক্তপিন্ড, অতঃপর আল্লাহ তাকে সৃষ্টি করেছেন এবং সুবিন্যস্ত করেছেন।",
+      "fa": "سپس بصورت خون بسته در آمد، و خداوند او را آفرید و موزون ساخت،",
+      "ru": "Потом он превратился в сгусток крови, после чего Он создал его и придал ему соразмерный облик."
     }
   },
   {
@@ -386,7 +652,14 @@
     "audio": "https://everyayah.com/data/Alafasy_128kbps/075039.mp3",
     "translations": {
       "tr": "Ondan, erkek, dişi iki cins yaratmıştı.",
-      "en": "And made of him two mates, the male and the female."
+      "en": "And made of him two mates, the male and the female.",
+      "de": "und dann daraus beide Teile des Paares gemacht, das Männliche und das Weibliche.",
+      "fr": "puis en a fait alors les deux éléments de couple: le mâle et la femelle?",
+      "id": "lalu Allah menjadikan daripadanya sepasang: laki-laki dan perempuan.",
+      "ur": "پھر اس کی دو قسمیں بنائیں (ایک) مرد اور (ایک) عورت",
+      "bn": "অতঃপর তা থেকে সৃষ্টি করেছেন যুগল নর ও নারী।",
+      "fa": "و از او دو زوج مرد و زن آفرید!",
+      "ru": "Он сотворил из него чету: мужчину и женщину."
     }
   },
   {
@@ -396,7 +669,14 @@
     "audio": "https://everyayah.com/data/Alafasy_128kbps/075040.mp3",
     "translations": {
       "tr": "Bunları yapan Allah'ın ölüleri diriltmeye gücü yetmez mi? Elbette yeter.",
-      "en": "Is not that [Creator] Able to give life to the dead?"
+      "en": "Is not that [Creator] Able to give life to the dead?",
+      "de": "Hat dieser (Gott) nicht die Macht, die Toten wieder lebendig zu machen?",
+      "fr": "Celui-là [Allah] n'est-Il pas capable de faire revivre les morts?",
+      "id": "Bukankah (Allah yang berbuat) demikian berkuasa (pula) menghidupkan orang mati?",
+      "ur": "کیا اس خالق کو اس بات پر قدرت نہیں کہ مردوں کو جلا اُٹھائے؟",
+      "bn": "তবুও কি সেই আল্লাহ মৃতদেরকে জীবিত করতে সক্ষম নন?",
+      "fa": "آیا چنین کسی قادر نیست که مردگان را زنده کند؟!",
+      "ru": "Неужели Он не способен воскресить мертвых?"
     }
   }
 ]

@@ -6,7 +6,14 @@
     "audio": "https://everyayah.com/data/Alafasy_128kbps/102001.mp3",
     "translations": {
       "tr": "Çoğunluk olmak iddianız sizi o kadar meşgul etti ki, mezarları ziyaretle oradakileri de sayacak kadar oldunuz.",
-      "en": "Competition in [worldly] increase diverts you"
+      "en": "Competition in [worldly] increase diverts you",
+      "de": "Die Vermehrung lenkt euch ab,",
+      "fr": "La course aux richesses vous distrait,",
+      "id": "Bermegah-megahan telah melalaikan kamu,",
+      "ur": "(لوگو) تم کو (مال کی) بہت سی طلب نے غافل کر دیا",
+      "bn": "প্রাচুর্যের লালসা তোমাদেরকে গাফেল রাখে,",
+      "fa": "افزون طلبی (و تفاخر) شما را به خود مشغول داشته (و از خدا غافل نموده) است.",
+      "ru": "Страсть к приумножению (похвальба богатством и детьми) увлекает вас"
     }
   },
   {
@@ -16,7 +23,14 @@
     "audio": "https://everyayah.com/data/Alafasy_128kbps/102002.mp3",
     "translations": {
       "tr": "Çoğunluk olmak iddianız sizi o kadar meşgul etti ki, mezarları ziyaretle oradakileri de sayacak kadar oldunuz.",
-      "en": "Until you visit the graveyards."
+      "en": "Until you visit the graveyards.",
+      "de": "bis ihr die Friedhöfe besucht.",
+      "fr": "jusqu'à ce que vous visitiez les tombes.",
+      "id": "sampai kamu masuk ke dalam kubur.",
+      "ur": "یہاں تک کہ تم نے قبریں جا دیکھیں",
+      "bn": "এমনকি, তোমরা কবরস্থানে পৌছে যাও।",
+      "fa": "تا آنجا که به دیدار قبرها رفتید (و قبور مردگان خود را برشمردید و به آن افتخار کردید)!",
+      "ru": "настолько, что вы посещаете кладбища, чтобы бахвалиться своими покойниками (или пока вы сами не посетите могилы)."
     }
   },
   {
@@ -26,7 +40,14 @@
     "audio": "https://everyayah.com/data/Alafasy_128kbps/102003.mp3",
     "translations": {
       "tr": "Hayır; öyle olmayın; yakında bileceksiniz.",
-      "en": "No! You are going to know."
+      "en": "No! You are going to know.",
+      "de": "Keineswegs! Ihr werdet (es noch) erfahren.",
+      "fr": "Mais non! Vous saurez bientôt!",
+      "id": "Janganlah begitu, kelak kamu akan mengetahui (akibat perbuatanmu itu),",
+      "ur": "دیکھو تمہیں عنقریب معلوم ہو جائے گا",
+      "bn": "এটা কখনও উচিত নয়। তোমরা সত্ত্বরই জেনে নেবে।",
+      "fa": "چنین نیست که می‌پندارید، (آری) بزودی خواهید دانست!",
+      "ru": "Но нет! Скоро вы узнаете!"
     }
   },
   {
@@ -36,7 +57,14 @@
     "audio": "https://everyayah.com/data/Alafasy_128kbps/102004.mp3",
     "translations": {
       "tr": "Hayır; gözünüzü açın; yakında bileceksiniz.",
-      "en": "Then no! You are going to know."
+      "en": "Then no! You are going to know.",
+      "de": "Abermals: Keineswegs! Ihr werdet (es noch) erfahren.",
+      "fr": "(Encore une fois)! Vous saurez bientôt!",
+      "id": "dan janganlah begitu, kelak kamu akan mengetahui.",
+      "ur": "پھر دیکھو تمہیں عنقریب معلوم ہو جائے گا",
+      "bn": "অতঃপর এটা কখনও উচিত নয়। তোমরা সত্ত্বরই জেনে নেবে।",
+      "fa": "باز چنان نیست که شما می‌پندارید؛ بزودی خواهید دانست!",
+      "ru": "Еще раз нет! Скоро вы узнаете!"
     }
   },
   {
@@ -46,7 +74,14 @@
     "audio": "https://everyayah.com/data/Alafasy_128kbps/102005.mp3",
     "translations": {
       "tr": "Dikkat edin, şayet yaptığınızın sonucunu kesin olarak bir bilseniz!",
-      "en": "No! If you only knew with knowledge of certainty..."
+      "en": "No! If you only knew with knowledge of certainty...",
+      "de": "Keineswegs! Wenn ihr es nur mit dem Wissen der Gewißheit wüßtet!",
+      "fr": "Sûrement! Si vous saviez de science certaine.",
+      "id": "Janganlah begitu, jika kamu mengetahui dengan pengetahuan yang yakin,",
+      "ur": "دیکھو اگر تم جانتے (یعنی) علم الیقین (رکھتے تو غفلت نہ کرتے)",
+      "bn": "কখনই নয়; যদি তোমরা নিশ্চিত জানতে।",
+      "fa": "چنان نیست که شما خیال می‌کنید؛ اگر شما علم الیقین (به آخرت) داشتید (افزون طلبی شما را از خدا غافل نمی‌کرد)!",
+      "ru": "Но нет! Если бы вы только обладали убедительным знанием!"
     }
   },
   {
@@ -56,7 +91,14 @@
     "audio": "https://everyayah.com/data/Alafasy_128kbps/102006.mp3",
     "translations": {
       "tr": "And olsun ki, cehennemi göreceksiniz.",
-      "en": "You will surely see the Hellfire."
+      "en": "You will surely see the Hellfire.",
+      "de": "Ihr werdet ganz gewiß den Höllenbrand sehen.",
+      "fr": "Vous verrez, certes, la Fournaise.",
+      "id": "niscaya kamu benar-benar akan melihat neraka Jahiim,",
+      "ur": "تم ضرور دوزخ کو دیکھو گے",
+      "bn": "তোমরা অবশ্যই জাহান্নাম দেখবে,",
+      "fa": "قطعاً شما جهنّم را خواهید دید!",
+      "ru": "А ведь вы непременно увидите Ад."
     }
   },
   {
@@ -66,7 +108,14 @@
     "audio": "https://everyayah.com/data/Alafasy_128kbps/102007.mp3",
     "translations": {
       "tr": "And olsun ki, onu gözünüzle kesin olarak göreceksiniz.",
-      "en": "Then you will surely see it with the eye of certainty."
+      "en": "Then you will surely see it with the eye of certainty.",
+      "de": "Abermals: Ihr werdet ihn mit dem Auge der Gewißheit sehen.",
+      "fr": "Puis, vous la verrez certes, avec l'œil de la certitude.",
+      "id": "dan sesungguhnya kamu benar-benar akan melihatnya dengan 'ainul yaqin.",
+      "ur": "پھر اس کو (ایسا) دیکھو گے (کہ) عین الیقین (آ جائے گا)",
+      "bn": "অতঃপর তোমরা তা অবশ্যই দেখবে দিব্য প্রত্যয়ে,",
+      "fa": "سپس (با ورود در آن) آن را به عین الیقین خواهید دید.",
+      "ru": "Вы увидите его глазами убежденными."
     }
   },
   {
@@ -76,7 +125,14 @@
     "audio": "https://everyayah.com/data/Alafasy_128kbps/102008.mp3",
     "translations": {
       "tr": "Sonra o gün, size verilmiş olan her nimetten sorguya çekileceksiniz.",
-      "en": "Then you will surely be asked that Day about pleasure."
+      "en": "Then you will surely be asked that Day about pleasure.",
+      "de": "Hierauf werdet ihr an jenem Tag ganz gewiß nach der Wonne gefragt werden.",
+      "fr": "Puis, assurément, vous serez interrogés, ce jour-là, sur les délices.",
+      "id": "kemudian kamu pasti akan ditanyai pada hari itu tentang kenikmatan (yang kamu megah-megahkan di dunia itu).",
+      "ur": "پھر اس روز تم سے (شکر) نعمت کے بارے میں پرسش ہو گی",
+      "bn": "এরপর অবশ্যই সেদিন তোমরা নেয়ামত সম্পর্কে জিজ্ঞাসিত হবে।",
+      "fa": "سپس در آن روز (همه شما) از نعمتهایی که داشته‌اید بازپرسی خواهید شد!",
+      "ru": "В тот день вы будете спрошены о благах."
     }
   }
 ]

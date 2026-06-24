@@ -6,7 +6,14 @@
     "audio": "https://everyayah.com/data/Alafasy_128kbps/112001.mp3",
     "translations": {
       "tr": "De ki: O Allah bir tektir.",
-      "en": "Say, \"He is Allah, [who is] One,"
+      "en": "Say, \"He is Allah, [who is] One,",
+      "de": "Sag: Er ist Allah, ein Einer,",
+      "fr": "Dis: «Il est Allah, Unique.",
+      "id": "Katakanlah: \"Dialah Allah, Yang Maha Esa.",
+      "ur": "کہو کہ وہ (ذات پاک جس کا نام) الله (ہے) ایک ہے",
+      "bn": "বলুন, তিনি আল্লাহ, এক,",
+      "fa": "بگو: خداوند، یکتا و یگانه است؛",
+      "ru": "Скажи: «Он - Аллах Единый,"
     }
   },
   {
@@ -16,7 +23,14 @@
     "audio": "https://everyayah.com/data/Alafasy_128kbps/112002.mp3",
     "translations": {
       "tr": "Allah her şeyden müstağni ve her şey O'na muhtaçtır.",
-      "en": "Allah, the Eternal Refuge."
+      "en": "Allah, the Eternal Refuge.",
+      "de": "Allah, der Überlegene.",
+      "fr": "Allah, Le Seul à être imploré pour ce que nous désirons.",
+      "id": "Allah adalah Tuhan yang bergantung kepada-Nya segala sesuatu.",
+      "ur": "معبود برحق جو بےنیاز ہے",
+      "bn": "আল্লাহ অমুখাপেক্ষী,",
+      "fa": "خداوندی است که همه نیازمندان قصد او می‌کنند؛",
+      "ru": "Аллах Самодостаточный."
     }
   },
   {
@@ -26,7 +40,14 @@
     "audio": "https://everyayah.com/data/Alafasy_128kbps/112003.mp3",
     "translations": {
       "tr": "O doğurmamış ve doğmamıştır.",
-      "en": "He neither begets nor is born,"
+      "en": "He neither begets nor is born,",
+      "de": "Er hat nicht gezeugt und ist nicht gezeugt worden,",
+      "fr": "Il n'a jamais engendré, n'a pas été engendré non plus.",
+      "id": "Dia tiada beranak dan tidak pula diperanakkan,",
+      "ur": "نہ کسی کا باپ ہے اور نہ کسی کا بیٹا",
+      "bn": "তিনি কাউকে জন্ম দেননি এবং কেউ তাকে জন্ম দেয়নি",
+      "fa": "(هرگز) نزاد، و زاده نشد،",
+      "ru": "Он не родил и не был рожден,"
     }
   },
   {
@@ -36,7 +57,14 @@
     "audio": "https://everyayah.com/data/Alafasy_128kbps/112004.mp3",
     "translations": {
       "tr": "Hiçbir şey O'na denk değildir.",
-      "en": "Nor is there to Him any equivalent.\""
+      "en": "Nor is there to Him any equivalent.\"",
+      "de": "und niemand ist Ihm jemals gleich.",
+      "fr": "Et nul n'est égal à Lui».",
+      "id": "dan tidak ada seorangpun yang setara dengan Dia\".",
+      "ur": "اور کوئی اس کا ہمسر نہیں",
+      "bn": "এবং তার সমতুল্য কেউ নেই।",
+      "fa": "و برای او هیچگاه شبیه و مانندی نبوده است!",
+      "ru": "и нет никого равного Ему»."
     }
   }
 ]

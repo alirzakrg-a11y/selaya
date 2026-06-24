@@ -69,6 +69,19 @@ Future<void> main() async {
       'creativecommons.org/licenses/by-sa/4.0/. '
       'Modified: converted to MP3, loudness-normalised.',
     );
+    yield const LicenseEntryWithLineBreaks(
+      ['SELAYA — Quran translations'],
+      'Quran translations (meal) sourced from Tanzil.net via the AlQuran.cloud '
+      'API, used unmodified:\n'
+      '• German — Bubenheim & Elyas\n'
+      '• French — Muhammad Hamidullah\n'
+      '• Indonesian — Ministry of Religious Affairs (Kemenag)\n'
+      '• Urdu — Fateh Muhammad Jalandhry\n'
+      '• Bengali — Muhiuddin Khan\n'
+      '• Persian — Makarem Shirazi\n'
+      '• Russian — Elmir Kuliev\n'
+      'Sources: tanzil.net, alquran.cloud.',
+    );
   });
 
   final prefs = await SharedPreferences.getInstance();

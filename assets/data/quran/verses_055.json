@@ -6,7 +6,14 @@
     "audio": "https://everyayah.com/data/Alafasy_128kbps/055001.mp3",
     "translations": {
       "tr": "Rahman olan Allah Kuran'ı öğretti;",
-      "en": "The Most Merciful"
+      "en": "The Most Merciful",
+      "de": "Der Allerbarmer",
+      "fr": "Le Tout Miséricordieux.",
+      "id": "(Tuhan) Yang Maha Pemurah,",
+      "ur": "(خدا جو) نہایت مہربان",
+      "bn": "করুনাময় আল্লাহ।",
+      "fa": "خداوند رحمان،",
+      "ru": "Милостивый"
     }
   },
   {
@@ -16,7 +23,14 @@
     "audio": "https://everyayah.com/data/Alafasy_128kbps/055002.mp3",
     "translations": {
       "tr": "Rahman olan Allah Kuran'ı öğretti;",
-      "en": "Taught the Qur'an,"
+      "en": "Taught the Qur'an,",
+      "de": "hat den Qur'an gelehrt.",
+      "fr": "Il a enseigné le Coran.",
+      "id": "Yang telah mengajarkan al Quran.",
+      "ur": "اسی نے قرآن کی تعلیم فرمائی",
+      "bn": "শিক্ষা দিয়েছেন কোরআন,",
+      "fa": "قرآن را تعلیم فرمود،",
+      "ru": "научил Корану,"
     }
   },
   {
@@ -26,7 +40,14 @@
     "audio": "https://everyayah.com/data/Alafasy_128kbps/055003.mp3",
     "translations": {
       "tr": "İnsanı yarattı, ona konuşmayı öğretti.",
-      "en": "Created man,"
+      "en": "Created man,",
+      "de": "Er hat den Menschen erschaffen.",
+      "fr": "Il a créé l'homme.",
+      "id": "Dia menciptakan manusia.",
+      "ur": "اسی نے انسان کو پیدا کیا",
+      "bn": "সৃষ্টি করেছেন মানুষ,",
+      "fa": "انسان را آفرید،",
+      "ru": "создал человека"
     }
   },
   {
@@ -36,7 +57,14 @@
     "audio": "https://everyayah.com/data/Alafasy_128kbps/055004.mp3",
     "translations": {
       "tr": "İnsanı yarattı, ona konuşmayı öğretti.",
-      "en": "[And] taught him eloquence."
+      "en": "[And] taught him eloquence.",
+      "de": "Er hat ihn die klare Darlegung gelehrt.",
+      "fr": "Il lui a appris à s'exprimer clairement.",
+      "id": "Mengajarnya pandai berbicara.",
+      "ur": "اسی نے اس کو بولنا سکھایا",
+      "bn": "তাকে শিখিয়েছেন বর্ণনা।",
+      "fa": "و به او «بیان» را آموخت.",
+      "ru": "и научил его изъясняться."
     }
   },
   {
@@ -46,7 +74,14 @@
     "audio": "https://everyayah.com/data/Alafasy_128kbps/055005.mp3",
     "translations": {
       "tr": "Güneş ve ayın hareketleri bir hesaba göredir.",
-      "en": "The sun and the moon [move] by precise calculation,"
+      "en": "The sun and the moon [move] by precise calculation,",
+      "de": "Die Sonne und der Mond (laufen) nach Berechnung.",
+      "fr": "Le soleil et la lune [évoluent] selon un calcul [minutieux].",
+      "id": "Matahari dan bulan (beredar) menurut perhitungan.",
+      "ur": "سورج اور چاند ایک حساب مقرر سے چل رہے ہیں",
+      "bn": "সূর্য ও চন্দ্র হিসাবমত চলে।",
+      "fa": "خورشید و ماه با حساب منظّمی می‌گردند،",
+      "ru": "Солнце и луна движутся согласно рассчитанному порядку."
     }
   },
   {
@@ -56,7 +91,14 @@
     "audio": "https://everyayah.com/data/Alafasy_128kbps/055006.mp3",
     "translations": {
       "tr": "Bitkiler ve ağaçlar O'nun buyruğuna boyun eğerler.",
-      "en": "And the stars and trees prostrate."
+      "en": "And the stars and trees prostrate.",
+      "de": "Die stiellosen Pflanzen und die Bäume werfen sich nieder.",
+      "fr": "Et l'herbe et les arbres se prosternent.",
+      "id": "Dan tumbuh-tumbuhan dan pohon-pohonan kedua-duanya tunduk kepada-Nya.",
+      "ur": "اور بوٹیاں اور درخت سجدہ کر رہے ہیں",
+      "bn": "এবং তৃণলতা ও বৃক্ষাদি সেজদারত আছে।",
+      "fa": "و گیاه و درخت برای او سجده می‌کنند!",
+      "ru": "Травы (или звезды) и деревья совершают поклоны."
     }
   },
   {
@@ -66,7 +108,14 @@
     "audio": "https://everyayah.com/data/Alafasy_128kbps/055007.mp3",
     "translations": {
       "tr": "O, göğü yükseltmiştir; tartıyı koymuştur.",
-      "en": "And the heaven He raised and imposed the balance"
+      "en": "And the heaven He raised and imposed the balance",
+      "de": "Den Himmel hat Er emporgehoben und die Waage aufgestellt,",
+      "fr": "Et quant au ciel, Il l'a élevé bien haut. Et Il a établi la balance,",
+      "id": "Dan Allah telah meninggikan langit dan Dia meletakkan neraca (keadilan).",
+      "ur": "اور اسی نے آسمان کو بلند کیا اور ترازو قائم کی",
+      "bn": "তিনি আকাশকে করেছেন সমুন্নত এবং স্থাপন করেছেন তুলাদন্ড।",
+      "fa": "و آسمان را برافراشت، و میزان و قانون (در آن) گذاشت،",
+      "ru": "Он возвысил небо и установил весы,"
     }
   },
   {
@@ -76,7 +125,14 @@
     "audio": "https://everyayah.com/data/Alafasy_128kbps/055008.mp3",
     "translations": {
       "tr": "Artık tartıda tecavüz etmeyin.",
-      "en": "That you not transgress within the balance."
+      "en": "That you not transgress within the balance.",
+      "de": "damit ihr beim Wägen nicht das Maß überschreitet.",
+      "fr": "afin que vous ne transgressiez pas dans la pesée:",
+      "id": "Supaya kamu jangan melampaui batas tentang neraca itu.",
+      "ur": "کہ ترازو (سے تولنے) میں حد سے تجاوز نہ کرو",
+      "bn": "যাতে তোমরা সীমালংঘন না কর তুলাদন্ডে।",
+      "fa": "تا در میزان طغیان نکنید (و از مسیر عدالت منحرف نشوید)،",
+      "ru": "чтобы вы не преступали границы дозволенного на весах."
     }
   },
   {
@@ -86,7 +142,14 @@
     "audio": "https://everyayah.com/data/Alafasy_128kbps/055009.mp3",
     "translations": {
       "tr": "Tartmayı doğru yapın, tartıyı eksik tutmayın.",
-      "en": "And establish weight in justice and do not make deficient the balance."
+      "en": "And establish weight in justice and do not make deficient the balance.",
+      "de": "Und meßt das Gewicht in Gerechtigkeit und gebt beim Wägen nicht weniger.",
+      "fr": "Donnez [toujours] le poids exact et ne faussez pas la pesée.",
+      "id": "Dan tegakkanlah timbangan itu dengan adil dan janganlah kamu mengurangi neraca itu.",
+      "ur": "اور انصاف کے ساتھ ٹھیک تولو۔ اور تول کم مت کرو",
+      "bn": "তোমরা ন্যায্য ওজন কায়েম কর এবং ওজনে কম দিয়ো না।",
+      "fa": "و وزن را بر اساس عدل برپا دارید و میزان را کم نگذارید!",
+      "ru": "Взвешивайте беспристрастно и не занижайте вес."
     }
   },
   {
@@ -96,7 +159,14 @@
     "audio": "https://everyayah.com/data/Alafasy_128kbps/055010.mp3",
     "translations": {
       "tr": "Allah, yeri yaratıkları için meydana getirmiştir.",
-      "en": "And the earth He laid [out] for the creatures."
+      "en": "And the earth He laid [out] for the creatures.",
+      "de": "Und die Erde hat Er für die Geschöpfe (an)gelegt;",
+      "fr": "Quant à la terre, Il l'a étendue pour les êtres vivants:",
+      "id": "Dan Allah telah meratakan bumi untuk makhluk(Nya).",
+      "ur": "اور اسی نے خلقت کے لئے زمین بچھائی",
+      "bn": "তিনি পৃথিবীকে স্থাপন করেছেন সৃষ্টজীবের জন্যে।",
+      "fa": "زمین را برای خلایق آفرید،",
+      "ru": "Он установил землю для тварей."
     }
   },
   {
@@ -106,7 +176,14 @@
     "audio": "https://everyayah.com/data/Alafasy_128kbps/055011.mp3",
     "translations": {
       "tr": "Orada meyveler, salkımlı hurma ağaçları, kabuklu taneler, güzel kokulu otlar vardır.",
-      "en": "Therein is fruit and palm trees having sheaths [of dates]"
+      "en": "Therein is fruit and palm trees having sheaths [of dates]",
+      "de": "auf ihr gibt es Früchte, Palmen mit Fruchthüllen",
+      "fr": "il s'y trouve des fruits, et aussi les palmiers aux fruits recouverts d'enveloppes,",
+      "id": "Di bumi itu ada buah-buahan dan pohon kurma yang mempunyai kelopak mayang.",
+      "ur": "اس میں میوے اور کھجور کے درخت ہیں جن کے خوشوں پر غلاف ہوتے ہیں",
+      "bn": "এতে আছে ফলমূল এবং বহিরাবরণবিশিষ্ট খর্জুর বৃক্ষ।",
+      "fa": "که در آن میوه‌ها و نخلهای پرشکوفه است،",
+      "ru": "На ней есть фрукты и финиковые пальмы с чашечками (или волокнами),"
     }
   },
   {
@@ -116,7 +193,14 @@
     "audio": "https://everyayah.com/data/Alafasy_128kbps/055012.mp3",
     "translations": {
       "tr": "Orada meyveler, salkımlı hurma ağaçları, kabuklu taneler, güzel kokulu otlar vardır.",
-      "en": "And grain having husks and scented plants."
+      "en": "And grain having husks and scented plants.",
+      "de": "und Korn mit Halmen und duftende Pflanzen.",
+      "fr": "tout comme les grains dans leurs balles, et les plantes aromatiques.",
+      "id": "Dan biji-bijian yang berkulit dan bunga-bunga yang harum baunya.",
+      "ur": "اور اناج جس کے ساتھ بھس ہوتا ہے اور خوشبودار پھول",
+      "bn": "আর আছে খোসাবিশিষ্ট শস্য ও সুগন্ধি ফুল।",
+      "fa": "و دانه‌هایی که همراه با ساقه و برگی است که بصورت کاه درمی‌آید، و گیاهان خوشبو!",
+      "ru": "а также злаки с листьями и травы благоуханные."
     }
   },
   {
@@ -126,7 +210,14 @@
     "audio": "https://everyayah.com/data/Alafasy_128kbps/055013.mp3",
     "translations": {
       "tr": "Ey insanlar ve cinler! Öyleyken, Rabbinizin nimetlerinden hangisini yalanlarsınız?",
-      "en": "So which of the favors of your Lord would you deny?"
+      "en": "So which of the favors of your Lord would you deny?",
+      "de": "Welche der Wohltaten eures Herrn wollt ihr beide denn leugnen?",
+      "fr": "Lequel donc des bienfaits de votre Seigneur nierez-vous?",
+      "id": "Maka nikmat Tuhan kamu yang manakah yang kamu dustakan?",
+      "ur": "تو (اے گروہ جن وانس) تم اپنے پروردگار کی کون کون سی نعمت کو جھٹلاؤ گے؟",
+      "bn": "অতএব, তোমরা উভয়ে তোমাদের পালনকর্তার কোন কোন অনুগ্রহকে অস্বীকার করবে?",
+      "fa": "پس کدامین نعمتهای پروردگارتان را تکذیب می‌کنید (شما ای گروه جنّ و انس)؟!",
+      "ru": "Какую же из милостей вашего Господа вы считаете ложью?"
     }
   },
   {
@@ -136,7 +227,14 @@
     "audio": "https://everyayah.com/data/Alafasy_128kbps/055014.mp3",
     "translations": {
       "tr": "O, insanı pişmiş çamur gibi kuru balçıktan yaratmıştır.",
-      "en": "He created man from clay like [that of] pottery."
+      "en": "He created man from clay like [that of] pottery.",
+      "de": "Er hat den Menschen aus trockenem Ton wie Töpferware erschaffen.",
+      "fr": "Il a crée l'homme d'argile sonnante comme la poterie;",
+      "id": "Dia menciptakan manusia dari tanah kering seperti tembikar,",
+      "ur": "اسی نے انسان کو ٹھیکرے کی طرح کھنکھناتی مٹی سے بنایا",
+      "bn": "তিনি মানুষকে সৃষ্টি করেছেন পোড়া মাটির ন্যায় শুষ্ক মৃত্তিকা থেকে।",
+      "fa": "انسان را از گِل خشکیده‌ای همچون سفال آفرید،",
+      "ru": "Он создал человека из сухой (или звенящей) глины, подобной гончарной,"
     }
   },
   {
@@ -146,7 +244,14 @@
     "audio": "https://everyayah.com/data/Alafasy_128kbps/055015.mp3",
     "translations": {
       "tr": "Cinleri de yalın bir alevden yaratmıştır.",
-      "en": "And He created the jinn from a smokeless flame of fire."
+      "en": "And He created the jinn from a smokeless flame of fire.",
+      "de": "Und Er hat die Ginn aus einer unruhigen Feuerflamme erschaffen.",
+      "fr": "et Il a créé les djinns de la flamme d'un feu sans fumée.",
+      "id": "dan Dia menciptakan jin dari nyala api.",
+      "ur": "اور جنات کو آگ کے شعلے سے پیدا کیا",
+      "bn": "এবং জিনকে সৃষ্টি করেছেন অগ্নিশিখা থেকে।",
+      "fa": "و جنّ را از شعله‌های مختلط و متحرّک آتش خلق کرد!",
+      "ru": "и создал джиннов из чистого пламени (или из пламени, смешанного с дымом)."
     }
   },
   {
@@ -156,7 +261,14 @@
     "audio": "https://everyayah.com/data/Alafasy_128kbps/055016.mp3",
     "translations": {
       "tr": "Öyleyken; Rabbinizin nimetlerinden hangisini yalanlarsınız?",
-      "en": "So which of the favors of your Lord would you deny?"
+      "en": "So which of the favors of your Lord would you deny?",
+      "de": "Welche der Wohltaten eures Herrn wollt ihr beide denn leugnen?",
+      "fr": "Lequel donc des bienfaits de votre Seigneur nierez-vous?",
+      "id": "Maka nikmat Tuhan kamu yang manakah yang kamu dustakan?",
+      "ur": "تو تم اپنے پروردگار کی کون کون سی نعمت کو جھٹلاؤ گے؟",
+      "bn": "অতএব, তোমরা উভয়ে তোমাদের পালনকর্তার কোন কোন অনুগ্রহ অস্বীকার করবে?",
+      "fa": "پس کدامین نعمتهای پروردگارتان را انکار می‌کنید؟!",
+      "ru": "Какую же из милостей вашего Господа вы считаете ложью?"
     }
   },
   {
@@ -166,7 +278,14 @@
     "audio": "https://everyayah.com/data/Alafasy_128kbps/055017.mp3",
     "translations": {
       "tr": "O, iki doğunun Rabbidir, iki batının Rabbidir.",
-      "en": "[He is] Lord of the two sunrises and Lord of the two sunsets."
+      "en": "[He is] Lord of the two sunrises and Lord of the two sunsets.",
+      "de": "(Er ist) der Herr der beiden Osten und der Herr der beiden Westen.",
+      "fr": "Seigneur des deux Levants et Seigneur des deux Couchants!",
+      "id": "Tuhan yang memelihara kedua tempat terbit matahari dan Tuhan yang memelihara kedua tempat terbenamnya",
+      "ur": "وہی دونوں مشرقوں اور دونوں مغربوں کا مالک (ہے)",
+      "bn": "তিনি দুই উদয়াচল ও দুই অস্তাচলের মালিক।",
+      "fa": "او پروردگار دو مشرق و پروردگار دو مغرب است!",
+      "ru": "Господь обоих востоков и Господь обоих западов!"
     }
   },
   {
@@ -176,7 +295,14 @@
     "audio": "https://everyayah.com/data/Alafasy_128kbps/055018.mp3",
     "translations": {
       "tr": "Öyleyken, Rabbinizin nimetlerinden hangisini yalanlarsınız?",
-      "en": "So which of the favors of your Lord would you deny?"
+      "en": "So which of the favors of your Lord would you deny?",
+      "de": "Welche der Wohltaten eures Herrn wollt ihr beide denn leugnen?",
+      "fr": "Lequel donc des bienfaits de votre Seigneur nierez-vous?",
+      "id": "Maka nikmat Tuhan kamu yang manakah yang kamu dustakan?",
+      "ur": "تو تم اپنے پروردگار کی کون کون سی نعمت کو جھٹلاؤ گے؟",
+      "bn": "অতএব, তোমরা উভয়ে তোমাদের পালনকর্তার কোন কোন অবদানকে অস্বীকার করবে?",
+      "fa": "پس کدامین نعمتهای پروردگارتان را انکار می‌کنید؟!",
+      "ru": "Какую же из милостей вашего Господа вы считаете ложью?"
     }
   },
   {
@@ -186,7 +312,14 @@
     "audio": "https://everyayah.com/data/Alafasy_128kbps/055019.mp3",
     "translations": {
       "tr": "Acı ve tatlı sulu iki denizi birbirine kavuşmamak üzere salıvermiştir.",
-      "en": "He released the two seas, meeting [side by side];"
+      "en": "He released the two seas, meeting [side by side];",
+      "de": "Er hat den beiden Meeren freien Lauf gelassen; sie treffen aufeinander,",
+      "fr": "Il a donné libre cours aux deux mers pour se rencontrer;",
+      "id": "Dia membiarkan dua lautan mengalir yang keduanya kemudian bertemu,",
+      "ur": "اسی نے دو دریا رواں کئے جو آپس میں ملتے ہیں",
+      "bn": "তিনি পাশাপাশি দুই দরিয়া প্রবাহিত করেছেন।",
+      "fa": "دو دریای مختلف (شور و شیرین، گرم و سرد) را در کنار هم قرار داد، در حالی که با هم تماس دارند؛",
+      "ru": "Он смешал два моря, которые встречаются друг с другом."
     }
   },
   {
@@ -196,7 +329,14 @@
     "audio": "https://everyayah.com/data/Alafasy_128kbps/055020.mp3",
     "translations": {
       "tr": "Aralarında bir engel vardır; birbirinin sınırını aşamazlar.",
-      "en": "Between them is a barrier [so] neither of them transgresses."
+      "en": "Between them is a barrier [so] neither of them transgresses.",
+      "de": "zwischen ihnen ist (aber) ein trennendes Hindernis, (das)s sie (ihre Grenzen) nicht überschreiten.",
+      "fr": "il y a entre elles une barrière qu'elles ne dépassent pas.",
+      "id": "antara keduanya ada batas yang tidak dilampaui masing-masing.",
+      "ur": "دونوں میں ایک آڑ ہے کہ (اس سے) تجاوز نہیں کرسکتے",
+      "bn": "উভয়ের মাঝখানে রয়েছে এক অন্তরাল, যা তারা অতিক্রম করে না।",
+      "fa": "در میان آن دو برزخی است که یکی بر دیگری غلبه نمی‌کند (و به هم نمی‌آمیزند)!",
+      "ru": "Между ними существует преграда, которую они не могут преступить."
     }
   },
   {
@@ -206,7 +346,14 @@
     "audio": "https://everyayah.com/data/Alafasy_128kbps/055021.mp3",
     "translations": {
       "tr": "Öyleyken, Rabbinizin nimetlerinden hangisini yalanlarsınız?",
-      "en": "So which of the favors of your Lord would you deny?"
+      "en": "So which of the favors of your Lord would you deny?",
+      "de": "Welche der Wohltaten eures Herrn wollt ihr beide denn leugnen?",
+      "fr": "Lequel donc des bienfaits de votre Seigneur nierez-vous?",
+      "id": "Maka nikmat Tuhan kamu yang manakah yang kamu dustakan?",
+      "ur": "تو تم اپنے پروردگار کی کون کون سی نعمت کو جھٹلاؤ گے؟",
+      "bn": "অতএব, তোমরা উভয়ে তোমাদের পালনকর্তার কোন কোন অবদানকে অস্বীকার করবে?",
+      "fa": "پس کدامین نعمتهای پروردگارتان را انکار می‌کنید؟!",
+      "ru": "Какую же из милостей вашего Господа вы считаете ложью?"
     }
   },
   {
@@ -216,7 +363,14 @@
     "audio": "https://everyayah.com/data/Alafasy_128kbps/055022.mp3",
     "translations": {
       "tr": "Bu iki denizden de inci ve mercan çıkar.",
-      "en": "From both of them emerge pearl and coral."
+      "en": "From both of them emerge pearl and coral.",
+      "de": "Aus ihnen beiden kommen Perlen und Korallen hervor.",
+      "fr": "De ces deux [mers] sortent la perle et le corail.",
+      "id": "Dari keduanya keluar mutiara dan marjan.",
+      "ur": "دونوں دریاؤں سے موتی اور مونگے نکلتے ہیں",
+      "bn": "উভয় দরিয়া থেকে উৎপন্ন হয় মোতি ও প্রবাল।",
+      "fa": "از آن دو، لؤلؤ و مرجان خارج می‌شود.",
+      "ru": "Из них обоих вылавливают жемчуг и кораллы."
     }
   },
   {
@@ -226,7 +380,14 @@
     "audio": "https://everyayah.com/data/Alafasy_128kbps/055023.mp3",
     "translations": {
       "tr": "Öyleyken Rabbinizin nimetlerinden hangisini yalanlarsınız?",
-      "en": "So which of the favors of your Lord would you deny?"
+      "en": "So which of the favors of your Lord would you deny?",
+      "de": "Welche der Wohltaten eures Herrn wollt ihr beide denn leugnen?",
+      "fr": "Lequel donc des bienfaits de votre Seigneur nierez-vous?",
+      "id": "Maka nikmat Tuhan kamu yang manakah yang kamu dustakan?",
+      "ur": "تو تم اپنے پروردگار کی کون کون سی نعمت کو جھٹلاؤ گے؟",
+      "bn": "অতএব, তোমরা উভয়ে তোমাদের পালনকর্তার কোন কোন অবদানকে অস্বীকার করবে?",
+      "fa": "پس کدامین نعمتهای پروردگارتان را انکار می‌کنید؟!",
+      "ru": "Какую же из милостей вашего Господа вы считаете ложью?"
     }
   },
   {
@@ -236,7 +397,14 @@
     "audio": "https://everyayah.com/data/Alafasy_128kbps/055024.mp3",
     "translations": {
       "tr": "Denizde yürüyen dağlar gibi gemiler O'nundur.",
-      "en": "And to Him belong the ships [with sails] elevated in the sea like mountains."
+      "en": "And to Him belong the ships [with sails] elevated in the sea like mountains.",
+      "de": "Und Sein sind (auch) die (hoch)gebauten auf dem Meer fahrenden (Schiffe), wie Berge.",
+      "fr": "A Lui appartiennent les vaisseaux élevés sur la mer comme des montagnes.",
+      "id": "Dan kepunyaan-Nya lah bahtera-bahtera yang tinggi layarnya di lautan laksana gunung-gunung.",
+      "ur": "اور جہاز بھی اسی کے ہیں جو دریا میں پہاڑوں کی طرح اونچے کھڑے ہوتے ہیں",
+      "bn": "দরিয়ায় বিচরণশীল পর্বতদৃশ্য জাহাজসমূহ তাঁরই (নিয়ন্ত্রনাধীন)",
+      "fa": "و برای اوست کشتیهای ساخته شده که در دریا به حرکت درمی‌آیند و همچون کوهی هستند!",
+      "ru": "Ему принадлежат плывущие по морю с поднятыми парусами корабли, подобные горам."
     }
   },
   {
@@ -246,7 +414,14 @@
     "audio": "https://everyayah.com/data/Alafasy_128kbps/055025.mp3",
     "translations": {
       "tr": "Öyleyken Rabbinizin nimetlerinden hangisini yalanlarsınız?",
-      "en": "So which of the favors of your Lord would you deny?"
+      "en": "So which of the favors of your Lord would you deny?",
+      "de": "Welche der Wohltaten eures Herrn wollt ihr beide denn leugnen?",
+      "fr": "Lequel donc des bienfaits de votre Seigneur nierez-vous?",
+      "id": "Maka nikmat Tuhan kamu yang manakah yang kamu dustakan?",
+      "ur": "تو تم اپنے پروردگار کی کون کون سی نعمت کو جھٹلاؤ گے؟",
+      "bn": "অতএব, তোমরা উভয়ে তোমাদের পালনকর্তার কোন কোন অবদানকে অস্বীকার করবে?",
+      "fa": "پس کدامین نعمتهای پروردگارتان را انکار می‌کنید؟!",
+      "ru": "Какую же из милостей вашего Господа вы считаете ложью?"
     }
   },
   {
@@ -256,7 +431,14 @@
     "audio": "https://everyayah.com/data/Alafasy_128kbps/055026.mp3",
     "translations": {
       "tr": "Yeryüzünde bulunan her şey fanidir.",
-      "en": "Everyone upon the earth will perish,"
+      "en": "Everyone upon the earth will perish,",
+      "de": "Alle, die auf ihr sind, werden vergehen;",
+      "fr": "Tout ce qui est sur elle [la terre] doit disparaître,",
+      "id": "Semua yang ada di bumi itu akan binasa.",
+      "ur": "جو (مخلوق) زمین پر ہے سب کو فنا ہونا ہے",
+      "bn": "ভূপৃষ্টের সবকিছুই ধ্বংসশীল।",
+      "fa": "همه کسانی که روی آن [= زمین‌] هستند فانی می‌شوند،",
+      "ru": "Все на ней (земле) смертны."
     }
   },
   {
@@ -266,7 +448,14 @@
     "audio": "https://everyayah.com/data/Alafasy_128kbps/055027.mp3",
     "translations": {
       "tr": "Ancak, yüce ve cömert olan Rabbinin varlığı bakidir.",
-      "en": "And there will remain the Face of your Lord, Owner of Majesty and Honor."
+      "en": "And there will remain the Face of your Lord, Owner of Majesty and Honor.",
+      "de": "bleiben wird (nur) das Angesicht deines Herrn, Besitzer der Erhabenheit und Ehre.",
+      "fr": "[Seule] subsistera La Face [Wajh] de ton Seigneur, plein de majesté et de noblesse.",
+      "id": "Dan tetap kekal Dzat Tuhanmu yang mempunyai kebesaran dan kemuliaan.",
+      "ur": "اور تمہارے پروردگار ہی کی ذات (بابرکات) جو صاحب جلال وعظمت ہے باقی رہے گی",
+      "bn": "একমাত্র আপনার মহিমায় ও মহানুভব পালনকর্তার সত্তা ছাড়া।",
+      "fa": "و تنها ذات ذوالجلال و گرامی پروردگارت باقی می‌ماند!",
+      "ru": "Вечен лишь Лик Господа твоего, обладающий величием и великодушием."
     }
   },
   {
@@ -276,7 +465,14 @@
     "audio": "https://everyayah.com/data/Alafasy_128kbps/055028.mp3",
     "translations": {
       "tr": "Öyleyken Rabbinizin nimetlerinden hangisini yalanlarsınız?",
-      "en": "So which of the favors of your Lord would you deny?"
+      "en": "So which of the favors of your Lord would you deny?",
+      "de": "Welche der Wohltaten eures Herrn wollt ihr beide denn leugnen?",
+      "fr": "Lequel donc des bienfaits de votre Seigneur nierez-vous?",
+      "id": "Maka nikmat Tuhan kamu yang manakah yang kamu dustakan?",
+      "ur": "تو تم اپنے پروردگار کی کون کون سی نعمت کو جھٹلاؤ گے؟",
+      "bn": "অতএব, তোমরা উভয়ে তোমাদের পালনকর্তার কোন কোন অবদানকে অস্বীকার করবে?",
+      "fa": "پس کدامین نعمتهای پروردگارتان را انکار می‌کنید؟!",
+      "ru": "Какую же из милостей вашего Господа вы считаете ложью?"
     }
   },
   {
@@ -286,7 +482,14 @@
     "audio": "https://everyayah.com/data/Alafasy_128kbps/055029.mp3",
     "translations": {
       "tr": "Göklerde ve yerde olan kimseler her şeyi O'ndan isterler; O her an kainata tasarruf etmektedir.",
-      "en": "Whoever is within the heavens and earth asks Him; every day He is bringing about a matter."
+      "en": "Whoever is within the heavens and earth asks Him; every day He is bringing about a matter.",
+      "de": "Ihn bittet wer in den Himmeln und auf der Erde ist. Jeden Tag befaßt Er sich mit einer Angelegenheit.",
+      "fr": "Ceux qui sont dans les cieux et la terre L'implorent. Chaque jour, Il accomplit une œuvre nouvelle.",
+      "id": "Semua yang ada di langit dan bumi selalu meminta kepada-Nya. Setiap waktu Dia dalam kesibukan.",
+      "ur": "آسمان اور زمین میں جتنے لوگ ہیں سب اسی سے مانگتے ہیں۔ وہ ہر روز کام میں مصروف رہتا ہے",
+      "bn": "নভোমন্ডল ও ভূমন্ডলের সবাই তাঁর কাছে প্রার্থী। তিনি সর্বদাই কোন না কোন কাজে রত আছেন।",
+      "fa": "تمام کسانی که در آسمانها و زمین هستند از او تقاضا می‌کنند، و او هر روز در شأن و کاری است!",
+      "ru": "Его просят те, кто на небесах и на земле, и каждый день Он занят делом."
     }
   },
   {
@@ -296,7 +499,14 @@
     "audio": "https://everyayah.com/data/Alafasy_128kbps/055030.mp3",
     "translations": {
       "tr": "Öyleyken, Rabbinizin nimetlerinden hangisini yalanlarsınız?",
-      "en": "So which of the favors of your Lord would you deny?"
+      "en": "So which of the favors of your Lord would you deny?",
+      "de": "Welche der Wohltaten eures Herrn wollt ihr beide denn leugnen?",
+      "fr": "Lequel donc des bienfaits de votre Seigneur nierez-vous?",
+      "id": "Maka nikmat Rabb-mu yang manakah yang kamu dustakan?",
+      "ur": "تو تم اپنے پروردگار کی کون کون سی نعمت کو جھٹلاؤ گے؟",
+      "bn": "অতএব, তোমরা উভয়ে তোমাদের পালনকর্তার কোন কোন অবদানকে অস্বীকার করবে?",
+      "fa": "پس کدامین نعمتهای پروردگارتان را انکار می‌کنید؟!",
+      "ru": "Какую же из милостей вашего Господа вы считаете ложью?"
     }
   },
   {
@@ -306,7 +516,14 @@
     "audio": "https://everyayah.com/data/Alafasy_128kbps/055031.mp3",
     "translations": {
       "tr": "Ey insan ve cin toplulukları! Sizin de hesabınızı ele alacağız.",
-      "en": "We will attend to you, O prominent beings."
+      "en": "We will attend to you, O prominent beings.",
+      "de": "Wir werden Uns euch widmen, ihr beiden Schwerlastenden.",
+      "fr": "Nous allons bientôt entreprendre votre jugement, ô vous les deux charges [hommes et djinns].",
+      "id": "Kami akan memperhatikan sepenuhnya kepadamu hai manusia dan jin.",
+      "ur": "اے دونوں جماعتو! ہم عنقریب تمہاری طرف متوجہ ہوتے ہیں",
+      "bn": "হে জিন ও মানব! আমি শীঘ্রই তোমাদের জন্যে কর্মমুক্ত হয়ে যাব।",
+      "fa": "بزودی به حساب شما می‌پردازیم ای دو گروه انس و جنّ!",
+      "ru": "Скоро Мы займемся только вами, о два весомых (или обремененных) рода!"
     }
   },
   {
@@ -316,7 +533,14 @@
     "audio": "https://everyayah.com/data/Alafasy_128kbps/055032.mp3",
     "translations": {
       "tr": "Öyleyken, Rabbinizin nimetlerinden hangisini yalanlarsınız?",
-      "en": "So which of the favors of your Lord would you deny?"
+      "en": "So which of the favors of your Lord would you deny?",
+      "de": "Welche der Wohltaten eures Herrn wollt ihr beide denn leugnen?",
+      "fr": "Lequel donc des bienfaits de votre Seigneur nierez-vous?",
+      "id": "Maka nikmat Tuhan kamu yang manakah yang kamu dustakan?",
+      "ur": "تو تم اپنے پروردگار کی کون کون سی نعمت کو جھٹلاؤ گے؟",
+      "bn": "অতএব, তোমরা উভয়ে তোমাদের পালনকর্তার কোন কোন অবদানকে অস্বীকার করবে?",
+      "fa": "پس کدامین نعمتهای پروردگارتان را انکار می‌کنید؟!",
+      "ru": "Какую же из милостей вашего Господа вы считаете ложью?"
     }
   },
   {
@@ -326,7 +550,14 @@
     "audio": "https://everyayah.com/data/Alafasy_128kbps/055033.mp3",
     "translations": {
       "tr": "Ey cin ve insan toplulukları! Göklerin ve yerin çevresini aşıp geçmeye gücünüz yetiyorsa geçin! Ama Allah'ın verdiği bir güç olmaksızın geçemezsiniz ki!",
-      "en": "O company of jinn and mankind, if you are able to pass beyond the regions of the heavens and the earth, then pass. You will not pass except by authority [from Allah]."
+      "en": "O company of jinn and mankind, if you are able to pass beyond the regions of the heavens and the earth, then pass. You will not pass except by authority [from Allah].",
+      "de": "O ihr Gesellschaft der Ginn und der Menschen, wenn ihr aus den Bezirken der Himmel und der Erde hinausdringen könnt, so dringt doch heraus. Ihr werdet nicht herausdringen, außer mit einer Ermächtigung.",
+      "fr": "O peuple de djinns et d'hommes! Si vous pouvez sortir du domaine des cieux et de la terre, alors faites-le. Mais vous ne pourrez en sortir qu'à l'aide d'un pouvoir [illimité].",
+      "id": "Hai jama'ah jin dan manusia, jika kamu sanggup menembus (melintasi) penjuru langit dan bumi, maka lintasilah, kamu tidak dapat menembusnya kecuali dengan kekuatan.",
+      "ur": "اے گروہِ جن وانس اگر تمہیں قدرت ہو کہ آسمان اور زمین کے کناروں سے نکل جاؤ تو نکل جاؤ۔ اور زور کے سوا تم نکل سکنے ہی کے نہیں",
+      "bn": "হে জিন ও মানবকূল, নভোমন্ডল ও ভূমন্ডলের প্রান্ত অতিক্রম করা যদি তোমাদের সাধ্যে কুলায়, তবে অতিক্রম কর। কিন্তু ছাড়পত্র ব্যতীত তোমরা তা অতিক্রম করতে পারবে না।",
+      "fa": "ای گروه جنّ و انس! اگر می‌توانید از مرزهای آسمانها و زمین بگذرید، پس بگذرید، ولی هرگز نمی‌توانید، مگر با نیرویی (فوق العاده)!",
+      "ru": "О сонмище джиннов и людей! Если вы можете проникнуть за пределы небес и земли, то проникните. Но вы не проникните, не обладая властью (или ясным доводом)!"
     }
   },
   {
@@ -336,7 +567,14 @@
     "audio": "https://everyayah.com/data/Alafasy_128kbps/055034.mp3",
     "translations": {
       "tr": "Öyleyken, Rabbinizin nimetlerinden hangisini yalanlarsınız?",
-      "en": "So which of the favors of your Lord would you deny?"
+      "en": "So which of the favors of your Lord would you deny?",
+      "de": "Welche der Wohltaten eures Herrn wollt ihr beide denn leugnen?",
+      "fr": "Lequel donc des bienfaits de votre Seigneur nierez-vous?",
+      "id": "Maka nikmat Tuhan kamu yang manakah yang kamu dustakan?",
+      "ur": "تو تم اپنے پروردگار کی کون کون سی نعمت کو جھٹلاؤ گے؟",
+      "bn": "অতএব, তোমরা উভয়ে তোমাদের পালনকর্তার কোন কোন অবদানকে অস্বীকার করবে?",
+      "fa": "پس کدامین نعمتهای پروردگارتان را انکار می‌کنید؟!",
+      "ru": "Какую же из милостей вашего Господа вы считаете ложью?"
     }
   },
   {
@@ -346,7 +584,14 @@
     "audio": "https://everyayah.com/data/Alafasy_128kbps/055035.mp3",
     "translations": {
       "tr": "Ey insanlar ve cinler! Üzerinize dumansız bir alev ve ateşsiz bir duman gönderilir de kurtulamazsınız.",
-      "en": "There will be sent upon you a flame of fire and smoke, and you will not defend yourselves."
+      "en": "There will be sent upon you a flame of fire and smoke, and you will not defend yourselves.",
+      "de": "Gegen euch beide wird eine rauchlose Feuerflamme und Kupfer gesandt werden, so werdet ihr euch selbst nicht helfen (können).",
+      "fr": "Il sera lancé contre vous un jet de feu et de fumée [ou de cuivre fondu], et vous ne serez pas secourus.",
+      "id": "Kepada kamu, (jin dan manusia) dilepaskan nyala api dan cairan tembaga maka kamu tidak dapat menyelamatkan diri (dari padanya).",
+      "ur": "تم پر آگ کے شعلے اور دھواں چھوڑ دیا جائے گا تو پھر تم مقابلہ نہ کرسکو گے",
+      "bn": "ছাড়া হবে তোমাদের প্রতি অগ্নিস্ফুলিঙ্গ ও ধুম্রকুঞ্জ তখন তোমরা সেসব প্রতিহত করতে পারবে না।",
+      "fa": "شعله‌هایی از آتش بی‌دود، و دودهایی متراکم بر شما فرستاده می‌شود؛ و نمی‌توانید از کسی یاری بطلبید!",
+      "ru": "На вас нашлют зеленое пламя (или пламя без дыма) и расплавленную медь (или дым), и вы не поможете друг другу."
     }
   },
   {
@@ -356,7 +601,14 @@
     "audio": "https://everyayah.com/data/Alafasy_128kbps/055036.mp3",
     "translations": {
       "tr": "Öyleyken, Rabbinizin nimetlerinden hangisini yalanlarsınız?",
-      "en": "So which of the favors of your Lord would you deny?"
+      "en": "So which of the favors of your Lord would you deny?",
+      "de": "Welche der Wohltaten eures Herrn wollt ihr beide denn leugnen?",
+      "fr": "Lequel donc des bienfaits de votre Seigneur nierez-vous?",
+      "id": "Maka nikmat Tuhan kamu yang manakah yang kamu dustakan?",
+      "ur": "تو تم اپنے پروردگار کی کون کون سی نعمت کو جھٹلاؤ گے؟",
+      "bn": "অতএব, তোমরা উভয়ে তোমাদের পালনকর্তার কোন কোন অবদানকে অস্বীকার করবে?",
+      "fa": "پس کدامین نعمتهای پروردگارتان را انکار می‌کنید؟!",
+      "ru": "Какую же из милостей вашего Господа вы считаете ложью?"
     }
   },
   {
@@ -366,7 +618,14 @@
     "audio": "https://everyayah.com/data/Alafasy_128kbps/055037.mp3",
     "translations": {
       "tr": "Gök yarılıp da, gül gibi kızardığı, yağ gibi eridiği zaman haliniz nice olur?",
-      "en": "And when the heaven is split open and becomes rose-colored like oil -"
+      "en": "And when the heaven is split open and becomes rose-colored like oil -",
+      "de": "Wenn der Himmel sich spalten und dann rosig werden wird wie Farböl",
+      "fr": "Puis quand le ciel se fendra et deviendra alors écarlate comme le cuir rouge.",
+      "id": "Maka apabila langit telah terbelah dan menjadi merah mawar seperti (kilapan) minyak.",
+      "ur": "پھر جب آسمان پھٹ کر تیل کی تلچھٹ کی طرح گلابی ہوجائے گا (تو) وہ کیسا ہولناک دن ہوگا",
+      "bn": "যেদিন আকাশ বিদীর্ণ হবে তখন সেটি রক্তবর্ণে রঞ্জিত চামড়ার মত হয়ে যাবে।",
+      "fa": "در آن هنگام که آسمان شکافته شود و همچون روغن مذاب گلگون گردد (حوادث هولناکی رخ می‌دهد که تاب تحمل آن را نخواهید داشت)!",
+      "ru": "И вот небо разверзнется и станет красным, как кипящее масло (или покрасневшая кожа; или расплавленный свинец)."
     }
   },
   {
@@ -376,7 +635,14 @@
     "audio": "https://everyayah.com/data/Alafasy_128kbps/055038.mp3",
     "translations": {
       "tr": "Öyleyken, Rabbinizin nimetlerinden hangisini yalanlarsınız?",
-      "en": "So which of the favors of your Lord would you deny? -"
+      "en": "So which of the favors of your Lord would you deny? -",
+      "de": "- welche der Wohltaten eures Herrn wollt ihr beide denn leugnen? -,",
+      "fr": "Lequel des bienfaits de votre Seigneur nierez-vous?",
+      "id": "Maka nikmat Tuhan kamu yang manakah yang kamu dustakan?",
+      "ur": "تو تم اپنے پروردگار کی کون کون سی نعمت کو جھٹلاؤ گے؟",
+      "bn": "অতএব, তোমরা উভয়ে তোমাদের পালনকর্তার কোন কোন অবদানকে অস্বীকার করবে?",
+      "fa": "پس کدامین نعمتهای پروردگارتان را انکار می‌کنید؟!",
+      "ru": "Какую же из милостей вашего Господа вы считаете ложью?"
     }
   },
   {
@@ -386,7 +652,14 @@
     "audio": "https://everyayah.com/data/Alafasy_128kbps/055039.mp3",
     "translations": {
       "tr": "O gün ne insana ve ne cine suçu sorulur.",
-      "en": "Then on that Day none will be asked about his sin among men or jinn."
+      "en": "Then on that Day none will be asked about his sin among men or jinn.",
+      "de": "an jenem Tag nun werden nach ihrer Sünde weder Mensch noch Gänn gefragt.",
+      "fr": "Alors, ni aux hommes ni aux djinns, on ne posera des questions à propos de leurs péchés.",
+      "id": "Pada waktu itu manusia dan jin tidak ditanya tentang dosanya.",
+      "ur": "اس روز نہ تو کسی انسان سے اس کے گناہوں کے بارے میں پرسش کی جائے گی اور نہ کسی جن سے",
+      "bn": "সেদিন মানুষ না তার অপরাধ সম্পর্কে জিজ্ঞাসিত হবে, না জিন।",
+      "fa": "در آن روز هیچ کس از انس و جنّ از گناهش سؤال نمی‌شود (و همه چیز روشن است)!",
+      "ru": "В тот день ни человек, ни джинн не будет спрошен о его грехе."
     }
   },
   {
@@ -396,7 +669,14 @@
     "audio": "https://everyayah.com/data/Alafasy_128kbps/055040.mp3",
     "translations": {
       "tr": "Öyleyken, Rabbinizin nimetlerinden hangisini yalanlarsınız?",
-      "en": "So which of the favors of your Lord would you deny?"
+      "en": "So which of the favors of your Lord would you deny?",
+      "de": "Welche der Wohltaten eures Herrn wollt ihr beide denn leugnen?",
+      "fr": "Lequel donc des bienfaits de votre Seigneur nierez-vous?",
+      "id": "Maka nikmat Tuhan kamu yang manakah yang kamu dustakan?",
+      "ur": "تو تم اپنے پروردگار کی کون کون سی نعمت کو جھٹلاؤ گے؟",
+      "bn": "অতএব, তোমরা উভয়ে তোমাদের পালনকর্তার কোন কোন অবদানকে অস্বীকার করবে?",
+      "fa": "پس کدامین نعمتهای پروردگارتان را انکار می‌کنید؟!",
+      "ru": "Какую же из милостей вашего Господа вы считаете ложью?"
     }
   },
   {
@@ -406,7 +686,14 @@
     "audio": "https://everyayah.com/data/Alafasy_128kbps/055041.mp3",
     "translations": {
       "tr": "Suçlular simalarından tanınırlar da, alın saçlarından ve ayaklarından yakalanırlar.",
-      "en": "The criminals will be known by their marks, and they will be seized by the forelocks and the feet."
+      "en": "The criminals will be known by their marks, and they will be seized by the forelocks and the feet.",
+      "de": "Die Übeltäter werden an ihrem Merkmal erkannt werden und dann an den Stirnlocken und an den Füßen ergriffen.",
+      "fr": "On reconnaîtra les criminels à leurs traits. Ils seront donc saisis par les toupets et les pieds.",
+      "id": "Orang-orang yang berdosa dikenal dengan tanda-tandannya, lalu dipegang ubun-ubun dan kaki mereka.",
+      "ur": "گنہگار اپنے چہرے ہی سے پہچان لئے جائیں گے تو پیشانی کے بالوں اور پاؤں سے پکڑ لئے جائیں گے",
+      "bn": "অপরাধীদের পরিচয় পাওয়া যাবে তাদের চেহারা থেকে; অতঃপর তাদের কপালের চুল ও পা ধরে টেনে নেয়া হবে।",
+      "fa": "مجرمان از چهره‌هایشان شناخته می‌شوند؛ و آنگاه آنها را از موهای پیش سر، و پاهایشان می‌گیرند (و به دوزخ می‌افکنند)!",
+      "ru": "Грешников будут узнавать по их признакам, а затем хватать за хохлы и стопы."
     }
   },
   {
@@ -416,7 +703,14 @@
     "audio": "https://everyayah.com/data/Alafasy_128kbps/055042.mp3",
     "translations": {
       "tr": "Öyleyken, Rabbinizin nimetlerinden hangisini yalanlarsınız?",
-      "en": "So which of the favors of your Lord would you deny?"
+      "en": "So which of the favors of your Lord would you deny?",
+      "de": "Welche der Wohltaten eures Herrn wollt ihr beide denn leugnen?",
+      "fr": "Lequel donc des bienfaits de votre Seigneur nierez-vous?",
+      "id": "Maka nikmat Tuhan kamu yang manakah yang kamu dustakan?",
+      "ur": "تو تم اپنے پروردگار کی کون کون سی نعمت کو جھٹلاؤ گے؟",
+      "bn": "অতএব, তোমরা উভয়ে তোমাদের পালনকর্তার কোন কোন অবদানকে অস্বীকার করবে?",
+      "fa": "پس کدامین نعمتهای پروردگارتان را انکار می‌کنید؟!",
+      "ru": "Какую же из милостей вашего Господа вы считаете ложью?"
     }
   },
   {
@@ -426,7 +720,14 @@
     "audio": "https://everyayah.com/data/Alafasy_128kbps/055043.mp3",
     "translations": {
       "tr": "İşte suçluların yalanladıkları cehennem budur.",
-      "en": "This is Hell, which the criminals deny."
+      "en": "This is Hell, which the criminals deny.",
+      "de": "Das ist die Hölle, die die Übeltäter für Lüge erklären.",
+      "fr": "Voilà l'Enfer que les criminels traitaient de mensonge.",
+      "id": "Inilah neraka Jahannam yang didustakan oleh orang-orang berdosa.",
+      "ur": "یہی وہ جہنم ہے جسے گنہگار لوگ جھٹلاتے تھے",
+      "bn": "এটাই জাহান্নাম, যাকে অপরাধীরা মিথ্যা বলত।",
+      "fa": "این همان دوزخی است که مجرمان آن را انکار می‌کردند!",
+      "ru": "Вот Геенна, которую грешники считали ложью."
     }
   },
   {
@@ -436,7 +737,14 @@
     "audio": "https://everyayah.com/data/Alafasy_128kbps/055044.mp3",
     "translations": {
       "tr": "Onlar, cehennem ateşiyle kaynar su arasında dolaşır dururlar.",
-      "en": "They will go around between it and scalding water, heated [to the utmost degree]."
+      "en": "They will go around between it and scalding water, heated [to the utmost degree].",
+      "de": "Sie werden zwischen ihr und siedend heißem Wasser umhergehen.",
+      "fr": "Ils feront le va-et-vient entre lui (l'Enfer) et une eau bouillante extrêmement chaude.",
+      "id": "Mereka berkeliling di antaranya dan di antara air mendidih yang memuncak panasnya.",
+      "ur": "وہ دوزخ اور کھولتے ہوئے گرم پانی کے درمیان گھومتے پھریں گے",
+      "bn": "তারা জাহান্নামের অগ্নি ও ফুটন্ত পানির মাঝখানে প্রদক্ষিণ করবে।",
+      "fa": "امروز در میان آن و آب سوزان در رفت و آمدند!",
+      "ru": "Они будут ходить между нею и кипящей водой."
     }
   },
   {
@@ -446,7 +754,14 @@
     "audio": "https://everyayah.com/data/Alafasy_128kbps/055045.mp3",
     "translations": {
       "tr": "Öyleyken, Rabbinizin nimetlerinden hangisini yalanlarsınız?",
-      "en": "So which of the favors of your Lord would you deny?"
+      "en": "So which of the favors of your Lord would you deny?",
+      "de": "Welche der Wohltaten eures Herrn wollt ihr beide denn leugnen?",
+      "fr": "Lequel donc des bienfaits de votre Seigneur nierez-vous?",
+      "id": "Maka nikmat Tuhan kamu yang manakah yang kamu dustakan?",
+      "ur": "تو تم اپنے پروردگار کی کون کون سی نعمت کو جھٹلاؤ گے؟",
+      "bn": "অতএব, তোমরা উভয়ে তোমাদের পালনকর্তার কোন কোন অবদানকে অস্বীকার করবে?",
+      "fa": "پس کدامین نعمتهای پروردگارتان را انکار می‌کنید؟!",
+      "ru": "Какую же из милостей вашего Господа вы считаете ложью?"
     }
   },
   {
@@ -456,7 +771,14 @@
     "audio": "https://everyayah.com/data/Alafasy_128kbps/055046.mp3",
     "translations": {
       "tr": "Rabbine karşı durmaktan korkan kimseye iki cennet vardır.",
-      "en": "But for he who has feared the position of his Lord are two gardens -"
+      "en": "But for he who has feared the position of his Lord are two gardens -",
+      "de": "Für jemanden aber, der den Stand seines Herrn fürchtet, wird es zwei Gärten geben",
+      "fr": "Et pour celui qui aura craint de comparaître devant son Seigneur, il y aura deux jardins;",
+      "id": "Dan bagi orang yang takut akan saat menghadap Tuhannya ada dua surga.",
+      "ur": "اور جو شخص اپنے پروردگار کے سامنے کھڑے ہونے سے ڈرا اس کے لئے دو باغ ہیں",
+      "bn": "যে ব্যক্তি তার পালনকর্তার সামনে পেশ হওয়ার ভয় রাখে, তার জন্যে রয়েছে দু’টি উদ্যান।",
+      "fa": "و برای کسی که از مقام پروردگارش بترسد، دو باغ بهشتی است!",
+      "ru": "Тем же, которые боялись предстать перед своим Господом, уготовано два сада."
     }
   },
   {
@@ -466,7 +788,14 @@
     "audio": "https://everyayah.com/data/Alafasy_128kbps/055047.mp3",
     "translations": {
       "tr": "Öyleyken, Rabbinizin nimetlerinden hangisini yalanlarsınız?",
-      "en": "So which of the favors of your Lord would you deny? -"
+      "en": "So which of the favors of your Lord would you deny? -",
+      "de": "- welche der Wohltaten eures Herrn wollt ihr beide denn leugnen? -,",
+      "fr": "Lequel donc des bienfaits de votre Seigneur nierez-vous?",
+      "id": "Maka nikmat Tuhan kamu yang manakah yang kamu dustakan?,",
+      "ur": "تو تم اپنے پروردگار کی کون کون سی نعمت کو جھٹلاؤ گے؟",
+      "bn": "অতএব, তোমরা উভয়ে তোমাদের পালনকর্তার কোন কোন অবদানকে অস্বীকার করবে?",
+      "fa": "پس کدامین نعمتهای پروردگارتان را انکار می‌کنید؟!",
+      "ru": "Какую же из милостей вашего Господа вы считаете ложью?"
     }
   },
   {
@@ -476,7 +805,14 @@
     "audio": "https://everyayah.com/data/Alafasy_128kbps/055048.mp3",
     "translations": {
       "tr": "Bu iki cennet türlü ağaçlarla doludur.",
-      "en": "Having [spreading] branches."
+      "en": "Having [spreading] branches.",
+      "de": "die beide Zweige haben.",
+      "fr": "Aux branches touffues.",
+      "id": "kedua surga itu mempunyai pohon-pohonan dan buah-buahan.",
+      "ur": "ان دونوں میں بہت سی شاخیں (یعنی قسم قسم کے میووں کے درخت ہیں)",
+      "bn": "উভয় উদ্যানই ঘন শাখা-পল্লববিশিষ্ট।",
+      "fa": "(آن دو باغ بهشتی) دارای انواع نعمتها و درختان پرطراوت است!",
+      "ru": "В них обоих есть ветви."
     }
   },
   {
@@ -486,7 +822,14 @@
     "audio": "https://everyayah.com/data/Alafasy_128kbps/055049.mp3",
     "translations": {
       "tr": "Öyleyken, Rabbinizin nimetlerinden hangisini yalanlarsınız?",
-      "en": "So which of the favors of your Lord would you deny?"
+      "en": "So which of the favors of your Lord would you deny?",
+      "de": "Welche der Wohltaten eures Herrn wollt ihr beide denn leugnen?",
+      "fr": "Lequel donc des bienfaits de votre Seigneur nierez-vous?",
+      "id": "Maka nikmat Tuhan kamu yang manakah yang kamu dustakan?",
+      "ur": "تو تم اپنے پروردگار کی کون کون سی نعمت کو جھٹلاؤ گے؟",
+      "bn": "অতএব, তোমরা উভয়ে তোমাদের পালনকর্তার কোন কোন অবদানকে অস্বীকার করবে?",
+      "fa": "پس کدامین نعمتهای پروردگارتان را انکار می‌کنید؟!",
+      "ru": "Какую же из милостей вашего Господа вы считаете ложью?"
     }
   },
   {
@@ -496,7 +839,14 @@
     "audio": "https://everyayah.com/data/Alafasy_128kbps/055050.mp3",
     "translations": {
       "tr": "Bu cennetlerden akan iki kaynak vardır.",
-      "en": "In both of them are two springs, flowing."
+      "en": "In both of them are two springs, flowing.",
+      "de": "Darin sind zwei Quellen, die fließen.",
+      "fr": "Ils y trouveront deux sources courantes.",
+      "id": "Di dalam kedua surga itu ada dua buah mata air yang mengalir",
+      "ur": "ان میں دو چشمے بہہ رہے ہیں",
+      "bn": "উভয় উদ্যানে আছে বহমান দুই প্রস্রবন।",
+      "fa": "در آنها دو چشمه همیشه جاری است!",
+      "ru": "В них обоих текут два источника."
     }
   },
   {
@@ -506,7 +856,14 @@
     "audio": "https://everyayah.com/data/Alafasy_128kbps/055051.mp3",
     "translations": {
       "tr": "Öyleyken, Rabbinizin nimetlerinden hangisini yalanlarsınız?",
-      "en": "So which of the favors of your Lord would you deny?"
+      "en": "So which of the favors of your Lord would you deny?",
+      "de": "Welche der Wohltaten eures Herrn wollt ihr beide denn leugnen?",
+      "fr": "Lequel donc des bienfaits de votre Seigneur nierez-vous?",
+      "id": "Maka nikmat Tuhan kamu yang manakah yang kamu dustakan?",
+      "ur": "تو تم اپنے پروردگار کی کون کون سی نعمت کو جھٹلاؤ گے؟",
+      "bn": "অতএব, তোমরা উভয়ে তোমাদের পালনকর্তার কোন কোন অবদানকে অস্বীকার করবে?",
+      "fa": "پس کدامین نعمتهای پروردگارتان را انکار می‌کنید؟!",
+      "ru": "Какую же из милостей вашего Господа вы считаете ложью?"
     }
   },
   {
@@ -516,7 +873,14 @@
     "audio": "https://everyayah.com/data/Alafasy_128kbps/055052.mp3",
     "translations": {
       "tr": "Bu cennetlerde türlü meyveden çift çift vardır.",
-      "en": "In both of them are of every fruit, two kinds."
+      "en": "In both of them are of every fruit, two kinds.",
+      "de": "Darin gibt es von jeder Frucht zwei Arten'.",
+      "fr": "Ils contiennent deux espèces de chaque fruit.",
+      "id": "Di dalam kedua surga itu terdapat segala macam buah-buahan yang berpasangan.",
+      "ur": "ان میں سب میوے دو دو قسم کے ہیں",
+      "bn": "উভয়ের মধ্যে প্রত্যেক ফল বিভিন্ন রকমের হবে।",
+      "fa": "در آن دو، از هر میوه‌ای دو نوع وجود دارد (هر یک از دیگری بهتر)!",
+      "ru": "В них обоих есть от всех фруктов по паре."
     }
   },
   {
@@ -526,7 +890,14 @@
     "audio": "https://everyayah.com/data/Alafasy_128kbps/055053.mp3",
     "translations": {
       "tr": "Öyleyken, Rabbinizin nimetlerinden hangisini yalanlarsınız?",
-      "en": "So which of the favors of your Lord would you deny?"
+      "en": "So which of the favors of your Lord would you deny?",
+      "de": "Welche der Wohltaten eures Herrn wollt ihr beide denn leugnen?",
+      "fr": "Lequel donc des bienfaits de votre Seigneur nierez-vous?",
+      "id": "Maka nikmat Tuhan kamu yang manakah yang kamu dustakan?",
+      "ur": "تو تم اپنے پروردگار کی کون کون سی نعمت کو جھٹلاؤ گے؟",
+      "bn": "অতএব, তোমরা উভয়ে তোমাদের পালনকর্তার কোন কোন অবদানকে অস্বীকার করবে?",
+      "fa": "پس کدامین نعمتهای پروردگارتان را انکار می‌کنید؟!",
+      "ru": "Какую же из милостей вашего Господа вы считаете ложью?"
     }
   },
   {
@@ -536,7 +907,14 @@
     "audio": "https://everyayah.com/data/Alafasy_128kbps/055054.mp3",
     "translations": {
       "tr": "Orada, örtüleri parlak atlastan yataklara yaslanırlar; iki cennetin meyvelerini de kolayca toplarlar.",
-      "en": "[They are] reclining on beds whose linings are of silk brocade, and the fruit of the two gardens is hanging low."
+      "en": "[They are] reclining on beds whose linings are of silk brocade, and the fruit of the two gardens is hanging low.",
+      "de": "Sie werden sich auf Ruhebetten lehnen, deren Futter aus schwerem Brokat sind. Und die Ernte der beiden Gärten hängt herab.",
+      "fr": "Ils seront accoudés sur des tapis doublés de brocart, et les fruits des deux jardins seront à leur portée (pour être cueillis).",
+      "id": "Mereka bertelekan di atas permadani yang sebelah dalamnya dari sutera. Dan buah-buahan di kedua surga itu dapat (dipetik) dari dekat.",
+      "ur": "(اہل جنت) ایسے بچھونوں پر جن کے استرا طلس کے ہیں تکیہ لگائے ہوئے ہوں گے۔ اور دونوں باغوں کے میوے قریب (جھک رہے) ہیں",
+      "bn": "তারা তথায় রেশমের আস্তরবিশিষ্ট বিছানায় হেলান দিয়ে বসবে। উভয় উদ্যানের ফল তাদের নিকট ঝুলবে।",
+      "fa": "این در حالی است که آنها بر فرشهایی تکیه کرده‌اند با آسترهائی از دیبا و ابریشم، و میوه‌های رسیده آن دو باغ بهشتی در دسترس است!",
+      "ru": "Они будут лежать, прислонившись, на матрацах, выстланных снизу парчой, а свежие плоды этих двух садов будут склоняться низко."
     }
   },
   {
@@ -546,7 +924,14 @@
     "audio": "https://everyayah.com/data/Alafasy_128kbps/055055.mp3",
     "translations": {
       "tr": "Öyleyken, Rabbinizin nimetlerinden hangisini yalanlarsınız?",
-      "en": "So which of the favors of your Lord would you deny?"
+      "en": "So which of the favors of your Lord would you deny?",
+      "de": "Welche der Wohltaten eures Herrn wollt ihr beide denn leugnen?",
+      "fr": "Lequel donc des bienfaits de votre Seigneur nierez-vous?",
+      "id": "Maka nikmat Tuhan kamu yang manakah yang kamu dustakan?",
+      "ur": "تو تم اپنے پروردگار کی کون کون سی نعمت کو جھٹلاؤ گے؟",
+      "bn": "অতএব, তোমরা উভয়ে তোমাদের পালনকর্তার কোন কোন অবদানকে অস্বীকার করবে?",
+      "fa": "پس کدامین نعمتهای پروردگارتان را انکار می‌کنید؟!",
+      "ru": "Какую же из милостей вашего Господа вы считаете ложью?"
     }
   },
   {
@@ -556,7 +941,14 @@
     "audio": "https://everyayah.com/data/Alafasy_128kbps/055056.mp3",
     "translations": {
       "tr": "Orada, bakışlarını yalnız eşlerine çevirmiş, daha önce ne insan ve ne de cinlerin dokunmuş olduğu eşler vardır.",
-      "en": "In them are women limiting [their] glances, untouched before them by man or jinni -"
+      "en": "In them are women limiting [their] glances, untouched before them by man or jinni -",
+      "de": "Darin sind (weibliche Wesen), die ihre Blicke zurückhalten, die vor ihnen weder Mensch noch Ginn berührt haben",
+      "fr": "Ils y trouveront [les houris] aux regards chastes, qu'avant eux aucun homme ou djinn n'aura déflorées.",
+      "id": "Di dalam surga itu ada bidadari-bidadari yang sopan menundukkan pandangannya, tidak pernah disentuh oleh manusia sebelum mereka (penghuni-penghuni surga yang menjadi suami mereka), dan tidak pula oleh jin.",
+      "ur": "ان میں نیچی نگاہ والی عورتیں ہیں جن کو اہل جنت سے پہلے نہ کسی انسان نے ہاتھ لگایا اور نہ کسی جن نے",
+      "bn": "তথায় থাকবে আনতনয়ন রমনীগন, কোন জিন ও মানব পূর্বে যাদের ব্যবহার করেনি।",
+      "fa": "در آن باغهای بهشتی زنانی هستند که جز به همسران خود عشق نمی‌ورزند؛ و هیچ انس و جنّ پیش از اینها با آنان تماس نگرفته است.",
+      "ru": "Там будут девы, потупляющие взоры, с которыми прежде не имели близости ни человек, ни джинн."
     }
   },
   {
@@ -566,7 +958,14 @@
     "audio": "https://everyayah.com/data/Alafasy_128kbps/055057.mp3",
     "translations": {
       "tr": "Öyleyken, Rabbinizin nimetlerinden hangisini yalanlarsınız?",
-      "en": "So which of the favors of your Lord would you deny? -"
+      "en": "So which of the favors of your Lord would you deny? -",
+      "de": "- welche der Wohltaten eures Herrn wollt ihr beide denn leugnen? -,",
+      "fr": "Lequel donc des bienfaits de votre Seigneur nierez-vous?",
+      "id": "Maka nikmat Tuhan kamu yang manakah yang kamu dustakan?",
+      "ur": "تو تم اپنے پروردگار کی کون کون سی نعمت کو جھٹلاؤ گے؟",
+      "bn": "অতএব, তোমরা উভয়ে তোমাদের পালনকর্তার কোন কোন অবদানকে অস্বীকার করবে?",
+      "fa": "پس کدامین نعمتهای پروردگارتان را انکار می‌کنید؟!",
+      "ru": "Какую же из милостей вашего Господа вы считаете ложью?"
     }
   },
   {
@@ -576,7 +975,14 @@
     "audio": "https://everyayah.com/data/Alafasy_128kbps/055058.mp3",
     "translations": {
       "tr": "Onlar yakut ve mercan gibidirler.",
-      "en": "As if they were rubies and coral."
+      "en": "As if they were rubies and coral.",
+      "de": "als wären sie Rubine und Korallen.",
+      "fr": "Elles seront [aussi belles] que le rubis et le corail.",
+      "id": "Seakan-akan bidadari itu permata yakut dan marjan.",
+      "ur": "گویا وہ یاقوت اور مرجان ہیں",
+      "bn": "প্রবাল ও পদ্মরাগ সদৃশ রমণীগণ।",
+      "fa": "آنها همچون یاقوت و مرجانند!",
+      "ru": "Они подобны рубинам и кораллам."
     }
   },
   {
@@ -586,7 +992,14 @@
     "audio": "https://everyayah.com/data/Alafasy_128kbps/055059.mp3",
     "translations": {
       "tr": "Öyleyken, Rabbinizin nimetlerinden hangisini yalanlarsınız?",
-      "en": "So which of the favors of your Lord would you deny?"
+      "en": "So which of the favors of your Lord would you deny?",
+      "de": "Welche der Wohltaten eures Herrn wollt ihr beide denn leugnen?",
+      "fr": "Lequel donc des bienfaits de votre Seigneur nierez-vous?",
+      "id": "Maka nikmat Tuhan kamu yang manakah yang kamu dustakan?",
+      "ur": "تو تم اپنے پروردگار کی کون کون سی نعمت کو جھٹلاؤ گے؟",
+      "bn": "অতএব, তোমরা উভয়ে তোমাদের পালনকর্তার কোন কোন অবদানকে অস্বীকার করবে?",
+      "fa": "پس کدامین نعمتهای پروردگارتان را انکار می‌کنید؟!",
+      "ru": "Какую же из милостей вашего Господа вы считаете ложью?"
     }
   },
   {
@@ -596,7 +1009,14 @@
     "audio": "https://everyayah.com/data/Alafasy_128kbps/055060.mp3",
     "translations": {
       "tr": "İyiliğin karşılığı ancak iyilik değil midir?",
-      "en": "Is the reward for good [anything] but good?"
+      "en": "Is the reward for good [anything] but good?",
+      "de": "Ist der Lohn des Guten nicht ebenfalls das Gute?",
+      "fr": "Y a-t-il d'autre récompense pour le bien, que le bien?",
+      "id": "Tidak ada balasan kebaikan kecuali kebaikan (pula).",
+      "ur": "نیکی کا بدلہ نیکی کے سوا کچھ نہیں ہے",
+      "bn": "সৎকাজের প্রতিদান উত্তম পুরস্কার ব্যতীত কি হতে পারে?",
+      "fa": "آیا جزای نیکی جز نیکی است؟!",
+      "ru": "Воздают ли за добро иначе, чем добром?"
     }
   },
   {
@@ -606,7 +1026,14 @@
     "audio": "https://everyayah.com/data/Alafasy_128kbps/055061.mp3",
     "translations": {
       "tr": "Öyleyken, Rabbinizin nimetlerinden hangisini yalanlarsınız?",
-      "en": "So which of the favors of your Lord would you deny?"
+      "en": "So which of the favors of your Lord would you deny?",
+      "de": "Welche der Wohltaten eures Herrn wollt ihr beide denn leugnen?",
+      "fr": "Lequel donc des bienfaits de votre Seigneur nierez-vous?",
+      "id": "Maka nikmat Tuhan kamu yang manakah yang kamu dustakan?",
+      "ur": "تو تم اپنے پروردگار کی کون کون سی نعمت کو جھٹلاؤ گے؟",
+      "bn": "অতএব, তোমরা উভয়ে তোমাদের পালনকর্তার কোন কোন অবদানকে অস্বীকার করবে?",
+      "fa": "پس کدامین نعمتهای پروردگارتان را انکار می‌کنید؟!",
+      "ru": "Какую же из милостей вашего Господа вы считаете ложью?"
     }
   },
   {
@@ -616,7 +1043,14 @@
     "audio": "https://everyayah.com/data/Alafasy_128kbps/055062.mp3",
     "translations": {
       "tr": "Bu iki cennetten başka iki cennet daha vardır.",
-      "en": "And below them both [in excellence] are two [other] gardens -"
+      "en": "And below them both [in excellence] are two [other] gardens -",
+      "de": "Unterhalb der beiden gibt es (noch) zwei andere Gärten",
+      "fr": "En deçà de ces deux jardins il y aura deux autres jardins.",
+      "id": "Dan selain dari dua surga itu ada dua surga lagi",
+      "ur": "اور ان باغوں کے علاوہ دو باغ اور ہیں",
+      "bn": "এই দু’টি ছাড়া আরও দু’টি উদ্যান রয়েছে।",
+      "fa": "و پایین تر از آنها، دو باغ بهشتی دیگر است.",
+      "ru": "А перед теми двумя есть еще два сада."
     }
   },
   {
@@ -626,7 +1060,14 @@
     "audio": "https://everyayah.com/data/Alafasy_128kbps/055063.mp3",
     "translations": {
       "tr": "Öyleyken, Rabbinizin nimetlerinden hangisini yalanlarsınız?",
-      "en": "So which of the favors of your Lord would you deny? -"
+      "en": "So which of the favors of your Lord would you deny? -",
+      "de": "- welche der Wohltaten eures Herrn wollt ihr beide denn leugnen? -,",
+      "fr": "Lequel donc des bienfaits de votre Seigneur nierez-vous?",
+      "id": "Maka nikmat Tuhan kamu yang manakah yang kamu dustakan?",
+      "ur": "تو تم اپنے پروردگار کی کون کون سی نعمت کو جھٹلاؤ گے؟",
+      "bn": "অতএব, তোমরা উভয়ে তোমাদের পালনকর্তার কোন কোন অবদানকে অস্বীকার করবে?",
+      "fa": "پس کدامین نعمتهای پروردگارتان را انکار می‌کنید؟!",
+      "ru": "Какую же из милостей вашего Господа вы считаете ложью?"
     }
   },
   {
@@ -636,7 +1077,14 @@
     "audio": "https://everyayah.com/data/Alafasy_128kbps/055064.mp3",
     "translations": {
       "tr": "Renkleri koyu yeşildir.",
-      "en": "Dark green [in color]."
+      "en": "Dark green [in color].",
+      "de": "dich bewachsene.",
+      "fr": "Ils sont d'un vert sombre.",
+      "id": "Kedua surga itu (kelihatan) hijau tua warnanya.",
+      "ur": "دونوں خوب گہرے سبز",
+      "bn": "কালোমত ঘন সবুজ।",
+      "fa": "هر دو خرّم و سرسبزند!",
+      "ru": "Они оба - темно-зеленые."
     }
   },
   {
@@ -646,7 +1094,14 @@
     "audio": "https://everyayah.com/data/Alafasy_128kbps/055065.mp3",
     "translations": {
       "tr": "Öyleyken, Rabbinizin nimetlerinden hangisini yalanlarsınız?",
-      "en": "So which of the favors of your Lord would you deny?"
+      "en": "So which of the favors of your Lord would you deny?",
+      "de": "Welche der Wohltaten eures Herrn wollt ihr beide denn leugnen?",
+      "fr": "Lequel donc des bienfaits de votre Seigneur nierez-vous?",
+      "id": "Maka nikmat Tuhan kamu yang manakah yang kamu dustakan?",
+      "ur": "تو تم اپنے پروردگار کی کون کون سی نعمت کو جھٹلاؤ گے؟",
+      "bn": "অতএব, তোমরা উভয়ে তোমাদের পালনকর্তার কোন কোন অবদানকে অস্বীকার করবে?",
+      "fa": "پس کدامین نعمتهای پروردگارتان را انکار می‌کنید؟!",
+      "ru": "Какую же из милостей вашего Господа вы считаете ложью?"
     }
   },
   {
@@ -656,7 +1111,14 @@
     "audio": "https://everyayah.com/data/Alafasy_128kbps/055066.mp3",
     "translations": {
       "tr": "İkisinde de durmadan fışkıran iki kaynak vardır.",
-      "en": "In both of them are two springs, spouting."
+      "en": "In both of them are two springs, spouting.",
+      "de": "Darin sind zwei sprudelnde Quellen.",
+      "fr": "Dans lesquelles il y aura deux sources jaillissantes.",
+      "id": "Di dalam kedua surga itu ada dua buah mata air yang memancar.",
+      "ur": "ان میں دو چشمے ابل رہے ہیں",
+      "bn": "তথায় আছে উদ্বেলিত দুই প্রস্রবণ।",
+      "fa": "در آنها دو چشمه جوشنده است!",
+      "ru": "В них обоих бурлят два источника."
     }
   },
   {
@@ -666,7 +1128,14 @@
     "audio": "https://everyayah.com/data/Alafasy_128kbps/055067.mp3",
     "translations": {
       "tr": "Öyleyken, Rabbinizin nimetlerinden hangisini yalanlarsınız?",
-      "en": "So which of the favors of your Lord would you deny?"
+      "en": "So which of the favors of your Lord would you deny?",
+      "de": "Welche der Wohltaten eures Herrn wollt ihr beide denn leugnen?",
+      "fr": "Lequel donc des bienfaits de votre Seigneur nierez-vous?",
+      "id": "Maka nikmat Tuhan kamu yang manakah yang kamu dustakan?",
+      "ur": "تو تم اپنے پروردگار کی کون کون سی نعمت کو جھٹلاؤ گے؟",
+      "bn": "অতএব, তোমরা উভয়ে তোমাদের পালনকর্তার কোন কোন অবদানকে অস্বীকার করবে?",
+      "fa": "پس کدامین نعمتهای پروردگارتان را انکار می‌کنید؟!",
+      "ru": "Какую же из милостей вашего Господа вы считаете ложью?"
     }
   },
   {
@@ -676,7 +1145,14 @@
     "audio": "https://everyayah.com/data/Alafasy_128kbps/055068.mp3",
     "translations": {
       "tr": "İkisinde de türlü türlü meyveler, hurmalıklar ve nar ağaçları vardır.",
-      "en": "In both of them are fruit and palm trees and pomegranates."
+      "en": "In both of them are fruit and palm trees and pomegranates.",
+      "de": "Darin sind Früchte und Palmen und Granatäpfel.",
+      "fr": "Ils contiennent des fruits, des palmiers, et des grenadiers.",
+      "id": "Di dalam keduanya (ada macam-macam) buah-buahan dan kurma serta delima.",
+      "ur": "ان میں میوے اور کھجوریں اور انار ہیں",
+      "bn": "তথায় আছে ফল-মূল, খর্জুর ও আনার।",
+      "fa": "در آنها میوه‌های فراوان و درخت خرما و انار است!",
+      "ru": "В них обоих есть фрукты, финиковые пальмы, гранаты."
     }
   },
   {
@@ -686,7 +1162,14 @@
     "audio": "https://everyayah.com/data/Alafasy_128kbps/055069.mp3",
     "translations": {
       "tr": "Öyleyken, Rabbinizin nimetlerinden hangisini yalanlarsınız?",
-      "en": "So which of the favors of your Lord would you deny?"
+      "en": "So which of the favors of your Lord would you deny?",
+      "de": "Welche der Wohltaten eures Herrn wollt ihr beide denn leugnen?",
+      "fr": "Lequel donc des bienfaits de votre Seigneur nierez-vous?",
+      "id": "Maka nikmat Tuhan kamu yang manakah yang kamu dustakan?",
+      "ur": "تو تم اپنے پروردگار کی کون کون سی نعمت کو جھٹلاؤ گے؟",
+      "bn": "অতএব, তোমরা উভয়ে তোমাদের পালনকর্তার কোন কোন অবদানকে অস্বীকার করবে?",
+      "fa": "پس کدامین نعمتهای پروردگارتان را انکار می‌کنید؟!",
+      "ru": "Какую же из милостей вашего Господа вы считаете ложью?"
     }
   },
   {
@@ -696,7 +1179,14 @@
     "audio": "https://everyayah.com/data/Alafasy_128kbps/055070.mp3",
     "translations": {
       "tr": "Oralarda iyi huylu güzel kadınlar vardır.",
-      "en": "In them are good and beautiful women -"
+      "en": "In them are good and beautiful women -",
+      "de": "Darin sind gute schöne (weibliche Wesen)",
+      "fr": "Là, il y aura des vertueuses et des belles.",
+      "id": "Di dalam surga itu ada bidadari-bidadari yang baik-baik lagi cantik-cantik.",
+      "ur": "ان میں نیک سیرت (اور) خوبصورت عورتیں ہیں",
+      "bn": "সেখানে থাকবে সচ্চরিত্রা সুন্দরী রমণীগণ।",
+      "fa": "و در آن باغهای بهشتی زنانی نیکو خلق و زیبایند!",
+      "ru": "Там есть девы хорошие, прекрасные."
     }
   },
   {
@@ -706,7 +1196,14 @@
     "audio": "https://everyayah.com/data/Alafasy_128kbps/055071.mp3",
     "translations": {
       "tr": "Öyleyken, Rabbinizin nimetlerinden hangisini yalanlarsınız?",
-      "en": "So which of the favors of your Lord would you deny? -"
+      "en": "So which of the favors of your Lord would you deny? -",
+      "de": "- welche der Wohltaten eures Herrn wollt ihr beide denn leugnen? -,",
+      "fr": "Lequel donc des bienfaits de votre Seigneur nierez-vous?",
+      "id": "Maka nikmat Tuhan kamu yang manakah yang kamu dustakan?",
+      "ur": "تو تم اپنے پروردگار کی کون کون سی نعمت کو جھٹلاؤ گے؟",
+      "bn": "অতএব, তোমরা উভয়ে তোমাদের পালনকর্তার কোন কোন অবদানকে অস্বীকার করবে?",
+      "fa": "پس کدامین نعمتهای پروردگارتان را انکار می‌کنید؟!",
+      "ru": "Какую же из милостей вашего Господа вы считаете ложью?"
     }
   },
   {
@@ -716,7 +1213,14 @@
     "audio": "https://everyayah.com/data/Alafasy_128kbps/055072.mp3",
     "translations": {
       "tr": "Çadırlar içinde ceylan gözlüler vardır.",
-      "en": "Fair ones reserved in pavilions -"
+      "en": "Fair ones reserved in pavilions -",
+      "de": "Huris, (die) in den Zelten zurückgezogen (leben) -,",
+      "fr": "Des houris cloîtrées dans les tentes,",
+      "id": "(Bidadari-bidadari) yang jelita, putih bersih, dipingit dalam rumah.",
+      "ur": "(وہ) حوریں (ہیں جو) خیموں میں مستور (ہیں)",
+      "bn": "তাঁবুতে অবস্থানকারিণী হুরগণ।",
+      "fa": "حوریانی که در خیمه‌های بهشتی مستورند!",
+      "ru": "Они - черноокие и большеглазые, удерживаемые в шатрах."
     }
   },
   {
@@ -726,7 +1230,14 @@
     "audio": "https://everyayah.com/data/Alafasy_128kbps/055073.mp3",
     "translations": {
       "tr": "Öyleyken, Rabbinizin nimetlerinden hangisini yalanlarsınız?",
-      "en": "So which of the favors of your Lord would you deny? -"
+      "en": "So which of the favors of your Lord would you deny? -",
+      "de": "welche der Wohltaten eures Herrn wollt ihr beide denn leugnen? -,",
+      "fr": "Lequel donc des bienfaits de votre Seigneur nierez-vous?",
+      "id": "Maka nikmat Tuhan kamu yang manakah yang kamu dustakan?",
+      "ur": "تو تم اپنے پروردگار کی کون کون سی نعمت کو جھٹلاؤ گے؟",
+      "bn": "অতএব, তোমরা উভয়ে তোমাদের পালনকর্তার কোন কোন অবদানকে অস্বীকার করবে?",
+      "fa": "پس کدامین نعمتهای پروردگارتان را انکار می‌کنید؟!",
+      "ru": "Какую же из милостей вашего Господа вы считаете ложью?"
     }
   },
   {
@@ -736,7 +1247,14 @@
     "audio": "https://everyayah.com/data/Alafasy_128kbps/055074.mp3",
     "translations": {
       "tr": "Onlara daha önce insan da, cin de dokunmamıştır.",
-      "en": "Untouched before them by man or jinni -"
+      "en": "Untouched before them by man or jinni -",
+      "de": "die vor ihnen weder Mensch noch Ginn berührt haben.",
+      "fr": "qu'avant eux aucun homme ou djinn n'a déflorées.",
+      "id": "Mereka tidak pernah disentuh oleh manusia sebelum mereka (penghuni-penghuni surga yang menjadi suami mereka), dan tidak pula oleh jin.",
+      "ur": "ان کو اہل جنت سے پہلے نہ کسی انسان نے ہاتھ لگایا اور نہ کسی جن نے",
+      "bn": "কোন জিন ও মানব পূর্বে তাদেরকে স্পর্শ করেনি।",
+      "fa": "هیچ انس و جنّ پیش از ایشان با آنها تماس نگرفته (و دوشیزه‌اند)!",
+      "ru": "С ними прежде не имели близости ни человек, ни джинн."
     }
   },
   {
@@ -746,7 +1264,14 @@
     "audio": "https://everyayah.com/data/Alafasy_128kbps/055075.mp3",
     "translations": {
       "tr": "Öyleyken, Rabbinizin nimetlerinden hangisini yalanlarsınız?",
-      "en": "So which of the favors of your Lord would you deny? -"
+      "en": "So which of the favors of your Lord would you deny? -",
+      "de": "Welche der Wohltaten eures Herrn wollt ihr beide denn leugnen?",
+      "fr": "Lequel donc des bienfaits de votre Seigneur nierez-vous?",
+      "id": "Maka nikmat Tuhan kamu yang manakah yang kamu dustakan?",
+      "ur": "تو تم اپنے پروردگار کی کون کون سی نعمت کو جھٹلاؤ گے؟",
+      "bn": "অতএব, তোমরা উভয়ে তোমাদের পালনকর্তার কোন কোন অবদানকে অস্বীকার করবে?",
+      "fa": "پس کدامین نعمتهای پروردگارتان را انکار می‌کنید؟!",
+      "ru": "Какую же из милостей вашего Господа вы считаете ложью?"
     }
   },
   {
@@ -756,7 +1281,14 @@
     "audio": "https://everyayah.com/data/Alafasy_128kbps/055076.mp3",
     "translations": {
       "tr": "Cennetlikler orada yeşil yastıklara ve harikulade işlemeli döşeklere yaslanırlar.",
-      "en": "Reclining on green cushions and beautiful fine carpets."
+      "en": "Reclining on green cushions and beautiful fine carpets.",
+      "de": "Sie lehnen sich aufgrünen Decken und schönen Teppichen.",
+      "fr": "Ils seront accoudés sur des coussins verts et des tapis épais et jolis.",
+      "id": "Mereka bertelekan pada bantal-bantal yang hijau dan permadani-permadani yang indah.",
+      "ur": "سبز قالینوں اور نفیس مسندوں پر تکیہ لگائے بیٹھے ہوں گے",
+      "bn": "তারা সবুজ মসনদে এবং উৎকৃষ্ট মূল্যবান বিছানায় হেলান দিয়ে বসবে।",
+      "fa": "این در حالی است که بهشتیان بر تختهایی تکیه زده‌اند که با بهترین و زیباترین پارچه‌های سبزرنگ پوشانده شده است.",
+      "ru": "Они будут лежать, прислонившись, на зеленых подушках и прекрасных матрацах."
     }
   },
   {
@@ -766,7 +1298,14 @@
     "audio": "https://everyayah.com/data/Alafasy_128kbps/055077.mp3",
     "translations": {
       "tr": "Öyleyken, Rabbinizin nimetlerinden hangisini yalanlarsınız?",
-      "en": "So which of the favors of your Lord would you deny?"
+      "en": "So which of the favors of your Lord would you deny?",
+      "de": "Welche der Wohltaten eures Herrn wollt ihr beide denn leugnen?",
+      "fr": "Lequel donc des bienfaits de votre Seigneur nierez-vous?",
+      "id": "Maka nikmat Tuhan kamu yang manakah yang kamu dustakan?",
+      "ur": "تو تم اپنے پروردگار کی کون کون سی نعمت کو جھٹلاؤ گے؟",
+      "bn": "অতএব, তোমরা উভয়ে তোমাদের পালনকর্তার কোন কোন অবদানকে অস্বীকার করবে?",
+      "fa": "پس کدامین نعمتهای پروردگارتان را انکار می‌کنید؟!",
+      "ru": "Какую же из милостей вашего Господа вы считаете ложью?"
     }
   },
   {
@@ -776,7 +1315,14 @@
     "audio": "https://everyayah.com/data/Alafasy_128kbps/055078.mp3",
     "translations": {
       "tr": "Büyük ve pek cömert olan Rabbinin adı ne yücedir!",
-      "en": "Blessed is the name of your Lord, Owner of Majesty and Honor."
+      "en": "Blessed is the name of your Lord, Owner of Majesty and Honor.",
+      "de": "Segensreich ist der Name deines Herrn, Besitzer der Erhabenheit und Ehre!",
+      "fr": "Béni soit le Nom de ton Seigneur, Plein de Majesté et de Munificence!",
+      "id": "Maha Agung nama Tuhanmu Yang Mempunyai Kebesaran dan Karunia.",
+      "ur": "(اے محمدﷺ) تمہارا پروردگار جو صاحب جلال وعظمت ہے اس کا نام بڑا بابرکت ہے",
+      "bn": "কত পূণ্যময় আপনার পালনকর্তার নাম, যিনি মহিমাময় ও মহানুভব।",
+      "fa": "پربرکت و زوال‌ناپذیر است نام پروردگار صاحب جلال و بزرگوار تو!",
+      "ru": "Благословенно имя Господа твоего, Обладающего величием и великодушием!"
     }
   }
 ]

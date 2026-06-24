@@ -6,7 +6,14 @@
     "audio": "https://everyayah.com/data/Alafasy_128kbps/113001.mp3",
     "translations": {
       "tr": "De ki: Sabahın Rabbine sığınırım,",
-      "en": "Say, I seek refuge in the Lord of daybreak,"
+      "en": "Say, I seek refuge in the Lord of daybreak,",
+      "de": "Sag: Ich nehme Zuflucht beim Herrn des Tagesanbruchs",
+      "fr": "Dis: «Je cherche protection auprès du Seigneur de l'aube naissante,",
+      "id": "Katakanlah: \"Aku berlindung kepada Tuhan Yang Menguasai subuh,",
+      "ur": "کہو کہ میں صبح کے پروردگار کی پناہ مانگتا ہوں",
+      "bn": "বলুন, আমি আশ্রয় গ্রহণ করছি প্রভাতের পালনকর্তার,",
+      "fa": "بگو: پناه می‌برم به پروردگار سپیده صبح،",
+      "ru": "Скажи: «Прибегаю к защите Господа рассвета"
     }
   },
   {
@@ -16,7 +23,14 @@
     "audio": "https://everyayah.com/data/Alafasy_128kbps/113002.mp3",
     "translations": {
       "tr": "yarattığı şeylerin şerrinden,",
-      "en": "from the evil of that which He created,"
+      "en": "from the evil of that which He created,",
+      "de": "vor dem Übel dessen, was Er erschaffen hat,",
+      "fr": "contre le mal des êtres qu'Il a créés,",
+      "id": "dari kejahatan makhluk-Nya,",
+      "ur": "ہر چیز کی بدی سے جو اس نے پیدا کی",
+      "bn": "তিনি যা সৃষ্টি করেছেন, তার অনিষ্ট থেকে,",
+      "fa": "از شرّ تمام آنچه آفریده است؛",
+      "ru": "от зла того, что Он сотворил,"
     }
   },
   {
@@ -26,7 +40,14 @@
     "audio": "https://everyayah.com/data/Alafasy_128kbps/113003.mp3",
     "translations": {
       "tr": "karanlığı çöktüğünde gecenin şerrinden,",
-      "en": "and from the evil of darkness when it settles,"
+      "en": "and from the evil of darkness when it settles,",
+      "de": "und vor dem Übel der Dunkelheit, wenn sie zunimmt,",
+      "fr": "contre le mal de l'obscurité quand elle s'approfondit,",
+      "id": "dan dari kejahatan malam apabila telah gelap gulita,",
+      "ur": "اور شب تاریکی کی برائی سے جب اس کااندھیرا چھا جائے",
+      "bn": "অন্ধকার রাত্রির অনিষ্ট থেকে, যখন তা সমাগত হয়,",
+      "fa": "و از شرّ هر موجود شرور هنگامی که شبانه وارد می‌شود؛",
+      "ru": "от зла мрака, когда он наступает,"
     }
   },
   {
@@ -36,7 +57,14 @@
     "audio": "https://everyayah.com/data/Alafasy_128kbps/113004.mp3",
     "translations": {
       "tr": "düğümlere üfleyenlerin şerrinden,",
-      "en": "and from the evil of the blowers in knots,"
+      "en": "and from the evil of the blowers in knots,",
+      "de": "und vor dem Übel der Knotenanbläserinnen",
+      "fr": "contre le mal de celles qui soufflent [les sorcières] sur les nœuds,",
+      "id": "dan dari kejahatan wanita-wanita tukang sihir yang menghembus pada buhul-buhul,",
+      "ur": "اور گنڈوں پر (پڑھ پڑھ کر) پھونکنے والیوں کی برائی سے",
+      "bn": "গ্রন্থিতে ফুঁৎকার দিয়ে জাদুকারিনীদের অনিষ্ট থেকে",
+      "fa": "و از شرّ آنها که با افسون در گره‌ها می‌دمند (و هر تصمیمی را سست می‌کنند)؛",
+      "ru": "от зла колдуний, поплевывающих на узлы,"
     }
   },
   {
@@ -46,7 +74,14 @@
     "audio": "https://everyayah.com/data/Alafasy_128kbps/113005.mp3",
     "translations": {
       "tr": "ve haset ettiğinde hasetçinin şerrinden.",
-      "en": "and from the evil of an envier when he envies."
+      "en": "and from the evil of an envier when he envies.",
+      "de": "und vor dem Übel eines (jeden) Neidenden, wenn er neidet.",
+      "fr": "et contre le mal de l'envieux quand il envie».",
+      "id": "dan dari kejahatan pendengki bila ia dengki\".",
+      "ur": "اور حسد کرنے والے کی برائی سے جب حسد کرنے لگے",
+      "bn": "এবং হিংসুকের অনিষ্ট থেকে যখন সে হিংসা করে।",
+      "fa": "و از شرّ هر حسودی هنگامی که حسد می‌ورزد!",
+      "ru": "от зла завистника, когда он завидует»."
     }
   }
 ]

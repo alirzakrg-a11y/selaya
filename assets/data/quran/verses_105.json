@@ -6,7 +6,14 @@
     "audio": "https://everyayah.com/data/Alafasy_128kbps/105001.mp3",
     "translations": {
       "tr": "Rabbinin fil sahiplerine ne yaptığını görmedin mi?",
-      "en": "Have you not considered how your Lord dealt with the companions of the elephant?"
+      "en": "Have you not considered how your Lord dealt with the companions of the elephant?",
+      "de": "Siehst du nicht, wie dein Herr mit den Leuten des Elefanten verfuhr?",
+      "fr": "N'as-tu pas vu comment ton Seigneur a agi envers les gens de l'Eléphant?",
+      "id": "Apakah kamu tidak memperhatikan bagaimana Tuhanmu telah bertindak terhadap tentara bergajah?",
+      "ur": "کیا تم نے نہیں دیکھا کہ تمہارے پروردگار نے ہاتھی والوں کے ساتھ کیا کیا",
+      "bn": "আপনি কি দেখেননি আপনার পালনকর্তা হস্তীবাহিনীর সাথে কিরূপ ব্যবহার করেছেন?",
+      "fa": "آیا ندیدی پروردگارت با فیل سواران [= لشکر ابرهه که برای نابودی کعبه آمده بودند] چه کرد؟!",
+      "ru": "Разве ты не видел, что сделал твой Господь с владельцами слона?"
     }
   },
   {
@@ -16,7 +23,14 @@
     "audio": "https://everyayah.com/data/Alafasy_128kbps/105002.mp3",
     "translations": {
       "tr": "Onların tuzaklarını boşa çıkarmadı mı?",
-      "en": "Did He not make their plan into misguidance?"
+      "en": "Did He not make their plan into misguidance?",
+      "de": "Ließ Er nicht ihre List verlorengehen",
+      "fr": "N'a-t-Il pas rendu leur ruse complètement vaine?",
+      "id": "Bukankah Dia telah menjadikan tipu daya mereka (untuk menghancurkan Ka'bah) itu sia-sia?",
+      "ur": "کیا ان کا داؤں غلط نہیں کیا؟ (گیا)",
+      "bn": "তিনি কি তাদের চক্রান্ত নস্যাৎ করে দেননি?",
+      "fa": "آیا نقشه آنها را در ضلالت و تباهی قرار نداد؟!",
+      "ru": "Разве Он не запутал их козни"
     }
   },
   {
@@ -26,7 +40,14 @@
     "audio": "https://everyayah.com/data/Alafasy_128kbps/105003.mp3",
     "translations": {
       "tr": "Üzerlerine sürü sürü kuşlar gönderdi.",
-      "en": "And He sent against them birds in flocks,"
+      "en": "And He sent against them birds in flocks,",
+      "de": "und sandte gegen sie Vögel in aufeinanderfolgenden Schwärmen,",
+      "fr": "et envoyé sur eux des oiseaux par volées",
+      "id": "dan Dia mengirimkan kapada mereka burung yang berbondong-bondong,",
+      "ur": "اور ان پر جھلڑ کے جھلڑ جانور بھیجے",
+      "bn": "তিনি তাদের উপর প্রেরণ করেছেন ঝাঁকে ঝাঁকে পাখী,",
+      "fa": "و بر سر آنها پرندگانی را گروه گروه فرستاد،",
+      "ru": "и не наслал на них птиц стаями?"
     }
   },
   {
@@ -36,7 +57,14 @@
     "audio": "https://everyayah.com/data/Alafasy_128kbps/105004.mp3",
     "translations": {
       "tr": "Onlara pişmiş çamurdan taşlar atıyorlardı.",
-      "en": "striking them with stones of hard clay,"
+      "en": "striking them with stones of hard clay,",
+      "de": "die sie mit Steinen aus gebranntem Lehm bewarfen,",
+      "fr": "qui leur lançaient des pierres d'argile?",
+      "id": "yang melempari mereka dengan batu (berasal) dari tanah yang terbakar,",
+      "ur": "جو ان پر کھنگر کی پتھریاں پھینکتے تھے",
+      "bn": "যারা তাদের উপর পাথরের কংকর নিক্ষেপ করছিল।",
+      "fa": "که با سنگهای کوچکی آنان را هدف قرارمی‌دادند؛",
+      "ru": "Они бросали в них каменья из обожженной глины"
     }
   },
   {
@@ -46,7 +74,14 @@
     "audio": "https://everyayah.com/data/Alafasy_128kbps/105005.mp3",
     "translations": {
       "tr": "Nihayet onları yenmiş ekin yaprağı gibi yaptı.",
-      "en": "and He made them like eaten straw."
+      "en": "and He made them like eaten straw.",
+      "de": "und sie so wie abgefressene Halme machte?",
+      "fr": "Et Il les a rendus semblables à une paille mâchée.",
+      "id": "lalu Dia menjadikan mereka seperti daun-daun yang dimakan (ulat).",
+      "ur": "تو ان کو ایسا کر دیا جیسے کھایا ہوا بھس",
+      "bn": "অতঃপর তিনি তাদেরকে ভক্ষিত তৃণসদৃশ করে দেন।",
+      "fa": "سرانجام آنها را همچون کاه خورده‌شده (و متلاشی) قرار داد!",
+      "ru": "и превратили их в подобие изъеденных иссохших злаковых листьев."
     }
   }
 ]

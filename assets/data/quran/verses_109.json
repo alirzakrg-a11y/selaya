@@ -6,7 +6,14 @@
     "audio": "https://everyayah.com/data/Alafasy_128kbps/109001.mp3",
     "translations": {
       "tr": "De ki: Ey kâfirler!",
-      "en": "Say: O disbelievers!"
+      "en": "Say: O disbelievers!",
+      "de": "Sag: O ihr Ungläubigen,",
+      "fr": "Dis: «O vous les infidèles!",
+      "id": "Katakanlah: \"Hai orang-orang kafir,",
+      "ur": "(اے پیغمبر ان منکران اسلام سے) کہہ دو کہ اے کافرو!",
+      "bn": "বলুন, হে কাফেরকূল,",
+      "fa": "بگو: ای کافران!",
+      "ru": "Скажи: «О неверующие!"
     }
   },
   {
@@ -16,7 +23,14 @@
     "audio": "https://everyayah.com/data/Alafasy_128kbps/109002.mp3",
     "translations": {
       "tr": "Ben sizin taptıklarınıza tapmam.",
-      "en": "I do not worship what you worship."
+      "en": "I do not worship what you worship.",
+      "de": "ich diene nicht dem, dem ihr dient,",
+      "fr": "Je n'adore pas ce que vous adorez.",
+      "id": "Aku tidak akan menyembah apa yang kamu sembah.",
+      "ur": "جن (بتوں) کو تم پوچتے ہو ان کو میں نہیں پوجتا",
+      "bn": "আমি এবাদত করিনা, তোমরা যার এবাদত কর।",
+      "fa": "آنچه را شما می‌پرستید من نمی‌پرستم!",
+      "ru": "Я не поклоняюсь тому, чему поклоняетесь вы,"
     }
   },
   {
@@ -26,7 +40,14 @@
     "audio": "https://everyayah.com/data/Alafasy_128kbps/109003.mp3",
     "translations": {
       "tr": "Siz de benim taptığıma tapacak değilsiniz.",
-      "en": "Nor are you worshippers of what I worship."
+      "en": "Nor are you worshippers of what I worship.",
+      "de": "und ihr dient nicht Dem, Dem ich diene.",
+      "fr": "Et vous n'êtes pas adorateurs de ce que j'adore.",
+      "id": "Dan kamu bukan penyembah Tuhan yang aku sembah.",
+      "ur": "اور جس (خدا) کی میں عبادت کرتا ہوں اس کی تم عبادت نہیں کرتے",
+      "bn": "এবং তোমরাও এবাদতকারী নও, যার এবাদত আমি করি",
+      "fa": "و نه شما آنچه را من می‌پرستم می‌پرستید،",
+      "ru": "а вы не поклоняетесь Тому, Кому поклоняюсь я."
     }
   },
   {
@@ -36,7 +57,14 @@
     "audio": "https://everyayah.com/data/Alafasy_128kbps/109004.mp3",
     "translations": {
       "tr": "Ben de sizin taptıklarınıza tapacak değilim.",
-      "en": "Nor will I be a worshipper of what you worship."
+      "en": "Nor will I be a worshipper of what you worship.",
+      "de": "Und ich werde (auch) nicht dem dienen, dem ihr gedient habt,",
+      "fr": "Je ne suis pas adorateur de ce que vous adorez.",
+      "id": "Dan aku tidak pernah menjadi penyembah apa yang kamu sembah,",
+      "ur": "اور (میں پھر کہتا ہوں کہ) جن کی تم پرستش کرتے ہوں ان کی میں پرستش کرنے والا نہیں ہوں",
+      "bn": "এবং আমি এবাদতকারী নই, যার এবাদত তোমরা কর।",
+      "fa": "و نه من هرگز آنچه را شما پرستش کرده‌اید می‌پرستم،",
+      "ru": "Я не поклоняюсь так, как поклоняетесь вы (или тому, чему поклоняетесь вы),"
     }
   },
   {
@@ -46,7 +74,14 @@
     "audio": "https://everyayah.com/data/Alafasy_128kbps/109005.mp3",
     "translations": {
       "tr": "Siz de benim taptığıma tapacak değilsiniz.",
-      "en": "Nor will you be worshippers of what I worship."
+      "en": "Nor will you be worshippers of what I worship.",
+      "de": "Und ihr werdet nicht Dem dienen, Dem ich diene.",
+      "fr": "Et vous n'êtes pas adorateurs de ce que j'adore.",
+      "id": "dan kamu tidak pernah (pula) menjadi penyembah Tuhan yang aku sembah.",
+      "ur": "اور نہ تم اس کی بندگی کرنے والے (معلوم ہوتے) ہو جس کی میں بندگی کرتا ہوں",
+      "bn": "তোমরা এবাদতকারী নও, যার এবাদত আমি করি।",
+      "fa": "و نه شما آنچه را که من می‌پرستم پرستش می‌کنید؛",
+      "ru": "а вы не поклоняетесь так, как поклоняюсь я (или Тому, Кому поклоняюсь я)."
     }
   },
   {
@@ -56,7 +91,14 @@
     "audio": "https://everyayah.com/data/Alafasy_128kbps/109006.mp3",
     "translations": {
       "tr": "Sizin dininiz size, benim dinim bana.",
-      "en": "For you is your religion, and for me is my religion."
+      "en": "For you is your religion, and for me is my religion.",
+      "de": "Euch eure Religion und mir meine Religion.",
+      "fr": "A vous votre religion, et à moi ma religion».",
+      "id": "Untukmu agamamu, dan untukkulah, agamaku\".",
+      "ur": "تم اپنے دین پر میں اپنے دین پر",
+      "bn": "তোমাদের কর্ম ও কর্মফল তোমাদের জন্যে এবং আমার কর্ম ও কর্মফল আমার জন্যে।",
+      "fa": "(حال که چنین است) آیین شما برای خودتان، و آیین من برای خودم!",
+      "ru": "У вас есть ваша религия, а у меня - моя!»."
     }
   }
 ]

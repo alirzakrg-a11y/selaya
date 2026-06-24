@@ -6,7 +6,14 @@
     "audio": "https://everyayah.com/data/Alafasy_128kbps/090001.mp3",
     "translations": {
       "tr": "Bu şehre (Mekke'ye) yemin ederim; ki sen bu şehirde oturmuşsun.",
-      "en": "I swear by this city, Makkah -"
+      "en": "I swear by this city, Makkah -",
+      "de": "Nein, Ich schwöre bei dieser Ortschaft",
+      "fr": "Non!... Je jure par cette Cité!",
+      "id": "Aku benar-benar bersumpah dengan kota ini (Mekah),",
+      "ur": "ہمیں اس شہر (مکہ) کی قسم",
+      "bn": "আমি এই নগরীর শপথ করি",
+      "fa": "قسم به این شهر مقدّس [= مکّه‌]،",
+      "ru": "Нет, клянусь этим городом (Меккой)!"
     }
   },
   {
@@ -16,7 +23,14 @@
     "audio": "https://everyayah.com/data/Alafasy_128kbps/090002.mp3",
     "translations": {
       "tr": "Bu şehre (Mekke'ye) yemin ederim; ki sen bu şehirde oturmuşsun.",
-      "en": "And you, [O Muhammad], are free of restriction in this city -"
+      "en": "And you, [O Muhammad], are free of restriction in this city -",
+      "de": "-, wo du in dieser Ortschaft deinen Aufenthalt hast,",
+      "fr": "et toi, tu es un résident dans cette cité -",
+      "id": "dan kamu (Muhammad) bertempat di kota Mekah ini,",
+      "ur": "اور تم اسی شہر میں تو رہتے ہو",
+      "bn": "এবং এই নগরীতে আপনার উপর কোন প্রতিবন্ধকতা নেই।",
+      "fa": "شهری که تو در آن ساکنی،",
+      "ru": "Ты обитаешь в этом городе (или Тебе будет дозволено сражаться в этом городе)."
     }
   },
   {
@@ -26,7 +40,14 @@
     "audio": "https://everyayah.com/data/Alafasy_128kbps/090003.mp3",
     "translations": {
       "tr": "Doğurana ve doğurduğuna and olsun ki;",
-      "en": "And [by] the father and that which was born [of him],"
+      "en": "And [by] the father and that which was born [of him],",
+      "de": "- und bei einem (jeden) Erzeuger und dem, was er zeugt.",
+      "fr": "Et par le père et ce qu'il engendre!",
+      "id": "dan demi bapak dan anaknya.",
+      "ur": "اور باپ (یعنی آدم) اور اس کی اولاد کی قسم",
+      "bn": "শপথ জনকের ও যা জন্ম দেয়।",
+      "fa": "و قسم به پدر و فرزندش [= ابراهیم خلیل و فرزندش اسماعیل ذبیح‌]،",
+      "ru": "Клянусь родителем и тем, кого он породил (Адамом и его потомством, или Ибрахимом и его потомками, в том числе Исмаилом и Мухаммадом)!"
     }
   },
   {
@@ -36,7 +57,14 @@
     "audio": "https://everyayah.com/data/Alafasy_128kbps/090004.mp3",
     "translations": {
       "tr": "İnsanoğlunu, zorluklara katlanacak şekilde yarattık.",
-      "en": "We have certainly created man into hardship."
+      "en": "We have certainly created man into hardship.",
+      "de": "Wir haben den Menschen ja (zu einem Leben) in Mühsal erschaffen.",
+      "fr": "Nous avons, certes, créé l'homme pour une vie de lutte.",
+      "id": "Sesungguhnya Kami telah menciptakan manusia berada dalam susah payah.",
+      "ur": "کہ ہم نے انسان کو تکلیف (کی حالت) میں (رہنے والا) بنایا ہے",
+      "bn": "নিশ্চয় আমি মানুষকে শ্রমনির্ভররূপে সৃষ্টি করেছি।",
+      "fa": "که ما انسان را در رنج آفریدیم (و زندگی او پر از رنجهاست)!",
+      "ru": "Мы создали человека в тяготах."
     }
   },
   {
@@ -46,7 +74,14 @@
     "audio": "https://everyayah.com/data/Alafasy_128kbps/090005.mp3",
     "translations": {
       "tr": "İnsanoğlu, kendisine kimsenin güç yetiremeyeceğini mi sanıyor?",
-      "en": "Does he think that never will anyone overcome him?"
+      "en": "Does he think that never will anyone overcome him?",
+      "de": "Meint er etwa, daß überhaupt niemand Macht über ihn hat?",
+      "fr": "Pense-t-il que personne ne pourra rien contre lui?",
+      "id": "Apakah manusia itu menyangka bahwa sekali-kali tiada seorangpun yang berkuasa atasnya?",
+      "ur": "کیا وہ خیال رکھتا ہے کہ اس پر کوئی قابو نہ پائے گا",
+      "bn": "সে কি মনে করে যে, তার উপর কেউ ক্ষমতাবান হবে না ?",
+      "fa": "آیا او گمان می‌کند که هیچ کس نمی‌تواند بر او دست یابد؟!",
+      "ru": "Неужели он полагает, что никто не справится с ним?"
     }
   },
   {
@@ -56,7 +91,14 @@
     "audio": "https://everyayah.com/data/Alafasy_128kbps/090006.mp3",
     "translations": {
       "tr": "\"Yığın yığın mal tüketmişimdir\" diyor.",
-      "en": "He says, \"I have spent wealth in abundance.\""
+      "en": "He says, \"I have spent wealth in abundance.\"",
+      "de": "Er sagt: \"Ich habe Besitz in Mengen verbraucht.\"",
+      "fr": "Il dit: «J'ai gaspillé beaucoup de biens».",
+      "id": "Dan mengatakan: \"Aku telah menghabiskan harta yang banyak\".",
+      "ur": "کہتا ہے کہ میں نے بہت سا مال برباد کیا",
+      "bn": "সে বলেঃ আমি প্রচুর ধন-সম্পদ ব্যয় করেছি।",
+      "fa": "می‌گوید: «مال زیادی را (در کارهای خیر) نابود کرده‌ام!»",
+      "ru": "Он говорит: «Я погубил богатство несметное!»."
     }
   },
   {
@@ -66,7 +108,14 @@
     "audio": "https://everyayah.com/data/Alafasy_128kbps/090007.mp3",
     "translations": {
       "tr": "O, kimsenin kendisini görmediğini mi zannediyor?",
-      "en": "Does he think that no one has seen him?"
+      "en": "Does he think that no one has seen him?",
+      "de": "Meint er etwa, daß niemand ihn gesehen hat?",
+      "fr": "Pense-t-il que nul ne l'a vu?",
+      "id": "Apakah dia menyangka bahwa tiada seorangpun yang melihatnya?",
+      "ur": "کیا اسے یہ گمان ہے کہ اس کو کسی نے دیکھا نہیں",
+      "bn": "সে কি মনে করে যে, তাকে কেউ দেখেনি?",
+      "fa": "آیا (انسان) گمان می‌کند هیچ کس او را ندیده (که عمل خیری انجام نداده) است؟!",
+      "ru": "Неужели он полагает, что никто не видел его?"
     }
   },
   {
@@ -76,7 +125,14 @@
     "audio": "https://everyayah.com/data/Alafasy_128kbps/090008.mp3",
     "translations": {
       "tr": "Biz onun için iki göz, bir dil ve iki dudak var etmedik mi?",
-      "en": "Have We not made for him two eyes?"
+      "en": "Have We not made for him two eyes?",
+      "de": "Haben Wir ihm nicht zwei Augen gemacht,",
+      "fr": "Ne lui avons Nous pas assigné deux yeux,",
+      "id": "Bukankah Kami telah memberikan kepadanya dua buah mata,",
+      "ur": "بھلا ہم نےاس کو دو آنکھیں نہیں دیں؟",
+      "bn": "আমি কি তাকে দেইনি চক্ষুদ্বয়,",
+      "fa": "آیا برای او دو چشم قرار ندادیم،",
+      "ru": "Разве Мы не наделили его двумя глазами,"
     }
   },
   {
@@ -86,7 +142,14 @@
     "audio": "https://everyayah.com/data/Alafasy_128kbps/090009.mp3",
     "translations": {
       "tr": "Biz onun için iki göz, bir dil ve iki dudak var etmedik mi?",
-      "en": "And a tongue and two lips?"
+      "en": "And a tongue and two lips?",
+      "de": "eine Zunge und zwei Lippen",
+      "fr": "et une langue et deux lèvres?",
+      "id": "lidah dan dua buah bibir.",
+      "ur": "اور زبان اور دو ہونٹ (نہیں دیئے)",
+      "bn": "জিহবা ও ওষ্ঠদ্বয় ?",
+      "fa": "و یک زبان و دو لب؟!",
+      "ru": "языком и двумя устами?"
     }
   },
   {
@@ -96,7 +159,14 @@
     "audio": "https://everyayah.com/data/Alafasy_128kbps/090010.mp3",
     "translations": {
       "tr": "Biz ona eğri ve doğru iki yolu da göstermedik mi?",
-      "en": "And have shown him the two ways?"
+      "en": "And have shown him the two ways?",
+      "de": "und ihn beide Hochebenen geleitet?",
+      "fr": "Ne l'avons-Nous pas guidé aux deux voies.",
+      "id": "Dan Kami telah menunjukkan kepadanya dua jalan,",
+      "ur": "(یہ چیزیں بھی دیں) اور اس کو (خیر و شر کے) دونوں رستے بھی دکھا دیئے",
+      "bn": "বস্তুতঃ আমি তাকে দু’টি পথ প্রদর্শন করেছি।",
+      "fa": "و او را به راه خیر و شرّ هدایت کردیم!",
+      "ru": "Разве Мы не указали ему на две восходящие тропы?"
     }
   },
   {
@@ -106,7 +176,14 @@
     "audio": "https://everyayah.com/data/Alafasy_128kbps/090011.mp3",
     "translations": {
       "tr": "Ama o, zor geçidi aşmaya girişemedi.",
-      "en": "But he has not broken through the difficult pass."
+      "en": "But he has not broken through the difficult pass.",
+      "de": "Aber er ist nicht den steilen Paßweg hinaufgestürmt.",
+      "fr": "Or, il ne s'engage pas dans la voie difficile!",
+      "id": "Tetapi dia tiada menempuh jalan yang mendaki lagi sukar.",
+      "ur": "مگر وہ گھاٹی پر سے ہو کر نہ گزرا",
+      "bn": "অতঃপর সে ধর্মের ঘাঁটিতে প্রবেশ করেনি।",
+      "fa": "ولی او از آن گردنه مهمّ نگذشت!",
+      "ru": "Но он не стал преодолевать крутую тропу."
     }
   },
   {
@@ -116,7 +193,14 @@
     "audio": "https://everyayah.com/data/Alafasy_128kbps/090012.mp3",
     "translations": {
       "tr": "O zor geçidin ne olduğunu sen bilir misin?",
-      "en": "And what can make you know what is [breaking through] the difficult pass?"
+      "en": "And what can make you know what is [breaking through] the difficult pass?",
+      "de": "Und was läßt dich wissen, was der steile Paßweg ist?",
+      "fr": "Et qui te dira ce qu'est la voie difficile?",
+      "id": "Tahukah kamu apakah jalan yang mendaki lagi sukar itu?",
+      "ur": "اور تم کیا سمجھے کہ گھاٹی کیا ہے؟",
+      "bn": "আপনি জানেন, সে ঘাঁটি কি?",
+      "fa": "و تو نمی‌دانی آن گردنه چیست!",
+      "ru": "Откуда ты мог знать, что такое крутая тропа?"
     }
   },
   {
@@ -126,7 +210,14 @@
     "audio": "https://everyayah.com/data/Alafasy_128kbps/090013.mp3",
     "translations": {
       "tr": "O geçit, bir köle ve esir azadetmek,",
-      "en": "It is the freeing of a slave"
+      "en": "It is the freeing of a slave",
+      "de": "(Es ist) die Freilassung eines Sklaven10",
+      "fr": "C'est délier un joug [affranchir un esclave],",
+      "id": "(yaitu) melepaskan budak dari perbudakan,",
+      "ur": "کسی (کی) گردن کا چھڑانا",
+      "bn": "তা হচ্ছে দাসমুক্তি",
+      "fa": "آزادکردن برده‌ای،",
+      "ru": "Это - освобождение раба"
     }
   },
   {
@@ -136,7 +227,14 @@
     "audio": "https://everyayah.com/data/Alafasy_128kbps/090014.mp3",
     "translations": {
       "tr": "Yahut, açlık gününde, yakını olan bir öksüzü, yahut toprağa serilmiş bir yoksulu doyurmaktır.",
-      "en": "Or feeding on a day of severe hunger"
+      "en": "Or feeding on a day of severe hunger",
+      "de": "oder zu speisen am Tag der Hungersnot",
+      "fr": "ou nourrir, en un jour de famine,",
+      "id": "atau memberi makan pada hari kelaparan,",
+      "ur": "یا بھوک کے دن کھانا کھلانا",
+      "bn": "অথবা দুর্ভিক্ষের দিনে অন্নদান।",
+      "fa": "یا غذا دادن در روز گرسنگی...",
+      "ru": "или кормление в голодный день"
     }
   },
   {
@@ -146,7 +244,14 @@
     "audio": "https://everyayah.com/data/Alafasy_128kbps/090015.mp3",
     "translations": {
       "tr": "Yahut, açlık gününde, yakını olan bir öksüzü, yahut toprağa serilmiş bir yoksulu doyurmaktır.",
-      "en": "An orphan of near relationship"
+      "en": "An orphan of near relationship",
+      "de": "eine Waise, die einem nahe ist,",
+      "fr": "un orphelin proche parent",
+      "id": "(kepada) anak yatim yang ada hubungan kerabat,",
+      "ur": "یتیم رشتہ دار کو",
+      "bn": "এতীম আত্বীয়কে",
+      "fa": "یتیمی از خویشاوندان،",
+      "ru": "сироту из числа родственников"
     }
   },
   {
@@ -156,7 +261,14 @@
     "audio": "https://everyayah.com/data/Alafasy_128kbps/090016.mp3",
     "translations": {
       "tr": "Yahut, açlık gününde, yakını olan bir öksüzü, yahut toprağa serilmiş bir yoksulu doyurmaktır.",
-      "en": "Or a needy person in misery"
+      "en": "Or a needy person in misery",
+      "de": "oder einen Armen, der dem Boden nahe ist.",
+      "fr": "ou un pauvre dans le dénuement.",
+      "id": "atau kepada orang miskin yang sangat fakir.",
+      "ur": "یا فقیر خاکسار کو",
+      "bn": "অথবা ধুলি-ধুসরিত মিসকীনকে",
+      "fa": "یا مستمندی خاک‌نشین را،",
+      "ru": "или приникшего к земле бедняка."
     }
   },
   {
@@ -166,7 +278,14 @@
     "audio": "https://everyayah.com/data/Alafasy_128kbps/090017.mp3",
     "translations": {
       "tr": "Sonra, inanıp birbirlerine sabır tavsiye edenlerden, merhametlilerden olmayı tavsiye edenlerden olmaktır.",
-      "en": "And then being among those who believed and advised one another to patience and advised one another to compassion."
+      "en": "And then being among those who believed and advised one another to patience and advised one another to compassion.",
+      "de": "Und daß man hierauf zu denjenigen gehört, die glauben, einander die Standhaftigkeit eindringlich empfehlen und einander die Barmherzigkeit eindringlich empfehlen.",
+      "fr": "Et c'est être, en outre, de ceux qui croient et s'enjoignent mutuellement l'endurance, et s'enjoignent mutuellement la miséricorde.",
+      "id": "Dan dia (tidak pula) termasuk orang-orang yang beriman dan saling berpesan untuk bersabar dan saling berpesan untuk berkasih sayang.",
+      "ur": "پھر ان لوگوں میں بھی (داخل) ہو جو ایمان لائے اور صبر کی نصیحت اور (لوگوں پر) شفقت کرنے کی وصیت کرتے رہے",
+      "bn": "অতঃপর তাদের অন্তর্ভুক্ত হওয়া, যারা ঈমান আনে এবং পরস্পরকে উপদেশ দেয় সবরের ও উপদেশ দেয় দয়ার।",
+      "fa": "سپس از کسانی باشد که ایمان آورده و یکدیگر را به شکیبایی و رحمت توصیه می‌کنند!",
+      "ru": "А после этого надо быть одним из тех, которые уверовали и заповедали друг другу терпение и заповедали друг другу милосердие."
     }
   },
   {
@@ -176,7 +295,14 @@
     "audio": "https://everyayah.com/data/Alafasy_128kbps/090018.mp3",
     "translations": {
       "tr": "İşte bunlar amel defterleri sağdan verilenlerdir.",
-      "en": "Those are the companions of the right."
+      "en": "Those are the companions of the right.",
+      "de": "Das sind die Gefährten der rechten Seite.",
+      "fr": "Ceux-là sont les gens de la droite;",
+      "id": "Mereka (orang-orang yang beriman dan saling berpesan itu) adalah golongan kanan.",
+      "ur": "یہی لوگ صاحب سعادت ہیں",
+      "bn": "তারাই সৌভাগ্যশালী।",
+      "fa": "آنها «اصحاب الیمین» اند (که نامه اعمالشان را به دست راستشان می‌دهند)!",
+      "ru": "Таковы люди правой стороны."
     }
   },
   {
@@ -186,7 +312,14 @@
     "audio": "https://everyayah.com/data/Alafasy_128kbps/090019.mp3",
     "translations": {
       "tr": "Ayetlerimizi inkar edenler, işte onlar amel defterleri sollarından verilenlerdir.",
-      "en": "But they who disbelieved in Our signs - those are the companions of the left."
+      "en": "But they who disbelieved in Our signs - those are the companions of the left.",
+      "de": "Diejenigen aber, die Unsere Zeichen verleugnen, sie sind die Gefährten der unglückseligen Seite.",
+      "fr": "alors que ceux qui ne croient pas en Nos versets sont les gens de la gauche.",
+      "id": "Dan orang-orang yang kafir kepada ayat-ayat Kami, mereka itu adalah golongan kiri.",
+      "ur": "اور جنہوں نے ہماری آیتوں کو نہ مانا وہ بدبخت ہیں",
+      "bn": "আর যারা আমার আয়াতসমূহ অস্বীকার করে তারাই হতভাগা।",
+      "fa": "و کسانی که آیات ما را انکار کرده‌اند افرادی شومند (که نامه اعمالشان به دست چپشان داده می‌شود).",
+      "ru": "Те же, которые не уверовали в Наши знамения, являются людьми левой стороны,"
     }
   },
   {
@@ -196,7 +329,14 @@
     "audio": "https://everyayah.com/data/Alafasy_128kbps/090020.mp3",
     "translations": {
       "tr": "Onlar her yönden ateşle kapatılacaklardır.",
-      "en": "Over them will be fire closed in."
+      "en": "Over them will be fire closed in.",
+      "de": "Über ihnen liegt ein (sie) einschließendes Feuer.",
+      "fr": "Le Feu se refermera sur eux.",
+      "id": "Mereka berada dalam neraka yang ditutup rapat.",
+      "ur": "یہ لوگ آگ میں بند کر دیئے جائیں گے",
+      "bn": "তারা অগ্নিপরিবেষ্টিত অবস্থায় বন্দী থাকবে।",
+      "fa": "بر آنها آتشی است فروبسته (که راه فراری از آن نیست)!",
+      "ru": "над которыми сомкнется Огонь."
     }
   }
 ]

@@ -6,7 +6,14 @@
     "audio": "https://everyayah.com/data/Alafasy_128kbps/097001.mp3",
     "translations": {
       "tr": "Şüphesiz biz onu (Kur'an'ı) Kadir gecesinde indirdik.",
-      "en": "Indeed, We sent it down during the Night of Decree."
+      "en": "Indeed, We sent it down during the Night of Decree.",
+      "de": "Wir haben ihn ja in der Nacht der Bestimmung hinabgesandt.",
+      "fr": "Nous l'avons certes, fait descendre (le Coran) pendant la nuit d'Al-Qadr.",
+      "id": "Sesungguhnya Kami telah menurunkannya (Al Quran) pada malam kemuliaan.",
+      "ur": "ہم نے اس (قرآن) کو شب قدر میں نازل (کرنا شروع) کیا",
+      "bn": "আমি একে নাযিল করেছি শবে-কদরে।",
+      "fa": "ما آن [= قرآن‌] را در شب قدر نازل کردیم!",
+      "ru": "Воистину, Мы ниспослали его (Коран) в ночь предопределения (или величия)."
     }
   },
   {
@@ -16,7 +23,14 @@
     "audio": "https://everyayah.com/data/Alafasy_128kbps/097002.mp3",
     "translations": {
       "tr": "Kadir gecesinin ne olduğunu sen bilir misin?",
-      "en": "And what can make you know what is the Night of Decree?"
+      "en": "And what can make you know what is the Night of Decree?",
+      "de": "Und was läßt dich wissen, was die Nacht der Bestimmung ist?",
+      "fr": "Et qui te dira ce qu'est la nuit d'Al-Qadr?",
+      "id": "Dan tahukah kamu apakah malam kemuliaan itu?",
+      "ur": "اور تمہیں کیا معلوم کہ شب قدر کیا ہے؟",
+      "bn": "শবে-কদর সমন্ধে আপনি কি জানেন?",
+      "fa": "و تو چه می‌دانی شب قدر چیست؟!",
+      "ru": "Откуда ты мог знать, что такое ночь предопределения (или величия)?"
     }
   },
   {
@@ -26,7 +40,14 @@
     "audio": "https://everyayah.com/data/Alafasy_128kbps/097003.mp3",
     "translations": {
       "tr": "Kadir gecesi bin aydan daha hayırlıdır.",
-      "en": "The Night of Decree is better than a thousand months."
+      "en": "The Night of Decree is better than a thousand months.",
+      "de": "Die Nacht der Bestimmung ist besser als tausend Monate.",
+      "fr": "La nuit d'Al-Qadr est meilleure que mille mois.",
+      "id": "Malam kemuliaan itu lebih baik dari seribu bulan.",
+      "ur": "شب قدر ہزار مہینے سے بہتر ہے",
+      "bn": "শবে-কদর হল এক হাজার মাস অপেক্ষা শ্রেষ্ঠ।",
+      "fa": "شب قدر بهتر از هزار ماه است!",
+      "ru": "Ночь предопределения (или величия) лучше тысячи месяцев."
     }
   },
   {
@@ -36,7 +57,14 @@
     "audio": "https://everyayah.com/data/Alafasy_128kbps/097004.mp3",
     "translations": {
       "tr": "Melekler ve Ruh (Cebrail) o gecede Rablerinin izniyle her iş için iner.",
-      "en": "The angels and the Spirit descend therein by permission of their Lord for every matter."
+      "en": "The angels and the Spirit descend therein by permission of their Lord for every matter.",
+      "de": "Es kommen die Engel und der Geist in ihr mit der Erlaubnis ihres Herrn mit jeder Angelegenheit herab.",
+      "fr": "Durant celle-ci descendent les Anges ainsi que l'Esprit, par permission de leur Seigneur pour tout ordre.",
+      "id": "Pada malam itu turun malaikat-malaikat dan malaikat Jibril dengan izin Tuhannya untuk mengatur segala urusan.",
+      "ur": "اس میں روح (الامین) اور فرشتے ہر کام کے (انتظام کے) لیے اپنے پروردگار کے حکم سے اترتے ہیں",
+      "bn": "এতে প্রত্যেক কাজের জন্যে ফেরেশতাগণ ও রূহ অবতীর্ণ হয় তাদের পালনকর্তার নির্দেশক্রমে।",
+      "fa": "فرشتگان و «روح» در آن شب به اذن پروردگارشان برای (تقدیر) هر کاری نازل می‌شوند.",
+      "ru": "В эту ночь ангелы и Дух (Джибрил) нисходят с дозволения их Господа по всем Его повелениям."
     }
   },
   {
@@ -46,7 +74,14 @@
     "audio": "https://everyayah.com/data/Alafasy_128kbps/097005.mp3",
     "translations": {
       "tr": "O gece, tan yerinin ağarmasına kadar bir esenliktir.",
-      "en": "Peace it is until the emergence of dawn."
+      "en": "Peace it is until the emergence of dawn.",
+      "de": "Frieden ist sie bis zum Anbruch der Morgendämmerung.",
+      "fr": "Elle est paix et salut jusqu'à l'apparition de l'aube.",
+      "id": "Malam itu (penuh) kesejahteraan sampai terbit fajar.",
+      "ur": "یہ (رات) طلوع صبح تک (امان اور) سلامتی ہے",
+      "bn": "এটা নিরাপত্তা, যা ফজরের উদয় পর্যন্ত অব্যাহত থাকে।",
+      "fa": "شبی است سرشار از سلامت (و برکت و رحمت) تا طلوع سپیده!",
+      "ru": "Она благополучна вплоть до наступления зари."
     }
   }
 ]

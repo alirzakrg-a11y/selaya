@@ -6,7 +6,14 @@
     "audio": "https://everyayah.com/data/Alafasy_128kbps/103001.mp3",
     "translations": {
       "tr": "Asra (çağa) yemin olsun ki,",
-      "en": "By time,"
+      "en": "By time,",
+      "de": "Beim Zeitalter!",
+      "fr": "Par le Temps!",
+      "id": "Demi masa.",
+      "ur": "عصر کی قسم",
+      "bn": "কসম যুগের (সময়ের),",
+      "fa": "به عصر سوگند،",
+      "ru": "Клянусь предвечерним временем (или временем)!"
     }
   },
   {
@@ -16,7 +23,14 @@
     "audio": "https://everyayah.com/data/Alafasy_128kbps/103002.mp3",
     "translations": {
       "tr": "insan gerçekten ziyandadır.",
-      "en": "indeed, mankind is in loss,"
+      "en": "indeed, mankind is in loss,",
+      "de": "Der Mensch befindet sich wahrlich in Verlust,",
+      "fr": "L'homme est certes, en perdition,",
+      "id": "Sesungguhnya manusia itu benar-benar dalam kerugian,",
+      "ur": "کہ انسان نقصان میں ہے",
+      "bn": "নিশ্চয় মানুষ ক্ষতিগ্রস্ত;",
+      "fa": "که انسانها همه در زیانند؛",
+      "ru": "Воистину, каждый человек в убытке,"
     }
   },
   {
@@ -26,7 +40,14 @@
     "audio": "https://everyayah.com/data/Alafasy_128kbps/103003.mp3",
     "translations": {
       "tr": "Ancak iman edip salih amel işleyenler, birbirine hakkı ve sabrı tavsiye edenler müstesna.",
-      "en": "except those who believe, do righteous deeds, and counsel each other to truth and patience."
+      "en": "except those who believe, do righteous deeds, and counsel each other to truth and patience.",
+      "de": "außer denjenigen, die glauben und rechtschaffene Werke tun und einander die Wahrheit eindringlich empfehlen und einander die Standhaftigkeit eindringlich empfehlen.",
+      "fr": "sauf ceux qui croient et accomplissent les bonnes œuvres, s'enjoignent mutuellement la vérité et s'enjoignent mutuellement l'endurance.",
+      "id": "kecuali orang-orang yang beriman dan mengerjakan amal saleh dan nasehat menasehati supaya mentaati kebenaran dan nasehat menasehati supaya menetapi kesabaran.",
+      "ur": "مگر وہ لوگ جو ایمان لائے اور نیک عمل کرتے رہے اور آپس میں حق (بات) کی تلقین اور صبر کی تاکید کرتے رہے",
+      "bn": "কিন্তু তারা নয়, যারা বিশ্বাস স্থাপন করে ও সৎকর্ম করে এবং পরস্পরকে তাকীদ করে সত্যের এবং তাকীদ করে সবরের।",
+      "fa": "مگر کسانی که ایمان آورده و اعمال صالح انجام داده‌اند، و یکدیگر را به حق سفارش کرده و یکدیگر را به شکیبایی و استقامت توصیه نموده‌اند!",
+      "ru": "кроме тех, которые уверовали, совершали праведные деяния, заповедали друг другу истину и заповедали друг другу терпение!"
     }
   }
 ]

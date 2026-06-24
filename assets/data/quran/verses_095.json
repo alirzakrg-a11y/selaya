@@ -6,7 +6,14 @@
     "audio": "https://everyayah.com/data/Alafasy_128kbps/095001.mp3",
     "translations": {
       "tr": "İncir ve zeytine and olsun,",
-      "en": "By the fig and the olive"
+      "en": "By the fig and the olive",
+      "de": "Bei der Feige und der Olive",
+      "fr": "Par le figuier et l'olivier!",
+      "id": "Demi (buah) Tin dan (buah) Zaitun,",
+      "ur": "انجیر کی قسم اور زیتون کی",
+      "bn": "শপথ আঞ্জীর (ডুমুর) ও যয়তুনের,",
+      "fa": "قسم به انجیر و زیتون [یا: قسم به سرزمین شام و بیت المقدّس‌]،",
+      "ru": "Клянусь смоковницей и оливой!"
     }
   },
   {
@@ -16,7 +23,14 @@
     "audio": "https://everyayah.com/data/Alafasy_128kbps/095002.mp3",
     "translations": {
       "tr": "And olsun Sina dağına,",
-      "en": "And [by] Mount Sinai"
+      "en": "And [by] Mount Sinai",
+      "de": "und dem Berg Sinin",
+      "fr": "Et par le Mont Sînîn!",
+      "id": "dan demi bukit Sinai,",
+      "ur": "اور طور سینین کی",
+      "bn": "এবং সিনাই প্রান্তরস্থ তূর পর্বতের,",
+      "fa": "و سوگند به «طور سینین»،",
+      "ru": "Клянусь горой Синин (Синай)!"
     }
   },
   {
@@ -26,7 +40,14 @@
     "audio": "https://everyayah.com/data/Alafasy_128kbps/095003.mp3",
     "translations": {
       "tr": "And olsun bu güvenli Mekke şehrine ki:",
-      "en": "And [by] this secure city [Makkah],"
+      "en": "And [by] this secure city [Makkah],",
+      "de": "und dieser sicheren Ortschaft!",
+      "fr": "Et par cette Cité sûre!",
+      "id": "dan demi kota (Mekah) ini yang aman,",
+      "ur": "اور اس امن والے شہر کی",
+      "bn": "এবং এই নিরাপদ নগরীর।",
+      "fa": "و قسم به این شهر امن [= مکّه‌]،",
+      "ru": "Клянусь этим безопасным городом (Меккой)!"
     }
   },
   {
@@ -36,7 +57,14 @@
     "audio": "https://everyayah.com/data/Alafasy_128kbps/095004.mp3",
     "translations": {
       "tr": "Biz insanı en güzel şekilde yarattık,",
-      "en": "We have certainly created man in the best of stature;"
+      "en": "We have certainly created man in the best of stature;",
+      "de": "Wir haben den Menschen ja in schönster Gestaltung erschaffen,",
+      "fr": "Nous avons certes créé l'homme dans la forme la plus parfaite.",
+      "id": "sesungguhnya Kami telah menciptakan manusia dalam bentuk yang sebaik-baiknya.",
+      "ur": "کہ ہم نے انسان کو بہت اچھی صورت میں پیدا کیا ہے",
+      "bn": "আমি সৃষ্টি করেছি মানুষকে সুন্দরতর অবয়বে।",
+      "fa": "که ما انسان را در بهترین صورت و نظام آفریدیم،",
+      "ru": "Мы сотворили человека в прекраснейшем облике."
     }
   },
   {
@@ -46,7 +74,14 @@
     "audio": "https://everyayah.com/data/Alafasy_128kbps/095005.mp3",
     "translations": {
       "tr": "Sonra onu aşağıların en aşağısı kıldık.",
-      "en": "Then We return him to the lowest of the low,"
+      "en": "Then We return him to the lowest of the low,",
+      "de": "hierauf haben Wir ihn zu den Niedrigsten der Niedrigen werden lassen,",
+      "fr": "Ensuite, Nous l'avons ramené au niveau le plus bas,",
+      "id": "Kemudian Kami kembalikan dia ke tempat yang serendah-rendahnya (neraka),",
+      "ur": "پھر (رفتہ رفتہ) اس (کی حالت) کو (بدل کر) پست سے پست کر دیا",
+      "bn": "অতঃপর তাকে ফিরিয়ে দিয়েছি নীচ থেকে নীচে।",
+      "fa": "سپس او را به پایین‌ترین مرحله بازگرداندیم،",
+      "ru": "Потом Мы вернем его в нижайшее из низких (продлим ему жизнь настолько, что он превратится в дряхлого старика, или бросим его на самое дно Геенны),"
     }
   },
   {
@@ -56,7 +91,14 @@
     "audio": "https://everyayah.com/data/Alafasy_128kbps/095006.mp3",
     "translations": {
       "tr": "Yalnız, inanıp yararlı iş işleyenler bunun dışındadır. Onlara kesintisiz ecir vardır.",
-      "en": "Except for those who believe and do righteous deeds, for they will have a reward uninterrupted."
+      "en": "Except for those who believe and do righteous deeds, for they will have a reward uninterrupted.",
+      "de": "außer denjenigen, die glauben und rechtschaffene Werke tun; für sie wird es einen Lohn geben, der nicht aufhört.",
+      "fr": "sauf ceux qui croient et accomplissent les bonnes œuvres: ceux-là auront une récompense jamais interrompue.",
+      "id": "kecuali orang-orang yang beriman dan mengerjakan amal saleh; maka bagi mereka pahala yang tiada putus-putusnya.",
+      "ur": "مگر جو لوگ ایمان لائے اور نیک عمل کرتے رہے انکے لیے بےانتہا اجر ہے",
+      "bn": "কিন্তু যারা বিশ্বাস স্থাপন করেছে ও সৎকর্ম করেছে, তাদের জন্যে রয়েছে অশেষ পুরস্কার।",
+      "fa": "مگر کسانی که ایمان آورده و اعمال صالح انجام داده‌اند که برای آنها پاداشی تمام‌نشدنی است!",
+      "ru": "за исключением тех, которые уверовали и совершали праведные деяния. Им уготована награда неиссякаемая."
     }
   },
   {
@@ -66,7 +108,14 @@
     "audio": "https://everyayah.com/data/Alafasy_128kbps/095007.mp3",
     "translations": {
       "tr": "Öyleyken, sana dini yalan saydırtan nedir?",
-      "en": "So what yet causes you to deny the Recompense?"
+      "en": "So what yet causes you to deny the Recompense?",
+      "de": "Was läßt dich da weiterhin das Gericht für Lüge erklären?",
+      "fr": "Après cela, qu'est-ce qui te fait traiter la rétribution de mensonge?",
+      "id": "Maka apakah yang menyebabkan kamu mendustakan (hari) pembalasan sesudah (adanya keterangan-keterangan) itu?",
+      "ur": "تو (اے آدم زاد) پھر تو جزا کے دن کو کیوں جھٹلاتا ہے؟",
+      "bn": "অতঃপর কেন তুমি অবিশ্বাস করছ কেয়ামতকে?",
+      "fa": "پس چه چیز سبب می‌شود که بعد از این همه (دلایل روشن) روز جزا را انکار کنی؟!",
+      "ru": "Что же после этого заставляет тебя считать ложью воздаяние?"
     }
   },
   {
@@ -76,7 +125,14 @@
     "audio": "https://everyayah.com/data/Alafasy_128kbps/095008.mp3",
     "translations": {
       "tr": "Allah, hükmedenlerin en iyi hükmedeni değil midir?",
-      "en": "Is not Allah the most just of judges?"
+      "en": "Is not Allah the most just of judges?",
+      "de": "Ist nicht Allah der Weiseste derjenigen, die richten?",
+      "fr": "Allah n'est-Il pas le plus sage des Juges?",
+      "id": "Bukankah Allah Hakim yang seadil-adilnya?",
+      "ur": "کیا خدا سب سے بڑا حاکم نہیں ہے؟",
+      "bn": "আল্লাহ কি বিচারকদের মধ্যে শ্রেষ্টতম বিচারক নন?",
+      "fa": "آیا خداوند بهترین حکم‌کنندگان نیست؟!",
+      "ru": "Разве Аллах не является Наимудрейшим Судьей?"
     }
   }
 ]

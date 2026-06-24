@@ -6,7 +6,14 @@
     "audio": "https://everyayah.com/data/Alafasy_128kbps/108001.mp3",
     "translations": {
       "tr": "Şüphesiz biz sana Kevser'i verdik.",
-      "en": "Indeed, We have granted you al-Kawthar."
+      "en": "Indeed, We have granted you al-Kawthar.",
+      "de": "Wir haben dir ja al-Kautar gegeben.",
+      "fr": "Nous t'avons certes, accordé l'Abondance.",
+      "id": "Sesungguhnya Kami telah memberikan kepadamu nikmat yang banyak.",
+      "ur": "(اے محمدﷺ) ہم نے تم کو کوثر عطا فرمائی ہے",
+      "bn": "নিশ্চয় আমি আপনাকে কাওসার দান করেছি।",
+      "fa": "ما به تو کوثر [= خیر و برکت فراوان‌] عطا کردیم!",
+      "ru": "Мы даровали тебе аль-Каусар (бесчисленные блага, в том числе одноименную реку в Раю)."
     }
   },
   {
@@ -16,7 +23,14 @@
     "audio": "https://everyayah.com/data/Alafasy_128kbps/108002.mp3",
     "translations": {
       "tr": "O hâlde Rabbin için namaz kıl ve kurban kes.",
-      "en": "So pray to your Lord and sacrifice."
+      "en": "So pray to your Lord and sacrifice.",
+      "de": "So bete zu deinem Herrn und opfere.",
+      "fr": "Accomplis la Salât pour ton Seigneur et sacrifie.",
+      "id": "Maka dirikanlah shalat karena Tuhanmu; dan berkorbanlah.",
+      "ur": "تو اپنے پروردگار کے لیے نماز پڑھا کرو اور قربانی دیا کرو",
+      "bn": "অতএব আপনার পালনকর্তার উদ্দেশ্যে নামায পড়ুন এবং কোরবানী করুন।",
+      "fa": "پس برای پروردگارت نماز بخوان و قربانی کن!",
+      "ru": "Посему совершай намаз ради своего Господа и закалывай жертву."
     }
   },
   {
@@ -26,7 +40,14 @@
     "audio": "https://everyayah.com/data/Alafasy_128kbps/108003.mp3",
     "translations": {
       "tr": "Doğrusu sana buğzeden, soyu kesik olanın ta kendisidir.",
-      "en": "Indeed, your enemy is the one cut off."
+      "en": "Indeed, your enemy is the one cut off.",
+      "de": "Gewiß, derjenige, der dich haßt, - er ist vom Guten abgetrennt .",
+      "fr": "Celui qui te hait sera certes, sans postérité.",
+      "id": "Sesungguhnya orang-orang yang membenci kamu dialah yang terputus.",
+      "ur": "کچھ شک نہیں کہ تمہارا دشمن ہی بےاولاد رہے گا",
+      "bn": "যে আপনার শত্রু, সেই তো লেজকাটা, নির্বংশ।",
+      "fa": "(و بدان) دشمن تو قطعاً بریده‌نسل و بی‌عقب است!",
+      "ru": "Воистину, твой ненавистник сам окажется безвестным."
     }
   }
 ]

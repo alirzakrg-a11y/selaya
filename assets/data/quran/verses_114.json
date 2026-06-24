@@ -6,7 +6,14 @@
     "audio": "https://everyayah.com/data/Alafasy_128kbps/114001.mp3",
     "translations": {
       "tr": "De ki: İnsanların Rabbine sığınırım,",
-      "en": "Say, I seek refuge in the Lord of mankind,"
+      "en": "Say, I seek refuge in the Lord of mankind,",
+      "de": "Sag: Ich nehme Zuflucht beim Herrn der Menschen,",
+      "fr": "Dis: «Je cherche protection auprès du Seigneur des hommes.",
+      "id": "Katakanlah: \"Aku berlindung kepada Tuhan (yang memelihara dan menguasai) manusia.",
+      "ur": "کہو کہ میں لوگوں کے پروردگار کی پناہ مانگتا ہوں",
+      "bn": "বলুন, আমি আশ্রয় গ্রহণ করিতেছি মানুষের পালনকর্তার,",
+      "fa": "بگو: پناه می‌برم به پروردگار مردم،",
+      "ru": "Скажи: «Прибегаю к защите Господа людей,"
     }
   },
   {
@@ -16,7 +23,14 @@
     "audio": "https://everyayah.com/data/Alafasy_128kbps/114002.mp3",
     "translations": {
       "tr": "insanların mutlak sahibine,",
-      "en": "the Sovereign of mankind,"
+      "en": "the Sovereign of mankind,",
+      "de": "dem König der Menschen,",
+      "fr": "Le Souverain des hommes,",
+      "id": "Raja manusia.",
+      "ur": "(یعنی) لوگوں کے حقیقی بادشاہ کی",
+      "bn": "মানুষের অধিপতির,",
+      "fa": "به مالک و حاکم مردم،",
+      "ru": "Царя людей,"
     }
   },
   {
@@ -26,7 +40,14 @@
     "audio": "https://everyayah.com/data/Alafasy_128kbps/114003.mp3",
     "translations": {
       "tr": "insanların İlahına,",
-      "en": "the God of mankind,"
+      "en": "the God of mankind,",
+      "de": "dem Gott der Menschen,",
+      "fr": "Dieu des hommes,",
+      "id": "Sembahan manusia.",
+      "ur": "لوگوں کے معبود برحق کی",
+      "bn": "মানুষের মা’বুদের",
+      "fa": "به (خدا و) معبود مردم،",
+      "ru": "Бога людей,"
     }
   },
   {
@@ -36,7 +57,14 @@
     "audio": "https://everyayah.com/data/Alafasy_128kbps/114004.mp3",
     "translations": {
       "tr": "o sinsi vesvesecinin şerrinden,",
-      "en": "from the evil of the retreating whisperer,"
+      "en": "from the evil of the retreating whisperer,",
+      "de": "vor dem Übel des Einflüsterers, des Davonschleichers,",
+      "fr": "contre le mal du mauvais conseiller, furtif,",
+      "id": "Dari kejahatan (bisikan) syaitan yang biasa bersembunyi,",
+      "ur": "(شیطان) وسوسہ انداز کی برائی سے جو (خدا کا نام سن کر) پیچھے ہٹ جاتا ہے",
+      "bn": "তার অনিষ্ট থেকে, যে কুমন্ত্রণা দেয় ও আত্নগোপন করে,",
+      "fa": "از شرّ وسوسه‌گر پنهانکار،",
+      "ru": "от зла искусителя отступающего (или сжимающегося) при поминании Аллаха,"
     }
   },
   {
@@ -46,7 +74,14 @@
     "audio": "https://everyayah.com/data/Alafasy_128kbps/114005.mp3",
     "translations": {
       "tr": "o ki insanların göğüslerine vesvese verir,",
-      "en": "who whispers in the breasts of mankind,"
+      "en": "who whispers in the breasts of mankind,",
+      "de": "der in die Brüste der Menschen einflüstert,",
+      "fr": "qui souffle le mal dans les poitrines des hommes,",
+      "id": "yang membisikkan (kejahatan) ke dalam dada manusia,",
+      "ur": "جو لوگوں کے دلوں میں وسوسے ڈالتا ہے",
+      "bn": "যে কুমন্ত্রণা দেয় মানুষের অন্তরে",
+      "fa": "که در درون سینه انسانها وسوسه می‌کند،",
+      "ru": "который наущает в груди людей"
     }
   },
   {
@@ -56,7 +91,14 @@
     "audio": "https://everyayah.com/data/Alafasy_128kbps/114006.mp3",
     "translations": {
       "tr": "gerek cinlerden, gerek insanlardan.",
-      "en": "from among jinn and mankind."
+      "en": "from among jinn and mankind.",
+      "de": "von den Ginn und den Menschen.",
+      "fr": "qu'il (le conseiller) soit un djinn, ou un être humain».",
+      "id": "dari (golongan) jin dan manusia.",
+      "ur": "وہ جنّات میں سے (ہو) یا انسانوں میں سے",
+      "bn": "জ্বিনের মধ্য থেকে অথবা মানুষের মধ্য থেকে।",
+      "fa": "خواه از جنّ باشد یا از انسان!",
+      "ru": "и бывает из джиннов и людей»."
     }
   }
 ]
