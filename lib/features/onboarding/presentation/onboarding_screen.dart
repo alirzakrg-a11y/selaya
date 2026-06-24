@@ -274,6 +274,10 @@ class _LanguagePage extends StatelessWidget {
             ('de', '🇩🇪', 'Deutsch'),
             ('id', '🇮🇩', 'Bahasa Indonesia'),
             ('fr', '🇫🇷', 'Français'),
+            ('ur', '🇵🇰', 'اردو'),
+            ('bn', '🇧🇩', 'বাংলা'),
+            ('fa', '🇮🇷', 'فارسی'),
+            ('ru', '🇷🇺', 'Русский'),
           ])
             option(l.$1, l.$2, l.$3),
           const Gap.xl(),

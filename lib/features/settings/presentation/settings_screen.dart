@@ -677,6 +677,10 @@ class _LangToggle extends StatelessWidget {
     ('de', 'Deutsch'),
     ('id', 'Bahasa Indonesia'),
     ('fr', 'Français'),
+    ('ur', 'اردو'),
+    ('bn', 'বাংলা'),
+    ('fa', 'فارسی'),
+    ('ru', 'Русский'),
   ];
 
   @override
