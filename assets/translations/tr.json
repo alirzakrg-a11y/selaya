@@ -85,7 +85,8 @@
     "err_unknown": "Bir şeyler ters gitti. Tekrar dene.",
     "exportData": "Verilerimi İndir",
     "exportPreparing": "Verilerin hazırlanıyor…",
-    "exportFailed": "Veri indirilemedi"
+    "exportFailed": "Veri indirilemedi",
+    "err_rumuz_taken": "Bu rumuz başkası tarafından alınmış, başka bir tane seç."
   },
   "common": {
     "appName": "SELAYA",

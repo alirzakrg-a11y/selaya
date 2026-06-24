@@ -5,7 +5,7 @@
 // Bağlamalar: DB (D1: selaya-content), CDN (R2: selaya-cdn), CDN_BASE (var),
 //             ADMIN_TOKEN (secret), AUTH_SECRET (secret — JWT imzası)
 
-import { handleAuth, hashPassword } from './auth.js';
+import { handleAuth, hashPassword, timingSafeEqual } from './auth.js';
 import { handleDuaWall } from './dua_wall.js';
 import { handleHatim } from './hatim.js';
 import { handleQuiz } from './quiz.js';
@@ -31,9 +31,17 @@ function safeParse(s) { try { return JSON.parse(s); } catch (e) { return null; }
 const MANIFEST_CK = 'https://api.selaya.app/v1/manifest';
 const LIKES_CK = 'https://api.selaya.app/v1/likes';
 const FINANCE_CK = 'https://api.selaya.app/v1/finance';
+const NOTIF_CK = 'https://api.selaya.app/v1/notifications';
+// Beğeni key'i = type:id. Bilinen içerik türleriyle SINIRLI → rastgele key
+// seliyle likes tablosuna sınırsız satır yazılmasını engeller. Yeni bir tür
+// eklenirse buraya da eklenmeli.
+const LIKE_KEY_RE = /^(verse|hadith|dua|feed|wallpaper|surah|story|video|ayah):[A-Za-z0-9_.-]{1,64}$/;
 function bustManifest(ctx) {
   if (!ctx) return;
-  try { ctx.waitUntil(caches.default.delete(MANIFEST_CK)); } catch (_) {}
+  try {
+    ctx.waitUntil(caches.default.delete(MANIFEST_CK));
+    ctx.waitUntil(caches.default.delete(NOTIF_CK));
+  } catch (_) {}
 }
 
 function extOf(name, fallback) {
@@ -192,6 +200,11 @@ export default {
       }
 
       if (path === '/v1/notifications') {
+        // 30 sn edge cache (önceden header vardı ama edge'e YAZILMIYORDU → her
+        // açılış D1'e iniyordu). Panel mutasyonu bustManifest ile NOTIF_CK'yı düşürür.
+        const cache = caches.default;
+        const hit = await cache.match(NOTIF_CK);
+        if (hit) return hit;
         const { results } = await env.DB.prepare(
           'SELECT id, title, body, image_key, link, created_at FROM notifications ' +
           'WHERE active = 1 ORDER BY created_at DESC LIMIT 50'
@@ -205,7 +218,9 @@ export default {
           link: r.link || null,
           created_at: r.created_at,
         }));
-        return json({ ok: true, items }, { maxage: 30 });
+        const resp = json({ ok: true, items }, { maxage: 30 });
+        if (ctx) ctx.waitUntil(cache.put(NOTIF_CK, resp.clone()));
+        return resp;
       }
 
       // GET /v1/quran-audio/{sure}/{ayet} — Kuran ayet sesi.
@@ -263,6 +278,15 @@ export default {
         const lm = path.match(/^\/v1\/like\/(.+)$/);
         if (lm && request.method === 'POST') {
           const key = decodeURIComponent(lm[1]).slice(0, 80);
+          // Yalnız geçerli içerik key'i (type:id) — rastgele key seliyle likes
+          // tablosuna sınırsız yeni satır yazılmasını engelle.
+          if (!LIKE_KEY_RE.test(key)) return json({ ok: false, error: 'bad_key' }, { status: 400 });
+          // IP başına yazma hız limiti (fatura/DoS koruması; binding yoksa atla).
+          if (env.WRITE_RL) {
+            const ip = request.headers.get('CF-Connecting-IP') || 'anon';
+            const { success } = await env.WRITE_RL.limit({ key: 'wr:' + ip });
+            if (!success) return new Response('rate_limited', { status: 429, headers: CORS });
+          }
           await env.DB.prepare(
             'INSERT INTO likes (key, count) VALUES (?1, 1) ' +
             'ON CONFLICT(key) DO UPDATE SET count = count + 1'
@@ -280,6 +304,12 @@ export default {
         const um = path.match(/^\/v1\/unlike\/(.+)$/);
         if (um && request.method === 'POST') {
           const key = decodeURIComponent(um[1]).slice(0, 80);
+          if (!LIKE_KEY_RE.test(key)) return json({ ok: false, error: 'bad_key' }, { status: 400 });
+          if (env.WRITE_RL) {
+            const ip = request.headers.get('CF-Connecting-IP') || 'anon';
+            const { success } = await env.WRITE_RL.limit({ key: 'wr:' + ip });
+            if (!success) return new Response('rate_limited', { status: 429, headers: CORS });
+          }
           await env.DB.prepare(
             'UPDATE likes SET count = MAX(0, count - 1) WHERE key = ?1'
           ).bind(key).run();
@@ -301,7 +331,8 @@ export default {
 
       if (path.startsWith('/api/')) {
         const token = request.headers.get('X-Admin-Token') || '';
-        if (!env.ADMIN_TOKEN || token !== env.ADMIN_TOKEN) {
+        // Sabit-zamanlı karşılaştırma (timing side-channel kapalı).
+        if (!env.ADMIN_TOKEN || !timingSafeEqual(token, env.ADMIN_TOKEN)) {
           return json({ ok: false, error: 'unauthorized' }, { status: 401 });
         }
 

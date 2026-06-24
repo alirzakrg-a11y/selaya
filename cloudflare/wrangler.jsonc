@@ -38,6 +38,21 @@
       "name": "AUDIO_RL",
       "namespace_id": "1001",
       "simple": { "limit": 240, "period": 60 }
+    },
+    {
+      // Auth uçları (login/register/forgot/reset): IP başına 60 sn'de 15. Her
+      // istek PBKDF2 100k-iter CPU + D1 okuması olduğundan kötüye kullanım
+      // doğrudan faturaya yansır; bu limit PBKDF2'ye girmeden 429 ile keser.
+      "name": "AUTH_RL",
+      "namespace_id": "1002",
+      "simple": { "limit": 15, "period": 60 }
+    },
+    {
+      // Auth'suz yazma/şikayet uçları (like/unlike/report): IP başına 60 sn'de
+      // 80. Sınırsız D1 yazma seliyle kota/fatura yakılmasını engeller.
+      "name": "WRITE_RL",
+      "namespace_id": "1003",
+      "simple": { "limit": 80, "period": 60 }
     }
   ]
 }

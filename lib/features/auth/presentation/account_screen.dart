@@ -659,7 +659,11 @@ class _ChangePasswordSheetState extends ConsumerState<_ChangePasswordSheet> {
     }
     setState(() => _busy = true);
     try {
-      await AuthApi.changePassword(token, _old.text, _new.text);
+      final freshToken = await AuthApi.changePassword(token, _old.text, _new.text);
+      // Sunucu diğer oturumları düşürdü; bu cihaz devam etsin diye taze token'ı kaydet.
+      if (freshToken != null) {
+        await ref.read(authControllerProvider.notifier).applyToken(freshToken);
+      }
       if (!mounted) return;
       final messenger = ScaffoldMessenger.of(context);
       Navigator.pop(context);

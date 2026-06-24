@@ -34,6 +34,25 @@ const RATE_MS = 60 * 1000;       // 60 sn'de en fazla 1 gönderi
 const MAX_PENDING = 5;            // kullanıcı başına en çok 5 bekleyen
 const PAGE = 30;
 
+// Şikayet şemasını (reports kolonu + dedup tablosu) isolate başına BİR KEZ garanti
+// et — her çağrıda ALTER denemek yerine.
+let _reportSchemaOk = false;
+async function ensureReportSchema(env) {
+  if (_reportSchemaOk) return;
+  try {
+    await env.DB.prepare(
+      'ALTER TABLE dua_wall ADD COLUMN reports INTEGER NOT NULL DEFAULT 0'
+    ).run();
+  } catch (_) {}
+  try {
+    await env.DB.prepare(
+      'CREATE TABLE IF NOT EXISTS dua_reports (dua_id TEXT NOT NULL, user_id TEXT NOT NULL, ' +
+      'created_at INTEGER, PRIMARY KEY(dua_id,user_id))'
+    ).run();
+  } catch (_) {}
+  _reportSchemaOk = true;
+}
+
 // Dua Duvarı rotası ise Response, değilse null (index.js akışı devam etsin).
 export async function handleDuaWall(request, env, path) {
   if (!path.startsWith('/v1/dua-wall')) return null;
@@ -42,12 +61,26 @@ export async function handleDuaWall(request, env, path) {
   // ---- HERKESE AÇIK: onaylı duaları listele (giriş gerekmez) ----
   if (request.method === 'GET' && path === '/v1/dua-wall') {
     const url = new URL(request.url);
-    const before = parseInt(url.searchParams.get('before') || '0', 10) || Date.now() + 1;
+    const beforeParam = url.searchParams.get('before');
+    // İlk sayfa (before yok) herkese aynı → 30 sn edge cache: auth'suz bot seli
+    // her çağrıda D1'e inmesin (fatura/DoS koruması).
+    const cache = caches.default;
+    const CK = 'https://api.selaya.app/__cache/dua-wall';
+    if (!beforeParam) {
+      const hit = await cache.match(CK);
+      if (hit) return hit;
+    }
+    const before = parseInt(beforeParam || '0', 10) || Date.now() + 1;
     const { results } = await env.DB.prepare(
       "SELECT id, rumuz, text, amins, created_at FROM dua_wall " +
       "WHERE status='approved' AND created_at < ? ORDER BY created_at DESC LIMIT ?"
     ).bind(before, PAGE).all();
-    return json({ ok: true, duas: results || [] });
+    const resp = json({ ok: true, duas: results || [] });
+    if (!beforeParam) {
+      resp.headers.set('Cache-Control', 'public, max-age=30');
+      await cache.put(CK, resp.clone());
+    }
+    return resp;
   }
 
   // ---- Bundan sonrası giriş ister ----
@@ -62,6 +95,12 @@ export async function handleDuaWall(request, env, path) {
     if (!b) return json({ ok: false, error: 'bad_body' }, 400);
     const v = validateRumuz(b.rumuz);
     if (!v.ok) return json({ ok: false, error: v.error }, 400);
+    // Benzersizlik: başkasının rumuzunu alıp kimliğine bürünmeyi engelle
+    // (dua duvarı/hatim/quiz'de rumuz görünür). Panel ile aynı kural.
+    const taken = await env.DB.prepare(
+      'SELECT id FROM users WHERE rumuz=? COLLATE NOCASE AND id<>?'
+    ).bind(v.value, uid).first();
+    if (taken) return json({ ok: false, error: 'rumuz_taken' }, 409);
     await env.DB.prepare('UPDATE users SET rumuz=? WHERE id=?').bind(v.value, uid).run();
     return json({ ok: true, rumuz: v.value });
   }
@@ -103,19 +142,23 @@ export async function handleDuaWall(request, env, path) {
     const b = await readJson(request);
     const id = (b && b.id || '').toString();
     if (!id) return json({ ok: false, error: 'id_required' }, 400);
-    // 'reports' kolonu yoksa ekle (tek seferlik, idempotent).
-    try {
+    await ensureReportSchema(env);
+    // Kullanıcı başına 1 şikayet (dedup): bir kişi 3 kez şikayet ederek meşru
+    // bir duayı TEK BAŞINA gizleyemesin (moderasyon-DoS koruması).
+    await env.DB.prepare(
+      'INSERT OR IGNORE INTO dua_reports (dua_id,user_id,created_at) VALUES (?,?,?)'
+    ).bind(id, uid, Date.now()).run();
+    const cnt = await env.DB.prepare(
+      'SELECT COUNT(*) AS n FROM dua_reports WHERE dua_id=?'
+    ).bind(id).first();
+    const n = (cnt && cnt.n) || 0;
+    await env.DB.prepare('UPDATE dua_wall SET reports=? WHERE id=?').bind(n, id).run();
+    // 3+ FARKLI kullanıcı şikayet → otomatik gizle (panelde tekrar incelenir).
+    if (n >= 3) {
       await env.DB.prepare(
-        'ALTER TABLE dua_wall ADD COLUMN reports INTEGER NOT NULL DEFAULT 0'
-      ).run();
-    } catch (_) {}
-    await env.DB.prepare(
-      'UPDATE dua_wall SET reports = COALESCE(reports,0) + 1 WHERE id=?'
-    ).bind(id).run();
-    // 3+ şikayet → otomatik gizle (yayından kalkar; panelde tekrar incelenir).
-    await env.DB.prepare(
-      "UPDATE dua_wall SET status='hidden' WHERE id=? AND COALESCE(reports,0) >= 3 AND status='approved'"
-    ).bind(id).run();
+        "UPDATE dua_wall SET status='hidden' WHERE id=? AND status='approved'"
+      ).bind(id).run();
+    }
     return json({ ok: true });
   }
 

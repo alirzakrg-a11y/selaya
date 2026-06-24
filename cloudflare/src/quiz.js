@@ -58,6 +58,14 @@ export async function handleQuiz(request, env, path) {
   if (request.method === 'GET' && path === '/v1/quiz/leaderboard') {
     const url = new URL(request.url);
     const wk = url.searchParams.get('week') || week;
+    // Anonim istek (me yok) hafta başına aynı → 60 sn edge cache. Girişli istekte
+    // "me" (kişisel sıra) olduğundan cache ATLANIR.
+    const cache = caches.default;
+    const CK = 'https://api.selaya.app/__cache/quiz-lb?w=' + encodeURIComponent(wk);
+    if (!uid) {
+      const hit = await cache.match(CK);
+      if (hit) return hit;
+    }
     const { results } = await env.DB.prepare(
       "SELECT rumuz, score, correct, total FROM quiz_scores WHERE week=? " +
       "ORDER BY score DESC, updated_at ASC LIMIT 50"
@@ -74,7 +82,12 @@ export async function handleQuiz(request, env, path) {
         me = { rank: ((above && above.n) || 0) + 1, score: mine.score };
       }
     }
-    return json({ ok: true, week: wk, top: results || [], me });
+    const resp = json({ ok: true, week: wk, top: results || [], me });
+    if (!uid) {
+      resp.headers.set('Cache-Control', 'public, max-age=60');
+      await cache.put(CK, resp.clone());
+    }
+    return resp;
   }
 
   // ---- Bundan sonrası giriş ister ----

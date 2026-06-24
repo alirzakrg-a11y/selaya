@@ -85,7 +85,8 @@
     "err_unknown": "Something went wrong. Try again.",
     "exportData": "Download My Data",
     "exportPreparing": "Preparing your data…",
-    "exportFailed": "Could not export your data"
+    "exportFailed": "Could not export your data",
+    "err_rumuz_taken": "This nickname is already taken, please choose another."
   },
   "common": {
     "appName": "SELAYA",

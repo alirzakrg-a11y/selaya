@@ -117,6 +117,10 @@ class _DuaWallScreenState extends ConsumerState<DuaWallScreen> {
         return tr
             ? 'Allah\'ın isimleri veya kutsal değerler rumuz olarak kullanılamaz.'
             : 'Sacred names cannot be used as a nickname.';
+      case 'rumuz_taken':
+        return tr
+            ? 'Bu rumuz başkası tarafından alınmış, başka bir tane seçin.'
+            : 'This nickname is already taken, please choose another.';
       case 'unauthorized':
         return tr ? 'Oturum süresi doldu, tekrar giriş yapın.' : 'Session expired.';
       case 'network':

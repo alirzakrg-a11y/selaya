@@ -77,7 +77,7 @@ export async function hashPassword(password) {
   return { hash: b64FromBytes(hash), salt: b64FromBytes(salt), iters };
 }
 
-function timingSafeEqual(a, b) {
+export function timingSafeEqual(a, b) {
   if (a.length !== b.length) return false;
   let r = 0;
   for (let i = 0; i < a.length; i++) r |= a.charCodeAt(i) ^ b.charCodeAt(i);
@@ -120,13 +120,30 @@ async function verifyJWT(token, secret) {
   } catch (_) { return null; }
 }
 
-const TOKEN_TTL = 60 * 60 * 24 * 180; // 180 gün
+const TOKEN_TTL = 60 * 60 * 24 * 90; // 90 gün (sec_version ile iptal edilebilir)
 
 async function issueToken(env, user, deviceId) {
   const now = Math.floor(Date.now() / 1000);
-  const payload = { sub: user.id, email: user.email, iat: now, exp: now + TOKEN_TTL };
+  // sv = sec_version: şifre değişimi/reset/ban'da artar → eski token'lar geçersiz.
+  const payload = {
+    sub: user.id, email: user.email, iat: now, exp: now + TOKEN_TTL,
+    sv: Number(user.sec_version) || 0,
+  };
   if (deviceId) payload.did = deviceId; // en fazla 2 cihaz: token'ı cihaza bağla
   return signJWT(payload, env.AUTH_SECRET);
+}
+
+// users.sec_version kolonunu (oturum iptali için) bir kez, isolate başına garanti
+// et. Eski deploy'larda kolon olmayabilir → ekle; varsa hata yutulur.
+let _secColOk = false;
+async function ensureSecCol(env) {
+  if (_secColOk) return;
+  try {
+    await env.DB.prepare(
+      'ALTER TABLE users ADD COLUMN sec_version INTEGER NOT NULL DEFAULT 0'
+    ).run();
+  } catch (_) {}
+  _secColOk = true;
 }
 
 function publicUser(u) {
@@ -173,15 +190,20 @@ export async function requireUser(request, env) {
   if (!m) return null;
   const payload = await verifyJWT(m[1], env.AUTH_SECRET);
   if (!payload) return null;
+  await ensureSecCol(env);
   // Banlı kullanıcı → 'banned' sentineli (çağıran 403 döner; uygulama
   // "engellendiniz" gösterip oturumu kapatır). Banlanınca hiçbir authed istek geçmez.
   // ⚠️ Ban kontrolü cihaz kontrolünden ÖNCE: ban, user_devices kayıtlarını da
   // sildiği için aşağıdaki "did hâlâ kayıtlı mı" kontrolü null (401) döndürür ve
   // uygulamaya yanlışlıkla "başka cihazda açıldı (en fazla 2 cihaz)" mesajı
   // gösterirdi. Banlı kullanıcı net biçimde "engellendiniz" görsün diye en başta.
-  const u = await env.DB.prepare('SELECT banned FROM users WHERE id=?')
+  const u = await env.DB.prepare('SELECT banned, sec_version FROM users WHERE id=?')
       .bind(payload.sub).first();
-  if (u && u.banned) return 'banned';
+  if (!u) return null; // silinen/var-olmayan kullanıcı → token geçersiz
+  if (u.banned) return 'banned';
+  // Oturum iptali: şifre değişimi/reset/ban sec_version'ı artırır → eski token'lar
+  // (düşük sv) burada düşer. Eski (sv'siz) token'lar 0 sayılır; ilk artışta düşer.
+  if ((Number(payload.sv) || 0) !== (Number(u.sec_version) || 0)) return null;
   // En fazla 2 cihaz: token bir cihaza bağlıysa (did) o cihaz HÂLÂ kayıtlı olmalı.
   // Hesap başka cihazda açılınca bu cihaz düşürülür (did silinir) → burada 401.
   // Eski (did'siz) token'lar geriye dönük çalışır; yeniden girişte did kazanır.
@@ -244,6 +266,18 @@ export async function handleAuth(request, env, path) {
   }
   if (!env.AUTH_SECRET) return json({ ok: false, error: 'server_misconfig' }, 500);
 
+  // Rate limit (IP başına) — yazma uçları PBKDF2/D1'e GİRMEDEN önce kesilir;
+  // aksi halde rastgele-email login seli Worker CPU + D1 kotasını/faturasını
+  // yakabilir. Binding yoksa (eski deploy) sessizce atlanır (fail-open).
+  if (request.method === 'POST' && env.AUTH_RL &&
+      (path === '/v1/auth/register' || path === '/v1/auth/login' ||
+       path === '/v1/auth/forgot' || path === '/v1/auth/reset')) {
+    const ip = request.headers.get('CF-Connecting-IP') || 'anon';
+    const { success } = await env.AUTH_RL.limit({ key: 'auth:' + ip });
+    if (!success) return json({ ok: false, error: 'too_many_attempts' }, 429);
+  }
+  await ensureSecCol(env); // oturum-iptali kolonu (register/reset için garanti)
+
   // ---- KAYIT ----
   if (request.method === 'POST' && path === '/v1/auth/register') {
     const b = await readJson(request);
@@ -267,6 +301,10 @@ export async function handleAuth(request, env, path) {
 
     const exists = await env.DB.prepare('SELECT id FROM users WHERE email=?').bind(email).first();
     if (exists) return json({ ok: false, error: 'email_taken' }, 409);
+    // Rumuz benzersiz olmalı (kimlik taklidi engeli — panel ile aynı kural).
+    const rTaken = await env.DB.prepare('SELECT id FROM users WHERE rumuz=? COLLATE NOCASE')
+        .bind(rumuz).first();
+    if (rTaken) return json({ ok: false, error: 'rumuz_taken' }, 409);
 
     const { hash, salt, iters } = await hashPassword(password);
     const id = crypto.randomUUID();
@@ -379,8 +417,9 @@ export async function handleAuth(request, env, path) {
       return json({ ok: false, error: 'invalid_code' }, 400);
     }
     const np = await hashPassword(newPw);
+    // sec_version++ → sıfırlama, ele geçirilmiş eski tüm oturumları geçersizler.
     await env.DB.prepare(
-      'UPDATE users SET pass_hash=?, pass_salt=?, iters=?, failed_attempts=0, locked_until=0 WHERE id=?'
+      'UPDATE users SET pass_hash=?, pass_salt=?, iters=?, failed_attempts=0, locked_until=0, sec_version=COALESCE(sec_version,0)+1 WHERE id=?'
     ).bind(np.hash, np.salt, np.iters, u.id).run();
     await env.DB.prepare('UPDATE auth_codes SET used=1 WHERE id=?').bind(row.id).run();
     return json({ ok: true });
@@ -408,7 +447,10 @@ export async function handleAuth(request, env, path) {
       const aux = [
         'DELETE FROM user_devices WHERE user_id=?',
         'DELETE FROM dua_wall WHERE user_id=?',
+        'DELETE FROM dua_amins WHERE user_id=?',   // FK CASCADE D1'de tetiklenmez → elle
+        'DELETE FROM dua_reports WHERE user_id=?',
         'DELETE FROM quiz_scores WHERE user_id=?',
+        'DELETE FROM auth_codes WHERE user_id=?',
         "UPDATE hatim_juz SET status='open', user_id=NULL, rumuz=NULL, claimed_at=NULL, done_at=NULL WHERE user_id=?",
       ];
       for (const sql of aux) {
@@ -433,10 +475,16 @@ export async function handleAuth(request, env, path) {
         return json({ ok: false, error: 'wrong_password' }, 401);
       }
       const np = await hashPassword(newPw);
+      // sec_version++ → diğer cihaz/oturumlardaki eski token'lar geçersiz olur.
       await env.DB
-          .prepare('UPDATE users SET pass_hash=?, pass_salt=?, iters=? WHERE id=?')
+          .prepare('UPDATE users SET pass_hash=?, pass_salt=?, iters=?, sec_version=COALESCE(sec_version,0)+1 WHERE id=?')
           .bind(np.hash, np.salt, np.iters, uid).run();
-      return json({ ok: true });
+      // BU cihazı düşürme: yeni sec_version'lı taze token ver (uygulama kaydeder).
+      const fresh = await env.DB
+          .prepare('SELECT email, sec_version FROM users WHERE id=?').bind(uid).first();
+      const token = await issueToken(
+          env, { id: uid, email: fresh.email, sec_version: fresh.sec_version }, payload.did);
+      return json({ ok: true, token });
     }
 
     // ---- PROFİL GÜNCELLE (ad/soyad) ----

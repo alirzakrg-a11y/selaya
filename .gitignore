@@ -2,6 +2,12 @@
 .claude/settings.local.json
 .wrangler/
 
+# İmza sırları — ASLA commit'lenmemeli (savunma-derinliği; android/.gitignore'a ek)
+key.properties
+**/key.properties
+*.jks
+*.keystore
+
 # Miscellaneous
 *.class
 *.log

@@ -47,7 +47,7 @@ class _AuthScreenState extends ConsumerState<AuthScreen> {
       'email_taken', 'invalid_email', 'weak_password',
       'invalid_credentials', 'name_required', 'network', 'bad_response',
       'too_many_attempts', 'name_profanity', 'banned',
-      'rumuz_length', 'rumuz_chars', 'rumuz_profanity', 'rumuz_sacred',
+      'rumuz_length', 'rumuz_chars', 'rumuz_profanity', 'rumuz_sacred', 'rumuz_taken',
     };
     return (known.contains(code) ? 'auth.err_$code' : 'auth.err_unknown').tr();
   }

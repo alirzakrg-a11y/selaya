@@ -113,6 +113,16 @@ export async function handleHatim(request, env, path) {
   // ---- LİSTE (herkese açık) ----
   if (request.method === 'GET' && path === '/v1/hatim') {
     await ensureDefault(env);
+    // Anonim (girişsiz) istek herkese aynı → 60 sn edge cache: bu uç kampanya
+    // başına ~2 sorgulu N+1 olduğundan (20 kampanyada ~43 D1 sorgusu) auth'suz
+    // bot seli faturayı şişirebilir. Girişli istekte "mine" işaretleri kişiye
+    // özel olduğundan cache ATLANIR (taze veri döner).
+    const cache = caches.default;
+    const CK = 'https://api.selaya.app/__cache/hatim';
+    if (!uid) {
+      const hit = await cache.match(CK);
+      if (hit) return hit;
+    }
     const { results } = await env.DB.prepare(
       "SELECT id FROM hatim_campaigns WHERE status='active' ORDER BY created_at DESC LIMIT 20"
     ).all();
@@ -125,7 +135,12 @@ export async function handleHatim(request, env, path) {
       "SELECT id,title,intention,created_rumuz,completed_at FROM hatim_campaigns " +
       "WHERE status='completed' ORDER BY completed_at DESC LIMIT 10"
     ).all();
-    return json({ ok: true, campaigns, completed: recent.results || [] });
+    const resp = json({ ok: true, campaigns, completed: recent.results || [] });
+    if (!uid) {
+      resp.headers.set('Cache-Control', 'public, max-age=60');
+      await cache.put(CK, resp.clone());
+    }
+    return resp;
   }
 
   // ---- Bundan sonrası giriş ister ----

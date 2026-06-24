@@ -133,7 +133,9 @@ class AuthApi {
   }
 
   /// Girişli kullanıcının şifresini değiştir (eski şifre doğrulanır).
-  static Future<void> changePassword(
+  /// Şifreyi değiştirir. Sunucu, diğer oturumları düşürüp bu cihaza taze bir
+  /// token döner → çağıran onu kaydetmeli (yoksa bu cihaz da düşer).
+  static Future<String?> changePassword(
     String token,
     String oldPw,
     String newPw,
@@ -154,7 +156,7 @@ class AuthApi {
       throw AuthException('network');
     }
     final d = _decode(res);
-    if (res.statusCode == 200 && d['ok'] == true) return;
+    if (res.statusCode == 200 && d['ok'] == true) return d['token'] as String?;
     throw AuthException((d['error'] ?? 'unknown').toString());
   }
 

@@ -129,6 +129,16 @@ class AuthController extends Notifier<AuthState> {
     await AuthApi.deleteAccount(token, password);
     await logout();
   }
+
+  /// Sunucunun verdiği taze token'ı uygula. Şifre değişiminde sunucu eski tüm
+  /// oturumları (diğer cihazlar) düşürür ama bu cihaza yeni token verir →
+  /// kullanıcı çıkış yapmadan devam eder.
+  Future<void> applyToken(String token) async {
+    if (token.isEmpty) return;
+    final prefs = ref.read(sharedPreferencesProvider);
+    await prefs.setString(PrefKeys.authToken, token);
+    state = AuthState(user: state.user, token: token);
+  }
 }
 
 final authControllerProvider = NotifierProvider<AuthController, AuthState>(

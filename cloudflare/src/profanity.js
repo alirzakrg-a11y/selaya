@@ -83,6 +83,25 @@ const ARTICLES = ['el', 'er', 'es', 'eş', 'ez', 'en', 'ed', 'et', 'ül', 'ul'];
 
 const LEET = { '0': 'o', '1': 'i', '3': 'e', '4': 'a', '5': 's', '7': 't', '@': 'a', '$': 's', '!': 'i', '|': 'i' };
 
+// Görünmez karakterler (zero-width, BOM, yön işaretleri, soft-hyphen) — araya
+// gizli karakter koyup filtreyi atlatmayı engelle ("a‍m‍k" → "amk").
+function stripInvisible(s) {
+  return s.replace(/[​-‏‪-‮⁠-⁤﻿­]/g, "");
+}
+// Benzer-görünümlü (homoglyph) Kiril/Yunan harfleri Latin'e indir → "Аllah"
+// (baştaki Kiril А) gibi kutsal-isim/küfür kaçırmaları yakalanır.
+const HOMOGLYPH = {
+  'а': 'a', 'е': 'e', 'о': 'o', 'р': 'p', 'с': 'c', 'у': 'y', 'х': 'x', 'к': 'k',
+  'м': 'm', 'н': 'h', 'т': 't', 'в': 'b', 'ѕ': 's', 'і': 'i', 'ј': 'j', 'ԁ': 'd',
+  'α': 'a', 'ο': 'o', 'ε': 'e', 'ρ': 'p', 'τ': 't', 'υ': 'y', 'χ': 'x', 'κ': 'k',
+  'ι': 'i', 'ν': 'v',
+};
+function mapHomoglyph(s) {
+  let out = '';
+  for (const ch of s) out += (HOMOGLYPH[ch] !== undefined ? HOMOGLYPH[ch] : ch);
+  return out;
+}
+
 // Türkçe-duyarlı küçük harf (JS toLowerCase 'I'→'i' yapar; biz 'ı' isteriz).
 function lowerTr(s) {
   return s.replace(/İ/g, 'i').replace(/I/g, 'ı').toLowerCase();
@@ -97,7 +116,7 @@ function collapseRepeats(s) { return s.replace(/(.)\1{2,}/g, '$1'); }
 
 // Kelimeyi normalize et: leet + Türkçe küçük harf + sadece harf + tekrar daralt.
 function normWord(w) {
-  let s = mapLeet(lowerTr(w));
+  let s = mapHomoglyph(mapLeet(lowerTr(stripInvisible(w))));
   s = s.replace(/[^a-zçğıiöşü]/g, '');
   return collapseRepeats(s);
 }
@@ -117,7 +136,7 @@ function wordIsProfane(n) {
  */
 export function containsProfanity(input) {
   if (!input || typeof input !== 'string') return false;
-  const raw = input.normalize('NFKC');
+  const raw = stripInvisible(input.normalize('NFKC'));
   const words = raw.split(/[\s./\\_\-+,;:|()\[\]{}'"`~!?*<>@#]+/);
   for (const w of words) {
     if (wordIsProfane(normWord(w))) return true;
@@ -126,7 +145,7 @@ export function containsProfanity(input) {
   // TÜM mesaj sıkıştırılmış hâliyle ≤5 harfse ve bir baş-harf kısaltmasına
   // eşitse engelle. Yalnızca mesajın TAMAMI bir kısaltmadan ibaretse tetiklenir
   // → "akşamki namaz" gibi uzun metinler asla yakalanmaz (sahte pozitif yok).
-  const squeezed = collapseRepeats(mapLeet(lowerTr(raw)).replace(/[^a-zçğıiöşü]/g, ''));
+  const squeezed = collapseRepeats(mapHomoglyph(mapLeet(lowerTr(raw))).replace(/[^a-zçğıiöşü]/g, ''));
   if (squeezed.length <= 5 && EXACT.has(squeezed)) return true;
   // Dini hakaret: kutsal kelime + bitişik küfür ("allahasiktir", "dininesik...").
   if (BLASPHEMY_RE.test(squeezed)) return true;
@@ -136,7 +155,7 @@ export function containsProfanity(input) {
 /// Rumuz kutsal bir ismi/ilahlığı doğrudan çağrıştırıyor mu? (TAM eşleşme +
 /// EL-/ER- edatlı Esma). "Abdullah", "Allah'ın Kulu", "Kerim" engellenmez.
 function isSacredRumuz(raw) {
-  const n = mapLeet(lowerTr(raw)).replace(/[^a-zçğıiöşü]/g, '');
+  const n = mapHomoglyph(mapLeet(lowerTr(stripInvisible(raw)))).replace(/[^a-zçğıiöşü]/g, '');
   if (n.length < 2) return false;
   // KATI (kullanıcı 2026-06-18): "Allah/Tanrı geçen her şeyi engelle".
   if (n.includes('allah') || n.includes('tanrı') || n.includes('tanri')) {
