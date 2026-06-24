@@ -182,7 +182,7 @@
     "dayStreak": "{} روز پیاپی",
     "streak": "زنجیرهٔ روزه",
     "totalFasted": "روزه‌گرفته",
-    "kazaOwed": "قضای بدهکار",
+    "kazaOwed": "قضای مانده",
     "thisMonth": "این ماه",
     "notFasted": "روزه نگرفته",
     "fasted": "روزه‌گرفته",
@@ -669,7 +669,7 @@
     "daily": "نمای روزانه"
   },
   "duas": {
-    "title": "ادعیه",
+    "title": "دعاها",
     "morning": "صبح",
     "evening": "شام",
     "prayer": "نماز",
@@ -691,7 +691,7 @@
     "knowledge": "دانش اسلامی"
   },
   "feed": {
-    "title": "خوراک",
+    "title": "جریان",
     "sound": "صدا",
     "muted": "بی‌صدا"
   },
@@ -933,7 +933,7 @@
     "times": "اوقات",
     "quran": "قرآن",
     "qibla": "قبله",
-    "akis": "خوراک",
+    "akis": "جریان",
     "more": "بیشتر"
   },
   "homeLayout": {
