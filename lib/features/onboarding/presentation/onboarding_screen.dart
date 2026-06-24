@@ -216,7 +216,7 @@ class _LanguagePage extends StatelessWidget {
   Widget build(BuildContext context) {
     final c = context.colors;
     final current = context.locale.languageCode;
-    Widget option(String code, String label) {
+    Widget option(String code, String flag, String label) {
       final sel = current == code;
       return GestureDetector(
         onTap: () => context.setLocale(Locale(code)),
@@ -230,7 +230,7 @@ class _LanguagePage extends StatelessWidget {
           ),
           child: Row(
             children: [
-              Text(code == 'tr' ? '🇹🇷' : '🇬🇧', style: const TextStyle(fontSize: 22)),
+              Text(flag, style: const TextStyle(fontSize: 22)),
               const Gap.md(),
               Expanded(
                   child: Text(label,
@@ -242,13 +242,14 @@ class _LanguagePage extends StatelessWidget {
       );
     }
 
-    return Padding(
+    return SingleChildScrollView(
       padding: AppSpacing.screen,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          const SelayaLogo(size: 104),
-          const Gap.lg(),
+          const Gap.xl(),
+          const SelayaLogo(size: 88),
+          const Gap.md(),
           Text('onboarding.greeting'.tr(),
               style: Theme.of(context).textTheme.headlineSmall?.copyWith(
                   color: c.gold, fontWeight: FontWeight.w700)),
@@ -259,15 +260,23 @@ class _LanguagePage extends StatelessWidget {
                   .textTheme
                   .bodyMedium
                   ?.copyWith(color: c.textSecondary)),
-          const Gap.xl(),
+          const Gap.lg(),
           Text('onboarding.chooseLanguage'.tr(),
               style: Theme.of(context)
                   .textTheme
                   .labelMedium
                   ?.copyWith(color: c.gold)),
           const Gap.sm(),
-          option('tr', 'settings.turkish'.tr()),
-          option('en', 'settings.english'.tr()),
+          for (final l in const <(String, String, String)>[
+            ('tr', '🇹🇷', 'Türkçe'),
+            ('en', '🇬🇧', 'English'),
+            ('ar', '🇸🇦', 'العربية'),
+            ('de', '🇩🇪', 'Deutsch'),
+            ('id', '🇮🇩', 'Bahasa Indonesia'),
+            ('fr', '🇫🇷', 'Français'),
+          ])
+            option(l.$1, l.$2, l.$3),
+          const Gap.xl(),
         ],
       ),
     );

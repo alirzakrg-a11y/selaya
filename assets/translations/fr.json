@@ -127,7 +127,7 @@
     "remaining": "Restant",
     "israk": "Ishraq",
     "duha": "Doha (matinée)",
-    "evvabin": "Awwabin",
+    "evvabin": "Awwâbîn",
     "night1": "Nuit · 1er tiers",
     "night2": "Nuit · 2e tiers",
     "night3": "Nuit · dernier tiers (Tahajjud)",
@@ -607,7 +607,7 @@
     "secCountdown": "Compte à rebours",
     "secPrayerStrip": "Bandeau des heures de prière",
     "todayPrayerTimes": "Heures de prière du jour",
-    "secGreeting": "Accueil",
+    "secGreeting": "Vœux",
     "secVerseHadith": "Verset & hadith",
     "secMedia": "Vidéo & fond d'écran",
     "wordOfDay": "Mot du jour"
@@ -722,8 +722,8 @@
     "slide1Desc": "Horaires de prière, Coran, qibla, dhikr et bien plus — dans une seule application élégante.",
     "slide2Title": "De l'inspiration chaque jour",
     "slide2Desc": "Versets, hadiths et invocations du jour ; avec des récits et des fonds d'écran premium.",
-    "slide3Title": "Assistant IA SELAYA",
-    "slide3Desc": "Posez vos questions religieuses, obtenez des réponses appuyées par le Coran et la Sunna.",
+    "slide3Title": "Communauté",
+    "slide3Desc": "Partagez des invocations sur le Mur des prières, rejoignez les khatm communautaires et grimpez au classement du quiz.",
     "permissionLocationTitle": "Accès à la localisation",
     "permissionLocationDesc": "Nous avons besoin de votre localisation pour des horaires de prière précis et la direction de la qibla là où vous êtes.",
     "permissionLocationAllow": "Autoriser la localisation",
@@ -890,7 +890,7 @@
     "dhuhr": "Dhuhr",
     "asr": "Asr",
     "maghrib": "Maghrib",
-    "isha": "Icha",
+    "isha": "Isha",
     "vitr": "Witr"
   },
   "premium": {

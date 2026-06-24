@@ -127,7 +127,7 @@
     "remaining": "Tersisa",
     "israk": "Isyraq",
     "duha": "Duha",
-    "evvabin": "Awabin",
+    "evvabin": "Awwabin",
     "night1": "Malam · sepertiga awal",
     "night2": "Malam · sepertiga kedua",
     "night3": "Malam · sepertiga akhir (Tahajud)",
@@ -182,11 +182,11 @@
     "dayStreak": "Rentetan {} hari",
     "streak": "Rentetan puasa",
     "totalFasted": "Berpuasa",
-    "kazaOwed": "Utang Kada",
+    "kazaOwed": "Utang Qadha",
     "thisMonth": "Bulan Ini",
     "notFasted": "Tidak puasa",
     "fasted": "Berpuasa",
-    "kaza": "Kada",
+    "kaza": "Qadha",
     "todayQuestion": "Apakah Anda berpuasa hari ini?",
     "notesHint": "Catatan (opsional)…",
     "gregorian": "Masehi",
@@ -404,7 +404,7 @@
     "clockPrayerDesc": "Waktu, salat berikutnya, dan hitung mundur (4×2)."
   },
   "akis": {
-    "title": "Beranda",
+    "title": "Linimasa",
     "verseOfDay": "Ayat Hari Ini",
     "hadithOfDay": "Hadis Hari Ini",
     "duaOfDay": "Doa Hari Ini",
@@ -416,7 +416,7 @@
     "tasksTitle": "Tugas Harian",
     "tasksDesc": "Lihat progres Anda hari ini",
     "announcements": "Pengumuman",
-    "announcementDemo": "Selamat datang di SELAYA! Dengan tab Beranda yang baru, ayat, hadis, dan tugas harian Anda ada di satu tempat."
+    "announcementDemo": "Selamat datang di SELAYA! Dengan tab Linimasa yang baru, ayat, hadis, dan tugas harian Anda ada di satu tempat."
   },
   "intro": {
     "welcome": "Selamat Datang di SELAYA",
@@ -623,7 +623,7 @@
     "directions": "Petunjuk Arah",
     "province": "Provinsi",
     "district": "Kabupaten/Kota",
-    "allDistricts": "Semua kecamatan",
+    "allDistricts": "Semua kabupaten/kota",
     "count": "{} masjid",
     "search": "Cari masjid",
     "features": "Fitur",
@@ -691,7 +691,7 @@
     "knowledge": "Pengetahuan Islam"
   },
   "feed": {
-    "title": "Beranda",
+    "title": "Linimasa",
     "sound": "Suara",
     "muted": "Senyap"
   },
@@ -722,8 +722,8 @@
     "slide1Desc": "Jadwal salat, Al-Qur'an, kiblat, zikir, dan banyak lagi — dalam satu aplikasi yang elegan.",
     "slide2Title": "Inspirasi Setiap Hari",
     "slide2Desc": "Ayat, hadis, dan doa harian; lengkap dengan kisah dan wallpaper premium.",
-    "slide3Title": "Asisten AI SELAYA",
-    "slide3Desc": "Ajukan pertanyaan keagamaan, dapatkan jawaban yang bersumber dari Al-Qur'an dan Hadis.",
+    "slide3Title": "Komunitas",
+    "slide3Desc": "Bagikan doa di Dinding Doa, ikuti khataman komunitas, dan naik di papan peringkat kuis.",
     "permissionLocationTitle": "Izin Lokasi",
     "permissionLocationDesc": "Kami memerlukan lokasi Anda untuk jadwal salat dan arah kiblat yang akurat sesuai tempat Anda berada.",
     "permissionLocationAllow": "Izinkan Lokasi",
