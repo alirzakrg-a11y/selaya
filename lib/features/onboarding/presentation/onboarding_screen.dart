@@ -304,7 +304,7 @@ class _TermsRow extends StatelessWidget {
                 width: double.infinity,
                 child: OutlinedButton.icon(
                   onPressed: () => launchUrl(
-                      Uri.parse('https://selaya.app/privacy'),
+                      Uri.parse('https://api.selaya.app/privacy'),
                       mode: LaunchMode.externalApplication),
                   icon: const Icon(Icons.open_in_new_rounded, size: 18),
                   label: Text('settings.privacyPolicy'.tr()),

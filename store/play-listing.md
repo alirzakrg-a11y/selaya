@@ -1,6 +1,6 @@
 # SELAYA — Google Play Yayın Dosyası
 
-Paket: `com.selaya.app` · Gizlilik politikası: `https://selaya.app/privacy` (store/privacy-policy.html'i oraya yükle)
+Paket: `com.selaya.app` · Gizlilik politikası: `https://api.selaya.app/privacy` (Worker servis ediyor — kaynak store/privacy-policy.html → cloudflare/src/privacy.js; `wrangler deploy` ile yayına alınır)
 
 ---
 
@@ -123,7 +123,7 @@ Ad-free. Privacy-respecting. 🤍
 1. **AAB yükle:** `flutter build appbundle --release` → `build/app/outputs/bundle/release/app-release.aab` (release upload key'iyle imzalı ✅).
 2. **Yeni kişisel geliştirici hesabıysa:** üretimden önce **20 test kullanıcısı + 14 gün kapalı test** zorunlu — bunu erken başlat.
 3. **App signing:** Play "Play App Signing"i öner; upload key'i (`selaya-upload-keystore.jks`) güvende sakla.
-4. Gizlilik politikası URL'ini Console'a gir (`selaya.app/privacy`).
+4. Gizlilik politikası URL'ini Console'a gir (`https://api.selaya.app/privacy` — `wrangler deploy` sonrası canlı).
 5. Hedef kitle & içerik, reklam beyanı (= reklam yok).
 
 ## 6. Ekran görüntüleri (gerekli: telefon için 2–8 adet, min 320px)

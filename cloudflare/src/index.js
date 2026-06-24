@@ -9,6 +9,7 @@ import { handleAuth, hashPassword } from './auth.js';
 import { handleDuaWall } from './dua_wall.js';
 import { handleHatim } from './hatim.js';
 import { handleQuiz } from './quiz.js';
+import { handlePrivacy } from './privacy.js';
 
 const CORS = {
   'Access-Control-Allow-Origin': '*',
@@ -112,6 +113,11 @@ export default {
     // ---------- PUBLIC API (api.selaya.app) ----------
     if (host.startsWith('api.')) {
       if (path === '/' || path === '/health') return json({ ok: true, service: 'selaya-api' });
+
+      // GİZLİLİK POLİTİKASI — uygulama içi link + Play için erişilebilir HTML
+      // (kaynak: store/privacy-policy.html → src/privacy.js, gen-privacy.js ile).
+      const privacyResp = handlePrivacy(request, path);
+      if (privacyResp) return privacyResp;
 
       // ÜYELİK & SENKRON (kayıt/giriş/profil/veri) — ayrı modül, auth değilse null.
       const authResp = await handleAuth(request, env, path);

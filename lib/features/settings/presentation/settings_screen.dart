@@ -385,7 +385,7 @@ class SettingsScreen extends ConsumerWidget {
   }
 
   Future<void> _openPrivacy(BuildContext context) async {
-    final uri = Uri.parse('https://selaya.app/privacy');
+    final uri = Uri.parse('https://api.selaya.app/privacy');
     if (!await launchUrl(uri, mode: LaunchMode.externalApplication)) {
       if (context.mounted) {
         ScaffoldMessenger.of(context).showSnackBar(

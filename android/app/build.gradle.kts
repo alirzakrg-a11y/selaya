@@ -31,12 +31,16 @@ android {
         // You can update the following values to match your application needs.
         // For more information, see: https://flutter.dev/to/review-gradle-config.
         minSdk = flutter.minSdkVersion
-        // Google Play yeni uygulama/güncelleme için targetSdk 34 (Android 14)
-        // şart. NOT: Android 14'te devam-eden (FGS) namaz bildirimi artık
-        // kaydırılıp kapatılabilir hale gelir; alarmlar USE_EXACT_ALARM ile
-        // çalışmaya devam eder. FGS türleri manifeste tanımlı (special_use /
-        // mediaPlayback). Cihazda alarm + ongoing davranışı doğrulanmalı.
-        targetSdk = 34
+        // Google Play, 31 Ağu 2025'ten beri yeni uygulama/güncellemeler için
+        // targetSdk >= 35 (Android 15) şart koşuyor; 36 (Android 16) ise
+        // Flutter 3.44'ün önerdiği en son stabil ve compileSdk de zaten 36.
+        // Geleceğe-dönük olması için 36'ya çekildi.
+        // NOT (cihazda doğrula): Android 15/16 KENAR-A-KENAR (edge-to-edge)
+        // çizimi zorunlu kılar → SafeArea/sistem çubukları altına taşma kontrol
+        // edilmeli. Devam-eden (FGS) namaz bildirimi kaydırılıp kapatılabilir;
+        // alarmlar USE_EXACT_ALARM ile çalışır. FGS türleri manifeste tanımlı
+        // (specialUse / mediaPlayback). Alarm + ongoing + tam-ekran alarm test.
+        targetSdk = 36
         versionCode = flutter.versionCode
         versionName = flutter.versionName
     }
