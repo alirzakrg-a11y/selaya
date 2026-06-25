@@ -958,6 +958,7 @@
     "copyright": "Copyright / unauthorized",
     "other": "Other",
     "thanks": "Your report was received, thank you.",
-    "failed": "Couldn't send the report."
+    "failed": "Couldn't send the report.",
+    "email": "Report via email (e.g. copyright)"
   }
 }

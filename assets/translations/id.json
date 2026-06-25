@@ -958,6 +958,7 @@
     "copyright": "Hak cipta / tanpa izin",
     "other": "Lainnya",
     "thanks": "Laporan Anda diterima, terima kasih.",
-    "failed": "Gagal mengirim laporan."
+    "failed": "Gagal mengirim laporan.",
+    "email": "Laporkan via email (mis. hak cipta)"
   }
 }

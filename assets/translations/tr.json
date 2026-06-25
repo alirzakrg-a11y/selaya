@@ -958,6 +958,7 @@
     "copyright": "Telif / izinsiz",
     "other": "Diğer",
     "thanks": "Bildirimin alındı, teşekkürler.",
-    "failed": "Bildirim gönderilemedi."
+    "failed": "Bildirim gönderilemedi.",
+    "email": "E-posta ile bildir (telif vb.)"
   }
 }

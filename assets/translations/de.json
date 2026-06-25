@@ -958,6 +958,7 @@
     "copyright": "Urheberrecht / unbefugt",
     "other": "Sonstiges",
     "thanks": "Deine Meldung ist eingegangen, danke.",
-    "failed": "Meldung konnte nicht gesendet werden."
+    "failed": "Meldung konnte nicht gesendet werden.",
+    "email": "Per E-Mail melden (z. B. Urheberrecht)"
   }
 }
