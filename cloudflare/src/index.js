@@ -58,11 +58,13 @@ async function ensureReports(env) {
   try {
     await env.DB.prepare(
       'CREATE TABLE IF NOT EXISTS content_reports (id TEXT PRIMARY KEY, ckey TEXT NOT NULL, ' +
-      'ctype TEXT, ctitle TEXT, reason TEXT, iphash TEXT, user_id TEXT, created_at INTEGER)'
+      'ctype TEXT, ctitle TEXT, reason TEXT, note TEXT, iphash TEXT, user_id TEXT, created_at INTEGER)'
     ).run();
     await env.DB.prepare(
       'CREATE UNIQUE INDEX IF NOT EXISTS idx_creports_dedup ON content_reports(ckey, iphash)'
     ).run();
+    // Eski tabloda note kolonu yoksa ekle (şikayet sebebi serbest mesajı).
+    try { await env.DB.prepare('ALTER TABLE content_reports ADD COLUMN note TEXT').run(); } catch (_) {}
   } catch (_) {}
   _reportsOk = true;
 }
@@ -369,11 +371,12 @@ export default {
         const reason = ((b && b.reason) || '').toString().slice(0, 300);
         const ctype = ((b && b.type) || '').toString().slice(0, 40);
         const ctitle = ((b && b.title) || '').toString().slice(0, 200);
+        const note = ((b && b.note) || '').toString().slice(0, 300);
         // INSERT OR IGNORE → aynı IP aynı içeriği bir kez şikayet eder (dedup).
         await env.DB.prepare(
-          'INSERT OR IGNORE INTO content_reports (id,ckey,ctype,ctitle,reason,iphash,created_at) ' +
-          'VALUES (?,?,?,?,?,?,?)'
-        ).bind(crypto.randomUUID(), key, ctype, ctitle, reason, quickHash(ip), Date.now()).run();
+          'INSERT OR IGNORE INTO content_reports (id,ckey,ctype,ctitle,reason,note,iphash,created_at) ' +
+          'VALUES (?,?,?,?,?,?,?,?)'
+        ).bind(crypto.randomUUID(), key, ctype, ctitle, reason, note, quickHash(ip), Date.now()).run();
         // Yönetici e-postası GÖNDERİLMEZ (kullanıcı isteği): şikayetler panelde
         // (🚩 Şikayetler) + bildirim akışında (/api/activity) görünür.
         return json({ ok: true });
@@ -734,12 +737,19 @@ export default {
         // ---- İÇERİK ŞİKAYETLERİ (Bildir) ----
         if (request.method === 'GET' && path === '/api/content-reports') {
           await ensureReports(env);
+          // content_items'a JOIN: ckey "type:id" → id ile eşleşen içeriğin CDN
+          // anahtarı/türü/koleksiyonu (panelde önizleme) + serbest mesajlar (notes).
           const r = await env.DB.prepare(
-            "SELECT ckey, MAX(ctype) AS ctype, MAX(ctitle) AS ctitle, COUNT(*) AS n, " +
-            "MAX(created_at) AS last, GROUP_CONCAT(NULLIF(reason,''), ' • ') AS reasons " +
-            "FROM content_reports GROUP BY ckey ORDER BY n DESC, last DESC LIMIT 300"
+            "SELECT cr.ckey AS ckey, MAX(cr.ctype) AS ctype, MAX(cr.ctitle) AS ctitle, " +
+            "COUNT(*) AS n, MAX(cr.created_at) AS last, " +
+            "GROUP_CONCAT(NULLIF(cr.reason,''), ' • ') AS reasons, " +
+            "GROUP_CONCAT(NULLIF(cr.note,''), ' | ') AS notes, " +
+            "MAX(ci.key) AS imgkey, MAX(ci.kind) AS ckind, MAX(ci.collection) AS ccoll " +
+            "FROM content_reports cr " +
+            "LEFT JOIN content_items ci ON ci.id = substr(cr.ckey, instr(cr.ckey, ':') + 1) " +
+            "GROUP BY cr.ckey ORDER BY n DESC, last DESC LIMIT 300"
           ).all();
-          return json({ ok: true, rows: r.results || [] });
+          return json({ ok: true, rows: r.results || [], cdn: env.CDN_BASE || '' });
         }
         if (request.method === 'POST' && path === '/api/content-report-clear') {
           let b = null; try { b = await request.json(); } catch (_) {}
@@ -2102,6 +2112,7 @@ const PANEL_HTML = `<!doctype html>
     el('reportsBody').innerHTML='<p class="muted">Yükleniyor…</p>';
     api('content-reports').then(function(res){
       var rows=(res.j&&res.j.rows)||[];
+      var cdn=(res.j&&res.j.cdn)||CDN||'';
       var badge=el('reportsBadge');
       if(badge){ if(rows.length){ badge.textContent=rows.length; badge.style.display='inline-block'; } else { badge.style.display='none'; } }
       if(!rows.length){ el('reportsBody').innerHTML='<p class="muted">Şikayet yok 🎉</p>'; return; }
@@ -2113,11 +2124,22 @@ const PANEL_HTML = `<!doctype html>
         '<th></th></tr></thead><tbody>';
       rows.forEach(function(r){
         var n=r.n||0; var col=n>=5?'#e0556b':(n>=3?'#e0a441':'var(--gold)');
+        // İçerik önizleme: resimse thumbnail (tıkla→aç), videoysa link.
+        var thumb='';
+        if(r.imgkey){
+          var u=cdn+'/'+r.imgkey;
+          thumb=(r.ckind==='video')
+            ? '<a href="'+esc(u)+'" target="_blank" style="font-size:12px;color:var(--gold);white-space:nowrap">🎬 Aç</a>'
+            : '<a href="'+esc(u)+'" target="_blank"><img src="'+esc(u)+'" style="width:46px;height:46px;object-fit:cover;border-radius:8px;display:block"></a>';
+        }
         h+='<tr style="border-top:1px solid var(--line)">'+
-          '<td style="padding:8px 6px"><div style="font-weight:600">'+esc(r.ctitle||r.ckey)+'</div><div style="color:var(--mut);font-size:11px">'+esc(r.ckey)+'</div></td>'+
+          '<td style="padding:8px 6px"><div style="display:flex;gap:8px;align-items:center">'+thumb+
+            '<div><div style="font-weight:600">'+esc(r.ctitle||r.ckey)+'</div>'+
+            '<div style="color:var(--mut);font-size:11px">'+esc(r.ckey)+(r.ccoll?' · '+esc(r.ccoll):'')+'</div></div></div></td>'+
           '<td style="padding:8px 6px;color:var(--mut);font-size:12px">'+esc(r.ctype||'—')+'</td>'+
           '<td style="padding:8px 6px;text-align:right;font-weight:800;color:'+col+'">'+n+'</td>'+
-          '<td style="padding:8px 6px;color:var(--mut);font-size:12px;max-width:280px">'+esc(String(r.reasons||'—').slice(0,200))+'</td>'+
+          '<td style="padding:8px 6px;color:var(--mut);font-size:12px;max-width:300px">'+esc(String(r.reasons||'—').slice(0,200))+
+            (r.notes?'<div style="margin-top:4px;font-style:italic;color:var(--txt)">💬 '+esc(String(r.notes).slice(0,300))+'</div>':'')+'</td>'+
           '<td style="padding:8px 6px;text-align:right"><button class="ghost" data-k="'+esc(r.ckey)+'" onclick="clearReport(this.dataset.k)">Temizle</button></td></tr>';
       });
       el('reportsBody').innerHTML=h+'</tbody></table>';
@@ -2133,6 +2155,8 @@ const PANEL_HTML = `<!doctype html>
   // 🔔 Bildirim akışı (e-posta yerine — kullanıcı isteği): son üye/dua/şikayet/
   // hatim/beğeni hareketleri. Rozet = en son "görüldü"den beri yeni öğe sayısı.
   var ACT_ICON = { member:'🎉', dua:'🤲', report:'🚩', hatim:'📖', hatimDone:'✅', like:'❤️' };
+  // Aktivite türü → hangi panel sekmesine gidilsin (tıklayınca).
+  var ACT_TAB = { member:'users', dua:'dua', report:'reports', hatim:'hatim', hatimDone:'hatim' };
   var actData = [];
   function actRel(ms){
     var d = Date.now() - (ms||0); if (d < 0) d = 0;
@@ -2158,13 +2182,28 @@ const PANEL_HTML = `<!doctype html>
     var h = '<h3>🔔 Son hareketler</h3>';
     if (!actData.length) h += '<p class="muted" style="padding:10px 12px">Henüz hareket yok.</p>';
     actData.forEach(function(a){
-      h += '<div class="actRow"><div class="ic">' + (ACT_ICON[a.type]||'•') + '</div>'
+      var go = ACT_TAB[a.type] ? ' data-t="'+esc(a.type)+'" onclick="actGo(this.dataset.t)" style="cursor:pointer"' : '';
+      h += '<div class="actRow"'+go+'><div class="ic">' + (ACT_ICON[a.type]||'•') + '</div>'
         + '<div class="tx"><div class="tt">' + esc(a.title||'')
         + (a.tag ? ' <span class="muted" style="font-size:11px">('+esc(a.tag)+')</span>' : '')
         + '</div>' + (a.sub ? '<div class="sb">' + esc(a.sub) + '</div>' : '') + '</div>'
         + '<div class="tm">' + actRel(a.at) + '</div></div>';
     });
+    // En altta: tümünü okundu işaretle (rozeti sıfırla).
+    h += '<div style="padding:8px 10px 4px"><button class="ghost" style="width:100%" onclick="actClear()">✓ Tümünü okundu işaretle</button></div>';
     el('actPanel').innerHTML = h;
+  }
+  // Aktivite satırına tıkla → ilgili sekmeye git + zili kapat.
+  function actGo(t){
+    var tab = ACT_TAB[t]; if (!tab) return;
+    el('actPanel').classList.add('hide');
+    showTab(tab);
+  }
+  // Rozeti sıfırla (en yeni öğeyi görüldü işaretle) + zili kapat.
+  function actClear(){
+    if (actData.length) localStorage.setItem('selaya_act_seen', String(actData[0].at||0));
+    var dot = el('actDot'); if (dot) dot.style.display = 'none';
+    el('actPanel').classList.add('hide');
   }
   function toggleActivity(){
     var p = el('actPanel'); if (!p) return;
@@ -2172,6 +2211,7 @@ const PANEL_HTML = `<!doctype html>
     p.classList.toggle('hide', !willOpen);
     if (willOpen){
       renderActivity();
+      // Açılınca rozet sıfırlanır (en yeni öğe görüldü kabul edilir).
       if (actData.length) localStorage.setItem('selaya_act_seen', String(actData[0].at||0));
       var dot = el('actDot'); if (dot) dot.style.display = 'none';
     }
