@@ -27,7 +27,9 @@
 
   "routes": [
     { "pattern": "api.selaya.app", "custom_domain": true },
-    { "pattern": "panel.selaya.app", "custom_domain": true }
+    { "pattern": "panel.selaya.app", "custom_domain": true },
+    { "pattern": "selaya.app", "custom_domain": true },
+    { "pattern": "www.selaya.app", "custom_domain": true }
   ],
 
   // Kötüye kullanıma karşı IP başına ses isteği tavanı (kullanıcı 2026-06-15):

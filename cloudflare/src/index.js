@@ -6,6 +6,7 @@
 //             ADMIN_TOKEN (secret), AUTH_SECRET (secret — JWT imzası)
 
 import { handleAuth, hashPassword, timingSafeEqual, requireUser } from './auth.js';
+import { LANDING_HTML } from './landing.js';
 import { handleDuaWall } from './dua_wall.js';
 import { handleHatim } from './hatim.js';
 import { handleQuiz } from './quiz.js';
@@ -171,6 +172,23 @@ export default {
     const path = url.pathname;
 
     if (request.method === 'OPTIONS') return new Response(null, { headers: CORS });
+
+    // ---------- TANITIM SİTESİ (selaya.app kök + www) ----------
+    if (host === 'www.selaya.app') {
+      return Response.redirect('https://selaya.app' + (path === '/' ? '' : path), 301);
+    }
+    if (host === 'selaya.app') {
+      if (path === '/' || path === '') {
+        return new Response(LANDING_HTML, {
+          headers: {
+            'Content-Type': 'text/html; charset=utf-8',
+            'Cache-Control': 'public, max-age=300',
+          },
+        });
+      }
+      // Tek sayfa site → diğer yollar ana sayfaya.
+      return Response.redirect('https://selaya.app/', 302);
+    }
 
     // ---------- PUBLIC API (api.selaya.app) ----------
     if (host.startsWith('api.')) {
