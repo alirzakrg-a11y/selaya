@@ -5,7 +5,7 @@
 // Bağlamalar: DB (D1: selaya-content), CDN (R2: selaya-cdn), CDN_BASE (var),
 //             ADMIN_TOKEN (secret), AUTH_SECRET (secret — JWT imzası)
 
-import { handleAuth, hashPassword, timingSafeEqual } from './auth.js';
+import { handleAuth, hashPassword, timingSafeEqual, notifyAdmin } from './auth.js';
 import { handleDuaWall } from './dua_wall.js';
 import { handleHatim } from './hatim.js';
 import { handleQuiz } from './quiz.js';
@@ -151,11 +151,11 @@ export default {
       if (privacyResp) return privacyResp;
 
       // ÜYELİK & SENKRON (kayıt/giriş/profil/veri) — ayrı modül, auth değilse null.
-      const authResp = await handleAuth(request, env, path);
+      const authResp = await handleAuth(request, env, path, ctx);
       if (authResp) return authResp;
 
       // DUA DUVARI (#10) — üyeler dua paylaşır, panelde onaylanınca yayınlanır.
-      const duaResp = await handleDuaWall(request, env, path);
+      const duaResp = await handleDuaWall(request, env, path, ctx);
       if (duaResp) return duaResp;
 
       // TOPLULUK HATMİ — üyeler cüz alır/okur; 30 cüz dolunca hatim tamamlanır.
@@ -362,6 +362,12 @@ export default {
           'INSERT OR IGNORE INTO content_reports (id,ckey,ctype,ctitle,reason,iphash,created_at) ' +
           'VALUES (?,?,?,?,?,?,?)'
         ).bind(crypto.randomUUID(), key, ctype, ctitle, reason, quickHash(ip), Date.now()).run();
+        if (ctx) ctx.waitUntil(notifyAdmin(env, 'Yeni içerik şikayeti 🚩', [
+          'İçerik: ' + (ctitle || key),
+          'Tür: ' + (ctype || '—'),
+          'Sebep: ' + (reason || '—'),
+          'Panel: panel.selaya.app → 🚩 Şikayetler',
+        ]));
         return json({ ok: true });
       }
 

@@ -242,6 +242,7 @@ async function sendResetEmail(env, email, code) {
       body: JSON.stringify({
         from: env.RESEND_FROM || 'SELAYA <noreply@selaya.app>',
         to: [email],
+        reply_to: env.ADMIN_EMAIL || 'alirza.krg@gmail.com',
         subject: 'SELAYA — Şifre Sıfırlama Kodu',
         html:
           '<div style="font-family:system-ui,Segoe UI,sans-serif;max-width:480px;margin:auto;padding:8px">' +
@@ -257,8 +258,43 @@ async function sendResetEmail(env, email, code) {
   }
 }
 
+function escHtml(s) {
+  return String(s == null ? '' : s)
+    .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+}
+// Yönetici bildirim e-postası (alirza.krg@gmail.com) — yeni üye / dua / şikayet.
+// RESEND_API_KEY yoksa sessizce atlar. ctx.waitUntil ile çağrılır → ana isteği
+// bloklamaz. [lines] DÜZ METİN (HTML kaçışı burada yapılır).
+export async function notifyAdmin(env, subject, lines) {
+  if (!env.RESEND_API_KEY) return false;
+  const to = env.ADMIN_EMAIL || 'alirza.krg@gmail.com';
+  try {
+    const body = (Array.isArray(lines) ? lines : [lines])
+      .map((l) => '<p style="margin:5px 0;color:#333">' + escHtml(l) + '</p>').join('');
+    const res = await fetch('https://api.resend.com/emails', {
+      method: 'POST',
+      headers: {
+        'Authorization': 'Bearer ' + env.RESEND_API_KEY,
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        from: env.RESEND_FROM || 'SELAYA <noreply@selaya.app>',
+        to: [to],
+        subject: 'SELAYA · ' + subject,
+        html:
+          '<div style="font-family:system-ui,Segoe UI,sans-serif;max-width:520px;margin:auto;padding:8px">' +
+          '<h2 style="color:#b8860b;margin:0 0 10px">SELAYA — ' + escHtml(subject) + '</h2>' + body +
+          '<p style="color:#999;font-size:12px;margin-top:14px">SELAYA yönetim bildirimi · panel.selaya.app</p></div>',
+      }),
+    });
+    return res.ok;
+  } catch (_) {
+    return false;
+  }
+}
+
 // Auth rotası ise Response döner, değilse null (index.js akışı devam etsin).
-export async function handleAuth(request, env, path) {
+export async function handleAuth(request, env, path, ctx) {
   if (!path.startsWith('/v1/auth/') &&
       path !== '/v1/me' && path !== '/v1/me/data' && path !== '/v1/me/password' &&
       path !== '/v1/me/delete') {
@@ -325,6 +361,11 @@ export async function handleAuth(request, env, path) {
     const deviceId = (b.deviceId || '').toString().slice(0, 80);
     const deviceLabel = (b.device || '').toString().slice(0, 80);
     await registerDevice(env, id, deviceId, deviceLabel);
+    if (ctx) ctx.waitUntil(notifyAdmin(env, 'Yeni üye 🎉', [
+      'Ad: ' + name + (surname ? ' ' + surname : ''),
+      'E-posta: ' + email,
+      'Rumuz: ' + (rumuz || '—'),
+    ]));
     return json({ ok: true, token: await issueToken(env, user, deviceId), user });
   }
 

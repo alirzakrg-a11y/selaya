@@ -12,7 +12,7 @@
 //   GET  /v1/dua-wall/mine     (Bearer)             -> {duas:[...]}  (kendi)
 //   POST /v1/dua-wall/amin     (Bearer) {id}        -> {ok, amins}
 //   POST /v1/dua-wall/rumuz    (Bearer) {rumuz}     -> {ok, rumuz}
-import { requireUser } from './auth.js';
+import { requireUser, notifyAdmin } from './auth.js';
 import { containsProfanity, validateRumuz } from './profanity.js';
 
 const CORS = {
@@ -54,7 +54,7 @@ async function ensureReportSchema(env) {
 }
 
 // Dua Duvarı rotası ise Response, değilse null (index.js akışı devam etsin).
-export async function handleDuaWall(request, env, path) {
+export async function handleDuaWall(request, env, path, ctx) {
   if (!path.startsWith('/v1/dua-wall')) return null;
   if (!env.AUTH_SECRET) return json({ ok: false, error: 'server_misconfig' }, 500);
 
@@ -199,6 +199,11 @@ export async function handleDuaWall(request, env, path) {
       "INSERT INTO dua_wall (id,user_id,rumuz,text,status,amins,created_at,decided_at) " +
       "VALUES (?,?,?,?,'pending',0,?,0)"
     ).bind(id, uid, rumuz, text, now).run();
+    if (ctx) ctx.waitUntil(notifyAdmin(env, 'Yeni dua — onay bekliyor 🤲', [
+      'Rumuz: ' + rumuz,
+      'Dua: ' + text,
+      'Onayla/reddet: panel.selaya.app → Dua Duvarı',
+    ]));
     return json({ ok: true, status: 'pending', id });
   }
 
