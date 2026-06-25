@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -37,6 +39,9 @@ class _FeedScreenState extends ConsumerState<FeedScreen> {
   );
   late int _current = widget.initialIndex;
   bool _muted = false; // global: bir klipte sessize alınca hepsi sessiz kalır
+  // Her açılışta videoları rastgele sırala (gözatma modunda). Seed ekran ömrü
+  // boyunca sabit → kaydırırken yeniden karışmaz; tekrar açınca yeni sıra.
+  final int _shuffleSeed = Random().nextInt(0x7fffffff);
 
   @override
   void dispose() {
@@ -68,8 +73,13 @@ class _FeedScreenState extends ConsumerState<FeedScreen> {
       body: feed.when(
         loading: () => const SelayaLoading(),
         error: (e, _) => SelayaError(error: e),
-        data: (items) {
-          if (items.isEmpty) return const SizedBox.shrink();
+        data: (raw) {
+          if (raw.isEmpty) return const SizedBox.shrink();
+          // Gözatma (initialIndex 0) → her açılışta rastgele sıra. Belirli bir
+          // videoya açılırken (Beğendiklerim'den) orijinal sıra korunur.
+          final items = widget.initialIndex == 0
+              ? (raw.toList()..shuffle(Random(_shuffleSeed)))
+              : raw;
           return Stack(
             children: [
               PageView.builder(

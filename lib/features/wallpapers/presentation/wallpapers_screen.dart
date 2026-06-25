@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -27,6 +29,9 @@ class WallpapersScreen extends ConsumerStatefulWidget {
 
 class _WallpapersScreenState extends ConsumerState<WallpapersScreen> {
   bool _favsOnly = false; // AppBar kalbi: yalnızca beğenilenleri göster
+  // Her açılışta duvar kâğıtlarını rastgele sırala. Seed ekran ömrü boyunca
+  // sabit → kaydırırken/favori değişince yeniden karışmaz; tekrar açınca yeni sıra.
+  final int _shuffleSeed = Random().nextInt(0x7fffffff);
 
   @override
   Widget build(BuildContext context) {
@@ -54,7 +59,9 @@ class _WallpapersScreenState extends ConsumerState<WallpapersScreen> {
       body: wallpapers.when(
         loading: () => const SelayaLoading(),
         error: (e, _) => SelayaError(error: e),
-        data: (all) {
+        data: (allRaw) {
+          // Her açılışta rastgele sıra (seed sabit → kaydırırken sabit kalır).
+          final all = allRaw.toList()..shuffle(Random(_shuffleSeed));
           final list = _favsOnly
               ? all
                   .where((wp) => liked.contains('wallpaper:${wp.id}'))
