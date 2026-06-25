@@ -948,5 +948,16 @@
   },
   "communityHatim": {
     "title": "Gemeinschafts-Khatm"
+  },
+  "report": {
+    "cta": "Melden",
+    "title": "Warum meldest du das?",
+    "inappropriate": "Unangemessener Inhalt",
+    "broken": "Defekt / öffnet nicht",
+    "wrong": "Falsche Information",
+    "copyright": "Urheberrecht / unbefugt",
+    "other": "Sonstiges",
+    "thanks": "Deine Meldung ist eingegangen, danke.",
+    "failed": "Meldung konnte nicht gesendet werden."
   }
 }

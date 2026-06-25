@@ -44,6 +44,29 @@ function bustManifest(ctx) {
   } catch (_) {}
 }
 
+// İçerik şikayeti (Bildir) — duvar kağıdı/video/ses vb. için kullanıcı bildirimi.
+// IP'yi ham SAKLAMAYIZ; yalnız dedup için zayıf hash (aynı kişi tek içeriği
+// şişiremesin → UNIQUE(ckey,iphash)).
+function quickHash(s) {
+  let h = 0;
+  for (let i = 0; i < s.length; i++) h = (h * 31 + s.charCodeAt(i)) >>> 0;
+  return h.toString(36);
+}
+let _reportsOk = false;
+async function ensureReports(env) {
+  if (_reportsOk) return;
+  try {
+    await env.DB.prepare(
+      'CREATE TABLE IF NOT EXISTS content_reports (id TEXT PRIMARY KEY, ckey TEXT NOT NULL, ' +
+      'ctype TEXT, ctitle TEXT, reason TEXT, iphash TEXT, user_id TEXT, created_at INTEGER)'
+    ).run();
+    await env.DB.prepare(
+      'CREATE UNIQUE INDEX IF NOT EXISTS idx_creports_dedup ON content_reports(ckey, iphash)'
+    ).run();
+  } catch (_) {}
+  _reportsOk = true;
+}
+
 function extOf(name, fallback) {
   const e = (name || '').split('.').pop();
   return (e && e.length <= 5 ? e : fallback).toLowerCase();
@@ -318,6 +341,28 @@ export default {
           ).bind(key).first();
           return json({ ok: true, key, count: row ? row.count : 0 });
         }
+      }
+
+      // POST /v1/report — içerik şikayeti (Bildir). Anonim + IP-dedup + rate-limit.
+      if (path === '/v1/report' && request.method === 'POST') {
+        let b = null; try { b = await request.json(); } catch (_) {}
+        const key = ((b && b.key) || '').toString().slice(0, 100);
+        if (!key || !LIKE_KEY_RE.test(key)) return json({ ok: false, error: 'bad_key' }, { status: 400 });
+        const ip = request.headers.get('CF-Connecting-IP') || 'anon';
+        if (env.WRITE_RL) {
+          const { success } = await env.WRITE_RL.limit({ key: 'rp:' + ip });
+          if (!success) return new Response('rate_limited', { status: 429, headers: CORS });
+        }
+        await ensureReports(env);
+        const reason = ((b && b.reason) || '').toString().slice(0, 300);
+        const ctype = ((b && b.type) || '').toString().slice(0, 40);
+        const ctitle = ((b && b.title) || '').toString().slice(0, 200);
+        // INSERT OR IGNORE → aynı IP aynı içeriği bir kez şikayet eder (dedup).
+        await env.DB.prepare(
+          'INSERT OR IGNORE INTO content_reports (id,ckey,ctype,ctitle,reason,iphash,created_at) ' +
+          'VALUES (?,?,?,?,?,?,?)'
+        ).bind(crypto.randomUUID(), key, ctype, ctitle, reason, quickHash(ip), Date.now()).run();
+        return json({ ok: true });
       }
 
       return json({ ok: false, error: 'not_found' }, { status: 404 });
@@ -670,6 +715,25 @@ export default {
             rows = r.results || [];
           }
           return json({ ok: true, week, weeks, rows });
+        }
+
+        // ---- İÇERİK ŞİKAYETLERİ (Bildir) ----
+        if (request.method === 'GET' && path === '/api/content-reports') {
+          await ensureReports(env);
+          const r = await env.DB.prepare(
+            "SELECT ckey, MAX(ctype) AS ctype, MAX(ctitle) AS ctitle, COUNT(*) AS n, " +
+            "MAX(created_at) AS last, GROUP_CONCAT(NULLIF(reason,''), ' • ') AS reasons " +
+            "FROM content_reports GROUP BY ckey ORDER BY n DESC, last DESC LIMIT 300"
+          ).all();
+          return json({ ok: true, rows: r.results || [] });
+        }
+        if (request.method === 'POST' && path === '/api/content-report-clear') {
+          let b = null; try { b = await request.json(); } catch (_) {}
+          const key = ((b && b.key) || '').toString();
+          if (!key) return json({ ok: false, error: 'no_key' }, { status: 400 });
+          await ensureReports(env);
+          await env.DB.prepare('DELETE FROM content_reports WHERE ckey=?').bind(key).run();
+          return json({ ok: true });
         }
 
         // ---- metin içerik (ayet/hadis/dua/tebrik — DOSYASIZ) ----
@@ -1051,6 +1115,7 @@ const PANEL_HTML = `<!doctype html>
     <div class="nav-item" id="tabDuaBtn" onclick="showTab('dua')">🤲 Dua Duvarı<span id="duaBadge" style="margin-left:auto;background:#e0556b;color:#fff;font-size:11px;font-weight:700;border-radius:999px;padding:1px 7px;display:none"></span></div>
     <div class="nav-item" id="tabHatimBtn" onclick="showTab('hatim')">📖 Topluluk Hatmi</div>
     <div class="nav-item" id="tabQuizBtn" onclick="showTab('quiz')">🎯 Bilgi Yarışması</div>
+    <div class="nav-item" id="tabReportsBtn" onclick="showTab('reports')">🚩 Şikayetler<span id="reportsBadge" style="margin-left:auto;background:#e0556b;color:#fff;font-size:11px;font-weight:700;border-radius:999px;padding:1px 7px;display:none"></span></div>
     <div class="nav-item" onclick="logout()">🚪 Çıkış</div>
   </aside>
   <main class="main">
@@ -1241,6 +1306,18 @@ const PANEL_HTML = `<!doctype html>
       </div>
     </div>
 
+    <!-- ============ İÇERİK ŞİKAYETLERİ ============ -->
+    <div id="viewReports" class="hide">
+      <div class="card">
+        <div class="row" style="align-items:center">
+          <h3 style="margin:0">🚩 İçerik Şikayetleri</h3>
+          <button class="ghost" style="flex:0 0 auto" onclick="loadReports()">Yenile</button>
+        </div>
+        <p class="hint">Kullanıcıların "Bildir" ile şikayet ettiği içerikler (duvar kâğıdı/video/ses/ayet…). Aynı kişi bir içeriği yalnız bir kez sayar. İçeriği KALDIRMAK için ilgili kategoriden sil; buradaki "Temizle" sadece şikayet kaydını siler.</p>
+        <div id="reportsBody"><p class="muted">Yükleniyor…</p></div>
+      </div>
+    </div>
+
     <!-- ============ METİN İÇERİK ============ -->
     <div id="viewText" class="hide">
       <div class="card">
@@ -1380,7 +1457,7 @@ const PANEL_HTML = `<!doctype html>
     if (noTitle) el('upTitle').value = '';
   }
 
-  var TAB_TITLES = { text:'Metin İçerik', notify:'Bildirimler', stats:'Kullanım', users:'Kullanıcılar', dua:'Dua Duvarı', hatim:'Topluluk Hatmi', quiz:'Bilgi Yarışması' };
+  var TAB_TITLES = { text:'Metin İçerik', notify:'Bildirimler', stats:'Kullanım', users:'Kullanıcılar', dua:'Dua Duvarı', hatim:'Topluluk Hatmi', quiz:'Bilgi Yarışması', reports:'İçerik Şikayetleri' };
   function setActiveNav(node){
     document.querySelectorAll('.nav-item').forEach(function(n){ n.classList.remove('active'); });
     if (node) node.classList.add('active');
@@ -1413,6 +1490,7 @@ const PANEL_HTML = `<!doctype html>
     el('viewDua').classList.toggle('hide', t !== 'dua');
     el('viewHatim').classList.toggle('hide', t !== 'hatim');
     el('viewQuiz').classList.toggle('hide', t !== 'quiz');
+    el('viewReports').classList.toggle('hide', t !== 'reports');
     setActiveNav(el('tab' + t.charAt(0).toUpperCase() + t.slice(1) + 'Btn'));
     var pt = el('pageTitle'); if (pt) pt.textContent = TAB_TITLES[t] || '';
     toggleSidebar(false);
@@ -1423,6 +1501,7 @@ const PANEL_HTML = `<!doctype html>
     if (t === 'dua') loadDuaWall();
     if (t === 'hatim') loadHatim();
     if (t === 'quiz') loadQuizBoard();
+    if (t === 'reports') loadReports();
   }
   function toggleSidebar(open){
     var sb = el('sidebar'); if (!sb) return;
@@ -1950,6 +2029,39 @@ const PANEL_HTML = `<!doctype html>
       });
       el('quizBody').innerHTML=h+'</tbody></table>';
     }).catch(function(e){ el('quizBody').innerHTML='<p class="muted">Hata: '+e+'</p>'; });
+  }
+
+  // --- İçerik şikayetleri (Bildir) ---
+  function loadReports(){
+    el('reportsBody').innerHTML='<p class="muted">Yükleniyor…</p>';
+    api('content-reports').then(function(res){
+      var rows=(res.j&&res.j.rows)||[];
+      var badge=el('reportsBadge');
+      if(badge){ if(rows.length){ badge.textContent=rows.length; badge.style.display='inline-block'; } else { badge.style.display='none'; } }
+      if(!rows.length){ el('reportsBody').innerHTML='<p class="muted">Şikayet yok 🎉</p>'; return; }
+      var h='<table style="width:100%;border-collapse:collapse"><thead><tr>'+
+        '<th style="text-align:left;padding:8px 6px;color:var(--mut);font-size:12px">İçerik</th>'+
+        '<th style="text-align:left;padding:8px 6px;color:var(--mut);font-size:12px">Tür</th>'+
+        '<th style="text-align:right;padding:8px 6px;color:var(--mut);font-size:12px">Şikayet</th>'+
+        '<th style="text-align:left;padding:8px 6px;color:var(--mut);font-size:12px">Sebepler</th>'+
+        '<th></th></tr></thead><tbody>';
+      rows.forEach(function(r){
+        var n=r.n||0; var col=n>=5?'#e0556b':(n>=3?'#e0a441':'var(--gold)');
+        h+='<tr style="border-top:1px solid var(--line)">'+
+          '<td style="padding:8px 6px"><div style="font-weight:600">'+esc(r.ctitle||r.ckey)+'</div><div style="color:var(--mut);font-size:11px">'+esc(r.ckey)+'</div></td>'+
+          '<td style="padding:8px 6px;color:var(--mut);font-size:12px">'+esc(r.ctype||'—')+'</td>'+
+          '<td style="padding:8px 6px;text-align:right;font-weight:800;color:'+col+'">'+n+'</td>'+
+          '<td style="padding:8px 6px;color:var(--mut);font-size:12px;max-width:280px">'+esc(String(r.reasons||'—').slice(0,200))+'</td>'+
+          '<td style="padding:8px 6px;text-align:right"><button class="ghost" onclick="clearReport(\''+esc(r.ckey)+'\')">Temizle</button></td></tr>';
+      });
+      el('reportsBody').innerHTML=h+'</tbody></table>';
+    }).catch(function(e){ el('reportsBody').innerHTML='<p class="muted">Hata: '+esc(String(e))+'</p>'; });
+  }
+  function clearReport(key){
+    uiConfirm('Bu içeriğin şikayet kayıtları silinsin mi?\\n(İçeriğin kendisi silinmez — onu ilgili kategoriden kaldır.)', function(){
+      api('content-report-clear',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({key:key})})
+        .then(function(){ toast('Şikayet temizlendi'); loadReports(); });
+    }, {title:'Şikayeti Temizle', yes:'Temizle', danger:true});
   }
 
   // --- Kullanım istatistikleri (free tier takibi) ---

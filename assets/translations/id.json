@@ -948,5 +948,16 @@
   },
   "communityHatim": {
     "title": "Khataman Bersama"
+  },
+  "report": {
+    "cta": "Laporkan",
+    "title": "Mengapa Anda melaporkan ini?",
+    "inappropriate": "Konten tidak pantas",
+    "broken": "Rusak / tidak bisa dibuka",
+    "wrong": "Informasi salah",
+    "copyright": "Hak cipta / tanpa izin",
+    "other": "Lainnya",
+    "thanks": "Laporan Anda diterima, terima kasih.",
+    "failed": "Gagal mengirim laporan."
   }
 }

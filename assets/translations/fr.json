@@ -948,5 +948,16 @@
   },
   "communityHatim": {
     "title": "Khatm communautaire"
+  },
+  "report": {
+    "cta": "Signaler",
+    "title": "Pourquoi signalez-vous ceci ?",
+    "inappropriate": "Contenu inapproprié",
+    "broken": "Défectueux / ne s'ouvre pas",
+    "wrong": "Information incorrecte",
+    "copyright": "Droits d'auteur / non autorisé",
+    "other": "Autre",
+    "thanks": "Votre signalement a été reçu, merci.",
+    "failed": "Échec de l'envoi du signalement."
   }
 }

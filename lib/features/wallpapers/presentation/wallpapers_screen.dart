@@ -13,6 +13,7 @@ import '../../../core/theme/app_colors.dart';
 import '../../../core/theme/app_icons.dart';
 import '../../../core/theme/app_spacing.dart';
 import '../../../core/widgets/app_image.dart';
+import '../../../core/widgets/content_report.dart';
 import '../../../core/widgets/like_button.dart';
 import '../../../core/widgets/selaya_scaffold.dart';
 import '../../../core/widgets/states.dart';
@@ -315,12 +316,22 @@ class _WallpaperDetailState extends ConsumerState<WallpaperDetail> {
           SafeArea(
             child: Column(
               children: [
-                Align(
-                  alignment: Alignment.centerLeft,
-                  child: IconButton(
-                    icon: const Icon(AppIcons.close, color: Colors.white),
-                    onPressed: () => Navigator.of(context).pop(),
-                  ),
+                Row(
+                  children: [
+                    IconButton(
+                      icon: const Icon(AppIcons.close, color: Colors.white),
+                      onPressed: () => Navigator.of(context).pop(),
+                    ),
+                    const Spacer(),
+                    IconButton(
+                      icon: const Icon(Icons.flag_outlined, color: Colors.white70),
+                      tooltip: 'report.cta'.tr(),
+                      onPressed: () => showContentReport(context,
+                          key: 'wallpaper:${wp.id}',
+                          type: 'wallpapers',
+                          title: wp.title(lang)),
+                    ),
+                  ],
                 ),
                 const Spacer(),
                 Text(

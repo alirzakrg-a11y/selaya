@@ -7,6 +7,7 @@ import 'package:video_player/video_player.dart';
 import '../../../core/data/content_providers.dart';
 import '../../../core/data/likes_service.dart';
 import '../../../core/localization/localized_text.dart';
+import '../../../core/widgets/content_report.dart';
 import '../../../core/models/content.dart';
 import '../../../core/services/gallery_service.dart';
 import '../../../core/services/share_service.dart';
@@ -367,6 +368,16 @@ class _FeedPageState extends ConsumerState<_FeedPage> {
                   onTap: _download,
                 ),
               ],
+              const Gap.lg(),
+              _FeedAction(
+                icon: Icons.flag_outlined,
+                label: 'report.cta'.tr(),
+                color: Colors.white70,
+                onTap: () => showContentReport(context,
+                    key: 'feed:${item.id}',
+                    type: 'feed',
+                    title: item.title(context.langCode)),
+              ),
             ],
           ),
         ),

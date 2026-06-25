@@ -948,5 +948,16 @@
     "readRestBody": "Hatme 1. sayfadan başlamadın. İstersen 1-{} arası sayfaları da okuyabilirsin.",
     "readRestCta": "Baştan oku",
     "share": "Paylaş"
+  },
+  "report": {
+    "cta": "Bildir",
+    "title": "Neden bildiriyorsun?",
+    "inappropriate": "Uygunsuz içerik",
+    "broken": "Açılmıyor veya bozuk",
+    "wrong": "Yanlış bilgi",
+    "copyright": "Telif / izinsiz",
+    "other": "Diğer",
+    "thanks": "Bildirimin alındı, teşekkürler.",
+    "failed": "Bildirim gönderilemedi."
   }
 }

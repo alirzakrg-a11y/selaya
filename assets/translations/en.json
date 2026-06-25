@@ -948,5 +948,16 @@
     "readRestBody": "You did not start from page 1. You may also read pages 1-{} if you wish.",
     "readRestCta": "Read from start",
     "share": "Share"
+  },
+  "report": {
+    "cta": "Report",
+    "title": "Why are you reporting this?",
+    "inappropriate": "Inappropriate content",
+    "broken": "Broken or won't open",
+    "wrong": "Incorrect information",
+    "copyright": "Copyright / unauthorized",
+    "other": "Other",
+    "thanks": "Your report was received, thank you.",
+    "failed": "Couldn't send the report."
   }
 }
