@@ -959,7 +959,8 @@
     "other": "Autre",
     "thanks": "Votre signalement a été reçu, merci.",
     "failed": "Échec de l'envoi du signalement.",
-    "email": "Signaler par e-mail (ex. droits d'auteur)"
+    "email": "Signaler par e-mail (ex. droits d'auteur)",
+    "emailCopied": "Impossible d’ouvrir l’app e-mail — adresse copiée"
   },
   "xt": {
     "agFardSubtitle": "Les 4 piliers",

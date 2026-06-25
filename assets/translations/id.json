@@ -959,7 +959,8 @@
     "other": "Lainnya",
     "thanks": "Laporan Anda diterima, terima kasih.",
     "failed": "Gagal mengirim laporan.",
-    "email": "Laporkan via email (mis. hak cipta)"
+    "email": "Laporkan via email (mis. hak cipta)",
+    "emailCopied": "Tidak dapat membuka aplikasi email — alamat disalin"
   },
   "xt": {
     "agFardSubtitle": "4 hal pokok",

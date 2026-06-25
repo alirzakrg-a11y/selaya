@@ -959,7 +959,8 @@
     "other": "Diğer",
     "thanks": "Bildirimin alındı, teşekkürler.",
     "failed": "Bildirim gönderilemedi.",
-    "email": "E-posta ile bildir (telif vb.)"
+    "email": "E-posta ile bildir (telif vb.)",
+    "emailCopied": "E-posta uygulaması açılamadı — adres panoya kopyalandı"
   },
   "xt": {
     "agHeroTitle": "Abdest Nasıl Alınır?",

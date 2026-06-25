@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:http/http.dart' as http;
 import 'package:url_launcher/url_launcher.dart';
 
@@ -79,7 +80,7 @@ Future<void> showContentReport(
                   style: TextStyle(color: c.textTertiary, fontSize: 12)),
               onTap: () {
                 Navigator.pop(sheetCtx);
-                _email(key: key, title: title);
+                _email(context, key: key, title: title);
               },
             ),
             const Gap.sm(),
@@ -92,14 +93,25 @@ Future<void> showContentReport(
 
 /// Telif/iletişim için e-posta uygulamasını aç (mailto). Sunucu gerektirmez →
 /// worker deploy edilmese de çalışır.
-Future<void> _email({required String key, String? title}) async {
-  final subject = Uri.encodeComponent('SELAYA — İçerik bildirimi / Content report');
+Future<void> _email(BuildContext context,
+    {required String key, String? title}) async {
+  final subject =
+      Uri.encodeComponent('SELAYA — İçerik bildirimi / Content report');
   final body = Uri.encodeComponent(
       'İçerik / Content: ${title ?? ''}  ($key)\n\nMesajınız / Your message:\n');
   final uri = Uri.parse('mailto:$_adminEmail?subject=$subject&body=$body');
+  bool ok = false;
   try {
-    await launchUrl(uri, mode: LaunchMode.externalApplication);
+    ok = await launchUrl(uri, mode: LaunchMode.externalApplication);
   } catch (_) {}
+  // E-posta uygulaması yoksa/açılmazsa: adresi panoya kopyala + bilgilendir.
+  if (!ok) {
+    await Clipboard.setData(const ClipboardData(text: _adminEmail));
+    if (context.mounted) {
+      ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text('report.emailCopied'.tr())));
+    }
+  }
 }
 
 Future<bool> _send({
