@@ -12,7 +12,7 @@
 //   GET  /v1/dua-wall/mine     (Bearer)             -> {duas:[...]}  (kendi)
 //   POST /v1/dua-wall/amin     (Bearer) {id}        -> {ok, amins}
 //   POST /v1/dua-wall/rumuz    (Bearer) {rumuz}     -> {ok, rumuz}
-import { requireUser, notifyAdmin } from './auth.js';
+import { requireUser } from './auth.js';
 import { containsProfanity, validateRumuz } from './profanity.js';
 
 const CORS = {
@@ -199,11 +199,8 @@ export async function handleDuaWall(request, env, path, ctx) {
       "INSERT INTO dua_wall (id,user_id,rumuz,text,status,amins,created_at,decided_at) " +
       "VALUES (?,?,?,?,'pending',0,?,0)"
     ).bind(id, uid, rumuz, text, now).run();
-    if (ctx) ctx.waitUntil(notifyAdmin(env, 'Yeni dua — onay bekliyor 🤲', [
-      'Rumuz: ' + rumuz,
-      'Dua: ' + text,
-      'Onayla/reddet: panel.selaya.app → Dua Duvarı',
-    ]));
+    // Yönetici e-postası GÖNDERİLMEZ (kullanıcı isteği): onay bekleyen dualar
+    // panelde + bildirim akışında görünür.
     return json({ ok: true, status: 'pending', id });
   }
 

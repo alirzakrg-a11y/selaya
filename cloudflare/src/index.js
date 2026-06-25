@@ -5,7 +5,7 @@
 // Bağlamalar: DB (D1: selaya-content), CDN (R2: selaya-cdn), CDN_BASE (var),
 //             ADMIN_TOKEN (secret), AUTH_SECRET (secret — JWT imzası)
 
-import { handleAuth, hashPassword, timingSafeEqual, notifyAdmin } from './auth.js';
+import { handleAuth, hashPassword, timingSafeEqual } from './auth.js';
 import { handleDuaWall } from './dua_wall.js';
 import { handleHatim } from './hatim.js';
 import { handleQuiz } from './quiz.js';
@@ -65,6 +65,17 @@ async function ensureReports(env) {
     ).run();
   } catch (_) {}
   _reportsOk = true;
+}
+
+// likes tablosuna "son beğeni zamanı" kolonu — bildirim akışında (/api/activity)
+// son beğenilen içeriği zamanlı gösterebilmek için. Eski deploy'da yoksa eklenir.
+let _likesColOk = false;
+async function ensureLikesCol(env) {
+  if (_likesColOk) return;
+  try {
+    await env.DB.prepare('ALTER TABLE likes ADD COLUMN last_at INTEGER').run();
+  } catch (_) {}
+  _likesColOk = true;
 }
 
 function extOf(name, fallback) {
@@ -310,10 +321,11 @@ export default {
             const { success } = await env.WRITE_RL.limit({ key: 'wr:' + ip });
             if (!success) return new Response('rate_limited', { status: 429, headers: CORS });
           }
+          await ensureLikesCol(env);
           await env.DB.prepare(
-            'INSERT INTO likes (key, count) VALUES (?1, 1) ' +
-            'ON CONFLICT(key) DO UPDATE SET count = count + 1'
-          ).bind(key).run();
+            'INSERT INTO likes (key, count, last_at) VALUES (?1, 1, ?2) ' +
+            'ON CONFLICT(key) DO UPDATE SET count = count + 1, last_at = ?2'
+          ).bind(key, Date.now()).run();
           const row = await env.DB.prepare(
             'SELECT count FROM likes WHERE key = ?1'
           ).bind(key).first();
@@ -362,12 +374,8 @@ export default {
           'INSERT OR IGNORE INTO content_reports (id,ckey,ctype,ctitle,reason,iphash,created_at) ' +
           'VALUES (?,?,?,?,?,?,?)'
         ).bind(crypto.randomUUID(), key, ctype, ctitle, reason, quickHash(ip), Date.now()).run();
-        if (ctx) ctx.waitUntil(notifyAdmin(env, 'Yeni içerik şikayeti 🚩', [
-          'İçerik: ' + (ctitle || key),
-          'Tür: ' + (ctype || '—'),
-          'Sebep: ' + (reason || '—'),
-          'Panel: panel.selaya.app → 🚩 Şikayetler',
-        ]));
+        // Yönetici e-postası GÖNDERİLMEZ (kullanıcı isteği): şikayetler panelde
+        // (🚩 Şikayetler) + bildirim akışında (/api/activity) görünür.
         return json({ ok: true });
       }
 
@@ -742,6 +750,45 @@ export default {
           return json({ ok: true });
         }
 
+        // ---- 🔔 Bildirim akışı: son aktiviteler (üye/dua/şikayet/hatim/beğeni) ----
+        // E-posta GÖNDERİLMEZ; yönetici her şeyi buradan günlük takip eder.
+        if (request.method === 'GET' && path === '/api/activity') {
+          await ensureReports(env);
+          await ensureLikesCol(env);
+          const out = [];
+          const add = (rows, fn) => {
+            for (const r of (rows || [])) {
+              const e = fn(r);
+              if (e && e.at) out.push(e);
+            }
+          };
+          const q = async (sql) => {
+            try { return (await env.DB.prepare(sql).all()).results || []; }
+            catch (_) { return []; }
+          };
+          add(await q('SELECT name, surname, rumuz, created_at FROM users ORDER BY created_at DESC LIMIT 25'),
+            (r) => ({ type: 'member', at: +r.created_at || 0,
+              title: ((r.name || '') + ' ' + (r.surname || '')).trim() || 'Yeni üye',
+              sub: r.rumuz ? '@' + r.rumuz : '' }));
+          add(await q('SELECT rumuz, text, status, created_at FROM dua_wall ORDER BY created_at DESC LIMIT 25'),
+            (r) => ({ type: 'dua', at: +r.created_at || 0,
+              title: '@' + (r.rumuz || '—'), sub: (r.text || '').slice(0, 90), tag: r.status }));
+          add(await q('SELECT ckey, ctitle, reason, created_at FROM content_reports ORDER BY created_at DESC LIMIT 25'),
+            (r) => ({ type: 'report', at: +r.created_at || 0,
+              title: r.ctitle || r.ckey, sub: r.reason || '' }));
+          add(await q("SELECT juz_no, rumuz, claimed_at FROM hatim_juz WHERE claimed_at IS NOT NULL ORDER BY claimed_at DESC LIMIT 15"),
+            (r) => ({ type: 'hatim', at: +r.claimed_at || 0,
+              title: 'Cüz ' + r.juz_no + ' alındı', sub: r.rumuz ? '@' + r.rumuz : '' }));
+          add(await q("SELECT juz_no, rumuz, done_at FROM hatim_juz WHERE status='done' AND done_at IS NOT NULL ORDER BY done_at DESC LIMIT 15"),
+            (r) => ({ type: 'hatimDone', at: +r.done_at || 0,
+              title: 'Cüz ' + r.juz_no + ' okundu ✓', sub: r.rumuz ? '@' + r.rumuz : '' }));
+          add(await q('SELECT key, count, last_at FROM likes WHERE last_at IS NOT NULL ORDER BY last_at DESC LIMIT 12'),
+            (r) => ({ type: 'like', at: +r.last_at || 0,
+              title: r.key, sub: (r.count || 0) + ' beğeni' }));
+          out.sort((a, b) => b.at - a.at);
+          return json({ ok: true, activity: out.slice(0, 80) });
+        }
+
         // ---- metin içerik (ayet/hadis/dua/tebrik — DOSYASIZ) ----
         if (request.method === 'POST' && path === '/api/text') {
           const form = await request.formData();
@@ -1026,6 +1073,17 @@ const PANEL_HTML = `<!doctype html>
   .main{ flex:1; min-width:0; display:flex; flex-direction:column; }
   .topbar{ display:flex; align-items:center; gap:12px; padding:15px 26px; background:rgba(255,255,255,.82); backdrop-filter:blur(8px); border-bottom:1px solid var(--line); position:sticky; top:0; z-index:5; }
   .topbar h1{ font-size:19px; margin:0; flex:1; font-weight:700; }
+  .bellbtn{ position:relative; background:none; border:0; font-size:21px; cursor:pointer; padding:4px 6px; line-height:1; }
+  .bellbtn .dot{ position:absolute; top:-1px; right:-1px; min-width:16px; height:16px; box-sizing:border-box; background:#e0556b; color:#fff; font-size:10px; font-weight:700; border-radius:999px; padding:0 4px; display:none; align-items:center; justify-content:center; }
+  .actPanel{ position:absolute; top:54px; right:14px; width:min(380px,92vw); max-height:72vh; overflow-y:auto; background:#fff; border:1px solid var(--line); border-radius:14px; box-shadow:0 14px 44px rgba(0,0,0,.18); z-index:30; padding:6px; }
+  .actPanel h3{ margin:8px 10px 6px; font-size:14px; }
+  .actRow{ display:flex; gap:10px; padding:9px 10px; border-radius:10px; align-items:flex-start; }
+  .actRow:hover{ background:rgba(0,0,0,.04); }
+  .actRow .ic{ font-size:18px; flex:0 0 auto; line-height:1.3; }
+  .actRow .tx{ flex:1; min-width:0; }
+  .actRow .tt{ font-weight:600; font-size:13.5px; }
+  .actRow .sb{ color:var(--mut); font-size:12px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+  .actRow .tm{ color:var(--mut); font-size:11px; flex:0 0 auto; padding-top:2px; }
   .topbar .hamb{ display:none; background:none; border:0; color:var(--txt); font-size:22px; cursor:pointer; padding:0 4px; }
   .content{ padding:24px 26px 70px; width:100%; max-width:1080px; }
   /* ---- cards & controls ---- */
@@ -1128,6 +1186,8 @@ const PANEL_HTML = `<!doctype html>
     <div class="topbar">
       <button class="hamb" onclick="toggleSidebar()">☰</button>
       <h1 id="pageTitle">İçerikler</h1>
+      <button class="bellbtn" onclick="toggleActivity()" title="Bildirimler">🔔<span class="dot" id="actDot"></span></button>
+      <div class="actPanel hide" id="actPanel"></div>
     </div>
     <div class="content">
 
@@ -2070,6 +2130,59 @@ const PANEL_HTML = `<!doctype html>
     }, {title:'Şikayeti Temizle', yes:'Temizle', danger:true});
   }
 
+  // 🔔 Bildirim akışı (e-posta yerine — kullanıcı isteği): son üye/dua/şikayet/
+  // hatim/beğeni hareketleri. Rozet = en son "görüldü"den beri yeni öğe sayısı.
+  var ACT_ICON = { member:'🎉', dua:'🤲', report:'🚩', hatim:'📖', hatimDone:'✅', like:'❤️' };
+  var actData = [];
+  function actRel(ms){
+    var d = Date.now() - (ms||0); if (d < 0) d = 0;
+    var m = Math.floor(d/60000);
+    if (m < 1) return 'az önce';
+    if (m < 60) return m + ' dk';
+    var h = Math.floor(m/60); if (h < 24) return h + ' sa';
+    return Math.floor(h/24) + ' gün';
+  }
+  function loadActivity(){
+    if (!TOKEN) return;
+    api('activity').then(function(r){
+      if (!r.j || !r.j.ok) return;
+      actData = r.j.activity || [];
+      var seen = +(localStorage.getItem('selaya_act_seen') || 0);
+      var n = 0; for (var i=0;i<actData.length;i++){ if ((actData[i].at||0) > seen) n++; }
+      var dot = el('actDot');
+      if (dot){ dot.textContent = n > 99 ? '99+' : String(n); dot.style.display = n > 0 ? 'inline-flex' : 'none'; }
+      var p = el('actPanel'); if (p && !p.classList.contains('hide')) renderActivity();
+    }).catch(function(){});
+  }
+  function renderActivity(){
+    var h = '<h3>🔔 Son hareketler</h3>';
+    if (!actData.length) h += '<p class="muted" style="padding:10px 12px">Henüz hareket yok.</p>';
+    actData.forEach(function(a){
+      h += '<div class="actRow"><div class="ic">' + (ACT_ICON[a.type]||'•') + '</div>'
+        + '<div class="tx"><div class="tt">' + esc(a.title||'')
+        + (a.tag ? ' <span class="muted" style="font-size:11px">('+esc(a.tag)+')</span>' : '')
+        + '</div>' + (a.sub ? '<div class="sb">' + esc(a.sub) + '</div>' : '') + '</div>'
+        + '<div class="tm">' + actRel(a.at) + '</div></div>';
+    });
+    el('actPanel').innerHTML = h;
+  }
+  function toggleActivity(){
+    var p = el('actPanel'); if (!p) return;
+    var willOpen = p.classList.contains('hide');
+    p.classList.toggle('hide', !willOpen);
+    if (willOpen){
+      renderActivity();
+      if (actData.length) localStorage.setItem('selaya_act_seen', String(actData[0].at||0));
+      var dot = el('actDot'); if (dot) dot.style.display = 'none';
+    }
+  }
+  // Panel dışına tıklayınca kapan.
+  document.addEventListener('click', function(e){
+    var p = el('actPanel'); if (!p || p.classList.contains('hide')) return;
+    if (e.target.closest && (e.target.closest('#actPanel') || e.target.closest('.bellbtn'))) return;
+    p.classList.add('hide');
+  });
+
   // --- Kullanım istatistikleri (free tier takibi) ---
   function pctOf(used, limit){ return limit > 0 ? Math.min(100, used / limit * 100) : 0; }
   function gbStr(b){ return (b / 1073741824).toFixed(2) + ' GB'; }
@@ -2126,6 +2239,7 @@ const PANEL_HTML = `<!doctype html>
     TOKEN = val('token').trim();
     localStorage.setItem('selaya_admin_token', TOKEN);
     loadItems();
+    loadActivity();
   }
 
   function api(path, opts){
@@ -2468,7 +2582,9 @@ const PANEL_HTML = `<!doctype html>
     else if (b.getAttribute('data-nact') === 'del'){ uiConfirm('Bu bildirim silinsin mi?', function(){ api('notifications/' + id, { method:'DELETE' }).then(loadNotifications); }, {danger:true, yes:'Sil'}); }
   });
 
-  if (TOKEN) loadItems();
+  if (TOKEN) { loadItems(); loadActivity(); }
+  // Bildirim akışını periyodik tazele (sekme açıkken canlı kalsın).
+  setInterval(loadActivity, 60000);
 </script>
 </body>
 </html>`;

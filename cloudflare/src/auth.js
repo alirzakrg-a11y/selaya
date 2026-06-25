@@ -146,6 +146,23 @@ async function ensureSecCol(env) {
   _secColOk = true;
 }
 
+// Reset (şifremi unuttum) kodu kötüye-kullanım sınırı için sayaç kolonları:
+// kullanıcı başına GÜNDE en fazla 3 kod istenebilir (e-posta kotası + spam
+// koruması). Eski deploy'larda kolon yoksa eklenir; varsa hata yutulur.
+let _resetColOk = false;
+async function ensureResetCols(env) {
+  if (_resetColOk) return;
+  try {
+    await env.DB.prepare(
+      'ALTER TABLE users ADD COLUMN reset_count INTEGER NOT NULL DEFAULT 0'
+    ).run();
+  } catch (_) {}
+  try {
+    await env.DB.prepare('ALTER TABLE users ADD COLUMN reset_day TEXT').run();
+  } catch (_) {}
+  _resetColOk = true;
+}
+
 function publicUser(u) {
   return {
     id: u.id, name: u.name, surname: u.surname || '', email: u.email,
@@ -361,11 +378,8 @@ export async function handleAuth(request, env, path, ctx) {
     const deviceId = (b.deviceId || '').toString().slice(0, 80);
     const deviceLabel = (b.device || '').toString().slice(0, 80);
     await registerDevice(env, id, deviceId, deviceLabel);
-    if (ctx) ctx.waitUntil(notifyAdmin(env, 'Yeni üye 🎉', [
-      'Ad: ' + name + (surname ? ' ' + surname : ''),
-      'E-posta: ' + email,
-      'Rumuz: ' + (rumuz || '—'),
-    ]));
+    // Yönetici e-postası GÖNDERİLMEZ (kullanıcı isteği): yeni üyeler panelde +
+    // bildirim akışında (/api/activity) görünür.
     return json({ ok: true, token: await issueToken(env, user, deviceId), user });
   }
 
@@ -417,6 +431,17 @@ export async function handleAuth(request, env, path, ctx) {
     // Net geri bildirim (SELAYA banka değil): kayıt yoksa açıkça söyle, ilerleme.
     if (!u) return json({ ok: false, error: 'email_not_found' }, 404);
     const now = Date.now();
+    // Kötüye-kullanım sınırı: kullanıcı başına GÜNDE en fazla 3 kod isteği.
+    await ensureResetCols(env);
+    const today = new Date(now).toISOString().slice(0, 10);
+    const rc = await env.DB.prepare(
+      'SELECT reset_count, reset_day FROM users WHERE id=?'
+    ).bind(u.id).first();
+    const usedToday =
+      rc && rc.reset_day === today ? (Number(rc.reset_count) || 0) : 0;
+    if (usedToday >= 3) {
+      return json({ ok: false, error: 'too_many_resets' }, 429);
+    }
     // Spam / e-posta kotası koruması: aynı hesaba 60 sn'de en fazla 1 kod.
     const recent = await env.DB.prepare(
       'SELECT created_at FROM auth_codes WHERE user_id=? AND kind=? ORDER BY created_at DESC LIMIT 1'
@@ -431,6 +456,9 @@ export async function handleAuth(request, env, path, ctx) {
     ).bind(crypto.randomUUID(), u.id, 'reset', await sha256Hex(code), now + 15 * 60 * 1000, now).run();
     const sent = await sendResetEmail(env, email, code);
     if (!sent) return json({ ok: false, error: 'email_send_failed' }, 502);
+    // Başarıyla gönderildi → günlük sayaç artır (gün değişince ensure üstünde sıfırlanır).
+    await env.DB.prepare('UPDATE users SET reset_count=?, reset_day=? WHERE id=?')
+      .bind(usedToday + 1, today, u.id).run();
     return json({ ok: true });
   }
 
