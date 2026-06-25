@@ -2118,7 +2118,7 @@ const PANEL_HTML = `<!doctype html>
           '<td style="padding:8px 6px;color:var(--mut);font-size:12px">'+esc(r.ctype||'—')+'</td>'+
           '<td style="padding:8px 6px;text-align:right;font-weight:800;color:'+col+'">'+n+'</td>'+
           '<td style="padding:8px 6px;color:var(--mut);font-size:12px;max-width:280px">'+esc(String(r.reasons||'—').slice(0,200))+'</td>'+
-          '<td style="padding:8px 6px;text-align:right"><button class="ghost" onclick="clearReport(\''+esc(r.ckey)+'\')">Temizle</button></td></tr>';
+          '<td style="padding:8px 6px;text-align:right"><button class="ghost" data-k="'+esc(r.ckey)+'" onclick="clearReport(this.dataset.k)">Temizle</button></td></tr>';
       });
       el('reportsBody').innerHTML=h+'</tbody></table>';
     }).catch(function(e){ el('reportsBody').innerHTML='<p class="muted">Hata: '+esc(String(e))+'</p>'; });
