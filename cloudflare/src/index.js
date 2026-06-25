@@ -785,7 +785,8 @@ export default {
             "COUNT(*) AS n, MAX(cr.created_at) AS last, " +
             "GROUP_CONCAT(NULLIF(cr.reason,''), ' • ') AS reasons, " +
             "GROUP_CONCAT(NULLIF(cr.note,''), ' | ') AS notes, " +
-            "MAX(ci.key) AS imgkey, MAX(ci.kind) AS ckind, MAX(ci.collection) AS ccoll " +
+            "MAX(ci.key) AS imgkey, MAX(ci.kind) AS ckind, MAX(ci.collection) AS ccoll, " +
+            "MAX(ci.title) AS citemtitle, MAX(ci.subtitle) AS citemsub " +
             "FROM content_reports cr " +
             "LEFT JOIN content_items ci ON ci.id = substr(cr.ckey, instr(cr.ckey, ':') + 1) " +
             "GROUP BY cr.ckey ORDER BY n DESC, last DESC LIMIT 300"
@@ -818,6 +819,14 @@ export default {
             try { return (await env.DB.prepare(sql).all()).results || []; }
             catch (_) { return []; }
           };
+          // Akıllı başlık: içerik başlığı/caption id/UUID gibiyse (video'larda
+          // başlık çoğu kez yok) anlamlı bir etiket kullan.
+          const idLike = (s) => !s || /^[0-9a-f]{8}-[0-9a-f]{4}-/i.test(s) || /^[0-9a-f]{16,}$/i.test(s);
+          const niceT = (title, sub, kind, ckey) => {
+            if (title && !idLike(title)) return title;
+            if (sub && !idLike(sub)) return sub;
+            return kind === 'video' ? '🎬 Video' : (ckey || '—');
+          };
           add(await q('SELECT name, surname, rumuz, created_at FROM users ORDER BY created_at DESC LIMIT 25'),
             (r) => ({ type: 'member', at: +r.created_at || 0,
               title: ((r.name || '') + ' ' + (r.surname || '')).trim() || 'Yeni üye',
@@ -825,9 +834,12 @@ export default {
           add(await q('SELECT rumuz, text, status, created_at FROM dua_wall ORDER BY created_at DESC LIMIT 25'),
             (r) => ({ type: 'dua', at: +r.created_at || 0,
               title: '@' + (r.rumuz || '—'), sub: (r.text || '').slice(0, 90), tag: r.status }));
-          add(await q('SELECT ckey, ctitle, reason, created_at FROM content_reports ORDER BY created_at DESC LIMIT 25'),
-            (r) => ({ type: 'report', at: +r.created_at || 0,
-              title: r.ctitle || r.ckey, sub: r.reason || '' }));
+          add(await q("SELECT cr.ckey AS ckey, cr.reason AS reason, cr.created_at AS at, " +
+            "ci.title AS ctitle, ci.subtitle AS csub, ci.kind AS ckind FROM content_reports cr " +
+            "LEFT JOIN content_items ci ON ci.id = substr(cr.ckey, instr(cr.ckey, ':') + 1) " +
+            "ORDER BY cr.created_at DESC LIMIT 25"),
+            (r) => ({ type: 'report', at: +r.at || 0,
+              title: niceT(r.ctitle, r.csub, r.ckind, r.ckey), sub: r.reason || '' }));
           add(await q("SELECT juz_no, rumuz, claimed_at FROM hatim_juz WHERE claimed_at IS NOT NULL ORDER BY claimed_at DESC LIMIT 15"),
             (r) => ({ type: 'hatim', at: +r.claimed_at || 0,
               title: 'Cüz ' + r.juz_no + ' alındı', sub: r.rumuz ? '@' + r.rumuz : '' }));
@@ -840,12 +852,12 @@ export default {
             "ci.kind AS ckind, ci.collection AS ccoll FROM like_events le " +
             "LEFT JOIN users u ON u.id = le.user_id " +
             "LEFT JOIN content_items ci ON ci.id = substr(le.ckey, instr(le.ckey, ':') + 1) " +
-            "ORDER BY le.created_at DESC LIMIT 18"),
+            "ORDER BY le.created_at DESC LIMIT 60"),
             (r) => ({ type: 'like', at: +r.at || 0,
-              title: r.ctitle || r.ckey, sub: '@' + (r.rumuz || r.uname || 'kullanıcı') + ' beğendi',
+              title: niceT(r.ctitle, null, r.ckind, r.ckey), sub: '@' + (r.rumuz || r.uname || 'kullanıcı') + ' beğendi',
               key: r.ckey, uid: r.uid, rumuz: r.rumuz, imgkey: r.imgkey, ckind: r.ckind, ccoll: r.ccoll }));
           out.sort((a, b) => b.at - a.at);
-          return json({ ok: true, activity: out.slice(0, 80) });
+          return json({ ok: true, activity: out.slice(0, 200) });
         }
 
         // ---- bir kullanıcının beğendiği içerikler (kullanıcı detay popup) ----
@@ -1841,7 +1853,7 @@ const PANEL_HTML = `<!doctype html>
         var thumb='';
         if(r.imgkey){ var u=cdn+'/'+r.imgkey; thumb=(r.ckind==='video')?'<span style="font-size:18px">🎬</span>':'<img src="'+esc(u)+'" style="width:40px;height:40px;object-fit:cover;border-radius:7px">'; }
         h+='<div style="display:flex;gap:8px;align-items:center;padding:7px 0;border-top:1px solid var(--line)">'+thumb+
-          '<div style="flex:1;min-width:0"><div style="font-weight:600">'+esc(r.ctitle||r.ckey)+'</div>'+
+          '<div style="flex:1;min-width:0"><div style="font-weight:600">'+esc(niceTitle(r))+'</div>'+
           '<div class="muted" style="font-size:11px">'+esc(r.ckey)+(r.ccoll?' · '+esc(r.ccoll):'')+'</div></div>'+
           (r.imgkey?'<a href="'+esc(cdn+'/'+r.imgkey)+'" target="_blank" class="muted" style="font-size:12px;white-space:nowrap">Aç ↗</a>':'')+'</div>';
       });
@@ -2220,6 +2232,15 @@ const PANEL_HTML = `<!doctype html>
     var parts=String(s||'').split(/\\s*•\\s*/).filter(Boolean).map(function(x){ return REASON_TR[x]||x; });
     return parts.length?parts.join(' • '):'—';
   }
+  // Akıllı başlık: video'larda başlık çoğu kez yok (UUID) → içerik başlığı/caption
+  // kullan, o da id gibiyse "🎬 Video" etiketi göster.
+  function repIdLike(s){ return !s || /^[0-9a-f]{8}-[0-9a-f]{4}-/i.test(s) || /^[0-9a-f]{16,}$/i.test(s); }
+  function niceTitle(r){
+    if(r.citemtitle && !repIdLike(r.citemtitle)) return r.citemtitle;
+    if(r.ctitle && !repIdLike(r.ctitle)) return r.ctitle;
+    if(r.citemsub && !repIdLike(r.citemsub)) return r.citemsub;
+    return (r.ckind==='video'||r.ctype==='feed') ? '🎬 Video' : (r.ckey||'—');
+  }
   var REPORTS=[], REP_CDN='';
   function loadReports(){
     el('reportsBody').innerHTML='<p class="muted">Yükleniyor…</p>';
@@ -2247,7 +2268,7 @@ const PANEL_HTML = `<!doctype html>
         }
         h+='<tr style="border-top:1px solid var(--line);cursor:pointer" data-i="'+i+'" onclick="reportDetail(this.dataset.i)">'+
           '<td style="padding:8px 6px"><div style="display:flex;gap:8px;align-items:center">'+thumb+
-            '<div><div style="font-weight:600">'+esc(r.ctitle||r.ckey)+'</div>'+
+            '<div><div style="font-weight:600">'+esc(niceTitle(r))+'</div>'+
             '<div style="color:var(--mut);font-size:11px">'+esc(r.ckey)+(r.ccoll?' · '+esc(r.ccoll):'')+'</div></div></div></td>'+
           '<td style="padding:8px 6px;color:var(--mut);font-size:12px">'+esc(r.ctype||'—')+'</td>'+
           '<td style="padding:8px 6px;text-align:right;font-weight:800;color:'+col+'">'+n+'</td>'+
@@ -2271,7 +2292,7 @@ const PANEL_HTML = `<!doctype html>
     var notes=r.notes?'<div style="margin-top:12px"><b>Kullanıcı mesajları</b><div style="white-space:pre-line;margin-top:4px;color:var(--txt)">💬 '+esc(String(r.notes))+'</div></div>':'';
     var link=r.imgkey?'<a href="'+esc(REP_CDN+'/'+r.imgkey)+'" target="_blank" class="ghost" style="text-decoration:none">İçeriği aç ↗</a>':'';
     var ov=_modal(
-      '<h3 style="margin:0 0 4px">'+esc(r.ctitle||r.ckey)+'</h3>'+
+      '<h3 style="margin:0 0 4px">'+esc(niceTitle(r))+'</h3>'+
       '<div class="hint" style="font-size:12px;margin-bottom:12px">'+esc(r.ckey)+(r.ccoll?' · '+esc(r.ccoll):'')+(r.ctype?' · '+esc(r.ctype):'')+'</div>'+
       media+
       '<div style="margin-top:12px"><b>Şikayet sayısı:</b> '+(r.n||0)+'</div>'+
