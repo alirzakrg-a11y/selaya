@@ -900,8 +900,17 @@ export default {
 
         // ---- içerik öğeleri ----
         if (request.method === 'GET' && path === '/api/items') {
+          // Beğeni sayısı: likes tablosuna "<tip>:<id>" anahtarıyla JOIN.
+          // Koleksiyon → app'in kullandığı beğeni tipi (wallpaper/feed/verse/
+          // hadith/dua/story) eşlemesi.
           const { results } = await env.DB.prepare(
-            'SELECT * FROM content_items ORDER BY collection, sort, created_at'
+            "SELECT ci.*, l.count AS likes FROM content_items ci " +
+            "LEFT JOIN likes l ON l.key = (CASE ci.collection " +
+            "WHEN 'wallpapers' THEN 'wallpaper' WHEN 'feed' THEN 'feed' " +
+            "WHEN 'stories' THEN 'story' WHEN 'inspiration' THEN 'verse' " +
+            "WHEN 'hadiths' THEN 'hadith' WHEN 'duas' THEN 'dua' " +
+            "ELSE ci.collection END) || ':' || ci.id " +
+            "ORDER BY ci.collection, ci.sort, ci.created_at"
           ).all();
           // Her öğenin R2 boyutu (sesli hikâyede bölüm dosyaları da dahil).
           await Promise.all(results.map(async (r) => {
@@ -1723,7 +1732,7 @@ const PANEL_HTML = `<!doctype html>
     var h = items.map(function(it){
       var ex = {}; try { ex = JSON.parse(it.extra || '{}'); } catch (e) {}
       var ref = ex.reference || ex.occasion || '';
-      return '<div class="item" draggable="true" data-id="' + esc(it.id) + '"><span class="grip" title="Sürükle">⠿</span><div class="ph">📝</div><div class="meta"><b>' + esc((it.title || '').slice(0, 80)) + '</b>' + (ref ? '<span class="muted">' + esc(ref) + '</span>' : '') + '</div>' +
+      return '<div class="item" draggable="true" data-id="' + esc(it.id) + '"><span class="grip" title="Sürükle">⠿</span><div class="ph">📝</div><div class="meta"><b>' + esc((it.title || '').slice(0, 80)) + '</b>' + (ref ? '<span class="muted">' + esc(ref) + '</span>' : '') + (it.likes ? '<span class="muted">❤️ ' + it.likes + ' beğeni</span>' : '') + '</div>' +
         '<button class="ghost" data-id="' + esc(it.id) + '" onclick="editText(this.dataset.id)">✏️ Düzenle</button> ' +
         '<button class="danger" data-id="' + esc(it.id) + '" onclick="delText(this.dataset.id)">Sil</button></div>';
     }).join('');
@@ -2007,7 +2016,7 @@ const PANEL_HTML = `<!doctype html>
       else {
         el('duaPendingBody').innerHTML='<p class="muted" style="margin:0 0 8px">Bekleyen: <b>'+pend.length+'</b></p>'+pend.map(function(d){
           var id=esc(d.id); var uid=esc(d.user_id||'');
-          return '<div class="item"><div class="ph">🤲</div><div class="meta" data-aid="'+id+'" style="cursor:pointer" title="Kullanıcı bilgilerini gör" onclick="showDuaAuthor(this.dataset.aid)"><b>'+esc(d.rumuz)+'</b><span>'+esc(d.text)+'</span>'+duaAuthorLine(d)+'<span class="muted">'+fmtDate(d.created_at)+' · ℹ️ tıkla</span></div>'+
+          return '<div class="item"><div class="ph">🤲</div><div class="meta" data-aid="'+id+'" style="cursor:pointer" title="Kullanıcı bilgilerini gör" onclick="showDuaAuthor(this.dataset.aid)"><b>'+esc(d.rumuz)+'</b><span>'+esc(d.text)+'</span>'+duaAuthorLine(d)+'<span class="muted">🤲 '+(d.amins||0)+' amin · '+fmtDate(d.created_at)+' · ℹ️ tıkla</span></div>'+
             '<button class="ghost" title="Düzenle" data-id="'+id+'" onclick="editDua(this.dataset.id)">✏️</button> '+
             '<button data-id="'+id+'" onclick="approveDua(this.dataset.id)">Onayla</button> '+
             '<button class="ghost" data-id="'+id+'" onclick="rejectDua(this.dataset.id,false)">Reddet</button> '+
@@ -2027,7 +2036,7 @@ const PANEL_HTML = `<!doctype html>
         } else {
           icon='🚫'; label='<span class="muted">reddedildi</span>'; actions='';
         }
-        return '<div class="item"><div class="ph">'+icon+'</div><div class="meta" data-aid="'+id+'" style="cursor:pointer" title="Kullanıcı bilgilerini gör" onclick="showDuaAuthor(this.dataset.aid)"><b>'+esc(d.rumuz)+'</b> '+label+'<span class="muted">'+esc(d.text)+' · ℹ️ tıkla</span>'+duaAuthorLine(d)+'</div>'+
+        return '<div class="item"><div class="ph">'+icon+'</div><div class="meta" data-aid="'+id+'" style="cursor:pointer" title="Kullanıcı bilgilerini gör" onclick="showDuaAuthor(this.dataset.aid)"><b>'+esc(d.rumuz)+'</b> '+label+'<span class="muted">'+esc(d.text)+' · 🤲 '+(d.amins||0)+' · ℹ️ tıkla</span>'+duaAuthorLine(d)+'</div>'+
           '<button class="ghost" title="Düzenle" data-id="'+id+'" onclick="editDua(this.dataset.id)">✏️</button> '+
           actions+
           '<button class="danger" data-id="'+id+'" onclick="rejectDua(this.dataset.id,true)">Sil</button> '+
@@ -2581,7 +2590,7 @@ const PANEL_HTML = `<!doctype html>
             : it.kind === 'audio' ? '<div class="ph">♪</div>'
             : '<img src="' + u + '" loading="lazy">';
           inner += '<div class="item" draggable="true" data-id="' + esc(it.id) + '"><span class="grip" title="Sürükle-bırak ile sırala">⠿</span>' + prev +
-            '<div class="meta"><b>' + esc(it.title || it.key.split('/').pop()) + '</b><span class="muted">' + (it.size ? fmtSize(it.size) + ' · ' : '') + esc(it.subtitle || it.key) + '</span></div>' +
+            '<div class="meta"><b>' + esc(it.title || it.key.split('/').pop()) + '</b><span class="muted">' + (it.size ? fmtSize(it.size) + ' · ' : '') + esc(it.subtitle || it.key) + '</span>' + (it.likes ? '<span class="muted">❤️ ' + it.likes + ' beğeni</span>' : '') + '</div>' +
             '<span class="badge">' + (it.active ? 'aktif' : 'pasif') + '</span>' +
             '<button class="ghost" data-act="edit" data-id="' + esc(it.id) + '" data-col="' + esc(col) + '" data-kind="' + esc(it.kind) + '" data-title="' + esc(it.title || '') + '" data-sub="' + esc(it.subtitle || '') + '" data-active="' + (it.active ? 1 : 0) + '" data-sort="' + (it.sort || 0) + '">Düzenle</button>' +
             '<button class="ghost" data-act="replace" data-id="' + esc(it.id) + '">Değiştir</button>' +
