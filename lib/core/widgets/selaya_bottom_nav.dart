@@ -3,6 +3,7 @@ import 'dart:ui';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
+import '../router/routes.dart';
 import '../theme/app_colors.dart';
 import '../theme/app_icons.dart';
 import '../theme/app_spacing.dart';
@@ -20,6 +21,18 @@ const kSelayaNavItems = <SelayaNavItem>[
   SelayaNavItem(AppIcons.qibla, 'nav.qibla'),
   SelayaNavItem(Icons.dynamic_feed_rounded, 'nav.akis'),
   SelayaNavItem(AppIcons.more, 'nav.more'),
+];
+
+/// Alt menü sekmelerinin rotaları — kSelayaNavItems ile AYNI sıra. Detay
+/// (tam-ekran) ekranlarda SelayaBottomNav bunlarla context.go yapar; böylece
+/// o şubeye geçilir + alt menü her yerde görünür kalır.
+const kNavBranchRoutes = <String>[
+  Routes.home,
+  Routes.times,
+  Routes.quran,
+  Routes.qibla,
+  Routes.akis,
+  Routes.more,
 ];
 
 /// Custom frosted bottom navigation with a gold active state.

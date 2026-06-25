@@ -9,6 +9,7 @@ import '../../../core/router/routes.dart';
 import '../../../core/share/share_helper.dart';
 import '../../../core/theme/app_colors.dart';
 import '../../../core/theme/app_spacing.dart';
+import '../../../core/widgets/content_detail_dialog.dart';
 import '../../../core/widgets/like_button.dart';
 import '../../../core/widgets/selaya_card.dart';
 import '../../../core/widgets/selaya_logo.dart';
@@ -217,6 +218,20 @@ class _AkisScreenState extends ConsumerState<AkisScreen> {
           body: vs[i].text(lang),
           footer: vs[i].reference,
           likeKey: 'verse:${vs[i].id}',
+          // Karta dokun → ortada büyük popup (Arapça + meal + ◀▶ gezinme).
+          onTap: () => showContentDetail(
+            context,
+            [
+              for (final v in vs)
+                ContentDetailItem(
+                    title: 'akis.verseOfDay'.tr(),
+                    arabic: v.arabic,
+                    text: v.text(lang),
+                    reference: v.reference)
+            ],
+            i,
+            headerTitle: 'more.verses'.tr(),
+          ),
         );
     Widget hadithCard(int i) => _ContentCard(
           label: i == 0 ? 'akis.hadithOfDay'.tr() : 'more.hadiths'.tr(),
@@ -224,6 +239,19 @@ class _AkisScreenState extends ConsumerState<AkisScreen> {
           body: hs[i].text(lang),
           footer: hs[i].collection,
           likeKey: 'hadith:${hs[i].id}',
+          onTap: () => showContentDetail(
+            context,
+            [
+              for (final hd in hs)
+                ContentDetailItem(
+                    title: 'akis.hadithOfDay'.tr(),
+                    arabic: hd.arabic,
+                    text: hd.text(lang),
+                    reference: hd.collection)
+            ],
+            i,
+            headerTitle: 'more.hadiths'.tr(),
+          ),
         );
     Widget duaCard(int i) => _ContentCard(
           label: i == 0 ? 'akis.duaOfDay'.tr() : 'duas.title'.tr(),
@@ -231,6 +259,19 @@ class _AkisScreenState extends ConsumerState<AkisScreen> {
           body: ds[i].text(lang),
           footer: ds[i].source.isNotEmpty ? ds[i].source : null,
           likeKey: 'dua:${ds[i].id}',
+          onTap: () => showContentDetail(
+            context,
+            [
+              for (final dd in ds)
+                ContentDetailItem(
+                    title: 'akis.duaOfDay'.tr(),
+                    arabic: dd.arabic,
+                    text: dd.text(lang),
+                    reference: dd.source)
+            ],
+            i,
+            headerTitle: 'duas.title'.tr(),
+          ),
         );
     Widget tipCard(int i) => _ContentCard(
           label: 'akis.didYouKnow'.tr(),
@@ -437,19 +478,22 @@ class _ContentCard extends StatelessWidget {
   final String? footer;
   final String? likeKey;
   final bool share;
+  final VoidCallback? onTap;
   const _ContentCard(
       {required this.label,
       required this.icon,
       required this.body,
       this.footer,
       this.likeKey,
-      this.share = true});
+      this.share = true,
+      this.onTap});
 
   @override
   Widget build(BuildContext context) {
     final c = context.colors;
     return SelayaCard(
       patterned: true,
+      onTap: onTap,
       padding: const EdgeInsets.all(AppSpacing.base),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
