@@ -30,61 +30,117 @@ Future<void> showContentReport(
     ('copyright', 'report.copyright'.tr()),
     ('other', 'report.other'.tr()),
   ];
+  final msgCtrl = TextEditingController();
+  String? selected;
   await showModalBottomSheet(
     context: context,
+    isScrollControlled: true, // klavye açılınca alan görünür kalsın
     backgroundColor: c.surface,
     shape: const RoundedRectangleBorder(
         borderRadius: BorderRadius.vertical(top: Radius.circular(20))),
-    builder: (sheetCtx) => SafeArea(
-      child: Padding(
-        padding: const EdgeInsets.all(AppSpacing.lg),
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Row(children: [
-              Icon(Icons.flag_outlined, color: c.gold, size: 20),
-              const Gap.sm(),
-              Expanded(
-                child: Text('report.title'.tr(),
-                    style: Theme.of(context)
-                        .textTheme
-                        .titleMedium
-                        ?.copyWith(fontWeight: FontWeight.w700)),
-              ),
-            ]),
-            const Gap.sm(),
-            for (final r in reasons)
-              ListTile(
-                contentPadding: EdgeInsets.zero,
-                title: Text(r.$2),
-                trailing:
-                    Icon(Icons.chevron_right_rounded, color: c.textTertiary),
-                onTap: () async {
-                  Navigator.pop(sheetCtx);
-                  final ok = await _send(
-                      key: key, type: type, title: title, reason: r.$1);
-                  if (context.mounted) {
-                    ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                        content: Text(
-                            (ok ? 'report.thanks' : 'report.failed').tr())));
-                  }
-                },
-              ),
-            const Divider(height: 22),
-            ListTile(
-              contentPadding: EdgeInsets.zero,
-              leading: Icon(Icons.mail_outline_rounded, color: c.gold),
-              title: Text('report.email'.tr()),
-              subtitle: Text(_adminEmail,
-                  style: TextStyle(color: c.textTertiary, fontSize: 12)),
-              onTap: () {
-                Navigator.pop(sheetCtx);
-                _email(context, key: key, title: title);
-              },
+    builder: (sheetCtx) => Padding(
+      padding:
+          EdgeInsets.only(bottom: MediaQuery.of(sheetCtx).viewInsets.bottom),
+      child: SafeArea(
+        child: StatefulBuilder(
+          builder: (ctx, setSt) => Padding(
+            padding: const EdgeInsets.all(AppSpacing.lg),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Row(children: [
+                  Icon(Icons.flag_outlined, color: c.gold, size: 20),
+                  const Gap.sm(),
+                  Expanded(
+                    child: Text('report.title'.tr(),
+                        style: Theme.of(context)
+                            .textTheme
+                            .titleMedium
+                            ?.copyWith(fontWeight: FontWeight.w700)),
+                  ),
+                ]),
+                const Gap.sm(),
+                // Sebep seç (tek seçim).
+                Wrap(
+                  spacing: 8,
+                  runSpacing: 8,
+                  children: [
+                    for (final r in reasons)
+                      ChoiceChip(
+                        label: Text(r.$2),
+                        selected: selected == r.$1,
+                        onSelected: (_) => setSt(() => selected = r.$1),
+                        selectedColor: c.gold.withValues(alpha: 0.22),
+                        showCheckmark: false,
+                        labelStyle: TextStyle(
+                            color: selected == r.$1 ? c.gold : c.textSecondary,
+                            fontWeight: selected == r.$1
+                                ? FontWeight.w700
+                                : FontWeight.w500),
+                      ),
+                  ],
+                ),
+                const Gap.md(),
+                // Serbest mesaj — neden şikayet ettiğini yaz (opsiyonel).
+                TextField(
+                  controller: msgCtrl,
+                  minLines: 2,
+                  maxLines: 4,
+                  maxLength: 280,
+                  decoration: InputDecoration(
+                    hintText: 'report.messageHint'.tr(),
+                    filled: true,
+                    fillColor: c.surfaceAlt,
+                    counterText: '',
+                    border: OutlineInputBorder(
+                      borderRadius: AppRadius.rLg,
+                      borderSide: BorderSide.none,
+                    ),
+                  ),
+                ),
+                const Gap.sm(),
+                SizedBox(
+                  width: double.infinity,
+                  child: FilledButton(
+                    style: FilledButton.styleFrom(backgroundColor: c.gold),
+                    onPressed: selected == null
+                        ? null
+                        : () async {
+                            Navigator.pop(sheetCtx);
+                            final ok = await _send(
+                                key: key,
+                                type: type,
+                                title: title,
+                                reason: selected!,
+                                note: msgCtrl.text.trim());
+                            if (context.mounted) {
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                  SnackBar(
+                                      content: Text((ok
+                                              ? 'report.thanks'
+                                              : 'report.failed')
+                                          .tr())));
+                            }
+                          },
+                    child: Text('report.send'.tr()),
+                  ),
+                ),
+                const Divider(height: 22),
+                ListTile(
+                  contentPadding: EdgeInsets.zero,
+                  leading: Icon(Icons.mail_outline_rounded, color: c.gold),
+                  title: Text('report.email'.tr()),
+                  subtitle: Text(_adminEmail,
+                      style: TextStyle(color: c.textTertiary, fontSize: 12)),
+                  onTap: () {
+                    Navigator.pop(sheetCtx);
+                    _email(context, key: key, title: title);
+                  },
+                ),
+              ],
             ),
-            const Gap.sm(),
-          ],
+          ),
         ),
       ),
     ),
@@ -119,6 +175,7 @@ Future<bool> _send({
   String? type,
   String? title,
   required String reason,
+  String? note,
 }) async {
   try {
     final res = await http
@@ -130,6 +187,7 @@ Future<bool> _send({
             'type': type ?? '',
             'title': title ?? '',
             'reason': reason,
+            'note': note ?? '',
           }),
         )
         .timeout(const Duration(seconds: 12));

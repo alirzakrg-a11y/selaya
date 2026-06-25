@@ -1595,8 +1595,10 @@ class _IdeaCard extends StatelessWidget {
   const _IdeaCard();
 
   Future<void> _shareIdea() async {
+    final subject = Uri.encodeComponent('SELAYA — Görüş & Öneri / Feedback');
+    final body = Uri.encodeComponent('Görüşünüz / Your idea:\n');
     final uri = Uri.parse(
-      'mailto:destek@selayaapp.com?subject=${Uri.encodeComponent('SELAYA — Görüş & Öneri')}',
+      'mailto:alirza.krg@gmail.com?subject=$subject&body=$body',
     );
     try {
       await launchUrl(uri, mode: LaunchMode.externalApplication);

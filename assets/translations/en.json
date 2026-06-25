@@ -961,7 +961,9 @@
     "thanks": "Your report was received, thank you.",
     "failed": "Couldn't send the report.",
     "email": "Report via email (e.g. copyright)",
-    "emailCopied": "Couldn’t open email app — address copied to clipboard"
+    "emailCopied": "Couldn’t open email app — address copied to clipboard",
+    "messageHint": "Your message — why are you reporting? (optional)",
+    "send": "Send"
   },
   "xt": {
     "agHeroTitle": "How to Perform Wudu",

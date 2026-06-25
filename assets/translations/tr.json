@@ -961,7 +961,9 @@
     "thanks": "Bildirimin alındı, teşekkürler.",
     "failed": "Bildirim gönderilemedi.",
     "email": "E-posta ile bildir (telif vb.)",
-    "emailCopied": "E-posta uygulaması açılamadı — adres panoya kopyalandı"
+    "emailCopied": "E-posta uygulaması açılamadı — adres panoya kopyalandı",
+    "messageHint": "Mesajınız — neden şikayet ediyorsunuz? (opsiyonel)",
+    "send": "Gönder"
   },
   "xt": {
     "agHeroTitle": "Abdest Nasıl Alınır?",

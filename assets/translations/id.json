@@ -961,7 +961,9 @@
     "thanks": "Laporan Anda diterima, terima kasih.",
     "failed": "Gagal mengirim laporan.",
     "email": "Laporkan via email (mis. hak cipta)",
-    "emailCopied": "Tidak dapat membuka aplikasi email — alamat disalin"
+    "emailCopied": "Tidak dapat membuka aplikasi email — alamat disalin",
+    "messageHint": "Pesan Anda — mengapa Anda melaporkan? (opsional)",
+    "send": "Kirim"
   },
   "xt": {
     "agFardSubtitle": "4 hal pokok",

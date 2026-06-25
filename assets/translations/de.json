@@ -961,7 +961,9 @@
     "thanks": "Deine Meldung ist eingegangen, danke.",
     "failed": "Meldung konnte nicht gesendet werden.",
     "email": "Per E-Mail melden (z. B. Urheberrecht)",
-    "emailCopied": "E-Mail-App ließ sich nicht öffnen — Adresse kopiert"
+    "emailCopied": "E-Mail-App ließ sich nicht öffnen — Adresse kopiert",
+    "messageHint": "Deine Nachricht — warum meldest du? (optional)",
+    "send": "Senden"
   },
   "xt": {
     "agFardSubtitle": "Die 4 Grundpfeiler",
