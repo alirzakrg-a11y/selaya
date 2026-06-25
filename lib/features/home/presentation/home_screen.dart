@@ -203,7 +203,6 @@ class _QuickPair extends StatelessWidget {
   const _QuickPair();
   @override
   Widget build(BuildContext context) {
-    final isTr = context.langCode == 'tr';
     // Tebrik Kartı + Dua Duvarı YAN YANA (kullanıcı 2026-06-18). IntrinsicHeight:
     // ListView'da yükseklik sınırsız olduğundan `stretch`li Row sıfıra çökerdi;
     // IntrinsicHeight iki kartı en uzunun boyuna eşitler (çökmez).
@@ -215,9 +214,7 @@ class _QuickPair extends StatelessWidget {
             child: _QuickCard(
               icon: AppIcons.card,
               title: 'greetings.title'.tr(),
-              desc: isTr
-                  ? 'Sevdiklerine özel kartlar'
-                  : 'Special cards for loved ones',
+              desc: 'xt.hmGreetingCardDesc'.tr(),
               onTap: () => context.push(Routes.greetings),
             ),
           ),
@@ -226,7 +223,7 @@ class _QuickPair extends StatelessWidget {
             child: _QuickCard(
               icon: Icons.front_hand_rounded,
               title: 'duaWall.title'.tr(),
-              desc: isTr ? 'Dua paylaş, Âmin de' : 'Share a prayer, say Amin',
+              desc: 'xt.hmDuaWallDesc'.tr(),
               onTap: () => context.push(Routes.duaWall),
             ),
           ),
@@ -294,30 +291,22 @@ class _GreetingBanner extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final c = context.colors;
-    final tr = context.langCode == 'tr';
     final name = (ref.watch(authControllerProvider).user?.name ?? '').trim();
     final h = (ref.watch(clockProvider).value ?? DateTime.now()).hour;
-    final timeTr = h < 11
-        ? 'Hayırlı sabahlar'
+    final timeGreeting = h < 11
+        ? 'xt.hmGoodMorning'.tr()
         : h < 17
-            ? 'Hayırlı günler'
+            ? 'xt.hmGoodDay'.tr()
             : h < 21
-                ? 'Hayırlı akşamlar'
-                : 'Hayırlı geceler';
-    final timeEn = h < 11
-        ? 'Good morning'
-        : h < 17
-            ? 'Good day'
-            : h < 21
-                ? 'Good evening'
-                : 'Good night';
+                ? 'xt.hmGoodEvening'.tr()
+                : 'xt.hmGoodNight'.tr();
     final night = h < 6 || h >= 19;
     final title = name.isNotEmpty
-        ? (tr ? 'Aleykümselam, $name' : 'Peace be upon you, $name')
-        : (tr ? 'Aleykümselam' : 'Peace be upon you');
+        ? 'xt.hmGreetingTitleNamed'.tr(args: [name])
+        : 'xt.hmGreetingTitle'.tr();
     final sub = name.isNotEmpty
-        ? (tr ? '$timeTr, hoş geldin' : '$timeEn, welcome')
-        : (tr ? "SELAYA'ya hoş geldin · $timeTr" : 'Welcome to SELAYA · $timeEn');
+        ? 'xt.hmGreetingSubNamed'.tr(args: [timeGreeting])
+        : 'xt.hmGreetingSubGuest'.tr(args: [timeGreeting]);
     return SelayaCard(
       padding:
           const EdgeInsets.symmetric(horizontal: AppSpacing.md, vertical: 10),
@@ -1588,7 +1577,7 @@ class _DailyFact extends StatelessWidget {
           const Gap.md(),
           Expanded(
             child: Text(
-              '${isTr ? 'Bunu biliyor muydun?' : 'Did you know?'} ${isTr ? f.$1 : f.$2}',
+              '${'xt.hmDidYouKnow'.tr()} ${isTr ? f.$1 : f.$2}',
               style: Theme.of(context).textTheme.bodySmall?.copyWith(
                 color: c.textSecondary,
                 height: 1.4,

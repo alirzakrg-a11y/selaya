@@ -70,25 +70,25 @@ class TravelModeScreen extends ConsumerWidget {
         padding: const EdgeInsets.fromLTRB(
             AppSpacing.base, AppSpacing.sm, AppSpacing.base, AppSpacing.xxxl),
         children: [
-          _Header(tr: tr),
+          const _Header(),
           const Gap.md(),
           Row(children: [
             Expanded(
                 child: GuideQuickLink(
                     icon: Icons.self_improvement_rounded,
-                    label: tr ? 'Namaz' : 'Salah',
+                    label: 'xt.tvLinkSalah'.tr(),
                     onTap: () => context.push(Routes.namazGuide))),
             const Gap.sm(),
             Expanded(
                 child: GuideQuickLink(
                     icon: Icons.explore_rounded,
-                    label: tr ? 'Kıble' : 'Qibla',
+                    label: 'xt.tvLinkQibla'.tr(),
                     onTap: () => context.go(Routes.qibla))),
             const Gap.sm(),
             Expanded(
                 child: GuideQuickLink(
                     icon: Icons.schedule_rounded,
-                    label: tr ? 'Vakitler' : 'Times',
+                    label: 'xt.tvLinkTimes'.tr(),
                     onTap: () => context.go(Routes.times))),
           ]),
           const Gap.lg(),
@@ -115,8 +115,8 @@ class TravelModeScreen extends ConsumerWidget {
                     children: [
                       Text(
                         on
-                            ? (tr ? 'Seferî moddasınız' : 'Travel mode on')
-                            : (tr ? 'Mukim (normal)' : 'Resident (normal)'),
+                            ? 'xt.tvStatusOn'.tr()
+                            : 'xt.tvStatusOff'.tr(),
                         style: Theme.of(context)
                             .textTheme
                             .titleSmall
@@ -125,12 +125,8 @@ class TravelModeScreen extends ConsumerWidget {
                       const Gap.xxs(),
                       Text(
                         on
-                            ? (tr
-                                ? '4 rekâtlı farzları 2 kılın'
-                                : 'Pray 4-rakat fards as 2')
-                            : (tr
-                                ? 'Yolculuğa çıkınca açın'
-                                : 'Turn on when you travel'),
+                            ? 'xt.tvStatusOnDesc'.tr()
+                            : 'xt.tvStatusOffDesc'.tr(),
                         style: TextStyle(color: c.textSecondary, fontSize: 12),
                       ),
                     ],
@@ -153,7 +149,7 @@ class TravelModeScreen extends ConsumerWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  tr ? 'Farz rekât sayıları' : 'Obligatory rakat counts',
+                  'xt.tvTableTitle'.tr(),
                   style: Theme.of(context)
                       .textTheme
                       .titleSmall
@@ -165,7 +161,7 @@ class TravelModeScreen extends ConsumerWidget {
                     const Expanded(flex: 3, child: SizedBox()),
                     Expanded(
                       flex: 2,
-                      child: Text(tr ? 'Normal' : 'Normal',
+                      child: Text('xt.tvColNormal'.tr(),
                           textAlign: TextAlign.center,
                           style: TextStyle(
                               color: c.textTertiary,
@@ -174,7 +170,7 @@ class TravelModeScreen extends ConsumerWidget {
                     ),
                     Expanded(
                       flex: 2,
-                      child: Text(tr ? 'Seferî' : 'Travel',
+                      child: Text('xt.tvColTravel'.tr(),
                           textAlign: TextAlign.center,
                           style: TextStyle(
                               color: c.gold,
@@ -226,9 +222,7 @@ class TravelModeScreen extends ConsumerWidget {
                   ),
                 const Gap.xs(),
                 Text(
-                  tr
-                      ? 'Vitir ve sünnetler ayrıdır; tabloda yalnızca farzlar gösterilir.'
-                      : 'Witr and sunnahs are separate; only fard prayers are shown.',
+                  'xt.tvTableNote'.tr(),
                   style: TextStyle(color: c.textTertiary, fontSize: 11.5),
                 ),
               ],
@@ -237,16 +231,14 @@ class TravelModeScreen extends ConsumerWidget {
           const Gap.lg(),
 
           // Seferîlik hükümleri (kart kart)
-          GuideSectionLabel(tr ? 'SEFERÎLİK HÜKÜMLERİ' : 'TRAVEL RULINGS'),
+          GuideSectionLabel('xt.tvRulingsLabel'.tr()),
           const Gap.sm(),
           for (final r in travelRules) ...[
             _RuleCard(rule: r, lang: lang),
             const Gap.sm(),
           ],
           const Gap.sm(),
-          GuideSourceNote(tr
-              ? 'Bilgiler Hanefî mezhebi ve Diyanet İşleri Başkanlığı esas alınarak hazırlanmıştır. Tereddüt hâlinde bir din görevlisine danışınız.'
-              : 'Information is based on the Hanafi school and Diyanet. When in doubt, consult a scholar.'),
+          GuideSourceNote('xt.tvSourceNote'.tr()),
         ],
       ),
     );
@@ -255,8 +247,7 @@ class TravelModeScreen extends ConsumerWidget {
 
 /// Üst başlık — altın gradyanlı tanıtım kartı.
 class _Header extends StatelessWidget {
-  final bool tr;
-  const _Header({required this.tr});
+  const _Header();
   @override
   Widget build(BuildContext context) {
     final c = context.colors;
@@ -270,14 +261,12 @@ class _Header extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(tr ? 'Seferîlik Rehberi' : 'Traveler’s Guide',
+                Text('xt.tvHeaderTitle'.tr(),
                     style: Theme.of(context).textTheme.titleSmall?.copyWith(
                         color: c.onGold, fontWeight: FontWeight.w800)),
                 const Gap.xxs(),
                 Text(
-                    tr
-                        ? 'Yolcunun namaz, oruç ve mest hükümleri'
-                        : 'A traveler’s prayer, fasting and masah rulings',
+                    'xt.tvHeaderSubtitle'.tr(),
                     style: TextStyle(
                         color: c.onGold.withValues(alpha: 0.78), fontSize: 12)),
               ],

@@ -352,7 +352,6 @@ class _JuzStrip extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final c = context.colors;
-    final tr = context.langCode == 'tr';
     var done = 0;
     for (var n = 1; n <= 30; n++) {
       if (currentPage >= _juzEnd(n)) done++;
@@ -364,7 +363,7 @@ class _JuzStrip extends StatelessWidget {
         children: [
           Row(
             children: [
-              Text(tr ? 'Cüzler' : 'Juz',
+              Text('xt.htmJuzLabel'.tr(),
                   style: Theme.of(context)
                       .textTheme
                       .titleSmall

@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
 import '../../../core/models/content.dart';
@@ -10,27 +11,20 @@ import '../data/religious_day_info.dart';
 
 /// Bir dini güne/geceye uygun tebrik mesajı (paylaşım için).
 String greetingForDay(CalendarDay d, String lang) {
-  final tr = lang == 'tr';
   switch (d.type) {
     case 'kandil':
-      return tr
-          ? 'Kandiliniz mübarek olsun. Dualarınız kabul olsun.'
-          : 'May your holy night be blessed.';
+      return 'xt.rdayGreetingKandil'.tr();
     case 'holiday':
-      return tr ? 'Bayramınız mübarek olsun, nice bayramlara.' : 'Eid Mubarak.';
+      return 'xt.rdayGreetingHoliday'.tr();
     case 'new_year':
-      return tr
-          ? 'Hicri yeni yılınız mübarek olsun.'
-          : 'Happy Islamic New Year.';
+      return 'xt.rdayGreetingNewYear'.tr();
     case 'fast':
       if (d.name('tr').contains('Ramazan')) {
-        return tr
-            ? 'Hayırlı Ramazanlar. Oruçlarınız kabul olsun.'
-            : 'Ramadan Mubarak.';
+        return 'xt.rdayGreetingRamadan'.tr();
       }
-      return tr ? 'Hayırlı ve bereketli günler.' : 'A blessed day.';
+      return 'xt.rdayGreetingBlessedDay'.tr();
     default:
-      return tr ? 'Hayırlı ve bereketli günler.' : 'A blessed day.';
+      return 'xt.rdayGreetingBlessedDay'.tr();
   }
 }
 
@@ -47,7 +41,6 @@ IconData _typeIcon(String type) => switch (type) {
 void showReligiousDayDetail(
     BuildContext context, CalendarDay day, String lang) {
   final c = context.colors;
-  final tr = lang == 'tr';
   final info = religiousDayInfo[religiousDaySlug(day.id)];
 
   Widget label(String t) => Padding(
@@ -114,7 +107,7 @@ void showReligiousDayDetail(
             ],
             if (info != null) ...[
               const Gap.lg(),
-              label(tr ? 'ANLAMI' : 'SIGNIFICANCE'),
+              label('xt.rdaySignificanceLabel'.tr()),
               const Gap.xs(),
               Text(info.significance(lang),
                   style: Theme.of(context)
@@ -122,7 +115,7 @@ void showReligiousDayDetail(
                       .bodyMedium
                       ?.copyWith(height: 1.55)),
               const Gap.lg(),
-              label(tr ? 'TAVSİYE EDİLEN' : 'RECOMMENDED'),
+              label('xt.rdayRecommendedLabel'.tr()),
               const Gap.xs(),
               Container(
                 padding: const EdgeInsets.all(AppSpacing.md),
@@ -160,16 +153,14 @@ void showReligiousDayDetail(
                 );
               },
               icon: const Icon(Icons.ios_share_rounded, size: 18),
-              label: Text(tr ? 'Tebrik mesajı paylaş' : 'Share greeting'),
+              label: Text('xt.rdayShareGreeting'.tr()),
               style: FilledButton.styleFrom(
                   backgroundColor: c.gold, foregroundColor: c.onGold),
             ),
             if (info != null) ...[
               const Gap.md(),
               Text(
-                  tr
-                      ? 'Kaynak: Diyanet İşleri Başkanlığı çizgisinde hazırlanmıştır.'
-                      : 'Based on the Diyanet (Presidency of Religious Affairs).',
+                  'xt.rdaySourceDiyanet'.tr(),
                   style: Theme.of(context)
                       .textTheme
                       .bodySmall

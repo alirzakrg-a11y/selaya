@@ -86,47 +86,33 @@ class _DuaWallScreenState extends ConsumerState<DuaWallScreen> {
   String _msg(bool tr, String code) {
     switch (code) {
       case 'contains_profanity':
-        return tr
-            ? 'Duanız uygunsuz ifade içeriyor gibi görünüyor. Lütfen düzenleyin.'
-            : 'Your prayer seems to contain inappropriate language. Please edit it.';
+        return 'xt.dwErrProfanity'.tr();
       case 'too_soon':
-        return tr
-            ? 'Çok sık gönderiyorsunuz. Lütfen biraz bekleyin.'
-            : 'You are posting too often. Please wait a moment.';
+        return 'xt.dwErrTooSoon'.tr();
       case 'too_many_pending':
-        return tr
-            ? 'Onay bekleyen çok sayıda duanız var. Önce onlar değerlendirilsin.'
-            : 'You have too many prayers awaiting approval.';
+        return 'xt.dwErrTooManyPending'.tr();
       case 'too_short':
-        return tr ? 'Dua çok kısa.' : 'Prayer is too short.';
+        return 'xt.dwErrTooShort'.tr();
       case 'too_long':
-        return tr ? 'Dua çok uzun (en fazla 280 karakter).' : 'Too long (max 280).';
+        return 'xt.dwErrTooLong'.tr();
       case 'rumuz_required':
-        return tr ? 'Önce bir rumuz belirleyin.' : 'Set a nickname first.';
+        return 'xt.dwErrRumuzRequired'.tr();
       case 'rumuz_profanity':
-        return tr
-            ? 'Rumuz uygunsuz ifade içeriyor.'
-            : 'Nickname contains inappropriate language.';
+        return 'xt.dwErrRumuzProfanity'.tr();
       case 'rumuz_length':
-        return tr ? 'Rumuz 2–24 karakter olmalı.' : 'Nickname must be 2–24 chars.';
+        return 'xt.dwErrRumuzLength'.tr();
       case 'rumuz_chars':
-        return tr
-            ? 'Rumuz yalnızca harf, rakam, boşluk, nokta ve _ içerebilir.'
-            : 'Nickname may contain only letters, numbers, space, dot and _.';
+        return 'xt.dwErrRumuzChars'.tr();
       case 'rumuz_sacred':
-        return tr
-            ? 'Allah\'ın isimleri veya kutsal değerler rumuz olarak kullanılamaz.'
-            : 'Sacred names cannot be used as a nickname.';
+        return 'xt.dwErrRumuzSacred'.tr();
       case 'rumuz_taken':
-        return tr
-            ? 'Bu rumuz başkası tarafından alınmış, başka bir tane seçin.'
-            : 'This nickname is already taken, please choose another.';
+        return 'xt.dwErrRumuzTaken'.tr();
       case 'unauthorized':
-        return tr ? 'Oturum süresi doldu, tekrar giriş yapın.' : 'Session expired.';
+        return 'xt.dwErrUnauthorized'.tr();
       case 'network':
-        return tr ? 'Bağlantı hatası.' : 'Connection error.';
+        return 'xt.dwErrNetwork'.tr();
       default:
-        return tr ? 'Bir hata oluştu.' : 'Something went wrong.';
+        return 'xt.dwErrGeneric'.tr();
     }
   }
 
@@ -139,9 +125,7 @@ class _DuaWallScreenState extends ConsumerState<DuaWallScreen> {
     final tr = context.langCode == 'tr';
     final auth = ref.read(authControllerProvider);
     if (!auth.loggedIn) {
-      _toast(tr
-          ? 'Dua paylaşmak için giriş yapın.'
-          : 'Please sign in to share a prayer.');
+      _toast('xt.dwSignInToShare'.tr());
       context.push(Routes.auth);
       return;
     }
@@ -165,15 +149,13 @@ class _DuaWallScreenState extends ConsumerState<DuaWallScreen> {
         String? err;
         return StatefulBuilder(
           builder: (ctx, setSt) => AlertDialog(
-            title: Text(tr ? 'Rumuz belirle' : 'Choose a nickname'),
+            title: Text('xt.dwRumuzDialogTitle'.tr()),
             content: Column(
               mainAxisSize: MainAxisSize.min,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  tr
-                      ? 'Dua Duvarında adının yerine bu rumuz görünecek.'
-                      : 'This nickname will be shown instead of your name.',
+                  'xt.dwRumuzDialogDesc'.tr(),
                   style: TextStyle(color: c.textSecondary, fontSize: 13),
                 ),
                 const Gap.sm(),
@@ -182,7 +164,7 @@ class _DuaWallScreenState extends ConsumerState<DuaWallScreen> {
                   autofocus: true,
                   maxLength: 24,
                   decoration: InputDecoration(
-                    hintText: tr ? 'örn. Mümin Kul' : 'e.g. Faithful Servant',
+                    hintText: 'xt.dwRumuzHint'.tr(),
                     errorText: err,
                     filled: true,
                     fillColor: c.surfaceAlt,
@@ -222,7 +204,7 @@ class _DuaWallScreenState extends ConsumerState<DuaWallScreen> {
                     setSt(() => err = _msg(tr, e.code));
                   }
                 },
-                child: Text(tr ? 'Kaydet' : 'Save'),
+                child: Text('xt.dwSave'.tr()),
               ),
             ],
           ),
@@ -260,7 +242,7 @@ class _DuaWallScreenState extends ConsumerState<DuaWallScreen> {
                   const Gap.sm(),
                   Expanded(
                     child: Text(
-                      tr ? 'Dua Paylaş' : 'Share a Prayer',
+                      'xt.dwComposeTitle'.tr(),
                       style: Theme.of(ctx)
                           .textTheme
                           .titleMedium
@@ -280,9 +262,7 @@ class _DuaWallScreenState extends ConsumerState<DuaWallScreen> {
                 minLines: 2,
                 textCapitalization: TextCapitalization.sentences,
                 decoration: InputDecoration(
-                  hintText: tr
-                      ? 'Duanı yaz… (örn. Tüm hastalara şifa olsun)'
-                      : 'Write your prayer…',
+                  hintText: 'xt.dwComposeHint'.tr(),
                   filled: true,
                   fillColor: c.surfaceAlt,
                   border: OutlineInputBorder(
@@ -292,9 +272,7 @@ class _DuaWallScreenState extends ConsumerState<DuaWallScreen> {
                 ),
               ),
               Text(
-                tr
-                    ? 'Duan onaylandıktan sonra duvarda görünür.'
-                    : 'Your prayer appears after approval.',
+                'xt.dwComposeApprovalNote'.tr(),
                 style: TextStyle(color: c.textTertiary, fontSize: 12),
               ),
               const Gap.md(),
@@ -317,9 +295,7 @@ class _DuaWallScreenState extends ConsumerState<DuaWallScreen> {
                           try {
                             await DuaWallApi.submit(token, text);
                             if (ctx.mounted) Navigator.pop(ctx);
-                            _toast(tr
-                                ? 'Duan onaya gönderildi 🤲'
-                                : 'Sent for approval 🤲');
+                            _toast('xt.dwSentForApproval'.tr());
                           } on DuaWallException catch (e) {
                             setSt(() => sending = false);
                             _toast(_msg(tr, e.code));
@@ -331,7 +307,7 @@ class _DuaWallScreenState extends ConsumerState<DuaWallScreen> {
                           width: 18,
                           child: CircularProgressIndicator(strokeWidth: 2),
                         )
-                      : Text(tr ? 'Gönder' : 'Send'),
+                      : Text('xt.dwSend'.tr()),
                 ),
               ),
             ],
@@ -342,11 +318,10 @@ class _DuaWallScreenState extends ConsumerState<DuaWallScreen> {
   }
 
   Future<void> _onAmin(DuaPost post) async {
-    final tr = context.langCode == 'tr';
     if (_amined.contains(post.id)) return;
     final auth = ref.read(authControllerProvider);
     if (!auth.loggedIn) {
-      _toast(tr ? 'Âmin demek için giriş yapın.' : 'Sign in to say Amin.');
+      _toast('xt.dwSignInToAmin'.tr());
       return;
     }
     HapticFeedback.mediumImpact();
@@ -371,26 +346,23 @@ class _DuaWallScreenState extends ConsumerState<DuaWallScreen> {
 
   /// Bir duayı şikayet et (UGC moderasyonu). Onaylı bir sorgu sonra API'ye gider.
   Future<void> _report(DuaPost post) async {
-    final tr = context.langCode == 'tr';
     final auth = ref.read(authControllerProvider);
     if (!auth.loggedIn) {
-      _toast(tr ? 'Şikayet için giriş yapın.' : 'Sign in to report.');
+      _toast('xt.dwSignInToReport'.tr());
       return;
     }
     final ok = await showDialog<bool>(
       context: context,
       builder: (ctx) => AlertDialog(
-        title: Text(tr ? 'Şikayet et' : 'Report'),
-        content: Text(tr
-            ? 'Bu duayı uygunsuz olarak bildir? Yeterli şikayette otomatik gizlenir.'
-            : 'Report this dua as inappropriate? It is auto-hidden after enough reports.'),
+        title: Text('xt.dwReport'.tr()),
+        content: Text('xt.dwReportConfirm'.tr()),
         actions: [
           TextButton(
               onPressed: () => Navigator.pop(ctx, false),
-              child: Text(tr ? 'Vazgeç' : 'Cancel')),
+              child: Text('xt.dwCancel'.tr())),
           FilledButton(
               onPressed: () => Navigator.pop(ctx, true),
-              child: Text(tr ? 'Şikayet et' : 'Report')),
+              child: Text('xt.dwReport'.tr())),
         ],
       ),
     );
@@ -398,16 +370,15 @@ class _DuaWallScreenState extends ConsumerState<DuaWallScreen> {
     try {
       await DuaWallApi.report(auth.token!, post.id);
       if (mounted) {
-        _toast(tr ? 'Şikayetin alındı. Teşekkürler.' : 'Report received. Thank you.');
+        _toast('xt.dwReportReceived'.tr());
       }
     } catch (_) {
-      if (mounted) _toast(tr ? 'Şikayet gönderilemedi.' : "Couldn't send report.");
+      if (mounted) _toast('xt.dwReportFailed'.tr());
     }
   }
 
   /// Bir kullanıcıyı (rumuz) engelle — duaları bu cihazda gizlenir (yerel).
   Future<void> _block(DuaPost post) async {
-    final tr = context.langCode == 'tr';
     final rumuz = post.rumuz;
     _blocked.add(rumuz);
     await ref
@@ -415,9 +386,7 @@ class _DuaWallScreenState extends ConsumerState<DuaWallScreen> {
         .setStringList('dua_blocked', _blocked.toList());
     setState(() => _duas.removeWhere((d) => d.rumuz == rumuz));
     if (mounted) {
-      _toast(tr
-          ? '@$rumuz engellendi. Duaları gizlendi.'
-          : '@$rumuz blocked. Their posts are hidden.');
+      _toast('xt.dwBlocked'.tr(args: [rumuz]));
     }
   }
 
@@ -452,9 +421,7 @@ class _DuaWallScreenState extends ConsumerState<DuaWallScreen> {
               const Gap.md(),
               Expanded(
                 child: Text(
-                  tr
-                      ? 'Dileğini paylaş, kardeşlerine âmin aldır…'
-                      : 'Share your prayer, gather Amins…',
+                  'xt.dwComposePromptText'.tr(),
                   style: Theme.of(context)
                       .textTheme
                       .bodyMedium
@@ -473,7 +440,7 @@ class _DuaWallScreenState extends ConsumerState<DuaWallScreen> {
                   children: [
                     Icon(Icons.edit_rounded, color: c.onGold, size: 15),
                     const Gap.xs(),
-                    Text(tr ? 'Paylaş' : 'Share',
+                    Text('xt.dwShare'.tr(),
                         style: TextStyle(
                             color: c.onGold,
                             fontWeight: FontWeight.w800,
@@ -497,7 +464,7 @@ class _DuaWallScreenState extends ConsumerState<DuaWallScreen> {
       showBack: true,
       actions: [
         IconButton(
-          tooltip: tr ? 'Dua Paylaş' : 'Share',
+          tooltip: 'xt.dwShareTooltip'.tr(),
           icon: Icon(Icons.add_rounded, color: c.gold),
           onPressed: _onCompose,
         ),
@@ -515,9 +482,7 @@ class _DuaWallScreenState extends ConsumerState<DuaWallScreen> {
                             const SizedBox(height: 80),
                             SelayaEmpty(
                               icon: Icons.front_hand_rounded,
-                              message: tr
-                                  ? 'Henüz onaylı dua yok.\nİlk duayı sen paylaş — yukarıdaki kutuya dokun.'
-                                  : 'No approved prayers yet.\nBe the first — tap the box above.',
+                              message: 'xt.dwEmpty'.tr(),
                             ),
                           ],
                         )
@@ -590,12 +555,12 @@ class _DuaCard extends StatelessWidget {
   String _ago() {
     final ms = DateTime.now().millisecondsSinceEpoch - post.createdAt;
     final m = ms ~/ 60000;
-    if (m < 1) return tr ? 'az önce' : 'just now';
-    if (m < 60) return tr ? '$m dk önce' : '${m}m ago';
+    if (m < 1) return 'xt.dwAgoJustNow'.tr();
+    if (m < 60) return 'xt.dwAgoMinutes'.tr(args: [m.toString()]);
     final h = m ~/ 60;
-    if (h < 24) return tr ? '$h sa önce' : '${h}h ago';
+    if (h < 24) return 'xt.dwAgoHours'.tr(args: [h.toString()]);
     final d = h ~/ 24;
-    return tr ? '$d gün önce' : '${d}d ago';
+    return 'xt.dwAgoDays'.tr(args: [d.toString()]);
   }
 
   @override
@@ -649,14 +614,14 @@ class _DuaCard extends StatelessWidget {
                       child: Row(children: [
                         const Icon(Icons.flag_outlined, size: 18),
                         const Gap.sm(),
-                        Text(tr ? 'Şikayet et' : 'Report'),
+                        Text('xt.dwReport'.tr()),
                       ])),
                   PopupMenuItem(
                       value: 'block',
                       child: Row(children: [
                         const Icon(Icons.block_rounded, size: 18),
                         const Gap.sm(),
-                        Text(tr ? 'Kullanıcıyı engelle' : 'Block user'),
+                        Text('xt.dwBlockUser'.tr()),
                       ])),
                 ],
               ),

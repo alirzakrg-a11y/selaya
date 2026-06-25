@@ -94,7 +94,6 @@ class _ZakatScreenState extends State<ZakatScreen> {
   void _showZakatInfo() {
     final c = context.colors;
     final lang = context.langCode;
-    final tr = lang == 'tr';
     showModalBottomSheet<void>(
       context: context,
       isScrollControlled: true,
@@ -111,7 +110,7 @@ class _ZakatScreenState extends State<ZakatScreen> {
                 Icon(Icons.payments_rounded, color: c.gold),
                 const Gap.sm(),
                 Expanded(
-                  child: Text(tr ? 'Zekât & Fitre Rehberi' : 'Zakat & Fitra Guide',
+                  child: Text('xt.zkGuideTitle'.tr(),
                       style: Theme.of(context).textTheme.titleLarge),
                 ),
               ]),
@@ -133,9 +132,7 @@ class _ZakatScreenState extends State<ZakatScreen> {
                 const Gap.sm(),
                 Expanded(
                   child: Text(
-                      tr
-                          ? 'Kaynak: Diyanet İşleri Başkanlığı İlmihali çizgisinde. Kesin hüküm için müftülüğe danışınız.'
-                          : 'Based on the Diyanet İlmihali. Consult a mufti for a ruling.',
+                      'xt.zkGuideSource'.tr(),
                       style: Theme.of(context)
                           .textTheme
                           .bodySmall
@@ -158,12 +155,12 @@ class _ZakatScreenState extends State<ZakatScreen> {
       showBack: true,
       actions: [
         IconButton(
-          tooltip: tr ? 'Zekât & fitre rehberi' : 'Zakat & fitra guide',
+          tooltip: 'xt.zkGuideTooltip'.tr(),
           icon: Icon(Icons.info_outline_rounded, color: context.colors.gold),
           onPressed: _showZakatInfo,
         ),
         IconButton(
-          tooltip: tr ? 'Güncel fiyatı yenile' : 'Refresh live price',
+          tooltip: 'xt.zkRefreshTooltip'.tr(),
           icon: _loadingFin
               ? const SizedBox(
                   width: 18,
@@ -186,12 +183,12 @@ class _ZakatScreenState extends State<ZakatScreen> {
             segments: [
               ButtonSegment(
                 value: 'zakat',
-                label: Text(tr ? 'Zekât' : 'Zakat'),
+                label: Text('xt.zkSegZakat'.tr()),
                 icon: const Icon(Icons.payments_rounded, size: 18),
               ),
               ButtonSegment(
                 value: 'fitre',
-                label: Text(tr ? 'Fitre' : 'Fitra'),
+                label: Text('xt.zkSegFitra'.tr()),
                 icon: const Icon(Icons.volunteer_activism_rounded, size: 18),
               ),
             ],
@@ -226,27 +223,27 @@ class _ZakatScreenState extends State<ZakatScreen> {
     return [
       _field(
         _gold,
-        tr ? 'Güncel altın gram fiyatı (₺)' : 'Current gold price /gram (₺)',
+        'xt.zkFieldGoldPrice'.tr(),
         Icons.sell_rounded,
       ),
       _field(
         _cash,
-        tr ? 'Nakit + banka (₺)' : 'Cash + bank (₺)',
+        'xt.zkFieldCashBank'.tr(),
         Icons.account_balance_wallet_rounded,
       ),
       _field(
         _goldGram,
-        tr ? 'Altın (gram)' : 'Gold (grams)',
+        'xt.zkFieldGoldGram'.tr(),
         Icons.workspace_premium_rounded,
       ),
       _field(
         _trade,
-        tr ? 'Ticari mal / yatırım (₺)' : 'Trade goods / investment (₺)',
+        'xt.zkFieldTrade'.tr(),
         Icons.storefront_rounded,
       ),
       _field(
         _debt,
-        tr ? 'Borçlar (₺)' : 'Debts (₺)',
+        'xt.zkFieldDebts'.tr(),
         Icons.remove_circle_outline_rounded,
       ),
       const Gap.md(),
@@ -261,12 +258,12 @@ class _ZakatScreenState extends State<ZakatScreen> {
           children: [
             _row(
               context,
-              tr ? 'Zekâta tâbi toplam' : 'Total zakatable',
+              'xt.zkTotalZakatable'.tr(),
               _money(context, total),
             ),
             _row(
               context,
-              tr ? 'Nisap (80,18 gr altın)' : 'Nisab (80.18g gold)',
+              'xt.zkNisabLabel'.tr(),
               price > 0 ? _money(context, nisab) : '—',
             ),
             Divider(height: 18, color: c.border),
@@ -281,14 +278,10 @@ class _ZakatScreenState extends State<ZakatScreen> {
                 Expanded(
                   child: Text(
                     price <= 0
-                        ? (tr
-                              ? 'Hesaplamak için altın gram fiyatını gir.'
-                              : 'Enter the gold price to calculate.')
+                        ? 'xt.zkEnterGoldPrice'.tr()
                         : due
-                        ? (tr ? 'Zekât farz' : 'Zakat is due')
-                        : (tr
-                              ? 'Nisabın altında — zekât gerekmez'
-                              : 'Below nisab — no zakat'),
+                        ? 'xt.zkZakatDue'.tr()
+                        : 'xt.zkBelowNisab'.tr(),
                     style: Theme.of(context).textTheme.titleSmall?.copyWith(
                       color: due ? c.gold : c.textSecondary,
                       fontWeight: FontWeight.w700,
@@ -300,7 +293,7 @@ class _ZakatScreenState extends State<ZakatScreen> {
             if (due) ...[
               const Gap.sm(),
               Text(
-                tr ? 'Vereceğin zekât (%2,5)' : 'Your zakat (2.5%)',
+                'xt.zkYourZakat'.tr(),
                 style: Theme.of(
                   context,
                 ).textTheme.labelMedium?.copyWith(color: c.textSecondary),
@@ -319,9 +312,7 @@ class _ZakatScreenState extends State<ZakatScreen> {
       const Gap.md(),
       _note(
         context,
-        tr
-            ? 'Zekât; bir kameri yıl boyunca elde tutulan, ihtiyaç fazlası mala düşer. Bu hesap tahminîdir — kesin hüküm için müftülüğe danış.'
-            : 'Zakat applies to surplus wealth held for one lunar year. This is an estimate — consult a scholar for a ruling.',
+        'xt.zkZakatNote'.tr(),
       ),
       const Gap.sm(),
       _sourceLine(
@@ -332,10 +323,8 @@ class _ZakatScreenState extends State<ZakatScreen> {
                     '${_fin!.goldUpdated.isNotEmpty ? ' · ${_fin!.goldUpdated}' : ''}'
                 : 'Gold/gram: ${_fmt(_fin!.goldGram)} ₺ · source: ${_fin!.goldSource}')
             : (_loadingFin
-                ? (tr ? 'Güncel altın fiyatı alınıyor…' : 'Fetching live gold price…')
-                : (tr
-                    ? 'Canlı fiyat alınamadı — altın gram fiyatını elle girebilirsin.'
-                    : 'Live price unavailable — enter the gold price manually.')),
+                ? 'xt.zkFetchingGold'.tr()
+                : 'xt.zkGoldUnavailable'.tr()),
       ),
       const Gap.md(),
       _sourceNote(context),
@@ -348,12 +337,12 @@ class _ZakatScreenState extends State<ZakatScreen> {
     return [
       _field(
         _fitrePer,
-        tr ? 'Kişi başı fitre (₺)' : 'Fitra per person (₺)',
+        'xt.zkFieldFitraPerPerson'.tr(),
         Icons.person_rounded,
       ),
       _field(
         _fitreCount,
-        tr ? 'Kişi sayısı' : 'Number of people',
+        'xt.zkFieldPeopleCount'.tr(),
         Icons.groups_rounded,
         money: false,
       ),
@@ -371,7 +360,7 @@ class _ZakatScreenState extends State<ZakatScreen> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              tr ? 'Toplam fitre' : 'Total fitra',
+              'xt.zkTotalFitra'.tr(),
               style: Theme.of(context).textTheme.labelMedium?.copyWith(
                 color: context.colors.textSecondary,
               ),
@@ -390,22 +379,20 @@ class _ZakatScreenState extends State<ZakatScreen> {
       const Gap.md(),
       _note(
         context,
-        tr
-            ? 'Fıtır sadakası, bayram namazından önce verilir. Kişi başı miktar Diyanet’in açıkladığı güncel tutardır (yaklaşık bir günlük yemek bedeli); istersen değiştirebilirsin.'
-            : 'Fitra is given before the Eid prayer. The per-person amount is Diyanet’s current figure; you can edit it.',
+        'xt.zkFitraNote'.tr(),
       ),
       const Gap.sm(),
       _sourceLine(
         context,
         _fin != null && _fin!.fitre > 0
-            ? (tr
-                ? 'Kişi başı fitre: ${_fmt(_fin!.fitre)} ₺ · kaynak: ${_fin!.fitreSource} (${_fin!.fitreYear})'
-                : 'Per person: ${_fmt(_fin!.fitre)} ₺ · source: ${_fin!.fitreSource} (${_fin!.fitreYear})')
+            ? 'xt.zkFitraSourceLine'.tr(args: [
+                _fmt(_fin!.fitre),
+                _fin!.fitreSource,
+                _fin!.fitreYear.toString(),
+              ])
             : (_loadingFin
-                ? (tr ? 'Güncel fitre alınıyor…' : 'Fetching current fitra…')
-                : (tr
-                    ? 'Güncel fitre alınamadı — kişi başı tutarı elle girebilirsin.'
-                    : 'Could not fetch fitra — enter the amount manually.')),
+                ? 'xt.zkFetchingFitra'.tr()
+                : 'xt.zkFitraUnavailable'.tr()),
       ),
       const Gap.md(),
       _sourceNote(context),
@@ -468,9 +455,7 @@ class _ZakatScreenState extends State<ZakatScreen> {
           const Gap.sm(),
           Expanded(
             child: Text(
-              tr
-                  ? 'Gizlilik: Girdiğin tutarlar yalnızca bu cihazda, anlık hesap için kullanılır — kaydedilmez, hiçbir yere gönderilmez veya hesabına/buluta senkronlanmaz.'
-                  : 'Privacy: The amounts you enter are used only on this device for instant calculation — they are not saved, sent, or synced anywhere.',
+              'xt.zkPrivacyNote'.tr(),
               style: Theme.of(context)
                   .textTheme
                   .bodySmall
@@ -552,7 +537,6 @@ class _ZakatScreenState extends State<ZakatScreen> {
   /// Dini hüküm kaynağı uyarısı (gold-tint kutu).
   Widget _sourceNote(BuildContext context) {
     final c = context.colors;
-    final tr = context.langCode == 'tr';
     return Container(
       padding: const EdgeInsets.all(AppSpacing.md),
       decoration: BoxDecoration(
@@ -567,9 +551,7 @@ class _ZakatScreenState extends State<ZakatScreen> {
           const Gap.sm(),
           Expanded(
             child: Text(
-              tr
-                  ? 'Kaynak: Diyanet İşleri Başkanlığı İlmihali esas alınmıştır. Ayrıntı için yetkili kaynaklara başvurun.'
-                  : 'Source: based on the Diyanet İşleri Başkanlığı catechism. Consult authorized sources for details.',
+              'xt.zkSourceNote'.tr(),
               style: Theme.of(context).textTheme.labelSmall?.copyWith(
                 color: c.textSecondary,
                 height: 1.45,

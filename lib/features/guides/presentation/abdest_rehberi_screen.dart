@@ -43,10 +43,8 @@ class AbdestRehberiScreen extends StatelessWidget {
         children: [
           GuideHero(
             icon: Icons.water_drop_rounded,
-            title: tr ? 'Abdest Nasıl Alınır?' : 'How to Perform Wudu',
-            subtitle: tr
-                ? 'Adım adım görselli anlatım'
-                : 'Illustrated step-by-step walkthrough',
+            title: 'xt.agHeroTitle'.tr(),
+            subtitle: 'xt.agHeroSubtitle'.tr(),
             onTap: () => context.push(Routes.guideDetail,
                 extra: (guide: abdestGuide, collection: 'guide_abdest')),
           ),
@@ -55,47 +53,46 @@ class AbdestRehberiScreen extends StatelessWidget {
             Expanded(
                 child: GuideQuickLink(
                     icon: Icons.mosque_rounded,
-                    label: tr ? 'Namaz' : 'Prayer',
+                    label: 'xt.agLinkPrayer'.tr(),
                     onTap: () => context.push(Routes.namazGuide))),
             const Gap.sm(),
             Expanded(
                 child: GuideQuickLink(
                     icon: Icons.explore_rounded,
-                    label: tr ? 'Kıble' : 'Qibla',
+                    label: 'xt.agLinkQibla'.tr(),
                     onTap: () => context.go(Routes.qibla))),
             const Gap.sm(),
             Expanded(
                 child: GuideQuickLink(
                     icon: Icons.schedule_rounded,
-                    label: tr ? 'Vakitler' : 'Times',
+                    label: 'xt.agLinkTimes'.tr(),
                     onTap: () => context.go(Routes.times))),
           ]),
           const Gap.lg(),
-          GuideSectionLabel(tr ? 'ABDESTİN ESASLARI' : 'WUDU ESSENTIALS'),
+          GuideSectionLabel('xt.agSectionEssentials'.tr()),
           const Gap.sm(),
           GuideExpandCard(
               icon: Icons.checklist_rounded,
-              title: tr ? 'Abdestin Farzları' : 'Obligations of Wudu',
-              subtitle: tr ? 'Olmazsa olmaz 4 esas' : 'The 4 essentials',
+              title: 'xt.agFardTitle'.tr(),
+              subtitle: 'xt.agFardSubtitle'.tr(),
               items: abdestFarzlari,
               lang: lang),
           const Gap.sm(),
           GuideExpandCard(
               icon: Icons.auto_awesome_rounded,
-              title: tr ? 'Abdestin Sünnetleri' : 'Sunnahs of Wudu',
-              subtitle: tr ? 'Sevabı artıran edepler' : 'Recommended acts',
+              title: 'xt.agSunnahTitle'.tr(),
+              subtitle: 'xt.agSunnahSubtitle'.tr(),
               items: abdestSunnetleri,
               lang: lang),
           const Gap.sm(),
           GuideExpandCard(
               icon: Icons.report_gmailerrorred_rounded,
-              title: tr ? 'Abdesti Bozan Şeyler' : 'What Invalidates Wudu',
-              subtitle: tr ? 'Yeniden abdest gerektirir' : 'Require renewing wudu',
+              title: 'xt.agInvalidatorsTitle'.tr(),
+              subtitle: 'xt.agInvalidatorsSubtitle'.tr(),
               items: abdestiBozanlar,
               lang: lang),
           const Gap.lg(),
-          GuideSectionLabel(
-              tr ? 'DİĞER TEMİZLİK ÇEŞİTLERİ' : 'OTHER PURIFICATION'),
+          GuideSectionLabel('xt.agSectionOther'.tr()),
           const Gap.sm(),
           for (final t in _otherTypes) ...[
             _TypeCard(
@@ -106,9 +103,7 @@ class AbdestRehberiScreen extends StatelessWidget {
             const Gap.sm(),
           ],
           const Gap.sm(),
-          GuideSourceNote(tr
-              ? 'Kaynak: Diyanet İşleri Başkanlığı İlmihali esas alınmıştır. Ayrıntı için yetkili kaynaklara başvurun.'
-              : 'Source: based on the Diyanet catechism. Consult qualified sources for detail.'),
+          GuideSourceNote('xt.agSourceNote'.tr()),
         ],
       ),
     );

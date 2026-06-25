@@ -30,7 +30,6 @@ class _WallpapersScreenState extends ConsumerState<WallpapersScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final tr = context.langCode == 'tr';
     final c = context.colors;
     final wallpapers = ref.watch(wallpapersProvider);
     final liked = ref.watch(likedKeysProvider);
@@ -41,8 +40,8 @@ class _WallpapersScreenState extends ConsumerState<WallpapersScreen> {
       actions: [
         IconButton(
           tooltip: _favsOnly
-              ? (tr ? 'Tümü' : 'All')
-              : (tr ? 'Favorilerim' : 'Favorites'),
+              ? 'xt.wpShowAllTooltip'.tr()
+              : 'xt.wpShowFavoritesTooltip'.tr(),
           icon: Icon(
             _favsOnly
                 ? Icons.favorite_rounded
@@ -64,9 +63,7 @@ class _WallpapersScreenState extends ConsumerState<WallpapersScreen> {
           if (list.isEmpty) {
             return SelayaEmpty(
               icon: Icons.favorite_border_rounded,
-              message: tr
-                  ? 'Henüz favori duvar kâğıdın yok.\nBeğendiklerin burada toplanır.'
-                  : 'No favorite wallpapers yet.',
+              message: 'xt.wpNoFavorites'.tr(),
             );
           }
           return GridView.builder(

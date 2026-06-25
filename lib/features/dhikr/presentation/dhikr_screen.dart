@@ -676,7 +676,6 @@ class _DhikrScreenState extends ConsumerState<DhikrScreen> {
   /// Günlük + son 7 günlük zikir istatistiği sayfası (önceden gizliydi).
   void _showStats() {
     final c = context.colors;
-    final tr = context.langCode == 'tr';
     final data = _last7();
     final maxV = data.fold(0, (a, e) => e.$2 > a ? e.$2 : a);
     final weekSum = data.fold(0, (a, e) => a + e.$2);
@@ -693,11 +692,11 @@ class _DhikrScreenState extends ConsumerState<DhikrScreen> {
               Row(children: [
                 Icon(Icons.insights_rounded, color: c.gold),
                 const Gap.sm(),
-                Text(tr ? 'Zikir İstatistiği' : 'Dhikr Stats',
+                Text('xt.dhStatsTitle'.tr(),
                     style: Theme.of(context).textTheme.titleMedium),
               ]),
               const Gap.lg(),
-              Text(tr ? 'BUGÜN' : 'TODAY',
+              Text('xt.dhToday'.tr(),
                   style: TextStyle(
                       color: c.gold,
                       fontWeight: FontWeight.w700,
@@ -707,7 +706,7 @@ class _DhikrScreenState extends ConsumerState<DhikrScreen> {
               Text('$_todayTotal',
                   style: AppTypography.countdown(c.gold, fontSize: 44)),
               const Gap.lg(),
-              Text('${tr ? 'Son 7 gün' : 'Last 7 days'}  ·  $weekSum',
+              Text('xt.dhLast7Days'.tr(args: [weekSum.toString()]),
                   style: Theme.of(context)
                       .textTheme
                       .labelMedium
@@ -789,7 +788,7 @@ class _DhikrScreenState extends ConsumerState<DhikrScreen> {
                         ? Icons.vibration_rounded
                         : Icons.smartphone_rounded,
                     color: _vibrate ? c.gold : c.textTertiary),
-                title: Text(context.langCode == 'tr' ? 'Titreşim' : 'Vibration'),
+                title: Text('xt.dhVibration'.tr()),
                 value: _vibrate,
                 activeThumbColor: c.gold,
                 onChanged: (_) {
@@ -970,9 +969,7 @@ class _DhikrScreenState extends ConsumerState<DhikrScreen> {
                 controller: ct,
                 keyboardType: TextInputType.number,
                 decoration: InputDecoration(
-                    labelText: context.langCode == 'tr'
-                        ? 'Zikir sayısı (örn. 33) — isteğe bağlı'
-                        : 'Count (e.g. 33) — optional'),
+                    labelText: 'xt.dhCountFieldLabel'.tr()),
               ),
             ],
           ),

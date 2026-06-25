@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -109,57 +110,57 @@ class StreakScreen extends ConsumerWidget {
     final badges = <_Badge>[
       _Badge(
         Icons.flag_rounded,
-        tr ? 'İlk Adım' : 'First Step',
-        tr ? 'İlk namaz kaydın' : 'First logged prayer',
+        'xt.stBadgeFirstStepName'.tr(),
+        'xt.stBadgeFirstStepDesc'.tr(),
         s.totalPrayers >= 1,
       ),
       _Badge(
         Icons.local_fire_department_rounded,
-        tr ? '7 Gün Seri' : '7-Day Streak',
-        tr ? '7 gün üst üste 5 vakit' : '5 prayers, 7 days straight',
+        'xt.stBadge7DayName'.tr(),
+        'xt.stBadge7DayDesc'.tr(),
         s.longest >= 7,
       ),
       _Badge(
         Icons.workspace_premium_rounded,
-        tr ? 'İstikrar' : 'Consistency',
-        tr ? '30 gün üst üste 5 vakit' : '5 prayers, 30 days straight',
+        'xt.stBadgeConsistencyName'.tr(),
+        'xt.stBadgeConsistencyDesc'.tr(),
         s.longest >= 30,
       ),
       _Badge(
         Icons.mosque_rounded,
-        tr ? '100 Namaz' : '100 Prayers',
-        tr ? '100 vakit namaz kıl' : 'Pray 100 prayers',
+        'xt.stBadge100PrayersName'.tr(),
+        'xt.stBadge100PrayersDesc'.tr(),
         s.totalPrayers >= 100,
       ),
       _Badge(
         Icons.star_rounded,
-        tr ? '500 Namaz' : '500 Prayers',
-        tr ? '500 vakit namaz kıl' : 'Pray 500 prayers',
+        'xt.stBadge500PrayersName'.tr(),
+        'xt.stBadge500PrayersDesc'.tr(),
         s.totalPrayers >= 500,
       ),
       _Badge(
         Icons.nightlight_round,
-        tr ? 'İlk Oruç' : 'First Fast',
-        tr ? 'İlk orucunu tut' : 'Keep your first fast',
+        'xt.stBadgeFirstFastName'.tr(),
+        'xt.stBadgeFirstFastDesc'.tr(),
         s.fastDays >= 1,
       ),
       _Badge(
         Icons.calendar_month_rounded,
-        tr ? 'Oruç Ayı' : 'Month of Fasting',
-        tr ? '30 gün oruç tut' : 'Fast 30 days',
+        'xt.stBadgeFastMonthName'.tr(),
+        'xt.stBadgeFastMonthDesc'.tr(),
         s.fastDays >= 30,
       ),
       _Badge(
         Icons.spoke_rounded,
-        tr ? 'Zikir Ehli' : 'Devoted to Dhikr',
-        tr ? '1000 zikir çek' : 'Do 1000 dhikr',
+        'xt.stBadgeDhikrName'.tr(),
+        'xt.stBadgeDhikrDesc'.tr(),
         s.dhikrTotal >= 1000,
       ),
     ];
     final earned = badges.where((b) => b.earned).length;
 
     return SelayaScaffold(
-      title: tr ? 'İbadet Serim' : 'My Streak',
+      title: 'xt.stTitle'.tr(),
       showBack: true,
       body: ListView(
         padding: const EdgeInsets.fromLTRB(
@@ -200,10 +201,8 @@ class StreakScreen extends ConsumerWidget {
                 ),
                 Text(
                   s.streak > 0
-                      ? (tr ? 'gün üst üste 5 vakit' : 'days of all 5 prayers')
-                      : (tr
-                            ? 'Bugün 5 vakti tamamla, seriye başla!'
-                            : 'Complete all 5 today to start a streak!'),
+                      ? 'xt.stHeroDays'.tr()
+                      : 'xt.stHeroStart'.tr(),
                   textAlign: TextAlign.center,
                   style: Theme.of(
                     context,
@@ -223,23 +222,23 @@ class StreakScreen extends ConsumerWidget {
               _stat(
                 context,
                 '${s.totalPrayers}',
-                tr ? 'Toplam Namaz' : 'Total Prayers',
+                'xt.stStatTotalPrayers'.tr(),
               ),
               const Gap.sm(),
               _stat(
                 context,
                 '${s.longest}',
-                tr ? 'En Uzun Seri' : 'Longest Streak',
+                'xt.stStatLongest'.tr(),
               ),
               const Gap.sm(),
-              _stat(context, '${s.fastDays}', tr ? 'Oruç Günü' : 'Fast Days'),
+              _stat(context, '${s.fastDays}', 'xt.stStatFastDays'.tr()),
             ],
           ),
           const Gap.lg(),
           Row(
             children: [
               Text(
-                tr ? 'Rozetler' : 'Badges',
+                'xt.stBadgesHeader'.tr(),
                 style: Theme.of(
                   context,
                 ).textTheme.titleMedium?.copyWith(fontWeight: FontWeight.w800),
@@ -271,8 +270,8 @@ class StreakScreen extends ConsumerWidget {
     final c = context.colors;
     final done = s.todayCount.clamp(0, 5);
     final msg = done >= 5
-        ? (tr ? 'Maşallah, bugünü tamamladın!' : 'All done for today, mashallah!')
-        : (tr ? '${5 - done} vakit kaldı' : '${5 - done} prayers left');
+        ? 'xt.stTodayDone'.tr()
+        : 'xt.stTodayLeft'.tr(args: [(5 - done).toString()]);
     return Container(
       padding: const EdgeInsets.all(AppSpacing.md),
       decoration: BoxDecoration(
@@ -285,7 +284,7 @@ class StreakScreen extends ConsumerWidget {
         children: [
           Row(
             children: [
-              Text(tr ? 'Bugün' : 'Today',
+              Text('xt.stTodayLabel'.tr(),
                   style: Theme.of(context)
                       .textTheme
                       .titleSmall
@@ -345,7 +344,7 @@ class StreakScreen extends ConsumerWidget {
           Padding(
             padding: const EdgeInsets.only(
                 left: AppSpacing.sm, bottom: AppSpacing.sm),
-            child: Text(tr ? 'Son 7 Gün' : 'Last 7 Days',
+            child: Text('xt.stWeekTitle'.tr(),
                 style: Theme.of(context)
                     .textTheme
                     .titleSmall

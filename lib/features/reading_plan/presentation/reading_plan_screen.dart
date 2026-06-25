@@ -43,61 +43,33 @@ class ReadingPlanScreen extends ConsumerWidget {
     final c = context.colors;
     final active = ref.watch(hatimControllerProvider).active;
 
-    final hatimPlans = tr
-        ? const [
-            _HatimPlan(Icons.local_fire_department_rounded, '10 Günde Hatim',
-                'Günde ~60 sayfa (3 cüz). Ramazan’ın son 10 gecesi için.', 60),
-            _HatimPlan(Icons.bolt_rounded, '30 Günde Hatim',
-                'Günde 1 cüz (~20 sayfa). Ramazan için ideal.', 20),
-            _HatimPlan(Icons.calendar_month_rounded, '60 Günde Hatim',
-                'Günde ~10 sayfa. Dengeli bir tempo.', 10),
-            _HatimPlan(Icons.eco_rounded, '90 Günde Hatim',
-                'Günde ~7 sayfa. Sakin ve sürdürülebilir.', 7),
-            _HatimPlan(Icons.spa_rounded, 'Günde 1 Sayfa',
-                'Acele etmeden, her gün tek sayfa ile kalıcı alışkanlık.', 1),
-          ]
-        : const [
-            _HatimPlan(Icons.local_fire_department_rounded, 'Khatm in 10 days',
-                '~60 pages (3 juz) a day. For the last 10 nights of Ramadan.', 60),
-            _HatimPlan(Icons.bolt_rounded, 'Khatm in 30 days',
-                '1 juz (~20 pages) a day. Ideal for Ramadan.', 20),
-            _HatimPlan(Icons.calendar_month_rounded, 'Khatm in 60 days',
-                'About 10 pages a day. A balanced pace.', 10),
-            _HatimPlan(Icons.eco_rounded, 'Khatm in 90 days',
-                'About 7 pages a day. Calm and sustainable.', 7),
-            _HatimPlan(Icons.spa_rounded, '1 page a day',
-                'No rush — one page daily for a lasting habit.', 1),
-          ];
+    final hatimPlans = [
+      _HatimPlan(Icons.local_fire_department_rounded, 'xt.rpPlan10Title'.tr(),
+          'xt.rpPlan10Desc'.tr(), 60),
+      _HatimPlan(Icons.bolt_rounded, 'xt.rpPlan30Title'.tr(),
+          'xt.rpPlan30Desc'.tr(), 20),
+      _HatimPlan(Icons.calendar_month_rounded, 'xt.rpPlan60Title'.tr(),
+          'xt.rpPlan60Desc'.tr(), 10),
+      _HatimPlan(Icons.eco_rounded, 'xt.rpPlan90Title'.tr(),
+          'xt.rpPlan90Desc'.tr(), 7),
+      _HatimPlan(Icons.spa_rounded, 'xt.rpPlan1PageTitle'.tr(),
+          'xt.rpPlan1PageDesc'.tr(), 1),
+    ];
 
-    final habitPlans = tr
-        ? const [
-            _HabitPlan(Icons.nightlight_round, 'Her Gece: Mülk Sûresi',
-                'Kabir azabından koruyan sûre (Tebâreke).', 67),
-            _HabitPlan(Icons.calendar_view_week_rounded, 'Her Cuma: Kehf Sûresi',
-                'İki Cuma arası nurlanma müjdesi.', 18),
-            _HabitPlan(Icons.wb_twilight_rounded, 'Her Sabah: Yâsîn',
-                'Kur\'an\'ın kalbi; güne Yâsîn ile başlayın.', 36),
-            _HabitPlan(Icons.spa_rounded, 'Rahmân Sûresi',
-                'Kur\'an\'ın gelini; nimetleri anan sûre.', 55),
-            _HabitPlan(Icons.volunteer_activism_rounded, 'Her Gece: Vâkıa',
-                'Bereket ve rızık niyetiyle okunagelen sûre.', 56),
-            _HabitPlan(Icons.bedtime_rounded, 'Cuma Gecesi: Secde',
-                'Cuma gecesi okunması güzel görülen sûre.', 32),
-          ]
-        : const [
-            _HabitPlan(Icons.nightlight_round, 'Every night: Al-Mulk',
-                'The surah that protects from the grave.', 67),
-            _HabitPlan(Icons.calendar_view_week_rounded, 'Every Friday: Al-Kahf',
-                'Light between the two Fridays.', 18),
-            _HabitPlan(Icons.wb_twilight_rounded, 'Every morning: Ya-Sin',
-                'The heart of the Quran; start your day with it.', 36),
-            _HabitPlan(Icons.spa_rounded, 'Ar-Rahman',
-                'The bride of the Quran; recounting His blessings.', 55),
-            _HabitPlan(Icons.volunteer_activism_rounded, 'Every night: Al-Waqi\'ah',
-                'Recited seeking blessing and provision.', 56),
-            _HabitPlan(Icons.bedtime_rounded, 'Friday night: As-Sajdah',
-                'Recommended to recite on Friday night.', 32),
-          ];
+    final habitPlans = [
+      _HabitPlan(Icons.nightlight_round, 'xt.rpHabitMulkTitle'.tr(),
+          'xt.rpHabitMulkDesc'.tr(), 67),
+      _HabitPlan(Icons.calendar_view_week_rounded, 'xt.rpHabitKahfTitle'.tr(),
+          'xt.rpHabitKahfDesc'.tr(), 18),
+      _HabitPlan(Icons.wb_twilight_rounded, 'xt.rpHabitYasinTitle'.tr(),
+          'xt.rpHabitYasinDesc'.tr(), 36),
+      _HabitPlan(Icons.spa_rounded, 'xt.rpHabitRahmanTitle'.tr(),
+          'xt.rpHabitRahmanDesc'.tr(), 55),
+      _HabitPlan(Icons.volunteer_activism_rounded, 'xt.rpHabitWaqiaTitle'.tr(),
+          'xt.rpHabitWaqiaDesc'.tr(), 56),
+      _HabitPlan(Icons.bedtime_rounded, 'xt.rpHabitSajdahTitle'.tr(),
+          'xt.rpHabitSajdahDesc'.tr(), 32),
+    ];
 
     return SelayaScaffold(
       title: 'readingPlan.title'.tr(),
@@ -114,15 +86,15 @@ class ReadingPlanScreen extends ConsumerWidget {
                 onTap: () => context.push(Routes.hatim)),
             const Gap.md(),
           ],
-          _SectionTitle(tr ? 'HATİM PLANLARI' : 'KHATM PLANS'),
+          _SectionTitle('xt.rpSectionKhatmPlans'.tr()),
           const Gap.sm(),
           for (final p in hatimPlans) ...[
             _PlanCard(
               icon: p.icon,
               title: p.title,
               desc: p.desc,
-              action: tr ? 'Başlat' : 'Start',
-              meta: tr ? '${p.dailyPages} sayfa/gün' : '${p.dailyPages} pages/day',
+              action: 'xt.rpActionStart'.tr(),
+              meta: 'xt.rpMetaPagesPerDay'.tr(args: [p.dailyPages.toString()]),
               metaIcon: Icons.menu_book_rounded,
               onTap: () => _confirmStart(context, ref, tr,
                   title: p.title, dailyPages: p.dailyPages),
@@ -132,24 +104,22 @@ class ReadingPlanScreen extends ConsumerWidget {
           // Kendi planını oluştur (kaydırmalı: günde kaç sayfa).
           _PlanCard(
             icon: Icons.tune_rounded,
-            title: tr ? 'Kendi Planını Oluştur' : 'Create Your Own Plan',
-            desc: tr
-                ? 'Günde kaç sayfa okumak istediğini sen seç.'
-                : 'Choose how many pages you read per day.',
-            action: tr ? 'Ayarla' : 'Set',
+            title: 'xt.rpCustomPlanTitle'.tr(),
+            desc: 'xt.rpCustomPlanDesc'.tr(),
+            action: 'xt.rpActionSet'.tr(),
             accent: true,
             onTap: () => _showCustomSheet(context, ref, tr),
           ),
           const Gap.md(),
-          _SectionTitle(tr ? 'DÜZENLİ OKUMA' : 'REGULAR READING'),
+          _SectionTitle('xt.rpSectionRegularReading'.tr()),
           const Gap.sm(),
           for (final h in habitPlans) ...[
             _PlanCard(
               icon: h.icon,
               title: h.title,
               desc: h.desc,
-              action: tr ? 'Oku' : 'Read',
-              meta: tr ? 'Sûre ${h.surah}' : 'Surah ${h.surah}',
+              action: 'xt.rpActionRead'.tr(),
+              meta: 'xt.rpMetaSurah'.tr(args: [h.surah.toString()]),
               metaIcon: Icons.bookmark_rounded,
               onTap: () => context.push('${Routes.quranReader}/${h.surah}'),
             ),
@@ -157,11 +127,7 @@ class ReadingPlanScreen extends ConsumerWidget {
           ],
           const Gap.sm(),
           Text(
-            tr
-                ? 'Hatim planları, ilerlemenizi takip eden Hatim Takibi ekranını '
-                    'kullanır. Düzenli okuma kartları ilgili sûreyi açar.'
-                : 'Khatm plans use the Hatim tracker that follows your progress. '
-                    'Regular-reading cards open the relevant surah.',
+            'xt.rpFooterNote'.tr(),
             textAlign: TextAlign.center,
             style: TextStyle(color: c.textTertiary, fontSize: 11.5, height: 1.4),
           ),
@@ -191,7 +157,7 @@ class ReadingPlanScreen extends ConsumerWidget {
                 mainAxisSize: MainAxisSize.min,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(tr ? 'Kendi Planın' : 'Custom Plan',
+                  Text('xt.rpCustomSheetTitle'.tr(),
                       style: Theme.of(ctx)
                           .textTheme
                           .titleMedium
@@ -207,7 +173,7 @@ class ReadingPlanScreen extends ConsumerWidget {
                               fontSize: 34,
                               fontWeight: FontWeight.w800)),
                       const SizedBox(width: 6),
-                      Text(tr ? 'sayfa / gün' : 'pages / day',
+                      Text('xt.rpPagesPerDayLabel'.tr(),
                           style: TextStyle(color: c.textSecondary)),
                     ],
                   ),
@@ -221,7 +187,7 @@ class ReadingPlanScreen extends ConsumerWidget {
                     onChanged: (v) => setSheet(() => pages = v.round()),
                   ),
                   Text(
-                    tr ? '≈ $days günde hatim tamamlanır' : '≈ finishes in $days days',
+                    'xt.rpFinishesInDays'.tr(args: [days.toString()]),
                     style: TextStyle(color: c.gold, fontWeight: FontWeight.w700),
                   ),
                   const Gap.lg(),
@@ -235,10 +201,10 @@ class ReadingPlanScreen extends ConsumerWidget {
                       onPressed: () {
                         Navigator.pop(ctx);
                         _confirmStart(context, ref, tr,
-                            title: tr ? 'Kendi Planın' : 'Custom Plan',
+                            title: 'xt.rpCustomSheetTitle'.tr(),
                             dailyPages: pages);
                       },
-                      child: Text(tr ? 'Hatmi Başlat' : 'Start Khatm',
+                      child: Text('xt.rpStartKhatm'.tr(),
                           style: TextStyle(
                               fontWeight: FontWeight.w700,
                               color: c.onGold)),
@@ -268,14 +234,8 @@ class ReadingPlanScreen extends ConsumerWidget {
         title: Text(title),
         content: Text(
           hasActive
-              ? (tr
-                  ? 'Bu planla yeni bir hatim başlatılsın mı? Aktif hatminiz '
-                      'geçmişe taşınacak. (Günde $dailyPages sayfa)'
-                  : 'Start a new khatm with this plan? Your active khatm will '
-                      'move to history. ($dailyPages pages/day)')
-              : (tr
-                  ? 'Bu planla hatim başlatılsın mı? (Günde $dailyPages sayfa)'
-                  : 'Start a khatm with this plan? ($dailyPages pages/day)'),
+              ? 'xt.rpConfirmReplace'.tr(args: [dailyPages.toString()])
+              : 'xt.rpConfirmStart'.tr(args: [dailyPages.toString()]),
         ),
         actions: [
           TextButton(
@@ -284,7 +244,7 @@ class ReadingPlanScreen extends ConsumerWidget {
           FilledButton(
             style: FilledButton.styleFrom(backgroundColor: c.gold),
             onPressed: () => Navigator.pop(ctx, true),
-            child: Text(tr ? 'Başlat' : 'Start'),
+            child: Text('xt.rpActionStart'.tr()),
           ),
         ],
       ),
@@ -373,7 +333,7 @@ class _ActiveHatimHero extends StatelessWidget {
                   children: [
                     Row(
                       children: [
-                        Text(tr ? 'Aktif Hatim' : 'Active Khatm',
+                        Text('xt.rpActiveKhatm'.tr(),
                             style: Theme.of(context)
                                 .textTheme
                                 .titleSmall
@@ -392,9 +352,10 @@ class _ActiveHatimHero extends StatelessWidget {
                     ),
                     const Gap.xxs(),
                     Text(
-                        tr
-                            ? 'Sayfa ${session.currentPage} / $hatimPageTotal'
-                            : 'Page ${session.currentPage} / $hatimPageTotal',
+                        'xt.rpPageProgress'.tr(args: [
+                          session.currentPage.toString(),
+                          hatimPageTotal.toString()
+                        ]),
                         style:
                             TextStyle(color: c.textSecondary, fontSize: 12.5)),
                   ],
@@ -410,17 +371,14 @@ class _ActiveHatimHero extends StatelessWidget {
             children: [
               _Stat(
                   icon: Icons.today_rounded,
-                  text: tr
-                      ? 'Bugün $today/$target sayfa'
-                      : 'Today $today/$target'),
+                  text: 'xt.rpStatToday'.tr(
+                      args: [today.toString(), target.toString()])),
               _Stat(
                   icon: Icons.flag_rounded,
-                  text: tr ? 'Kalan $left sayfa' : '$left pages left'),
+                  text: 'xt.rpStatLeft'.tr(args: [left.toString()])),
               _Stat(
                   icon: Icons.event_available_rounded,
-                  text: tr
-                      ? '≈ ${_shortDate(end, tr)} biter'
-                      : '≈ by ${_shortDate(end, tr)}'),
+                  text: 'xt.rpStatFinishBy'.tr(args: [_shortDate(end, tr)])),
             ],
           ),
         ],

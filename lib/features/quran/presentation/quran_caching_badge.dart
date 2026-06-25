@@ -1,6 +1,6 @@
+import 'package:easy_localization/easy_localization.dart' hide TextDirection;
 import 'package:flutter/material.dart';
 
-import '../../../core/localization/localized_text.dart';
 import '../../../core/theme/app_colors.dart';
 import '../../audio_stories/data/audio_handler.dart';
 
@@ -14,7 +14,6 @@ class QuranCachingBadge extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final c = context.colors;
-    final tr = context.langCode == 'tr';
     return ValueListenableBuilder<bool>(
       valueListenable: quranCaching,
       builder: (_, downloading, _) => AnimatedSize(
@@ -45,7 +44,7 @@ class QuranCachingBadge extends StatelessWidget {
                         ),
                         const SizedBox(width: 5),
                         Text(
-                          tr ? 'Ses indiriliyor…' : 'Downloading audio…',
+                          'xt.qcbDownloadingAudio'.tr(),
                           style: TextStyle(
                             color: c.gold.withValues(alpha: 0.9),
                             fontSize: 10,

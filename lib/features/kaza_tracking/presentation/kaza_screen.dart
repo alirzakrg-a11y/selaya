@@ -26,7 +26,7 @@ class KazaScreen extends ConsumerWidget {
       showBack: true,
       actions: [
         IconButton(
-          tooltip: context.langCode == 'tr' ? 'Kazâ rehberi' : 'Qada guide',
+          tooltip: 'xt.kzGuideTooltip'.tr(),
           icon: Icon(Icons.info_outline_rounded, color: c.gold),
           onPressed: () => _showKazaInfo(context),
         ),
@@ -250,7 +250,6 @@ class _KazaProgress extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final c = context.colors;
-    final tr = context.langCode == 'tr';
     final all = completed + total;
     final pct = all == 0 ? 0.0 : completed / all;
     return SelayaCard(
@@ -259,7 +258,7 @@ class _KazaProgress extends StatelessWidget {
         children: [
           Row(
             children: [
-              Text(tr ? 'İlerleme' : 'Progress',
+              Text('xt.kzProgress'.tr(),
                   style: Theme.of(context)
                       .textTheme
                       .titleSmall
@@ -281,9 +280,7 @@ class _KazaProgress extends StatelessWidget {
           ),
           const Gap.xs(),
           Text(
-              tr
-                  ? '$completed kılındı · $total kaldı'
-                  : '$completed done · $total left',
+              'xt.kzDoneLeft'.tr(args: [completed.toString(), total.toString()]),
               style: Theme.of(context)
                   .textTheme
                   .bodySmall
@@ -315,7 +312,7 @@ void _showKazaInfo(BuildContext context) {
               Icon(AppIcons.kerahat, color: c.gold),
               const Gap.sm(),
               Expanded(
-                child: Text(tr ? 'Kazâ Namazı Rehberi' : 'Make-up Prayer Guide',
+                child: Text('xt.kzGuideTitle'.tr(),
                     style: Theme.of(context).textTheme.titleLarge),
               ),
             ]),
@@ -355,9 +352,7 @@ void _showKazaInfo(BuildContext context) {
               const Gap.sm(),
               Expanded(
                 child: Text(
-                    tr
-                        ? 'Kaynak: Diyanet İşleri Başkanlığı İlmihali çizgisinde.'
-                        : 'Based on the Diyanet İlmihali.',
+                    'xt.kzGuideSource'.tr(),
                     style: Theme.of(context)
                         .textTheme
                         .bodySmall

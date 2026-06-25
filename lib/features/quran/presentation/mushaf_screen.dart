@@ -168,8 +168,8 @@ class _MushafScreenState extends ConsumerState<MushafScreen>
                     unselectedLabelColor: c.textTertiary,
                     indicatorColor: c.gold,
                     tabs: [
-                      Tab(text: lang == 'tr' ? 'Sureler' : 'Surahs'),
-                      Tab(text: lang == 'tr' ? 'Cüzler' : 'Juz'),
+                      Tab(text: 'xt.muTabSurahs'.tr()),
+                      Tab(text: 'xt.muTabJuz'.tr()),
                     ],
                   ),
                   Expanded(
@@ -183,9 +183,7 @@ class _MushafScreenState extends ConsumerState<MushafScreen>
                                 onChanged: (v) =>
                                     setSheet(() => query = v.toLowerCase()),
                                 decoration: InputDecoration(
-                                  hintText: lang == 'tr'
-                                      ? 'Sure ara'
-                                      : 'Search surah',
+                                  hintText: 'xt.muSearchSurah'.tr(),
                                   prefixIcon: const Icon(
                                     Icons.search_rounded,
                                     size: 20,
@@ -217,7 +215,6 @@ class _MushafScreenState extends ConsumerState<MushafScreen>
                                 itemBuilder: (ctx2, i) {
                                   final s = list[i];
                                   final p = pageForSurah(s.number);
-                                  final tr = lang == 'tr';
                                   final mekki = s.revelation == 'meccan';
                                   return ListTile(
                                     dense: true,
@@ -238,9 +235,16 @@ class _MushafScreenState extends ConsumerState<MushafScreen>
                                     title: Text(s.name(lang)),
                                     // Ayrıntı: iniş yeri · ayet sayısı · cüz.
                                     subtitle: Text(
-                                      tr
-                                          ? '${mekki ? 'Mekkî' : 'Medenî'} · ${s.ayahCount} ayet · ${juzForPage(p)}. Cüz'
-                                          : '${mekki ? 'Meccan' : 'Medinan'} · ${s.ayahCount} verses · Juz ${juzForPage(p)}',
+                                      'xt.muSurahMeta'.tr(
+                                        args: [
+                                          (mekki
+                                                  ? 'xt.muMeccan'
+                                                  : 'xt.muMedinan')
+                                              .tr(),
+                                          s.ayahCount.toString(),
+                                          juzForPage(p).toString(),
+                                        ],
+                                      ),
                                       style: TextStyle(
                                         color: c.textTertiary,
                                         fontSize: 11,
@@ -261,7 +265,7 @@ class _MushafScreenState extends ConsumerState<MushafScreen>
                                           ),
                                         ),
                                         Text(
-                                          '${tr ? 'Sayfa' : 'Page'} $p',
+                                          'xt.muPageNum'.tr(args: [p.toString()]),
                                           style: TextStyle(
                                             color: c.textTertiary,
                                             fontSize: 11,
@@ -284,7 +288,6 @@ class _MushafScreenState extends ConsumerState<MushafScreen>
                           itemCount: 30,
                           itemBuilder: (ctx2, i) {
                             final p = juzStartPage[i];
-                            final tr = lang == 'tr';
                             final (jStart, jEnd) = juzPageSpan(i + 1);
                             // Cüzün başladığı sure — satırda ipucu olarak.
                             final sNo = surahForPage(p);
@@ -309,21 +312,24 @@ class _MushafScreenState extends ConsumerState<MushafScreen>
                                 ),
                               ),
                               title: Text(
-                                tr ? '${i + 1}. Cüz' : 'Juz ${i + 1}',
+                                'xt.muJuzLabel'.tr(args: [(i + 1).toString()]),
                               ),
                               subtitle: Text(
-                                tr
-                                    ? '$sName ile başlar · ${jEnd - jStart + 1} sayfa'
-                                    : 'Starts at $sName · ${jEnd - jStart + 1} pages',
+                                'xt.muJuzStartsAt'.tr(
+                                  args: [
+                                    sName,
+                                    (jEnd - jStart + 1).toString(),
+                                  ],
+                                ),
                                 style: TextStyle(
                                   color: c.textTertiary,
                                   fontSize: 11,
                                 ),
                               ),
                               trailing: Text(
-                                tr
-                                    ? 'Sayfa $jStart–$jEnd'
-                                    : 'Pages $jStart–$jEnd',
+                                'xt.muPageRange'.tr(
+                                  args: [jStart.toString(), jEnd.toString()],
+                                ),
                                 style: TextStyle(
                                   color: c.textTertiary,
                                   fontSize: 11,
@@ -368,11 +374,7 @@ class _MushafScreenState extends ConsumerState<MushafScreen>
         if (!mounted) return;
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
-            content: Text(
-              context.langCode == 'tr'
-                  ? 'Bu surenin sesli okuması için ayet verisi yakında eklenecek.'
-                  : 'Audio for this surah is coming soon.',
-            ),
+            content: Text('xt.muAudioComingSoon'.tr()),
           ),
         );
         return;
@@ -382,11 +384,7 @@ class _MushafScreenState extends ConsumerState<MushafScreen>
         if (!mounted) return;
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
-            content: Text(
-              context.langCode == 'tr'
-                  ? 'İnternet yok — bu sure henüz indirilmedi. Bir kez internetliyken dinlersen sonrasında çevrimdışı çalar.'
-                  : "No internet — this surah isn't downloaded yet.",
-            ),
+            content: Text('xt.muNoInternet'.tr()),
           ),
         );
         return;
@@ -404,7 +402,7 @@ class _MushafScreenState extends ConsumerState<MushafScreen>
       context: context,
       builder: (ctx) => AlertDialog(
         backgroundColor: c.surface,
-        title: Text(context.langCode == 'tr' ? 'Sayfaya Git' : 'Go to Page'),
+        title: Text('xt.muGoToPageTitle'.tr()),
         content: TextField(
           controller: ctrl,
           keyboardType: TextInputType.number,
@@ -418,7 +416,7 @@ class _MushafScreenState extends ConsumerState<MushafScreen>
           ),
           FilledButton(
             onPressed: () => Navigator.pop(ctx, int.tryParse(ctrl.text.trim())),
-            child: Text(context.langCode == 'tr' ? 'Git' : 'Go'),
+            child: Text('xt.muGo'.tr()),
           ),
         ],
       ),
@@ -458,13 +456,18 @@ class _MushafScreenState extends ConsumerState<MushafScreen>
     final playingThis = audio.surahNumber == sNo && audio.playing;
 
     return SelayaScaffold(
-      title: lang == 'tr'
-          ? '$sNo. $surahName Sûresi ($sIdx/${sEnd - sStart + 1})'
-          : '$sNo. $surahName ($sIdx/${sEnd - sStart + 1})',
+      title: 'xt.muSurahTitle'.tr(
+        args: [
+          sNo.toString(),
+          surahName,
+          sIdx.toString(),
+          (sEnd - sStart + 1).toString(),
+        ],
+      ),
       showBack: true,
       actions: [
         IconButton(
-          tooltip: lang == 'tr' ? 'Sure / Cüz seç' : 'Pick surah / juz',
+          tooltip: 'xt.muPickSurahJuz'.tr(),
           icon: Icon(Icons.format_list_bulleted_rounded, color: c.gold),
           onPressed: _openPicker,
         ),
@@ -478,9 +481,15 @@ class _MushafScreenState extends ConsumerState<MushafScreen>
             child: Padding(
               padding: const EdgeInsets.only(top: 2, bottom: 4),
               child: Text(
-                lang == 'tr'
-                    ? 'Sayfa ($_page/$mushafPageCount)  ·  $juz. Cüz ($jIdx/${jEnd - jStart + 1})'
-                    : 'Page ($_page/$mushafPageCount)  ·  Juz $juz ($jIdx/${jEnd - jStart + 1})',
+                'xt.muPageJuzInfo'.tr(
+                  args: [
+                    _page.toString(),
+                    mushafPageCount.toString(),
+                    juz.toString(),
+                    jIdx.toString(),
+                    (jEnd - jStart + 1).toString(),
+                  ],
+                ),
                 style: Theme.of(
                   context,
                 ).textTheme.labelMedium?.copyWith(color: c.textSecondary),
@@ -550,7 +559,7 @@ class _MushafScreenState extends ConsumerState<MushafScreen>
               children: [
                 // ◀ Önceki sure (kullanıcı 2026-06-15: mushaf navigasyonu).
                 IconButton(
-                  tooltip: lang == 'tr' ? 'Önceki sure' : 'Prev surah',
+                  tooltip: 'xt.muPrevSurah'.tr(),
                   icon: const Icon(Icons.skip_previous_rounded),
                   color: sNo > 1
                       ? c.gold
@@ -587,12 +596,8 @@ class _MushafScreenState extends ConsumerState<MushafScreen>
                           Expanded(
                             child: Text(
                               playingThis
-                                  ? (lang == 'tr'
-                                        ? '$surahName okunuyor — duraklat'
-                                        : 'Playing $surahName — pause')
-                                  : (lang == 'tr'
-                                        ? "Kur'ân Okuyucu — $surahName"
-                                        : 'Quran Reciter — $surahName'),
+                                  ? 'xt.muPlayingPause'.tr(args: [surahName])
+                                  : 'xt.muReciterLabel'.tr(args: [surahName]),
                               maxLines: 1,
                               overflow: TextOverflow.ellipsis,
                               style: Theme.of(context).textTheme.labelLarge
@@ -609,7 +614,7 @@ class _MushafScreenState extends ConsumerState<MushafScreen>
                 ),
                 // ▶ Sonraki sure.
                 IconButton(
-                  tooltip: lang == 'tr' ? 'Sonraki sure' : 'Next surah',
+                  tooltip: 'xt.muNextSurah'.tr(),
                   icon: const Icon(Icons.skip_next_rounded),
                   color: sNo < 114
                       ? c.gold
@@ -621,7 +626,7 @@ class _MushafScreenState extends ConsumerState<MushafScreen>
                 GestureDetector(
                   onTap: _jumpDialog,
                   child: _Chip(
-                    text: '${lang == 'tr' ? 'Sayfa' : 'Page'} $_page',
+                    text: 'xt.muPageNum'.tr(args: [_page.toString()]),
                     accent: true,
                   ),
                 ),
@@ -632,9 +637,7 @@ class _MushafScreenState extends ConsumerState<MushafScreen>
           Padding(
             padding: const EdgeInsets.fromLTRB(16, 6, 16, 10),
             child: Text(
-              lang == 'tr'
-                  ? 'Hat: Medine Mushafı (KFGQPC) · Sayfa görselleri: Five-Prayers/quran-pages (GitHub)'
-                  : 'Script: Madani Mushaf (KFGQPC) · Page images: Five-Prayers/quran-pages (GitHub)',
+              'xt.muSourceAttribution'.tr(),
               textAlign: TextAlign.center,
               style: Theme.of(context).textTheme.labelSmall?.copyWith(
                 color: c.textTertiary,
@@ -664,7 +667,6 @@ class _MushafPageLoading extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final tr = context.langCode == 'tr';
     return Center(
       child: Container(
         padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 8),
@@ -685,7 +687,7 @@ class _MushafPageLoading extends StatelessWidget {
             ),
             const Gap.sm(),
             Text(
-              tr ? 'Sayfa indiriliyor…' : 'Loading page…',
+              'xt.muLoadingPage'.tr(),
               style: TextStyle(
                 color: context.colors.gold,
                 fontSize: 12,

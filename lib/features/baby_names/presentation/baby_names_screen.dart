@@ -123,7 +123,7 @@ class _BabyNamesScreenState extends ConsumerState<BabyNamesScreen> {
       showBack: true,
       actions: [
         IconButton(
-          tooltip: tr ? 'Favoriler' : 'Favorites',
+          tooltip: 'xt.bnmFavoritesTooltip'.tr(),
           icon: Icon(
               _favsOnly
                   ? Icons.favorite_rounded
@@ -169,9 +169,7 @@ class _BabyNamesScreenState extends ConsumerState<BabyNamesScreen> {
                   controller: _searchCtrl,
                   onChanged: (v) => setState(() => _query = v),
                   decoration: InputDecoration(
-                    hintText: tr
-                        ? 'İsim veya anlam ara'
-                        : 'Search name or meaning',
+                    hintText: 'xt.bnmSearchHint'.tr(),
                     prefixIcon: Icon(
                       Icons.search_rounded,
                       color: context.colors.textTertiary,
@@ -218,16 +216,16 @@ class _BabyNamesScreenState extends ConsumerState<BabyNamesScreen> {
                   segments: [
                     ButtonSegment(
                       value: 'all',
-                      label: Text(tr ? 'Hepsi' : 'All'),
+                      label: Text('xt.bnmFilterAll'.tr()),
                     ),
                     ButtonSegment(
                       value: 'm',
-                      label: Text(tr ? 'Erkek' : 'Boy'),
+                      label: Text('xt.bnmFilterBoy'.tr()),
                       icon: const Icon(Icons.male_rounded, size: 16),
                     ),
                     ButtonSegment(
                       value: 'f',
-                      label: Text(tr ? 'Kız' : 'Girl'),
+                      label: Text('xt.bnmFilterGirl'.tr()),
                       icon: const Icon(Icons.female_rounded, size: 16),
                     ),
                   ],
@@ -241,9 +239,7 @@ class _BabyNamesScreenState extends ConsumerState<BabyNamesScreen> {
                     ? SelayaEmpty(
                         icon: _favsOnly ? Icons.favorite_border_rounded : null,
                         message: _favsOnly
-                            ? (tr
-                                ? 'Henüz favori isim yok.\nBeğendiğin ismi ♡ ile ekle.'
-                                : 'No favorite names yet.')
+                            ? 'xt.bnmNoFavorites'.tr()
                             : null)
                     : ListView.separated(
                         padding: const EdgeInsets.fromLTRB(
@@ -338,7 +334,7 @@ class _BabyNamesScreenState extends ConsumerState<BabyNamesScreen> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(tr ? 'GÜNÜN İSİMLERİ' : 'NAMES OF THE DAY',
+          Text('xt.bnmDailyHeader'.tr(),
               style: Theme.of(context).textTheme.labelSmall?.copyWith(
                   color: c.gold,
                   fontWeight: FontWeight.w700,

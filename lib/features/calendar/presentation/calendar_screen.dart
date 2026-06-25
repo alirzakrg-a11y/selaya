@@ -161,7 +161,7 @@ class _ReligiousDaysViewState extends ConsumerState<_ReligiousDaysView> {
         children: [
           Icon(AppIcons.calendar, size: 14, color: c.gold),
           const Gap.xs(),
-          Text(tr ? 'Bugün' : 'Today',
+          Text('xt.calToday'.tr(),
               style: TextStyle(
                   color: c.gold,
                   fontSize: 11,
@@ -188,8 +188,8 @@ class _ReligiousDaysViewState extends ConsumerState<_ReligiousDaysView> {
           .difference(today)
           .inDays;
       final countdown = daysLeft <= 0
-          ? (tr ? 'Bugün' : 'Today')
-          : (tr ? '$daysLeft gün kaldı' : 'in $daysLeft days');
+          ? 'xt.calToday'.tr()
+          : 'xt.calDaysLeft'.tr(args: [daysLeft.toString()]);
       children.add(const Gap.md());
       children.add(InkWell(
         onTap: () => showReligiousDayDetail(context, nx, lang),
@@ -209,7 +209,7 @@ class _ReligiousDaysViewState extends ConsumerState<_ReligiousDaysView> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(tr ? 'SIRADAKİ' : 'NEXT',
+                  Text('xt.calNext'.tr(),
                       style: TextStyle(
                           color: c.textTertiary,
                           fontSize: 10,

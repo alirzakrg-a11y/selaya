@@ -99,7 +99,7 @@ class _FastingScreenState extends ConsumerState<FastingScreen> {
                 Icon(AppIcons.moon, color: c.gold),
                 const Gap.sm(),
                 Expanded(
-                  child: Text(tr ? 'Oruç Günleri' : 'Fasting Days',
+                  child: Text('xt.fsInfoTitle'.tr(),
                       style: Theme.of(context).textTheme.titleLarge),
                 ),
               ]),
@@ -157,9 +157,7 @@ class _FastingScreenState extends ConsumerState<FastingScreen> {
                 const Gap.sm(),
                 Expanded(
                   child: Text(
-                      tr
-                          ? 'Kaynak: Diyanet İşleri Başkanlığı İlmihali çizgisinde.'
-                          : 'Based on the Diyanet İlmihali.',
+                      'xt.fsSource'.tr(),
                       style: Theme.of(context)
                           .textTheme
                           .bodySmall
@@ -193,7 +191,7 @@ class _FastingScreenState extends ConsumerState<FastingScreen> {
       showBack: true,
       actions: [
         IconButton(
-          tooltip: lang == 'tr' ? 'Oruç günleri' : 'Fasting days',
+          tooltip: 'xt.fsInfoTooltip'.tr(),
           icon: Icon(Icons.info_outline_rounded, color: c.gold),
           onPressed: _showFastingInfo,
         ),

@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
@@ -34,7 +35,7 @@ class CommunityHatimScreen extends ConsumerWidget {
       'network': 'Bağlantı hatası',
       'too_many': 'Çok fazla aktif hatim başlattın',
     };
-    return m[code] ?? (tr ? 'Bir hata oldu' : 'Something went wrong');
+    return m[code] ?? 'xt.chErrorGeneric'.tr();
   }
 
   Future<void> _run(BuildContext context, WidgetRef ref,
@@ -43,7 +44,7 @@ class CommunityHatimScreen extends ConsumerWidget {
     final auth = ref.read(authControllerProvider);
     final tr = _tr(context);
     if (auth.token == null || auth.user == null) {
-      _snack(context, tr ? 'Katılmak için giriş yap' : 'Sign in to join');
+      _snack(context, 'xt.chSignInToJoin'.tr());
       return;
     }
     try {
@@ -51,15 +52,14 @@ class CommunityHatimScreen extends ConsumerWidget {
       ref.invalidate(communityHatimProvider);
       if (!context.mounted) return;
       if (res.status == 'completed') {
-        _snack(context,
-            tr ? '🎉 Hatim tamamlandı, Allah kabul etsin!' : '🎉 Khatm completed!');
+        _snack(context, 'xt.chKhatmCompleted'.tr());
       } else if (ok != null) {
         _snack(context, ok);
       }
     } on HatimException catch (e) {
       if (context.mounted) _snack(context, _err(e.code, tr));
     } catch (_) {
-      if (context.mounted) _snack(context, tr ? 'Bir hata oldu' : 'Error');
+      if (context.mounted) _snack(context, 'xt.chErrorShort'.tr());
     }
   }
 
@@ -71,11 +71,11 @@ class CommunityHatimScreen extends ConsumerWidget {
     final loggedIn = ref.watch(authControllerProvider).user != null;
 
     return SelayaScaffold(
-      title: tr ? 'Topluluk Hatmi' : 'Community Khatm',
+      title: 'xt.chTitle'.tr(),
       showBack: true,
       actions: [
         IconButton(
-          tooltip: tr ? 'Yenile' : 'Refresh',
+          tooltip: 'xt.chRefresh'.tr(),
           icon: Icon(Icons.refresh_rounded, color: c.gold),
           onPressed: () => ref.invalidate(communityHatimProvider),
         ),
@@ -100,9 +100,7 @@ class CommunityHatimScreen extends ConsumerWidget {
                 const Gap.md(),
                 Expanded(
                   child: Text(
-                    tr
-                        ? 'Birlikte hatim: boş bir cüz al, oku ve "okudum" de. 30 cüz dolunca hatim tamamlanır.'
-                        : 'Read together: claim an open juz, read it, mark it done. 30 juz completes a khatm.',
+                    'xt.chIntro'.tr(),
                     style: Theme.of(context)
                         .textTheme
                         .bodySmall
@@ -121,9 +119,7 @@ class CommunityHatimScreen extends ConsumerWidget {
                   const Gap.md(),
                   Expanded(
                     child: Text(
-                        tr
-                            ? 'Cüz almak için giriş yap / üye ol'
-                            : 'Sign in to claim a juz',
+                        'xt.chSignInToClaim'.tr(),
                         style: Theme.of(context)
                             .textTheme
                             .titleSmall
@@ -142,7 +138,7 @@ class CommunityHatimScreen extends ConsumerWidget {
             OutlinedButton.icon(
               onPressed: () => _showCreate(context, ref, tr),
               icon: const Icon(Icons.add_rounded, size: 18),
-              label: Text(tr ? 'Niyetli hatim başlat' : 'Start an intention khatm'),
+              label: Text('xt.chStartIntentionKhatm'.tr()),
               style: OutlinedButton.styleFrom(
                 minimumSize: const Size(double.infinity, 48),
                 foregroundColor: c.gold,
@@ -153,7 +149,7 @@ class CommunityHatimScreen extends ConsumerWidget {
             ),
             if (data.completed.isNotEmpty) ...[
               const Gap.lg(),
-              Text(tr ? 'Tamamlanan hatimler' : 'Completed khatms',
+              Text('xt.chCompletedKhatms'.tr(),
                   style: Theme.of(context)
                       .textTheme
                       .labelMedium
@@ -279,13 +275,13 @@ class CommunityHatimScreen extends ConsumerWidget {
               Icon(Icons.bookmark_added_rounded, size: 17, color: c.gold),
               const Gap.xs(),
               Expanded(
-                child: Text(tr ? 'Senin cüzlerin' : 'Your juz',
+                child: Text('xt.chYourJuz'.tr(),
                     style: Theme.of(context)
                         .textTheme
                         .titleSmall
                         ?.copyWith(fontWeight: FontWeight.w800, color: c.gold)),
               ),
-              Text(tr ? 'okuyunca işaretle →' : 'mark when read →',
+              Text('xt.chMarkWhenRead'.tr(),
                   style: TextStyle(color: c.textTertiary, fontSize: 11)),
             ]),
             const Gap.sm(),
@@ -316,13 +312,13 @@ class CommunityHatimScreen extends ConsumerWidget {
         ),
         const Gap.sm(),
         Expanded(
-          child: Text(tr ? '${j.juzNo}. cüz' : 'Juz ${j.juzNo}',
+          child: Text('xt.chJuzLabel'.tr(args: [j.juzNo.toString()]),
               style: Theme.of(context).textTheme.bodyMedium),
         ),
         TextButton.icon(
           onPressed: () => context.push(Routes.mushaf, extra: page),
           icon: const Icon(Icons.menu_book_rounded, size: 16),
-          label: Text(tr ? 'Oku' : 'Read'),
+          label: Text('xt.chRead'.tr()),
           style: TextButton.styleFrom(
             foregroundColor: c.textSecondary,
             visualDensity: VisualDensity.compact,
@@ -333,9 +329,9 @@ class CommunityHatimScreen extends ConsumerWidget {
         FilledButton.icon(
           onPressed: () => _run(
               context, ref, (t) => HatimApi.markDone(t, camp.id, j.juzNo),
-              ok: tr ? '${j.juzNo}. cüz okundu ✓' : 'Juz ${j.juzNo} done ✓'),
+              ok: 'xt.chJuzDone'.tr(args: [j.juzNo.toString()])),
           icon: const Icon(Icons.check_rounded, size: 16),
-          label: Text(tr ? 'Okudum' : 'Done'),
+          label: Text('xt.chDone'.tr()),
           style: FilledButton.styleFrom(
             backgroundColor: c.success,
             foregroundColor: Colors.white,
@@ -385,7 +381,7 @@ class CommunityHatimScreen extends ConsumerWidget {
                     color: fg, fontWeight: FontWeight.w800, fontSize: 15)),
             ?mark,
             if (j.mine && j.status != 'done')
-              Text(tr ? 'okudum?' : 'done?',
+              Text('xt.chDoneQuestion'.tr(),
                   style: TextStyle(color: fg, fontSize: 8.5)),
           ],
         ),
@@ -396,7 +392,7 @@ class CommunityHatimScreen extends ConsumerWidget {
   void _onCellTap(BuildContext context, WidgetRef ref, HatimCampaign camp,
       HatimJuz j, bool tr) {
     if (j.status == 'done') {
-      _snack(context, tr ? 'Bu cüz okundu ✓' : 'This juz is done ✓');
+      _snack(context, 'xt.chJuzAlreadyDone'.tr());
       return;
     }
     if (j.mine) {
@@ -405,12 +401,12 @@ class CommunityHatimScreen extends ConsumerWidget {
     }
     if (j.status == 'claimed') {
       _snack(context,
-          tr ? '@${j.rumuz ?? '?'} okuyor' : '@${j.rumuz ?? '?'} is reading');
+          'xt.chJuzReadingBy'.tr(args: [j.rumuz ?? '?']));
       return;
     }
     // open → al
     _run(context, ref, (t) => HatimApi.claim(t, camp.id, j.juzNo),
-        ok: tr ? '${j.juzNo}. cüz senin — okumaya başla' : 'Juz ${j.juzNo} is yours');
+        ok: 'xt.chJuzClaimed'.tr(args: [j.juzNo.toString()]));
   }
 
   void _showJuzActions(BuildContext context, WidgetRef ref, HatimCampaign camp,
@@ -430,7 +426,7 @@ class CommunityHatimScreen extends ConsumerWidget {
               padding: const EdgeInsets.fromLTRB(20, 16, 20, 4),
               child: Align(
                 alignment: Alignment.centerLeft,
-                child: Text('${j.juzNo}. ${tr ? 'cüz' : 'juz'}',
+                child: Text('xt.chJuzLabel'.tr(args: [j.juzNo.toString()]),
                     style: TextStyle(
                         color: cc.textPrimary,
                         fontSize: 17,
@@ -439,17 +435,17 @@ class CommunityHatimScreen extends ConsumerWidget {
             ),
             ListTile(
               leading: Icon(Icons.check_circle_rounded, color: cc.success),
-              title: Text(tr ? 'Okudum' : 'Mark read'),
+              title: Text('xt.chMarkRead'.tr()),
               onTap: () {
                 Navigator.pop(context);
                 _run(context, ref,
                     (t) => HatimApi.markDone(t, camp.id, j.juzNo),
-                    ok: tr ? 'Tamamlandı ✓' : 'Done ✓');
+                    ok: 'xt.chMarkedDone'.tr());
               },
             ),
             ListTile(
               leading: Icon(Icons.menu_book_rounded, color: cc.gold),
-              title: Text(tr ? 'Cüzü oku (Mushaf)' : 'Read in Mushaf'),
+              title: Text('xt.chReadInMushaf'.tr()),
               onTap: () {
                 Navigator.pop(context);
                 context.push(Routes.mushaf, extra: page);
@@ -457,12 +453,12 @@ class CommunityHatimScreen extends ConsumerWidget {
             ),
             ListTile(
               leading: Icon(Icons.undo_rounded, color: cc.textTertiary),
-              title: Text(tr ? 'Bırak (başkası alabilsin)' : 'Release'),
+              title: Text('xt.chRelease'.tr()),
               onTap: () {
                 Navigator.pop(context);
                 _run(context, ref,
                     (t) => HatimApi.release(t, camp.id, j.juzNo),
-                    ok: tr ? 'Bırakıldı' : 'Released');
+                    ok: 'xt.chReleased'.tr());
               },
             ),
             const SizedBox(height: 8),
@@ -475,7 +471,7 @@ class CommunityHatimScreen extends ConsumerWidget {
   void _showCreate(BuildContext context, WidgetRef ref, bool tr) {
     final auth = ref.read(authControllerProvider);
     if (auth.token == null || auth.user == null) {
-      _snack(context, tr ? 'Hatim başlatmak için giriş yap' : 'Sign in first');
+      _snack(context, 'xt.chSignInToStart'.tr());
       return;
     }
     final titleC = TextEditingController();
@@ -494,7 +490,7 @@ class CommunityHatimScreen extends ConsumerWidget {
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(tr ? 'Niyetli Hatim Başlat' : 'Start a Khatm',
+            Text('xt.chCreateTitle'.tr(),
                 style: Theme.of(context)
                     .textTheme
                     .titleMedium
@@ -506,10 +502,8 @@ class CommunityHatimScreen extends ConsumerWidget {
               maxLines: 2,
               minLines: 1,
               decoration: InputDecoration(
-                labelText: tr ? 'Başlık' : 'Title',
-                hintText: tr
-                    ? 'Örn: Merhume anneannem Ayşe Hanım için hatim'
-                    : 'e.g. Ramadan Khatm',
+                labelText: 'xt.chTitleLabel'.tr(),
+                hintText: 'xt.chTitleHint'.tr(),
                 filled: true,
                 fillColor: cc.surfaceAlt,
                 border: OutlineInputBorder(
@@ -522,8 +516,8 @@ class CommunityHatimScreen extends ConsumerWidget {
               maxLines: 2,
               minLines: 1,
               decoration: InputDecoration(
-                labelText: tr ? 'Niyet (opsiyonel)' : 'Intention (optional)',
-                hintText: tr ? 'Örn: Merhum dedem için' : 'e.g. For my late grandfather',
+                labelText: 'xt.chIntentionLabel'.tr(),
+                hintText: 'xt.chIntentionHint'.tr(),
                 filled: true,
                 fillColor: cc.surfaceAlt,
                 border: OutlineInputBorder(
@@ -537,7 +531,7 @@ class CommunityHatimScreen extends ConsumerWidget {
                 onPressed: () {
                   final t = titleC.text.trim();
                   if (t.length < 2) {
-                    _snack(context, tr ? 'Başlık gerekli' : 'Title required');
+                    _snack(context, 'xt.chTitleRequired'.tr());
                     return;
                   }
                   Navigator.pop(context);
@@ -545,13 +539,13 @@ class CommunityHatimScreen extends ConsumerWidget {
                       context,
                       ref,
                       (tok) => HatimApi.create(tok, t, intentC.text.trim()),
-                      ok: tr ? 'Hatim başlatıldı ✓' : 'Khatm started ✓');
+                      ok: 'xt.chKhatmStarted'.tr());
                 },
                 style: FilledButton.styleFrom(
                     backgroundColor: cc.gold,
                     foregroundColor: cc.onGold,
                     padding: const EdgeInsets.symmetric(vertical: 14)),
-                child: Text(tr ? 'Başlat' : 'Start'),
+                child: Text('xt.chStart'.tr()),
               ),
             ),
             const Gap.sm(),

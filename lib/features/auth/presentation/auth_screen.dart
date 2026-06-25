@@ -105,7 +105,6 @@ class _AuthScreenState extends ConsumerState<AuthScreen> {
   @override
   Widget build(BuildContext context) {
     final c = context.colors;
-    final tr = context.locale.languageCode == 'tr';
     return SelayaScaffold(
       title: 'auth.title'.tr(),
       showBack: true,
@@ -127,11 +126,11 @@ class _AuthScreenState extends ConsumerState<AuthScreen> {
             child: Row(
               children: [
                 _benefit(Icons.cloud_done_rounded,
-                    tr ? 'Bulut yedek' : 'Cloud backup'),
+                    'xt.auBenefitCloudBackup'.tr()),
                 _benefit(Icons.devices_rounded,
-                    tr ? '2 cihaz senkron' : '2-device sync'),
+                    'xt.auBenefitDeviceSync'.tr()),
                 _benefit(Icons.front_hand_rounded,
-                    tr ? 'Dua Duvarı' : 'Dua Wall'),
+                    'xt.auBenefitDuaWall'.tr()),
               ],
             ),
           ),
@@ -168,7 +167,7 @@ class _AuthScreenState extends ConsumerState<AuthScreen> {
                         const SizedBox(width: 4),
                         Flexible(
                           child: Text(
-                            '${tr ? 'Dua Duvarı\'nda: @' : 'On Dua Wall: @'}${_rumuz.text.trim()}',
+                            'xt.auRumuzPreview'.tr(args: [_rumuz.text.trim()]),
                             overflow: TextOverflow.ellipsis,
                             style: TextStyle(
                                 color: c.gold,
@@ -196,7 +195,7 @@ class _AuthScreenState extends ConsumerState<AuthScreen> {
                     size: 20),
                 onPressed: () => setState(() => _obscure = !_obscure),
               )),
-          if (_register) _pwMeter(tr),
+          if (_register) _pwMeter(),
           if (!_register)
             Align(
               alignment: Alignment.centerRight,
@@ -311,7 +310,7 @@ class _AuthScreenState extends ConsumerState<AuthScreen> {
   }
 
   /// Canlı şifre gücü göstergesi (üye ol modunda; boşken ipucu gösterir).
-  Widget _pwMeter(bool tr) {
+  Widget _pwMeter() {
     final c = context.colors;
     final pw = _password.text;
     if (pw.isEmpty) {
@@ -328,8 +327,8 @@ class _AuthScreenState extends ConsumerState<AuthScreen> {
         ? c.danger
         : (level == 2 ? const Color(0xFFE0A030) : c.success);
     final label = level == 1
-        ? (tr ? 'Zayıf' : 'Weak')
-        : (level == 2 ? (tr ? 'Orta' : 'Medium') : (tr ? 'Güçlü' : 'Strong'));
+        ? 'xt.auPwWeak'.tr()
+        : (level == 2 ? 'xt.auPwMedium'.tr() : 'xt.auPwStrong'.tr());
     return Padding(
       padding: const EdgeInsets.only(left: 4, top: 8),
       child: Column(

@@ -44,7 +44,7 @@ class _SplashScreenState extends ConsumerState<SplashScreen> {
       final hadiths = await ref.read(hadithsProvider.future);
       if (mounted && hadiths.isNotEmpty) {
         final h = hadiths[DateTime.now().day % hadiths.length];
-        final label = lang == 'tr' ? 'Günün Hadisi' : 'Hadith of the Day';
+        final label = 'xt.spHadithOfTheDay'.tr();
         await ref
             .read(widgetServiceProvider)
             .updateHadith(
@@ -70,10 +70,9 @@ class _SplashScreenState extends ConsumerState<SplashScreen> {
     // takılmamak için en fazla 6 sn bekle (gelmezse önbellek/paket yedeğiyle
     // yine de geç). Sonraki açılışlarda manifest ÖNBELLEKTEN anında gelir →
     // çubuk hızla dolar, splash kısa kalır.
-    final tr = context.langCode == 'tr';
     if (mounted) {
       setState(() {
-        _syncLabel = tr ? 'Bağlanılıyor…' : 'Connecting…';
+        _syncLabel = 'xt.spConnecting'.tr();
         _progress = 0.25;
       });
     }
@@ -83,7 +82,7 @@ class _SplashScreenState extends ConsumerState<SplashScreen> {
     Future<void>.delayed(const Duration(milliseconds: 450), () {
       if (mounted) {
         setState(() {
-          _syncLabel = tr ? 'İçerikler hazırlanıyor…' : 'Preparing content…';
+          _syncLabel = 'xt.spPreparingContent'.tr();
           _progress = 0.65;
         });
       }
@@ -101,7 +100,7 @@ class _SplashScreenState extends ConsumerState<SplashScreen> {
     await Future.wait([minSplash, loadContent()]);
     if (mounted) {
       setState(() {
-        _syncLabel = tr ? 'Hazır' : 'Ready';
+        _syncLabel = 'xt.spReady'.tr();
         _progress = 1.0; // bitti → çubuk %100
       });
     }

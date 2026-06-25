@@ -222,7 +222,6 @@ class _LikedScreenState extends ConsumerState<LikedScreen> {
   /// Tür filtre çipleri (Tümü + dolu kategoriler).
   Widget _filterChips(List<(String, String, int)> cats) {
     final c = context.colors;
-    final tr = context.langCode == 'tr';
     Widget chip(String key, String label, bool sel) => Padding(
           padding: const EdgeInsets.only(right: AppSpacing.sm),
           child: GestureDetector(
@@ -252,7 +251,7 @@ class _LikedScreenState extends ConsumerState<LikedScreen> {
         child: ListView(
           scrollDirection: Axis.horizontal,
           children: [
-            chip('all', tr ? 'Tümü' : 'All', _filter == 'all'),
+            chip('all', 'xt.lkFilterAll'.tr(), _filter == 'all'),
             for (final (key, label, count) in cats)
               chip(key, '$label · $count', _filter == key),
           ],

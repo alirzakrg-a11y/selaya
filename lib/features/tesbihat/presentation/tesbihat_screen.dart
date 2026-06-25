@@ -180,7 +180,6 @@ class _TesbihatScreenState extends ConsumerState<TesbihatScreen> {
   /// Namaz tesbihatının ne olduğunu + faziletini (hadis) anlatan bilgi sayfası.
   void _showInfo() {
     final c = context.colors;
-    final tr = context.langCode == 'tr';
     showModalBottomSheet<void>(
       context: context,
       isScrollControlled: true,
@@ -197,15 +196,13 @@ class _TesbihatScreenState extends ConsumerState<TesbihatScreen> {
                 Icon(Icons.auto_awesome_rounded, color: c.gold),
                 const Gap.sm(),
                 Expanded(
-                  child: Text(tr ? 'Namaz Tesbihatı' : 'Post-Prayer Tasbihat',
+                  child: Text('xt.tsInfoTitle'.tr(),
                       style: Theme.of(context).textTheme.titleLarge),
                 ),
               ]),
               const Gap.md(),
               Text(
-                tr
-                    ? 'Her farz namazdan sonra 33 defa “Sübhânallah”, 33 defa “Elhamdülillah” ve 33 defa “Allâhüekber” denir; böylece doksan dokuza ulaşılır. Yüzü tamamlamak için kelime-i tevhîd okunur.'
-                    : 'After each obligatory prayer one says 33× “Subhanallah”, 33× “Alhamdulillah” and 33× “Allahu akbar”, reaching ninety-nine; the hundredth is completed with the tahlil (kalima of monotheism).',
+                'xt.tsInfoBody'.tr(),
                 style: Theme.of(context)
                     .textTheme
                     .bodyMedium
@@ -223,9 +220,7 @@ class _TesbihatScreenState extends ConsumerState<TesbihatScreen> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      tr
-                          ? '“Her namazın ardından kim otuz üç defa Sübhânallah, otuz üç defa Elhamdülillah ve otuz üç defa Allâhüekber der; böylece doksan dokuz olur. Yüzü tamamlamak için de ‘Lâ ilâhe illallâhü vahdehû lâ şerîke leh, lehü’l-mülkü ve lehü’l-hamdü ve hüve alâ külli şey’in kadîr’ derse, denizin köpüğü kadar bile olsa günahları bağışlanır.”'
-                          : '“Whoever, after every prayer, glorifies Allah 33 times, praises Him 33 times and magnifies Him 33 times — that is ninety-nine — and completes the hundred with ‘La ilaha illallahu wahdahu la sharika lah…’, his sins are forgiven even if they were like the foam of the sea.”',
+                      'xt.tsHadith'.tr(),
                       style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                           height: 1.55, fontStyle: FontStyle.italic),
                     ),
@@ -244,9 +239,7 @@ class _TesbihatScreenState extends ConsumerState<TesbihatScreen> {
                 const Gap.sm(),
                 Expanded(
                   child: Text(
-                    tr
-                        ? 'Kaynak: Diyanet İşleri Başkanlığı esas alınmıştır.'
-                        : 'Source: based on the Diyanet (Presidency of Religious Affairs).',
+                    'xt.tsSource'.tr(),
                     style: Theme.of(context)
                         .textTheme
                         .bodySmall
@@ -270,14 +263,14 @@ class _TesbihatScreenState extends ConsumerState<TesbihatScreen> {
       showBack: true,
       actions: [
         IconButton(
-          tooltip: tr ? 'Ses' : 'Sound',
+          tooltip: 'xt.tsSound'.tr(),
           icon: Icon(
               _sound ? Icons.volume_up_rounded : Icons.volume_off_rounded,
               color: context.colors.gold),
           onPressed: _toggleSound,
         ),
         IconButton(
-          tooltip: tr ? 'Titreşim' : 'Vibration',
+          tooltip: 'xt.tsVibration'.tr(),
           icon: Icon(
               _vibrate
                   ? Icons.vibration_rounded
@@ -287,7 +280,7 @@ class _TesbihatScreenState extends ConsumerState<TesbihatScreen> {
           onPressed: _toggleVibration,
         ),
         IconButton(
-          tooltip: tr ? 'Bilgi' : 'Info',
+          tooltip: 'xt.tsInfo'.tr(),
           icon: Icon(Icons.info_outline_rounded, color: context.colors.gold),
           onPressed: _showInfo,
         ),
@@ -396,7 +389,7 @@ class _TesbihatScreenState extends ConsumerState<TesbihatScreen> {
             ),
             const Gap.md(),
             Text(
-              tr ? 'Saymak için ekrana dokun' : 'Tap anywhere to count',
+              'xt.tsTapToCount'.tr(),
               style: TextStyle(color: c.textTertiary, fontSize: 12),
             ),
             const Spacer(),
@@ -421,7 +414,8 @@ class _TesbihatScreenState extends ConsumerState<TesbihatScreen> {
             ),
             const Gap.sm(),
             Text(
-              '${tr ? 'Adım' : 'Step'} ${_step + 1} / ${_steps.length}',
+              'xt.tsStepIndicator'.tr(
+                  args: ['${_step + 1}', '${_steps.length}']),
               style: Theme.of(
                 context,
               ).textTheme.labelMedium?.copyWith(color: c.textSecondary),
@@ -443,7 +437,7 @@ class _TesbihatScreenState extends ConsumerState<TesbihatScreen> {
             Icon(Icons.verified_rounded, size: 72, color: c.gold),
             const Gap.lg(),
             Text(
-              tr ? 'Tesbihat tamamlandı' : 'Tasbihat complete',
+              'xt.tsCompleteTitle'.tr(),
               textAlign: TextAlign.center,
               style: Theme.of(
                 context,
@@ -451,9 +445,7 @@ class _TesbihatScreenState extends ConsumerState<TesbihatScreen> {
             ),
             const Gap.sm(),
             Text(
-              tr
-                  ? 'Allah ibadetini kabul etsin. 33 + 33 + 33 + tevhîd ile tesbihatını tamamladın.'
-                  : 'May Allah accept your worship. You completed 33 + 33 + 33 + tahlil.',
+              'xt.tsCompleteBody'.tr(),
               textAlign: TextAlign.center,
               style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                 color: c.textSecondary,
@@ -468,7 +460,7 @@ class _TesbihatScreenState extends ConsumerState<TesbihatScreen> {
                 _reset();
               },
               icon: const Icon(Icons.refresh_rounded, size: 18),
-              label: Text(tr ? 'Yeniden başla' : 'Start again'),
+              label: Text('xt.tsRestart'.tr()),
               style: FilledButton.styleFrom(
                 backgroundColor: c.gold,
                 foregroundColor: c.onGold,

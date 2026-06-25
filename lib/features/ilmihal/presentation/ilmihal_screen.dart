@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../core/data/asset_json_loader.dart';
-import '../../../core/localization/localized_text.dart';
 import '../../../core/theme/app_colors.dart';
 import '../../../core/theme/app_spacing.dart';
 import '../../../core/widgets/selaya_card.dart';
@@ -49,7 +48,6 @@ class _IlmihalScreenState extends ConsumerState<IlmihalScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final tr = context.langCode == 'tr';
     final c = context.colors;
     final async = ref.watch(ilmihalProvider);
     return SelayaScaffold(
@@ -84,7 +82,7 @@ class _IlmihalScreenState extends ConsumerState<IlmihalScreen> {
           final children = <Widget>[];
           // Varsayılan görünümde (arama/filtre yokken) altın tanıtım başlığı.
           if (q.isEmpty && _category == 'all') {
-            children.add(_IlmihalHero(count: all.length, tr: tr));
+            children.add(_IlmihalHero(count: all.length));
             children.add(const Gap.md());
           }
           for (final e in list) {
@@ -108,7 +106,7 @@ class _IlmihalScreenState extends ConsumerState<IlmihalScreen> {
           }
           if (children.isNotEmpty) {
             children.add(const Gap.md());
-            children.add(_SourceNote(tr: tr));
+            children.add(const _SourceNote());
           }
 
           return Column(
@@ -121,7 +119,7 @@ class _IlmihalScreenState extends ConsumerState<IlmihalScreen> {
                   onChanged: (v) => setState(() => _query = v),
                   textInputAction: TextInputAction.search,
                   decoration: InputDecoration(
-                    hintText: tr ? 'Soru ara…' : 'Search…',
+                    hintText: 'xt.ilSearchHint'.tr(),
                     prefixIcon: Icon(Icons.search_rounded,
                         size: 20, color: c.textTertiary),
                     suffixIcon: _query.isEmpty
@@ -163,7 +161,7 @@ class _IlmihalScreenState extends ConsumerState<IlmihalScreen> {
                   itemBuilder: (_, i) {
                     final cat = cats[i];
                     return _CatChip(
-                      label: cat == 'all' ? (tr ? 'Tümü' : 'All') : cat,
+                      label: cat == 'all' ? 'xt.ilCatAll'.tr() : cat,
                       selected: _category == cat && _query.isEmpty,
                       onTap: () => setState(() {
                         _category = cat;
@@ -180,9 +178,8 @@ class _IlmihalScreenState extends ConsumerState<IlmihalScreen> {
               Expanded(
                 child: children.isEmpty
                     ? SelayaEmpty(
-                        message: tr
-                            ? '“${_query.trim()}” için sonuç yok'
-                            : 'No results')
+                        message:
+                            'xt.ilNoResults'.tr(args: [_query.trim()]))
                     : ListView(
                         padding: const EdgeInsets.fromLTRB(AppSpacing.base, 0,
                             AppSpacing.base, AppSpacing.xxxl),
@@ -200,8 +197,7 @@ class _IlmihalScreenState extends ConsumerState<IlmihalScreen> {
 /// Altın gradyanlı tanıtım başlığı (soru sayısı + kaynak).
 class _IlmihalHero extends StatelessWidget {
   final int count;
-  final bool tr;
-  const _IlmihalHero({required this.count, required this.tr});
+  const _IlmihalHero({required this.count});
   @override
   Widget build(BuildContext context) {
     final c = context.colors;
@@ -215,14 +211,12 @@ class _IlmihalHero extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(tr ? 'İlmihal' : 'Catechism',
+                Text('xt.ilHeroTitle'.tr(),
                     style: Theme.of(context).textTheme.titleSmall?.copyWith(
                         color: c.onGold, fontWeight: FontWeight.w800)),
                 const Gap.xxs(),
                 Text(
-                    tr
-                        ? '$count soruda temel dinî bilgiler · Hanefî / Diyanet'
-                        : '$count answers on the essentials · Hanafi / Diyanet',
+                    'xt.ilHeroSubtitle'.tr(args: [count.toString()]),
                     style: TextStyle(
                         color: c.onGold.withValues(alpha: 0.78), fontSize: 12)),
               ],
@@ -269,8 +263,7 @@ class _CatChip extends StatelessWidget {
 }
 
 class _SourceNote extends StatelessWidget {
-  final bool tr;
-  const _SourceNote({required this.tr});
+  const _SourceNote();
   @override
   Widget build(BuildContext context) {
     final c = context.colors;
@@ -287,9 +280,7 @@ class _SourceNote extends StatelessWidget {
           const Gap.sm(),
           Expanded(
             child: Text(
-              tr
-                  ? 'Kaynak: Diyanet İşleri Başkanlığı İlmihali esas alınmıştır. Özel durumlar için yetkili kaynaklara / bir âlime başvurun.'
-                  : 'Source: based on the Diyanet catechism. For specific cases, consult qualified sources.',
+              'xt.ilSourceNote'.tr(),
               style: Theme.of(context)
                   .textTheme
                   .bodySmall

@@ -302,7 +302,7 @@ class _AkisScreenState extends ConsumerState<AkisScreen> {
       cards.add(Padding(
         padding: const EdgeInsets.symmetric(vertical: AppSpacing.xxxl),
         child: Center(
-          child: Text(tr ? 'İçerik yükleniyor…' : 'Loading…',
+          child: Text('xt.akLoading'.tr(),
               style: TextStyle(color: c.textTertiary)),
         ),
       ));
@@ -349,17 +349,17 @@ class _AkisScreenState extends ConsumerState<AkisScreen> {
             child: ListView(
               scrollDirection: Axis.horizontal,
               children: [
-                for (final f in const <(String, String, String)>[
-                  ('all', 'Tümü', 'All'),
-                  ('verse', 'Ayet', 'Verses'),
-                  ('hadith', 'Hadis', 'Hadith'),
-                  ('dua', 'Dua', 'Duas'),
-                  ('tip', 'Bilgi', 'Facts'),
+                for (final f in const <(String, String)>[
+                  ('all', 'xt.akFilterAll'),
+                  ('verse', 'xt.akFilterVerse'),
+                  ('hadith', 'xt.akFilterHadith'),
+                  ('dua', 'xt.akFilterDua'),
+                  ('tip', 'xt.akFilterTip'),
                 ])
                   Padding(
                     padding: const EdgeInsets.only(right: AppSpacing.sm),
                     child: _FilterChip(
-                      label: tr ? f.$2 : f.$3,
+                      label: f.$2.tr(),
                       selected: _filter == f.$1,
                       onTap: () => setState(() => _filter = f.$1),
                     ),
@@ -671,8 +671,7 @@ class _EsmaCard extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          _CardLabel(Icons.auto_awesome_rounded,
-              lang == 'tr' ? 'Günün Esması' : 'Name of Allah',
+          _CardLabel(Icons.auto_awesome_rounded, 'xt.akEsmaOfDay'.tr(),
               chevron: true),
           const Gap.sm(),
           Center(
@@ -745,8 +744,7 @@ class _NamesCard extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          _CardLabel(Icons.child_care_rounded,
-              tr ? 'Günün İsimleri' : 'Names of the Day',
+          _CardLabel(Icons.child_care_rounded, 'xt.akNamesOfDay'.tr(),
               chevron: true),
           const Gap.sm(),
           if (boy != null) nameRow(boy!, false),
@@ -778,8 +776,7 @@ class _TaskCard extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          _CardLabel(Icons.task_alt_rounded,
-              tr ? 'Günün Görevi' : "Today's Task"),
+          _CardLabel(Icons.task_alt_rounded, 'xt.akTaskOfDay'.tr()),
           const Gap.sm(),
           Row(
             children: [
@@ -813,7 +810,7 @@ class _TaskCard extends StatelessWidget {
           ),
           if (done) ...[
             const Gap.xs(),
-            Text(tr ? '✓ Bugün tamamlandı' : '✓ Done today',
+            Text('xt.akDoneToday'.tr(),
                 style: TextStyle(
                     color: c.success,
                     fontSize: 12,

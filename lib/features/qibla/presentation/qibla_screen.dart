@@ -91,22 +91,13 @@ class _QiblaScreenState extends ConsumerState<QiblaScreen> {
   /// Pusulanın doğru kullanımı + kalibrasyon + manyetik/gerçek kuzey bilgisi.
   void _showInfo() {
     final c = context.colors;
-    final tr = context.langCode == 'tr';
-    final tips = tr
-        ? const [
-            'Telefonu yere paralel (düz) tutup yavaşça döndürün; üstteki ok Kâbe simgesiyle çakıştığında kıbleye dönüksünüz.',
-            'Metal eşya, mıknatıs, hoparlör ve elektronik cihazlardan uzak, mümkünse açık bir yerde kullanın.',
-            'Doğruluk düştüğünde telefonu havada 8 (sekiz) çizerek pusulayı kalibre edin.',
-            'Pusula manyetik kuzeyi gösterir; uygulama bulunduğunuz yerin manyetik sapmasını (declination) hesaba katarak gerçek kıble yönüne göre düzeltir.',
-            'Pusulaya güvenemediğinizde gündüz aşağıdaki “Güneşle Kıble” yöntemini kullanabilirsiniz.',
-          ]
-        : const [
-            'Hold the phone flat (parallel to the ground) and turn slowly; you face the qibla when the top arrow meets the Kaaba marker.',
-            'Use it away from metal, magnets, speakers and electronics — ideally outdoors.',
-            'If accuracy drops, calibrate by moving the phone in a figure-8 in the air.',
-            'The compass shows magnetic north; the app corrects for your local magnetic declination to point to the true qibla.',
-            'When the compass is unreliable, use the “Qibla by Sun” method below during daytime.',
-          ];
+    final tips = [
+      'xt.qbTip1'.tr(),
+      'xt.qbTip2'.tr(),
+      'xt.qbTip3'.tr(),
+      'xt.qbTip4'.tr(),
+      'xt.qbTip5'.tr(),
+    ];
     showModalBottomSheet<void>(
       context: context,
       isScrollControlled: true,
@@ -124,9 +115,7 @@ class _QiblaScreenState extends ConsumerState<QiblaScreen> {
                 const Gap.sm(),
                 Expanded(
                   child: Text(
-                      tr
-                          ? 'Kıble Pusulası Nasıl Kullanılır?'
-                          : 'Using the Qibla Compass',
+                      'xt.qbHowToUseTitle'.tr(),
                       style: Theme.of(context).textTheme.titleLarge),
                 ),
               ]),
@@ -210,7 +199,7 @@ class _QiblaScreenState extends ConsumerState<QiblaScreen> {
           onPressed: _toggleHaptic,
         ),
         IconButton(
-          tooltip: context.langCode == 'tr' ? 'Nasıl kullanılır?' : 'How to use',
+          tooltip: 'xt.qbHowToUseTooltip'.tr(),
           icon: const Icon(Icons.info_outline_rounded),
           onPressed: _showInfo,
         ),
@@ -384,25 +373,24 @@ class _AccuracyChip extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final c = context.colors;
-    final tr = context.langCode == 'tr';
     final acc = accuracy;
     final String label;
     final Color color;
     final IconData icon;
     if (acc == null) {
-      label = tr ? 'Pusula hazır' : 'Compass ready';
+      label = 'xt.qbAccuracyReady'.tr();
       color = c.textTertiary;
       icon = Icons.explore_rounded;
     } else if (acc <= 12) {
-      label = tr ? 'Hassas' : 'High accuracy';
+      label = 'xt.qbAccuracyHigh'.tr();
       color = c.success;
       icon = Icons.gps_fixed_rounded;
     } else if (acc <= 25) {
-      label = tr ? 'Orta hassasiyet' : 'Medium accuracy';
+      label = 'xt.qbAccuracyMedium'.tr();
       color = const Color(0xFFD9A441);
       icon = Icons.gps_not_fixed_rounded;
     } else {
-      label = tr ? 'Düşük — kalibre edin' : 'Low — calibrate';
+      label = 'xt.qbAccuracyLow'.tr();
       color = c.danger;
       icon = Icons.gps_off_rounded;
     }

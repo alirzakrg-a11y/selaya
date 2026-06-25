@@ -51,7 +51,6 @@ class _HajjUmrahScreenState extends ConsumerState<HajjUmrahScreen> {
   @override
   Widget build(BuildContext context) {
     final lang = context.langCode;
-    final tr = lang == 'tr';
     final async = ref.watch(hajjStepsProvider);
     final isHac = _type == 'hac';
     return SelayaScaffold(
@@ -66,25 +65,25 @@ class _HajjUmrahScreenState extends ConsumerState<HajjUmrahScreen> {
             padding: const EdgeInsets.fromLTRB(
                 AppSpacing.base, AppSpacing.sm, AppSpacing.base, AppSpacing.xxxl),
             children: [
-              _Header(tr: tr),
+              const _Header(),
               const Gap.md(),
               Row(children: [
                 Expanded(
                     child: GuideQuickLink(
                         icon: Icons.explore_rounded,
-                        label: tr ? 'Kıble' : 'Qibla',
+                        label: 'xt.hjQiblaLink'.tr(),
                         onTap: () => context.go(Routes.qibla))),
                 const Gap.sm(),
                 Expanded(
                     child: GuideQuickLink(
                         icon: Icons.volunteer_activism_rounded,
-                        label: tr ? 'Dualar' : 'Duas',
+                        label: 'xt.hjDuasLink'.tr(),
                         onTap: () => context.push(Routes.duas))),
                 const Gap.sm(),
                 Expanded(
                     child: GuideQuickLink(
                         icon: Icons.schedule_rounded,
-                        label: tr ? 'Vakitler' : 'Times',
+                        label: 'xt.hjTimesLink'.tr(),
                         onTap: () => context.go(Routes.times))),
               ]),
               const Gap.lg(),
@@ -95,11 +94,11 @@ class _HajjUmrahScreenState extends ConsumerState<HajjUmrahScreen> {
                   ButtonSegment(
                       value: 'umre',
                       icon: const Icon(Icons.brightness_low_rounded, size: 16),
-                      label: Text(tr ? 'Umre' : 'Umrah')),
+                      label: Text('xt.hjUmrahSegment'.tr())),
                   ButtonSegment(
                       value: 'hac',
                       icon: const Icon(Icons.mosque_rounded, size: 16),
-                      label: Text(tr ? 'Hac' : 'Hajj')),
+                      label: Text('xt.hjHajjSegment'.tr())),
                 ],
                 selected: {_type},
                 onSelectionChanged: (s) => setState(() => _type = s.first),
@@ -108,11 +107,11 @@ class _HajjUmrahScreenState extends ConsumerState<HajjUmrahScreen> {
 
               // === Hac çeşitleri (yalnız hac) ===
               if (isHac) ...[
-                GuideSectionLabel(tr ? 'HAC ÇEŞİTLERİ' : 'TYPES OF HAJJ'),
+                GuideSectionLabel('xt.hjTypesLabel'.tr()),
                 const Gap.sm(),
                 GuideExpandCard(
                     icon: Icons.alt_route_rounded,
-                    title: tr ? 'Hac Çeşitleri' : 'Types of Hajj',
+                    title: 'xt.hjTypesTitle'.tr(),
                     subtitle: 'İfrad · Temettü · Kırân',
                     items: hacCesitleri,
                     lang: lang),
@@ -121,37 +120,37 @@ class _HajjUmrahScreenState extends ConsumerState<HajjUmrahScreen> {
 
               // === Farz & vâcip ===
               GuideSectionLabel(isHac
-                  ? (tr ? 'HACCIN FARZ & VÂCİPLERİ' : 'OBLIGATIONS OF HAJJ')
-                  : (tr ? 'UMRENİN FARZ & VÂCİPLERİ' : 'OBLIGATIONS OF UMRAH')),
+                  ? 'xt.hjObligationsHajjLabel'.tr()
+                  : 'xt.hjObligationsUmrahLabel'.tr()),
               const Gap.sm(),
               GuideExpandCard(
                   icon: Icons.verified_rounded,
                   title: isHac
-                      ? (tr ? 'Haccın Farzları' : 'Pillars of Hajj')
-                      : (tr ? 'Umrenin Farzları' : 'Pillars of Umrah'),
-                  subtitle: tr ? 'Olmazsa olmaz' : 'Essential',
+                      ? 'xt.hjPillarsHajjTitle'.tr()
+                      : 'xt.hjPillarsUmrahTitle'.tr(),
+                  subtitle: 'xt.hjPillarsSubtitle'.tr(),
                   items: isHac ? haccinFarzlari : umreninFarzlari,
                   lang: lang),
               const Gap.sm(),
               GuideExpandCard(
                   icon: Icons.rule_rounded,
                   title: isHac
-                      ? (tr ? 'Haccın Vâcipleri' : 'Required acts of Hajj')
-                      : (tr ? 'Umrenin Vâcipleri' : 'Required acts of Umrah'),
-                  subtitle: tr ? 'Terki ceza (dem) gerektirir' : 'Omission needs expiation',
+                      ? 'xt.hjRequiredHajjTitle'.tr()
+                      : 'xt.hjRequiredUmrahTitle'.tr(),
+                  subtitle: 'xt.hjRequiredSubtitle'.tr(),
                   items: isHac ? haccinVacipleri : umreninVacipleri,
                   lang: lang),
               const Gap.lg(),
 
               // === Telbiye (ortak) ===
-              GuideSectionLabel(tr ? 'TELBİYE' : 'TALBIYAH'),
+              GuideSectionLabel('xt.hjTalbiyahLabel'.tr()),
               const Gap.sm(),
               const _TelbiyeCard(),
               const Gap.lg(),
 
               // === Adım adım menâsik ===
               GuideSectionLabel(
-                  '${tr ? 'ADIM ADIM' : 'STEP BY STEP'} · ${steps.length} ${tr ? 'ADIM' : 'STEPS'}'),
+                  'xt.hjStepByStepLabel'.tr(args: [steps.length.toString()])),
               const Gap.sm(),
               if (steps.isEmpty)
                 const SelayaEmpty(icon: Icons.mosque_rounded)
@@ -163,19 +162,17 @@ class _HajjUmrahScreenState extends ConsumerState<HajjUmrahScreen> {
               const Gap.md(),
 
               // === Menâsik sözlüğü (ortak) ===
-              GuideSectionLabel(tr ? 'MENÂSİK SÖZLÜĞÜ' : 'GLOSSARY'),
+              GuideSectionLabel('xt.hjGlossaryLabel'.tr()),
               const Gap.sm(),
               GuideExpandCard(
                   icon: Icons.menu_book_rounded,
-                  title: tr ? 'Menâsik Terimleri' : 'Rite Terms',
-                  subtitle: tr ? 'İhram, tavaf, sa’y, vakfe…' : 'Ihram, tawaf, sa’i…',
+                  title: 'xt.hjGlossaryTitle'.tr(),
+                  subtitle: 'xt.hjGlossarySubtitle'.tr(),
                   items: menasikTerimleri,
                   lang: lang),
               const Gap.lg(),
 
-              GuideSourceNote(tr
-                  ? 'Kaynak: Diyanet İşleri Başkanlığı İlmihali / Hac rehberi esas alınmıştır. Menâsikin ayrıntısı için rehberinize / yetkili kaynaklara başvurun.'
-                  : 'Source: based on the Diyanet hajj guide. For details of the rites, consult your guide / qualified sources.'),
+              GuideSourceNote('xt.hjSourceNote'.tr()),
             ],
           );
         },
@@ -186,8 +183,7 @@ class _HajjUmrahScreenState extends ConsumerState<HajjUmrahScreen> {
 
 /// Üst başlık — altın gradyanlı tanıtım kartı.
 class _Header extends StatelessWidget {
-  final bool tr;
-  const _Header({required this.tr});
+  const _Header();
   @override
   Widget build(BuildContext context) {
     final c = context.colors;
@@ -201,14 +197,12 @@ class _Header extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(tr ? 'Hac & Umre Rehberi' : 'Hajj & Umrah Guide',
+                Text('xt.hjHeaderTitle'.tr(),
                     style: Theme.of(context).textTheme.titleSmall?.copyWith(
                         color: c.onGold, fontWeight: FontWeight.w800)),
                 const Gap.xxs(),
                 Text(
-                    tr
-                        ? 'Çeşitleri, farz-vâcipleri ve adım adım menâsik'
-                        : 'Types, obligations and step-by-step rites',
+                    'xt.hjHeaderSubtitle'.tr(),
                     style: TextStyle(
                         color: c.onGold.withValues(alpha: 0.78), fontSize: 12)),
               ],
@@ -226,7 +220,6 @@ class _TelbiyeCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final c = context.colors;
-    final tr = context.langCode == 'tr';
     return SelayaCard(
       gradient: LinearGradient(
         colors: [c.gold.withValues(alpha: 0.16), c.surfaceAlt],
@@ -250,9 +243,7 @@ class _TelbiyeCard extends StatelessWidget {
           ),
           const Gap.sm(),
           Text(
-            tr
-                ? '“Buyur Allah’ım buyur! Buyur, senin hiçbir ortağın yoktur, buyur! Şüphesiz hamd sana, nimet senin, mülk de senindir. Senin ortağın yoktur.”'
-                : '“Here I am, O Allah, here I am. You have no partner; here I am. Surely all praise, grace and dominion are Yours; You have no partner.”',
+            'xt.hjTalbiyahMeaning'.tr(),
             style: Theme.of(context)
                 .textTheme
                 .bodySmall

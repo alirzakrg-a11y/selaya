@@ -58,14 +58,13 @@ class _GreetingComposerScreenState
 
   /// Karta hitap eden son metin: "Sevgili {alıcı}," + mesaj + "— {gönderen}".
   String _composed(String lang) {
-    final tr = lang == 'tr';
     final to = _toCtrl.text.trim();
     final from = _fromCtrl.text.trim();
     final body = _controller.text.trim();
     final buf = StringBuffer();
-    if (to.isNotEmpty) buf.write('${tr ? 'Sevgili' : 'Dear'} $to,\n\n');
+    if (to.isNotEmpty) buf.write('${'xt.gcDear'.tr()} $to,\n\n');
     buf.write(body);
-    if (from.isNotEmpty) buf.write('\n\n${tr ? '—' : '—'} $from');
+    if (from.isNotEmpty) buf.write('\n\n— $from');
     return buf.toString();
   }
 
@@ -307,13 +306,13 @@ class _GreetingComposerScreenState
                 child: Row(
                   children: [
                     _toolTab(0, Icons.chat_bubble_outline_rounded,
-                        lang == 'tr' ? 'Mesaj' : 'Message'),
+                        'xt.gcTabMessage'.tr()),
                     _toolTab(1, Icons.image_outlined,
-                        lang == 'tr' ? 'Arka Plan' : 'Background'),
+                        'xt.gcTabBackground'.tr()),
                     _toolTab(2, Icons.text_fields_rounded,
-                        lang == 'tr' ? 'Yazı' : 'Font'),
+                        'xt.gcTabFont'.tr()),
                     _toolTab(3, Icons.favorite_outline_rounded,
-                        lang == 'tr' ? 'Kime' : 'To/From'),
+                        'xt.gcTabToFrom'.tr()),
                   ],
                 ),
               ),
@@ -451,7 +450,7 @@ class _GreetingComposerScreenState
                       ],
                     // 2 — YAZI: font + boyut + satır aralığı
                     2 => [
-                        _Label(lang == 'tr' ? 'Yazı Tipi' : 'Font'),
+                        _Label('xt.gcFontFamily'.tr()),
                         const Gap.sm(),
                         SizedBox(
                           height: 38,
@@ -467,7 +466,7 @@ class _GreetingComposerScreenState
                           ),
                         ),
                         const Gap.md(),
-                        _Label(lang == 'tr' ? 'Yazı Boyutu' : 'Text Size'),
+                        _Label('xt.gcTextSize'.tr()),
                         Row(
                           children: [
                             Icon(Icons.text_fields_rounded,
@@ -491,8 +490,7 @@ class _GreetingComposerScreenState
                                     fontWeight: FontWeight.w600)),
                           ],
                         ),
-                        _Label(
-                            lang == 'tr' ? 'Satır Aralığı' : 'Line Spacing'),
+                        _Label('xt.gcLineSpacing'.tr()),
                         Row(
                           children: [
                             Icon(Icons.format_line_spacing_rounded,
@@ -519,32 +517,28 @@ class _GreetingComposerScreenState
                       ],
                     // 3 — KİME / KİMDEN: kişiye hitap
                     _ => [
-                        _Label(lang == 'tr'
-                            ? 'Kişiselleştir (kime / kimden)'
-                            : 'Personalize (to / from)'),
+                        _Label('xt.gcPersonalize'.tr()),
                         const Gap.sm(),
                         Row(
                           children: [
                             Expanded(
                               child: _nameField(
                                   _toCtrl,
-                                  lang == 'tr' ? 'Kime (örn. Annem)' : 'To',
+                                  'xt.gcToHint'.tr(),
                                   Icons.favorite_outline_rounded),
                             ),
                             const Gap.sm(),
                             Expanded(
                               child: _nameField(
                                   _fromCtrl,
-                                  lang == 'tr' ? 'Kimden (imza)' : 'From',
+                                  'xt.gcFromHint'.tr(),
                                   Icons.draw_outlined),
                             ),
                           ],
                         ),
                         const Gap.sm(),
                         Text(
-                          lang == 'tr'
-                              ? 'İsim girince kart "Sevgili …," diye hitap eder; imza en alta eklenir.'
-                              : 'A name makes the card greet "Dear …,"; the signature is added at the bottom.',
+                          'xt.gcPersonalizeHint'.tr(),
                           style: TextStyle(
                               color: c.textTertiary,
                               fontSize: 12,

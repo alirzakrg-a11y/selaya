@@ -32,10 +32,8 @@ class NamazRehberiScreen extends StatelessWidget {
         children: [
           GuideHero(
             icon: Icons.menu_book_rounded,
-            title: tr ? 'Namaz Nasıl Kılınır?' : 'How to Pray (Step by Step)',
-            subtitle: tr
-                ? 'Adım adım görselli anlatım'
-                : 'Illustrated step-by-step walkthrough',
+            title: 'xt.ngHowToPrayTitle'.tr(),
+            subtitle: 'xt.ngHowToPraySubtitle'.tr(),
             onTap: () => context.push(Routes.namazHowTo),
           ),
           const Gap.md(),
@@ -43,49 +41,49 @@ class NamazRehberiScreen extends StatelessWidget {
             Expanded(
                 child: GuideQuickLink(
                     icon: Icons.water_drop_rounded,
-                    label: tr ? 'Abdest' : 'Wudu',
+                    label: 'xt.ngQuickWudu'.tr(),
                     onTap: () => context.push(Routes.abdestGuide))),
             const Gap.sm(),
             Expanded(
                 child: GuideQuickLink(
                     icon: Icons.explore_rounded,
-                    label: tr ? 'Kıble' : 'Qibla',
+                    label: 'xt.ngQuickQibla'.tr(),
                     onTap: () => context.go(Routes.qibla))),
             const Gap.sm(),
             Expanded(
                 child: GuideQuickLink(
                     icon: Icons.schedule_rounded,
-                    label: tr ? 'Vakitler' : 'Times',
+                    label: 'xt.ngQuickTimes'.tr(),
                     onTap: () => context.go(Routes.times))),
           ]),
           const Gap.lg(),
-          GuideSectionLabel(tr ? 'NAMAZIN TEMELLERİ' : 'FUNDAMENTALS'),
+          GuideSectionLabel('xt.ngFundamentalsLabel'.tr()),
           const Gap.sm(),
           GuideExpandCard(
               icon: Icons.checklist_rounded,
-              title: tr ? 'Namazın Şartları' : 'Conditions of Prayer',
-              subtitle: tr ? 'Namaza başlamadan önce' : 'Before starting',
+              title: 'xt.ngConditionsTitle'.tr(),
+              subtitle: 'xt.ngConditionsSubtitle'.tr(),
               items: namazSartlari,
               lang: lang),
           const Gap.sm(),
           GuideExpandCard(
               icon: Icons.account_tree_rounded,
-              title: tr ? 'Namazın Rükünleri' : 'Pillars of Prayer',
-              subtitle: tr ? 'Namazın içindeki farzlar' : 'Within the prayer',
+              title: 'xt.ngPillarsTitle'.tr(),
+              subtitle: 'xt.ngPillarsSubtitle'.tr(),
               items: namazRukunleri,
               lang: lang),
           const Gap.sm(),
           GuideExpandCard(
               icon: Icons.report_gmailerrorred_rounded,
-              title: tr ? 'Namazı Bozan Şeyler' : 'What Invalidates Prayer',
-              subtitle: tr ? 'Kaçınılması gerekenler' : 'Things to avoid',
+              title: 'xt.ngInvalidatorsTitle'.tr(),
+              subtitle: 'xt.ngInvalidatorsSubtitle'.tr(),
               items: namaziBozanlar,
               lang: lang),
           const Gap.sm(),
           GuideExpandCard(
               icon: Icons.healing_rounded,
-              title: tr ? 'Secde-i Sehv' : 'Sajdah of Forgetfulness',
-              subtitle: tr ? 'Yanılma durumunda' : 'When you err',
+              title: 'xt.ngSajdahSehvTitle'.tr(),
+              subtitle: 'xt.ngSajdahSehvSubtitle'.tr(),
               body: tr ? secdeSehvTr : secdeSehvEn,
               lang: lang),
           const Gap.lg(),
@@ -98,9 +96,7 @@ class NamazRehberiScreen extends StatelessWidget {
             ],
             const Gap.md(),
           ],
-          GuideSourceNote(tr
-              ? 'Kaynak: Diyanet İşleri Başkanlığı İlmihali esas alınmıştır. Ayrıntı için yetkili kaynaklara başvurun.'
-              : 'Source: based on the Diyanet catechism. Consult qualified sources for detail.'),
+          GuideSourceNote('xt.ngSourceNote'.tr()),
         ],
       ),
     );

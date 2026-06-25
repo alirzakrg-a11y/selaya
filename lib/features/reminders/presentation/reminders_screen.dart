@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -114,11 +115,11 @@ class RemindersScreen extends ConsumerWidget {
     final c = context.colors;
     final list = ref.watch(remindersProvider);
     return SelayaScaffold(
-      title: tr ? 'Hatırlatıcılar' : 'Reminders',
+      title: 'xt.rdTitle'.tr(),
       showBack: true,
       actions: [
         IconButton(
-          tooltip: tr ? 'Ekle' : 'Add',
+          tooltip: 'xt.rdAdd'.tr(),
           icon: Icon(Icons.add_rounded, color: c.gold),
           onPressed: () => _showAdd(context, ref, tr),
         ),
@@ -155,9 +156,7 @@ class RemindersScreen extends ConsumerWidget {
             Icon(Icons.alarm_add_rounded, size: 60, color: c.textTertiary),
             const Gap.md(),
             Text(
-              tr
-                  ? 'Henüz hatırlatıcı yok.\nKendi zikir/dua/not hatırlatıcını ekle.'
-                  : 'No reminders yet.\nAdd your own dhikr/dua/note reminder.',
+              'xt.rdEmptyMessage'.tr(),
               textAlign: TextAlign.center,
               style: TextStyle(color: c.textSecondary, height: 1.5),
             ),
@@ -165,7 +164,7 @@ class RemindersScreen extends ConsumerWidget {
             FilledButton.icon(
               onPressed: () => _showAdd(context, ref, tr),
               icon: const Icon(Icons.add_rounded),
-              label: Text(tr ? 'Hatırlatıcı Ekle' : 'Add Reminder'),
+              label: Text('xt.rdAddReminder'.tr()),
               style: FilledButton.styleFrom(
                 backgroundColor: c.gold,
                 foregroundColor: c.onGold,
@@ -239,8 +238,8 @@ class _ReminderTile extends StatelessWidget {
                 const Gap.xxs(),
                 Text(
                   reminder.daily
-                      ? (tr ? 'Her gün' : 'Daily')
-                      : (tr ? 'Bir kez' : 'Once'),
+                      ? 'xt.rdDaily'.tr()
+                      : 'xt.rdOnce'.tr(),
                   style: Theme.of(
                     context,
                   ).textTheme.labelSmall?.copyWith(color: c.textTertiary),
@@ -293,7 +292,7 @@ class _AddReminderSheetState extends State<_AddReminderSheet> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            tr ? 'Yeni Hatırlatıcı' : 'New Reminder',
+            'xt.rdNewReminder'.tr(),
             style: Theme.of(
               context,
             ).textTheme.titleMedium?.copyWith(fontWeight: FontWeight.w800),
@@ -304,9 +303,7 @@ class _AddReminderSheetState extends State<_AddReminderSheet> {
             autofocus: true,
             maxLength: 120,
             decoration: InputDecoration(
-              hintText: tr
-                  ? 'Hatırlatıcı metni (ör. 100 salavat)'
-                  : 'Reminder text',
+              hintText: 'xt.rdHint'.tr(),
               filled: true,
               fillColor: c.surfaceAlt,
               border: OutlineInputBorder(
@@ -379,7 +376,7 @@ class _AddReminderSheetState extends State<_AddReminderSheet> {
                 ),
               ),
               const Spacer(),
-              Text(tr ? 'Her gün' : 'Daily'),
+              Text('xt.rdDaily'.tr()),
               Switch(
                 value: _daily,
                 onChanged: (v) => setState(() => _daily = v),
@@ -403,7 +400,7 @@ class _AddReminderSheetState extends State<_AddReminderSheet> {
                 foregroundColor: c.onGold,
                 padding: const EdgeInsets.symmetric(vertical: 14),
               ),
-              child: Text(tr ? 'Ekle' : 'Add'),
+              child: Text('xt.rdAdd'.tr()),
             ),
           ),
         ],

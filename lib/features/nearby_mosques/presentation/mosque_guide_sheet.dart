@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart' hide TextDirection;
 import 'package:flutter/material.dart';
 
 import '../../../core/localization/localized_text.dart';
@@ -10,7 +11,6 @@ import '../data/mosque_adab.dart';
 void showMosqueGuideSheet(BuildContext context) {
   final c = context.colors;
   final lang = context.langCode;
-  final tr = lang == 'tr';
 
   Widget label(String t) => Padding(
         padding: const EdgeInsets.only(left: 2, bottom: 6),
@@ -79,17 +79,17 @@ void showMosqueGuideSheet(BuildContext context) {
                 const Gap.sm(),
                 Expanded(
                   child: Text(
-                      tr ? 'Cami Adabı & Duaları' : 'Mosque Etiquette & Du‘as',
+                      'xt.mgTitle'.tr(),
                       style: Theme.of(context).textTheme.titleLarge),
                 ),
               ],
             ),
             const Gap.lg(),
-            label(tr ? 'GİRİŞ & ÇIKIŞ DUALARI' : 'ENTRY & EXIT DU‘AS'),
-            duaCard(tr ? 'Mescide girerken' : 'When entering', mosqueEnterDua),
-            duaCard(tr ? 'Mescidden çıkarken' : 'When leaving', mosqueExitDua),
+            label('xt.mgSectionEntryExit'.tr()),
+            duaCard('xt.mgEnteringTitle'.tr(), mosqueEnterDua),
+            duaCard('xt.mgLeavingTitle'.tr(), mosqueExitDua),
             const Gap.lg(),
-            label(tr ? 'CAMİ ADABI' : 'MOSQUE ETIQUETTE'),
+            label('xt.mgSectionEtiquette'.tr()),
             for (var i = 0; i < mosqueAdab.length; i++) ...[
               Padding(
                 padding: const EdgeInsets.only(bottom: AppSpacing.md),
@@ -140,9 +140,7 @@ void showMosqueGuideSheet(BuildContext context) {
                 const Gap.sm(),
                 Expanded(
                   child: Text(
-                      tr
-                          ? 'Kaynak: Diyanet İşleri Başkanlığı çizgisinde hazırlanmıştır.'
-                          : 'Based on the Diyanet (Presidency of Religious Affairs).',
+                      'xt.mgSourceNote'.tr(),
                       style: Theme.of(context)
                           .textTheme
                           .bodySmall

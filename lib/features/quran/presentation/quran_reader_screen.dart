@@ -257,11 +257,7 @@ class _QuranReaderScreenState extends ConsumerState<QuranReaderScreen> {
         if (!mounted) return;
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
-            content: Text(
-              context.langCode == 'tr'
-                  ? 'İnternet yok — bu sure henüz indirilmedi. Bir kez internetliyken dinlersen sonrasında çevrimdışı çalar.'
-                  : "No internet — this surah isn't downloaded yet. Listen once online and it plays offline afterwards.",
-            ),
+            content: Text('xt.qrOfflineNotDownloaded'.tr()),
           ),
         );
         return;
@@ -357,9 +353,7 @@ class _QuranReaderScreenState extends ConsumerState<QuranReaderScreen> {
           reference: '$surahName · ${verses[i].ayah}',
           shareLabel: surahName,
           // Sesi olan ayetlerde "Oku/Play" düğmesi (yoksa _playAyah erken döner).
-          actionLabel: verses[i].audio == null
-              ? ''
-              : (lang == 'tr' ? 'Oku' : 'Play'),
+          actionLabel: verses[i].audio == null ? '' : 'xt.qrPlayVerse'.tr(),
           actionIcon: Icons.play_arrow_rounded,
           onAction: verses[i].audio == null
               ? null
@@ -524,9 +518,9 @@ class _QuranReaderScreenState extends ConsumerState<QuranReaderScreen> {
                 .watch(quranFavoritesProvider)
                 .contains(widget.surahNumber);
             return IconButton(
-              tooltip: lang == 'tr'
-                  ? (fav ? 'Favoriden çıkar' : 'Favorilere ekle')
-                  : (fav ? 'Unfavourite' : 'Favourite'),
+              tooltip: fav
+                  ? 'xt.qrUnfavourite'.tr()
+                  : 'xt.qrFavourite'.tr(),
               icon: Icon(
                 fav ? AppIcons.favoriteFilled : AppIcons.favorite,
                 color: fav ? c.danger : c.gold,
@@ -539,7 +533,7 @@ class _QuranReaderScreenState extends ConsumerState<QuranReaderScreen> {
         ),
         // 📖 Mushaf Modu — bu surenin sayfasından gerçek mushaf görünümü.
         IconButton(
-          tooltip: lang == 'tr' ? 'Mushaf modu' : 'Mushaf view',
+          tooltip: 'xt.qrMushafMode'.tr(),
           icon: Icon(Icons.auto_stories_rounded, color: c.gold),
           onPressed: () => context.push(
             Routes.mushaf,
@@ -550,9 +544,7 @@ class _QuranReaderScreenState extends ConsumerState<QuranReaderScreen> {
           data: (list) => list.isEmpty
               ? const SizedBox.shrink()
               : IconButton(
-                  tooltip: lang == 'tr'
-                      ? 'Ayetleri tek tek aç'
-                      : 'Browse verses',
+                  tooltip: 'xt.qrBrowseVerses'.tr(),
                   icon: Icon(Icons.grid_view_rounded, color: c.gold),
                   onPressed: () =>
                       _openVersesPopup(list, surah?.name(lang) ?? 'Sure', lang),
@@ -629,9 +621,7 @@ class _QuranReaderScreenState extends ConsumerState<QuranReaderScreen> {
                   padding: const EdgeInsets.only(top: AppSpacing.xl),
                   child: SelayaEmpty(
                     icon: AppIcons.book,
-                    message: lang == 'tr'
-                        ? 'Bu surenin tam metni yakında eklenecek.\nSık okunan kısa sureler (Fâtiha, Kadir, Fil–Nâs arası) hazır.'
-                        : 'Full text for this surah is coming soon.\nCommon short surahs (Al-Fatiha, Al-Qadr, Al-Fil–An-Nas) are ready.',
+                    message: 'xt.qrFullTextSoon'.tr(),
                   ),
                 ),
               for (var i = 0; i < list.length; i++)
@@ -699,7 +689,7 @@ class _NextSurahCard extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  lang == 'tr' ? 'Sonraki Sure' : 'Next Surah',
+                  'xt.qrNextSurahLabel'.tr(),
                   style: Theme.of(
                     context,
                   ).textTheme.labelSmall?.copyWith(color: c.textTertiary),
@@ -801,7 +791,7 @@ class _SurahHeader extends StatelessWidget {
                       color: c.textSecondary,
                     ),
                     label: Text(
-                      lang == 'tr' ? 'Baştan' : 'From start',
+                      'xt.qrFromStart'.tr(),
                       style: TextStyle(color: c.textSecondary),
                     ),
                   ),
@@ -885,7 +875,7 @@ class _VerseTile extends StatelessWidget {
                         Icon(Icons.graphic_eq_rounded, size: 12, color: c.gold),
                         const SizedBox(width: 4),
                         Text(
-                          lang == 'tr' ? 'okunuyor' : 'reciting',
+                          'xt.qrReciting'.tr(),
                           style: TextStyle(
                             color: c.gold,
                             fontSize: 10,
@@ -969,7 +959,6 @@ class _QuranReaderNav extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final c = context.colors;
-    final tr = context.langCode == 'tr';
     return Container(
       decoration: BoxDecoration(
         color: c.surface,
@@ -985,7 +974,7 @@ class _QuranReaderNav extends StatelessWidget {
           children: [
             _NavBtn(
               icon: Icons.skip_previous_rounded,
-              label: tr ? 'Önceki sure' : 'Prev surah',
+              label: 'xt.qrPrevSurah'.tr(),
               onTap: onPrev,
             ),
             Material(
@@ -1011,7 +1000,7 @@ class _QuranReaderNav extends StatelessWidget {
             ),
             _NavBtn(
               icon: Icons.skip_next_rounded,
-              label: tr ? 'Sonraki sure' : 'Next surah',
+              label: 'xt.qrNextSurah'.tr(),
               onTap: onNext,
             ),
           ],

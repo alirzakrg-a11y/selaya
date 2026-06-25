@@ -95,7 +95,6 @@ class _AsmaScreenState extends ConsumerState<AsmaScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final tr = context.langCode == 'tr';
     final lang = context.langCode;
     final c = context.colors;
     final asma = ref.watch(asmaProvider);
@@ -103,7 +102,7 @@ class _AsmaScreenState extends ConsumerState<AsmaScreen> {
     final actions = asma.maybeWhen(
       data: (list) => <Widget>[
         IconButton(
-          tooltip: tr ? 'Rastgele' : 'Random',
+          tooltip: 'xt.asRandom'.tr(),
           onPressed: () => _random(context, list, lang),
           icon: Icon(Icons.shuffle_rounded, color: c.gold),
         ),
@@ -130,7 +129,7 @@ class _AsmaScreenState extends ConsumerState<AsmaScreen> {
                   onChanged: (v) => setState(() => _query = v),
                   textInputAction: TextInputAction.search,
                   decoration: InputDecoration(
-                    hintText: tr ? 'İsim, anlam veya sıra ara…' : 'Search name, meaning…',
+                    hintText: 'xt.asSearchHint'.tr(),
                     prefixIcon: Icon(Icons.search_rounded,
                         size: 20, color: c.textTertiary),
                     suffixIcon: _query.isEmpty
@@ -168,9 +167,7 @@ class _AsmaScreenState extends ConsumerState<AsmaScreen> {
                   child: Text(
                     _query.trim().isEmpty
                         ? 'asma.subtitle'.tr()
-                        : (tr
-                            ? '${filtered.length} isim bulundu'
-                            : '${filtered.length} names found'),
+                        : 'xt.asResultsCount'.tr(args: [filtered.length.toString()]),
                     style: Theme.of(context)
                         .textTheme
                         .bodySmall
@@ -188,9 +185,7 @@ class _AsmaScreenState extends ConsumerState<AsmaScreen> {
                                 size: 40, color: c.textTertiary),
                             const Gap.md(),
                             Text(
-                                tr
-                                    ? '“${_query.trim()}” için sonuç yok'
-                                    : 'No results for “${_query.trim()}”',
+                                'xt.asNoResults'.tr(args: [_query.trim()]),
                                 style: TextStyle(color: c.textTertiary)),
                           ],
                         ),

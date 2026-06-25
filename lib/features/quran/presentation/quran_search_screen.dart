@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:easy_localization/easy_localization.dart' hide TextDirection;
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
@@ -172,7 +173,7 @@ class _QuranSearchScreenState extends ConsumerState<QuranSearchScreen> {
     final ready = _query.trim().length >= 2;
 
     return SelayaScaffold(
-      title: tr ? 'Kur\'an\'da Ara' : 'Search the Quran',
+      title: 'xt.qsTitle'.tr(),
       showBack: true,
       toolbarHeight: 50,
       body: Column(
@@ -186,9 +187,7 @@ class _QuranSearchScreenState extends ConsumerState<QuranSearchScreen> {
               textInputAction: TextInputAction.search,
               onChanged: _onChanged,
               decoration: InputDecoration(
-                hintText: tr
-                    ? 'Meal, kelime veya sure adı…'
-                    : 'Meaning, word or surah name…',
+                hintText: 'xt.qsHint'.tr(),
                 prefixIcon:
                     Icon(Icons.search_rounded, color: c.textTertiary, size: 21),
                 suffixIcon: _controller.text.isEmpty
@@ -217,10 +216,10 @@ class _QuranSearchScreenState extends ConsumerState<QuranSearchScreen> {
             child: !ready
                 ? _emptyState(context, tr)
                 : indexAsync.when(
-                    loading: () => _loading(context, tr),
+                    loading: () => _loading(context),
                     error: (e, _) => SelayaError(error: e),
                     data: (index) =>
-                        _results(context, tr, lang, surahs, index),
+                        _results(context, lang, surahs, index),
                   ),
           ),
         ],
@@ -228,7 +227,7 @@ class _QuranSearchScreenState extends ConsumerState<QuranSearchScreen> {
     );
   }
 
-  Widget _loading(BuildContext context, bool tr) {
+  Widget _loading(BuildContext context) {
     final c = context.colors;
     return Center(
       child: Column(
@@ -242,7 +241,7 @@ class _QuranSearchScreenState extends ConsumerState<QuranSearchScreen> {
                 valueColor: AlwaysStoppedAnimation(c.gold)),
           ),
           const Gap.md(),
-          Text(tr ? 'Kur\'an taranıyor…' : 'Searching the Quran…',
+          Text('xt.qsSearching'.tr(),
               style: TextStyle(color: c.textTertiary, fontSize: 13)),
         ],
       ),
@@ -261,9 +260,7 @@ class _QuranSearchScreenState extends ConsumerState<QuranSearchScreen> {
             size: 50, color: c.gold.withValues(alpha: 0.5)),
         const Gap.md(),
         Text(
-          tr
-              ? 'Ayet meali, bir kelime ya da sure adı yazarak tüm Kur\'an\'da ara.'
-              : 'Type a meaning, a word, or a surah name to search the whole Quran.',
+          'xt.qsEmptyIntro'.tr(),
           textAlign: TextAlign.center,
           style: TextStyle(color: c.textSecondary, height: 1.5),
         ),
@@ -271,10 +268,10 @@ class _QuranSearchScreenState extends ConsumerState<QuranSearchScreen> {
         if (recent.isNotEmpty) ...[
           Row(
             children: [
-              Expanded(child: _label(context, tr ? 'Son aramalar' : 'Recent')),
+              Expanded(child: _label(context, 'xt.qsRecent'.tr())),
               GestureDetector(
                 onTap: _clearRecent,
-                child: Text(tr ? 'Temizle' : 'Clear',
+                child: Text('xt.qsClear'.tr(),
                     style: TextStyle(
                         color: c.textTertiary,
                         fontSize: 12,
@@ -289,7 +286,7 @@ class _QuranSearchScreenState extends ConsumerState<QuranSearchScreen> {
           ]),
           const Gap.xl(),
         ],
-        _label(context, tr ? 'Öneriler' : 'Suggestions'),
+        _label(context, 'xt.qsSuggestions'.tr()),
         const Gap.sm(),
         Wrap(spacing: 8, runSpacing: 8, children: [
           for (final s in suggestions) _chip(context, s, () => _setQuery(s)),
@@ -336,7 +333,7 @@ class _QuranSearchScreenState extends ConsumerState<QuranSearchScreen> {
     );
   }
 
-  Widget _results(BuildContext context, bool tr, String lang,
+  Widget _results(BuildContext context, String lang,
       List<Surah> surahs, List<(int, Verse)> index) {
     final c = context.colors;
     final q = _query.trim().toLowerCase();
@@ -355,7 +352,7 @@ class _QuranSearchScreenState extends ConsumerState<QuranSearchScreen> {
           children: [
             Icon(Icons.search_off_rounded, size: 40, color: c.textTertiary),
             const Gap.md(),
-            Text(tr ? '"$qRaw" için sonuç yok' : 'No results for "$qRaw"',
+            Text('xt.qsNoResults'.tr(args: [qRaw]),
                 style: TextStyle(color: c.textTertiary)),
           ],
         ),
@@ -367,7 +364,7 @@ class _QuranSearchScreenState extends ConsumerState<QuranSearchScreen> {
           AppSpacing.base, AppSpacing.xs, AppSpacing.base, AppSpacing.xxxl),
       children: [
         if (surahHits.isNotEmpty) ...[
-          _sectionTitle(context, tr ? 'Sureler' : 'Surahs', surahHits.length),
+          _sectionTitle(context, 'xt.qsSurahs'.tr(), surahHits.length),
           for (final s in surahHits)
             _SurahHit(
               name: s.name(lang),
@@ -379,7 +376,7 @@ class _QuranSearchScreenState extends ConsumerState<QuranSearchScreen> {
           const Gap.md(),
         ],
         if (verseHits.isNotEmpty) ...[
-          _sectionTitle(context, tr ? 'Ayetler' : 'Verses', verseHits.length,
+          _sectionTitle(context, 'xt.qsVerses'.tr(), verseHits.length,
               capped: capped),
           for (final e in verseHits)
             _VerseHit(
@@ -388,7 +385,6 @@ class _QuranSearchScreenState extends ConsumerState<QuranSearchScreen> {
               arabic: e.$2.arabic,
               meaning: e.$2.meaning(lang),
               query: q,
-              tr: tr,
               onTap: () => _open(e.$1, ayah: e.$2.ayah),
             ),
         ],
@@ -510,7 +506,6 @@ class _VerseHit extends StatelessWidget {
   final String arabic;
   final String meaning;
   final String query;
-  final bool tr;
   final VoidCallback onTap;
   const _VerseHit({
     required this.surahName,
@@ -518,7 +513,6 @@ class _VerseHit extends StatelessWidget {
     required this.arabic,
     required this.meaning,
     required this.query,
-    required this.tr,
     required this.onTap,
   });
   @override
@@ -535,7 +529,7 @@ class _VerseHit extends StatelessWidget {
               children: [
                 Expanded(
                   child: Text(
-                    '$surahName · $ayah. ${tr ? 'ayet' : 'ayah'}',
+                    '$surahName · $ayah. ${'xt.qsAyahLabel'.tr()}',
                     style: AppTypography.tabular(
                       Theme.of(context).textTheme.labelMedium!.copyWith(
                             color: c.gold,

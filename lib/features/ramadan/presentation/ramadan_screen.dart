@@ -1,10 +1,10 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hijri/hijri_calendar.dart';
 import 'package:share_plus/share_plus.dart';
 
-import '../../../core/localization/localized_text.dart';
 import '../../../core/router/routes.dart';
 import '../../../core/theme/app_colors.dart';
 import '../../../core/theme/app_spacing.dart';
@@ -43,7 +43,6 @@ class _RamadanScreenState extends ConsumerState<RamadanScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final tr = context.langCode == 'tr';
     final c = context.colors;
     final now = ref.watch(clockProvider).value ?? DateTime.now();
     final timesAsync = ref.watch(dailyTimesProvider);
@@ -63,7 +62,7 @@ class _RamadanScreenState extends ConsumerState<RamadanScreen> {
     }
 
     return SelayaScaffold(
-      title: tr ? 'Ramazan' : 'Ramadan',
+      title: 'xt.rmTitle'.tr(),
       showBack: true,
       body: timesAsync.when(
         loading: () => const SelayaLoading(),
@@ -76,15 +75,15 @@ class _RamadanScreenState extends ConsumerState<RamadanScreen> {
           IconData cdIcon;
           if (now.isBefore(t.imsak)) {
             target = t.imsak;
-            cdLabel = tr ? 'Sahur (imsak) bitişine' : 'To suhoor (imsak)';
+            cdLabel = 'xt.rmCountdownSuhoorEnd'.tr();
             cdIcon = Icons.bedtime_rounded;
           } else if (now.isBefore(t.maghrib)) {
             target = t.maghrib;
-            cdLabel = tr ? 'İftara kalan' : 'To iftar';
+            cdLabel = 'xt.rmCountdownToIftar'.tr();
             cdIcon = Icons.restaurant_rounded;
           } else {
             target = t.imsak.add(const Duration(days: 1));
-            cdLabel = tr ? 'Sahura (imsak) kalan' : 'To suhoor';
+            cdLabel = 'xt.rmCountdownToSuhoor'.tr();
             cdIcon = Icons.bedtime_rounded;
           }
           final remaining = target.difference(now);
@@ -128,8 +127,9 @@ class _RamadanScreenState extends ConsumerState<RamadanScreen> {
                       ),
                       child: Text(
                         isRamadan
-                            ? '🌙 ${tr ? 'Ramazan' : 'Ramadan'} · $ramadanDay. ${tr ? 'gün' : 'day'}'
-                            : '🌙 ${tr ? 'Ramazan\'a' : 'To Ramadan'} $daysToRamadan ${tr ? 'gün' : 'days'}',
+                            ? 'xt.rmBadgeDay'.tr(args: [ramadanDay.toString()])
+                            : 'xt.rmBadgeCountdown'
+                                .tr(args: [daysToRamadan.toString()]),
                         style: TextStyle(
                             color: c.gold,
                             fontWeight: FontWeight.w800,
@@ -166,7 +166,7 @@ class _RamadanScreenState extends ConsumerState<RamadanScreen> {
                               fontSize: 54,
                               fontWeight: FontWeight.w900,
                               height: 1)),
-                      Text(tr ? 'gün kaldı' : 'days left',
+                      Text('xt.rmDaysLeft'.tr(),
                           style: TextStyle(color: c.textSecondary)),
                       if (ram1 != null) ...[
                         const Gap.xs(),
@@ -189,7 +189,7 @@ class _RamadanScreenState extends ConsumerState<RamadanScreen> {
                               mainAxisAlignment:
                                   MainAxisAlignment.spaceBetween,
                               children: [
-                                Text(tr ? 'Oruç ilerlemesi' : 'Fast progress',
+                                Text('xt.rmFastProgress'.tr(),
                                     style: TextStyle(
                                         color: c.textSecondary, fontSize: 12)),
                                 Text('%${(fastProgress * 100).round()}',
@@ -250,11 +250,11 @@ class _RamadanScreenState extends ConsumerState<RamadanScreen> {
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
                         _timeChip(c, Icons.bedtime_rounded,
-                            tr ? 'İmsak' : 'Suhoor', _hm(t.imsak)),
+                            'xt.rmSuhoor'.tr(), _hm(t.imsak)),
                         Container(
                             width: 1, height: 34, color: c.border),
                         _timeChip(c, Icons.restaurant_rounded,
-                            tr ? 'İftar' : 'Iftar', _hm(t.maghrib)),
+                            'xt.rmIftar'.tr(), _hm(t.maghrib)),
                       ],
                     ),
                   ],
@@ -273,19 +273,16 @@ class _RamadanScreenState extends ConsumerState<RamadanScreen> {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text(tr ? 'Mukabele' : 'Mukabala',
+                          Text('xt.rmMukabala'.tr(),
                               style: Theme.of(context)
                                   .textTheme
                                   .titleSmall
                                   ?.copyWith(fontWeight: FontWeight.w700)),
                           Text(
                               isRamadan
-                                  ? (tr
-                                      ? 'Bugünün cüzü: $juz. cüz — oku'
-                                      : "Today's juz: $juz — read")
-                                  : (tr
-                                      ? 'Her gün bir cüz oku (1. cüzden başla)'
-                                      : 'Read one juz a day (start at juz 1)'),
+                                  ? 'xt.rmMukabalaTodayJuz'
+                                      .tr(args: [juz.toString()])
+                                  : 'xt.rmMukabalaHint'.tr(),
                               style: Theme.of(context)
                                   .textTheme
                                   .bodySmall
@@ -312,7 +309,7 @@ class _RamadanScreenState extends ConsumerState<RamadanScreen> {
                       Icon(Icons.volunteer_activism_rounded,
                           size: 18, color: c.gold),
                       const SizedBox(width: 6),
-                      Text(tr ? 'İFTAR DUASI' : 'IFTAR DUA',
+                      Text('xt.rmIftarDuaHeading'.tr(),
                           style: Theme.of(context).textTheme.labelMedium?.copyWith(
                               color: c.gold,
                               letterSpacing: 0.8,
@@ -323,7 +320,7 @@ class _RamadanScreenState extends ConsumerState<RamadanScreen> {
                         onTap: () => SharePlus.instance.share(ShareParams(
                           text: 'اللَّهُمَّ لَكَ صُمْتُ وَعَلَىٰ رِزْقِكَ أَفْطَرْتُ\n\n'
                               'Allâhümme leke sumtü ve alâ rızkıke eftartü\n\n'
-                              '${tr ? '"Allah\'ım! Senin (rızan) için oruç tuttum ve senin rızkınla orucumu açtım."' : '"O Allah! For You I fasted and with Your provision I broke my fast."'}\n\nSELAYA',
+                              '${'xt.rmIftarDuaMeaning'.tr()}\n\nSELAYA',
                         )),
                         child: Padding(
                           padding: const EdgeInsets.all(4),
@@ -351,16 +348,12 @@ class _RamadanScreenState extends ConsumerState<RamadanScreen> {
                     ),
                     const Gap.xs(),
                     Text(
-                      tr
-                          ? '"Allah\'ım! Senin (rızan) için oruç tuttum ve senin rızkınla orucumu açtım."'
-                          : '"O Allah! For You I fasted and with Your provision I broke my fast."',
+                      'xt.rmIftarDuaMeaning'.tr(),
                       style: TextStyle(color: c.textPrimary, height: 1.45),
                     ),
                     const Gap.sm(),
                     Text(
-                      tr
-                          ? 'Sahur niyeti: "Niyet ettim Allah rızası için yarınki Ramazan orucunu tutmaya."'
-                          : 'Suhoor intention: "I intend to fast tomorrow\'s Ramadan fast for the sake of Allah."',
+                      'xt.rmSuhoorIntention'.tr(),
                       style: TextStyle(
                           color: c.textTertiary, fontSize: 12.5, height: 1.4),
                     ),
@@ -380,7 +373,7 @@ class _RamadanScreenState extends ConsumerState<RamadanScreen> {
                       child: Row(children: [
                         Icon(Icons.nightlight_round, size: 18, color: c.gold),
                         const SizedBox(width: 6),
-                        Text(tr ? 'RAMAZAN\'DA' : 'IN RAMADAN',
+                        Text('xt.rmInRamadanHeading'.tr(),
                             style: Theme.of(context).textTheme.labelMedium?.copyWith(
                                 color: c.gold,
                                 letterSpacing: 0.8,
@@ -399,16 +392,14 @@ class _RamadanScreenState extends ConsumerState<RamadanScreen> {
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                Text(tr ? 'Fitre & Zekât' : 'Fitra & Zakat',
+                                Text('xt.rmFitraZakat'.tr(),
                                     style: Theme.of(context)
                                         .textTheme
                                         .titleSmall
                                         ?.copyWith(
                                             fontWeight: FontWeight.w700)),
                                 Text(
-                                    tr
-                                        ? 'Bayramdan önce hesapla ve ver'
-                                        : 'Calculate & give before Eid',
+                                    'xt.rmFitraZakatSub'.tr(),
                                     style: Theme.of(context)
                                         .textTheme
                                         .bodySmall
@@ -425,18 +416,14 @@ class _RamadanScreenState extends ConsumerState<RamadanScreen> {
                     _infoRow(
                         c,
                         Icons.mosque_rounded,
-                        tr ? 'Teravih namazı' : 'Taraweeh',
-                        tr
-                            ? 'Yatsıdan sonra kılınan müekked sünnet (20 rekât).'
-                            : 'A confirmed sunnah prayer after isha (20 rakat).'),
+                        'xt.rmTaraweehTitle'.tr(),
+                        'xt.rmTaraweehDesc'.tr()),
                     Divider(height: 1, color: c.border),
                     _infoRow(
                         c,
                         Icons.star_rounded,
-                        tr ? 'Kadir Gecesi' : 'Laylat al-Qadr',
-                        tr
-                            ? 'Son on gecede aranır; bin aydan hayırlıdır.'
-                            : 'Sought in the last ten nights; better than a thousand months.'),
+                        'xt.rmQadrTitle'.tr(),
+                        'xt.rmQadrDesc'.tr()),
                   ],
                 ),
               ),
@@ -509,7 +496,6 @@ class _FastToggle extends ConsumerStatefulWidget {
 class _FastToggleState extends ConsumerState<_FastToggle> {
   @override
   Widget build(BuildContext context) {
-    final tr = context.langCode == 'tr';
     final c = context.colors;
     final store = ref.watch(fastingStoreProvider);
     final wm = ref.watch(womensModeProvider);
@@ -520,14 +506,13 @@ class _FastToggleState extends ConsumerState<_FastToggle> {
         store.countInMonth(today.year, today.month, FastStatus.fasted);
     final parts = <String>[];
     if (streak > 0) {
-      parts.add(tr ? '🔥 $streak günlük seri' : '🔥 $streak-day streak');
+      parts.add('xt.rmStreak'.tr(args: [streak.toString()]));
     }
     if (monthCount > 0) {
-      parts.add(tr ? 'bu ay $monthCount gün' : '$monthCount this month');
+      parts.add('xt.rmMonthCount'.tr(args: [monthCount.toString()]));
     }
-    final subtitle = parts.isEmpty
-        ? (tr ? 'İşaretlemek için dokun' : 'Tap to mark')
-        : parts.join(' · ');
+    final subtitle =
+        parts.isEmpty ? 'xt.rmTapToMark'.tr() : parts.join(' · ');
     return SelayaCard(
       onTap: () async {
         await store.setStatus(
@@ -558,8 +543,8 @@ class _FastToggleState extends ConsumerState<_FastToggle> {
               children: [
                 Text(
                     fasted
-                        ? (tr ? 'Bugün oruçlusun ✓' : "You're fasting today ✓")
-                        : (tr ? 'Bugün oruç tuttun mu?' : 'Did you fast today?'),
+                        ? 'xt.rmFastingToday'.tr()
+                        : 'xt.rmDidYouFast'.tr(),
                     style: Theme.of(context)
                         .textTheme
                         .titleSmall
