@@ -72,11 +72,20 @@ class LikedKeys extends Notifier<Set<String>> {
         .setStringList(PrefKeys.likedKeys, next.toList());
     try {
       final action = wasLiked ? 'unlike' : 'like';
+      // Giriş yapan kullanıcının beğenisini sunucu KİME ait kaydetsin (panelde
+      // "kim beğendi" + kullanıcının beğendikleri). Misafirse token gönderilmez.
+      final token =
+          ref.read(sharedPreferencesProvider).getString(PrefKeys.authToken);
+      final headers = <String, String>{};
+      if (token != null && token.isNotEmpty) {
+        headers['Authorization'] = 'Bearer $token';
+      }
       await http
           .post(
             Uri.parse(
               '${SelayaCdn.apiBase}/v1/$action/${Uri.encodeComponent(key)}',
             ),
+            headers: headers,
           )
           .timeout(const Duration(seconds: 8));
     } catch (_) {}
