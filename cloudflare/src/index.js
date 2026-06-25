@@ -395,6 +395,13 @@ export default {
         const token = request.headers.get('X-Admin-Token') || '';
         // Sabit-zamanlı karşılaştırma (timing side-channel kapalı).
         if (!env.ADMIN_TOKEN || !timingSafeEqual(token, env.ADMIN_TOKEN)) {
+          // Brute-force koruması: başarısız token denemelerini IP başına kısıtla
+          // (geçerli token bu dala HİÇ girmez → meşru panel etkilenmez).
+          if (env.AUTH_RL) {
+            const aip = request.headers.get('CF-Connecting-IP') || 'anon';
+            const { success } = await env.AUTH_RL.limit({ key: 'adm:' + aip });
+            if (!success) return new Response('rate_limited', { status: 429, headers: CORS });
+          }
           return json({ ok: false, error: 'unauthorized' }, { status: 401 });
         }
 
@@ -1170,7 +1177,7 @@ const PANEL_HTML = `<!doctype html>
     <div class="brand">◍ SELAYA</div>
     <p>Yönetim Paneli — yönetici anahtarını gir. Anahtar yalnızca bu tarayıcıda saklanır, sunucuya her istekte güvenli başlıkla gönderilir.</p>
     <input id="token" type="password" placeholder="Yönetici anahtarı" onkeydown="if(event.key==='Enter')connect()">
-    <button onclick="connect()">Bağlan</button>
+    <button id="connectBtn" onclick="connect()">Bağlan</button>
   </div>
 </div>
 
@@ -2079,6 +2086,7 @@ const PANEL_HTML = `<!doctype html>
   }
 
   // --- Bilgi Yarışması haftalık sıralama (admin) ---
+  var QUIZ_ROWS=[];
   function loadQuizBoard(week){
     el('quizBody').innerHTML='<p class="muted">Yükleniyor…</p>';
     api('quiz-leaderboard'+(week?('?week='+encodeURIComponent(week)):'')).then(function(res){
@@ -2086,9 +2094,10 @@ const PANEL_HTML = `<!doctype html>
       sel.innerHTML = weeks.length
         ? weeks.map(function(w){ return '<option value="'+esc(w.week)+'"'+(w.week===j.week?' selected':'')+'>'+esc(w.week)+' ('+w.n+' kişi)</option>'; }).join('')
         : '<option>—</option>';
-      var rows=j.rows||[];
+      var rows=j.rows||[]; QUIZ_ROWS=rows;
       if(!rows.length){ el('quizBody').innerHTML='<p class="muted">Bu hafta için kayıt yok.</p>'; return; }
-      var h='<table style="width:100%;border-collapse:collapse"><thead><tr>'+
+      var h='<p class="muted" style="font-size:12px;margin:0 0 8px">Satıra tıkla → kullanıcının tüm bilgileri.</p>'+
+        '<table style="width:100%;border-collapse:collapse"><thead><tr>'+
         '<th style="text-align:left;padding:8px 6px;color:var(--mut);font-size:12px">#</th>'+
         '<th style="text-align:left;padding:8px 6px;color:var(--mut);font-size:12px">Rumuz</th>'+
         '<th style="text-align:left;padding:8px 6px;color:var(--mut);font-size:12px">E-posta</th>'+
@@ -2096,7 +2105,7 @@ const PANEL_HTML = `<!doctype html>
         '<th style="text-align:right;padding:8px 6px;color:var(--mut);font-size:12px">Skor</th></tr></thead><tbody>';
       rows.forEach(function(r,i){
         var medal = i===0?'🥇':i===1?'🥈':i===2?'🥉':(i+1)+'.';
-        h+='<tr style="border-top:1px solid var(--line)">'+
+        h+='<tr style="border-top:1px solid var(--line);cursor:pointer" data-i="'+i+'" onclick="quizDetail(this.dataset.i)">'+
           '<td style="padding:8px 6px;font-weight:700">'+medal+'</td>'+
           '<td style="padding:8px 6px;font-weight:600">@'+esc(r.rumuz||'—')+'</td>'+
           '<td style="padding:8px 6px;color:var(--mut);font-size:12px">'+esc(r.email||'—')+'</td>'+
@@ -2106,44 +2115,95 @@ const PANEL_HTML = `<!doctype html>
       el('quizBody').innerHTML=h+'</tbody></table>';
     }).catch(function(e){ el('quizBody').innerHTML='<p class="muted">Hata: '+e+'</p>'; });
   }
+  // Sıralamadaki kullanıcının tüm bilgileri (popup).
+  function quizDetail(i){
+    var r=QUIZ_ROWS[+i]; if(!r) return;
+    var acc=(r.total>0)?Math.round((r.correct||0)/r.total*100):0;
+    var rank=(+i)+1;
+    var line=function(k,v){ return '<div style="display:flex;justify-content:space-between;gap:12px;padding:7px 0;border-top:1px solid var(--line)"><span class="muted">'+esc(k)+'</span><b>'+esc(String(v))+'</b></div>'; };
+    var ov=_modal(
+      '<h3 style="margin:0 0 8px">@'+esc(r.rumuz||'—')+'</h3>'+
+      line('Sıra', rank+'.')+
+      line('E-posta', r.email||'—')+
+      line('Skor', r.score||0)+
+      line('Doğru / Toplam', (r.correct||0)+' / '+(r.total||0))+
+      line('Doğruluk', '%'+acc)+
+      (r.week?line('Hafta', r.week):'')+
+      (r.updated_at?line('Son oynama', new Date(r.updated_at).toLocaleString('tr-TR')):'')+
+      '<div class="row" style="margin-top:16px"><button class="ghost" data-x>Kapat</button></div>'
+    );
+    ov.querySelector('[data-x]').onclick=function(){ ov.remove(); };
+  }
 
   // --- İçerik şikayetleri (Bildir) ---
+  // Şikayet sebebi kodları → okunaklı Türkçe (app sebep KODU gönderir).
+  var REASON_TR = { inappropriate:'Uygunsuz içerik', broken:'Bozuk / çalışmıyor', wrong:'Yanlış bilgi', copyright:'Telif hakkı', other:'Diğer' };
+  function reasonLabel(s){
+    var parts=String(s||'').split(/\\s*•\\s*/).filter(Boolean).map(function(x){ return REASON_TR[x]||x; });
+    return parts.length?parts.join(' • '):'—';
+  }
+  var REPORTS=[], REP_CDN='';
   function loadReports(){
     el('reportsBody').innerHTML='<p class="muted">Yükleniyor…</p>';
     api('content-reports').then(function(res){
       var rows=(res.j&&res.j.rows)||[];
-      var cdn=(res.j&&res.j.cdn)||CDN||'';
+      REP_CDN=(res.j&&res.j.cdn)||CDN||''; REPORTS=rows;
       var badge=el('reportsBadge');
       if(badge){ if(rows.length){ badge.textContent=rows.length; badge.style.display='inline-block'; } else { badge.style.display='none'; } }
       if(!rows.length){ el('reportsBody').innerHTML='<p class="muted">Şikayet yok 🎉</p>'; return; }
-      var h='<table style="width:100%;border-collapse:collapse"><thead><tr>'+
+      var h='<p class="muted" style="font-size:12px;margin:0 0 8px">Satıra tıkla → içeriği tam detayla gör.</p>'+
+        '<table style="width:100%;border-collapse:collapse"><thead><tr>'+
         '<th style="text-align:left;padding:8px 6px;color:var(--mut);font-size:12px">İçerik</th>'+
         '<th style="text-align:left;padding:8px 6px;color:var(--mut);font-size:12px">Tür</th>'+
         '<th style="text-align:right;padding:8px 6px;color:var(--mut);font-size:12px">Şikayet</th>'+
         '<th style="text-align:left;padding:8px 6px;color:var(--mut);font-size:12px">Sebepler</th>'+
         '<th></th></tr></thead><tbody>';
-      rows.forEach(function(r){
+      rows.forEach(function(r,i){
         var n=r.n||0; var col=n>=5?'#e0556b':(n>=3?'#e0a441':'var(--gold)');
-        // İçerik önizleme: resimse thumbnail (tıkla→aç), videoysa link.
         var thumb='';
         if(r.imgkey){
-          var u=cdn+'/'+r.imgkey;
+          var u=REP_CDN+'/'+r.imgkey;
           thumb=(r.ckind==='video')
-            ? '<a href="'+esc(u)+'" target="_blank" style="font-size:12px;color:var(--gold);white-space:nowrap">🎬 Aç</a>'
-            : '<a href="'+esc(u)+'" target="_blank"><img src="'+esc(u)+'" style="width:46px;height:46px;object-fit:cover;border-radius:8px;display:block"></a>';
+            ? '<span style="font-size:20px">🎬</span>'
+            : '<img src="'+esc(u)+'" style="width:46px;height:46px;object-fit:cover;border-radius:8px;display:block">';
         }
-        h+='<tr style="border-top:1px solid var(--line)">'+
+        h+='<tr style="border-top:1px solid var(--line);cursor:pointer" data-i="'+i+'" onclick="reportDetail(this.dataset.i)">'+
           '<td style="padding:8px 6px"><div style="display:flex;gap:8px;align-items:center">'+thumb+
             '<div><div style="font-weight:600">'+esc(r.ctitle||r.ckey)+'</div>'+
             '<div style="color:var(--mut);font-size:11px">'+esc(r.ckey)+(r.ccoll?' · '+esc(r.ccoll):'')+'</div></div></div></td>'+
           '<td style="padding:8px 6px;color:var(--mut);font-size:12px">'+esc(r.ctype||'—')+'</td>'+
           '<td style="padding:8px 6px;text-align:right;font-weight:800;color:'+col+'">'+n+'</td>'+
-          '<td style="padding:8px 6px;color:var(--mut);font-size:12px;max-width:300px">'+esc(String(r.reasons||'—').slice(0,200))+
-            (r.notes?'<div style="margin-top:4px;font-style:italic;color:var(--txt)">💬 '+esc(String(r.notes).slice(0,300))+'</div>':'')+'</td>'+
-          '<td style="padding:8px 6px;text-align:right"><button class="ghost" data-k="'+esc(r.ckey)+'" onclick="clearReport(this.dataset.k)">Temizle</button></td></tr>';
+          '<td style="padding:8px 6px;color:var(--mut);font-size:12px;max-width:300px">'+esc(reasonLabel(r.reasons))+
+            (r.notes?'<div style="margin-top:4px;font-style:italic;color:var(--txt)">💬 '+esc(String(r.notes).slice(0,160))+'</div>':'')+'</td>'+
+          '<td style="padding:8px 6px;text-align:right"><button class="ghost" data-k="'+esc(r.ckey)+'" onclick="event.stopPropagation();clearReport(this.dataset.k)">Temizle</button></td></tr>';
       });
       el('reportsBody').innerHTML=h+'</tbody></table>';
     }).catch(function(e){ el('reportsBody').innerHTML='<p class="muted">Hata: '+esc(String(e))+'</p>'; });
+  }
+  // Şikayet edilen içeriği tam detayla popup'ta göster (sosyal medya gibi).
+  function reportDetail(i){
+    var r=REPORTS[i]; if(!r) return;
+    var media='';
+    if(r.imgkey){
+      var u=REP_CDN+'/'+r.imgkey;
+      media=(r.ckind==='video')
+        ? '<video src="'+esc(u)+'" controls style="width:100%;max-height:300px;border-radius:10px;background:#000"></video>'
+        : '<img src="'+esc(u)+'" style="width:100%;max-height:340px;object-fit:contain;border-radius:10px;background:rgba(0,0,0,.05)">';
+    }
+    var notes=r.notes?'<div style="margin-top:12px"><b>Kullanıcı mesajları</b><div style="white-space:pre-line;margin-top:4px;color:var(--txt)">💬 '+esc(String(r.notes))+'</div></div>':'';
+    var link=r.imgkey?'<a href="'+esc(REP_CDN+'/'+r.imgkey)+'" target="_blank" class="ghost" style="text-decoration:none">İçeriği aç ↗</a>':'';
+    var ov=_modal(
+      '<h3 style="margin:0 0 4px">'+esc(r.ctitle||r.ckey)+'</h3>'+
+      '<div class="hint" style="font-size:12px;margin-bottom:12px">'+esc(r.ckey)+(r.ccoll?' · '+esc(r.ccoll):'')+(r.ctype?' · '+esc(r.ctype):'')+'</div>'+
+      media+
+      '<div style="margin-top:12px"><b>Şikayet sayısı:</b> '+(r.n||0)+'</div>'+
+      '<div style="margin-top:6px"><b>Sebepler:</b> '+esc(reasonLabel(r.reasons))+'</div>'+
+      notes+
+      '<div class="row" style="margin-top:18px;flex-wrap:wrap;gap:8px">'+link+
+      '<button class="ghost" data-x>Kapat</button><button class="danger" data-clr>Şikayetleri Temizle</button></div>'
+    );
+    ov.querySelector('[data-x]').onclick=function(){ ov.remove(); };
+    ov.querySelector('[data-clr]').onclick=function(){ ov.remove(); clearReport(r.ckey); };
   }
   function clearReport(key){
     uiConfirm('Bu içeriğin şikayet kayıtları silinsin mi?\\n(İçeriğin kendisi silinmez — onu ilgili kategoriden kaldır.)', function(){
@@ -2158,6 +2218,10 @@ const PANEL_HTML = `<!doctype html>
   // Aktivite türü → hangi panel sekmesine gidilsin (tıklayınca).
   var ACT_TAB = { member:'users', dua:'dua', report:'reports', hatim:'hatim', hatimDone:'hatim' };
   var actData = [];
+  // Bildirim silme (dismiss): silinenler localStorage'da; akış onları gizler.
+  function actId(a){ return (a.type||'')+'|'+(a.at||0); }
+  function actDismissedSet(){ try{ return JSON.parse(localStorage.getItem('selaya_act_dismissed')||'[]'); }catch(e){ return []; } }
+  function actSaveDismissed(d){ if(d.length>300) d=d.slice(-300); localStorage.setItem('selaya_act_dismissed', JSON.stringify(d)); }
   function actRel(ms){
     var d = Date.now() - (ms||0); if (d < 0) d = 0;
     var m = Math.floor(d/60000);
@@ -2170,7 +2234,8 @@ const PANEL_HTML = `<!doctype html>
     if (!TOKEN) return;
     api('activity').then(function(r){
       if (!r.j || !r.j.ok) return;
-      actData = r.j.activity || [];
+      var dis = actDismissedSet();
+      actData = (r.j.activity || []).filter(function(a){ return dis.indexOf(actId(a)) < 0; });
       var seen = +(localStorage.getItem('selaya_act_seen') || 0);
       var n = 0; for (var i=0;i<actData.length;i++){ if ((actData[i].at||0) > seen) n++; }
       var dot = el('actDot');
@@ -2181,17 +2246,31 @@ const PANEL_HTML = `<!doctype html>
   function renderActivity(){
     var h = '<h3>🔔 Son hareketler</h3>';
     if (!actData.length) h += '<p class="muted" style="padding:10px 12px">Henüz hareket yok.</p>';
-    actData.forEach(function(a){
-      var go = ACT_TAB[a.type] ? ' data-t="'+esc(a.type)+'" onclick="actGo(this.dataset.t)" style="cursor:pointer"' : '';
-      h += '<div class="actRow"'+go+'><div class="ic">' + (ACT_ICON[a.type]||'•') + '</div>'
+    actData.forEach(function(a, idx){
+      var go = ACT_TAB[a.type] ? ' data-t="'+esc(a.type)+'" onclick="actGo(this.dataset.t)"' : '';
+      h += '<div class="actRow" style="cursor:'+(ACT_TAB[a.type]?'pointer':'default')+'"'+go+'><div class="ic">' + (ACT_ICON[a.type]||'•') + '</div>'
         + '<div class="tx"><div class="tt">' + esc(a.title||'')
         + (a.tag ? ' <span class="muted" style="font-size:11px">('+esc(a.tag)+')</span>' : '')
         + '</div>' + (a.sub ? '<div class="sb">' + esc(a.sub) + '</div>' : '') + '</div>'
-        + '<div class="tm">' + actRel(a.at) + '</div></div>';
+        + '<div class="tm">' + actRel(a.at) + '</div>'
+        + '<button data-i="'+idx+'" onclick="event.stopPropagation();actDismiss(this.dataset.i)" title="Sil" style="background:none;border:0;color:var(--mut);cursor:pointer;font-size:14px;padding:0 2px;flex:0 0 auto;align-self:center">✕</button></div>';
     });
-    // En altta: tümünü okundu işaretle (rozeti sıfırla).
-    h += '<div style="padding:8px 10px 4px"><button class="ghost" style="width:100%" onclick="actClear()">✓ Tümünü okundu işaretle</button></div>';
+    // En altta: okundu işaretle (rozeti sıfırla) + tümünü sil.
+    h += '<div class="row" style="padding:8px 10px 4px;gap:8px"><button class="ghost" style="flex:1" onclick="actClear()">✓ Okundu</button><button class="ghost" style="flex:1" onclick="actDismissAll()">🗑 Tümünü sil</button></div>';
     el('actPanel').innerHTML = h;
+  }
+  // Tek bildirimi sil (gizle) — localStorage'a işaretlenir, geri gelmez.
+  function actDismiss(i){
+    i = +i; var a = actData[i]; if (!a) return;
+    var dis = actDismissedSet(); dis.push(actId(a)); actSaveDismissed(dis);
+    actData.splice(i, 1); renderActivity();
+  }
+  // Görünen tüm bildirimleri sil.
+  function actDismissAll(){
+    var dis = actDismissedSet();
+    actData.forEach(function(a){ dis.push(actId(a)); });
+    actSaveDismissed(dis); actData = []; renderActivity();
+    var dot = el('actDot'); if (dot) dot.style.display = 'none';
   }
   // Aktivite satırına tıkla → ilgili sekmeye git + zili kapat.
   function actGo(t){
@@ -2277,8 +2356,11 @@ const PANEL_HTML = `<!doctype html>
 
   function connect(){
     TOKEN = val('token').trim();
+    if(!TOKEN){ toast('Yönetici anahtarını gir'); return; }
     localStorage.setItem('selaya_admin_token', TOKEN);
-    loadItems();
+    var b=el('connectBtn');
+    if(b){ b.disabled=true; b.dataset.t=b.textContent; b.textContent='Bağlanıyor…'; }
+    loadItems().then(function(){ if(b){ b.disabled=false; b.textContent=b.dataset.t||'Bağlan'; } });
     loadActivity();
   }
 
@@ -2338,7 +2420,7 @@ const PANEL_HTML = `<!doctype html>
   }
 
   function loadItems(){
-    api('items').then(function(res){
+    return api('items').then(function(res){
       if (res.status === 401){ toast('Anahtar hatalı'); return; }
       el('authCard').classList.add('hide');
       el('app').classList.remove('hide');
