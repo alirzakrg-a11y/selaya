@@ -11,7 +11,7 @@ import '../theme/app_colors.dart';
 import '../theme/app_spacing.dart';
 
 /// Yönetici/iletişim e-postası (telif talepleri + doğrudan iletişim buraya gelir).
-const String _adminEmail = 'alirza.krg@gmail.com';
+const String _adminEmail = 'contact@selaya.app';
 
 /// İçerik şikayeti (Bildir) — duvar kâğıdı/video/ses/ayet vb. için ortak akış.
 /// Anonim: sunucu IP-dedup + rate-limit uygular. [key] = "type:id" (beğeni
