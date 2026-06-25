@@ -86,7 +86,8 @@
     "exportData": "Download My Data",
     "exportPreparing": "Preparing your data…",
     "exportFailed": "Could not export your data",
-    "err_rumuz_taken": "This nickname is already taken, please choose another."
+    "err_rumuz_taken": "This nickname is already taken, please choose another.",
+    "err_too_many_resets": "You’ve reached the daily code limit (max 3). Please try again tomorrow."
   },
   "common": {
     "appName": "SELAYA",

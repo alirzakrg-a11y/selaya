@@ -307,7 +307,8 @@
     "exportData": "Unduh Data Saya",
     "exportPreparing": "Menyiapkan data Anda…",
     "exportFailed": "Tidak dapat mengekspor data Anda",
-    "err_rumuz_taken": "Nama panggilan ini sudah dipakai, mohon pilih yang lain."
+    "err_rumuz_taken": "Nama panggilan ini sudah dipakai, mohon pilih yang lain.",
+    "err_too_many_resets": "Anda mencapai batas kode harian (maks. 3). Silakan coba lagi besok."
   },
   "quiz": {
     "title": "Kuis Pengetahuan",

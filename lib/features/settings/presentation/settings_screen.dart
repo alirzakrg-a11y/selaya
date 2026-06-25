@@ -714,6 +714,9 @@ class _LangToggle extends StatelessWidget {
     showModalBottomSheet(
       context: context,
       backgroundColor: c.surface,
+      // 10 dil → varsayılan yüksekliği aşabilir; isScrollControlled + kaydırılabilir
+      // liste, son dilin (Rusça) alt gezinme çubuğunun altında kalmasını önler.
+      isScrollControlled: true,
       shape: const RoundedRectangleBorder(
           borderRadius: BorderRadius.vertical(top: Radius.circular(20))),
       builder: (sheetCtx) => SafeArea(
@@ -727,23 +730,33 @@ class _LangToggle extends StatelessWidget {
                     .titleMedium
                     ?.copyWith(fontWeight: FontWeight.w700)),
             const Gap.sm(),
-            for (final l in _langs)
-              ListTile(
-                leading: Text(l.$2, style: const TextStyle(fontSize: 24)),
-                title: Text(l.$3,
-                    style: TextStyle(
-                        fontWeight: l.$1 == current
-                            ? FontWeight.w700
-                            : FontWeight.w500,
-                        color: l.$1 == current ? c.gold : c.textPrimary)),
-                trailing: l.$1 == current
-                    ? Icon(Icons.check_rounded, color: c.gold)
-                    : null,
-                onTap: () {
-                  context.setLocale(Locale(l.$1));
-                  Navigator.pop(sheetCtx);
-                },
+            Flexible(
+              child: ListView(
+                shrinkWrap: true,
+                padding: EdgeInsets.zero,
+                children: [
+                  for (final l in _langs)
+                    ListTile(
+                      leading:
+                          Text(l.$2, style: const TextStyle(fontSize: 24)),
+                      title: Text(l.$3,
+                          style: TextStyle(
+                              fontWeight: l.$1 == current
+                                  ? FontWeight.w700
+                                  : FontWeight.w500,
+                              color:
+                                  l.$1 == current ? c.gold : c.textPrimary)),
+                      trailing: l.$1 == current
+                          ? Icon(Icons.check_rounded, color: c.gold)
+                          : null,
+                      onTap: () {
+                        context.setLocale(Locale(l.$1));
+                        Navigator.pop(sheetCtx);
+                      },
+                    ),
+                ],
               ),
+            ),
             const Gap.md(),
           ],
         ),

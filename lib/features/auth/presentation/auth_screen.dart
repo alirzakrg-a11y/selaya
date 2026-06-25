@@ -441,7 +441,7 @@ class _ForgotPasswordSheetState extends State<_ForgotPasswordSheet> {
     const known = {
       'email_not_configured', 'invalid_email', 'invalid_code',
       'weak_password', 'network', 'bad_response',
-      'email_not_found', 'email_send_failed', 'too_soon',
+      'email_not_found', 'email_send_failed', 'too_soon', 'too_many_resets',
     };
     return (known.contains(code) ? 'auth.err_$code' : 'auth.err_unknown').tr();
   }

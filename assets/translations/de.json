@@ -307,7 +307,8 @@
     "exportData": "Meine Daten herunterladen",
     "exportPreparing": "Deine Daten werden vorbereitet…",
     "exportFailed": "Deine Daten konnten nicht exportiert werden",
-    "err_rumuz_taken": "Dieser Nickname ist bereits vergeben, bitte wähle einen anderen."
+    "err_rumuz_taken": "Dieser Nickname ist bereits vergeben, bitte wähle einen anderen.",
+    "err_too_many_resets": "Tageslimit für Codes erreicht (max. 3). Bitte versuche es morgen erneut."
   },
   "quiz": {
     "title": "Wissensquiz",

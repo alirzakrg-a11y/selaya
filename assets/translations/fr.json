@@ -307,7 +307,8 @@
     "exportData": "Télécharger mes données",
     "exportPreparing": "Préparation de vos données…",
     "exportFailed": "Impossible d'exporter vos données",
-    "err_rumuz_taken": "Ce pseudo est déjà pris, veuillez en choisir un autre."
+    "err_rumuz_taken": "Ce pseudo est déjà pris, veuillez en choisir un autre.",
+    "err_too_many_resets": "Limite quotidienne de codes atteinte (max. 3). Réessayez demain."
   },
   "quiz": {
     "title": "Quiz de connaissances",

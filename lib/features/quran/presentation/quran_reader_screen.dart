@@ -16,6 +16,7 @@ import '../../../core/theme/app_icons.dart';
 import '../../../core/theme/app_spacing.dart';
 import '../../../core/theme/app_typography.dart';
 import '../../../core/widgets/content_detail_dialog.dart';
+import '../../../core/widgets/selaya_bottom_nav.dart';
 import '../../../core/widgets/selaya_card.dart';
 import '../../../core/widgets/selaya_scaffold.dart';
 import '../../../core/widgets/states.dart';
@@ -27,6 +28,19 @@ import '../data/quran_tracks.dart';
 import 'quran_caching_badge.dart';
 
 const _bismillah = 'بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ';
+
+/// Okuyucu tam-ekran açıldığından alt menü kayboluyordu (kullanıcı). Çözüm:
+/// okuyucunun alt barına gerçek SelayaBottomNav ekle; bir sekmeye dokununca
+/// context.go ile o şubeye dönülür → shell + alt menü geri gelir. Sıra
+/// kSelayaNavItems ile aynı (home/times/quran/qibla/akis/more).
+const _kReaderNavBranches = <String>[
+  Routes.home,
+  Routes.times,
+  Routes.quran,
+  Routes.qibla,
+  Routes.akis,
+  Routes.more,
+];
 
 class QuranReaderScreen extends ConsumerStatefulWidget {
   final int surahNumber;
@@ -506,6 +520,12 @@ class _QuranReaderScreenState extends ConsumerState<QuranReaderScreen> {
             onNext: widget.surahNumber < 114
                 ? () => _goToSurah(widget.surahNumber + 1)
                 : null,
+          ),
+          // Alt menü okuyucuda da görünsün (kullanıcı isteği): sekmeye dokununca
+          // context.go ile o şubeye gidilir, tam-ekran okuyucu kapanır.
+          SelayaBottomNav(
+            currentIndex: 2, // Kur'an sekmesi vurgulu
+            onTap: (i) => context.go(_kReaderNavBranches[i]),
           ),
         ],
       ),

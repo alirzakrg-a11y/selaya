@@ -86,7 +86,8 @@
     "exportData": "Verilerimi İndir",
     "exportPreparing": "Verilerin hazırlanıyor…",
     "exportFailed": "Veri indirilemedi",
-    "err_rumuz_taken": "Bu rumuz başkası tarafından alınmış, başka bir tane seç."
+    "err_rumuz_taken": "Bu rumuz başkası tarafından alınmış, başka bir tane seç.",
+    "err_too_many_resets": "Günlük kod isteği sınırına ulaştınız (en fazla 3). Lütfen yarın tekrar deneyin."
   },
   "common": {
     "appName": "SELAYA",
