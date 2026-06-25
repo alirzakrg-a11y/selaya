@@ -11,6 +11,7 @@ import { handleDuaWall } from './dua_wall.js';
 import { handleHatim } from './hatim.js';
 import { handleQuiz } from './quiz.js';
 import { handlePrivacy } from './privacy.js';
+import { handleDeleteAccount } from './delete_account.js';
 
 const CORS = {
   'Access-Control-Allow-Origin': '*',
@@ -198,6 +199,9 @@ export default {
       // (kaynak: store/privacy-policy.html → src/privacy.js, gen-privacy.js ile).
       const privacyResp = handlePrivacy(request, path);
       if (privacyResp) return privacyResp;
+      // Hesap & veri silme sayfası (Google Play zorunlu URL'si).
+      const delResp = handleDeleteAccount(request, path);
+      if (delResp) return delResp;
 
       // ÜYELİK & SENKRON (kayıt/giriş/profil/veri) — ayrı modül, auth değilse null.
       const authResp = await handleAuth(request, env, path, ctx);
