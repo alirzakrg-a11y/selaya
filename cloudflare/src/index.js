@@ -5,7 +5,7 @@
 // Bağlamalar: DB (D1: selaya-content), CDN (R2: selaya-cdn), CDN_BASE (var),
 //             ADMIN_TOKEN (secret), AUTH_SECRET (secret — JWT imzası)
 
-import { handleAuth, hashPassword, timingSafeEqual } from './auth.js';
+import { handleAuth, hashPassword, timingSafeEqual, requireUser } from './auth.js';
 import { handleDuaWall } from './dua_wall.js';
 import { handleHatim } from './hatim.js';
 import { handleQuiz } from './quiz.js';
@@ -78,6 +78,24 @@ async function ensureLikesCol(env) {
     await env.DB.prepare('ALTER TABLE likes ADD COLUMN last_at INTEGER').run();
   } catch (_) {}
   _likesColOk = true;
+}
+
+// Kişiye-bağlı beğeni: kim neyi beğendi (panelde "beğenen" + kullanıcının
+// beğendikleri). Giriş yapan kullanıcıların beğenileri kaydedilir (anonim
+// beğeniler yalnızca sayaçta). created_at ms.
+let _likeEvOk = false;
+async function ensureLikeEvents(env) {
+  if (_likeEvOk) return;
+  try {
+    await env.DB.prepare(
+      'CREATE TABLE IF NOT EXISTS like_events (ckey TEXT NOT NULL, user_id TEXT NOT NULL, ' +
+      'created_at INTEGER, PRIMARY KEY (ckey, user_id))'
+    ).run();
+    await env.DB.prepare(
+      'CREATE INDEX IF NOT EXISTS idx_like_events_user ON like_events(user_id)'
+    ).run();
+  } catch (_) {}
+  _likeEvOk = true;
 }
 
 function extOf(name, fallback) {
@@ -328,6 +346,15 @@ export default {
             'INSERT INTO likes (key, count, last_at) VALUES (?1, 1, ?2) ' +
             'ON CONFLICT(key) DO UPDATE SET count = count + 1, last_at = ?2'
           ).bind(key, Date.now()).run();
+          // Giriş yapan kullanıcının beğenisini KİME ait olarak kaydet (panelde
+          // "kim beğendi" + kullanıcının beğendikleri). Anonimse yalnız sayaç.
+          const lu = await requireUser(request, env);
+          if (lu && lu !== 'banned' && lu.sub) {
+            await ensureLikeEvents(env);
+            await env.DB.prepare(
+              'INSERT OR REPLACE INTO like_events (ckey, user_id, created_at) VALUES (?,?,?)'
+            ).bind(key, lu.sub, Date.now()).run();
+          }
           const row = await env.DB.prepare(
             'SELECT count FROM likes WHERE key = ?1'
           ).bind(key).first();
@@ -350,6 +377,13 @@ export default {
           await env.DB.prepare(
             'UPDATE likes SET count = MAX(0, count - 1) WHERE key = ?1'
           ).bind(key).run();
+          // Beğeni geri alınınca kullanıcının kaydını da sil.
+          const uu = await requireUser(request, env);
+          if (uu && uu !== 'banned' && uu.sub) {
+            await ensureLikeEvents(env);
+            await env.DB.prepare('DELETE FROM like_events WHERE ckey=? AND user_id=?')
+              .bind(key, uu.sub).run();
+          }
           const row = await env.DB.prepare(
             'SELECT count FROM likes WHERE key = ?1'
           ).bind(key).first();
@@ -772,6 +806,7 @@ export default {
         if (request.method === 'GET' && path === '/api/activity') {
           await ensureReports(env);
           await ensureLikesCol(env);
+          await ensureLikeEvents(env);
           const out = [];
           const add = (rows, fn) => {
             for (const r of (rows || [])) {
@@ -799,11 +834,32 @@ export default {
           add(await q("SELECT juz_no, rumuz, done_at FROM hatim_juz WHERE status='done' AND done_at IS NOT NULL ORDER BY done_at DESC LIMIT 15"),
             (r) => ({ type: 'hatimDone', at: +r.done_at || 0,
               title: 'Cüz ' + r.juz_no + ' okundu ✓', sub: r.rumuz ? '@' + r.rumuz : '' }));
-          add(await q('SELECT key, count, last_at FROM likes WHERE last_at IS NOT NULL ORDER BY last_at DESC LIMIT 12'),
-            (r) => ({ type: 'like', at: +r.last_at || 0,
-              title: r.key, sub: (r.count || 0) + ' beğeni' }));
+          // Beğeniler: kişiye-bağlı (like_events) → içerik + KİM beğendi.
+          add(await q("SELECT le.ckey AS ckey, le.created_at AS at, le.user_id AS uid, " +
+            "u.rumuz AS rumuz, u.name AS uname, ci.title AS ctitle, ci.key AS imgkey, " +
+            "ci.kind AS ckind, ci.collection AS ccoll FROM like_events le " +
+            "LEFT JOIN users u ON u.id = le.user_id " +
+            "LEFT JOIN content_items ci ON ci.id = substr(le.ckey, instr(le.ckey, ':') + 1) " +
+            "ORDER BY le.created_at DESC LIMIT 18"),
+            (r) => ({ type: 'like', at: +r.at || 0,
+              title: r.ctitle || r.ckey, sub: '@' + (r.rumuz || r.uname || 'kullanıcı') + ' beğendi',
+              key: r.ckey, uid: r.uid, rumuz: r.rumuz, imgkey: r.imgkey, ckind: r.ckind, ccoll: r.ccoll }));
           out.sort((a, b) => b.at - a.at);
           return json({ ok: true, activity: out.slice(0, 80) });
+        }
+
+        // ---- bir kullanıcının beğendiği içerikler (kullanıcı detay popup) ----
+        if (request.method === 'GET' && path === '/api/user-likes') {
+          await ensureLikeEvents(env);
+          const uid = (url.searchParams.get('uid') || '').toString();
+          if (!uid) return json({ ok: false, error: 'no_uid' }, { status: 400 });
+          const r = await env.DB.prepare(
+            "SELECT le.ckey AS ckey, le.created_at AS at, ci.title AS ctitle, " +
+            "ci.key AS imgkey, ci.kind AS ckind, ci.collection AS ccoll FROM like_events le " +
+            "LEFT JOIN content_items ci ON ci.id = substr(le.ckey, instr(le.ckey, ':') + 1) " +
+            "WHERE le.user_id = ? ORDER BY le.created_at DESC LIMIT 200"
+          ).bind(uid).all();
+          return json({ ok: true, rows: r.results || [], cdn: env.CDN_BASE || '' });
         }
 
         // ---- metin içerik (ayet/hadis/dua/tebrik — DOSYASIZ) ----
@@ -1762,13 +1818,35 @@ const PANEL_HTML = `<!doctype html>
           ? '<button class="ghost" data-id="'+id+'" data-email="'+em+'" onclick="unbanUser(this.dataset.id,this.dataset.email)">✓ Yasağı Kaldır</button>'
           : '<button class="danger" data-id="'+id+'" data-email="'+em+'" onclick="banUser(this.dataset.id,this.dataset.email)">🚫 Banla</button>';
         var edit='<button class="ghost" style="flex:0 0 auto" data-id="'+id+'" data-name="'+esc(u.name||'')+'" data-surname="'+esc(u.surname||'')+'" data-email="'+em+'" data-rumuz="'+esc(u.rumuz||'')+'" onclick="editUser(this.dataset.id,this.dataset.name,this.dataset.surname,this.dataset.email,this.dataset.rumuz)">✏️ Düzenle</button>';
+        var likesBtn='<button class="ghost" style="flex:0 0 auto" data-id="'+id+'" data-name="'+name+'" onclick="userLikes(this.dataset.id,this.dataset.name)">❤️ Beğeniler</button>';
         return '<div class="item"'+(banned?' style="opacity:.7"':'')+'><div class="ph">'+(banned?'🚫':'👤')+'</div><div class="meta"><b>'+name+ban+'</b><span class="muted">'+em+rumuz+'</span><span class="muted">Kayıt: '+fmtDate(u.created_at)+' · Son aktif: '+fmtDate(u.last_active)+(u.device?' · '+esc(u.device):'')+'</span></div>'+
-          edit+' '+banBtn+' '+
+          edit+' '+likesBtn+' '+banBtn+' '+
           '<button class="ghost" style="flex:0 0 auto" data-id="'+id+'" data-email="'+em+'" onclick="resetUserPw(this.dataset.id,this.dataset.email)">Şifre Sıfırla</button> '+
           '<button class="danger" data-id="'+id+'" data-email="'+em+'" onclick="deleteUser(this.dataset.id,this.dataset.email)">Sil</button></div>';
       }).join('');
       el('usersBody').innerHTML=h;
     }).catch(function(e){ el('usersBody').innerHTML='<p class="muted">Hata: '+e+'</p>'; });
+  }
+  // Bir kullanıcının beğendiği/favorilediği içerikler (popup). Yalnız bu
+  // güncellemeden SONRA + giriş yapmış kullanıcıların beğenileri kayıtlı.
+  function userLikes(uid, name){
+    var ov=_modal('<h3 style="margin:0 0 8px">❤️ '+esc(name||'Kullanıcı')+' — Beğenileri</h3><div id="ulBody"><p class="muted">Yükleniyor…</p></div><div class="row" style="margin-top:14px"><button class="ghost" data-x>Kapat</button></div>');
+    ov.querySelector('[data-x]').onclick=function(){ ov.remove(); };
+    api('user-likes?uid='+encodeURIComponent(uid)).then(function(res){
+      var rows=(res.j&&res.j.rows)||[]; var cdn=(res.j&&res.j.cdn)||CDN||'';
+      var b=ov.querySelector('#ulBody'); if(!b) return;
+      if(!rows.length){ b.innerHTML='<p class="muted">Henüz beğenisi yok (beğeniler bu güncellemeden önce ya da misafirken yapıldıysa kaydedilmedi).</p>'; return; }
+      var h='<p class="muted" style="font-size:12px;margin:0 0 4px">Toplam '+rows.length+' beğeni</p><div style="max-height:52vh;overflow:auto">';
+      rows.forEach(function(r){
+        var thumb='';
+        if(r.imgkey){ var u=cdn+'/'+r.imgkey; thumb=(r.ckind==='video')?'<span style="font-size:18px">🎬</span>':'<img src="'+esc(u)+'" style="width:40px;height:40px;object-fit:cover;border-radius:7px">'; }
+        h+='<div style="display:flex;gap:8px;align-items:center;padding:7px 0;border-top:1px solid var(--line)">'+thumb+
+          '<div style="flex:1;min-width:0"><div style="font-weight:600">'+esc(r.ctitle||r.ckey)+'</div>'+
+          '<div class="muted" style="font-size:11px">'+esc(r.ckey)+(r.ccoll?' · '+esc(r.ccoll):'')+'</div></div>'+
+          (r.imgkey?'<a href="'+esc(cdn+'/'+r.imgkey)+'" target="_blank" class="muted" style="font-size:12px;white-space:nowrap">Aç ↗</a>':'')+'</div>';
+      });
+      b.innerHTML=h+'</div>';
+    }).catch(function(e){ var b=ov.querySelector('#ulBody'); if(b) b.innerHTML='<p class="muted">Hata: '+esc(String(e))+'</p>'; });
   }
   // Üyeyi düzenle: ad/soyad/e-posta/rumuz için modal. Değerler .value ile
   // atanır (HTML'e gömülmez) → tırnak/özel karakter güvenli.
@@ -2247,8 +2325,11 @@ const PANEL_HTML = `<!doctype html>
     var h = '<h3>🔔 Son hareketler</h3>';
     if (!actData.length) h += '<p class="muted" style="padding:10px 12px">Henüz hareket yok.</p>';
     actData.forEach(function(a, idx){
-      var go = ACT_TAB[a.type] ? ' data-t="'+esc(a.type)+'" onclick="actGo(this.dataset.t)"' : '';
-      h += '<div class="actRow" style="cursor:'+(ACT_TAB[a.type]?'pointer':'default')+'"'+go+'><div class="ic">' + (ACT_ICON[a.type]||'•') + '</div>'
+      var clk = a.type==='like'
+        ? ' data-i="'+idx+'" onclick="actLikePopup(this.dataset.i)"'
+        : (ACT_TAB[a.type] ? ' data-t="'+esc(a.type)+'" onclick="actGo(this.dataset.t)"' : '');
+      var cur = (a.type==='like' || ACT_TAB[a.type]) ? 'pointer' : 'default';
+      h += '<div class="actRow" style="cursor:'+cur+'"'+clk+'><div class="ic">' + (ACT_ICON[a.type]||'•') + '</div>'
         + '<div class="tx"><div class="tt">' + esc(a.title||'')
         + (a.tag ? ' <span class="muted" style="font-size:11px">('+esc(a.tag)+')</span>' : '')
         + '</div>' + (a.sub ? '<div class="sb">' + esc(a.sub) + '</div>' : '') + '</div>'
@@ -2277,6 +2358,28 @@ const PANEL_HTML = `<!doctype html>
     var tab = ACT_TAB[t]; if (!tab) return;
     el('actPanel').classList.add('hide');
     showTab(tab);
+  }
+  // Beğeni bildirimine tıkla → beğenilen içerik + KİM beğendi (popup).
+  function actLikePopup(i){
+    var a = actData[+i]; if (!a) return;
+    el('actPanel').classList.add('hide');
+    var cdn = CDN || '';
+    var media = '';
+    if (a.imgkey){
+      var u = cdn + '/' + a.imgkey;
+      media = (a.ckind==='video')
+        ? '<video src="'+esc(u)+'" controls style="width:100%;max-height:300px;border-radius:10px;background:#000"></video>'
+        : '<img src="'+esc(u)+'" style="width:100%;max-height:320px;object-fit:contain;border-radius:10px;background:rgba(0,0,0,.05)">';
+    }
+    var ov = _modal(
+      '<h3 style="margin:0 0 4px">'+esc(a.title||a.key||'')+'</h3>'+
+      '<div class="hint" style="font-size:12px;margin-bottom:10px">'+esc(a.key||'')+(a.ccoll?' · '+esc(a.ccoll):'')+'</div>'+
+      media+
+      '<div style="margin-top:12px"><b>❤️ Beğenen:</b> @'+esc(a.rumuz||'kullanıcı')+'</div>'+
+      '<div class="muted" style="font-size:12px;margin-top:4px">'+actRel(a.at)+' önce</div>'+
+      '<div class="row" style="margin-top:16px;gap:8px">'+(a.imgkey?'<a href="'+esc(cdn+'/'+a.imgkey)+'" target="_blank" class="ghost" style="text-decoration:none">İçeriği aç ↗</a>':'')+'<button class="ghost" data-x>Kapat</button></div>'
+    );
+    ov.querySelector('[data-x]').onclick=function(){ ov.remove(); };
   }
   // Rozeti sıfırla (en yeni öğeyi görüldü işaretle) + zili kapat.
   function actClear(){
