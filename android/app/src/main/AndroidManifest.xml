@@ -20,10 +20,8 @@
     <!-- Draw the full-screen adhan alarm over other apps / from the background
          (OEM background-activity-start exemption), like dedicated azan apps. -->
     <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW"/>
-    <!-- Foreground service: keep the ongoing "next prayer" notification ticking
-         (worded "kalan : X dk" body) every minute even when the app is killed. -->
+    <!-- Foreground service: ezan çalar (mediaPlayback) + radio/audio_service. -->
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE"/>
-    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_SPECIAL_USE"/>
     <!-- audio_service (#media): radio background playback + media-style notification -->
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE_MEDIA_PLAYBACK"/>
     <!-- Smart Silent (#6.2): toggle DND/ringer to mute during prayer & Friday windows -->
@@ -196,30 +194,14 @@
             </intent-filter>
         </receiver>
 
-        <!-- Keeps the persistent "next prayer" notification (id 2000) counting
-             down live every minute even when the app is killed. specialUse: it
-             is a user-facing persistent prayer-time status, not a category that
-             fits dataSync/mediaPlayback/etc. -->
-        <service
-            android:name=".PrayerOngoingService"
-            android:exported="false"
-            android:foregroundServiceType="specialUse">
-            <property
-                android:name="android.app.PROPERTY_SPECIAL_USE_FGS_SUBTYPE"
-                android:value="persistent_next_prayer_countdown" />
-        </service>
-
-        <!-- ⑨ Ezanı durdurulabilir şekilde çalan servis: Tam Ekran Alarm KAPALI
-             iken ezan, kanal sesi yerine bu servisin MediaPlayer'ı ile çalınır →
-             "Durdur" sesi gerçekten keser (Samsung'da kanal sesi durmuyordu). -->
+        <!-- ⑨ Ezanı durdurulabilir şekilde çalan servis: ezanı (sesli namaz
+             çağrısı) MediaPlayer ile çalar → medya oynatma ön plan hizmeti.
+             (Eski kalıcı geri-sayım servisi specialUse'tu; Play uyumu için
+             kaldırıldı — canlı geri sayım uygulama içinde gösteriliyor.) -->
         <service
             android:name=".AdhanPlayerService"
             android:exported="false"
-            android:foregroundServiceType="specialUse">
-            <property
-                android:name="android.app.PROPERTY_SPECIAL_USE_FGS_SUBTYPE"
-                android:value="adhan_alarm_playback" />
-        </service>
+            android:foregroundServiceType="mediaPlayback" />
 
         <!-- ⑨ Ezan alarm tetikleyici: AlarmManager bir namaz vaktinde bunu
              tetikler → AdhanPlayerService'i başlatır (uygulama ölü olsa bile,

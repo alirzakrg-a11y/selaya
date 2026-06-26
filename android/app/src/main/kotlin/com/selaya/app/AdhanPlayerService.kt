@@ -146,7 +146,7 @@ class AdhanPlayerService : Service() {
         try {
             if (Build.VERSION.SDK_INT >= 34) {
                 startForeground(
-                    NOTIF_ID, n, ServiceInfo.FOREGROUND_SERVICE_TYPE_SPECIAL_USE
+                    NOTIF_ID, n, ServiceInfo.FOREGROUND_SERVICE_TYPE_MEDIA_PLAYBACK
                 )
             } else {
                 startForeground(NOTIF_ID, n)

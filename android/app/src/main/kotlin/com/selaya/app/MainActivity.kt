@@ -342,18 +342,15 @@ class MainActivity : AudioServiceActivity() {
             putString("icon", call.argument<String>("icon") ?: "🕌")
             apply()
         }
+        // Kalıcı geri-sayım ön plan servisi (specialUse) Play uyumu için kaldırıldı.
+        // Eski sürümden kalmış olabilecek 2000 numaralı bildirimi temizle.
         try {
-            ContextCompat.startForegroundService(
-                this, Intent(this, PrayerOngoingService::class.java)
-            )
+            (getSystemService(Context.NOTIFICATION_SERVICE) as? NotificationManager)
+                ?.cancel(2000)
         } catch (_: Exception) {}
     }
 
     private fun stopOngoing() {
-        try {
-            stopService(Intent(this, PrayerOngoingService::class.java))
-        } catch (_: Exception) {}
-        // Belt-and-suspenders in case the notification lingers after stop.
         try {
             (getSystemService(Context.NOTIFICATION_SERVICE) as? NotificationManager)
                 ?.cancel(2000)

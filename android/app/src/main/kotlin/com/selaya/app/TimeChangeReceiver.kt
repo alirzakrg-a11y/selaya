@@ -18,13 +18,7 @@ import android.content.Intent
  */
 class TimeChangeReceiver : BroadcastReceiver() {
     override fun onReceive(context: Context, intent: Intent) {
-        try {
-            context.startService(
-                Intent(context, PrayerOngoingService::class.java)
-                    .setAction(PrayerOngoingService.ACTION_REPOST)
-            )
-        } catch (_: Exception) {}
-        // Saat/zaman dilimi değişince ezan alarm penceresini de yeniden tak
+        // Saat/zaman dilimi değişince ezan alarm penceresini yeniden tak
         // (geçmişe düşenler elenir, sıradaki 50 gelecek girişi yeniden kurulur).
         try { AdhanAlarmReceiver.reschedule(context) } catch (_: Exception) {}
     }
