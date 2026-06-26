@@ -44,24 +44,76 @@ class IntroScreen extends StatelessWidget {
                   padding: AppSpacing.screen,
                   children: [
                     const Gap.xl(),
-                    const Center(child: SelayaLogo(size: 124))
-                        .animate()
-                        .fadeIn(duration: 600.ms)
-                        .scale(begin: const Offset(0.9, 0.9)),
-                    const Gap.lg(),
-                    Center(
-                      child: Text('intro.welcome'.tr(),
-                          style: Theme.of(context).textTheme.headlineMedium),
+                    // Hero — logo, nabız gibi atan altın hale içinde.
+                    SizedBox(
+                      height: 200,
+                      child: Stack(
+                        alignment: Alignment.center,
+                        children: [
+                          Container(
+                            width: 232,
+                            height: 232,
+                            decoration: BoxDecoration(
+                              shape: BoxShape.circle,
+                              gradient: RadialGradient(
+                                colors: [
+                                  c.gold.withValues(alpha: 0.30),
+                                  c.gold.withValues(alpha: 0.0),
+                                ],
+                              ),
+                            ),
+                          )
+                              .animate(
+                                  onPlay: (ctrl) => ctrl.repeat(reverse: true))
+                              .scaleXY(
+                                  begin: 0.9,
+                                  end: 1.08,
+                                  duration: 2400.ms,
+                                  curve: Curves.easeInOut),
+                          const SelayaLogo(size: 134)
+                              .animate()
+                              .fadeIn(duration: 700.ms)
+                              .scale(
+                                  begin: const Offset(0.82, 0.82),
+                                  curve: Curves.easeOutBack),
+                        ],
+                      ),
                     ),
+                    const Gap.lg(),
+                    // Hoş geldiniz — altın gradyan başlık.
+                    Center(
+                      child: ShaderMask(
+                        shaderCallback: (r) => const LinearGradient(
+                          colors: [Color(0xFFF3CD7A), Color(0xFFD4AF6E)],
+                        ).createShader(r),
+                        child: Text(
+                          'intro.welcome'.tr(),
+                          textAlign: TextAlign.center,
+                          style: Theme.of(context)
+                              .textTheme
+                              .headlineMedium
+                              ?.copyWith(
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.w800,
+                                  letterSpacing: 0.3),
+                        ),
+                      ),
+                    ).animate().fadeIn(delay: 220.ms, duration: 500.ms),
                     const Gap.xs(),
                     Center(
-                      child: Text('intro.tagline'.tr(),
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: AppSpacing.md),
+                        child: Text(
+                          'intro.tagline'.tr(),
                           textAlign: TextAlign.center,
                           style: Theme.of(context)
                               .textTheme
                               .bodyMedium
-                              ?.copyWith(color: c.textSecondary)),
-                    ),
+                              ?.copyWith(color: c.textSecondary, height: 1.4),
+                        ),
+                      ),
+                    ).animate().fadeIn(delay: 340.ms, duration: 500.ms),
                     const Gap.xl(),
                     for (var i = 0; i < _features.length; i++)
                       Padding(
@@ -73,7 +125,14 @@ class IntroScreen extends StatelessWidget {
                                 padding: const EdgeInsets.all(AppSpacing.md),
                                 decoration: BoxDecoration(
                                   shape: BoxShape.circle,
-                                  color: c.gold.withValues(alpha: 0.13),
+                                  gradient: LinearGradient(
+                                    begin: Alignment.topLeft,
+                                    end: Alignment.bottomRight,
+                                    colors: [
+                                      c.gold.withValues(alpha: 0.24),
+                                      c.gold.withValues(alpha: 0.07),
+                                    ],
+                                  ),
                                 ),
                                 child: Icon(_features[i].icon,
                                     color: c.gold, size: 22),
@@ -86,7 +145,9 @@ class IntroScreen extends StatelessWidget {
                                     Text(_features[i].titleKey.tr(),
                                         style: Theme.of(context)
                                             .textTheme
-                                            .titleSmall),
+                                            .titleSmall
+                                            ?.copyWith(
+                                                fontWeight: FontWeight.w700)),
                                     const Gap.xxs(),
                                     Text(_features[i].descKey.tr(),
                                         style: Theme.of(context)
@@ -100,8 +161,8 @@ class IntroScreen extends StatelessWidget {
                           ),
                         )
                             .animate()
-                            .fadeIn(delay: (120 * i).ms, duration: 400.ms)
-                            .slideX(begin: 0.08, end: 0),
+                            .fadeIn(delay: (460 + 110 * i).ms, duration: 420.ms)
+                            .slideX(begin: 0.10, end: 0, curve: Curves.easeOut),
                       ),
                   ],
                 ),
@@ -115,7 +176,10 @@ class IntroScreen extends StatelessWidget {
                   onPressed: () => Navigator.of(context).canPop()
                       ? context.pop()
                       : context.go(Routes.onboarding),
-                ),
+                )
+                    .animate()
+                    .fadeIn(delay: 900.ms, duration: 500.ms)
+                    .slideY(begin: 0.3, end: 0),
               ),
             ],
           ),
