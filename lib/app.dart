@@ -8,8 +8,10 @@ import 'core/data/notifications_sync.dart';
 import 'core/di/providers.dart';
 import 'core/router/app_router.dart';
 import 'core/router/routes.dart';
+import 'core/services/location_service.dart';
 import 'core/services/mosque_silent_service.dart';
 import 'core/services/notification_service.dart';
+import 'core/services/permission_service.dart';
 import 'core/services/smart_silent_service.dart';
 import 'core/services/permissions_controller.dart';
 import 'core/services/widget_service.dart';
@@ -68,6 +70,10 @@ class _SelayaAppState extends ConsumerState<SelayaApp>
 
   void _syncBackground() {
     _reschedule();
+    // (#8) GPS otomatik konum modundaysa, kullanıcı yer değiştirince (örn.
+    // İskenderun→Arsuz) açılış/dönüşte konumu sessizce güncelle. İzin İSTEMEZ
+    // (yalnız zaten verilmişse) ve yalnız şehir adı değişince yeniden hesaplar.
+    _refreshGpsIfMoved();
     // Girişliyse: bulut başka cihazda güncellendiyse sessizce çek (çok-cihaz);
     // hesap başka yerde açıldığı için bu cihaz düşürüldüyse (en fazla 2 cihaz)
     // "çıkış yapıldı" bilgisini göster.
@@ -160,6 +166,24 @@ class _SelayaAppState extends ConsumerState<SelayaApp>
   void _reschedule() {
     ref.read(prayerSchedulerProvider).rescheduleAll();
     ref.read(specialSchedulerProvider).rescheduleSpecial();
+  }
+
+  /// (#8) GPS otomatik konum modunda (cityId=='current') kullanıcı yer değiştirince
+  /// konumu SESSİZCE güncelle. RESUME'DA İZİN İSTEMEZ (yalnız zaten verilmişse
+  /// okur); yalnız şehir adı değiştiyse kaydedip vakitleri yeniden hesaplar. Sabit
+  /// şehir seçiliyse no-op (kullanıcının elle seçimini ezmez).
+  Future<void> _refreshGpsIfMoved() async {
+    if (ref.read(settingsProvider).cityId != 'current') return;
+    if (!await ref.read(permissionServiceProvider).locationGranted()) return;
+    if (!mounted) return;
+    final loc = await ref.read(locationServiceProvider).currentLocation();
+    if (!mounted || loc == null || loc.name.isEmpty) return;
+    if (loc.name == ref.read(settingsProvider).gpsName) return;
+    await ref
+        .read(settingsProvider.notifier)
+        .setCurrentLocation(loc.pos.latitude, loc.pos.longitude, loc.name);
+    if (!mounted) return;
+    await ref.read(prayerSchedulerProvider).rescheduleAll();
   }
 
   int? _lastAdhanSlot;
