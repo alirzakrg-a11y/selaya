@@ -124,6 +124,13 @@ class AdhanPlayerService : Service() {
         try { nm.notify(LINGER_ID, n) } catch (_: Exception) {}
     }
 
+    /** Android 14+ shortService 3 dk sınırı güvenlik ağı: ezan normalde çok daha
+     *  kısa ve bitince kendini kapatır; sınıra ulaşılırsa sistem bunu çağırır →
+     *  temiz kapan (ANR/öldürülme olmasın). */
+    override fun onTimeout(startId: Int) {
+        stopEverything(lingering = false)
+    }
+
     override fun onDestroy() {
         try { player?.release() } catch (_: Exception) {}
         player = null
@@ -145,8 +152,13 @@ class AdhanPlayerService : Service() {
             .build()
         try {
             if (Build.VERSION.SDK_INT >= 34) {
+                // shortService: Android 14+ ARKA PLANDAKİ exact-alarm alıcısından
+                // başlatılmasına İZİN VERİLEN tiplerden biri (mediaPlayback DEĞİL —
+                // o yüzden ezan sessizce düşüyordu) VE Play tanıtım-videosu
+                // gerektirmez (specialUse gibi değil). Ezan 3 dk'dan kısadır ve
+                // bitince kendini kapatır; sınıra ulaşılırsa onTimeout temiz kapatır.
                 startForeground(
-                    NOTIF_ID, n, ServiceInfo.FOREGROUND_SERVICE_TYPE_MEDIA_PLAYBACK
+                    NOTIF_ID, n, ServiceInfo.FOREGROUND_SERVICE_TYPE_SHORT_SERVICE
                 )
             } else {
                 startForeground(NOTIF_ID, n)

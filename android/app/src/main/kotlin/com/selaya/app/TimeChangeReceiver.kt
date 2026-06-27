@@ -21,5 +21,8 @@ class TimeChangeReceiver : BroadcastReceiver() {
         // Saat/zaman dilimi değişince ezan alarm penceresini yeniden tak
         // (geçmişe düşenler elenir, sıradaki 50 gelecek girişi yeniden kurulur).
         try { AdhanAlarmReceiver.reschedule(context) } catch (_: Exception) {}
+        // Saat/zaman dilimi değişince kalıcı geri-sayım bildirimini de yeniden
+        // hizala (sıradaki vakit + chronometer doğru kalsın).
+        try { OngoingNotif.post(context) } catch (_: Exception) {}
     }
 }

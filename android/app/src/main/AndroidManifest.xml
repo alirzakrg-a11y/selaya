@@ -194,14 +194,24 @@
             </intent-filter>
         </receiver>
 
+        <!-- Kalıcı "sıradaki vakit" geri-sayım bildirimini (id 2000) ilerleten
+             alıcı. FOREGROUND SERVICE DEĞİL: eski specialUse servis yerine, vakit
+             geçince kurulan tek AlarmManager alarmı (ve kullanıcı bildirimi
+             kaydırınca deleteIntent) bunu tetikler → bildirimi yeniden yayınlar.
+             İkisi de açık intent → exported=false. Play uyumlu (specialUse yok). -->
+        <receiver
+            android:name=".OngoingNotifReceiver"
+            android:exported="false" />
+
         <!-- ⑨ Ezanı durdurulabilir şekilde çalan servis: ezanı (sesli namaz
              çağrısı) MediaPlayer ile çalar → medya oynatma ön plan hizmeti.
-             (Eski kalıcı geri-sayım servisi specialUse'tu; Play uyumu için
-             kaldırıldı — canlı geri sayım uygulama içinde gösteriliyor.) -->
+             (Eski kalıcı geri-sayım servisi specialUse FGS'ti; Play uyumu için
+             FGS kaldırıldı — geri sayım artık FGS'siz düz bildirimle veriliyor,
+             bkz OngoingNotif.) -->
         <service
             android:name=".AdhanPlayerService"
             android:exported="false"
-            android:foregroundServiceType="mediaPlayback" />
+            android:foregroundServiceType="shortService" />
 
         <!-- ⑨ Ezan alarm tetikleyici: AlarmManager bir namaz vaktinde bunu
              tetikler → AdhanPlayerService'i başlatır (uygulama ölü olsa bile,

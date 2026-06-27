@@ -342,19 +342,14 @@ class MainActivity : AudioServiceActivity() {
             putString("icon", call.argument<String>("icon") ?: "🕌")
             apply()
         }
-        // Kalıcı geri-sayım ön plan servisi (specialUse) Play uyumu için kaldırıldı.
-        // Eski sürümden kalmış olabilecek 2000 numaralı bildirimi temizle.
-        try {
-            (getSystemService(Context.NOTIFICATION_SERVICE) as? NotificationManager)
-                ?.cancel(2000)
-        } catch (_: Exception) {}
+        // Kalıcı geri-sayım bildirimini yayınla. FOREGROUND SERVICE YOK: eski
+        // specialUse servis (Play video şartı) yerine düz bildirim + kendini
+        // zincirleyen tek alarm. Bkz [OngoingNotif].
+        OngoingNotif.post(this)
     }
 
     private fun stopOngoing() {
-        try {
-            (getSystemService(Context.NOTIFICATION_SERVICE) as? NotificationManager)
-                ?.cancel(2000)
-        } catch (_: Exception) {}
+        OngoingNotif.cancel(this)
     }
 
     // ── Smart Silent (#6.2): AlarmManager windows that mute/restore the ringer ──

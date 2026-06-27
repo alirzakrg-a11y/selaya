@@ -22,7 +22,12 @@ class AdhanAlarmReceiver : BroadcastReceiver() {
         when (intent?.action) {
             Intent.ACTION_BOOT_COMPLETED,
             "android.intent.action.QUICKBOOT_POWERON",
-            Intent.ACTION_MY_PACKAGE_REPLACED -> reschedule(context)
+            Intent.ACTION_MY_PACKAGE_REPLACED -> {
+                reschedule(context)
+                // Kalıcı geri-sayım bildirimini de geri getir (BOOT / güncelleme
+                // sonrası prefs'teki pencere verisiyle — FGS yok). Bkz OngoingNotif.
+                try { OngoingNotif.post(context) } catch (_: Exception) {}
+            }
             ACTION_TEST -> {
                 val sec = intent.getIntExtra("sec", 40)
                 val res = intent.getStringExtra(AdhanPlayerService.EXTRA_RES)
