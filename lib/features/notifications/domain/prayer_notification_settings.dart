@@ -44,12 +44,17 @@ enum AdhanSound {
       id: 'hassan2_full',
       properName: 'Hassan II Camii · Tam Ezan (2:55)',
       file: 'adhan_hassan2_full'),
-  // KISA (≤25 sn) ezan — Mescid-i Harâm tam ezanından (CC BY 3.0, yukarıda)
-  // kırpılmış ilk 25 sn; bildirim için daha az rahatsız edici seçenek.
-  meccaShort(
-      id: 'mecca_short',
+  // KISA (≤25 sn) YASAL ezanlar — Public Domain / CC0 gerçek kayıtlar.
+  // Mescid-i Harâm (Mekke) — CC0 (Internet Archive), gerçek ~25 sn kayıt.
+  makkah(
+      id: 'makkah',
       properName: 'Mescid-i Harâm · Kısa Ezan (0:25)',
-      file: 'adhan_mecca_short'),
+      file: 'adhan_makkah'),
+  // Abdunnâsır Harak (Mısır) — Public Domain (Internet Archive), 24 sn.
+  harak(
+      id: 'harak',
+      properName: 'Abdunnâsır Harak · Mısır (0:24)',
+      file: 'adhan_harak'),
   // Sabah Fahri (efsanevi Suriyeli ses sanatçısı) — PUBLIC DOMAIN, yüksek
   // kaliteli (stereo) 24 sn kısa ezan; Wikimedia Commons.
   fakhri(
@@ -114,9 +119,10 @@ enum AdhanSound {
     meccaMaghrib,
     hassan2Full,
     aaqibAzeez,
-    // KISA (≤25 sn) ezanlar — sonda (Sabah Fahri yüksek kaliteli, önce).
+    // KISA (≤25 sn) YASAL ezanlar (PD/CC0) — sonda.
     fakhri,
-    meccaShort,
+    makkah,
+    harak,
   ];
 }
 

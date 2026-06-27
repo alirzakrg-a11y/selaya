@@ -32,10 +32,16 @@ and license it under the same terms.
 - Lisans: CC BY 3.0 (https://creativecommons.org/licenses/by/3.0/)
 - Değişiklik: video içinden ses çıkarıldı, MP3'e dönüştürüldü, ses seviyesi normalize edildi.
 
-## adhan_mecca_short.mp3 (Mescid-i Harâm · Kısa Ezan, 25 sn)
-- Kaynak: "Adhan, Great Mosque of Mecca - Jan 21, 2013" (adhan_mecca_full ile AYNI) — Wikimedia Commons
-- Lisans: CC BY 3.0 (https://creativecommons.org/licenses/by/3.0/)
+## adhan_makkah.mp3 (Mescid-i Harâm · Kısa Ezan, 25 sn)
+- Kaynak: Internet Archive — "Makkah Azan" (https://archive.org/details/MakkahAzan_20171111)
+- Lisans: CC0 1.0 (kamu malı) — atıf gerekmez
 - Değişiklik: ilk 25 sn'ye kırpıldı, sona fade eklendi, ses seviyesi normalize edildi.
+
+## adhan_harak.mp3 (Abdunnâsır Harak · Mısır, 24 sn)
+- Okuyan: Abdulnasser Harak (Mısır)
+- Kaynak: Internet Archive — "Adhan From Egypt - Abdulnasser Harak" (https://archive.org/details/adhan-from-egypt-abdulnasser-harak)
+- Lisans: Public Domain Mark 1.0 — atıf gerekmez
+- Değişiklik: ilk 24 sn'ye kırpıldı, sona fade eklendi, ses seviyesi normalize edildi.
 
 ## adhan_fakhri.mp3 (Sabah Fahri · Kısa Ezan, 24 sn)
 - Okuyan: Sabah Fahri (Suriyeli ses sanatçısı)

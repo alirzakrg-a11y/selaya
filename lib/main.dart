@@ -55,11 +55,18 @@ Future<void> main() async {
     );
     yield const LicenseEntryWithLineBreaks(
       ['SELAYA — audio'],
-      'Adhan, Great Mosque of Mecca — short 25 s excerpt (file: adhan_mecca_short).\n'
-      'Trimmed from adhan_mecca_full (same Wikimedia Commons source).\n'
-      'Licence: Creative Commons Attribution 3.0 (CC BY 3.0) — '
-      'creativecommons.org/licenses/by/3.0/. '
-      'Modified: trimmed to 25 s, fade-out, loudness-normalised.',
+      'Adhan, Great Mosque of Mecca — short excerpt (file: adhan_makkah, 0:25).\n'
+      'Source: Internet Archive (archive.org/details/MakkahAzan_20171111).\n'
+      'Licence: Creative Commons Zero 1.0 (CC0 — public domain, no attribution '
+      'required). Modified: trimmed to 25 s, fade-out, loudness-normalised.',
+    );
+    yield const LicenseEntryWithLineBreaks(
+      ['SELAYA — audio'],
+      'Adhan from Egypt — reciter Abdulnasser Harak (file: adhan_harak, 0:24).\n'
+      'Source: Internet Archive '
+      '(archive.org/details/adhan-from-egypt-abdulnasser-harak).\n'
+      'Licence: Public Domain Mark 1.0. Modified: trimmed to 24 s, fade-out, '
+      'loudness-normalised.',
     );
     yield const LicenseEntryWithLineBreaks(
       ['SELAYA — audio'],
