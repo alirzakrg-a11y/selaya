@@ -35,6 +35,7 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
   int _page = 0;
   static const _last = 3;
   bool _terms = false;
+  bool _termsWarn = false; // kutu işaretlenmeden ilerlenmeye çalışıldı → vurgula
   bool _permIntroShown = false;
   // Drives the red "missing permissions" emphasis once the user tries to start.
   // The actual grant status is the single source of truth in
@@ -72,8 +73,9 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
   void _next() {
     // Terms must be accepted before leaving the first screen.
     if (_page == 0 && !_terms) {
-      ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text('onboarding.termsRequired'.tr())));
+      // Buton ALTINDA snackbar açıp Devam'ı kapatmak yerine kutuyu KIRMIZI
+      // vurgula — kullanıcı neyi işaretlemesi gerektiğini net görür (madde 6).
+      setState(() => _termsWarn = true);
       return;
     }
     if (_page < _last) {
@@ -158,7 +160,11 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
                     if (_page == 0) ...[
                       _TermsRow(
                         accepted: _terms,
-                        onChanged: (v) => setState(() => _terms = v),
+                        highlight: _termsWarn,
+                        onChanged: (v) => setState(() {
+                          _terms = v;
+                          if (v) _termsWarn = false;
+                        }),
                       ),
                       const Gap.md(),
                     ],
@@ -274,8 +280,10 @@ class _LanguagePage extends StatelessWidget {
 /// Terms & privacy consent — required before leaving the first screen.
 class _TermsRow extends StatelessWidget {
   final bool accepted;
+  final bool highlight;
   final ValueChanged<bool> onChanged;
-  const _TermsRow({required this.accepted, required this.onChanged});
+  const _TermsRow(
+      {required this.accepted, required this.onChanged, this.highlight = false});
 
   void _showTerms(BuildContext context) {
     showModalBottomSheet(
@@ -318,48 +326,63 @@ class _TermsRow extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final c = context.colors;
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Row(
+    final warn = highlight && !accepted; // işaretlemeden ilerlenmeye çalışıldı
+    return GestureDetector(
+      behavior: HitTestBehavior.opaque,
+      onTap: () => onChanged(!accepted),
+      child: AnimatedContainer(
+        duration: const Duration(milliseconds: 180),
+        padding: const EdgeInsets.symmetric(
+            horizontal: AppSpacing.base, vertical: AppSpacing.sm),
+        decoration: BoxDecoration(
+          color: accepted
+              ? c.gold.withValues(alpha: 0.10)
+              : (warn ? c.danger.withValues(alpha: 0.08) : c.surfaceAlt),
+          borderRadius: AppRadius.rLg,
+          border: Border.all(
+            color: warn ? c.danger : (accepted ? c.gold : c.border),
+            width: warn || accepted ? 1.6 : 1.2,
+          ),
+        ),
+        child: Row(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             SizedBox(
-              width: 24,
-              height: 24,
+              width: 26,
+              height: 26,
               child: Checkbox(
                 value: accepted,
                 onChanged: (v) => onChanged(v ?? false),
                 activeColor: c.gold,
                 checkColor: c.onGold,
-                side: BorderSide(color: c.border),
+                side: BorderSide(
+                    color: warn ? c.danger : c.textTertiary, width: 1.6),
               ),
             ),
-            const Gap.sm(),
+            const Gap.md(),
             Expanded(
-              child: GestureDetector(
-                onTap: () => onChanged(!accepted),
-                child: Text('onboarding.termsAccept'.tr(),
-                    style: Theme.of(context)
-                        .textTheme
-                        .bodySmall
-                        ?.copyWith(color: c.textSecondary)),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text('onboarding.termsAccept'.tr(),
+                      style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                          fontWeight: FontWeight.w600,
+                          color: warn ? c.danger : c.textPrimary)),
+                  const Gap.xxs(),
+                  GestureDetector(
+                    onTap: () => _showTerms(context),
+                    child: Text('onboarding.termsLink'.tr(),
+                        style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                            color: c.gold,
+                            fontWeight: FontWeight.w600,
+                            decoration: TextDecoration.underline)),
+                  ),
+                ],
               ),
             ),
           ],
         ),
-        Padding(
-          padding: const EdgeInsets.only(left: AppSpacing.xxl),
-          child: GestureDetector(
-            onTap: () => _showTerms(context),
-            child: Text('onboarding.termsLink'.tr(),
-                style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                    color: c.gold,
-                    fontWeight: FontWeight.w600,
-                    decoration: TextDecoration.underline)),
-          ),
-        ),
-      ],
+      ),
     );
   }
 }
