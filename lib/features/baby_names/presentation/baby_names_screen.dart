@@ -33,6 +33,40 @@ final babyNamesProvider = FutureProvider<List<BabyName>>(
       .loadModels('assets/data/baby_names.json', BabyName.fromJson),
 );
 
+/// Günün isimleri (1 erkek + 1 kız). Ana ekran "Günün İsimleri" kartı ile bu
+/// ekranın günün-ismi kartı AYNI prefs anahtarlarını (baby_name_last_m/f/date)
+/// paylaşır → ikisi tutarlı; yeni günde art arda aynı isim verilmez.
+final dailyBabyNamesProvider =
+    FutureProvider<(BabyName?, BabyName?)>((ref) async {
+  final all = await ref.watch(babyNamesProvider.future);
+  final prefs = ref.read(sharedPreferencesProvider);
+  final n = DateTime.now();
+  final today = '${n.year}-${n.month}-${n.day}';
+  final males = all.where((x) => x.gender == 'm').toList();
+  final females = all.where((x) => x.gender != 'm').toList();
+  final lm = prefs.getString('baby_name_last_m');
+  final lf = prefs.getString('baby_name_last_f');
+  if (prefs.getString('baby_name_date') == today) {
+    final m = males.where((x) => x.name == lm);
+    final f = females.where((x) => x.name == lf);
+    if (m.isNotEmpty || f.isNotEmpty) {
+      return (m.isNotEmpty ? m.first : null, f.isNotEmpty ? f.first : null);
+    }
+  }
+  BabyName? pick(List<BabyName> pool, String? exclude) {
+    if (pool.isEmpty) return null;
+    final p = pool.where((x) => x.name != exclude).toList();
+    final src = p.isEmpty ? pool : p;
+    return src[Random().nextInt(src.length)];
+  }
+  final m = pick(males, lm);
+  final f = pick(females, lf);
+  if (m != null) prefs.setString('baby_name_last_m', m.name);
+  if (f != null) prefs.setString('baby_name_last_f', f.name);
+  prefs.setString('baby_name_date', today);
+  return (m, f);
+});
+
 /// İslami bebek isimleri: arama + cinsiyet filtresi + "günün ismi" (her gün
 /// rastgele; art arda 2 gün AYNI isim verilmez — son isim prefs'te tutulur).
 class BabyNamesScreen extends ConsumerStatefulWidget {

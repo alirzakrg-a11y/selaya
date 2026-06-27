@@ -33,6 +33,7 @@ import '../../notifications/data/prayer_scheduler.dart';
 import '../../prayer_times/presentation/widgets/next_prayer_card.dart';
 import '../../prayer_times/presentation/widgets/prayer_clock_dial.dart';
 import '../../prayer_times/presentation/widgets/prayer_strip.dart';
+import '../../baby_names/presentation/baby_names_screen.dart';
 import '../../quiz/data/quiz_models.dart';
 import '../../prayer_times/presentation/widgets/prayer_timeline_gauge.dart';
 import '../../stories/presentation/story_rail.dart';
@@ -1519,35 +1520,75 @@ class _WidgetPromoCard extends StatelessWidget {
 /// ⑳ Anasayfada duvar kâğıtlarının altında kısa bir günlük bilgi (1-2 satır,
 /// güne göre döner). Akış'taki "Bunu biliyor muydun"un küçük anasayfa hâli.
 /// Ana ekran "Bilgi Yarışması" kartı — puan/seri özeti + yarışmaya yönlendirir.
-/// Tek-satır "Bebek İsimleri" kartı (Öne Çıkanlar ızgarasından ayrı, tam genişlik).
-class _BabyNamesCard extends StatelessWidget {
+/// "Günün İsimleri" bilgi kartı — günün bir erkek + bir kız ismini ANLAMIYLA
+/// gösterir (en yakın cami kartı gibi bilgi). Dokununca tam Bebek İsimleri ekranı.
+class _BabyNamesCard extends ConsumerWidget {
   const _BabyNamesCard();
-  @override
-  Widget build(BuildContext context) {
+
+  Widget _nameRow(BuildContext context, BabyName n) {
     final c = context.colors;
+    final isF = n.gender != 'm';
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 4),
+      child: Row(children: [
+        CircleAvatar(
+          radius: 14,
+          backgroundColor: (isF ? Colors.pink : c.gold).withValues(alpha: 0.16),
+          child: Icon(isF ? Icons.female_rounded : Icons.male_rounded,
+              color: isF ? Colors.pink : c.gold, size: 16),
+        ),
+        const Gap.md(),
+        Expanded(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(n.name,
+                  style: Theme.of(context)
+                      .textTheme
+                      .titleSmall
+                      ?.copyWith(fontWeight: FontWeight.w700)),
+              Text(n.meaning,
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
+                  style: Theme.of(context)
+                      .textTheme
+                      .bodySmall
+                      ?.copyWith(color: c.textSecondary)),
+            ],
+          ),
+        ),
+      ]),
+    );
+  }
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final c = context.colors;
+    final pair = ref.watch(dailyBabyNamesProvider).asData?.value;
+    if (pair == null) return const SizedBox.shrink();
+    final m = pair.$1;
+    final f = pair.$2;
+    if (m == null && f == null) return const SizedBox.shrink();
     return SelayaCard(
       onTap: () => context.push(Routes.babyNames),
-      borderRadius: AppRadius.rLg,
-      padding: const EdgeInsets.all(AppSpacing.md),
-      child: Row(children: [
-        Container(
-          padding: const EdgeInsets.all(9),
-          decoration: BoxDecoration(
-            shape: BoxShape.circle,
-            gradient: LinearGradient(colors: [c.gold, c.goldBright]),
-          ),
-          child: Icon(Icons.child_care_rounded, color: c.bg, size: 20),
-        ),
-        const Gap.base(),
-        Expanded(
-          child: Text('babyNames.title'.tr(),
-              style: Theme.of(context)
-                  .textTheme
-                  .titleSmall
-                  ?.copyWith(fontWeight: FontWeight.w700)),
-        ),
-        Icon(AppIcons.forward, color: c.gold),
-      ]),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Row(children: [
+            Icon(Icons.child_care_rounded, color: c.gold, size: 18),
+            const Gap.sm(),
+            Expanded(
+              child: Text('xt.bnmDailyHeader'.tr(),
+                  style: Theme.of(context).textTheme.labelMedium?.copyWith(
+                      color: c.gold, fontWeight: FontWeight.w700)),
+            ),
+            Icon(AppIcons.forward, size: 16, color: c.textTertiary),
+          ]),
+          const Gap.xs(),
+          if (m != null) _nameRow(context, m),
+          if (f != null) _nameRow(context, f),
+        ],
+      ),
     );
   }
 }
