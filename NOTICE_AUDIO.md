@@ -37,6 +37,12 @@ and license it under the same terms.
 - Lisans: CC BY 3.0 (https://creativecommons.org/licenses/by/3.0/)
 - Değişiklik: ilk 25 sn'ye kırpıldı, sona fade eklendi, ses seviyesi normalize edildi.
 
+## adhan_fakhri.mp3 (Sabah Fahri · Kısa Ezan, 24 sn)
+- Okuyan: Sabah Fahri (Suriyeli ses sanatçısı)
+- Kaynak: Wikimedia Commons — "Call to prayer by Sabah Fakhry.mp3" (https://commons.wikimedia.org/wiki/File:Call_to_prayer_by_Sabah_Fakhry.mp3)
+- Lisans: Public domain (kamu malı) — atıf gerekmez
+- Değişiklik: ilk 24 sn'ye kırpıldı, sona fade eklendi, ses seviyesi normalize edildi.
+
 ## Telif temizliği (2026-06-11)
 Kaynağı belgelenemeyen 7 kısa müezzin klibi (mishary, ahmed_nafees, hafiz_mustafa,
 masjid_haram, qari_kareem, sheikh_jamac, salah_mansor) ve ticari albümden geldiği

@@ -62,6 +62,15 @@ Future<void> main() async {
       'Modified: trimmed to 25 s, fade-out, loudness-normalised.',
     );
     yield const LicenseEntryWithLineBreaks(
+      ['SELAYA — audio'],
+      'Call to prayer (Adhan) by Sabah Fakhri — short 24 s excerpt '
+      '(file: adhan_fakhri).\n'
+      'Reciter: Sabah Fakhri. Source: Wikimedia Commons '
+      '(commons.wikimedia.org/wiki/File:Call_to_prayer_by_Sabah_Fakhry.mp3).\n'
+      'Licence: Public domain. Modified: trimmed to 24 s, fade-out, '
+      'loudness-normalised.',
+    );
+    yield const LicenseEntryWithLineBreaks(
       ['SELAYA — images'],
       'Quran page images — Madani Mushaf script by King Fahd Glorious Quran '
       'Printing Complex (KFGQPC).\n'

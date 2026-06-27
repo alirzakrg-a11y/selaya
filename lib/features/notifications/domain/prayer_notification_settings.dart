@@ -49,7 +49,13 @@ enum AdhanSound {
   meccaShort(
       id: 'mecca_short',
       properName: 'Mescid-i Harâm · Kısa Ezan (0:25)',
-      file: 'adhan_mecca_short');
+      file: 'adhan_mecca_short'),
+  // Sabah Fahri (efsanevi Suriyeli ses sanatçısı) — PUBLIC DOMAIN, yüksek
+  // kaliteli (stereo) 24 sn kısa ezan; Wikimedia Commons.
+  fakhri(
+      id: 'fakhri',
+      properName: 'Sabah Fahri · Kısa Ezan (0:24)',
+      file: 'adhan_fakhri');
 
   const AdhanSound({required this.id, this.labelKey, this.properName, this.file});
 
@@ -108,7 +114,8 @@ enum AdhanSound {
     meccaMaghrib,
     hassan2Full,
     aaqibAzeez,
-    // KISA (≤25 sn) ezan — sonda.
+    // KISA (≤25 sn) ezanlar — sonda (Sabah Fahri yüksek kaliteli, önce).
+    fakhri,
     meccaShort,
   ];
 }
