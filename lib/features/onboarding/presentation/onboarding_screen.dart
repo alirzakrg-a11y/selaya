@@ -441,6 +441,30 @@ class _FeaturesShowcasePage extends StatelessWidget {
             ? 'Dini günler ve kandil hatırlatmaları'
             : 'Religious days and holy-night reminders'
       ),
+      (
+        Icons.forum_rounded,
+        isTr ? 'Dua Duvarı & Topluluk' : 'Prayer Wall & Community',
+        isTr
+            ? 'Dua iste, paylaş, birlikte hatim yap'
+            : 'Request duas, share, group khatm'
+      ),
+      (
+        Icons.import_contacts_rounded,
+        isTr ? 'Tesbihat & Rehberler' : 'Tasbihat & Guides',
+        isTr
+            ? 'Namaz tesbihatı, ilmihal, abdest & namaz rehberi'
+            : 'Post-prayer dhikr, fiqh, wudu & salah guide'
+      ),
+      (
+        Icons.quiz_rounded,
+        isTr ? 'Bilgi Yarışması' : 'Islamic Quiz',
+        isTr ? 'Dini bilgini test et, öğren' : 'Test and grow your knowledge'
+      ),
+      (
+        Icons.child_care_rounded,
+        isTr ? 'Çocuk İsimleri' : 'Baby Names',
+        isTr ? 'Anlamlı İslami isimler' : 'Meaningful Islamic names'
+      ),
     ];
     return Padding(
       padding: AppSpacing.screen,
