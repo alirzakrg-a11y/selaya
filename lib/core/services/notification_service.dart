@@ -683,18 +683,15 @@ class NotificationService {
     // 15 sn sonra tam ekran = ÇİFT ezan saçmalığı vardı). Native kurulamazsa
     // eski kanal-sesi yoluna düşülür → ezan ASLA susmaz.
     var nativeAdhan = false;
-    // Native ezan FGS'i (AdhanPlayerService) YALNIZ "Tam Ekran Alarm" AÇIK iken
-    // kullan. Varsayılan (tam ekran KAPALI) modda native FGS'e GÜVENME: Android
-    // 14+/16 + Samsung, arka plandaki AlarmManager alıcısından mediaPlayback FGS
-    // başlatmayı ENGELLİYOR → ezan + bildirim SESSİZCE düşüyordu ("bildirimler
-    // gelmiyor"). Bunun yerine aşağıdaki sistem-yönetimli zonedSchedule bildirimi
-    // ezanı KENDİ KANAL SESİYLE çalar (alarm-stream kanalı; sessiz/titreşimde bile
-    // çalar) — FGS YOK, arka planda güvenilir, Play uyumlu; "Durdur" eylemi
-    // bildirimi ve sesi keser.
-    if (atTime &&
-        alarmSlot != null &&
-        sound != AdhanSound.silent &&
-        sound.androidRaw != null) {
+    // At-time ezan native AdhanPlayerService'te (MediaPlayer) çalar → "Kapat" sesi
+    // ANINDA keser. (Kanal-sesi yolu Samsung'da DURDURULAMIYOR — bildirimi
+    // kapatınca sistem RingtonePlayer ezanı çalmaya devam ediyor; kullanıcı
+    // şikâyeti buydu.) FGS tipi artık shortService: Android 14+'ın arka-plan
+    // exact-alarm'dan başlatmaya İZİN VERDİĞİ tip (mediaPlayback YASAKTI — ezanı
+    // sessizce düşüren oydu) ve Play tanıtım-videosu gerektirmez. Tam Ekran KAPALI
+    // (varsayılan) → bu native bildirim tek deneyimdir (erken return). Native
+    // KURULAMAZSA (catch) aşağıdaki kanal-sesi yoluna düşülür → ezan en azından çalar.
+    if (atTime && sound != AdhanSound.silent && sound.androidRaw != null) {
       try {
         await _adhanNativeChannel.invokeMethod('scheduleAdhanAlarm', {
           'id': id,
@@ -703,6 +700,7 @@ class NotificationService {
           'label': title,
         });
         nativeAdhan = true;
+        if (alarmSlot == null) return;
       } catch (_) {
         /* native başarısız → kanal-sesi yoluna düş */
       }
