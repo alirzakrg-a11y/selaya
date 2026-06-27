@@ -15,7 +15,6 @@ import '../../../core/services/permissions_controller.dart';
 import '../../../core/theme/app_colors.dart';
 import '../../../core/theme/app_icons.dart';
 import '../../../core/theme/app_spacing.dart';
-import '../../../core/widgets/app_image.dart';
 import '../../../core/widgets/geometric_background.dart';
 import '../../../core/widgets/gradient_button.dart';
 import '../../../core/widgets/selaya_logo.dart';
@@ -34,7 +33,7 @@ class OnboardingScreen extends ConsumerStatefulWidget {
 class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
   final _controller = PageController();
   int _page = 0;
-  static const _last = 6;
+  static const _last = 3;
   bool _terms = false;
   bool _permIntroShown = false;
   // Drives the red "missing permissions" emphasis once the user tries to start.
@@ -146,21 +145,6 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
                   onPageChanged: _onPageChanged,
                   children: [
                     const _LanguagePage(),
-                    const _IntroPage(
-                      image: 'assets/images/hero_mosque.jpg',
-                      titleKey: 'onboarding.slide1Title',
-                      descKey: 'onboarding.slide1Desc',
-                    ),
-                    const _IntroPage(
-                      image: 'assets/images/inspiration_1.jpg',
-                      titleKey: 'onboarding.slide2Title',
-                      descKey: 'onboarding.slide2Desc',
-                    ),
-                    const _IntroPage(
-                      image: 'assets/images/ai_bg.jpg',
-                      titleKey: 'onboarding.slide3Title',
-                      descKey: 'onboarding.slide3Desc',
-                    ),
                     const _FeaturesShowcasePage(),
                     const _NotificationPrefsPage(),
                     _SetupPage(warn: _warnPerms),
@@ -380,62 +364,6 @@ class _TermsRow extends StatelessWidget {
   }
 }
 
-class _IntroPage extends StatelessWidget {
-  final String image;
-  final String titleKey;
-  final String descKey;
-  const _IntroPage(
-      {required this.image, required this.titleKey, required this.descKey});
-
-  @override
-  Widget build(BuildContext context) {
-    final c = context.colors;
-    return Padding(
-      padding: AppSpacing.screen,
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          ClipRRect(
-            borderRadius: AppRadius.rXxl,
-            child: AspectRatio(
-              aspectRatio: 1,
-              child: Stack(
-                fit: StackFit.expand,
-                children: [
-                  AppImage(image),
-                  DecoratedBox(
-                    decoration: BoxDecoration(
-                      gradient: LinearGradient(
-                        begin: Alignment.topCenter,
-                        end: Alignment.bottomCenter,
-                        colors: [
-                          Colors.transparent,
-                          c.bg.withValues(alpha: 0.8),
-                        ],
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          ),
-          const Gap.xl(),
-          Text(titleKey.tr(),
-              textAlign: TextAlign.center,
-              style: Theme.of(context).textTheme.headlineSmall),
-          const Gap.sm(),
-          Text(descKey.tr(),
-              textAlign: TextAlign.center,
-              style: Theme.of(context)
-                  .textTheme
-                  .bodyMedium
-                  ?.copyWith(color: c.textSecondary, height: 1.5)),
-        ],
-      ),
-    );
-  }
-}
-
 /// İlk açılış vitrini — uygulamadaki TÜM ana özellikleri tek bakışta tanıtır.
 class _FeaturesShowcasePage extends StatelessWidget {
   const _FeaturesShowcasePage();
@@ -502,9 +430,9 @@ class _FeaturesShowcasePage extends StatelessWidget {
             : 'Log prayers and fasts, view your history'
       ),
       (
-        Icons.headphones_rounded,
-        isTr ? 'Sesli Hikâyeler & Duvar Kâğıtları' : 'Audio Stories & Wallpapers',
-        isTr ? 'Dinle, indir, paylaş' : 'Listen, download, share'
+        Icons.wallpaper_rounded,
+        isTr ? 'Duvar Kâğıtları' : 'Wallpapers',
+        isTr ? 'İndir, paylaş, duvar kâğıdı yap' : 'Download, share, set as wallpaper'
       ),
       (
         Icons.calendar_month_rounded,
