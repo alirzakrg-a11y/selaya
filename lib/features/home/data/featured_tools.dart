@@ -21,8 +21,6 @@ const featuredTools = <String, FeaturedTool>{
   'calendar': FeaturedTool(AppIcons.calendar, 'calendar.title', Routes.calendar),
   'travel':
       FeaturedTool(Icons.luggage_rounded, 'travel.title', Routes.travel),
-  'babyNames': FeaturedTool(
-      Icons.child_care_rounded, 'babyNames.title', Routes.babyNames),
   'imsakiye':
       FeaturedTool(Icons.wb_twilight_rounded, 'imsakiye.title', Routes.imsakiye),
   'quran': FeaturedTool(AppIcons.quran, 'quran.title', Routes.quran),
@@ -47,9 +45,9 @@ const featuredTools = <String, FeaturedTool>{
 
 /// Varsayılan sıra (tüm anahtarlar).
 const featuredToolKeys = [
-  // Öne Çıkanlar — varsayılan görünür (seyahat + bebek isimleri eklendi):
+  // Öne Çıkanlar — varsayılan görünür 12 (4x3; seyahat eklendi):
   'dhikr', 'imsakiye', 'quran', 'yasin', 'duas', 'asma',
-  'tracking', 'kaza', 'mosques', 'wallpaper', 'calendar', 'travel', 'babyNames',
+  'tracking', 'kaza', 'mosques', 'wallpaper', 'calendar', 'travel',
   // Gerisi (varsayılan gizli — Daha Fazla'da görünür):
   'hatim', 'greetings', 'qibla', 'fasting', 'widgets',
   'abdest', 'namaz',

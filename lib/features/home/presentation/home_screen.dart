@@ -133,6 +133,11 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
           ),
           const Gap.lg(),
         ];
+      case 'babyNames':
+        return const [
+          Padding(padding: AppSpacing.screen, child: _BabyNamesCard()),
+          Gap.lg(),
+        ];
       case 'quiz':
         return const [
           Padding(padding: AppSpacing.screen, child: _QuizCard()),
@@ -1514,6 +1519,39 @@ class _WidgetPromoCard extends StatelessWidget {
 /// ⑳ Anasayfada duvar kâğıtlarının altında kısa bir günlük bilgi (1-2 satır,
 /// güne göre döner). Akış'taki "Bunu biliyor muydun"un küçük anasayfa hâli.
 /// Ana ekran "Bilgi Yarışması" kartı — puan/seri özeti + yarışmaya yönlendirir.
+/// Tek-satır "Bebek İsimleri" kartı (Öne Çıkanlar ızgarasından ayrı, tam genişlik).
+class _BabyNamesCard extends StatelessWidget {
+  const _BabyNamesCard();
+  @override
+  Widget build(BuildContext context) {
+    final c = context.colors;
+    return SelayaCard(
+      onTap: () => context.push(Routes.babyNames),
+      borderRadius: AppRadius.rLg,
+      padding: const EdgeInsets.all(AppSpacing.md),
+      child: Row(children: [
+        Container(
+          padding: const EdgeInsets.all(9),
+          decoration: BoxDecoration(
+            shape: BoxShape.circle,
+            gradient: LinearGradient(colors: [c.gold, c.goldBright]),
+          ),
+          child: Icon(Icons.child_care_rounded, color: c.bg, size: 20),
+        ),
+        const Gap.base(),
+        Expanded(
+          child: Text('babyNames.title'.tr(),
+              style: Theme.of(context)
+                  .textTheme
+                  .titleSmall
+                  ?.copyWith(fontWeight: FontWeight.w700)),
+        ),
+        Icon(AppIcons.forward, color: c.gold),
+      ]),
+    );
+  }
+}
+
 class _QuizCard extends ConsumerWidget {
   const _QuizCard();
   @override
