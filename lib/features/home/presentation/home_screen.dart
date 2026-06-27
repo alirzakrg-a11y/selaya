@@ -12,6 +12,7 @@ import '../../../core/models/content.dart';
 import '../../../core/router/routes.dart';
 import '../../../core/services/overpass_service.dart';
 import '../../../core/services/permission_service.dart';
+import '../../../core/services/permissions_controller.dart';
 import '../../../core/share/share_helper.dart';
 import '../../../core/theme/app_colors.dart';
 import '../../../core/theme/app_icons.dart';
@@ -28,6 +29,7 @@ import '../../auth/data/auth_controller.dart';
 import '../../social_feed/data/video_thumbs.dart';
 import '../../prayer_times/data/prayer_repository.dart';
 import '../../ibadah_tracking/data/prayer_checkin.dart';
+import '../../notifications/data/prayer_scheduler.dart';
 import '../../prayer_times/presentation/widgets/next_prayer_card.dart';
 import '../../prayer_times/presentation/widgets/prayer_clock_dial.dart';
 import '../../prayer_times/presentation/widgets/prayer_strip.dart';
@@ -357,6 +359,28 @@ class _GreetingBanner extends ConsumerWidget {
 class _HomeHeader extends ConsumerWidget {
   const _HomeHeader();
 
+  /// Konuma DOKUN → izin iste + GPS ile konumu güncelle + vakitleri (ve bildirim
+  /// alarmlarını) yeniden hesapla; sonuca göre kısa bilgi gösterir. (Basılı tut →
+  /// şehir seçici; GestureDetector'da bağlı.)
+  Future<void> _refreshLocation(BuildContext context, WidgetRef ref) async {
+    final messenger = ScaffoldMessenger.of(context);
+    messenger.showSnackBar(SnackBar(
+      content: Text('settings.locating'.tr()),
+      duration: const Duration(seconds: 2),
+    ));
+    final res = await ref
+        .read(permissionsControllerProvider.notifier)
+        .useDeviceLocation();
+    if (res == LocationFlowResult.saved) {
+      await ref.read(prayerSchedulerProvider).rescheduleAll();
+    }
+    messenger.showSnackBar(SnackBar(
+      content: Text(res == LocationFlowResult.saved
+          ? 'settings.refreshTimesDone'.tr()
+          : 'settings.locationFailed'.tr()),
+    ));
+  }
+
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final c = context.colors;
@@ -375,23 +399,31 @@ class _HomeHeader extends ConsumerWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Row(
-                  children: [
-                    Flexible(
-                      child: Text(
-                        city?.name(lang) ?? 'SELAYA',
-                        maxLines: 1,
-                        overflow: TextOverflow.ellipsis,
-                        style: Theme.of(context).textTheme.headlineSmall,
+                // Konuma dokun → GPS ile otomatik güncelle; basılı tut → şehir seç.
+                GestureDetector(
+                  behavior: HitTestBehavior.opaque,
+                  onTap: () => _refreshLocation(context, ref),
+                  onLongPress: () => context.push(Routes.citySelect),
+                  child: Row(
+                    children: [
+                      Flexible(
+                        child: Text(
+                          city?.name(lang) ?? 'SELAYA',
+                          maxLines: 1,
+                          overflow: TextOverflow.ellipsis,
+                          style: Theme.of(context).textTheme.headlineSmall,
+                        ),
                       ),
-                    ),
-                    const Gap.xs(),
-                    const Icon(
-                      AppIcons.location,
-                      size: 18,
-                      color: AppColors.gold,
-                    ),
-                  ],
+                      const Gap.xs(),
+                      const Icon(
+                        AppIcons.location,
+                        size: 18,
+                        color: AppColors.gold,
+                      ),
+                      Icon(Icons.keyboard_arrow_down_rounded,
+                          size: 16, color: c.textTertiary),
+                    ],
+                  ),
                 ),
                 Row(
                   children: [
