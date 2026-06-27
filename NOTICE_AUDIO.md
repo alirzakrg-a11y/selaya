@@ -49,6 +49,16 @@ and license it under the same terms.
 - Lisans: Public domain (kamu malı) — atıf gerekmez
 - Değişiklik: ilk 24 sn'ye kırpıldı, sona fade eklendi, ses seviyesi normalize edildi.
 
+## Manevi/İslami melodiler (bildirim tonu) — hepsi Freesound, CC0 (kamu malı, atıf gerekmez)
+- melody_neyud.mp3 (Ney & Ud, 13 sn) — Freesound avnonsen/440817
+- melody_ney.mp3 (Ney Ezgisi, 16 sn) — Freesound aliaref/580759
+- melody_oud.mp3 (Ud Ezgisi, 8 sn) — Freesound tarane468/550876
+- melody_dogu.mp3 (Doğu Ezgisi, 12 sn) — Freesound code_box/505166
+- melody_huzur.mp3 (Huzur Tınısı, 8 sn) — Freesound manuelsound/829480
+- melody_cingirak.mp3 (Çıngırak, 6 sn) — Freesound NikoletB/846674
+- Lisans: CC0 1.0 (https://creativecommons.org/publicdomain/zero/1.0/) — atıf gerekmez
+- Değişiklik: kırpıldı, sona fade eklendi, ses seviyesi normalize edildi.
+
 ## Telif temizliği (2026-06-11)
 Kaynağı belgelenemeyen 7 kısa müezzin klibi (mishary, ahmed_nafees, hafiz_mustafa,
 masjid_haram, qari_kareem, sheikh_jamac, salah_mansor) ve ticari albümden geldiği

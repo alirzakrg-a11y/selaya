@@ -78,6 +78,15 @@ Future<void> main() async {
       'loudness-normalised.',
     );
     yield const LicenseEntryWithLineBreaks(
+      ['SELAYA — audio'],
+      'Spiritual / Islamic notification melodies (files: melody_neyud, '
+      'melody_ney, melody_oud, melody_dogu, melody_huzur, melody_cingirak).\n'
+      'Sources (Freesound.org): avnonsen/440817, aliaref/580759, '
+      'tarane468/550876, code_box/505166, manuelsound/829480, NikoletB/846674.\n'
+      'Licence: Creative Commons Zero 1.0 (CC0 — public domain, no attribution '
+      'required). Modified: trimmed, fade-out, loudness-normalised.',
+    );
+    yield const LicenseEntryWithLineBreaks(
       ['SELAYA — images'],
       'Quran page images — Madani Mushaf script by King Fahd Glorious Quran '
       'Printing Complex (KFGQPC).\n'

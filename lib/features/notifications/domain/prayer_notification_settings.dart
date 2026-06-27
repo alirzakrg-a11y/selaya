@@ -60,7 +60,17 @@ enum AdhanSound {
   fakhri(
       id: 'fakhri',
       properName: 'Sabah Fahri · Kısa Ezan (0:24)',
-      file: 'adhan_fakhri');
+      file: 'adhan_fakhri'),
+  // ───── MANEVİ / İSLAMİ MELODİLER (bildirim tonu) — müezzin DEĞİL; namaz-öncesi
+  // hatırlatma + genel bildirim için yumuşak ney/ud/doğu ezgileri + huzur tınısı
+  // + çıngırak. Hepsi Freesound, CC0 (kamu malı, atıf gerekmez). ~6-16 sn.
+  melNeyUd(id: 'mel_neyud', properName: 'Ney & Ud', file: 'melody_neyud'),
+  melNey(id: 'mel_ney', properName: 'Ney Ezgisi', file: 'melody_ney'),
+  melOud(id: 'mel_oud', properName: 'Ud Ezgisi', file: 'melody_oud'),
+  melDogu(id: 'mel_dogu', properName: 'Doğu Ezgisi', file: 'melody_dogu'),
+  melHuzur(id: 'mel_huzur', properName: 'Huzur Tınısı', file: 'melody_huzur'),
+  melCingirak(
+      id: 'mel_cingirak', properName: 'Çıngırak', file: 'melody_cingirak');
 
   const AdhanSound({required this.id, this.labelKey, this.properName, this.file});
 
@@ -123,6 +133,17 @@ enum AdhanSound {
     fakhri,
     makkah,
     harak,
+  ];
+
+  /// Manevi/İslami bildirim melodileri (Freesound, CC0). Müezzinlerden AYRI grup:
+  /// namaz-öncesi hatırlatma + genel bildirim için yumuşak ney/ud/doğu tonları.
+  static const melodies = [
+    melNeyUd,
+    melNey,
+    melOud,
+    melDogu,
+    melHuzur,
+    melCingirak,
   ];
 }
 
