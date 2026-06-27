@@ -134,7 +134,7 @@ export const LANDING_HTML = `<!doctype html>
     <div class="wrap">
       <div class="eyebrow">Hazır mısın?</div>
       <h2>SELAYA çok yakında</h2>
-      <p class="sub">Uygulama yayınlandığında buradan indirebileceksin. Sorularını <a class="gold" href="mailto:iletisim@selaya.app">iletisim@selaya.app</a> adresine yazabilirsin.</p>
+      <p class="sub">Uygulama yayınlandığında buradan indirebileceksin. Sorularını <a class="gold" href="mailto:contact@selaya.app">contact@selaya.app</a> adresine yazabilirsin.</p>
       <div class="cta"><span class="badge soon">▶ Yakında Google Play'de</span></div>
     </div>
   </section>
@@ -144,7 +144,7 @@ export const LANDING_HTML = `<!doctype html>
   <div>© <span id="y">2026</span> <a href="https://kargadijital.com">Karga Dijital</a> — SELAYA</div>
   <div class="fl">
     <a href="https://api.selaya.app/privacy">Gizlilik Politikası</a>
-    <a href="mailto:iletisim@selaya.app">İletişim</a>
+    <a href="mailto:contact@selaya.app">İletişim</a>
   </div>
 </div></footer>
 <script>document.getElementById('y').textContent=new Date().getFullYear();</script>

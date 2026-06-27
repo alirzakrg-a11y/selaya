@@ -138,44 +138,6 @@ class _NotificationSettingsScreenState
 
   // _warnFullScreenPermission KALDIRILDI — tam ekran ezan kaldırıldı.
 
-  Widget _testChip(String label, Future<bool> Function() fire) =>
-      OutlinedButton(onPressed: () => _runTest(fire), child: Text(label));
-
-  Future<void> _runTest(Future<bool> Function() fire) async {
-    final ok = await fire();
-    if (!mounted) return;
-    ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-      content:
-          Text(ok ? 'notif.testFired'.tr() : 'notif.permissionDeniedBody'.tr()),
-    ));
-  }
-
-  /// Tam ekran alarm testi: önce gecikme (sn) seç → GERÇEK tam ekran alarmı kur
-  /// → kullanıcı bu sürede ekranı kilitleyip kilit ÜSTÜNDE açılışı görür. (Anında
-  /// açılış kilitli-ekran yolunu test etmez; bu yüzden gecikmeli + gerçek intent.)
-  Future<void> _testFullScreen() async {
-    final seconds = await showModalBottomSheet<int>(
-      context: context,
-      builder: (_) => const _DelayPicker(),
-    );
-    if (seconds == null || !mounted) return;
-    final ok = await ref
-        .read(prayerSchedulerProvider)
-        .testFullScreenAlarm(seconds: seconds);
-    if (!mounted) return;
-    ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-      duration: const Duration(seconds: 5),
-      backgroundColor: const Color(0xFFD9A441),
-      content: Text(
-        ok
-            ? 'notif.testFullScreenScheduled'.tr(args: ['$seconds'])
-            : 'notif.permissionDeniedBody'.tr(),
-        style: TextStyle(
-            color: context.colors.onGold, fontWeight: FontWeight.w700),
-      ),
-    ));
-  }
-
   @override
   Widget build(BuildContext context) {
     final config = ref.watch(prayerNotificationProvider);
@@ -409,45 +371,8 @@ class _NotificationSettingsScreenState
             ),
           ),
 
-          // ── En altta: test bildirimleri + "gelmiyor mu?" rehberi ──
+          // ── "Bildirimler gelmiyor mu?" güvenilirlik rehberi ──
           const Gap.lg(),
-          SelayaCard(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Row(
-                  children: [
-                    Icon(Icons.notifications_active,
-                        color: context.colors.gold, size: 20),
-                    const Gap.md(),
-                    Expanded(
-                        child: Text('notif.testButton'.tr(),
-                            style: Theme.of(context).textTheme.titleSmall)),
-                  ],
-                ),
-                const Gap.sm(),
-                Wrap(
-                  spacing: AppSpacing.sm,
-                  runSpacing: AppSpacing.sm,
-                  children: [
-                    _testChip('notif.testEzan'.tr(),
-                        () => ref.read(prayerSchedulerProvider).testAtTime()),
-                    OutlinedButton(
-                        onPressed: _testFullScreen,
-                        child: Text('notif.testFullScreen'.tr())),
-                    _testChip('notif.testBefore'.tr(),
-                        () => ref.read(prayerSchedulerProvider).testBefore()),
-                    _testChip('notif.testKandil'.tr(),
-                        () => ref.read(specialSchedulerProvider).testKandil()),
-                    _testChip('notif.testCuma'.tr(),
-                        () => ref.read(specialSchedulerProvider).testCuma()),
-                    _testChip('notif.testIftar'.tr(),
-                        () => ref.read(specialSchedulerProvider).testIftar()),
-                  ],
-                ),
-              ],
-            ),
-          ),
           if (Platform.isAndroid) ...[
             const Gap.md(),
             _ReliabilityGuideCard(
@@ -971,57 +896,6 @@ class _RamadanModeRow extends ConsumerWidget {
               ),
           ],
         ),
-      ),
-    );
-  }
-}
-
-/// Tam ekran alarm testi için gecikme seçici — kullanıcı bu süre içinde ekranı
-/// kilitleyip alarmın kilit ÜSTÜNDE açılışını görür.
-class _DelayPicker extends StatelessWidget {
-  const _DelayPicker();
-
-  @override
-  Widget build(BuildContext context) {
-    final c = context.colors;
-    return SafeArea(
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          Padding(
-            padding: const EdgeInsets.fromLTRB(
-                AppSpacing.lg, AppSpacing.base, AppSpacing.lg, AppSpacing.xs),
-            child: Row(
-              children: [
-                Icon(Icons.lock_clock_rounded, color: c.gold),
-                const Gap.sm(),
-                Expanded(
-                  child: Text('notif.testDelayTitle'.tr(),
-                      style: Theme.of(context).textTheme.titleMedium),
-                ),
-              ],
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.fromLTRB(AppSpacing.lg, 0, AppSpacing.lg, 8),
-            child: Align(
-              alignment: Alignment.centerLeft,
-              child: Text('notif.testDelayHint'.tr(),
-                  style: Theme.of(context)
-                      .textTheme
-                      .bodySmall
-                      ?.copyWith(color: c.textTertiary)),
-            ),
-          ),
-          for (final s in [5, 10, 15, 30])
-            ListTile(
-              leading: Icon(Icons.timer_outlined, color: c.gold),
-              title: Text('notif.testDelaySeconds'.tr(args: ['$s'])),
-              trailing: const Icon(Icons.chevron_right_rounded),
-              onTap: () => Navigator.pop(context, s),
-            ),
-          const Gap.md(),
-        ],
       ),
     );
   }
