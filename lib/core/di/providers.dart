@@ -11,6 +11,8 @@ final sharedPreferencesProvider = Provider<SharedPreferences>(
 /// All SharedPreferences keys in one place.
 abstract final class PrefKeys {
   static const String onboardingSeen = 'onboarding_seen';
+  static const String appLaunchCount =
+      'app_launch_count'; // #12: 3-4. açılışta eksik izin hatırlatması
   // Üyelik (auth) — oturum token'ı + profil (json)
   static const String authToken = 'auth_token';
   static const String authUser = 'auth_user'; // json {id,name,surname,email}

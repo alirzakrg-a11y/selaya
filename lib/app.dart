@@ -18,6 +18,7 @@ import 'core/services/widget_service.dart';
 import 'core/services/widget_updater.dart';
 import 'core/theme/app_theme.dart';
 import 'core/widgets/global_mini_player_host.dart';
+import 'core/widgets/permission_dialog.dart';
 import 'features/auth/data/sync_service.dart';
 import 'features/notifications/data/prayer_notification_controller.dart';
 import 'features/notifications/data/prayer_scheduler.dart';
@@ -40,13 +41,23 @@ class _SelayaAppState extends ConsumerState<SelayaApp>
   final GlobalKey<ScaffoldMessengerState> _messengerKey =
       GlobalKey<ScaffoldMessengerState>();
 
+  // (#12) Uygulama açılış (process başlatma) sayacı — 3-4. açılışta eksik izin
+  // hatırlatması için.
+  int _launchCount = 0;
+
   @override
   void initState() {
     super.initState();
     WidgetsBinding.instance.addObserver(this);
+    final prefs = ref.read(sharedPreferencesProvider);
+    _launchCount = (prefs.getInt(PrefKeys.appLaunchCount) ?? 0) + 1;
+    prefs.setInt(PrefKeys.appLaunchCount, _launchCount);
     // Reschedule prayer notifications + refresh home-screen widgets once the
     // first frame (and localisation) is ready; safe no-op without permission.
-    WidgetsBinding.instance.addPostFrameCallback((_) => _syncBackground());
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      _syncBackground();
+      _maybeRemindPermissions();
+    });
     // Surface the full-screen adhan alarm when requested (notification tap /
     // full-screen intent / launch, and the in-app watcher below).
     adhanAlarmSlot.addListener(_onAlarmRequested);
@@ -184,6 +195,21 @@ class _SelayaAppState extends ConsumerState<SelayaApp>
         .setCurrentLocation(loc.pos.latitude, loc.pos.longitude, loc.name);
     if (!mounted) return;
     await ref.read(prayerSchedulerProvider).rescheduleAll();
+  }
+
+  /// (#12) 3. ve 4. açılışta, bildirim VEYA tam-alarm izni eksikse BİR kez nazikçe
+  /// hatırlat. PİL OPTİMİZASYONU dahil DEĞİL (onu hatırlatmak kullanıcıyı yorar).
+  /// _launchCount doğal sınır: yalnız 3-4. açılışta çalışır, sonra hiç.
+  Future<void> _maybeRemindPermissions() async {
+    if (_launchCount != 3 && _launchCount != 4) return;
+    final perms = ref.read(permissionServiceProvider);
+    final notifOk = await perms.notificationsGranted();
+    final exactOk = await perms.exactAlarmsGranted();
+    if (notifOk && exactOk) return;
+    if (!mounted) return;
+    await showOpenSettingsDialog(context, perms,
+        title: 'notif.permissionDeniedTitle'.tr(),
+        message: 'notif.permissionDeniedBody'.tr());
   }
 
   int? _lastAdhanSlot;
