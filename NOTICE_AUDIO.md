@@ -32,11 +32,6 @@ and license it under the same terms.
 - Lisans: CC BY 3.0 (https://creativecommons.org/licenses/by/3.0/)
 - Değişiklik: video içinden ses çıkarıldı, MP3'e dönüştürüldü, ses seviyesi normalize edildi.
 
-## adhan_istanbul.mp3 (İstanbul · Kısa Ezan, 21 sn)
-- Lisans: CC0 1.0 (kamu malına adanmış) — https://creativecommons.org/publicdomain/zero/1.0/
-- Atıf gerekmez. Değişiklik: ses seviyesi normalize edildi.
-- Not: SELAYA aday-ses koleksiyonundan (EZAN_ADAYLARI). CC0 atıf gerektirmez; orijinal kaynak URL'si bulununca buraya eklenmeli.
-
 ## adhan_mecca_short.mp3 (Mescid-i Harâm · Kısa Ezan, 25 sn)
 - Kaynak: "Adhan, Great Mosque of Mecca - Jan 21, 2013" (adhan_mecca_full ile AYNI) — Wikimedia Commons
 - Lisans: CC BY 3.0 (https://creativecommons.org/licenses/by/3.0/)
