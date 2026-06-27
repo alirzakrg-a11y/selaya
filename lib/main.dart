@@ -54,6 +54,21 @@ Future<void> main() async {
       'Modified: audio extracted, converted to MP3, loudness-normalised.',
     );
     yield const LicenseEntryWithLineBreaks(
+      ['SELAYA — audio'],
+      'Istanbul adhan — short recitation (file: adhan_istanbul, 0:21).\n'
+      'Licence: Creative Commons Zero 1.0 Universal (CC0 1.0 — public-domain '
+      'dedication, no attribution required) — '
+      'creativecommons.org/publicdomain/zero/1.0/. Modified: loudness-normalised.',
+    );
+    yield const LicenseEntryWithLineBreaks(
+      ['SELAYA — audio'],
+      'Adhan, Great Mosque of Mecca — short 25 s excerpt (file: adhan_mecca_short).\n'
+      'Trimmed from adhan_mecca_full (same Wikimedia Commons source).\n'
+      'Licence: Creative Commons Attribution 3.0 (CC BY 3.0) — '
+      'creativecommons.org/licenses/by/3.0/. '
+      'Modified: trimmed to 25 s, fade-out, loudness-normalised.',
+    );
+    yield const LicenseEntryWithLineBreaks(
       ['SELAYA — images'],
       'Quran page images — Madani Mushaf script by King Fahd Glorious Quran '
       'Printing Complex (KFGQPC).\n'

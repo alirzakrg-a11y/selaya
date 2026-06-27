@@ -43,7 +43,18 @@ enum AdhanSound {
   hassan2Full(
       id: 'hassan2_full',
       properName: 'Hassan II Camii · Tam Ezan (2:55)',
-      file: 'adhan_hassan2_full');
+      file: 'adhan_hassan2_full'),
+  // KISA (≤25 sn) ezanlar — bildirim için daha az rahatsız edici seçenekler.
+  // İstanbul: CC0 (kamu malı, atıf gerektirmez); kullanıcının aday-ses koleksiyonu.
+  istanbul(
+      id: 'istanbul',
+      properName: 'İstanbul · Kısa Ezan (0:21)',
+      file: 'adhan_istanbul'),
+  // Mescid-i Harâm tam ezanından (CC BY 3.0, yukarıda) kırpılmış ilk 25 sn.
+  meccaShort(
+      id: 'mecca_short',
+      properName: 'Mescid-i Harâm · Kısa Ezan (0:25)',
+      file: 'adhan_mecca_short');
 
   const AdhanSound({required this.id, this.labelKey, this.properName, this.file});
 
@@ -102,6 +113,9 @@ enum AdhanSound {
     meccaMaghrib,
     hassan2Full,
     aaqibAzeez,
+    // KISA (≤25 sn) ezanlar — sonda.
+    istanbul,
+    meccaShort,
   ];
 }
 
