@@ -311,6 +311,9 @@
     "err_too_many_resets": "Anda mencapai batas kode harian (maks. 3). Silakan coba lagi besok."
   },
   "quiz": {
+    "weeklyAttempts": "{} kesempatan tersisa minggu ini",
+    "weeklyNoLeft": "Kesempatan habis — disetel ulang Minggu",
+    "weeklyLimitReached": "Anda telah memakai 2 kesempatan mingguan. Disetel ulang Minggu.",
     "title": "Kuis Pengetahuan",
     "question": "Pertanyaan",
     "secondsShort": "dtk",

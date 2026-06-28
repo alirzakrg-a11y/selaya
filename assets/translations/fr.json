@@ -311,6 +311,9 @@
     "err_too_many_resets": "Limite quotidienne de codes atteinte (max. 3). Réessayez demain."
   },
   "quiz": {
+    "weeklyAttempts": "{} tentatives restantes cette semaine",
+    "weeklyNoLeft": "Plus de tentatives — réinitialisé dimanche",
+    "weeklyLimitReached": "Vous avez utilisé vos 2 tentatives hebdomadaires. Réinitialisé dimanche.",
     "title": "Quiz de connaissances",
     "question": "Question",
     "secondsShort": "s",

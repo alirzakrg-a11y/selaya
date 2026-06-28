@@ -5,14 +5,16 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../core/data/asset_json_loader.dart';
 import '../../../core/di/providers.dart';
 
-/// ISO-8601 hafta anahtarı (YYYY-Www) — backend (quiz.js) ile birebir aynı.
+/// Haftalık anahtar = o haftanın PAZAR günü (UTC), YYYY-MM-DD. Hafta Pazar başlar →
+/// her PAZAR sıfırlanır (madde 3: hak + sorular). Backend (quiz.js weekKey) ile
+/// BİREBİR aynı algoritma olmalı (haftalık hak/skor eşleşsin).
 String quizWeekKey([DateTime? at]) {
   final now = (at ?? DateTime.now()).toUtc();
   final date = DateTime.utc(now.year, now.month, now.day);
-  final thursday = date.add(Duration(days: 4 - date.weekday)); // Mon=1..Sun=7
-  final yearStart = DateTime.utc(thursday.year, 1, 1);
-  final weekNo = ((thursday.difference(yearStart).inDays + 1) / 7).ceil();
-  return '${thursday.year}-W${weekNo.toString().padLeft(2, '0')}';
+  // weekday: Pzt=1..Paz=7 → Paz%7=0; en yakın geçmiş Pazar'a in.
+  final sunday = date.subtract(Duration(days: date.weekday % 7));
+  return '${sunday.year}-${sunday.month.toString().padLeft(2, '0')}-'
+      '${sunday.day.toString().padLeft(2, '0')}';
 }
 
 int weekSeed(String week) {

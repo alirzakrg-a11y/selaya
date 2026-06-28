@@ -871,6 +871,9 @@
     "title": "Topluluk Hatmi"
   },
   "quiz": {
+    "weeklyAttempts": "Bu hafta {} hakkın kaldı",
+    "weeklyNoLeft": "Bu hafta hakkın doldu — Pazar yenilenir",
+    "weeklyLimitReached": "Bu haftaki 2 hakkını kullandın. Pazar günü yenilenir.",
     "title": "Bilgi Yarışması",
     "question": "Soru",
     "secondsShort": "sn",

@@ -94,6 +94,43 @@ class QuizApi {
     throw QuizException((d['error'] ?? 'unknown').toString());
   }
 
+  /// Madde 3: Haftalık başlat — bir hak düş. Dönen: kalan hak. Limit dolduysa
+  /// QuizException('weekly_limit') fırlatır (Pazar yenilenir).
+  static Future<int> startWeekly(String token) async {
+    http.Response res;
+    try {
+      res = await http
+          .post(_u('/v1/quiz/start'),
+              headers: {'Authorization': 'Bearer $token'})
+          .timeout(_timeout);
+    } catch (_) {
+      throw QuizException('network');
+    }
+    final d = _decode(res);
+    if (res.statusCode == 200 && d['ok'] == true) {
+      return (d['remaining'] as num?)?.toInt() ?? 0;
+    }
+    throw QuizException((d['error'] ?? 'unknown').toString());
+  }
+
+  /// Bu haftaki kalan hak (hak DÜŞMEZ — kartta "x/2" göstermek için).
+  static Future<int> weeklyRemaining(String token) async {
+    http.Response res;
+    try {
+      res = await http
+          .get(_u('/v1/quiz/status'),
+              headers: {'Authorization': 'Bearer $token'})
+          .timeout(_timeout);
+    } catch (_) {
+      throw QuizException('network');
+    }
+    final d = _decode(res);
+    if (res.statusCode == 200 && d['ok'] == true) {
+      return (d['remaining'] as num?)?.toInt() ?? 0;
+    }
+    throw QuizException((d['error'] ?? 'unknown').toString());
+  }
+
   static Map<String, dynamic> _decode(http.Response res) {
     try {
       return (jsonDecode(res.body) as Map).cast<String, dynamic>();
@@ -108,4 +145,16 @@ final quizLeaderboardProvider =
     FutureProvider.autoDispose<Leaderboard>((ref) {
   final token = ref.watch(authControllerProvider).token;
   return QuizApi.leaderboard(token: token);
+});
+
+/// Madde 3: bu haftaki kalan "Haftalık başla" hakkı. Giriş yoksa null (limit
+/// gösterilmez — giriş yapmadan oynayan limitsiz oynar, skor kaydolmaz).
+final quizWeeklyStatusProvider = FutureProvider.autoDispose<int?>((ref) async {
+  final token = ref.watch(authControllerProvider).token;
+  if (token == null) return null;
+  try {
+    return await QuizApi.weeklyRemaining(token);
+  } catch (_) {
+    return null; // ağ hatası → limit gösterme, oynamayı engelleme
+  }
 });

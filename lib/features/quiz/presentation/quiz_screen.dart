@@ -55,6 +55,7 @@ class _QuizScreenState extends ConsumerState<QuizScreen> {
   Timer? _timer;
   bool _submitting = false;
   String? _submitErr; // null=ok, 'rumuz_required' | 'network' | diğer kod
+  bool _weeklyChecking = false; // madde 3: haftalık hak backend'den kontrol ediliyor
 
   @override
   void dispose() {
@@ -124,6 +125,44 @@ class _QuizScreenState extends ConsumerState<QuizScreen> {
       _submitErr = null;
     });
     _startTimer();
+  }
+
+  /// Madde 3: Haftalık başla — giriş varsa backend'den hak düş (haftada 2,
+  /// Pazar sıfırlanır); limit dolduysa uyarı + oynatma. Giriş yoksa eskisi gibi
+  /// limitsiz oynar (skor kaydolmaz). Ağ hatasında cezalandırmaz, oynatır.
+  Future<void> _startWeekly(List<QuizQuestion> all) async {
+    if (_weeklyChecking) return;
+    final auth = ref.read(authControllerProvider);
+    if (auth.token == null) {
+      _start(all, _Mode.weekly);
+      return;
+    }
+    setState(() => _weeklyChecking = true);
+    QuizException? err;
+    try {
+      await QuizApi.startWeekly(auth.token!);
+      ref.invalidate(quizWeeklyStatusProvider);
+    } on QuizException catch (e) {
+      err = e;
+    } catch (_) {
+      err = QuizException('network');
+    }
+    if (!mounted) return;
+    setState(() => _weeklyChecking = false);
+    if (err == null) {
+      _start(all, _Mode.weekly);
+    } else if (err.code == 'weekly_limit') {
+      _showSnack('quiz.weeklyLimitReached'.tr());
+    } else {
+      _start(all, _Mode.weekly); // ağ/diğer → yine de oynat
+    }
+  }
+
+  void _showSnack(String msg) {
+    if (!mounted) return;
+    ScaffoldMessenger.of(context)
+      ..clearSnackBars()
+      ..showSnackBar(SnackBar(content: Text(msg)));
   }
 
   void _answer(int i) {
@@ -198,8 +237,9 @@ class _QuizScreenState extends ConsumerState<QuizScreen> {
             case _Phase.idle:
               return _Idle(
                 cat: _cat,
+                weeklyChecking: _weeklyChecking,
                 onCat: (v) => setState(() => _cat = v),
-                onWeekly: () => _start(all, _Mode.weekly),
+                onWeekly: () => _startWeekly(all),
                 onPractice: () => _start(all, _Mode.practice),
                 onLeaderboard: () => context.push(Routes.quizLeaderboard),
               );
@@ -490,12 +530,14 @@ class _QuizScreenState extends ConsumerState<QuizScreen> {
 
 class _Idle extends ConsumerWidget {
   final String cat;
+  final bool weeklyChecking;
   final ValueChanged<String> onCat;
   final VoidCallback onWeekly;
   final VoidCallback onPractice;
   final VoidCallback onLeaderboard;
   const _Idle({
     required this.cat,
+    required this.weeklyChecking,
     required this.onCat,
     required this.onWeekly,
     required this.onPractice,
@@ -506,6 +548,8 @@ class _Idle extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final c = context.colors;
     final stats = ref.watch(quizStatsProvider);
+    // Madde 3: giriş varsa bu haftaki kalan hak (null = giriş yok / bilinmiyor).
+    final int? weeklyLeft = ref.watch(quizWeeklyStatusProvider).asData?.value;
     return ListView(
       padding: const EdgeInsets.fromLTRB(
           AppSpacing.base, AppSpacing.md, AppSpacing.base, AppSpacing.xxxl),
@@ -536,12 +580,36 @@ class _Idle extends ConsumerWidget {
             const Gap.sm(),
             Text('quiz.weeklyDesc'.tr(),
                 style: TextStyle(color: c.textSecondary, height: 1.4, fontSize: 13)),
+            // Madde 3: bu haftaki kalan hak (giriş varsa). 0 ise buton kapanır.
+            if (weeklyLeft != null) ...[
+              const Gap.sm(),
+              Row(children: [
+                Icon(Icons.bolt_rounded,
+                    size: 15, color: weeklyLeft > 0 ? c.gold : c.textTertiary),
+                const SizedBox(width: 5),
+                Text(
+                  weeklyLeft > 0
+                      ? 'quiz.weeklyAttempts'.tr(args: ['$weeklyLeft'])
+                      : 'quiz.weeklyNoLeft'.tr(),
+                  style: TextStyle(
+                      color: weeklyLeft > 0 ? c.textSecondary : c.textTertiary,
+                      fontSize: 12,
+                      fontWeight: FontWeight.w600),
+                ),
+              ]),
+            ],
             const Gap.md(),
             Row(children: [
               Expanded(
                 child: FilledButton.icon(
-                  onPressed: onWeekly,
-                  icon: const Icon(Icons.play_arrow_rounded, size: 18),
+                  onPressed:
+                      (weeklyLeft == 0 || weeklyChecking) ? null : onWeekly,
+                  icon: weeklyChecking
+                      ? const SizedBox(
+                          width: 16,
+                          height: 16,
+                          child: CircularProgressIndicator(strokeWidth: 2))
+                      : const Icon(Icons.play_arrow_rounded, size: 18),
                   label: Text('quiz.startWeekly'.tr()),
                   style: FilledButton.styleFrom(
                       backgroundColor: c.gold,

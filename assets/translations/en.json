@@ -871,6 +871,9 @@
     "title": "Community Khatm"
   },
   "quiz": {
+    "weeklyAttempts": "{} attempts left this week",
+    "weeklyNoLeft": "No attempts left — resets Sunday",
+    "weeklyLimitReached": "You've used both weekly attempts. Resets Sunday.",
     "title": "Knowledge Quiz",
     "question": "Question",
     "secondsShort": "s",
