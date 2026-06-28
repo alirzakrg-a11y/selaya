@@ -73,6 +73,10 @@ class AudioStoryController extends Notifier<AudioStoryState> {
   Future<void> previous() => _h.skipToPrevious();
   Future<void> jumpTo(int index) => _h.player.seek(Duration.zero, index: index);
   Future<void> seek(Duration pos) => _h.player.seek(pos);
+  Future<void> setSpeed(double s) => _h.player.setSpeed(s);
+  double get speed => _h.player.speed;
+  Duration get position => _h.player.position;
+  Duration? get totalDuration => _h.player.duration;
 
   int get currentIndex => _h.player.currentIndex ?? 0;
   Stream<int?> get currentIndexStream => _h.player.currentIndexStream;

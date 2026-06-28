@@ -28,6 +28,8 @@ abstract final class PrefKeys {
   static const String palette = 'app_palette'; // gold | green (İslami Yeşil)
   static const String recentAudio =
       'recent_audio'; // son dinlenen sesli hikâyeler (json liste)
+  static const String favoriteAudio =
+      'favorite_audio'; // favori sesli hikâye bölümleri (json liste)
   static const String textScale = 'text_scale'; // double: user font size (#22)
   static const String calcMethod = 'calc_method';
   static const String cityId = 'city_id';
