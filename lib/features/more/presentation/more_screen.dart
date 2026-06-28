@@ -146,32 +146,39 @@ class _Grid extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final c = context.colors;
-    // Alt alta liste — her araç bir satır (ikon + başlık + ok).
-    return Column(
-      children: [
-        for (final (i, e) in entries.indexed)
-          Padding(
-            padding: const EdgeInsets.only(bottom: AppSpacing.sm),
-            child: SelayaCard(
-              onTap: () => context.openRoute(e.route),
-              padding: const EdgeInsets.all(AppSpacing.md),
-              child: Row(
-                children: [
-                  FeatureIcon(e.icon, index: i),
-                  const Gap.md(),
-                  Expanded(
-                    child: Text(e.labelKey.tr(),
-                        maxLines: 1,
-                        overflow: TextOverflow.ellipsis,
-                        style: Theme.of(context).textTheme.titleSmall),
-                  ),
-                  Icon(AppIcons.forward, color: c.textTertiary, size: 20),
-                ],
-              ),
-            ),
+    // 3-sütun ızgara — her araç ikon (üst) + başlık (alt) kutusu (kullanıcı seçimi:
+    // en kompakt, en az kaydırma). Başlık 2 satıra kadar ortalı.
+    return GridView.builder(
+      shrinkWrap: true,
+      physics: const NeverScrollableScrollPhysics(),
+      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+        crossAxisCount: 3,
+        mainAxisSpacing: AppSpacing.sm,
+        crossAxisSpacing: AppSpacing.sm,
+        childAspectRatio: 0.86,
+      ),
+      itemCount: entries.length,
+      itemBuilder: (context, i) {
+        final e = entries[i];
+        return SelayaCard(
+          onTap: () => context.openRoute(e.route),
+          padding:
+              const EdgeInsets.symmetric(horizontal: 4, vertical: AppSpacing.sm),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              FeatureIcon(e.icon, index: i),
+              const Gap.xs(),
+              Text(e.labelKey.tr(),
+                  maxLines: 2,
+                  textAlign: TextAlign.center,
+                  overflow: TextOverflow.ellipsis,
+                  style:
+                      Theme.of(context).textTheme.labelSmall?.copyWith(height: 1.15)),
+            ],
           ),
-      ],
+        );
+      },
     );
   }
 }
