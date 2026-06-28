@@ -1,8 +1,6 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../../../core/data/manifest_service.dart';
 import '../../../core/localization/localized_text.dart';
 import '../../../core/theme/app_colors.dart';
 import '../../../core/theme/app_spacing.dart';
@@ -15,52 +13,15 @@ import '../domain/guide.dart';
 /// intro banner, numbered step cards (each with a placeholder image area the
 /// user fills later), and labelled bullet sections. Large text + spacing for
 /// senior readability.
-class GuideScreen extends ConsumerWidget {
+class GuideScreen extends StatelessWidget {
   final Guide guide;
-
-  /// Panel koleksiyonu (guide_abdest / guide_namaz) — doluysa adım görselleri
-  /// SIRAYLA bundan çekilir (panelden güncelle, rebuild gerekmez).
-  final String? collection;
-  const GuideScreen({super.key, required this.guide, this.collection});
-
-  /// Panelde görsel varsa adım görsellerini sırayla onlarla değiştir; yoksa
-  /// paket-içi (bundled) görseller kalır.
-  List<GuideStep> _effectiveSteps(WidgetRef ref) {
-    final col = collection;
-    if (col == null) return guide.steps;
-    final panel = ref.watch(collectionProvider(col));
-    final items = [
-      for (final item in panel)
-        if (item.url.isNotEmpty) item
-    ];
-    if (items.isEmpty) return guide.steps;
-    // Panel öğeleri = adımlar: GÖRSEL + BAŞLIK + AÇIKLAMA panelden gelir; boşsa
-    // paket-içi karşılık adımdan (aynı sıra) alınır → kullanıcı panelden düzenler.
-    return [
-      for (var i = 0; i < items.length; i++)
-        GuideStep(
-          _gtxt(items[i].title, i < guide.steps.length ? guide.steps[i].tt : ''),
-          _gtxt(items[i].title, i < guide.steps.length ? guide.steps[i].et : ''),
-          _gtxt(items[i].subtitle,
-              i < guide.steps.length ? guide.steps[i].tb : ''),
-          _gtxt(items[i].subtitle,
-              i < guide.steps.length ? guide.steps[i].eb : ''),
-          i < guide.steps.length
-              ? guide.steps[i].icon
-              : Icons.check_circle_outline,
-          image: items[i].url,
-        ),
-    ];
-  }
-
-  String _gtxt(String? p, String fb) =>
-      (p != null && p.trim().isNotEmpty) ? p.trim() : fb;
+  const GuideScreen({super.key, required this.guide});
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  Widget build(BuildContext context) {
     final c = context.colors;
     final lang = context.langCode;
-    final steps = _effectiveSteps(ref);
+    final steps = guide.steps; // Adımlar + görseller paket-içi (bundled).
     return SelayaScaffold(
       title: guide.title(lang),
       showBack: true,

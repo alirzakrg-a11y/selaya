@@ -164,14 +164,9 @@ final routerProvider = Provider<GoRouter>((ref) {
       fs(Routes.quiz, (_, _) => const QuizScreen()),
       fs(Routes.quizLeaderboard, (_, _) => const QuizLeaderboardScreen()),
       fs(Routes.abdestGuide, (_, _) => const AbdestRehberiScreen()),
-      fs(Routes.guideDetail, (_, s) {
-        final a = s.extra as ({Guide guide, String collection});
-        return GuideScreen(guide: a.guide, collection: a.collection);
-      }),
+      fs(Routes.guideDetail, (_, s) => GuideScreen(guide: s.extra as Guide)),
       fs(Routes.namazGuide, (_, _) => const NamazRehberiScreen()),
-      fs(Routes.namazHowTo,
-          (_, _) =>
-              const GuideScreen(guide: namazGuide, collection: 'guide_namaz')),
+      fs(Routes.namazHowTo, (_, _) => const GuideScreen(guide: namazGuide)),
       fs(Routes.widgetsGallery, (_, _) => const WidgetsGalleryScreen()),
       fs(Routes.homeLayout, (_, _) => const HomeLayoutScreen()),
       fs(Routes.featuredEdit, (_, _) => const FeaturedGridScreen()),

@@ -45,8 +45,8 @@ class AbdestRehberiScreen extends StatelessWidget {
             icon: Icons.water_drop_rounded,
             title: 'xt.agHeroTitle'.tr(),
             subtitle: 'xt.agHeroSubtitle'.tr(),
-            onTap: () => context.push(Routes.guideDetail,
-                extra: (guide: abdestGuide, collection: 'guide_abdest')),
+            onTap: () =>
+                context.push(Routes.guideDetail, extra: abdestGuide),
           ),
           const Gap.md(),
           Row(children: [

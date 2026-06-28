@@ -1571,15 +1571,13 @@ const PANEL_HTML = `<!doctype html>
   var COLLS = [
     ['wallpapers', 'Duvar Kâğıtları', 'Galeri ekranındaki duvar kâğıtları.'],
     ['feed', 'Videolar (Reels)', 'Akış/keşfet video reel\\'leri.'],
-    ['stories', 'Hikâyeler', 'Ana ekran hikâye şeridi kapakları.'],
-    ['guide_abdest', 'Abdest Rehberi', 'Abdest adım görselleri.'],
-    ['guide_namaz', 'Namaz Rehberi', 'Namaz adım görselleri.']
+    ['stories', 'Hikâyeler', 'Ana ekran hikâye şeridi kapakları.']
   ];
   var LABELS = {}; var DESCS = {};
   COLLS.forEach(function(c){ LABELS[c[0]] = c[1]; DESCS[c[0]] = c[2]; });
   // Builder ile yönetildiği için açılır menüde yok ama liste başlığında görünsün:
   LABELS['audio_stories'] = 'Sesli Hikâyeler';
-  var CAT_ICONS = { wallpapers:'🖼️', feed:'🎬', inspiration:'✨', stories:'📖', greeting:'💌', bg_videos:'🎞️', guide_abdest:'🕌', guide_namaz:'🧎', audio_stories:'🎧' };
+  var CAT_ICONS = { wallpapers:'🖼️', feed:'🎬', inspiration:'✨', stories:'📖', greeting:'💌', bg_videos:'🎞️', audio_stories:'🎧' };
   var currentCat = 'wallpapers'; var ALL_ITEMS = []; var firstLoad = true;
 
   (function initSelect(){
