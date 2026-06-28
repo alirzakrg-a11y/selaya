@@ -26,7 +26,10 @@
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE_MEDIA_PLAYBACK"/>
     <!-- Smart Silent (#6.2): toggle DND/ringer to mute during prayer & Friday windows -->
     <uses-permission android:name="android.permission.ACCESS_NOTIFICATION_POLICY"/>
-    <uses-permission android:name="android.permission.READ_MEDIA_IMAGES"/>
+    <!-- Foto izni KALDIRILDI (madde G): uygulama galeriden OKUMUYOR, yalnızca duvar
+         kâğıdı/tebrik kartını KAYDEDIYOR (gal putImage/putVideo). Android 13+'da
+         galeriye kaydetme izin istemez; eski Android için WRITE_EXTERNAL_STORAGE
+         (maxSdk 32) yeterli. READ_MEDIA_IMAGES (okuma) gereksizdi → Play risk azaltır. -->
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" android:maxSdkVersion="32"/>
     <application
         android:label="SELAYA"
