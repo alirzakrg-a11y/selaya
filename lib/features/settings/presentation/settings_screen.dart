@@ -47,6 +47,72 @@ class SettingsScreen extends ConsumerWidget {
         padding: const EdgeInsets.fromLTRB(
             AppSpacing.base, AppSpacing.sm, AppSpacing.base, AppSpacing.xxxl),
         children: [
+          // Madde 23: sıra — Bildirimler → Namaz → İbadet takibi → Görünüm →
+          // Akıllı sessiz → Hassas (en sık kullanılan üstte; en aptal kullanıcı
+          // bile anlasın). Kadınlar + Hakkında en sonda kalır.
+          _SectionTitle('settings.notifications'.tr(),
+              icon: Icons.notifications_outlined),
+          SelayaCard(
+            child: Column(
+              children: [
+                _NavRow(
+                  icon: AppIcons.notification,
+                  label: 'notif.title'.tr(),
+                  value: '',
+                  onTap: () => context.push(Routes.notificationSettings),
+                ),
+                const _DividerLine(),
+                _DailyNotifToggle(
+                  titleKey: 'settings.ayahNotif',
+                  descKey: 'settings.ayahNotifDesc',
+                  read: (ref) => ref.watch(dailyAyahNotifProvider),
+                  write: (ref, lang, on) async {
+                    await ref.read(dailyAyahNotifProvider.notifier).set(on);
+                    await applyDailyAyah(ref, lang, on);
+                  },
+                ),
+                const _DividerLine(),
+                _DailyNotifToggle(
+                  titleKey: 'settings.hadithNotif',
+                  descKey: 'settings.hadithNotifDesc',
+                  read: (ref) => ref.watch(dailyHadithNotifProvider),
+                  write: (ref, lang, on) async {
+                    await ref.read(dailyHadithNotifProvider.notifier).set(on);
+                    await applyDailyHadith(ref, lang, on);
+                  },
+                ),
+                const _DividerLine(),
+                const _HatimReminderRow(),
+              ],
+            ),
+          ),
+          const Gap.lg(),
+          _SectionTitle('settings.prayerSettings'.tr(),
+              icon: Icons.mosque_rounded),
+          SelayaCard(
+            child: Column(
+              children: [
+                _NavRow(
+                  icon: AppIcons.location,
+                  label: 'settings.location'.tr(),
+                  value: city?.name(lang) ?? '—',
+                  onTap: () => context.push(Routes.citySelect),
+                ),
+                const _DividerLine(),
+                _NavRow(
+                  icon: AppIcons.calculator,
+                  label: 'settings.calculationMethod'.tr(),
+                  value: settings.calcMethod.label(lang),
+                  onTap: () => _pickMethod(context, ref, settings.calcMethod),
+                ),
+              ],
+            ),
+          ),
+          const Gap.lg(),
+          _SectionTitle('tracking.title'.tr(),
+              icon: Icons.check_circle_outline_rounded),
+          const SelayaCard(child: _CheckinToggleRow()),
+          const Gap.lg(),
           _SectionTitle('settings.appearance'.tr(),
               icon: Icons.palette_outlined),
           SelayaCard(
@@ -122,97 +188,6 @@ class SettingsScreen extends ConsumerWidget {
             ),
           ),
           const Gap.lg(),
-          _SectionTitle('settings.prayerSettings'.tr(),
-              icon: Icons.mosque_rounded),
-          SelayaCard(
-            child: Column(
-              children: [
-                _NavRow(
-                  icon: AppIcons.location,
-                  label: 'settings.location'.tr(),
-                  value: city?.name(lang) ?? '—',
-                  onTap: () => context.push(Routes.citySelect),
-                ),
-                const _DividerLine(),
-                _NavRow(
-                  icon: AppIcons.calculator,
-                  label: 'settings.calculationMethod'.tr(),
-                  value: settings.calcMethod.label(lang),
-                  onTap: () => _pickMethod(context, ref, settings.calcMethod),
-                ),
-              ],
-            ),
-          ),
-          const Gap.lg(),
-          _SectionTitle('settings.fineTune'.tr(), icon: Icons.tune_rounded),
-          SelayaCard(
-            child: Column(
-              children: [
-                _NavRow(
-                  icon: AppIcons.tune,
-                  label: 'settings.minuteOffset'.tr(),
-                  value: settings.offsets.isEmpty
-                      ? '—'
-                      : '${settings.offsets.length}',
-                  onTap: () => _editOffsets(context, ref),
-                ),
-                const _DividerLine(),
-                _NavRow(
-                  icon: AppIcons.calendar,
-                  label: 'settings.hijriOffset'.tr(),
-                  value: 'calendar.daysLeft'
-                      .tr(args: [_signedNum(settings.hijriOffsetDays)]),
-                  onTap: () => _editHijri(context, ref),
-                ),
-                const _DividerLine(),
-                _SwitchRow(
-                  icon: AppIcons.asr,
-                  label: 'settings.asrHanafi'.tr(),
-                  subtitle: 'settings.asrHanafiDesc'.tr(),
-                  value: settings.hanafiAsr,
-                  onChanged: ctrl.setHanafiAsr,
-                ),
-              ],
-            ),
-          ),
-          const Gap.lg(),
-          _SectionTitle('settings.notifications'.tr(),
-              icon: Icons.notifications_outlined),
-          SelayaCard(
-            child: Column(
-              children: [
-                _NavRow(
-                  icon: AppIcons.notification,
-                  label: 'notif.title'.tr(),
-                  value: '',
-                  onTap: () => context.push(Routes.notificationSettings),
-                ),
-                const _DividerLine(),
-                _DailyNotifToggle(
-                  titleKey: 'settings.ayahNotif',
-                  descKey: 'settings.ayahNotifDesc',
-                  read: (ref) => ref.watch(dailyAyahNotifProvider),
-                  write: (ref, lang, on) async {
-                    await ref.read(dailyAyahNotifProvider.notifier).set(on);
-                    await applyDailyAyah(ref, lang, on);
-                  },
-                ),
-                const _DividerLine(),
-                _DailyNotifToggle(
-                  titleKey: 'settings.hadithNotif',
-                  descKey: 'settings.hadithNotifDesc',
-                  read: (ref) => ref.watch(dailyHadithNotifProvider),
-                  write: (ref, lang, on) async {
-                    await ref.read(dailyHadithNotifProvider.notifier).set(on);
-                    await applyDailyHadith(ref, lang, on);
-                  },
-                ),
-                const _DividerLine(),
-                const _HatimReminderRow(),
-              ],
-            ),
-          ),
-          const Gap.lg(),
           _SectionTitle('settings.smartSilent'.tr(),
               icon: Icons.volume_off_rounded),
           SelayaCard(
@@ -261,9 +236,37 @@ class SettingsScreen extends ConsumerWidget {
             ),
           ),
           const Gap.lg(),
-          _SectionTitle('tracking.title'.tr(),
-              icon: Icons.check_circle_outline_rounded),
-          const SelayaCard(child: _CheckinToggleRow()),
+          _SectionTitle('settings.fineTune'.tr(), icon: Icons.tune_rounded),
+          SelayaCard(
+            child: Column(
+              children: [
+                _NavRow(
+                  icon: AppIcons.tune,
+                  label: 'settings.minuteOffset'.tr(),
+                  value: settings.offsets.isEmpty
+                      ? '—'
+                      : '${settings.offsets.length}',
+                  onTap: () => _editOffsets(context, ref),
+                ),
+                const _DividerLine(),
+                _NavRow(
+                  icon: AppIcons.calendar,
+                  label: 'settings.hijriOffset'.tr(),
+                  value: 'calendar.daysLeft'
+                      .tr(args: [_signedNum(settings.hijriOffsetDays)]),
+                  onTap: () => _editHijri(context, ref),
+                ),
+                const _DividerLine(),
+                _SwitchRow(
+                  icon: AppIcons.asr,
+                  label: 'settings.asrHanafi'.tr(),
+                  subtitle: 'settings.asrHanafiDesc'.tr(),
+                  value: settings.hanafiAsr,
+                  onChanged: ctrl.setHanafiAsr,
+                ),
+              ],
+            ),
+          ),
           const Gap.lg(),
           _SectionTitle('womens.title'.tr(), icon: Icons.female_rounded),
           SelayaCard(
