@@ -966,6 +966,8 @@
     "send": "Gönder"
   },
   "xt": {
+    "muMeal": "Meal",
+    "muMealEmpty": "Bu sayfa için meal bulunamadı.",
     "agHeroTitle": "Abdest Nasıl Alınır?",
     "agHeroSubtitle": "Adım adım görselli anlatım",
     "agLinkPrayer": "Namaz",

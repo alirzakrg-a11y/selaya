@@ -966,6 +966,8 @@
     "send": "Envoyer"
   },
   "xt": {
+    "muMeal": "Traduction",
+    "muMealEmpty": "Aucune traduction trouvée pour cette page.",
     "agFardSubtitle": "Les 4 piliers",
     "agFardTitle": "Obligations des ablutions",
     "agHeroSubtitle": "Guide illustré étape par étape",

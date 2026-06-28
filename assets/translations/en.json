@@ -966,6 +966,8 @@
     "send": "Send"
   },
   "xt": {
+    "muMeal": "Translation",
+    "muMealEmpty": "No translation found for this page.",
     "agHeroTitle": "How to Perform Wudu",
     "agHeroSubtitle": "Illustrated step-by-step walkthrough",
     "agLinkPrayer": "Prayer",

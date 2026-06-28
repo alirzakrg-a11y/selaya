@@ -966,6 +966,8 @@
     "send": "ارسال"
   },
   "xt": {
+    "muMeal": "ترجمه",
+    "muMealEmpty": "ترجمه‌ای برای این صفحه یافت نشد.",
     "agFardSubtitle": "۴ رکن اصلی",
     "agFardTitle": "فرض‌های وضو",
     "agHeroSubtitle": "آموزش گام‌به‌گام تصویری",

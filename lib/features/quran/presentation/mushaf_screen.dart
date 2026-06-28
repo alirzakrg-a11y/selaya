@@ -19,6 +19,29 @@ import '../data/quran_audio_controller.dart';
 import '../data/quran_tracks.dart';
 import 'quran_caching_badge.dart';
 
+/// 📖 Sayfadaki ayetlerin MEALİ (madde 4) — sayfa→ayet eşlemesinden (mushaf_meta)
+/// + offline verses_NNN.json'dan. Her öğe (sure, Verse). Mushaf meal paneli kullanır.
+/// Tüm veri yerel (çevrimdışı çalışır); sayfa görselinin aksine ağ gerektirmez.
+final mushafPageVersesProvider =
+    FutureProvider.family<List<({int surah, Verse verse})>, int>((
+      ref,
+      page,
+    ) async {
+      final surahs = await ref.watch(surahsProvider.future);
+      int ayahCountOf(int s) => surahs
+          .firstWhere((x) => x.number == s, orElse: () => surahs.first)
+          .ayahCount;
+      final segments = versesOnPage(page, ayahCountOf);
+      final out = <({int surah, Verse verse})>[];
+      for (final seg in segments) {
+        final verses = await ref.watch(versesProvider(seg.surah).future);
+        for (var a = seg.start; a <= seg.end && a <= verses.length; a++) {
+          out.add((surah: seg.surah, verse: verses[a - 1]));
+        }
+      }
+      return out;
+    });
+
 /// 📖 MUSHAF MODU — gerçek Medine mushafı, sayfa sayfa (604 sayfa).
 /// Kart görünümünün yanındaki ikinci okuma tarzı: sağdan sola sayfa çevrilir
 /// (gerçek mushaf gibi), iki parmakla yakınlaştırılır; altta cüz + sayfa
@@ -64,6 +87,9 @@ class _MushafScreenState extends ConsumerState<MushafScreen>
   /// birbirinin değerini eziyordu → çift dokunuş "tutmuyordu".)
   final _zoom = TransformationController();
   TapDownDetails? _doubleTapAt;
+
+  /// Madde 4: alt meal paneli açık mı (çeviri toggle ile aç/kapa).
+  bool _showMeal = false;
 
   void _onDoubleTap() {
     // Zaten yakınsa → %100'e dön; değilse dokunulan noktaya yakınlaş.
@@ -466,6 +492,15 @@ class _MushafScreenState extends ConsumerState<MushafScreen>
       ),
       showBack: true,
       actions: [
+        // Madde 4: sayfadaki ayetlerin mealini (çeviri) alta aç/kapa.
+        IconButton(
+          tooltip: 'xt.muMeal'.tr(),
+          icon: Icon(
+            Icons.translate_rounded,
+            color: _showMeal ? c.gold : c.textSecondary,
+          ),
+          onPressed: () => setState(() => _showMeal = !_showMeal),
+        ),
         IconButton(
           tooltip: 'xt.muPickSurahJuz'.tr(),
           icon: Icon(Icons.format_list_bulleted_rounded, color: c.gold),
@@ -549,6 +584,14 @@ class _MushafScreenState extends ConsumerState<MushafScreen>
               },
             ),
           ),
+          // Madde 4: alt MEAL paneli — sayfadaki ayetlerin seçili dile göre meali
+          // (çeviri toggle ile aç/kapa). Sayfa çevrilince otomatik güncellenir.
+          if (_showMeal)
+            _MushafMealPanel(
+              page: _page,
+              lang: lang,
+              onClose: () => setState(() => _showMeal = false),
+            ),
           // İbadeti bölmeyen küçük "ses indiriliyor" rozeti (kullanıcı 2026-06-17).
           const QuranCachingBadge(),
           // 🎧 Mushaf içi Kur'ân Okuyucu: sayfadaki sureyi çal/duraklat.
@@ -724,6 +767,142 @@ class _Chip extends StatelessWidget {
           color: accent ? c.gold : c.textSecondary,
           fontWeight: FontWeight.w700,
         ),
+      ),
+    );
+  }
+}
+
+/// 📖 Madde 4 — Mushaf alt MEAL paneli. Açık sayfadaki ayetlerin seçili dile
+/// göre meali (offline verses_NNN.json). Sayfa çevrilince [page] değişir →
+/// provider yeniden çekilir. Mealler yetkili/yayınlanmış çevirilerdir.
+class _MushafMealPanel extends ConsumerWidget {
+  final int page;
+  final String lang;
+  final VoidCallback onClose;
+  const _MushafMealPanel({
+    required this.page,
+    required this.lang,
+    required this.onClose,
+  });
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final c = context.colors;
+    final async = ref.watch(mushafPageVersesProvider(page));
+    return Container(
+      height: MediaQuery.sizeOf(context).height * 0.30,
+      margin: const EdgeInsets.fromLTRB(10, 6, 10, 0),
+      decoration: BoxDecoration(
+        color: c.surface,
+        borderRadius: BorderRadius.circular(14),
+        border: Border.all(color: c.gold.withValues(alpha: 0.3)),
+      ),
+      clipBehavior: Clip.antiAlias,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          // Başlık şeridi: "Meal" + kapat.
+          Padding(
+            padding: const EdgeInsets.fromLTRB(14, 8, 8, 6),
+            child: Row(
+              children: [
+                Icon(Icons.translate_rounded, size: 16, color: c.gold),
+                const Gap.sm(),
+                Text(
+                  'xt.muMeal'.tr(),
+                  style: Theme.of(context).textTheme.labelLarge?.copyWith(
+                    color: c.gold,
+                    fontWeight: FontWeight.w700,
+                  ),
+                ),
+                const Spacer(),
+                InkWell(
+                  onTap: onClose,
+                  borderRadius: BorderRadius.circular(20),
+                  child: Padding(
+                    padding: const EdgeInsets.all(4),
+                    child: Icon(
+                      Icons.close_rounded,
+                      size: 18,
+                      color: c.textTertiary,
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
+          Divider(height: 1, color: c.border),
+          Expanded(
+            child: async.when(
+              loading: () => const Center(
+                child: SizedBox(
+                  width: 22,
+                  height: 22,
+                  child: CircularProgressIndicator(strokeWidth: 2),
+                ),
+              ),
+              error: (_, _) => Center(
+                child: Text(
+                  'xt.muMealEmpty'.tr(),
+                  style: TextStyle(color: c.textTertiary),
+                ),
+              ),
+              data: (items) => items.isEmpty
+                  ? Center(
+                      child: Text(
+                        'xt.muMealEmpty'.tr(),
+                        style: TextStyle(color: c.textTertiary),
+                      ),
+                    )
+                  : ListView.separated(
+                      padding: const EdgeInsets.fromLTRB(12, 10, 12, 14),
+                      itemCount: items.length,
+                      separatorBuilder: (_, _) => Divider(
+                        height: 16,
+                        color: c.border.withValues(alpha: 0.5),
+                      ),
+                      itemBuilder: (ctx, i) {
+                        final it = items[i];
+                        return Row(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            // Ayet rozeti: "sure:ayet" (ör. 2:255).
+                            Container(
+                              padding: const EdgeInsets.symmetric(
+                                horizontal: 7,
+                                vertical: 3,
+                              ),
+                              decoration: BoxDecoration(
+                                color: c.gold.withValues(alpha: 0.14),
+                                borderRadius: BorderRadius.circular(8),
+                              ),
+                              child: Text(
+                                '${it.surah}:${it.verse.ayah}',
+                                style: TextStyle(
+                                  color: c.gold,
+                                  fontSize: 11,
+                                  fontWeight: FontWeight.w700,
+                                ),
+                              ),
+                            ),
+                            const Gap.md(),
+                            Expanded(
+                              child: Text(
+                                it.verse.meaning(lang),
+                                style: Theme.of(context).textTheme.bodyMedium
+                                    ?.copyWith(
+                                      color: c.textSecondary,
+                                      height: 1.45,
+                                    ),
+                              ),
+                            ),
+                          ],
+                        );
+                      },
+                    ),
+            ),
+          ),
+        ],
       ),
     );
   }
