@@ -151,8 +151,6 @@ class _AudioStoriesScreenState extends ConsumerState<AudioStoriesScreen> {
               const Gap.lg(),
               _SearchField(onChanged: (v) => setState(() => _query = v)),
               const Gap.lg(),
-              _SectionHeader(title: 'audioStories.categories'.tr()),
-              const Gap.sm(),
               SizedBox(
                 height: 40,
                 child: ListView(
@@ -188,9 +186,11 @@ class _AudioStoriesScreenState extends ConsumerState<AudioStoriesScreen> {
                       visibleRecents.first.cat.id, visibleRecents.first.index),
                 ),
               ],
-              const Gap.lg(),
-              _SectionHeader(title: 'audioStories.popular'.tr()),
-              const Gap.sm(),
+              // Mockup: her kategori AYRI bölüm — kutu başlık + o kategorinin
+              // bölümleri. Seçili kategori varsa yalnız o; arama eşleşenleri süzer.
+              for (final cat in cats)
+                if (_selectedCat == null || _selectedCat == cat.id)
+                  ..._categorySection(context, cat, lang, prefs, q),
               if (filtered.isEmpty)
                 Padding(
                   padding: const EdgeInsets.symmetric(vertical: AppSpacing.lg),
@@ -201,28 +201,43 @@ class _AudioStoriesScreenState extends ConsumerState<AudioStoriesScreen> {
                             .bodySmall
                             ?.copyWith(color: context.colors.textTertiary)),
                   ),
-                )
-              else
-                for (var i = 0; i < filtered.length; i++)
-                  _PopularTile(
-                    number: i + 1,
-                    track: filtered[i],
-                    lang: lang,
-                    favorite:
-                        isFavoriteAudio(prefs, filtered[i].cat.id, filtered[i].index),
-                    onTap: () =>
-                        _openPlayer(filtered[i].cat.id, filtered[i].index),
-                    onFav: () {
-                      toggleFavoriteAudio(
-                          prefs, filtered[i].cat.id, filtered[i].index);
-                      setState(() {});
-                    },
-                  ),
+                ),
             ],
           );
         },
       ),
     );
+  }
+
+  /// Mockup: her kategori AYRI bölüm — kutu başlık + (arama) süzülmüş bölümleri.
+  List<Widget> _categorySection(BuildContext context, AudioStoryCategory cat,
+      String lang, SharedPreferences prefs, String q) {
+    final eps = <int>[];
+    for (var i = 0; i < cat.episodes.length; i++) {
+      if (q.isEmpty ||
+          cat.episodes[i].title(lang).toLowerCase().contains(q) ||
+          cat.title(lang).toLowerCase().contains(q)) {
+        eps.add(i);
+      }
+    }
+    if (eps.isEmpty) return const [];
+    return [
+      const Gap.lg(),
+      _SectionHeader(title: cat.title(lang)),
+      const Gap.sm(),
+      for (var n = 0; n < eps.length; n++)
+        _PopularTile(
+          number: n + 1,
+          track: (cat: cat, index: eps[n], ep: cat.episodes[eps[n]]),
+          lang: lang,
+          favorite: isFavoriteAudio(prefs, cat.id, eps[n]),
+          onTap: () => _openPlayer(cat.id, eps[n]),
+          onFav: () {
+            toggleFavoriteAudio(prefs, cat.id, eps[n]);
+            setState(() {});
+          },
+        ),
+    ];
   }
 }
 
@@ -324,11 +339,26 @@ class _SectionHeader extends StatelessWidget {
   final String title;
   const _SectionHeader({required this.title});
   @override
-  Widget build(BuildContext context) => Text(title,
-      style: Theme.of(context)
-          .textTheme
-          .titleMedium
-          ?.copyWith(fontWeight: FontWeight.w700));
+  Widget build(BuildContext context) {
+    final c = context.colors;
+    // Mockup: ortalı, kenarlıklı kutu başlık.
+    return Container(
+      width: double.infinity,
+      padding:
+          const EdgeInsets.symmetric(vertical: 13, horizontal: AppSpacing.md),
+      alignment: Alignment.center,
+      decoration: BoxDecoration(
+        color: c.surfaceAlt,
+        borderRadius: AppRadius.rLg,
+        border: Border.all(color: c.border),
+      ),
+      child: Text(title,
+          style: Theme.of(context)
+              .textTheme
+              .titleSmall
+              ?.copyWith(fontWeight: FontWeight.w700, letterSpacing: 0.3)),
+    );
+  }
 }
 
 class _CategoryChip extends StatelessWidget {
