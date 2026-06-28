@@ -12,7 +12,8 @@ CREATE TABLE IF NOT EXISTS content_items (
   sort        INTEGER NOT NULL DEFAULT 0,
   active      INTEGER NOT NULL DEFAULT 1,
   created_at  INTEGER NOT NULL DEFAULT 0,
-  updated_at  INTEGER NOT NULL DEFAULT 0
+  updated_at  INTEGER NOT NULL DEFAULT 0,
+  lang        TEXT NOT NULL DEFAULT 'tr'      -- madde 16: içerik dili (app locale'e göre çeker, TR yedek)
 );
 
 CREATE INDEX IF NOT EXISTS idx_content_collection ON content_items(collection, active, sort);
