@@ -165,8 +165,15 @@ final storiesProvider = FutureProvider<List<Story>>((ref) async {
     // extra.langs[locale] varsa o dilin metni; yoksa TR yedeği (title/subtitle).
     final langs = (c.extra?['langs'] as Map?)?.cast<String, dynamic>();
     final loc = (langs?[locale] as Map?)?.cast<String, dynamic>();
-    final t = (loc?['title'] ?? c.title ?? 'Hikâye').toString();
-    final sub = (loc?['subtitle'] ?? c.subtitle ?? '').toString();
+    // BUG fix (tarama): '?? ' yalnızca null'ı yutar; BOŞ string'i de "eksik" sayıp
+    // TR'ye düşmeliyiz — yarım çeviride (başlık boş) boş başlık görünmesin.
+    final lt = (loc?['title'] as String?)?.trim();
+    final ls = (loc?['subtitle'] as String?)?.trim();
+    final ct = (c.title ?? '').trim();
+    final cs = (c.subtitle ?? '').trim();
+    final t =
+        (lt != null && lt.isNotEmpty) ? lt : (ct.isNotEmpty ? ct : 'Hikâye');
+    final sub = (ls != null && ls.isNotEmpty) ? ls : cs;
     final isVideo = c.kind == 'video';
     final poster = c.thumb ?? '';
     out.add(

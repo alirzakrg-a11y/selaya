@@ -1018,7 +1018,12 @@ export default {
           }
 
           const now = Date.now();
-          const lang = (form.get('lang') || 'tr').toString().slice(0, 5);
+          // BUG fix (tarama): hikâyeler TEK kayıt + extra.langs modeli → satır lang
+          // DAİMA 'tr' (çeviri extra.langs'ten gelir); aksi halde tr kullanıcı
+          // hikâyeyi manifest süzmesinde (lang=? OR lang=tr) HİÇ göremez.
+          const lang = collection === 'stories'
+            ? 'tr'
+            : (form.get('lang') || 'tr').toString().slice(0, 5);
           await env.DB.prepare(
             'INSERT INTO content_items (id, collection, kind, key, title, subtitle, thumb_key, sort, lang, active, created_at, updated_at) ' +
             'VALUES (?,?,?,?,?,?,?,?,?,1,?,?)'
@@ -2855,12 +2860,19 @@ const PANEL_HTML = `<!doctype html>
       LANGS.forEach(function(L){
         var t = (document.getElementById('lt_' + L[0]).value || '').trim();
         var s = (document.getElementById('ls_' + L[0]).value || '').trim();
-        if (t || s) newLangs[L[0]] = { title: t, subtitle: s };
+        // BUG fix (tarama): başlık ZORUNLU — başlıksız çeviri eksik sayılır,
+        // o dilde app TR yedeğini gösterir (boş başlık olmaz).
+        if (t) newLangs[L[0]] = { title: t, subtitle: s };
       });
       var newExtra = Object.assign({}, ex, { langs: newLangs });
       api('items/' + it.id, { method:'PUT', headers:{ 'Content-Type':'application/json' },
         body: JSON.stringify({ collection: it.collection, kind: it.kind, title: it.title, subtitle: it.subtitle, sort: it.sort || 0, active: it.active ? 1 : 0, extra: newExtra }) })
-      .then(function(res){ if (res.j && res.j.ok){ toast('Çeviriler kaydedildi ✓'); close(); loadItems(); } else { toast('Hata: ' + ((res.j && res.j.error) || res.status)); } });
+      .then(function(res){ if (res.j && res.j.ok){
+        // BUG fix (tarama): loadItems network'ünü beklemeden belleği güncelle
+        // (bayat-okuma race'i). ALL_ITEMS'ta extra STRING tutulur → JSON.stringify.
+        ALL_ITEMS = ALL_ITEMS.map(function(x){ return x.id === it.id ? Object.assign({}, x, { extra: JSON.stringify(newExtra) }) : x; });
+        toast('Çeviriler kaydedildi ✓'); close(); loadItems();
+      } else { toast('Hata: ' + ((res.j && res.j.error) || res.status)); } });
     };
   }
   document.addEventListener('click', function(e){
