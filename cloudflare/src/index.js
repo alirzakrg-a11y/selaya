@@ -2631,7 +2631,7 @@ const PANEL_HTML = `<!doctype html>
             : it.kind === 'audio' ? '<div class="ph">♪</div>'
             : '<img src="' + u + '" loading="lazy">';
           inner += '<div class="item" draggable="true" data-id="' + esc(it.id) + '"><span class="grip" title="Sürükle-bırak ile sırala">⠿</span>' + prev +
-            '<div class="meta"><b>' + esc(it.title || it.key.split('/').pop()) + '</b><span class="muted">' + (it.size ? fmtSize(it.size) + ' · ' : '') + esc(it.subtitle || it.key) + '</span>' + (it.likes ? '<span class="muted">❤️ ' + it.likes + ' beğeni</span>' : '') + '</div>' +
+            '<div class="meta"><b>' + esc(it.title || '(başlıksız)') + '</b><span class="muted">' + (it.size ? fmtSize(it.size) : '') + (it.subtitle ? ' · ' + esc(it.subtitle) : '') + '</span>' + (it.likes ? '<span class="muted">❤️ ' + it.likes + ' beğeni</span>' : '') + '</div>' +
             '<span class="badge">' + (it.active ? 'aktif' : 'pasif') + '</span>' +
             '<button class="ghost" data-act="edit" data-id="' + esc(it.id) + '" data-col="' + esc(col) + '" data-kind="' + esc(it.kind) + '" data-title="' + esc(it.title || '') + '" data-sub="' + esc(it.subtitle || '') + '" data-active="' + (it.active ? 1 : 0) + '" data-sort="' + (it.sort || 0) + '">Düzenle</button>' +
             '<button class="ghost" data-act="replace" data-id="' + esc(it.id) + '">Değiştir</button>' +
