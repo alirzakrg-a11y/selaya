@@ -2618,6 +2618,7 @@ const PANEL_HTML = `<!doctype html>
             '<button class="ghost" data-act="edit" data-id="' + esc(it.id) + '" data-col="' + esc(col) + '" data-kind="' + esc(it.kind) + '" data-title="' + esc(it.title || '') + '" data-sub="' + esc(it.subtitle || '') + '" data-active="' + (it.active ? 1 : 0) + '" data-sort="' + (it.sort || 0) + '">Düzenle</button>' +
             '<button class="ghost" data-act="replace" data-id="' + esc(it.id) + '">Değiştir</button>' +
             '<button class="ghost" data-act="toggle" data-id="' + esc(it.id) + '" data-active="' + (it.active ? 0 : 1) + '" data-col="' + esc(col) + '" data-kind="' + esc(it.kind) + '">' + (it.active ? 'Gizle' : 'Göster') + '</button>' +
+            (col === 'stories' ? '<button class="ghost" data-act="langs" data-id="' + esc(it.id) + '">🌐 Diller</button>' : '') +
             '<button class="danger" data-act="del" data-id="' + esc(it.id) + '">Sil</button>' +
             '</div>';
         });
@@ -2821,6 +2822,47 @@ const PANEL_HTML = `<!doctype html>
   }
 
   // event delegation (içerik + bildirim sil/gizle)
+  // 🌐 Hikâye çevirileri — TEK kayıt, içine dil-dil başlık/açıklama (extra.langs).
+  // Görsel tüm dillerde ORTAK; uygulama dil değişince metni değiştirir. Boş
+  // bırakılan dilde TR (item.title/subtitle) gösterilir. PUT key'e dokunmaz → medya korunur.
+  function openLangEditor(it){
+    var ex = {}; try { ex = JSON.parse(it.extra || '{}'); } catch (e) {}
+    var langs = ex.langs || {};
+    var LANGS = [['en','English'],['ar','العربية'],['de','Deutsch'],['id','Bahasa Indonesia'],['fr','Français'],['ur','اردو'],['bn','বাংলা'],['fa','فارسی'],['ru','Русский']];
+    var rows = LANGS.map(function(L){
+      return '<div style="margin:8px 0;border-top:1px solid #eee;padding-top:8px"><b>' + L[1] + '</b>' +
+        '<input id="lt_' + L[0] + '" placeholder="Başlık (' + L[1] + ')">' +
+        '<input id="ls_' + L[0] + '" placeholder="Açıklama (' + L[1] + ')"></div>';
+    }).join('');
+    var ov = document.createElement('div');
+    ov.style.cssText = 'position:fixed;inset:0;background:rgba(16,24,40,.45);display:flex;align-items:center;justify-content:center;z-index:50;padding:20px';
+    ov.innerHTML = '<div style="background:#fff;border-radius:18px;padding:22px;max-width:460px;width:100%;max-height:90vh;overflow:auto">' +
+      '<h3 style="margin:0 0 6px">🌐 Çeviriler — ' + esc(it.title || '') + '</h3>' +
+      '<p class="muted" style="margin:0 0 10px">Türkçe başlık/açıklama "Düzenle"den gelir. Boş bıraktığın dilde TR gösterilir. Görsel tüm dillerde AYNIDIR (tek hikâye, 9 ayrı değil).</p>' +
+      rows +
+      '<div class="row" style="margin-top:16px"><button class="ghost" id="lcancel">Vazgeç</button><button id="lsave">Kaydet</button></div></div>';
+    document.body.appendChild(ov);
+    LANGS.forEach(function(L){
+      var d = langs[L[0]] || {};
+      document.getElementById('lt_' + L[0]).value = d.title || '';
+      document.getElementById('ls_' + L[0]).value = d.subtitle || '';
+    });
+    function close(){ ov.remove(); }
+    ov.addEventListener('click', function(e){ if (e.target === ov) close(); });
+    ov.querySelector('#lcancel').onclick = close;
+    ov.querySelector('#lsave').onclick = function(){
+      var newLangs = {};
+      LANGS.forEach(function(L){
+        var t = (document.getElementById('lt_' + L[0]).value || '').trim();
+        var s = (document.getElementById('ls_' + L[0]).value || '').trim();
+        if (t || s) newLangs[L[0]] = { title: t, subtitle: s };
+      });
+      var newExtra = Object.assign({}, ex, { langs: newLangs });
+      api('items/' + it.id, { method:'PUT', headers:{ 'Content-Type':'application/json' },
+        body: JSON.stringify({ collection: it.collection, kind: it.kind, title: it.title, subtitle: it.subtitle, sort: it.sort || 0, active: it.active ? 1 : 0, extra: newExtra }) })
+      .then(function(res){ if (res.j && res.j.ok){ toast('Çeviriler kaydedildi ✓'); close(); loadItems(); } else { toast('Hata: ' + ((res.j && res.j.error) || res.status)); } });
+    };
+  }
   document.addEventListener('click', function(e){
     var b = e.target.closest ? e.target.closest('button') : null;
     if (!b) return;
@@ -2858,6 +2900,10 @@ const PANEL_HTML = `<!doctype html>
     else if (b.getAttribute('data-act') === 'toggle'){
       api('items/' + id, { method:'PUT', headers:{ 'Content-Type':'application/json' },
         body: JSON.stringify({ active: parseInt(b.getAttribute('data-active'), 10), collection: b.getAttribute('data-col'), kind: b.getAttribute('data-kind') }) }).then(loadItems);
+    }
+    else if (b.getAttribute('data-act') === 'langs'){
+      var lit = null; for (var lk = 0; lk < ALL_ITEMS.length; lk++){ if (ALL_ITEMS[lk].id === id){ lit = ALL_ITEMS[lk]; break; } }
+      if (lit) openLangEditor(lit);
     }
     else if (b.getAttribute('data-nact') === 'del'){ uiConfirm('Bu bildirim silinsin mi?', function(){ api('notifications/' + id, { method:'DELETE' }).then(loadNotifications); }, {danger:true, yes:'Sil'}); }
   });

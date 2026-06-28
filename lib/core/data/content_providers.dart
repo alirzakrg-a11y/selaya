@@ -149,14 +149,24 @@ final inspirationSeedProvider = Provider<int>(
   (ref) => Random().nextInt(1 << 30),
 );
 
-/// Sadece panelde mevcut hikâyeler (görsel VEYA video).
+/// Panelde eklenen hikâyeler (görsel VEYA video). ÇOKLU-DİL: resim/video ORTAK,
+/// başlık/metin dile göre `extra.langs[locale]`'den gelir (yoksa TR = title/subtitle).
+/// Tek kayıt + içine diller → panelde 9 ayrı eklemek gerekmez; dil değişince
+/// metin değişir, görsel aynı kalır. Eski tek-dilli kayıtlar bozulmadan TR gösterir.
 final storiesProvider = FutureProvider<List<Story>>((ref) async {
-  final extras = ref.watch(collectionProvider('stories'));
+  // Hikâyeler TEK kayıt + extra.langs (gömülü çeviri) modeli → satır-bazlı dil
+  // SÜZMESİ YAPMA (ofLang değil .of); hepsini al, metin extra.langs[locale]'den.
+  final extras =
+      ref.watch(manifestProvider).value?.of('stories') ?? const <ContentItem>[];
+  final locale = ref.watch(appLocaleProvider);
   final out = <Story>[];
   for (final c in extras) {
     if (c.url.isEmpty) continue;
-    final t = c.title ?? 'Hikâye';
-    final sub = c.subtitle ?? '';
+    // extra.langs[locale] varsa o dilin metni; yoksa TR yedeği (title/subtitle).
+    final langs = (c.extra?['langs'] as Map?)?.cast<String, dynamic>();
+    final loc = (langs?[locale] as Map?)?.cast<String, dynamic>();
+    final t = (loc?['title'] ?? c.title ?? 'Hikâye').toString();
+    final sub = (loc?['subtitle'] ?? c.subtitle ?? '').toString();
     final isVideo = c.kind == 'video';
     final poster = c.thumb ?? '';
     out.add(
@@ -170,16 +180,18 @@ final storiesProvider = FutureProvider<List<Story>>((ref) async {
             isVideo ? poster : c.url,
             isVideo ? 20000 : 6000,
             null,
+            // Çözümlenmiş (locale'e göre) metni hem aktif dile hem TR'ye koy →
+            // görüntüleyici hangi anahtara bakarsa baksın doğru metni bulur.
             {
+              locale: {'heading': t, 'body': sub},
               'tr': {'heading': t, 'body': sub},
-              'en': {'heading': t, 'body': sub},
             },
             video: isVideo ? c.url : null,
           ),
         ],
         {
+          locale: {'title': t},
           'tr': {'title': t},
-          'en': {'title': t},
         },
       ),
     );
