@@ -134,7 +134,9 @@ class _QuizScreenState extends ConsumerState<QuizScreen> {
     if (_weeklyChecking) return;
     final auth = ref.read(authControllerProvider);
     if (auth.token == null) {
-      _start(all, _Mode.weekly);
+      // Üyelik ŞART: haftalık yarışmaya yalnızca giriş yapanlar katılır
+      // (Pratik herkese açık). Giriş yoksa uyar + giriş ekranına yönlendir.
+      _promptLoginForWeekly();
       return;
     }
     setState(() => _weeklyChecking = true);
@@ -163,6 +165,30 @@ class _QuizScreenState extends ConsumerState<QuizScreen> {
     ScaffoldMessenger.of(context)
       ..clearSnackBars()
       ..showSnackBar(SnackBar(content: Text(msg)));
+  }
+
+  /// Haftalık yarışma ÜYELERE ÖZEL — giriş yoksa uyar + giriş/üye-ol ekranına götür.
+  void _promptLoginForWeekly() {
+    showDialog<void>(
+      context: context,
+      builder: (ctx) => AlertDialog(
+        title: Text('quiz.loginRequiredTitle'.tr()),
+        content: Text('quiz.loginRequiredBody'.tr()),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.pop(ctx),
+            child: Text('common.cancel'.tr()),
+          ),
+          FilledButton(
+            onPressed: () {
+              Navigator.pop(ctx);
+              context.push(Routes.auth);
+            },
+            child: Text('quiz.loginCta'.tr()),
+          ),
+        ],
+      ),
+    );
   }
 
   void _answer(int i) {
@@ -550,6 +576,8 @@ class _Idle extends ConsumerWidget {
     final stats = ref.watch(quizStatsProvider);
     // Madde 3: giriş varsa bu haftaki kalan hak (null = giriş yok / bilinmiyor).
     final int? weeklyLeft = ref.watch(quizWeeklyStatusProvider).asData?.value;
+    // Yarışma üyelere özel — giriş durumuna göre kart ipucu/buton davranışı.
+    final loggedIn = ref.watch(authControllerProvider).token != null;
     return ListView(
       padding: const EdgeInsets.fromLTRB(
           AppSpacing.base, AppSpacing.md, AppSpacing.base, AppSpacing.xxxl),
@@ -580,8 +608,23 @@ class _Idle extends ConsumerWidget {
             const Gap.sm(),
             Text('quiz.weeklyDesc'.tr(),
                 style: TextStyle(color: c.textSecondary, height: 1.4, fontSize: 13)),
-            // Madde 3: bu haftaki kalan hak (giriş varsa). 0 ise buton kapanır.
-            if (weeklyLeft != null) ...[
+            // Yarışma ÜYELERE ÖZEL: giriş yoksa kilit ipucu; varsa kalan hak
+            // (0 ise buton kapanır).
+            if (!loggedIn) ...[
+              const Gap.sm(),
+              Row(children: [
+                Icon(Icons.lock_outline_rounded,
+                    size: 15, color: c.textTertiary),
+                const SizedBox(width: 5),
+                Expanded(
+                  child: Text('quiz.membersOnly'.tr(),
+                      style: TextStyle(
+                          color: c.textTertiary,
+                          fontSize: 12,
+                          fontWeight: FontWeight.w600)),
+                ),
+              ]),
+            ] else if (weeklyLeft != null) ...[
               const Gap.sm(),
               Row(children: [
                 Icon(Icons.bolt_rounded,

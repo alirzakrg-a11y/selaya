@@ -311,6 +311,10 @@
     "err_too_many_resets": "Tageslimit für Codes erreicht (max. 3). Bitte versuche es morgen erneut."
   },
   "quiz": {
+    "loginRequiredTitle": "Anmeldung erforderlich",
+    "loginRequiredBody": "Melde dich an, um am wöchentlichen Wettbewerb teilzunehmen und in der Bestenliste zu erscheinen. Üben erfordert kein Konto.",
+    "loginCta": "Anmelden",
+    "membersOnly": "Nur für Mitglieder — anmelden zum Mitmachen",
     "weeklyAttempts": "{} Versuche diese Woche übrig",
     "weeklyNoLeft": "Keine Versuche übrig — Sonntag erneuert",
     "weeklyLimitReached": "Du hast beide Wochenversuche genutzt. Erneuert am Sonntag.",

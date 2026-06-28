@@ -311,6 +311,10 @@
     "err_too_many_resets": "Limite quotidienne de codes atteinte (max. 3). Réessayez demain."
   },
   "quiz": {
+    "loginRequiredTitle": "Connexion requise",
+    "loginRequiredBody": "Connectez-vous pour participer au concours hebdomadaire et figurer au classement. L’entraînement ne nécessite pas de compte.",
+    "loginCta": "Se connecter",
+    "membersOnly": "Réservé aux membres — connectez-vous pour participer",
     "weeklyAttempts": "{} tentatives restantes cette semaine",
     "weeklyNoLeft": "Plus de tentatives — réinitialisé dimanche",
     "weeklyLimitReached": "Vous avez utilisé vos 2 tentatives hebdomadaires. Réinitialisé dimanche.",

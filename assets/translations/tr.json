@@ -871,6 +871,10 @@
     "title": "Topluluk Hatmi"
   },
   "quiz": {
+    "loginRequiredTitle": "Üye girişi gerekli",
+    "loginRequiredBody": "Haftalık yarışmaya katılmak ve liderlik tablosunda yer almak için üye girişi yapmalısın. Pratik için giriş gerekmez.",
+    "loginCta": "Giriş yap / Üye ol",
+    "membersOnly": "Yarışma üyelere özel — katılmak için giriş yap",
     "weeklyAttempts": "Bu hafta {} hakkın kaldı",
     "weeklyNoLeft": "Bu hafta hakkın doldu — Pazar yenilenir",
     "weeklyLimitReached": "Bu haftaki 2 hakkını kullandın. Pazar günü yenilenir.",

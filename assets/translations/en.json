@@ -871,6 +871,10 @@
     "title": "Community Khatm"
   },
   "quiz": {
+    "loginRequiredTitle": "Sign in required",
+    "loginRequiredBody": "Sign in to join the weekly competition and appear on the leaderboard. Practice needs no account.",
+    "loginCta": "Sign in",
+    "membersOnly": "Members only — sign in to compete",
     "weeklyAttempts": "{} attempts left this week",
     "weeklyNoLeft": "No attempts left — resets Sunday",
     "weeklyLimitReached": "You've used both weekly attempts. Resets Sunday.",
