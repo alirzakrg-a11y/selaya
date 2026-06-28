@@ -1570,7 +1570,8 @@ const PANEL_HTML = `<!doctype html>
   var COLLS = [
     ['wallpapers', 'Duvar Kâğıtları', 'Galeri ekranındaki duvar kâğıtları.'],
     ['feed', 'Videolar (Reels)', 'Akış/keşfet video reel\\'leri.'],
-    ['stories', 'Hikâyeler', 'Ana ekran hikâye şeridi kapakları.']
+    ['stories', 'Hikâyeler', 'Ana ekran hikâye şeridi kapakları.'],
+    ['audio_stories', 'Sesli Hikâyeler', 'Sesli dini hikâye kategorileri — kapak + N bölüm (TR).']
   ];
   var LABELS = {}; var DESCS = {};
   COLLS.forEach(function(c){ LABELS[c[0]] = c[1]; DESCS[c[0]] = c[2]; });
@@ -1581,7 +1582,7 @@ const PANEL_HTML = `<!doctype html>
 
   (function initSelect(){
     var sel = document.getElementById('upCollection');
-    sel.innerHTML = COLLS.map(function(c){ return '<option value="' + c[0] + '">' + c[1] + '</option>'; }).join('');
+    sel.innerHTML = COLLS.filter(function(c){ return c[0] !== 'audio_stories'; }).map(function(c){ return '<option value="' + c[0] + '">' + c[1] + '</option>'; }).join('');
     document.getElementById('catNav').innerHTML = COLLS.map(function(c){
       return '<div class="nav-item cat-nav" data-cat="' + c[0] + '" onclick="showCat(this.dataset.cat)">' + (CAT_ICONS[c[0]] || '📁') + ' ' + c[1] + '</div>';
     }).join('');
