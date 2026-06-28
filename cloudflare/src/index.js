@@ -1021,7 +1021,7 @@ export default {
           // BUG fix (tarama): hikâyeler TEK kayıt + extra.langs modeli → satır lang
           // DAİMA 'tr' (çeviri extra.langs'ten gelir); aksi halde tr kullanıcı
           // hikâyeyi manifest süzmesinde (lang=? OR lang=tr) HİÇ göremez.
-          const lang = collection === 'stories'
+          const lang = (collection === 'stories' || collection === 'wallpapers' || collection === 'feed')
             ? 'tr'
             : (form.get('lang') || 'tr').toString().slice(0, 5);
           // EKLERKEN çoklu-dil: 'langs' alanı varsa extra.langs olarak sakla
@@ -1656,8 +1656,8 @@ const PANEL_HTML = `<!doctype html>
     if (noTitle) el('upTitle').value = '';
     // Hikâye: eklerken çoklu-dil (🌐 Diller ekle) bölümünü göster.
     var ulw = el('upLangWrap');
-    if (ulw){ ulw.style.display = (c === 'stories') ? 'block' : 'none'; }
-    if (c !== 'stories'){ UPLOAD_LANGS = {}; var ulc0 = el('upLangCount'); if (ulc0) ulc0.textContent = ''; }
+    if (ulw){ ulw.style.display = isLangCol(c) ? 'block' : 'none'; }
+    if (!isLangCol(c)){ UPLOAD_LANGS = {}; var ulc0 = el('upLangCount'); if (ulc0) ulc0.textContent = ''; }
   }
 
   var TAB_TITLES = { text:'Metin İçerik', notify:'Bildirimler', stats:'Kullanım', users:'Kullanıcılar', dua:'Dua Duvarı', hatim:'Topluluk Hatmi', quiz:'Bilgi Yarışması', reports:'İçerik Şikayetleri' };
@@ -2638,7 +2638,7 @@ const PANEL_HTML = `<!doctype html>
             '<button class="ghost" data-act="edit" data-id="' + esc(it.id) + '" data-col="' + esc(col) + '" data-kind="' + esc(it.kind) + '" data-title="' + esc(it.title || '') + '" data-sub="' + esc(it.subtitle || '') + '" data-active="' + (it.active ? 1 : 0) + '" data-sort="' + (it.sort || 0) + '">Düzenle</button>' +
             '<button class="ghost" data-act="replace" data-id="' + esc(it.id) + '">Değiştir</button>' +
             '<button class="ghost" data-act="toggle" data-id="' + esc(it.id) + '" data-active="' + (it.active ? 0 : 1) + '" data-col="' + esc(col) + '" data-kind="' + esc(it.kind) + '">' + (it.active ? 'Gizle' : 'Göster') + '</button>' +
-            (col === 'stories' ? '<button class="ghost" data-act="langs" data-id="' + esc(it.id) + '">🌐 Diller</button>' : '') +
+            (isLangCol(col) ? '<button class="ghost" data-act="langs" data-id="' + esc(it.id) + '">🌐 Diller</button>' : '') +
             '<button class="danger" data-act="del" data-id="' + esc(it.id) + '">Sil</button>' +
             '</div>';
         });
@@ -2732,7 +2732,7 @@ const PANEL_HTML = `<!doctype html>
     fd.append('subtitle', val('upDesc'));
     fd.append('sort', val('upSort'));
     fd.append('lang', val('upLang') || 'tr');
-    if (val('upCollection') === 'stories' && Object.keys(UPLOAD_LANGS).length) fd.append('langs', JSON.stringify(UPLOAD_LANGS));
+    if (isLangCol(val('upCollection')) && Object.keys(UPLOAD_LANGS).length) fd.append('langs', JSON.stringify(UPLOAD_LANGS));
     el('upStatus').textContent = 'Yükleniyor...';
     api('upload', { method:'POST', body: fd }).then(function(res){
       done();
@@ -2847,6 +2847,9 @@ const PANEL_HTML = `<!doctype html>
   // 🌐 Hikâye çevirileri — TEK kayıt, içine dil-dil başlık/açıklama (extra.langs).
   // Görsel tüm dillerde ORTAK; uygulama dil değişince metni değiştirir. Boş
   // bırakılan dilde TR (item.title/subtitle) gösterilir. PUT key'e dokunmaz → medya korunur.
+  // Çoklu-dil (extra.langs) uygulanan koleksiyonlar: görsel/video ORTAK, başlık
+  // dile göre değişir. (Hikâye + duvar kâğıdı + video reel.)
+  function isLangCol(c){ return c === 'stories' || c === 'wallpapers' || c === 'feed'; }
   function openLangEditor(it, onSave){
     var ex = {}; try { ex = JSON.parse(it.extra || '{}'); } catch (e) {}
     var langs = ex.langs || {};

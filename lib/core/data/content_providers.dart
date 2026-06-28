@@ -224,13 +224,21 @@ final activeReligiousDayProvider =
       return null;
     });
 
-/// Sadece panelde mevcut duvar kâğıtları.
+/// Panelde mevcut duvar kâğıtları — ÇOKLU-DİL: görsel ORTAK, başlık dile göre
+/// extra.langs[locale]'den (yoksa TR=title). Hikâyelerle aynı model (.of, satır
+/// süzmesi yok). Not: wallpaper subtitle 'custom' bayrağı, çeviri yalnız başlığa.
 final wallpapersProvider = FutureProvider<List<Wallpaper>>((ref) async {
-  final extras = ref.watch(collectionProvider('wallpapers'));
+  final extras =
+      ref.watch(manifestProvider).value?.of('wallpapers') ?? const <ContentItem>[];
+  final locale = ref.watch(appLocaleProvider);
   final out = <Wallpaper>[];
   for (final c in extras) {
     if (c.url.isEmpty) continue;
-    final t = c.title ?? '';
+    final langs = (c.extra?['langs'] as Map?)?.cast<String, dynamic>();
+    final loc = (langs?[locale] as Map?)?.cast<String, dynamic>();
+    final lt = (loc?['title'] as String?)?.trim();
+    final ct = (c.title ?? '').trim();
+    final t = (lt != null && lt.isNotEmpty) ? lt : ct;
     out.add(
       Wallpaper(
         c.id,
@@ -239,8 +247,8 @@ final wallpapersProvider = FutureProvider<List<Wallpaper>>((ref) async {
         false,
         const ['#05070D', '#E0B250'],
         {
+          locale: {'title': t},
           'tr': {'title': t},
-          'en': {'title': t},
         },
         thumb: c.thumb ?? '',
       ),
@@ -255,19 +263,26 @@ final mosquesProvider = FutureProvider<List<Mosque>>(
       .loadModels('$_data/mosques.json', Mosque.fromJson),
 );
 
-/// Sadece panelden eklenen reel'ler (video, CDN'den oynar).
+/// Panelden eklenen reel'ler (video, CDN'den oynar) — ÇOKLU-DİL: video ORTAK,
+/// başlık + caption dile göre extra.langs[locale]'den (yoksa TR). Hikâye modeli.
 final feedProvider = FutureProvider<List<FeedItem>>((ref) async {
-  final extras = ref.watch(collectionProvider('feed'));
+  final extras =
+      ref.watch(manifestProvider).value?.of('feed') ?? const <ContentItem>[];
+  final locale = ref.watch(appLocaleProvider);
   final out = <FeedItem>[];
   for (final c in extras) {
     if (c.url.isEmpty) continue;
-    final t = c.title ?? '';
-    // Caption (SELAYA'nın altında görünen açıklama) = panel altyazısı (subtitle).
-    final cap = c.subtitle ?? '';
+    final langs = (c.extra?['langs'] as Map?)?.cast<String, dynamic>();
+    final loc = (langs?[locale] as Map?)?.cast<String, dynamic>();
+    final lt = (loc?['title'] as String?)?.trim();
+    final ls = (loc?['subtitle'] as String?)?.trim();
+    final t = (lt != null && lt.isNotEmpty) ? lt : (c.title ?? '');
+    // Caption (SELAYA'nın altında görünen açıklama) = extra.langs.subtitle / TR subtitle.
+    final cap = (ls != null && ls.isNotEmpty) ? ls : (c.subtitle ?? '');
     out.add(
       FeedItem(c.id, 'video', c.thumb ?? '', c.url, 'SELAYA', 0, {
+        locale: {'title': t, 'caption': cap},
         'tr': {'title': t, 'caption': cap},
-        'en': {'title': t, 'caption': cap},
       }),
     );
   }
