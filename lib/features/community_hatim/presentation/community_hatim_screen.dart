@@ -182,6 +182,8 @@ class CommunityHatimScreen extends ConsumerWidget {
   Widget _campaignCard(BuildContext context, WidgetRef ref, HatimCampaign camp,
       bool tr, dynamic c) {
     final progress = camp.total > 0 ? camp.done / camp.total : 0.0;
+    final myOpen =
+        camp.juz.where((j) => j.mine && j.status != 'done').length;
     return SelayaCard(
       padding: const EdgeInsets.all(AppSpacing.base),
       child: Column(
@@ -231,24 +233,119 @@ class CommunityHatimScreen extends ConsumerWidget {
             ),
           ),
           const Gap.md(),
-          // 30 cüz ızgarası
-          GridView.builder(
-            shrinkWrap: true,
-            physics: const NeverScrollableScrollPhysics(),
-            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisCount: 6,
-              mainAxisSpacing: 7,
-              crossAxisSpacing: 7,
-              childAspectRatio: 1,
+          // Cüzler + "okudum" işaretleme POPUP'ta açılır → ekran kalabalığı
+          // azalır (kullanıcı: "çok yer kaplıyor, 50 olunca aşağı inmek zor").
+          OutlinedButton.icon(
+            onPressed: () => _showJuzSheet(context, ref, camp.id, tr),
+            icon: Icon(
+                myOpen > 0 ? Icons.menu_book_rounded : Icons.grid_view_rounded,
+                size: 18),
+            label: Text(myOpen > 0
+                ? (tr ? '$myOpen cüzün var — oku' : '$myOpen juz to read')
+                : (tr ? 'Cüzleri gör · cüz al' : 'View & claim juz')),
+            style: OutlinedButton.styleFrom(
+              minimumSize: const Size(double.infinity, 44),
+              foregroundColor: c.gold,
+              side: BorderSide(color: c.gold.withValues(alpha: 0.5)),
+              shape: const RoundedRectangleBorder(borderRadius: AppRadius.rMd),
             ),
-            itemCount: camp.juz.length,
-            itemBuilder: (context, i) =>
-                _juzCell(context, ref, camp, camp.juz[i], tr, c),
           ),
-          // Senin aldığın, henüz okumadığın cüzler — net "Okudum" butonu
-          // (kullanıcı kareye tekrar dokunmayı akıl edemeyebilir).
-          ..._myJuzSection(context, ref, camp, tr, c),
         ],
+      ),
+    );
+  }
+
+  /// Cüz ızgarası + "okudum" işaretleme alt-sayfası (popup). Kampanyayı
+  /// id'den canlı okur → cüz alınca/okununca anında tazelenir.
+  void _showJuzSheet(
+      BuildContext context, WidgetRef ref, String campId, bool tr) {
+    final c = context.colors;
+    showModalBottomSheet(
+      context: context,
+      isScrollControlled: true,
+      backgroundColor: c.surface,
+      shape: const RoundedRectangleBorder(
+          borderRadius: BorderRadius.vertical(top: Radius.circular(20))),
+      builder: (_) => DraggableScrollableSheet(
+        expand: false,
+        initialChildSize: 0.72,
+        minChildSize: 0.4,
+        maxChildSize: 0.95,
+        builder: (ctx, scroll) => Consumer(
+          builder: (ctx, ref2, _) {
+            final data = ref2.watch(communityHatimProvider).value;
+            final found =
+                data?.campaigns.where((x) => x.id == campId).toList() ??
+                    const [];
+            if (found.isEmpty) {
+              return const Center(
+                  child: Padding(
+                      padding: EdgeInsets.all(40), child: SelayaLoading()));
+            }
+            final camp = found.first;
+            final progress = camp.total > 0 ? camp.done / camp.total : 0.0;
+            return ListView(
+              controller: scroll,
+              padding: const EdgeInsets.fromLTRB(AppSpacing.base,
+                  AppSpacing.base, AppSpacing.base, AppSpacing.xxxl),
+              children: [
+                Center(
+                    child: Container(
+                        width: 40,
+                        height: 4,
+                        decoration: BoxDecoration(
+                            color: c.border,
+                            borderRadius: BorderRadius.circular(99)))),
+                const Gap.md(),
+                Text(camp.title,
+                    style: Theme.of(ctx)
+                        .textTheme
+                        .titleMedium
+                        ?.copyWith(fontWeight: FontWeight.w800)),
+                if ((camp.intention ?? '').isNotEmpty)
+                  Text(camp.intention!,
+                      style: Theme.of(ctx)
+                          .textTheme
+                          .bodySmall
+                          ?.copyWith(color: c.textSecondary)),
+                const Gap.sm(),
+                Row(children: [
+                  Expanded(
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.circular(99),
+                      child: LinearProgressIndicator(
+                        value: progress,
+                        minHeight: 7,
+                        backgroundColor: c.border,
+                        valueColor: AlwaysStoppedAnimation(c.gold),
+                      ),
+                    ),
+                  ),
+                  const Gap.sm(),
+                  Text('${camp.done}/${camp.total}',
+                      style:
+                          TextStyle(color: c.gold, fontWeight: FontWeight.w800)),
+                ]),
+                const Gap.md(),
+                GridView.builder(
+                  shrinkWrap: true,
+                  physics: const NeverScrollableScrollPhysics(),
+                  gridDelegate:
+                      const SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: 6,
+                    mainAxisSpacing: 7,
+                    crossAxisSpacing: 7,
+                    childAspectRatio: 1,
+                  ),
+                  itemCount: camp.juz.length,
+                  itemBuilder: (ctx, i) =>
+                      _juzCell(ctx, ref2, camp, camp.juz[i], tr, c),
+                ),
+                ..._myJuzSection(ctx, ref2, camp, tr, c),
+              ],
+            );
+          },
+        ),
       ),
     );
   }

@@ -239,53 +239,52 @@ class _Hero extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final c = context.colors;
     final name = _name();
-    return Container(
-      padding: const EdgeInsets.all(AppSpacing.lg),
-      decoration: BoxDecoration(
-        borderRadius: AppRadius.rXl,
-        gradient: LinearGradient(
-          begin: Alignment.topLeft,
-          end: Alignment.bottomRight,
-          colors: [c.gold.withValues(alpha: 0.22), c.surfaceAlt],
-        ),
-        border: Border.all(color: c.gold.withValues(alpha: 0.25)),
-      ),
+    return ClipRRect(
+      borderRadius: AppRadius.rXl,
       child: Stack(
         children: [
-          Positioned(
-            right: -6,
-            top: -6,
-            child: Icon(AppIcons.headphones,
-                size: 64, color: c.gold.withValues(alpha: 0.18)),
+          // ① Başlık arka plan görseli (gökyüzü + fener).
+          Positioned.fill(
+            child: Image.asset('assets/images/audio_hero.webp',
+                fit: BoxFit.cover),
           ),
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              if (name.isNotEmpty) ...[
-                Text('audioStories.welcome'.tr(args: [name]),
-                    style: Theme.of(context)
-                        .textTheme
-                        .bodyMedium
-                        ?.copyWith(color: c.textSecondary)),
-                const Gap.xs(),
-              ],
-              Text('audioStories.heroTitle'.tr(),
-                  style: Theme.of(context)
-                      .textTheme
-                      .headlineSmall
-                      ?.copyWith(fontWeight: FontWeight.w700)),
-              const Gap.xs(),
-              Padding(
-                padding: const EdgeInsets.only(right: 48),
-                child: Text('audioStories.heroSubtitle'.tr(),
-                    style: Theme.of(context)
-                        .textTheme
-                        .bodyMedium
-                        ?.copyWith(color: c.textSecondary, height: 1.4)),
+          // Metin okunabilirliği için sol-koyu degrade.
+          const Positioned.fill(
+            child: DecoratedBox(
+              decoration: BoxDecoration(
+                gradient: LinearGradient(
+                  begin: Alignment.centerLeft,
+                  end: Alignment.centerRight,
+                  colors: [Color(0xD9091018), Color(0x33091018)],
+                ),
               ),
-            ],
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.all(AppSpacing.lg),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                if (name.isNotEmpty) ...[
+                  Text('audioStories.welcome'.tr(args: [name]),
+                      style:
+                          const TextStyle(color: Colors.white70, fontSize: 13)),
+                  const Gap.xs(),
+                ],
+                Text('audioStories.heroTitle'.tr(),
+                    style: Theme.of(context).textTheme.headlineSmall?.copyWith(
+                        color: Colors.white, fontWeight: FontWeight.w800)),
+                const Gap.xs(),
+                SizedBox(
+                  width: MediaQuery.of(context).size.width * 0.56,
+                  child: Text('audioStories.heroSubtitle'.tr(),
+                      style: const TextStyle(
+                          color: Colors.white70, fontSize: 13, height: 1.4)),
+                ),
+              ],
+            ),
           ),
         ],
       ),
