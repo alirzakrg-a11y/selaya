@@ -250,13 +250,15 @@ export default {
       }
 
       if (path === '/v1/manifest') {
-        const cache = caches.default;
-        const hit = await cache.match(MANIFEST_CK);
-        if (hit) return hit;
+        // Madde 16: istenen dil + TR yedek. Bir koleksiyonda o dil yoksa app
+        // TR'ye düşer (ofLang). Edge cache KALDIRILDI — dile göre anahtar gerekir
+        // + panelden içerik değişince anında yansısın (240 satır SELECT ucuz).
+        const lang = ((new URL(request.url)).searchParams.get('lang') || 'tr')
+          .toLowerCase().slice(0, 5);
         const { results } = await env.DB.prepare(
-          'SELECT id, collection, kind, key, title, subtitle, thumb_key, extra, sort ' +
-          'FROM content_items WHERE active = 1 ORDER BY collection, sort, created_at'
-        ).all();
+          'SELECT id, collection, kind, key, title, subtitle, thumb_key, extra, sort, lang ' +
+          'FROM content_items WHERE active = 1 AND (lang = ?1 OR lang = ?2) ORDER BY collection, sort, created_at'
+        ).bind(lang, 'tr').all();
         const base = env.CDN_BASE;
         const collections = {};
         for (const r of results) {
@@ -266,13 +268,10 @@ export default {
           if (r.title) it.title = r.title;
           if (r.subtitle) it.subtitle = r.subtitle;
           if (r.extra) { const x = safeParse(r.extra); if (x) it.extra = x; }
+          if (r.lang && r.lang !== 'tr') it.lang = r.lang; // TR varsayılan (byte tasarrufu)
           (collections[r.collection] = collections[r.collection] || []).push(it);
         }
-        // 'updated: Date.now()' bilerek YOK: gövde içerik değişmedikçe bayt-bayt
-        // aynı kalır → uygulama "değişti mi?" kıyasını ucuza yapar.
-        const resp = json({ ok: true, cdn: base, collections }, { maxage: 120 });
-        if (ctx) ctx.waitUntil(cache.put(MANIFEST_CK, resp.clone()));
-        return resp;
+        return json({ ok: true, cdn: base, collections }, { maxage: 60 });
       }
 
       if (path === '/v1/notifications') {
@@ -913,10 +912,11 @@ export default {
           }
           const id = crypto.randomUUID();
           const now = Date.now();
+          const lang = (form.get('lang') || 'tr').toString().slice(0, 5);
           await env.DB.prepare(
-            'INSERT INTO content_items (id, collection, kind, key, title, subtitle, thumb_key, extra, sort, active, created_at, updated_at) ' +
-            'VALUES (?,?,?,?,?,?,?,?,?,1,?,?)'
-          ).bind(id, collection, 'text', '', title, subtitle, null, extra, sort, now, now).run();
+            'INSERT INTO content_items (id, collection, kind, key, title, subtitle, thumb_key, extra, sort, lang, active, created_at, updated_at) ' +
+            'VALUES (?,?,?,?,?,?,?,?,?,?,1,?,?)'
+          ).bind(id, collection, 'text', '', title, subtitle, null, extra, sort, lang, now, now).run();
           return json({ ok: true, id });
         }
 
@@ -1018,10 +1018,11 @@ export default {
           }
 
           const now = Date.now();
+          const lang = (form.get('lang') || 'tr').toString().slice(0, 5);
           await env.DB.prepare(
-            'INSERT INTO content_items (id, collection, kind, key, title, subtitle, thumb_key, sort, active, created_at, updated_at) ' +
-            'VALUES (?,?,?,?,?,?,?,?,1,?,?)'
-          ).bind(id, collection, kind, key, title, subtitle, thumbKey, sort, now, now).run();
+            'INSERT INTO content_items (id, collection, kind, key, title, subtitle, thumb_key, sort, lang, active, created_at, updated_at) ' +
+            'VALUES (?,?,?,?,?,?,?,?,?,1,?,?)'
+          ).bind(id, collection, kind, key, title, subtitle, thumbKey, sort, lang, now, now).run();
           return json({ ok: true, id, key, url: env.CDN_BASE + '/' + key });
         }
 
@@ -1057,11 +1058,12 @@ export default {
           }
           if (episodes.length === 0) return json({ ok: false, error: 'no_episodes' }, { status: 400 });
           const now = Date.now();
+          const lang = (form.get('lang') || 'tr').toString().slice(0, 5);
           await env.DB.prepare(
-            'INSERT INTO content_items (id, collection, kind, key, title, subtitle, extra, sort, active, created_at, updated_at) ' +
-            'VALUES (?,?,?,?,?,?,?,?,1,?,?)'
+            'INSERT INTO content_items (id, collection, kind, key, title, subtitle, extra, sort, lang, active, created_at, updated_at) ' +
+            'VALUES (?,?,?,?,?,?,?,?,?,1,?,?)'
           ).bind(catId, 'audio_stories', 'audio', coverKey, title, subtitle,
-                 JSON.stringify({ episodes }), 0, now, now).run();
+                 JSON.stringify({ episodes }), 0, lang, now, now).run();
           return json({ ok: true, id: catId, episodes: episodes.length });
         }
 
@@ -1319,6 +1321,8 @@ const PANEL_HTML = `<!doctype html>
         <input id="asTitle" placeholder="Örn: Peygamber Kıssaları">
         <label>Açıklama (opsiyonel)</label>
         <input id="asSub" placeholder="Kısa açıklama">
+        <label>İçerik dili</label>
+        <select id="asLang"><option value="tr">Türkçe</option><option value="en">English</option><option value="ar">العربية</option><option value="de">Deutsch</option><option value="id">Bahasa Indonesia</option><option value="fr">Français</option><option value="ur">اردو</option><option value="bn">বাংলা</option><option value="fa">فارسی</option><option value="ru">Русский</option></select>
         <label>Bölümler</label>
         <div id="asEpisodes"></div>
         <button class="ghost" type="button" onclick="addEpisodeRow()" style="margin-top:6px">+ Bölüm ekle</button>
@@ -1341,6 +1345,8 @@ const PANEL_HTML = `<!doctype html>
           <label>Açıklama (opsiyonel)</label>
           <input id="upDesc" placeholder="Kısa açıklama / alt başlık">
         </div>
+        <label>İçerik dili</label>
+        <select id="upLang"><option value="tr">Türkçe</option><option value="en">English</option><option value="ar">العربية</option><option value="de">Deutsch</option><option value="id">Bahasa Indonesia</option><option value="fr">Français</option><option value="ur">اردو</option><option value="bn">বাংলা</option><option value="fa">فارسی</option><option value="ru">Русский</option></select>
         <label>Dosya <span class="muted" id="fileHint"></span></label>
         <input id="upFile" type="file" accept="image/*,video/*,audio/*">
         <div id="coverWrap">
@@ -1514,7 +1520,9 @@ const PANEL_HTML = `<!doctype html>
           <option value="dogum">Tebrik — Doğum Günü</option>
           <option value="genel">Tebrik — Genel</option>
         </select>
-        <label>Metin (Türkçe) *</label>
+        <label>İçerik dili</label>
+        <select id="txLang"><option value="tr">Türkçe</option><option value="en">English</option><option value="ar">العربية</option><option value="de">Deutsch</option><option value="id">Bahasa Indonesia</option><option value="fr">Français</option><option value="ur">اردو</option><option value="bn">বাংলা</option><option value="fa">فارسی</option><option value="ru">Русский</option></select>
+        <label>Metin *</label>
         <textarea id="txText" placeholder="Tebrik mesajı"></textarea>
         <div style="margin-top:14px"><button id="txBtn" onclick="saveText()">Ekle</button> <span id="txStatus" class="muted"></span></div>
       </div>
@@ -1708,6 +1716,7 @@ const PANEL_HTML = `<!doctype html>
     fd.append('title', text);
     fd.append('subtitle', '');
     fd.append('extra', JSON.stringify(extra));
+    fd.append('lang', val('txLang') || 'tr');
     api('text', { method: 'POST', body: fd }).then(function(res){
       if (btn) btn.disabled = false;
       if (res.j && res.j.ok){
@@ -2701,6 +2710,7 @@ const PANEL_HTML = `<!doctype html>
     fd.append('title', val('upTitle'));
     fd.append('subtitle', val('upDesc'));
     fd.append('sort', val('upSort'));
+    fd.append('lang', val('upLang') || 'tr');
     el('upStatus').textContent = 'Yükleniyor...';
     api('upload', { method:'POST', body: fd }).then(function(res){
       done();
@@ -2783,6 +2793,7 @@ const PANEL_HTML = `<!doctype html>
     fd.append('cover', cw);
     fd.append('title', title);
     fd.append('subtitle', val('asSub'));
+    fd.append('lang', val('asLang') || 'tr');
     var rows = el('asEpisodes').querySelectorAll('.eprow');
     var n = 0;
     for (var r = 0; r < rows.length; r++){

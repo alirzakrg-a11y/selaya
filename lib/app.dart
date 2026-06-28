@@ -253,6 +253,12 @@ class _SelayaAppState extends ConsumerState<SelayaApp>
     // Keep intl's date/number formatting in sync with the app locale so the
     // scheduler's "31 Mayıs Cumartesi" reminders read correctly.
     intl.Intl.defaultLocale = context.locale.languageCode;
+    // Madde 16: içerik dilini app diliyle senkron tut → manifest yeni dilde
+    // tazelenir. Build sırasında provider state'i değiştirmemek için post-frame.
+    final contentLang = context.locale.languageCode;
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      ref.read(appLocaleProvider.notifier).set(contentLang);
+    });
 
     return MaterialApp.router(
       title: 'SELAYA',
