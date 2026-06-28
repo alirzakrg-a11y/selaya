@@ -1504,12 +1504,9 @@ const PANEL_HTML = `<!doctype html>
     <div id="viewText" class="hide">
       <div class="card">
         <h3>📝 Metin İçerik Ekle</h3>
-        <p class="hint">Dosyasız metin: ayet/hadis/dua uygulamada İlham &amp; "Günün Ayeti/Hadisi" kartlarında; tebrik mesajları Tebrik Kartı şablonlarında görünür. Arka plan otomatik (duvar kâğıtlarından). İstediğin kadar ekle.</p>
+        <p class="hint">Tebrik mesajları (Cuma, bayram, kandil, ramazan, doğum, genel) uygulamada Tebrik Kartı şablonlarında görünür. Ayet/hadis/dua artık panelden EKLENMEZ — uygulama bunları kendi paket verisinden çeker. İstediğin kadar ekle.</p>
         <label>Tür</label>
         <select id="txType">
-          <option value="ayet">Ayet</option>
-          <option value="hadis">Hadis</option>
-          <option value="dua">Dua</option>
           <option value="cuma">Tebrik — Cuma Mesajı</option>
           <option value="bayram">Tebrik — Bayram</option>
           <option value="ramazan">Tebrik — Ramazan</option>
@@ -1517,12 +1514,8 @@ const PANEL_HTML = `<!doctype html>
           <option value="dogum">Tebrik — Doğum Günü</option>
           <option value="genel">Tebrik — Genel</option>
         </select>
-        <label>Arapça (opsiyonel — ayet/hadis/dua için)</label>
-        <textarea id="txArabic" placeholder="Arapça metin"></textarea>
         <label>Metin (Türkçe) *</label>
-        <textarea id="txText" placeholder="Türkçe meal / mesaj"></textarea>
-        <label>Kaynak (opsiyonel — ayet/hadis için)</label>
-        <input id="txRef" placeholder="Örn: Bakara 255 · Buhârî">
+        <textarea id="txText" placeholder="Tebrik mesajı"></textarea>
         <div style="margin-top:14px"><button id="txBtn" onclick="saveText()">Ekle</button> <span id="txStatus" class="muted"></span></div>
       </div>
       <div class="card">
@@ -1697,8 +1690,9 @@ const PANEL_HTML = `<!doctype html>
   // Dua artık KENDİ 'duas' koleksiyonuna yazılır (eskiden 'inspiration'a
   // type=dua düşüyordu → Günün İlhamı / Dualar karışıklığı). Eski kayıtlar
   // txMatch'te ayrıca eşlenir, uygulama da ikisini birden okur.
+  // Madde 17: ayet/hadis/dua panelden KALDIRILDI (uygulama kendi paket verisinden
+  // çeker). Yalnızca tebrik mesajları panelden yönetilir.
   var TXMAP = {
-    ayet: ['inspiration', 'verse'], hadis: ['hadiths', 'hadith'], dua: ['duas', 'dua'],
     cuma: ['greeting_msg', 'friday'], bayram: ['greeting_msg', 'bayram'], ramazan: ['greeting_msg', 'ramazan'],
     kandil: ['greeting_msg', 'kandil'], dogum: ['greeting_msg', 'birthday'], genel: ['greeting_msg', 'general']
   };
@@ -1707,26 +1701,24 @@ const PANEL_HTML = `<!doctype html>
     var coll = m[0], sub = m[1];
     var text = val('txText').trim();
     if (!text){ toast('Metin gerekli'); return; }
-    var extra = coll === 'greeting_msg'
-      ? { occasion: sub }
-      : { type: sub, arabic: val('txArabic'), reference: val('txRef') };
+    var extra = { occasion: sub };
     var btn = el('txBtn'); if (btn) btn.disabled = true;
     var fd = new FormData();
     fd.append('collection', coll);
     fd.append('title', text);
-    fd.append('subtitle', coll === 'greeting_msg' ? '' : val('txRef'));
+    fd.append('subtitle', '');
     fd.append('extra', JSON.stringify(extra));
     api('text', { method: 'POST', body: fd }).then(function(res){
       if (btn) btn.disabled = false;
       if (res.j && res.j.ok){
         el('txStatus').innerHTML = '<span class="ok">Eklendi ✓</span>';
-        el('txArabic').value = ''; el('txText').value = ''; el('txRef').value = '';
+        el('txText').value = '';
         loadText();
       } else { el('txStatus').textContent = 'Hata: ' + ((res.j && res.j.error) || res.status); }
     }).catch(function(e){ if (btn) btn.disabled = false; el('txStatus').textContent = 'Hata: ' + e; });
   }
-  var TX_TABS = [['ayet','Ayet'],['hadis','Hadis'],['dua','Dua'],['cuma','Cuma'],['bayram','Bayram'],['ramazan','Ramazan'],['kandil','Kandil'],['dogum','Doğum'],['genel','Genel']];
-  var currentTxType = 'ayet';
+  var TX_TABS = [['cuma','Cuma'],['bayram','Bayram'],['ramazan','Ramazan'],['kandil','Kandil'],['dogum','Doğum'],['genel','Genel']];
+  var currentTxType = 'cuma';
   function txMatch(x, type){
     if (x.kind !== 'text') return false;
     var ex = {}; try { ex = JSON.parse(x.extra || '{}'); } catch (e) {}
