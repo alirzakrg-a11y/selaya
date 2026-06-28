@@ -4,6 +4,8 @@ import 'package:go_router/go_router.dart';
 
 import '../../features/akis/presentation/akis_screen.dart';
 import '../../features/asma_ul_husna/presentation/asma_screen.dart';
+import '../../features/audio_stories/presentation/audio_player_screen.dart';
+import '../../features/audio_stories/presentation/audio_stories_screen.dart';
 import '../../features/auth/presentation/account_screen.dart';
 import '../../features/auth/presentation/auth_screen.dart';
 import '../../features/baby_names/presentation/baby_names_screen.dart';
@@ -163,6 +165,11 @@ final routerProvider = Provider<GoRouter>((ref) {
       fs(Routes.communityHatim, (_, _) => const CommunityHatimScreen()),
       fs(Routes.quiz, (_, _) => const QuizScreen()),
       fs(Routes.quizLeaderboard, (_, _) => const QuizLeaderboardScreen()),
+      fs(Routes.audioStories, (_, _) => const AudioStoriesScreen()),
+      fs('${Routes.audioStories}/player/:cat/:index', (_, s) => AudioPlayerScreen(
+            categoryId: s.pathParameters['cat'] ?? '',
+            initialIndex: int.tryParse(s.pathParameters['index'] ?? '0') ?? 0,
+          )),
       fs(Routes.abdestGuide, (_, _) => const AbdestRehberiScreen()),
       fs(Routes.guideDetail, (_, s) => GuideScreen(guide: s.extra as Guide)),
       fs(Routes.namazGuide, (_, _) => const NamazRehberiScreen()),

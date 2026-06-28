@@ -151,6 +151,13 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
           Padding(padding: AppSpacing.screen, child: _QuizCard()),
           Gap.lg(),
         ];
+      case 'audioStories':
+        // Sesli Dini Hikâyeler — yalnız TR; diğer dillerde gizli (kullanıcı isteği).
+        if (context.locale.languageCode != 'tr') return const [];
+        return const [
+          Padding(padding: AppSpacing.screen, child: _AudioStoriesCard()),
+          Gap.lg(),
+        ];
       case 'verseHadithPair':
         return const [_VerseHadithPair(), Gap.lg()];
       case 'mediaPair':
@@ -1529,6 +1536,48 @@ class _WidgetPromoCard extends StatelessWidget {
 /// Ana ekran "Bilgi Yarışması" kartı — puan/seri özeti + yarışmaya yönlendirir.
 /// "Günün İsimleri" bilgi kartı — günün bir erkek + bir kız ismini ANLAMIYLA
 /// gösterir (en yakın cami kartı gibi bilgi). Dokununca tam Bebek İsimleri ekranı.
+/// "Sesli Hikâyeler" promo kartı (ana ekran) → sesli hikâye listesini açar.
+class _AudioStoriesCard extends StatelessWidget {
+  const _AudioStoriesCard();
+
+  @override
+  Widget build(BuildContext context) {
+    final c = context.colors;
+    return SelayaCard(
+      onTap: () => context.push(Routes.audioStories),
+      child: Row(
+        children: [
+          Container(
+            padding: const EdgeInsets.all(11),
+            decoration: BoxDecoration(
+                shape: BoxShape.circle, color: c.gold.withValues(alpha: 0.14)),
+            child: Icon(AppIcons.headphones, color: c.gold, size: 22),
+          ),
+          const Gap.md(),
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text('audioStories.title'.tr(),
+                    style: Theme.of(context)
+                        .textTheme
+                        .titleSmall
+                        ?.copyWith(fontWeight: FontWeight.w700)),
+                Text('home.audioStoriesDesc'.tr(),
+                    style: Theme.of(context)
+                        .textTheme
+                        .bodySmall
+                        ?.copyWith(color: c.textSecondary)),
+              ],
+            ),
+          ),
+          Icon(AppIcons.forward, size: 16, color: c.textTertiary),
+        ],
+      ),
+    );
+  }
+}
+
 class _BabyNamesCard extends ConsumerWidget {
   const _BabyNamesCard();
 

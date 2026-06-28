@@ -72,6 +72,7 @@ class MoreScreen extends ConsumerWidget {
       _Entry(Icons.quiz_rounded, 'quiz.title', Routes.quiz),
       _Entry(Icons.front_hand_rounded, 'duaWall.title', Routes.duaWall),
       _Entry(Icons.favorite_rounded, 'liked.title', Routes.liked),
+      _Entry(AppIcons.headphones, 'audioStories.title', Routes.audioStories),
       _Entry(Icons.child_friendly_rounded, 'babyNames.title', Routes.babyNames),
       _Entry(AppIcons.play, 'akis.reels', Routes.feed),
       _Entry(AppIcons.card, 'greetings.title', Routes.greetings),
@@ -110,7 +111,12 @@ class MoreScreen extends ConsumerWidget {
           for (final s in _sections) ...[
             _SectionTitle(s.titleKey.tr()),
             const Gap.sm(),
-            _Grid(entries: s.entries),
+            _Grid(
+                entries: s.entries
+                    .where((e) =>
+                        e.route != Routes.audioStories ||
+                        context.locale.languageCode == 'tr')
+                    .toList()),
             const Gap.lg(),
           ],
         ],

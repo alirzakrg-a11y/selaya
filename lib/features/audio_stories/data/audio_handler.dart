@@ -112,6 +112,72 @@ Future<bool> quranTracksCached(List<MediaTrack> list) async {
   return true;
 }
 
+// ─── Sesli hikâye YEREL CACHE — Kur'an ile AYNI mantık (kullanıcı isteği:
+// "ses başlatılınca indirilsin, uygulama kasmasın"). İlk dinleyiş ağdan akar +
+// arka planda telefona kaydedilir; sonraki dinleyiş yerelden (0 ağ/veri). ─────
+Directory? _storyAudioCacheDir;
+Future<Directory> _storyAudioDir() async {
+  final cached = _storyAudioCacheDir;
+  if (cached != null) return cached;
+  final base = await getApplicationSupportDirectory();
+  final d = Directory('${base.path}/story_audio');
+  if (!await d.exists()) await d.create(recursive: true);
+  return _storyAudioCacheDir = d;
+}
+
+File _storyCacheFile(Directory dir, MediaTrack t) =>
+    File('${dir.path}/${t.id.replaceAll(RegExp(r'[^0-9A-Za-z_]'), '_')}.mp3');
+
+Future<List<AudioSource>> _resolveStorySources(List<MediaTrack> list) async {
+  final dir = await _storyAudioDir();
+  return Future.wait(
+    list.map((t) async {
+      final f = _storyCacheFile(dir, t);
+      if (await f.exists() && await f.length() > 1024) {
+        return AudioSource.uri(Uri.file(f.path));
+      }
+      return AudioSource.uri(Uri.parse(t.url));
+    }),
+  );
+}
+
+/// Sesli hikâye ŞU AN arka planda İNDİRİLİYOR mu — küçük "indiriliyor" rozeti için.
+final ValueNotifier<bool> storyCaching = ValueNotifier<bool>(false);
+int _activeStoryDownloads = 0;
+Timer? _storyCachingHideTimer;
+
+Future<void> _cacheStoryTrack(MediaTrack t) async {
+  try {
+    final dir = await _storyAudioDir();
+    final f = _storyCacheFile(dir, t);
+    if (await f.exists() && await f.length() > 1024) return; // zaten yerel
+    _activeStoryDownloads++;
+    _storyCachingHideTimer?.cancel();
+    storyCaching.value = true;
+    try {
+      final resp = await http.get(Uri.parse(t.url));
+      if (resp.statusCode == 200 && resp.bodyBytes.length > 1024) {
+        await f.writeAsBytes(resp.bodyBytes, flush: true);
+      }
+    } finally {
+      if (--_activeStoryDownloads <= 0) {
+        _activeStoryDownloads = 0;
+        _storyCachingHideTimer?.cancel();
+        _storyCachingHideTimer = Timer(const Duration(milliseconds: 1800), () {
+          if (_activeStoryDownloads <= 0) storyCaching.value = false;
+        });
+      }
+    }
+  } catch (_) {}
+}
+
+/// true = bu bölüm sesi telefonda cache'li (çevrimdışı çalar).
+Future<bool> storyTrackCached(MediaTrack t) async {
+  final dir = await _storyAudioDir();
+  final f = _storyCacheFile(dir, t);
+  return await f.exists() && await f.length() > 1024;
+}
+
 /// audio_service handler — bir sesli-hikâye çalma listesini (bölümler) arka
 /// planda oynatır ve medya bildirimini (kilit ekranı / YouTube-Music tarzı
 /// kumanda) yönetir. Tek paylaşılan player.
@@ -137,10 +203,14 @@ class AppAudioHandler extends BaseAudioHandler with SeekHandler {
     // Bölüm değişince bildirimdeki başlık/kapak güncellensin.
     player.currentIndexStream.listen((i) {
       _setTrackMediaItem(i);
-      // Çalan ayeti arka planda telefona indir → sonraki dinleyiş yerelden
-      // (0 ağ/veri/Cloudflare isteği). Sadece Kur'an modunda.
-      if (mode == 'quran' && i != null && i >= 0 && i < tracks.length) {
-        unawaited(_cacheQuranTrack(tracks[i]));
+      // Çalan parçayı arka planda telefona indir → sonraki dinleyiş yerelden
+      // (0 ağ/veri). Kur'an + sesli hikâye modlarında.
+      if (i != null && i >= 0 && i < tracks.length) {
+        if (mode == 'quran') {
+          unawaited(_cacheQuranTrack(tracks[i]));
+        } else if (mode == 'story') {
+          unawaited(_cacheStoryTrack(tracks[i]));
+        }
       }
     });
   }
@@ -186,7 +256,9 @@ class AppAudioHandler extends BaseAudioHandler with SeekHandler {
     // değil — everyayah proxy range desteklemiyor; bu yüzden "tam dosya indir".
     final sources = mode == 'quran'
         ? await _resolveQuranSources(list)
-        : [for (final t in list) AudioSource.uri(Uri.parse(t.url))];
+        : mode == 'story'
+            ? await _resolveStorySources(list)
+            : [for (final t in list) AudioSource.uri(Uri.parse(t.url))];
     try {
       // Medyayı her zaman MEDYA akışında çal — alarm ezanı oturumu alarm akışına
       // almış olabilir; burada geri medyaya çekiyoruz (Kuran/sesli hikâye sesi).

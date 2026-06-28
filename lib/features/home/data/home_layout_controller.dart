@@ -15,6 +15,7 @@ const homeSectionKeys = [
   'featured',
   'babyNames', // tek-satır "Bebek İsimleri" kartı
   'quiz', // İslami Bilgi Yarışması kartı
+  'audioStories', // Sesli Dini Hikâyeler (TR-only; diğer dillerde boş döner)
   'quickPair',
   'verseHadithPair', // Günün Ayeti + Hadisi YAN YANA (eski verseOfDay+hadithOfDay)
   'dailyDua',
@@ -35,6 +36,7 @@ const homeSectionLabels = {
   'featured': 'home.featured',
   'babyNames': 'babyNames.title',
   'quiz': 'quiz.title',
+  'audioStories': 'audioStories.title',
   'verseHadithPair': 'home.secVerseHadith',
   'dailyDua': 'akis.duaOfDay',
   'mediaPair': 'home.secMedia',

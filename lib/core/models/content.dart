@@ -175,6 +175,57 @@ class InspirationItem {
   );
 }
 
+class AudioEpisode {
+  final String id;
+  final String audio; // url
+  final int durationSec;
+  final String cover;
+  final Map<String, dynamic> translations;
+  const AudioEpisode(
+      this.id, this.audio, this.durationSec, this.cover, this.translations);
+
+  String title(String l) => translations.mapFor(l)['title'] as String;
+  String subtitle(String l) =>
+      translations.mapFor(l)['subtitle'] as String? ?? '';
+
+  factory AudioEpisode.fromJson(Map<String, dynamic> j) => AudioEpisode(
+        j['id'] as String,
+        j['audio'] as String,
+        j['durationSec'] as int? ?? 0,
+        j['cover'] as String? ?? '',
+        _tr(j),
+      );
+}
+
+class AudioStoryCategory {
+  final String id;
+  final String iconKey;
+  final String accent;
+  final String cover;
+  final List<AudioEpisode> episodes;
+  final Map<String, dynamic> translations;
+  const AudioStoryCategory(this.id, this.iconKey, this.accent, this.cover,
+      this.episodes, this.translations);
+
+  String title(String l) => translations.mapFor(l)['title'] as String;
+  String subtitle(String l) =>
+      translations.mapFor(l)['subtitle'] as String? ?? '';
+  Color get accentColor => hexColor(accent);
+
+  factory AudioStoryCategory.fromJson(Map<String, dynamic> j) =>
+      AudioStoryCategory(
+        j['id'] as String,
+        j['iconKey'] as String? ?? 'prophets',
+        j['accent'] as String? ?? '#E0B250',
+        j['cover'] as String? ?? '',
+        (j['episodes'] as List)
+            .map((e) =>
+                AudioEpisode.fromJson((e as Map).cast<String, dynamic>()))
+            .toList(),
+        _tr(j),
+      );
+}
+
 class StorySlide {
   final String image;
   final int durationMs;
