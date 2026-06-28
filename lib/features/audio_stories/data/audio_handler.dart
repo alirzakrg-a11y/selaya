@@ -238,6 +238,10 @@ class AppAudioHandler extends BaseAudioHandler with SeekHandler {
   @override
   Future<void> skipToPrevious() => player.seekToPrevious();
 
+  /// Tekrar düğmesi: tek bölümü döngüye al / kapat.
+  Future<void> setLoop(bool one) =>
+      player.setLoopMode(one ? LoopMode.one : LoopMode.off);
+
   /// Sesli hikâye: bölüm listesi (prev/next bölümler arasında gezer).
   Future<void> playPlaylist(
     List<MediaTrack> list, {
@@ -250,6 +254,9 @@ class AppAudioHandler extends BaseAudioHandler with SeekHandler {
     tracks = list;
     album = albumTitle;
     final idx = startIndex.clamp(0, list.length - 1);
+    // Sesli hikâye: ÇALMADAN ÖNCE başlangıç bölümünü indir → yerelden çalar
+    // (streaming donması olmaz). storyCaching rozeti "indiriliyor" gösterir.
+    if (mode == 'story') await _cacheStoryTrack(list[idx]);
     // Kur'an modunda YEREL CACHE: kaydedilmiş ayet dosyadan (ağ YOK), olmayan
     // ağdan akar + çalarken arka planda indirilir → SONRAKİ dinleyiş 0 ağ/veri/
     // Cloudflare isteği. (Hikâye/diğer modlar düz akış.) LockCachingAudioSource

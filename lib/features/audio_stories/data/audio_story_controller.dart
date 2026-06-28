@@ -75,6 +75,8 @@ class AudioStoryController extends Notifier<AudioStoryState> {
   Future<void> seek(Duration pos) => _h.player.seek(pos);
   Future<void> setSpeed(double s) => _h.player.setSpeed(s);
   double get speed => _h.player.speed;
+  Future<void> setLoop(bool one) => _h.setLoop(one);
+  bool get loopOne => _h.player.loopMode == LoopMode.one;
   Duration get position => _h.player.position;
   Duration? get totalDuration => _h.player.duration;
 

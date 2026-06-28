@@ -180,9 +180,10 @@ class AudioEpisode {
   final String audio; // url
   final int durationSec;
   final String cover;
+  final String text; // tam hikâye metni (oynatıcıda okuma için)
   final Map<String, dynamic> translations;
-  const AudioEpisode(
-      this.id, this.audio, this.durationSec, this.cover, this.translations);
+  const AudioEpisode(this.id, this.audio, this.durationSec, this.cover,
+      this.text, this.translations);
 
   String title(String l) => translations.mapFor(l)['title'] as String;
   String subtitle(String l) =>
@@ -193,6 +194,7 @@ class AudioEpisode {
         j['audio'] as String,
         j['durationSec'] as int? ?? 0,
         j['cover'] as String? ?? '',
+        j['text'] as String? ?? '',
         _tr(j),
       );
 }

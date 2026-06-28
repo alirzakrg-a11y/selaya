@@ -334,8 +334,9 @@ final audioStoriesProvider =
       final edur =
           (e['durationSec'] is num) ? (e['durationSec'] as num).toInt() : 0;
       final ecover = (e['cover'] ?? '').toString();
-      episodes.add(AudioEpisode(
-          '${c.id}_$i', audioUrl, edur, ecover.isNotEmpty ? ecover : cover, {
+      final etext = (e['text'] ?? '').toString();
+      episodes.add(AudioEpisode('${c.id}_$i', audioUrl, edur,
+          ecover.isNotEmpty ? ecover : cover, etext, {
         'tr': {'title': et, 'subtitle': esub},
         'en': {'title': et, 'subtitle': esub},
       }));

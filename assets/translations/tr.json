@@ -856,7 +856,11 @@
     "sleepEndOfEpisode": "Bölüm bitince",
     "sleepMinutes": "{} dakika",
     "sleepTitle": "Uyku Zamanlayıcısı",
-    "shareText": "{} — SELAYA Sesli Dini Hikâyeler"
+    "shareText": "{} — SELAYA Sesli Dini Hikâyeler",
+    "repeat": "Tekrar",
+    "playlist": "Bölümler",
+    "readText": "Metni Oku",
+    "downloading": "İndiriliyor…"
   },
   "womens": {
     "title": "Kadın Özel",
