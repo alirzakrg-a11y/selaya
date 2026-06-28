@@ -23,6 +23,9 @@ const _sectionIcons = <String, IconData>{
   'dailyDua': Icons.volunteer_activism_rounded,
   'mediaPair': Icons.play_circle_outline_rounded,
   'widgetPromo': Icons.widgets_rounded,
+  'babyNames': Icons.child_friendly_rounded,
+  'quiz': Icons.quiz_rounded,
+  'audioStories': Icons.headphones_rounded,
   'ai': Icons.auto_awesome_rounded,
 };
 

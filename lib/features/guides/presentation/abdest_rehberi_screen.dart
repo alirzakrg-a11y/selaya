@@ -97,7 +97,6 @@ class AbdestRehberiScreen extends StatelessWidget {
           for (final t in _otherTypes) ...[
             _TypeCard(
                 guide: t.$1,
-                collection: t.$2,
                 subtitle: tr ? t.$3 : t.$4,
                 lang: lang),
             const Gap.sm(),
@@ -112,22 +111,17 @@ class AbdestRehberiScreen extends StatelessWidget {
 
 class _TypeCard extends StatelessWidget {
   final Guide guide;
-  final String collection;
   final String subtitle;
   final String lang;
   const _TypeCard(
-      {required this.guide,
-      required this.collection,
-      required this.subtitle,
-      required this.lang});
+      {required this.guide, required this.subtitle, required this.lang});
 
   @override
   Widget build(BuildContext context) {
     final c = context.colors;
     return SelayaCard(
       patterned: true,
-      onTap: () => context.push(Routes.guideDetail,
-          extra: (guide: guide, collection: collection)),
+      onTap: () => context.push(Routes.guideDetail, extra: guide),
       child: Row(
         children: [
           Container(

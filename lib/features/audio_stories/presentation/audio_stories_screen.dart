@@ -38,6 +38,7 @@ void toggleFavoriteAudio(SharedPreferences prefs, String catId, int index) {
   final key = '$catId:$index';
   final list = prefs.getStringList(PrefKeys.favoriteAudio) ?? <String>[];
   list.contains(key) ? list.remove(key) : list.insert(0, key);
+  if (list.length > 200) list.removeRange(200, list.length);
   prefs.setStringList(PrefKeys.favoriteAudio, list);
 }
 

@@ -1287,9 +1287,8 @@ class _VideoPosterPlaceholder extends StatelessWidget {
 }
 
 // _AiCard (SELAYA AI Asistanı promo kartı) KALDIRILDI — AI asistanı komple
-// çıkarıldı (kullanıcı 2026-06-23).
-// _AudioStoriesCard (Sesli Hikâyeler promo kartı) KALDIRILDI — sesli hikâye
-// özelliği komple çıkarıldı (kullanıcı 2026-06-15).
+// çıkarıldı (kullanıcı 2026-06-23). (_AudioStoriesCard 2026-06-28 GERİ GETİRİLDİ
+// — tanımı yukarıda, _BabyNamesCard'ın hemen üstünde.)
 
 class _DailyWallpaper extends ConsumerWidget {
   const _DailyWallpaper();

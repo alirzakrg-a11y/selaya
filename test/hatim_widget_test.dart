@@ -52,6 +52,13 @@ void main() {
 
   testWidgets('Aktif hatim → ilerleme ekranı (dairesel + günlük çubuk) çizilir',
       (tester) async {
+    // İlerleme görünümü uzundur (lazy liste) → "Okumaya Devam Et" düğmesi
+    // varsayılan test viewport'unda ekran altında kalıp build edilmiyordu;
+    // geniş viewport ver, sonra sıfırla.
+    tester.view.physicalSize = const Size(1200, 3200);
+    tester.view.devicePixelRatio = 1.0;
+    addTearDown(tester.view.resetPhysicalSize);
+    addTearDown(tester.view.resetDevicePixelRatio);
     final session = HatimSession(
       id: 'h1',
       startDate: DateTime.now(),
