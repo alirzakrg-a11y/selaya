@@ -44,6 +44,7 @@ final duasProvider = FutureProvider<List<Dua>>((ref) async {
   final bundled = await ref
       .watch(assetJsonLoaderProvider)
       .loadModels('$_data/duas.json', Dua.fromJson);
+  final locale = ref.watch(appLocaleProvider);
   final out = <Dua>[];
   final seen = <String>{};
   Dua? fromPanel(ContentItem c) {
@@ -52,9 +53,13 @@ final duasProvider = FutureProvider<List<Dua>>((ref) async {
     final ex = c.extra ?? const <String, dynamic>{};
     final source = (c.subtitle ?? '').trim();
     final name = source.isEmpty ? 'Dua' : source;
+    // Çoklu-dil: extra.langs[locale].title = çevrilmiş metin (yoksa TR). dedup TR ile.
+    final loc = ((ex['langs'] as Map?)?[locale] as Map?)?.cast<String, dynamic>();
+    final lt = (loc?['title'] as String?)?.trim();
+    final disp = (lt != null && lt.isNotEmpty) ? lt : text;
     return Dua(c.id, 'panel', source, (ex['arabic'] ?? '').toString(), '', {
+      locale: {'title': name, 'text': disp},
       'tr': {'title': name, 'text': text},
-      'en': {'title': name, 'text': text},
     });
   }
 
@@ -84,6 +89,7 @@ final hadithsProvider = FutureProvider<List<Hadith>>((ref) async {
       .loadModels('$_data/hadiths.json', Hadith.fromJson);
   // Panel/API hadisleri ÖNCE; paket-içi yalnızca API'de AYNI metin yoksa
   // (taşınan içerik tekrarlanmasın). API boşsa paket-içi tam liste (offline).
+  final locale = ref.watch(appLocaleProvider);
   final out = <Hadith>[];
   final seen = <String>{};
   for (final c in ref.watch(collectionProvider('hadiths'))) {
@@ -91,10 +97,13 @@ final hadithsProvider = FutureProvider<List<Hadith>>((ref) async {
     if (t.isEmpty) continue;
     seen.add(t.trim());
     final r = (c.extra?['reference'] ?? '').toString();
+    final loc = ((c.extra?['langs'] as Map?)?[locale] as Map?)?.cast<String, dynamic>();
+    final lt = (loc?['title'] as String?)?.trim();
+    final disp = (lt != null && lt.isNotEmpty) ? lt : t;
     out.add(
       Hadith(c.id, r, r, '', (c.extra?['arabic'] ?? '').toString(), {
+        locale: {'text': disp},
         'tr': {'text': t},
-        'en': {'text': t},
       }),
     );
   }
@@ -113,6 +122,7 @@ final inspirationProvider = FutureProvider<List<InspirationItem>>((ref) async {
       .loadModels('$_data/daily_inspiration.json', InspirationItem.fromJson);
   // Panel/API içeriği ÖNCE; paket-içi yalnızca API'de AYNI metin yoksa (taşınan
   // ayet/dua tekrarlanmasın). API boşsa paket-içi tam liste (offline yedek).
+  final locale = ref.watch(appLocaleProvider);
   final out = <InspirationItem>[];
   final seen = <String>{};
   for (final c in ref.watch(collectionProvider('inspiration'))) {
@@ -120,6 +130,9 @@ final inspirationProvider = FutureProvider<List<InspirationItem>>((ref) async {
     if (t.isEmpty && c.url.isEmpty) continue;
     seen.add(t.trim());
     final ex = c.extra ?? const <String, dynamic>{};
+    final loc = ((ex['langs'] as Map?)?[locale] as Map?)?.cast<String, dynamic>();
+    final lt = (loc?['title'] as String?)?.trim();
+    final disp = (lt != null && lt.isNotEmpty) ? lt : t;
     out.add(
       InspirationItem(
         c.id,
@@ -128,8 +141,8 @@ final inspirationProvider = FutureProvider<List<InspirationItem>>((ref) async {
         c.url,
         (ex['arabic'] ?? '').toString(),
         {
+          locale: {'text': disp},
           'tr': {'text': t},
-          'en': {'text': t},
         },
       ),
     );
@@ -303,6 +316,7 @@ final greetingTemplatesProvider = FutureProvider<List<GreetingOccasion>>((
       .loadModels('$_data/greeting_templates.json', GreetingOccasion.fromJson);
   // Panel'den eklenen tebrik mesajlarını ('greeting_msg', extra.occasion) ilgili
   // vesileye ekle → panelden ekle/çıkar yapılabilir.
+  final locale = ref.watch(appLocaleProvider);
   final extras = ref.watch(collectionProvider('greeting_msg'));
   if (extras.isEmpty) return bundled;
   // Panel mesajları ÖNCE; aynı metin pakette de varsa bir kez göster (panele
@@ -314,10 +328,13 @@ final greetingTemplatesProvider = FutureProvider<List<GreetingOccasion>>((
     if (t.isEmpty) continue;
     final occ = (c.extra?['occasion'] ?? 'general').toString();
     seen.add('$occ|$t');
+    final loc = ((c.extra?['langs'] as Map?)?[locale] as Map?)?.cast<String, dynamic>();
+    final lt = (loc?['title'] as String?)?.trim();
+    final disp = (lt != null && lt.isNotEmpty) ? lt : t;
     (byOcc[occ] ??= []).add(
       GreetingMessage(c.id, {
+        locale: {'text': disp},
         'tr': {'text': t},
-        'en': {'text': t},
       }),
     );
   }

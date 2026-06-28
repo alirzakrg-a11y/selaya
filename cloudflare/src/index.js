@@ -912,7 +912,8 @@ export default {
           }
           const id = crypto.randomUUID();
           const now = Date.now();
-          const lang = (form.get('lang') || 'tr').toString().slice(0, 5);
+          // greeting_msg çoklu-dili extra.langs ile → satır lang DAİMA 'tr' (çeviri gömülü).
+          const lang = (collection === 'greeting_msg') ? 'tr' : (form.get('lang') || 'tr').toString().slice(0, 5);
           await env.DB.prepare(
             'INSERT INTO content_items (id, collection, kind, key, title, subtitle, thumb_key, extra, sort, lang, active, created_at, updated_at) ' +
             'VALUES (?,?,?,?,?,?,?,?,?,?,1,?,?)'
@@ -2849,7 +2850,7 @@ const PANEL_HTML = `<!doctype html>
   // bırakılan dilde TR (item.title/subtitle) gösterilir. PUT key'e dokunmaz → medya korunur.
   // Çoklu-dil (extra.langs) uygulanan koleksiyonlar: görsel/video ORTAK, başlık
   // dile göre değişir. (Hikâye + duvar kâğıdı + video reel.)
-  function isLangCol(c){ return c === 'stories' || c === 'wallpapers' || c === 'feed'; }
+  function isLangCol(c){ return c === 'stories' || c === 'wallpapers' || c === 'feed' || c === 'greeting_msg' || c === 'hadiths' || c === 'inspiration' || c === 'duas'; }
   function openLangEditor(it, onSave){
     var ex = {}; try { ex = JSON.parse(it.extra || '{}'); } catch (e) {}
     var langs = ex.langs || {};
