@@ -241,7 +241,8 @@ class AppAudioHandler extends BaseAudioHandler with SeekHandler {
           MediaControl.skipToNext,
         ],
         androidCompactActionIndices: const [0, 1, 3],
-        processingState: _procMap[player.processingState]!,
+        processingState:
+            _procMap[player.processingState] ?? AudioProcessingState.loading,
         playing: playing,
       ),
     );

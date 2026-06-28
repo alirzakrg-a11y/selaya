@@ -255,7 +255,7 @@ final wallpapersProvider = FutureProvider<List<Wallpaper>>((ref) async {
     out.add(
       Wallpaper(
         c.id,
-        (c.subtitle?.isNotEmpty ?? false) ? c.subtitle! : 'custom',
+        (c.subtitle?.trim().isNotEmpty ?? false) ? c.subtitle!.trim() : 'custom',
         c.url,
         false,
         const ['#05070D', '#E0B250'],
@@ -289,9 +289,9 @@ final feedProvider = FutureProvider<List<FeedItem>>((ref) async {
     final loc = (langs?[locale] as Map?)?.cast<String, dynamic>();
     final lt = (loc?['title'] as String?)?.trim();
     final ls = (loc?['subtitle'] as String?)?.trim();
-    final t = (lt != null && lt.isNotEmpty) ? lt : (c.title ?? '');
+    final t = (lt != null && lt.isNotEmpty) ? lt : (c.title ?? '').trim();
     // Caption (SELAYA'nın altında görünen açıklama) = extra.langs.subtitle / TR subtitle.
-    final cap = (ls != null && ls.isNotEmpty) ? ls : (c.subtitle ?? '');
+    final cap = (ls != null && ls.isNotEmpty) ? ls : (c.subtitle ?? '').trim();
     out.add(
       FeedItem(c.id, 'video', c.thumb ?? '', c.url, 'SELAYA', 0, {
         locale: {'title': t, 'caption': cap},

@@ -1358,8 +1358,9 @@ const PANEL_HTML = `<!doctype html>
           <label>Açıklama (opsiyonel)</label>
           <input id="upDesc" placeholder="Kısa açıklama / alt başlık">
         </div>
-        <label>İçerik dili</label>
+        <div id="upLangSelWrap"><label>İçerik dili</label>
         <select id="upLang"><option value="tr">Türkçe</option><option value="en">English</option><option value="ar">العربية</option><option value="de">Deutsch</option><option value="id">Bahasa Indonesia</option><option value="fr">Français</option><option value="ur">اردو</option><option value="bn">বাংলা</option><option value="fa">فارسی</option><option value="ru">Русский</option></select>
+        </div>
         <div id="upLangWrap" style="display:none;margin:8px 0"><button type="button" class="ghost" onclick="openUploadLangs()">🌐 Diller ekle</button> <span class="muted" id="upLangCount"></span><div class="hint" style="margin-top:2px">Hikâyeyi TEK kez ekle; içine dilleri buradan gir (görsel tüm dillerde aynı).</div></div>
         <label>Dosya <span class="muted" id="fileHint"></span></label>
         <input id="upFile" type="file" accept="image/*,video/*,audio/*">
@@ -1654,6 +1655,10 @@ const PANEL_HTML = `<!doctype html>
     // Hikâye: eklerken çoklu-dil (🌐 Diller ekle) bölümünü göster.
     var ulw = el('upLangWrap');
     if (ulw){ ulw.style.display = isLangCol(c) ? 'block' : 'none'; }
+    // İçerik dili: stories/wallpapers/feed'de lang DAİMA 'tr'ye zorlanır (çeviri
+    // "Diller ekle"den gelir) → dropdown yanıltıcı, GİZLE. Görsel-only türlerde de gereksiz.
+    var noLang = (c === 'stories' || c === 'wallpapers' || c === 'feed' || c === 'bg_videos' || c === 'stickers' || c === 'radio_art');
+    var ulsw = el('upLangSelWrap'); if (ulsw){ ulsw.style.display = noLang ? 'none' : 'block'; }
     // Kategori/koleksiyon değişince eklerken-dil state'ini DAİMA sıfırla → bir
     // içeriğe girilen çeviriler diğerine SIZMAZ ("diğerlerine de ekleniyor" fix).
     UPLOAD_LANGS = {}; var ulc0 = el('upLangCount'); if (ulc0) ulc0.textContent = '';
@@ -2819,10 +2824,14 @@ const PANEL_HTML = `<!doctype html>
     var rows = el('asEpisodes').querySelectorAll('.eprow');
     var n = 0;
     for (var r = 0; r < rows.length; r++){
-      var af = rows[r].querySelector('.ep-audio').files[0];
+      // querySelector null-guard (E1: DOM bozulursa .files[0] çökmesin).
+      var ea = rows[r].querySelector('.ep-audio');
+      var af = ea ? ea.files[0] : null;
       if (!af) continue;
-      var at = rows[r].querySelector('.ep-title').value || ('Bölüm ' + (r + 1));
-      var asub = rows[r].querySelector('.ep-sub').value || '';
+      var et = rows[r].querySelector('.ep-title');
+      var at = (et && et.value) ? et.value : ('Bölüm ' + (r + 1));
+      var es = rows[r].querySelector('.ep-sub');
+      var asub = (es && es.value) ? es.value : '';
       var adur = rows[r].getAttribute('data-dur') || '0';
       fd.append('ep_audio', af);
       fd.append('ep_title', at);

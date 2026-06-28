@@ -274,13 +274,25 @@ class CommunityHatimScreen extends ConsumerWidget {
         builder: (ctx, scroll) => Consumer(
           builder: (ctx, ref2, _) {
             final data = ref2.watch(communityHatimProvider).value;
-            final found =
-                data?.campaigns.where((x) => x.id == campId).toList() ??
-                    const [];
-            if (found.isEmpty) {
+            if (data == null) {
+              // Hâlâ yükleniyor (manifest gelmedi).
               return const Center(
                   child: Padding(
                       padding: EdgeInsets.all(40), child: SelayaLoading()));
+            }
+            final found =
+                data.campaigns.where((x) => x.id == campId).toList();
+            if (found.isEmpty) {
+              // Veri geldi ama kampanya yok (silinmiş/kapanmış) → sonsuz spinner
+              // yerine bilgi göster (E1: loading ile not-found ayrımı).
+              return Center(
+                  child: Padding(
+                      padding: const EdgeInsets.all(40),
+                      child: Text(
+                          tr
+                              ? 'Bu hatim artık mevcut değil.'
+                              : 'This khatm is no longer available.',
+                          style: TextStyle(color: c.textSecondary))));
             }
             final camp = found.first;
             final progress = camp.total > 0 ? camp.done / camp.total : 0.0;

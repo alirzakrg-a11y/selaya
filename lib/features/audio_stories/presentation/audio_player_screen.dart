@@ -95,11 +95,12 @@ class _AudioPlayerScreenState extends ConsumerState<AudioPlayerScreen> {
     setState(() => _sleepMinutes = minutes);
     if (minutes != null) {
       _sleepTimer = Timer(Duration(minutes: minutes), () {
+        // Widget dispose edildiyse (ekran kapandı + timer yarıştı) ref.read
+        // disposed context'te çağrılmasın → ÖNCE mounted guard (E1: race fix).
+        if (!mounted) return;
         ref.read(audioStoryControllerProvider.notifier).stop();
-        if (mounted) {
-          setState(() => _sleepMinutes = null);
-          Navigator.of(context).maybePop();
-        }
+        setState(() => _sleepMinutes = null);
+        Navigator.of(context).maybePop();
       });
     }
   }

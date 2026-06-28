@@ -137,6 +137,11 @@ class _AudioStoriesScreenState extends ConsumerState<AudioStoriesScreen> {
             return t.ep.title(lang).toLowerCase().contains(q) ||
                 t.cat.title(lang).toLowerCase().contains(q);
           }).toList();
+          // Son dinlenenler de kategori filtresine uysun ("popüler" gibi) —
+          // yoksa kategori seçilince alakasız son-dinleneni gösterir (E1: tutarsızlık).
+          final visibleRecents = _selectedCat == null
+              ? recents
+              : recents.where((t) => t.cat.id == _selectedCat).toList();
 
           return ListView(
             padding: const EdgeInsets.fromLTRB(
@@ -166,21 +171,21 @@ class _AudioStoriesScreenState extends ConsumerState<AudioStoriesScreen> {
                         icon: audioIconFor(cat.iconKey),
                         selected: _selectedCat == cat.id,
                         color: cat.accentColor,
-                        onTap: () => setState(() => _selectedCat =
-                            _selectedCat == cat.id ? null : cat.id),
+                        onTap: () =>
+                            setState(() => _selectedCat = cat.id),
                       ),
                   ],
                 ),
               ),
-              if (recents.isNotEmpty && _query.isEmpty) ...[
+              if (visibleRecents.isNotEmpty && _query.isEmpty) ...[
                 const Gap.lg(),
                 _SectionHeader(title: 'audioStories.recent'.tr()),
                 const Gap.sm(),
                 _ContinueCard(
-                  track: recents.first,
+                  track: visibleRecents.first,
                   lang: lang,
-                  onTap: () =>
-                      _openPlayer(recents.first.cat.id, recents.first.index),
+                  onTap: () => _openPlayer(
+                      visibleRecents.first.cat.id, visibleRecents.first.index),
                 ),
               ],
               const Gap.lg(),
