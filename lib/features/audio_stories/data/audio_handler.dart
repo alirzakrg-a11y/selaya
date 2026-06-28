@@ -216,6 +216,21 @@ class AppAudioHandler extends BaseAudioHandler with SeekHandler {
   }
 
   void _broadcast() {
+    if (mode == 'idle') {
+      // Durdurulduktan sonra player'ın state/event akışları yeniden tetiklense
+      // bile bildirimi GERİ GETİRME: kontrolsüz idle yayınla → bildirim kapanır
+      // ve kapalı kalır. ("durdura basınca kapanmıyor / geri geliyor" fix)
+      playbackState.add(
+        playbackState.value.copyWith(
+          controls: const [],
+          systemActions: const {},
+          androidCompactActionIndices: const [],
+          processingState: AudioProcessingState.idle,
+          playing: false,
+        ),
+      );
+      return;
+    }
     final playing = player.playing;
     playbackState.add(
       playbackState.value.copyWith(
@@ -300,16 +315,14 @@ class AppAudioHandler extends BaseAudioHandler with SeekHandler {
 
   @override
   Future<void> stop() async {
-    await player.stop();
-    tracks = const [];
+    // ÖNCE mode='idle': bundan sonra player.stop()'un tetiklediği tüm
+    // _broadcast'ler kontrolsüz idle yayınlar → bildirim geri gelmez. Sonra
+    // player'ı durdur + mediaItem temizle → bildirim tamamen kapanır.
     mode = 'idle';
+    tracks = const [];
     mediaItem.add(null);
-    playbackState.add(
-      playbackState.value.copyWith(
-        processingState: AudioProcessingState.idle,
-        playing: false,
-      ),
-    );
+    await player.stop();
+    _broadcast();
   }
 }
 

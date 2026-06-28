@@ -1336,8 +1336,6 @@ const PANEL_HTML = `<!doctype html>
         <input id="asTitle" placeholder="Örn: Peygamber Kıssaları">
         <label>Açıklama (opsiyonel)</label>
         <input id="asSub" placeholder="Kısa açıklama">
-        <label>İçerik dili</label>
-        <select id="asLang"><option value="tr">Türkçe</option><option value="en">English</option><option value="ar">العربية</option><option value="de">Deutsch</option><option value="id">Bahasa Indonesia</option><option value="fr">Français</option><option value="ur">اردو</option><option value="bn">বাংলা</option><option value="fa">فارسی</option><option value="ru">Русский</option></select>
         <label>Bölümler</label>
         <div id="asEpisodes"></div>
         <button class="ghost" type="button" onclick="addEpisodeRow()" style="margin-top:6px">+ Bölüm ekle</button>
@@ -1656,7 +1654,9 @@ const PANEL_HTML = `<!doctype html>
     // Hikâye: eklerken çoklu-dil (🌐 Diller ekle) bölümünü göster.
     var ulw = el('upLangWrap');
     if (ulw){ ulw.style.display = isLangCol(c) ? 'block' : 'none'; }
-    if (!isLangCol(c)){ UPLOAD_LANGS = {}; var ulc0 = el('upLangCount'); if (ulc0) ulc0.textContent = ''; }
+    // Kategori/koleksiyon değişince eklerken-dil state'ini DAİMA sıfırla → bir
+    // içeriğe girilen çeviriler diğerine SIZMAZ ("diğerlerine de ekleniyor" fix).
+    UPLOAD_LANGS = {}; var ulc0 = el('upLangCount'); if (ulc0) ulc0.textContent = '';
   }
 
   var TAB_TITLES = { text:'Metin İçerik', notify:'Bildirimler', stats:'Kullanım', users:'Kullanıcılar', dua:'Dua Duvarı', hatim:'Topluluk Hatmi', quiz:'Bilgi Yarışması', reports:'İçerik Şikayetleri' };
@@ -2815,7 +2815,7 @@ const PANEL_HTML = `<!doctype html>
     fd.append('cover', cw);
     fd.append('title', title);
     fd.append('subtitle', val('asSub'));
-    fd.append('lang', val('asLang') || 'tr');
+    fd.append('lang', 'tr'); // Sesli hikâyeler TR-only (dil seçici kaldırıldı)
     var rows = el('asEpisodes').querySelectorAll('.eprow');
     var n = 0;
     for (var r = 0; r < rows.length; r++){
@@ -2852,24 +2852,27 @@ const PANEL_HTML = `<!doctype html>
   function openLangEditor(it, onSave){
     var ex = {}; try { ex = JSON.parse(it.extra || '{}'); } catch (e) {}
     var langs = ex.langs || {};
+    // Duvar kâğıtları yalnız BAŞLIK çevirir (açıklamaları yok) → açıklama girişi
+    // gizlenir. Her özellik ayrı: video/hikâye başlık+açıklama, duvar kâğıdı sadece başlık.
+    var titleOnly = (it.collection === 'wallpapers');
     var LANGS = [['en','English'],['ar','العربية'],['de','Deutsch'],['id','Bahasa Indonesia'],['fr','Français'],['ur','اردو'],['bn','বাংলা'],['fa','فارسی'],['ru','Русский']];
     var rows = LANGS.map(function(L){
       return '<div style="margin:8px 0;border-top:1px solid #eee;padding-top:8px"><b>' + L[1] + '</b>' +
         '<input id="lt_' + L[0] + '" placeholder="Başlık (' + L[1] + ')">' +
-        '<input id="ls_' + L[0] + '" placeholder="Açıklama (' + L[1] + ')"></div>';
+        (titleOnly ? '' : '<input id="ls_' + L[0] + '" placeholder="Açıklama (' + L[1] + ')">') + '</div>';
     }).join('');
     var ov = document.createElement('div');
     ov.style.cssText = 'position:fixed;inset:0;background:rgba(16,24,40,.45);display:flex;align-items:center;justify-content:center;z-index:50;padding:20px';
     ov.innerHTML = '<div style="background:#fff;border-radius:18px;padding:22px;max-width:460px;width:100%;max-height:90vh;overflow:auto">' +
       '<h3 style="margin:0 0 6px">🌐 Çeviriler — ' + esc(it.title || '') + '</h3>' +
-      '<p class="muted" style="margin:0 0 10px">Türkçe başlık/açıklama "Düzenle"den gelir. Boş bıraktığın dilde TR gösterilir. Görsel tüm dillerde AYNIDIR (tek hikâye, 9 ayrı değil).</p>' +
+      '<p class="muted" style="margin:0 0 10px">' + (titleOnly ? 'Yalnızca BAŞLIK çevirilir (bu içerikte açıklama yok). ' : 'Türkçe başlık/açıklama "Düzenle"den gelir. ') + 'Boş bıraktığın dilde TR gösterilir. Görsel tüm dillerde AYNIDIR (tek içerik, 9 ayrı değil).</p>' +
       rows +
       '<div class="row" style="margin-top:16px"><button class="ghost" id="lcancel">Vazgeç</button><button id="lsave">Kaydet</button></div></div>';
     document.body.appendChild(ov);
     LANGS.forEach(function(L){
       var d = langs[L[0]] || {};
       document.getElementById('lt_' + L[0]).value = d.title || '';
-      document.getElementById('ls_' + L[0]).value = d.subtitle || '';
+      if (!titleOnly) document.getElementById('ls_' + L[0]).value = d.subtitle || '';
     });
     function close(){ ov.remove(); }
     ov.addEventListener('click', function(e){ if (e.target === ov) close(); });
@@ -2878,10 +2881,10 @@ const PANEL_HTML = `<!doctype html>
       var newLangs = {};
       LANGS.forEach(function(L){
         var t = (document.getElementById('lt_' + L[0]).value || '').trim();
-        var s = (document.getElementById('ls_' + L[0]).value || '').trim();
+        var s = titleOnly ? '' : (document.getElementById('ls_' + L[0]).value || '').trim();
         // BUG fix (tarama): başlık ZORUNLU — başlıksız çeviri eksik sayılır,
         // o dilde app TR yedeğini gösterir (boş başlık olmaz).
-        if (t) newLangs[L[0]] = { title: t, subtitle: s };
+        if (t) newLangs[L[0]] = titleOnly ? { title: t } : { title: t, subtitle: s };
       });
       // EKLERKEN modu (yeni hikâye, id yok): kaydetmeden callback ile dön →
       // çeviriler upload ile birlikte /api/upload'a gönderilecek.
@@ -2902,7 +2905,7 @@ const PANEL_HTML = `<!doctype html>
   // 'langs' alanıyla gönderilir → extra.langs ile kaydolur (sonradan düzenleme şart değil).
   var UPLOAD_LANGS = {};
   function openUploadLangs(){
-    openLangEditor({ id: null, title: (val('upTitle') || 'Yeni hikâye'), extra: JSON.stringify({ langs: UPLOAD_LANGS }) }, function(langs){
+    openLangEditor({ id: null, collection: val('upCollection'), title: (val('upTitle') || 'Yeni içerik'), extra: JSON.stringify({ langs: UPLOAD_LANGS }) }, function(langs){
       UPLOAD_LANGS = langs;
       var n = Object.keys(langs).length;
       var cnt = el('upLangCount'); if (cnt) cnt.textContent = n ? (n + ' dil eklendi ✓') : '';
