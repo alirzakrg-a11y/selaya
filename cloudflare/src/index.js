@@ -1024,10 +1024,20 @@ export default {
           const lang = collection === 'stories'
             ? 'tr'
             : (form.get('lang') || 'tr').toString().slice(0, 5);
+          // EKLERKEN çoklu-dil: 'langs' alanı varsa extra.langs olarak sakla
+          // (hikâye tek kayıt + içine diller; sonradan düzenleme şart değil).
+          let extra = null;
+          try {
+            const lj = form.get('langs');
+            if (lj) {
+              const langs = JSON.parse(lj.toString());
+              if (langs && Object.keys(langs).length) extra = JSON.stringify({ langs });
+            }
+          } catch (_) {}
           await env.DB.prepare(
-            'INSERT INTO content_items (id, collection, kind, key, title, subtitle, thumb_key, sort, lang, active, created_at, updated_at) ' +
-            'VALUES (?,?,?,?,?,?,?,?,?,1,?,?)'
-          ).bind(id, collection, kind, key, title, subtitle, thumbKey, sort, lang, now, now).run();
+            'INSERT INTO content_items (id, collection, kind, key, title, subtitle, thumb_key, extra, sort, lang, active, created_at, updated_at) ' +
+            'VALUES (?,?,?,?,?,?,?,?,?,?,1,?,?)'
+          ).bind(id, collection, kind, key, title, subtitle, thumbKey, extra, sort, lang, now, now).run();
           return json({ ok: true, id, key, url: env.CDN_BASE + '/' + key });
         }
 
@@ -1352,6 +1362,7 @@ const PANEL_HTML = `<!doctype html>
         </div>
         <label>İçerik dili</label>
         <select id="upLang"><option value="tr">Türkçe</option><option value="en">English</option><option value="ar">العربية</option><option value="de">Deutsch</option><option value="id">Bahasa Indonesia</option><option value="fr">Français</option><option value="ur">اردو</option><option value="bn">বাংলা</option><option value="fa">فارسی</option><option value="ru">Русский</option></select>
+        <div id="upLangWrap" style="display:none;margin:8px 0"><button type="button" class="ghost" onclick="openUploadLangs()">🌐 Diller ekle</button> <span class="muted" id="upLangCount"></span><div class="hint" style="margin-top:2px">Hikâyeyi TEK kez ekle; içine dilleri buradan gir (görsel tüm dillerde aynı).</div></div>
         <label>Dosya <span class="muted" id="fileHint"></span></label>
         <input id="upFile" type="file" accept="image/*,video/*,audio/*">
         <div id="coverWrap">
@@ -1643,6 +1654,10 @@ const PANEL_HTML = `<!doctype html>
     var noTitle = (c === 'bg_videos');
     el('titleWrap').style.display = noTitle ? 'none' : 'block';
     if (noTitle) el('upTitle').value = '';
+    // Hikâye: eklerken çoklu-dil (🌐 Diller ekle) bölümünü göster.
+    var ulw = el('upLangWrap');
+    if (ulw){ ulw.style.display = (c === 'stories') ? 'block' : 'none'; }
+    if (c !== 'stories'){ UPLOAD_LANGS = {}; var ulc0 = el('upLangCount'); if (ulc0) ulc0.textContent = ''; }
   }
 
   var TAB_TITLES = { text:'Metin İçerik', notify:'Bildirimler', stats:'Kullanım', users:'Kullanıcılar', dua:'Dua Duvarı', hatim:'Topluluk Hatmi', quiz:'Bilgi Yarışması', reports:'İçerik Şikayetleri' };
@@ -2717,12 +2732,14 @@ const PANEL_HTML = `<!doctype html>
     fd.append('subtitle', val('upDesc'));
     fd.append('sort', val('upSort'));
     fd.append('lang', val('upLang') || 'tr');
+    if (val('upCollection') === 'stories' && Object.keys(UPLOAD_LANGS).length) fd.append('langs', JSON.stringify(UPLOAD_LANGS));
     el('upStatus').textContent = 'Yükleniyor...';
     api('upload', { method:'POST', body: fd }).then(function(res){
       done();
       if (res.j && res.j.ok){
         el('upStatus').innerHTML = '<span class="ok">Yüklendi ✓ (' + fmtSize(main.size) + ') — kategori/sıra korundu, sıradakini ekleyebilirsin.</span>';
         el('upFile').value = ''; el('upCover').value = ''; el('upTitle').value = ''; el('upDesc').value = '';
+        UPLOAD_LANGS = {}; var ulc = el('upLangCount'); if (ulc) ulc.textContent = '';
         loadItems();
       } else {
         el('upStatus').textContent = 'Hata: ' + ((res.j && res.j.error) || res.status);
@@ -2830,7 +2847,7 @@ const PANEL_HTML = `<!doctype html>
   // 🌐 Hikâye çevirileri — TEK kayıt, içine dil-dil başlık/açıklama (extra.langs).
   // Görsel tüm dillerde ORTAK; uygulama dil değişince metni değiştirir. Boş
   // bırakılan dilde TR (item.title/subtitle) gösterilir. PUT key'e dokunmaz → medya korunur.
-  function openLangEditor(it){
+  function openLangEditor(it, onSave){
     var ex = {}; try { ex = JSON.parse(it.extra || '{}'); } catch (e) {}
     var langs = ex.langs || {};
     var LANGS = [['en','English'],['ar','العربية'],['de','Deutsch'],['id','Bahasa Indonesia'],['fr','Français'],['ur','اردو'],['bn','বাংলা'],['fa','فارسی'],['ru','Русский']];
@@ -2864,6 +2881,9 @@ const PANEL_HTML = `<!doctype html>
         // o dilde app TR yedeğini gösterir (boş başlık olmaz).
         if (t) newLangs[L[0]] = { title: t, subtitle: s };
       });
+      // EKLERKEN modu (yeni hikâye, id yok): kaydetmeden callback ile dön →
+      // çeviriler upload ile birlikte /api/upload'a gönderilecek.
+      if (onSave){ onSave(newLangs); toast('Çeviriler hazır ✓ (yüklerken kaydolur)'); close(); return; }
       var newExtra = Object.assign({}, ex, { langs: newLangs });
       api('items/' + it.id, { method:'PUT', headers:{ 'Content-Type':'application/json' },
         body: JSON.stringify({ collection: it.collection, kind: it.kind, title: it.title, subtitle: it.subtitle, sort: it.sort || 0, active: it.active ? 1 : 0, extra: newExtra }) })
@@ -2874,6 +2894,17 @@ const PANEL_HTML = `<!doctype html>
         toast('Çeviriler kaydedildi ✓'); close(); loadItems();
       } else { toast('Hata: ' + ((res.j && res.j.error) || res.status)); } });
     };
+  }
+  // 🌐 EKLERKEN dil-dil: upload formundaki "Diller ekle" → aynı editörü açar;
+  // çeviriler UPLOAD_LANGS'a toplanır, yeni hikâye yüklenirken /api/upload'a
+  // 'langs' alanıyla gönderilir → extra.langs ile kaydolur (sonradan düzenleme şart değil).
+  var UPLOAD_LANGS = {};
+  function openUploadLangs(){
+    openLangEditor({ id: null, title: (val('upTitle') || 'Yeni hikâye'), extra: JSON.stringify({ langs: UPLOAD_LANGS }) }, function(langs){
+      UPLOAD_LANGS = langs;
+      var n = Object.keys(langs).length;
+      var cnt = el('upLangCount'); if (cnt) cnt.textContent = n ? (n + ' dil eklendi ✓') : '';
+    });
   }
   document.addEventListener('click', function(e){
     var b = e.target.closest ? e.target.closest('button') : null;
