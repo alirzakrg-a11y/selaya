@@ -1092,19 +1092,22 @@ export default {
           const id = decodeURIComponent(path.split('/').pop());
           const b = await request.json();
           const now = Date.now();
-          // extra verilirse onu da güncelle (metin düzenlemede arabic/reference için).
-          const hasExtra = (b.extra !== undefined && b.extra !== null);
-          const args = [
-            b.collection, b.kind || 'image',
-            b.title == null ? null : b.title,
-            b.subtitle == null ? null : b.subtitle,
-            b.sort || 0, b.active === 0 ? 0 : 1,
-          ];
-          if (hasExtra) args.push(JSON.stringify(b.extra));
-          args.push(now, id);
+          // KISMİ güncelleme: SADECE gönderilen alanları yaz; gönderilmeyen alan
+          // KORUNUR. Aksi halde "Gizle" (yalnız active gönderir) başlık/açıklama/
+          // sıra'yı null'a/0'a ezerdi (BUG). Tüm koleksiyonlar için geçerli.
+          const sets = [];
+          const args = [];
+          if (b.collection !== undefined) { sets.push('collection=?'); args.push(b.collection); }
+          if (b.kind !== undefined) { sets.push('kind=?'); args.push(b.kind || 'image'); }
+          if (b.title !== undefined) { sets.push('title=?'); args.push(b.title == null ? null : b.title); }
+          if (b.subtitle !== undefined) { sets.push('subtitle=?'); args.push(b.subtitle == null ? null : b.subtitle); }
+          if (b.sort !== undefined) { sets.push('sort=?'); args.push(b.sort || 0); }
+          if (b.active !== undefined) { sets.push('active=?'); args.push(b.active === 0 ? 0 : 1); }
+          if (b.extra !== undefined && b.extra !== null) { sets.push('extra=?'); args.push(JSON.stringify(b.extra)); }
+          sets.push('updated_at=?'); args.push(now);
+          args.push(id);
           await env.DB.prepare(
-            'UPDATE content_items SET collection=?, kind=?, title=?, subtitle=?, sort=?, active=?, ' +
-            (hasExtra ? 'extra=?, ' : '') + 'updated_at=? WHERE id=?'
+            'UPDATE content_items SET ' + sets.join(', ') + ' WHERE id=?'
           ).bind(...args).run();
           return json({ ok: true });
         }
