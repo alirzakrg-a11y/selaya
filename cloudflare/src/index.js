@@ -1305,7 +1305,6 @@ const PANEL_HTML = `<!doctype html>
     <div class="logo"><span class="d"></span> SELAYA</div>
     <div class="nav-section">İçerik</div>
     <div id="catNav"></div>
-    <div class="nav-item" id="tabTextBtn" onclick="showTab('text')">📝 Metin İçerik</div>
     <div class="nav-section">Sistem</div>
     <div class="nav-item" id="tabNotifyBtn" onclick="showTab('notify')">🔔 Bildirimler</div>
     <div class="nav-item" id="tabStatsBtn" onclick="showTab('stats')">📊 Kullanım</div>
@@ -2848,7 +2847,7 @@ const PANEL_HTML = `<!doctype html>
   // bırakılan dilde TR (item.title/subtitle) gösterilir. PUT key'e dokunmaz → medya korunur.
   // Çoklu-dil (extra.langs) uygulanan koleksiyonlar: görsel/video ORTAK, başlık
   // dile göre değişir. (Hikâye + duvar kâğıdı + video reel.)
-  function isLangCol(c){ return c === 'stories' || c === 'wallpapers' || c === 'feed' || c === 'greeting_msg' || c === 'hadiths' || c === 'inspiration' || c === 'duas'; }
+  function isLangCol(c){ return c === 'stories' || c === 'wallpapers' || c === 'feed' || c === 'hadiths' || c === 'inspiration' || c === 'duas'; }
   function openLangEditor(it, onSave){
     var ex = {}; try { ex = JSON.parse(it.extra || '{}'); } catch (e) {}
     var langs = ex.langs || {};

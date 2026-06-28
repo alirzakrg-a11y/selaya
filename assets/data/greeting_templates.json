@@ -2,163 +2,4429 @@
   {
     "occasion": "friday",
     "iconKey": "mosque",
-    "translations": { "tr": { "label": "Cuma Mesajı" }, "en": { "label": "Friday Message" } },
+    "translations": {
+      "tr": {
+        "label": "Cuma Mesajı"
+      },
+      "en": {
+        "label": "Friday Message"
+      },
+      "ar": {
+        "label": "رسالة الجمعة"
+      },
+      "de": {
+        "label": "Freitagsgruß"
+      },
+      "id": {
+        "label": "Pesan Jumat"
+      },
+      "fr": {
+        "label": "Message du vendredi"
+      },
+      "ur": {
+        "label": "جمعہ کا پیغام"
+      },
+      "bn": {
+        "label": "জুমার বার্তা"
+      },
+      "fa": {
+        "label": "پیام جمعه"
+      },
+      "ru": {
+        "label": "Послание на пятницу"
+      }
+    },
     "messages": [
-      { "id": "friday1", "translations": { "tr": { "text": "Hayırlı Cumalar! Bu mübarek günde tüm dualarınız kabul olsun." }, "en": { "text": "Blessed Friday! May all your prayers be accepted on this holy day." } } },
-      { "id": "friday2", "translations": { "tr": { "text": "Cuma'nın huzuru, bereketi ve rahmeti üzerinize olsun." }, "en": { "text": "May the peace, blessing and mercy of Friday be upon you." } } },
-      { "id": "friday3", "translations": { "tr": { "text": "Cuma günü gönüllerin buluştuğu, duaların göğe yükseldiği gündür. Hayırlı Cumalar." }, "en": { "text": "Friday is when hearts meet and prayers rise to the heavens. Blessed Friday." } } },
-      { "id": "friday4", "translations": { "tr": { "text": "Bu mübarek Cuma; rızkınıza bereket, kalbinize huzur getirsin." }, "en": { "text": "May this blessed Friday bring abundance to your sustenance and peace to your heart." } } },
-      { "id": "friday5", "translations": { "tr": { "text": "Salât ü selâmların en güzeli Efendimiz'e olsun. Hayırlı Cumalar." }, "en": { "text": "May the finest blessings be upon our Prophet. Blessed Friday." } } },
-      { "id": "friday6", "translations": { "tr": { "text": "Cumanız mübarek, sofranız bereketli, duanız makbul olsun." }, "en": { "text": "May your Friday be blessed, your table abundant, and your prayers accepted." } } },
-      { "id": "friday7", "translations": { "tr": { "text": "Rabbim bu Cuma hürmetine dertlerinize derman, dualarınıza icabet etsin." }, "en": { "text": "For the sake of this Friday, may God grant remedy to your troubles and answer your prayers." } } },
-      { "id": "friday8", "translations": { "tr": { "text": "Hayırlı Cumalar! Kehf sûresini okumayı ve salavâtı unutmayalım." }, "en": { "text": "Blessed Friday! Let us not forget to read Surah al-Kahf and send salawat." } } },
-      { "id": "friday9", "translations": { "tr": { "text": "Gönlünüzden geçen tüm hayırlı dualar bu mübarek Cuma'da kabul olsun." }, "en": { "text": "May all the good wishes in your heart be accepted this blessed Friday." } } },
-      { "id": "friday10", "translations": { "tr": { "text": "Cuma; haftanın bayramıdır. Bu güzel günün feyzi üzerinize olsun." }, "en": { "text": "Friday is the festival of the week. May the grace of this beautiful day be upon you." } } },
-      { "id": "friday11", "translations": { "tr": { "text": "Bu Cuma; ailenize sağlık, yuvanıza muhabbet, ömrünüze bereket getirsin." }, "en": { "text": "May this Friday bring health to your family, love to your home, and blessing to your life." } } },
-      { "id": "friday12", "translations": { "tr": { "text": "Dualarınızın kabul, gönlünüzün huzur dolu olduğu bir Cuma diliyorum." }, "en": { "text": "I wish you a Friday where your prayers are answered and your heart is full of peace." } } },
-      { "id": "friday13", "translations": { "tr": { "text": "Hayırlı Cumalar! Rabbim gönlünüzdeki güzel niyetleri gerçek kılsın." }, "en": { "text": "Blessed Friday! May God make the good intentions in your heart come true." } } },
-      { "id": "friday14", "translations": { "tr": { "text": "Mübarek Cuma gününüz rahmet ve mağfiretle dolsun." }, "en": { "text": "May your blessed Friday be filled with mercy and forgiveness." } } },
-      { "id": "friday15", "translations": { "tr": { "text": "Cuma'nın bereketi evinize, huzuru kalbinize dolsun. Hayırlı Cumalar." }, "en": { "text": "May the blessing of Friday fill your home and its peace fill your heart. Blessed Friday." } } },
-      { "id": "friday16", "translations": { "tr": { "text": "Bu Cuma; geçmişlerimizin ruhuna bir Fâtiha, dualarımıza âmin olsun." }, "en": { "text": "This Friday, a Fatiha for the souls of those before us, and amin to our prayers." } } },
-      { "id": "friday17", "translations": { "tr": { "text": "Cuma sabahının huzuru bütün haftanıza yayılsın. Hayırlı Cumalar." }, "en": { "text": "May the peace of Friday morning spread through your whole week. Blessed Friday." } } },
-      { "id": "friday18", "translations": { "tr": { "text": "Bu Cuma; içinizdeki sıkıntılar dinsin, gönlünüz ferahlasın." }, "en": { "text": "This Friday, may the worries within you calm and your heart find ease." } } },
-      { "id": "friday19", "translations": { "tr": { "text": "Rabbim Cuma hürmetine evinizden bereketi, yüzünüzden tebessümü eksik etmesin." }, "en": { "text": "For the sake of Friday, may God never take blessing from your home nor a smile from your face." } } },
-      { "id": "friday20", "translations": { "tr": { "text": "Hayırlı Cumalar! Dualarınız arşa yükselsin, âminlerle dönsün." }, "en": { "text": "Blessed Friday! May your prayers rise to the heavens and return as blessings." } } }
+      {
+        "id": "friday1",
+        "translations": {
+          "tr": {
+            "text": "Hayırlı Cumalar! Bu mübarek günde tüm dualarınız kabul olsun."
+          },
+          "en": {
+            "text": "Blessed Friday! May all your prayers be accepted on this holy day."
+          },
+          "ar": {
+            "text": "جمعة مباركة! عسى أن تُستجاب جميع أدعيتكم في هذا اليوم المبارك."
+          },
+          "de": {
+            "text": "Gesegneten Freitag! Mögen an diesem gesegneten Tag all eure Gebete erhört werden."
+          },
+          "id": {
+            "text": "Selamat Hari Jumat! Semoga di hari yang penuh berkah ini semua doa Anda dikabulkan."
+          },
+          "fr": {
+            "text": "Bon vendredi béni ! Que toutes vos prières soient exaucées en ce jour béni."
+          },
+          "ur": {
+            "text": "جمعہ مبارک! اس مبارک دن میں آپ کی تمام دعائیں قبول ہوں۔"
+          },
+          "bn": {
+            "text": "শুভ জুমআ! এই বরকতময় দিনে আপনার সকল দোয়া কবুল হোক।"
+          },
+          "fa": {
+            "text": "جمعه‌تان مبارک! در این روز پربرکت همه دعاهایتان مستجاب شود."
+          },
+          "ru": {
+            "text": "Благословенной пятницы! Пусть в этот священный день все ваши молитвы будут приняты."
+          }
+        }
+      },
+      {
+        "id": "friday2",
+        "translations": {
+          "tr": {
+            "text": "Cuma'nın huzuru, bereketi ve rahmeti üzerinize olsun."
+          },
+          "en": {
+            "text": "May the peace, blessing, and mercy of Friday be upon you."
+          },
+          "ar": {
+            "text": "عليكم سكينة الجمعة وبركتها ورحمتها."
+          },
+          "de": {
+            "text": "Möge der Friede, der Segen und die Barmherzigkeit des Freitags mit euch sein."
+          },
+          "id": {
+            "text": "Semoga ketenangan, keberkahan, dan rahmat hari Jumat senantiasa menyertai Anda."
+          },
+          "fr": {
+            "text": "Que la sérénité, la bénédiction et la miséricorde du vendredi soient sur vous."
+          },
+          "ur": {
+            "text": "جمعہ کا سکون، برکت اور رحمت آپ پر نازل ہو۔"
+          },
+          "bn": {
+            "text": "জুমআর প্রশান্তি, বরকত ও রহমত আপনার ওপর বর্ষিত হোক।"
+          },
+          "fa": {
+            "text": "آرامش، برکت و رحمت جمعه بر شما باد."
+          },
+          "ru": {
+            "text": "Пусть покой, благодать и милость пятницы пребудут с вами."
+          }
+        }
+      },
+      {
+        "id": "friday3",
+        "translations": {
+          "tr": {
+            "text": "Cuma günü gönüllerin buluştuğu, duaların göğe yükseldiği gündür. Hayırlı Cumalar."
+          },
+          "en": {
+            "text": "Friday is the day when hearts come together and prayers rise to the heavens. Blessed Friday."
+          },
+          "ar": {
+            "text": "يوم الجمعة هو اليوم الذي تلتقي فيه القلوب وتصعد فيه الأدعية إلى السماء. جمعة مباركة."
+          },
+          "de": {
+            "text": "Der Freitag ist der Tag, an dem sich die Herzen begegnen und die Gebete zum Himmel aufsteigen. Gesegneten Freitag."
+          },
+          "id": {
+            "text": "Hari Jumat adalah hari ketika hati saling bertemu dan doa-doa naik ke langit. Selamat Hari Jumat."
+          },
+          "fr": {
+            "text": "Le vendredi est le jour où les cœurs se rencontrent et où les prières s'élèvent vers le ciel. Bon vendredi béni."
+          },
+          "ur": {
+            "text": "جمعہ وہ دن ہے جب دل ملتے ہیں اور دعائیں آسمان کی طرف بلند ہوتی ہیں۔ جمعہ مبارک۔"
+          },
+          "bn": {
+            "text": "জুমআ সেই দিন যেদিন অন্তরগুলো মিলিত হয়, দোয়াগুলো আকাশে উঠে যায়। শুভ জুমআ।"
+          },
+          "fa": {
+            "text": "جمعه روزی است که دل‌ها به هم می‌رسند و دعاها به آسمان بالا می‌روند. جمعه‌تان مبارک."
+          },
+          "ru": {
+            "text": "Пятница — день, когда встречаются сердца, а молитвы возносятся к небесам. Благословенной пятницы."
+          }
+        }
+      },
+      {
+        "id": "friday4",
+        "translations": {
+          "tr": {
+            "text": "Bu mübarek Cuma; rızkınıza bereket, kalbinize huzur getirsin."
+          },
+          "en": {
+            "text": "May this blessed Friday bring abundance to your sustenance and peace to your heart."
+          },
+          "ar": {
+            "text": "عسى أن تجلب لكم هذه الجمعة المباركة البركة في الرزق والسكينة في القلب."
+          },
+          "de": {
+            "text": "Möge dieser gesegnete Freitag eurem Lebensunterhalt Segen und eurem Herzen Frieden bringen."
+          },
+          "id": {
+            "text": "Semoga Jumat yang penuh berkah ini membawa keberkahan pada rezeki Anda dan ketenangan pada hati Anda."
+          },
+          "fr": {
+            "text": "Que ce vendredi béni apporte l'abondance à votre subsistance et la paix à votre cœur."
+          },
+          "ur": {
+            "text": "یہ مبارک جمعہ آپ کے رزق میں برکت اور آپ کے دل میں سکون لائے۔"
+          },
+          "bn": {
+            "text": "এই বরকতময় জুমআ আপনার রিজিকে বরকত আর হৃদয়ে প্রশান্তি বয়ে আনুক।"
+          },
+          "fa": {
+            "text": "این جمعه پربرکت، به روزی‌تان برکت و به دلتان آرامش بیاورد."
+          },
+          "ru": {
+            "text": "Пусть эта благословенная пятница принесёт изобилие вашему уделу и покой вашему сердцу."
+          }
+        }
+      },
+      {
+        "id": "friday5",
+        "translations": {
+          "tr": {
+            "text": "Salât ü selâmların en güzeli Efendimiz'e olsun. Hayırlı Cumalar."
+          },
+          "en": {
+            "text": "May the most beautiful prayers and salutations be upon our Prophet. Blessed Friday."
+          },
+          "ar": {
+            "text": "أزكى الصلوات والسلام على سيدنا محمد. جمعة مباركة."
+          },
+          "de": {
+            "text": "Mögen die schönsten Segenswünsche und Friedensgrüße unserem Propheten gelten. Gesegneten Freitag."
+          },
+          "id": {
+            "text": "Semoga shalawat dan salam yang terindah tercurah kepada Junjungan kita. Selamat Hari Jumat."
+          },
+          "fr": {
+            "text": "Que les plus belles salutations et bénédictions soient sur notre Bien-Aimé Prophète. Bon vendredi béni."
+          },
+          "ur": {
+            "text": "بہترین درود و سلام ہمارے آقا ﷺ پر ہوں۔ جمعہ مبارک۔"
+          },
+          "bn": {
+            "text": "সর্বোত্তম দরুদ ও সালাম আমাদের প্রিয় নবীজির ওপর বর্ষিত হোক। শুভ জুমআ।"
+          },
+          "fa": {
+            "text": "زیباترین درودها و سلام‌ها بر سرور ما باد. جمعه‌تان مبارک."
+          },
+          "ru": {
+            "text": "Пусть наилучшие благословения и приветствия будут нашему Пророку. Благословенной пятницы."
+          }
+        }
+      },
+      {
+        "id": "friday6",
+        "translations": {
+          "tr": {
+            "text": "Cumanız mübarek, sofranız bereketli, duanız makbul olsun."
+          },
+          "en": {
+            "text": "May your Friday be blessed, your table abundant, and your prayers accepted."
+          },
+          "ar": {
+            "text": "جمعتكم مباركة، ومائدتكم عامرة بالبركة، ودعاؤكم مقبول."
+          },
+          "de": {
+            "text": "Möge euer Freitag gesegnet, eure Tafel reich gesegnet und euer Gebet erhört sein."
+          },
+          "id": {
+            "text": "Semoga Jumat Anda penuh berkah, hidangan Anda penuh keberkahan, dan doa Anda dikabulkan."
+          },
+          "fr": {
+            "text": "Que votre vendredi soit béni, votre table abondante et vos prières exaucées."
+          },
+          "ur": {
+            "text": "آپ کا جمعہ مبارک، آپ کا دسترخوان بابرکت اور آپ کی دعا مقبول ہو۔"
+          },
+          "bn": {
+            "text": "আপনার জুমআ বরকতময় হোক, দস্তরখান বরকতপূর্ণ হোক, দোয়া কবুল হোক।"
+          },
+          "fa": {
+            "text": "جمعه‌تان مبارک، سفره‌تان پربرکت و دعایتان مستجاب باد."
+          },
+          "ru": {
+            "text": "Пусть ваша пятница будет благословенной, ваш стол изобильным, а молитвы — принятыми."
+          }
+        }
+      },
+      {
+        "id": "friday7",
+        "translations": {
+          "tr": {
+            "text": "Rabbim bu Cuma hürmetine dertlerinize derman, dualarınıza icabet etsin."
+          },
+          "en": {
+            "text": "For the sake of this Friday, may my Lord be a remedy for your troubles and answer your prayers."
+          },
+          "ar": {
+            "text": "اللهم بحرمة هذه الجمعة اجعل لهمومهم فرجًا، واستجب لدعائهم."
+          },
+          "de": {
+            "text": "Möge mein Herr um dieses Freitags willen euren Sorgen Heilung schenken und eure Gebete erhören."
+          },
+          "id": {
+            "text": "Semoga Tuhanku, demi kemuliaan Jumat ini, menjadikan obat bagi keluh kesah Anda dan mengabulkan doa-doa Anda."
+          },
+          "fr": {
+            "text": "Que mon Seigneur, en l'honneur de ce vendredi, guérisse vos peines et réponde à vos prières."
+          },
+          "ur": {
+            "text": "اللہ اس جمعہ کے صدقے آپ کے دکھوں کا علاج اور آپ کی دعاؤں کی قبولیت عطا فرمائے۔"
+          },
+          "bn": {
+            "text": "হে রব, এই জুমআর সম্মানে আমাদের কষ্টের নিরাময় দিন, দোয়াগুলো কবুল করুন।"
+          },
+          "fa": {
+            "text": "پروردگارا به حرمت این جمعه، دردهایتان را درمان و دعاهایتان را اجابت کند."
+          },
+          "ru": {
+            "text": "Пусть Господь ради этой пятницы исцелит ваши печали и ответит на ваши молитвы."
+          }
+        }
+      },
+      {
+        "id": "friday8",
+        "translations": {
+          "tr": {
+            "text": "Hayırlı Cumalar! Kehf sûresini okumayı ve salavâtı unutmayalım."
+          },
+          "en": {
+            "text": "Blessed Friday! Let us not forget to recite Surah al-Kahf and send salutations upon the Prophet."
+          },
+          "ar": {
+            "text": "جمعة مباركة! لا ننسَ قراءة سورة الكهف والإكثار من الصلاة على النبي."
+          },
+          "de": {
+            "text": "Gesegneten Freitag! Vergessen wir nicht, die Sure al-Kahf zu lesen und die Segenswünsche für den Propheten zu sprechen."
+          },
+          "id": {
+            "text": "Selamat Hari Jumat! Jangan kita lupa membaca surah Al-Kahfi dan memperbanyak shalawat."
+          },
+          "fr": {
+            "text": "Bon vendredi béni ! N'oublions pas de lire la sourate al-Kahf et de réciter les salutations sur le Prophète."
+          },
+          "ur": {
+            "text": "جمعہ مبارک! سورۃ الکہف کی تلاوت اور درود شریف کو نہ بھولیں۔"
+          },
+          "bn": {
+            "text": "শুভ জুমআ! সূরা কাহফ পড়া আর দরুদ পাঠ করা যেন আমরা ভুলে না যাই।"
+          },
+          "fa": {
+            "text": "جمعه‌تان مبارک! خواندن سوره کهف و صلوات را فراموش نکنیم."
+          },
+          "ru": {
+            "text": "Благословенной пятницы! Не забудем прочитать суру «аль-Кахф» и салават."
+          }
+        }
+      },
+      {
+        "id": "friday9",
+        "translations": {
+          "tr": {
+            "text": "Gönlünüzden geçen tüm hayırlı dualar bu mübarek Cuma'da kabul olsun."
+          },
+          "en": {
+            "text": "May all the good prayers in your heart be accepted on this blessed Friday."
+          },
+          "ar": {
+            "text": "عسى أن تُستجاب في هذه الجمعة المباركة كل الأدعية الطيبة التي تجول في قلوبكم."
+          },
+          "de": {
+            "text": "Mögen an diesem gesegneten Freitag all die guten Gebete, die euer Herz bewegen, erhört werden."
+          },
+          "id": {
+            "text": "Semoga semua doa baik yang terbersit di hati Anda dikabulkan pada Jumat yang penuh berkah ini."
+          },
+          "fr": {
+            "text": "Que toutes les bonnes prières qui traversent votre cœur soient exaucées en ce vendredi béni."
+          },
+          "ur": {
+            "text": "آپ کے دل میں موجود تمام نیک دعائیں اس مبارک جمعہ میں قبول ہوں۔"
+          },
+          "bn": {
+            "text": "আপনার হৃদয়ের সকল কল্যাণময় দোয়া এই বরকতময় জুমআয় কবুল হোক।"
+          },
+          "fa": {
+            "text": "همه دعاهای خیری که در دل دارید در این جمعه پربرکت مستجاب شود."
+          },
+          "ru": {
+            "text": "Пусть все благие молитвы вашего сердца будут приняты в эту благословенную пятницу."
+          }
+        }
+      },
+      {
+        "id": "friday10",
+        "translations": {
+          "tr": {
+            "text": "Cuma; haftanın bayramıdır. Bu güzel günün feyzi üzerinize olsun."
+          },
+          "en": {
+            "text": "Friday is the festival of the week. May the grace of this beautiful day be upon you."
+          },
+          "ar": {
+            "text": "الجمعة عيد الأسبوع. عليكم فيض هذا اليوم الجميل."
+          },
+          "de": {
+            "text": "Der Freitag ist das Fest der Woche. Möge der Segen dieses schönen Tages mit euch sein."
+          },
+          "id": {
+            "text": "Jumat adalah hari rayanya pekan ini. Semoga keberkahan hari yang indah ini menyertai Anda."
+          },
+          "fr": {
+            "text": "Le vendredi est la fête de la semaine. Que la grâce de ce beau jour soit sur vous."
+          },
+          "ur": {
+            "text": "جمعہ ہفتے کی عید ہے۔ اس خوبصورت دن کا فیض آپ پر نازل ہو۔"
+          },
+          "bn": {
+            "text": "জুমআ হলো সপ্তাহের ঈদ। এই সুন্দর দিনের ফয়েজ আপনার ওপর বর্ষিত হোক।"
+          },
+          "fa": {
+            "text": "جمعه عید هفته است. فیض این روز زیبا بر شما باد."
+          },
+          "ru": {
+            "text": "Пятница — праздник недели. Пусть благодать этого прекрасного дня пребудет с вами."
+          }
+        }
+      },
+      {
+        "id": "friday11",
+        "translations": {
+          "tr": {
+            "text": "Bu Cuma; ailenize sağlık, yuvanıza muhabbet, ömrünüze bereket getirsin."
+          },
+          "en": {
+            "text": "May this Friday bring health to your family, love to your home, and abundance to your life."
+          },
+          "ar": {
+            "text": "عسى أن تجلب هذه الجمعة لعائلتكم الصحة، ولبيتكم المحبة، ولعمركم البركة."
+          },
+          "de": {
+            "text": "Möge dieser Freitag eurer Familie Gesundheit, eurem Heim Liebe und eurem Leben Segen bringen."
+          },
+          "id": {
+            "text": "Semoga Jumat ini membawa kesehatan bagi keluarga Anda, kasih sayang bagi rumah Anda, dan keberkahan bagi umur Anda."
+          },
+          "fr": {
+            "text": "Que ce vendredi apporte la santé à votre famille, l'amour à votre foyer et l'abondance à votre vie."
+          },
+          "ur": {
+            "text": "یہ جمعہ آپ کے گھرانے کو صحت، آپ کے گھر کو محبت اور آپ کی زندگی کو برکت عطا کرے۔"
+          },
+          "bn": {
+            "text": "এই জুমআ আপনার পরিবারে সুস্থতা, ঘরে ভালোবাসা আর জীবনে বরকত বয়ে আনুক।"
+          },
+          "fa": {
+            "text": "این جمعه، برای خانواده‌تان سلامتی، برای کاشانه‌تان محبت و برای عمرتان برکت بیاورد."
+          },
+          "ru": {
+            "text": "Пусть эта пятница принесёт здоровье вашей семье, любовь вашему дому и изобилие вашей жизни."
+          }
+        }
+      },
+      {
+        "id": "friday12",
+        "translations": {
+          "tr": {
+            "text": "Dualarınızın kabul, gönlünüzün huzur dolu olduğu bir Cuma diliyorum."
+          },
+          "en": {
+            "text": "I wish you a Friday in which your prayers are accepted and your heart is filled with peace."
+          },
+          "ar": {
+            "text": "أتمنى لكم جمعة مليئة باستجابة الدعاء وسكينة القلب."
+          },
+          "de": {
+            "text": "Ich wünsche euch einen Freitag, an dem eure Gebete erhört werden und euer Herz voller Frieden ist."
+          },
+          "id": {
+            "text": "Saya doakan semoga Anda menjalani Jumat yang dipenuhi doa-doa yang dikabulkan dan hati yang tenang."
+          },
+          "fr": {
+            "text": "Je vous souhaite un vendredi où vos prières sont exaucées et votre cœur empli de paix."
+          },
+          "ur": {
+            "text": "آپ کے لیے ایسے جمعہ کی دعا کرتا ہوں جس میں آپ کی دعائیں قبول اور آپ کا دل سکون سے بھرپور ہو۔"
+          },
+          "bn": {
+            "text": "আপনার দোয়াগুলো কবুল আর হৃদয় প্রশান্তিতে ভরে ওঠা একটি জুমআ কামনা করি।"
+          },
+          "fa": {
+            "text": "جمعه‌ای آرزو می‌کنم که دعاهایتان مستجاب و دلتان پر از آرامش باشد."
+          },
+          "ru": {
+            "text": "Желаю вам пятницы, наполненной принятыми молитвами и покоем в сердце."
+          }
+        }
+      },
+      {
+        "id": "friday13",
+        "translations": {
+          "tr": {
+            "text": "Hayırlı Cumalar! Rabbim gönlünüzdeki güzel niyetleri gerçek kılsın."
+          },
+          "en": {
+            "text": "Blessed Friday! May my Lord make the good intentions in your heart come true."
+          },
+          "ar": {
+            "text": "جمعة مباركة! اللهم حقّق النيات الطيبة التي في قلوبهم."
+          },
+          "de": {
+            "text": "Gesegneten Freitag! Möge mein Herr die guten Absichten in eurem Herzen wahr werden lassen."
+          },
+          "id": {
+            "text": "Selamat Hari Jumat! Semoga Tuhanku mewujudkan niat-niat baik yang ada di hati Anda."
+          },
+          "fr": {
+            "text": "Bon vendredi béni ! Que mon Seigneur réalise les belles intentions de votre cœur."
+          },
+          "ur": {
+            "text": "جمعہ مبارک! اللہ آپ کے دل کی نیک نیتوں کو حقیقت بنائے۔"
+          },
+          "bn": {
+            "text": "শুভ জুমআ! হে রব, আপনার অন্তরের সুন্দর নিয়তগুলো বাস্তবে রূপ দিন।"
+          },
+          "fa": {
+            "text": "جمعه‌تان مبارک! پروردگارا نیت‌های نیکی که در دل دارید را محقق گرداند."
+          },
+          "ru": {
+            "text": "Благословенной пятницы! Пусть Господь воплотит добрые намерения вашего сердца."
+          }
+        }
+      },
+      {
+        "id": "friday14",
+        "translations": {
+          "tr": {
+            "text": "Mübarek Cuma gününüz rahmet ve mağfiretle dolsun."
+          },
+          "en": {
+            "text": "May your blessed Friday be filled with mercy and forgiveness."
+          },
+          "ar": {
+            "text": "عسى أن يمتلئ يوم جمعتكم المبارك بالرحمة والمغفرة."
+          },
+          "de": {
+            "text": "Möge euer gesegneter Freitag voller Barmherzigkeit und Vergebung sein."
+          },
+          "id": {
+            "text": "Semoga hari Jumat Anda yang penuh berkah dipenuhi dengan rahmat dan ampunan."
+          },
+          "fr": {
+            "text": "Que votre vendredi béni soit empli de miséricorde et de pardon."
+          },
+          "ur": {
+            "text": "آپ کا مبارک جمعہ رحمت اور مغفرت سے بھرپور ہو۔"
+          },
+          "bn": {
+            "text": "আপনার বরকতময় জুমআর দিন রহমত ও মাগফিরাতে পূর্ণ হোক।"
+          },
+          "fa": {
+            "text": "روز جمعه پربرکتتان آکنده از رحمت و آمرزش باد."
+          },
+          "ru": {
+            "text": "Пусть ваша благословенная пятница наполнится милостью и прощением."
+          }
+        }
+      },
+      {
+        "id": "friday15",
+        "translations": {
+          "tr": {
+            "text": "Cuma'nın bereketi evinize, huzuru kalbinize dolsun. Hayırlı Cumalar."
+          },
+          "en": {
+            "text": "May the abundance of Friday fill your home and its peace fill your heart. Blessed Friday."
+          },
+          "ar": {
+            "text": "عسى أن تملأ بركة الجمعة بيتكم، وسكينتها قلبكم. جمعة مباركة."
+          },
+          "de": {
+            "text": "Möge der Segen des Freitags euer Heim und der Frieden euer Herz erfüllen. Gesegneten Freitag."
+          },
+          "id": {
+            "text": "Semoga keberkahan Jumat memenuhi rumah Anda dan ketenangannya memenuhi hati Anda. Selamat Hari Jumat."
+          },
+          "fr": {
+            "text": "Que la bénédiction du vendredi emplisse votre maison et la paix votre cœur. Bon vendredi béni."
+          },
+          "ur": {
+            "text": "جمعہ کی برکت آپ کے گھر میں اور سکون آپ کے دل میں اترے۔ جمعہ مبارک۔"
+          },
+          "bn": {
+            "text": "জুমআর বরকত আপনার ঘরে, প্রশান্তি আপনার হৃদয়ে প্রবেশ করুক। শুভ জুমআ।"
+          },
+          "fa": {
+            "text": "برکت جمعه به خانه‌تان و آرامش آن به دلتان سرازیر شود. جمعه‌تان مبارک."
+          },
+          "ru": {
+            "text": "Пусть благодать пятницы войдёт в ваш дом, а покой — в ваше сердце. Благословенной пятницы."
+          }
+        }
+      },
+      {
+        "id": "friday16",
+        "translations": {
+          "tr": {
+            "text": "Bu Cuma; geçmişlerimizin ruhuna bir Fâtiha, dualarımıza âmin olsun."
+          },
+          "en": {
+            "text": "On this Friday, may there be a Fatiha for the souls of those who came before us, and an amen to our prayers."
+          },
+          "ar": {
+            "text": "في هذه الجمعة: فاتحة لأرواح من سبقونا، وآمين لأدعيتنا."
+          },
+          "de": {
+            "text": "An diesem Freitag: eine Fatiha für die Seelen unserer Verstorbenen und ein Amin auf unsere Gebete."
+          },
+          "id": {
+            "text": "Semoga Jumat ini menjadi al-Fatihah bagi arwah para pendahulu kita dan amin bagi doa-doa kita."
+          },
+          "fr": {
+            "text": "Que ce vendredi soit une Fatiha pour l'âme de nos défunts et un amen pour nos prières."
+          },
+          "ur": {
+            "text": "اس جمعہ میں ہمارے بزرگوں کی روح کے لیے ایک فاتحہ اور ہماری دعاؤں پر آمین ہو۔"
+          },
+          "bn": {
+            "text": "এই জুমআয় আমাদের পূর্বপুরুষদের রুহের জন্য একটি ফাতিহা, আমাদের দোয়ার জন্য আমিন হোক।"
+          },
+          "fa": {
+            "text": "این جمعه، فاتحه‌ای برای روح درگذشتگانمان و آمینی بر دعاهایمان باد."
+          },
+          "ru": {
+            "text": "Пусть в эту пятницу будет «Фатиха» душам наших ушедших и «амин» нашим молитвам."
+          }
+        }
+      },
+      {
+        "id": "friday17",
+        "translations": {
+          "tr": {
+            "text": "Cuma sabahının huzuru bütün haftanıza yayılsın. Hayırlı Cumalar."
+          },
+          "en": {
+            "text": "May the peace of Friday morning spread across your entire week. Blessed Friday."
+          },
+          "ar": {
+            "text": "عسى أن تنتشر سكينة صباح الجمعة على أسبوعكم كله. جمعة مباركة."
+          },
+          "de": {
+            "text": "Möge der Frieden des Freitagmorgens sich über eure ganze Woche ausbreiten. Gesegneten Freitag."
+          },
+          "id": {
+            "text": "Semoga ketenangan pagi Jumat menyebar ke sepanjang pekan Anda. Selamat Hari Jumat."
+          },
+          "fr": {
+            "text": "Que la sérénité du matin du vendredi se répande sur toute votre semaine. Bon vendredi béni."
+          },
+          "ur": {
+            "text": "جمعہ کی صبح کا سکون آپ کے پورے ہفتے میں پھیل جائے۔ جمعہ مبارک۔"
+          },
+          "bn": {
+            "text": "জুমআর সকালের প্রশান্তি আপনার পুরো সপ্তাহে ছড়িয়ে পড়ুক। শুভ জুমআ।"
+          },
+          "fa": {
+            "text": "آرامش صبح جمعه در سراسر هفته‌تان پخش شود. جمعه‌تان مبارک."
+          },
+          "ru": {
+            "text": "Пусть покой пятничного утра распространится на всю вашу неделю. Благословенной пятницы."
+          }
+        }
+      },
+      {
+        "id": "friday18",
+        "translations": {
+          "tr": {
+            "text": "Bu Cuma; içinizdeki sıkıntılar dinsin, gönlünüz ferahlasın."
+          },
+          "en": {
+            "text": "On this Friday, may the troubles within you cease and your heart find ease."
+          },
+          "ar": {
+            "text": "عسى أن تزول في هذه الجمعة الهموم التي بداخلكم، وأن ينشرح صدركم."
+          },
+          "de": {
+            "text": "Mögen an diesem Freitag die Sorgen in eurem Inneren vergehen und euer Herz erleichtert werden."
+          },
+          "id": {
+            "text": "Semoga di Jumat ini segala beban di hati Anda mereda dan hati Anda menjadi lapang."
+          },
+          "fr": {
+            "text": "Que ce vendredi apaise les tourments en vous et que votre cœur trouve le réconfort."
+          },
+          "ur": {
+            "text": "اس جمعہ آپ کے اندر کی پریشانیاں دور ہوں اور آپ کا دل کھل اٹھے۔"
+          },
+          "bn": {
+            "text": "এই জুমআয় আপনার অন্তরের সকল দুশ্চিন্তা দূর হোক, হৃদয় প্রশান্ত হোক।"
+          },
+          "fa": {
+            "text": "این جمعه، غم‌های درونتان آرام گیرد و دلتان فراخ شود."
+          },
+          "ru": {
+            "text": "Пусть в эту пятницу утихнут ваши тревоги, а сердце обретёт облегчение."
+          }
+        }
+      },
+      {
+        "id": "friday19",
+        "translations": {
+          "tr": {
+            "text": "Rabbim Cuma hürmetine evinizden bereketi, yüzünüzden tebessümü eksik etmesin."
+          },
+          "en": {
+            "text": "For the sake of Friday, may my Lord never let abundance leave your home nor a smile leave your face."
+          },
+          "ar": {
+            "text": "اللهم بحرمة الجمعة لا تُخلِ بيتهم من البركة ولا وجوههم من الابتسامة."
+          },
+          "de": {
+            "text": "Möge mein Herr um des Freitags willen den Segen in eurem Heim und das Lächeln auf eurem Gesicht nicht fehlen lassen."
+          },
+          "id": {
+            "text": "Semoga Tuhanku, demi kemuliaan Jumat, tidak mengurangi keberkahan dari rumah Anda dan senyuman dari wajah Anda."
+          },
+          "fr": {
+            "text": "Que mon Seigneur, en l'honneur du vendredi, ne prive jamais votre maison de l'abondance ni votre visage du sourire."
+          },
+          "ur": {
+            "text": "اللہ جمعہ کے صدقے آپ کے گھر سے برکت اور آپ کے چہرے سے مسکراہٹ کم نہ کرے۔"
+          },
+          "bn": {
+            "text": "হে রব, জুমআর সম্মানে আপনার ঘরে বরকত আর মুখে হাসি কখনো কমতি করবেন না।"
+          },
+          "fa": {
+            "text": "پروردگارا به حرمت جمعه، برکت را از خانه‌تان و لبخند را از چهره‌تان کم نکند."
+          },
+          "ru": {
+            "text": "Пусть Господь ради пятницы не лишит ваш дом изобилия, а ваше лицо — улыбки."
+          }
+        }
+      },
+      {
+        "id": "friday20",
+        "translations": {
+          "tr": {
+            "text": "Hayırlı Cumalar! Dualarınız arşa yükselsin, âminlerle dönsün."
+          },
+          "en": {
+            "text": "Blessed Friday! May your prayers rise to the heavens and return with amens."
+          },
+          "ar": {
+            "text": "جمعة مباركة! عسى أن تصعد أدعيتكم إلى العرش وتعود بالإجابة."
+          },
+          "de": {
+            "text": "Gesegneten Freitag! Mögen eure Gebete zum Thron aufsteigen und mit einem Amin zurückkehren."
+          },
+          "id": {
+            "text": "Selamat Hari Jumat! Semoga doa-doa Anda naik ke Arsy dan kembali dengan amin-amin."
+          },
+          "fr": {
+            "text": "Bon vendredi béni ! Que vos prières s'élèvent jusqu'au Trône et reviennent accompagnées d'amen."
+          },
+          "ur": {
+            "text": "جمعہ مبارک! آپ کی دعائیں عرش تک بلند ہوں اور آمین کے ساتھ لوٹ آئیں۔"
+          },
+          "bn": {
+            "text": "শুভ জুমআ! আপনার দোয়াগুলো আরশে উঠে যাক, আমিনের সাথে ফিরে আসুক।"
+          },
+          "fa": {
+            "text": "جمعه‌تان مبارک! دعاهایتان به عرش بالا رود و با آمین‌ها بازگردد."
+          },
+          "ru": {
+            "text": "Благословенной пятницы! Пусть ваши молитвы вознесутся к Престолу и вернутся с «аминами»."
+          }
+        }
+      }
     ]
   },
   {
     "occasion": "bayram",
     "iconKey": "sparkles",
-    "translations": { "tr": { "label": "Bayram" }, "en": { "label": "Eid" } },
+    "translations": {
+      "tr": {
+        "label": "Bayram"
+      },
+      "en": {
+        "label": "Eid"
+      },
+      "ar": {
+        "label": "العيد"
+      },
+      "de": {
+        "label": "Eid"
+      },
+      "id": {
+        "label": "Idul Fitri"
+      },
+      "fr": {
+        "label": "Aïd"
+      },
+      "ur": {
+        "label": "عید"
+      },
+      "bn": {
+        "label": "ঈদ"
+      },
+      "fa": {
+        "label": "عید"
+      },
+      "ru": {
+        "label": "Праздник"
+      }
+    },
     "messages": [
-      { "id": "bayram1", "translations": { "tr": { "text": "Bayramınız mübarek olsun! Nice huzurlu ve sağlıklı bayramlara." }, "en": { "text": "Eid Mubarak! Wishing you many peaceful and healthy celebrations." } } },
-      { "id": "bayram2", "translations": { "tr": { "text": "Bu bayram sevdiklerinizle bir arada, sevgiyle geçsin." }, "en": { "text": "May this Eid be spent together with your loved ones, in love." } } },
-      { "id": "bayram3", "translations": { "tr": { "text": "Bayramın coşkusu yüzünüzden, bereketi sofranızdan eksik olmasın." }, "en": { "text": "May the joy of Eid never leave your face, nor its blessing your table." } } },
-      { "id": "bayram4", "translations": { "tr": { "text": "Küskünlüklerin bittiği, gönüllerin barıştığı bir bayram diliyorum." }, "en": { "text": "I wish you an Eid where resentments end and hearts reconcile." } } },
-      { "id": "bayram5", "translations": { "tr": { "text": "Bayramınız mübarek olsun; Rabbim nice bayramlara sağlıkla ulaştırsın." }, "en": { "text": "Eid Mubarak; may God let you reach many more Eids in good health." } } },
-      { "id": "bayram6", "translations": { "tr": { "text": "Bu bayram; kalplerinize sevinç, evinize bereket getirsin." }, "en": { "text": "May this Eid bring joy to your hearts and blessing to your home." } } },
-      { "id": "bayram7", "translations": { "tr": { "text": "Ellerinizi açtığınız her duanın kabul olduğu bir bayram olsun." }, "en": { "text": "May this be an Eid where every prayer you raise is answered." } } },
-      { "id": "bayram8", "translations": { "tr": { "text": "Bayramın huzuru, ailenizin sıcaklığıyla katlansın. Mübarek olsun." }, "en": { "text": "May the peace of Eid be multiplied by your family's warmth. Mubarak." } } },
-      { "id": "bayram9", "translations": { "tr": { "text": "Sevdiklerinizle, sağlıkla ve gönül huzuruyla nice bayramlara." }, "en": { "text": "To many more Eids with your loved ones, in health and peace of heart." } } },
-      { "id": "bayram10", "translations": { "tr": { "text": "Bayramınızı tebrik eder, tüm dünyaya barış ve huzur dilerim." }, "en": { "text": "I congratulate your Eid and wish peace to the whole world." } } },
-      { "id": "bayram11", "translations": { "tr": { "text": "Bu bayram; ayrılıkları bitirsin, hasretleri kavuştursun." }, "en": { "text": "May this Eid end separations and reunite those who long for each other." } } },
-      { "id": "bayram12", "translations": { "tr": { "text": "Bayram sevincini en çok sevdiklerinizle paylaşmanız dileğiyle." }, "en": { "text": "Wishing you to share the joy of Eid with those you love most." } } },
-      { "id": "bayram13", "translations": { "tr": { "text": "Rabbim bayramların bereketini ömrünüze, sevincini yüreğinize yazsın." }, "en": { "text": "May God write the blessing of Eid into your life and its joy into your heart." } } },
-      { "id": "bayram14", "translations": { "tr": { "text": "Çocukların gülüşü, büyüklerin duasıyla mübarek bir bayram olsun." }, "en": { "text": "May it be a blessed Eid with children's laughter and elders' prayers." } } },
-      { "id": "bayram15", "translations": { "tr": { "text": "Bayramınız kutlu, sofranız bereketli, gönlünüz ferah olsun." }, "en": { "text": "May your Eid be joyful, your table abundant, and your heart at ease." } } },
-      { "id": "bayram16", "translations": { "tr": { "text": "Nice sağlıklı, mutlu ve bir arada bayramlar dilerim. Bayramınız mübarek." }, "en": { "text": "Wishing you many healthy, happy Eids together. Eid Mubarak." } } },
-      { "id": "bayram17", "translations": { "tr": { "text": "Bayram; affetmenin ve kucaklaşmanın günüdür. Bayramınız mübarek olsun." }, "en": { "text": "Eid is the day of forgiveness and embracing. May your Eid be blessed." } } },
-      { "id": "bayram18", "translations": { "tr": { "text": "Bu bayram gönüllerde kırgınlık değil, yalnızca sevgi kalsın." }, "en": { "text": "May this Eid leave no resentment in hearts, only love." } } },
-      { "id": "bayram19", "translations": { "tr": { "text": "Rabbim her bayramı sevdiklerinizle ve sağlıkla nasip etsin." }, "en": { "text": "May God grant you every Eid with your loved ones and in health." } } },
-      { "id": "bayram20", "translations": { "tr": { "text": "Bayramınız mübarek; huzur evinizden, bereket sofranızdan eksilmesin." }, "en": { "text": "Eid Mubarak; may peace never leave your home nor blessing your table." } } }
+      {
+        "id": "bayram1",
+        "translations": {
+          "tr": {
+            "text": "Bayramınız mübarek olsun! Nice huzurlu ve sağlıklı bayramlara."
+          },
+          "en": {
+            "text": "Happy holiday! Wishing you many peaceful and healthy holidays to come."
+          },
+          "ar": {
+            "text": "عيدكم مبارك! إلى أعياد كثيرة مليئة بالسكينة والصحة."
+          },
+          "de": {
+            "text": "Gesegnetes Fest! Möge euch noch viele friedvolle und gesunde Feste vergönnt sein."
+          },
+          "id": {
+            "text": "Selamat Hari Raya! Semoga banyak hari raya yang tenang dan sehat menyusul."
+          },
+          "fr": {
+            "text": "Joyeuse fête ! Pour de nombreuses fêtes paisibles et pleines de santé."
+          },
+          "ur": {
+            "text": "عید مبارک! بہت سی پرسکون اور صحت مند عیدیں نصیب ہوں۔"
+          },
+          "bn": {
+            "text": "আপনার ঈদ মোবারক হোক! আরও অসংখ্য প্রশান্তিময় ও সুস্থ ঈদের শুভকামনা।"
+          },
+          "fa": {
+            "text": "عیدتان مبارک! عیدهای آرام و سلامت بسیار در پیش باد."
+          },
+          "ru": {
+            "text": "С праздником! Желаю вам многих мирных и здоровых праздников."
+          }
+        }
+      },
+      {
+        "id": "bayram2",
+        "translations": {
+          "tr": {
+            "text": "Bu bayram sevdiklerinizle bir arada, sevgiyle geçsin."
+          },
+          "en": {
+            "text": "May this holiday be spent together with your loved ones, in love."
+          },
+          "ar": {
+            "text": "عسى أن يمرّ هذا العيد بمحبة مع أحبائكم وأنتم مجتمعون."
+          },
+          "de": {
+            "text": "Möge dieses Fest mit euren Liebsten und voller Liebe vergehen."
+          },
+          "id": {
+            "text": "Semoga hari raya ini Anda lalui bersama orang-orang tercinta dengan penuh kasih sayang."
+          },
+          "fr": {
+            "text": "Que cette fête se passe dans l'amour, réunis avec vos êtres chers."
+          },
+          "ur": {
+            "text": "یہ عید آپ اپنے پیاروں کے ساتھ محبت کے ساتھ گزاریں۔"
+          },
+          "bn": {
+            "text": "এই ঈদ আপনার প্রিয়জনদের সাথে একত্রে, ভালোবাসায় পূর্ণ হয়ে কাটুক।"
+          },
+          "fa": {
+            "text": "این عید در کنار عزیزانتان و با محبت بگذرد."
+          },
+          "ru": {
+            "text": "Пусть этот праздник пройдёт вместе с любимыми, в любви."
+          }
+        }
+      },
+      {
+        "id": "bayram3",
+        "translations": {
+          "tr": {
+            "text": "Bayramın coşkusu yüzünüzden, bereketi sofranızdan eksik olmasın."
+          },
+          "en": {
+            "text": "May the joy of the holiday never leave your face nor its abundance leave your table."
+          },
+          "ar": {
+            "text": "عسى ألا تفارق فرحة العيد وجوهكم، ولا بركته موائدكم."
+          },
+          "de": {
+            "text": "Möge die Freude des Festes auf eurem Gesicht und der Segen auf eurer Tafel nicht fehlen."
+          },
+          "id": {
+            "text": "Semoga kegembiraan hari raya tidak lepas dari wajah Anda dan keberkahannya tidak lepas dari hidangan Anda."
+          },
+          "fr": {
+            "text": "Que la joie de la fête ne quitte pas votre visage ni l'abondance votre table."
+          },
+          "ur": {
+            "text": "عید کی خوشی آپ کے چہرے سے اور برکت آپ کے دسترخوان سے کم نہ ہو۔"
+          },
+          "bn": {
+            "text": "ঈদের আনন্দ আপনার মুখ থেকে, বরকত আপনার দস্তরখান থেকে কখনো কমতি না হোক।"
+          },
+          "fa": {
+            "text": "شور عید از چهره‌تان و برکت آن از سفره‌تان کم نشود."
+          },
+          "ru": {
+            "text": "Пусть радость праздника не сходит с вашего лица, а изобилие — с вашего стола."
+          }
+        }
+      },
+      {
+        "id": "bayram4",
+        "translations": {
+          "tr": {
+            "text": "Küskünlüklerin bittiği, gönüllerin barıştığı bir bayram diliyorum."
+          },
+          "en": {
+            "text": "I wish you a holiday where resentments end and hearts are reconciled."
+          },
+          "ar": {
+            "text": "أتمنى عيدًا تنتهي فيه الخصومات وتتصالح فيه القلوب."
+          },
+          "de": {
+            "text": "Ich wünsche euch ein Fest, an dem Zerwürfnisse enden und Herzen sich versöhnen."
+          },
+          "id": {
+            "text": "Saya doakan hari raya yang mengakhiri segala perselisihan dan mendamaikan hati."
+          },
+          "fr": {
+            "text": "Je vous souhaite une fête où les rancunes s'effacent et les cœurs se réconcilient."
+          },
+          "ur": {
+            "text": "ایسی عید کی دعا کرتا ہوں جس میں رنجشیں ختم ہوں اور دل آپس میں مل جائیں۔"
+          },
+          "bn": {
+            "text": "অভিমান ফুরিয়ে যাওয়া, হৃদয়গুলো মিলে যাওয়া একটি ঈদ কামনা করি।"
+          },
+          "fa": {
+            "text": "عیدی آرزو می‌کنم که قهرها پایان یابد و دل‌ها آشتی کنند."
+          },
+          "ru": {
+            "text": "Желаю праздника, когда заканчиваются обиды, а сердца примиряются."
+          }
+        }
+      },
+      {
+        "id": "bayram5",
+        "translations": {
+          "tr": {
+            "text": "Bayramınız mübarek olsun; Rabbim nice bayramlara sağlıkla ulaştırsın."
+          },
+          "en": {
+            "text": "Happy holiday; may my Lord grant you many more holidays in good health."
+          },
+          "ar": {
+            "text": "عيدكم مبارك؛ عسى أن يبلّغكم الله أعيادًا كثيرة وأنتم بصحة وعافية."
+          },
+          "de": {
+            "text": "Gesegnetes Fest; möge mein Herr euch noch viele Feste in Gesundheit erleben lassen."
+          },
+          "id": {
+            "text": "Selamat Hari Raya; semoga Tuhanku menyampaikan Anda ke banyak hari raya berikutnya dengan sehat."
+          },
+          "fr": {
+            "text": "Joyeuse fête ; que mon Seigneur vous fasse atteindre de nombreuses fêtes en bonne santé."
+          },
+          "ur": {
+            "text": "عید مبارک ہو؛ اللہ آپ کو صحت کے ساتھ بہت سی عیدوں تک پہنچائے۔"
+          },
+          "bn": {
+            "text": "আপনার ঈদ মোবারক হোক; হে রব, সুস্থতার সাথে আরও অসংখ্য ঈদে পৌঁছে দিন।"
+          },
+          "fa": {
+            "text": "عیدتان مبارک؛ پروردگار شما را با سلامتی به عیدهای بسیار برساند."
+          },
+          "ru": {
+            "text": "С праздником; пусть Господь в здравии приведёт вас ко многим праздникам."
+          }
+        }
+      },
+      {
+        "id": "bayram6",
+        "translations": {
+          "tr": {
+            "text": "Bu bayram; kalplerinize sevinç, evinize bereket getirsin."
+          },
+          "en": {
+            "text": "May this holiday bring joy to your hearts and abundance to your home."
+          },
+          "ar": {
+            "text": "عسى أن يجلب هذا العيد الفرح لقلوبكم والبركة لبيوتكم."
+          },
+          "de": {
+            "text": "Möge dieses Fest euren Herzen Freude und eurem Heim Segen bringen."
+          },
+          "id": {
+            "text": "Semoga hari raya ini membawa kebahagiaan ke hati Anda dan keberkahan ke rumah Anda."
+          },
+          "fr": {
+            "text": "Que cette fête apporte la joie à vos cœurs et l'abondance à votre foyer."
+          },
+          "ur": {
+            "text": "یہ عید آپ کے دلوں میں خوشی اور آپ کے گھر میں برکت لائے۔"
+          },
+          "bn": {
+            "text": "এই ঈদ আপনার হৃদয়ে আনন্দ আর ঘরে বরকত বয়ে আনুক।"
+          },
+          "fa": {
+            "text": "این عید، به دل‌هایتان شادی و به خانه‌تان برکت بیاورد."
+          },
+          "ru": {
+            "text": "Пусть этот праздник принесёт радость вашим сердцам и изобилие вашему дому."
+          }
+        }
+      },
+      {
+        "id": "bayram7",
+        "translations": {
+          "tr": {
+            "text": "Ellerinizi açtığınız her duanın kabul olduğu bir bayram olsun."
+          },
+          "en": {
+            "text": "May it be a holiday in which every prayer you raise your hands for is accepted."
+          },
+          "ar": {
+            "text": "عسى أن يكون عيدًا يُستجاب فيه كل دعاء ترفعون إليه أيديكم."
+          },
+          "de": {
+            "text": "Möge es ein Fest sein, an dem jedes Gebet, das ihr mit offenen Händen sprecht, erhört wird."
+          },
+          "id": {
+            "text": "Semoga ini menjadi hari raya di mana setiap doa yang Anda panjatkan dikabulkan."
+          },
+          "fr": {
+            "text": "Que ce soit une fête où chacune des prières que vous formulez les mains ouvertes soit exaucée."
+          },
+          "ur": {
+            "text": "ایسی عید ہو جس میں آپ کی ہر دعا قبول ہو جو آپ ہاتھ اٹھا کر مانگیں۔"
+          },
+          "bn": {
+            "text": "আপনি হাত তুলে করা প্রতিটি দোয়া কবুল হওয়া একটি ঈদ হোক।"
+          },
+          "fa": {
+            "text": "عیدی باد که هر دعایی که دست به سویش بلند می‌کنید مستجاب شود."
+          },
+          "ru": {
+            "text": "Пусть это будет праздник, когда принимается каждая молитва, что вы возносите."
+          }
+        }
+      },
+      {
+        "id": "bayram8",
+        "translations": {
+          "tr": {
+            "text": "Bayramın huzuru, ailenizin sıcaklığıyla katlansın. Mübarek olsun."
+          },
+          "en": {
+            "text": "May the peace of the holiday be multiplied by the warmth of your family. Blessed holiday."
+          },
+          "ar": {
+            "text": "عسى أن تتضاعف سكينة العيد بدفء عائلتكم. عيد مبارك."
+          },
+          "de": {
+            "text": "Möge sich der Frieden des Festes mit der Wärme eurer Familie vervielfachen. Gesegnetes Fest."
+          },
+          "id": {
+            "text": "Semoga ketenangan hari raya berlipat dengan kehangatan keluarga Anda. Selamat Hari Raya."
+          },
+          "fr": {
+            "text": "Que la sérénité de la fête se multiplie par la chaleur de votre famille. Joyeuse fête."
+          },
+          "ur": {
+            "text": "عید کا سکون آپ کے گھرانے کی گرمجوشی سے دوبالا ہو۔ مبارک ہو۔"
+          },
+          "bn": {
+            "text": "ঈদের প্রশান্তি আপনার পরিবারের উষ্ণতায় বহুগুণ হোক। মোবারক হোক।"
+          },
+          "fa": {
+            "text": "آرامش عید با گرمای خانواده‌تان چندبرابر شود. مبارک باد."
+          },
+          "ru": {
+            "text": "Пусть покой праздника умножится теплом вашей семьи. Благословенного праздника."
+          }
+        }
+      },
+      {
+        "id": "bayram9",
+        "translations": {
+          "tr": {
+            "text": "Sevdiklerinizle, sağlıkla ve gönül huzuruyla nice bayramlara."
+          },
+          "en": {
+            "text": "Wishing you many more holidays with your loved ones, in health and peace of heart."
+          },
+          "ar": {
+            "text": "إلى أعياد كثيرة مع أحبائكم، بصحة وسكينة قلب."
+          },
+          "de": {
+            "text": "Auf noch viele Feste mit euren Liebsten, in Gesundheit und Herzensfrieden."
+          },
+          "id": {
+            "text": "Semoga banyak hari raya berikutnya bersama orang-orang tercinta, dengan sehat dan hati yang tenang."
+          },
+          "fr": {
+            "text": "De nombreuses fêtes avec vos êtres chers, dans la santé et la paix du cœur."
+          },
+          "ur": {
+            "text": "اپنے پیاروں کے ساتھ، صحت اور دلی سکون کے ساتھ بہت سی عیدیں نصیب ہوں۔"
+          },
+          "bn": {
+            "text": "প্রিয়জনদের সাথে, সুস্থতায় আর হৃদয়ের প্রশান্তিতে আরও অসংখ্য ঈদের শুভকামনা।"
+          },
+          "fa": {
+            "text": "با عزیزانتان، با سلامتی و آرامش دل، عیدهای بسیار در پیش باد."
+          },
+          "ru": {
+            "text": "Многих праздников — с любимыми, в здравии и с покоем в сердце."
+          }
+        }
+      },
+      {
+        "id": "bayram10",
+        "translations": {
+          "tr": {
+            "text": "Bayramınızı tebrik eder, tüm dünyaya barış ve huzur dilerim."
+          },
+          "en": {
+            "text": "I congratulate you on your holiday and wish peace and serenity for the whole world."
+          },
+          "ar": {
+            "text": "أهنئكم بعيدكم، وأتمنى السلام والسكينة للعالم أجمع."
+          },
+          "de": {
+            "text": "Ich gratuliere euch zum Fest und wünsche der ganzen Welt Frieden und Ruhe."
+          },
+          "id": {
+            "text": "Saya ucapkan selamat hari raya, dan saya doakan kedamaian serta ketenangan bagi seluruh dunia."
+          },
+          "fr": {
+            "text": "Je vous félicite pour votre fête et souhaite paix et sérénité au monde entier."
+          },
+          "ur": {
+            "text": "آپ کو عید مبارک، اور پوری دنیا کے لیے امن و سکون کی دعا کرتا ہوں۔"
+          },
+          "bn": {
+            "text": "আপনার ঈদ মোবারক জানাই এবং সমগ্র বিশ্বের জন্য শান্তি ও প্রশান্তি কামনা করি।"
+          },
+          "fa": {
+            "text": "عیدتان را تبریک می‌گویم و برای همه جهان صلح و آرامش آرزو می‌کنم."
+          },
+          "ru": {
+            "text": "Поздравляю вас с праздником и желаю всему миру мира и покоя."
+          }
+        }
+      },
+      {
+        "id": "bayram11",
+        "translations": {
+          "tr": {
+            "text": "Bu bayram; ayrılıkları bitirsin, hasretleri kavuştursun."
+          },
+          "en": {
+            "text": "May this holiday end separations and reunite those who long for one another."
+          },
+          "ar": {
+            "text": "عسى أن ينهي هذا العيد الفراق ويجمع شمل المشتاقين."
+          },
+          "de": {
+            "text": "Möge dieses Fest die Trennungen beenden und die Sehnsüchte vereinen."
+          },
+          "id": {
+            "text": "Semoga hari raya ini mengakhiri segala perpisahan dan mempertemukan yang dirindukan."
+          },
+          "fr": {
+            "text": "Que cette fête mette fin aux séparations et réunisse ceux qui se manquent."
+          },
+          "ur": {
+            "text": "یہ عید جدائیوں کو ختم کرے اور بچھڑے ہوؤں کو ملا دے۔"
+          },
+          "bn": {
+            "text": "এই ঈদ বিচ্ছেদের অবসান ঘটাক, বিরহকে মিলনে রূপ দিক।"
+          },
+          "fa": {
+            "text": "این عید، جدایی‌ها را پایان دهد و دوری‌ها را به وصال برساند."
+          },
+          "ru": {
+            "text": "Пусть этот праздник прекратит разлуки и соединит тоскующих."
+          }
+        }
+      },
+      {
+        "id": "bayram12",
+        "translations": {
+          "tr": {
+            "text": "Bayram sevincini en çok sevdiklerinizle paylaşmanız dileğiyle."
+          },
+          "en": {
+            "text": "Wishing that you share the joy of the holiday with those you love most."
+          },
+          "ar": {
+            "text": "أتمنى أن تشاركوا فرحة العيد مع أحب الناس إليكم."
+          },
+          "de": {
+            "text": "Mit dem Wunsch, dass ihr die Freude des Festes mit euren Liebsten teilt."
+          },
+          "id": {
+            "text": "Semoga Anda dapat berbagi kegembiraan hari raya terutama bersama orang-orang yang paling Anda cintai."
+          },
+          "fr": {
+            "text": "En espérant que vous partagiez la joie de la fête avec ceux que vous aimez le plus."
+          },
+          "ur": {
+            "text": "اس امید کے ساتھ کہ آپ عید کی خوشی اپنے سب سے پیاروں کے ساتھ بانٹیں۔"
+          },
+          "bn": {
+            "text": "ঈদের আনন্দ আপনার সবচেয়ে প্রিয়জনদের সাথে ভাগ করে নেওয়ার কামনায়।"
+          },
+          "fa": {
+            "text": "به امید آنکه شادی عید را با عزیزترین‌هایتان قسمت کنید."
+          },
+          "ru": {
+            "text": "С пожеланием разделить радость праздника с самыми любимыми."
+          }
+        }
+      },
+      {
+        "id": "bayram13",
+        "translations": {
+          "tr": {
+            "text": "Rabbim bayramların bereketini ömrünüze, sevincini yüreğinize yazsın."
+          },
+          "en": {
+            "text": "May my Lord write the abundance of holidays into your life and their joy into your heart."
+          },
+          "ar": {
+            "text": "اللهم اكتب بركة الأعياد في أعمارهم وفرحتها في قلوبهم."
+          },
+          "de": {
+            "text": "Möge mein Herr den Segen der Feste in euer Leben und ihre Freude in euer Herz schreiben."
+          },
+          "id": {
+            "text": "Semoga Tuhanku menuliskan keberkahan hari raya pada umur Anda dan kegembiraannya pada hati Anda."
+          },
+          "fr": {
+            "text": "Que mon Seigneur inscrive l'abondance des fêtes dans votre vie et leur joie dans votre cœur."
+          },
+          "ur": {
+            "text": "اللہ عیدوں کی برکت آپ کی زندگی میں اور اس کی خوشی آپ کے دل میں لکھ دے۔"
+          },
+          "bn": {
+            "text": "হে রব, ঈদের বরকত আপনার জীবনে, আনন্দ আপনার হৃদয়ে লিখে দিন।"
+          },
+          "fa": {
+            "text": "پروردگارا برکت عیدها را به عمرتان و شادی آن را به دلتان بنویسد."
+          },
+          "ru": {
+            "text": "Пусть Господь впишет благодать праздников в вашу жизнь, а его радость — в ваше сердце."
+          }
+        }
+      },
+      {
+        "id": "bayram14",
+        "translations": {
+          "tr": {
+            "text": "Çocukların gülüşü, büyüklerin duasıyla mübarek bir bayram olsun."
+          },
+          "en": {
+            "text": "May it be a blessed holiday with the laughter of children and the prayers of elders."
+          },
+          "ar": {
+            "text": "عسى أن يكون عيدًا مباركًا بضحكات الأطفال ودعاء الكبار."
+          },
+          "de": {
+            "text": "Möge es ein gesegnetes Fest sein, mit dem Lachen der Kinder und den Gebeten der Älteren."
+          },
+          "id": {
+            "text": "Semoga menjadi hari raya yang penuh berkah dengan tawa anak-anak dan doa para orang tua."
+          },
+          "fr": {
+            "text": "Qu'avec le rire des enfants et les prières des anciens, ce soit une fête bénie."
+          },
+          "ur": {
+            "text": "بچوں کی ہنسی اور بزرگوں کی دعا کے ساتھ مبارک عید ہو۔"
+          },
+          "bn": {
+            "text": "শিশুদের হাসি আর বড়দের দোয়ায় একটি বরকতময় ঈদ হোক।"
+          },
+          "fa": {
+            "text": "با لبخند کودکان و دعای بزرگان، عیدی مبارک باد."
+          },
+          "ru": {
+            "text": "Пусть с улыбками детей и молитвами старших это будет благословенный праздник."
+          }
+        }
+      },
+      {
+        "id": "bayram15",
+        "translations": {
+          "tr": {
+            "text": "Bayramınız kutlu, sofranız bereketli, gönlünüz ferah olsun."
+          },
+          "en": {
+            "text": "May your holiday be blessed, your table abundant, and your heart at ease."
+          },
+          "ar": {
+            "text": "عسى أن يكون عيدكم سعيدًا، ومائدتكم عامرة، وقلبكم منشرحًا."
+          },
+          "de": {
+            "text": "Möge euer Fest gesegnet, eure Tafel reich gesegnet und euer Herz heiter sein."
+          },
+          "id": {
+            "text": "Semoga hari raya Anda diberkahi, hidangan Anda penuh keberkahan, dan hati Anda lapang."
+          },
+          "fr": {
+            "text": "Que votre fête soit bénie, votre table abondante et votre cœur serein."
+          },
+          "ur": {
+            "text": "آپ کی عید مبارک، آپ کا دسترخوان بابرکت اور آپ کا دل کھلا ہو۔"
+          },
+          "bn": {
+            "text": "আপনার ঈদ মোবারক, দস্তরখান বরকতপূর্ণ, হৃদয় প্রশান্ত হোক।"
+          },
+          "fa": {
+            "text": "عیدتان خجسته، سفره‌تان پربرکت و دلتان فراخ باد."
+          },
+          "ru": {
+            "text": "Пусть ваш праздник будет благословенным, стол — изобильным, а сердце — спокойным."
+          }
+        }
+      },
+      {
+        "id": "bayram16",
+        "translations": {
+          "tr": {
+            "text": "Nice sağlıklı, mutlu ve bir arada bayramlar dilerim. Bayramınız mübarek."
+          },
+          "en": {
+            "text": "Wishing you many healthy, happy holidays spent together. Blessed holiday."
+          },
+          "ar": {
+            "text": "أتمنى لكم أعيادًا كثيرة سعيدة وصحية ومجتمعة. عيدكم مبارك."
+          },
+          "de": {
+            "text": "Ich wünsche euch noch viele gesunde, glückliche und gemeinsame Feste. Gesegnetes Fest."
+          },
+          "id": {
+            "text": "Saya doakan banyak hari raya yang sehat, bahagia, dan dilalui bersama. Selamat Hari Raya."
+          },
+          "fr": {
+            "text": "Je vous souhaite de nombreuses fêtes en bonne santé, heureuses et réunies. Joyeuse fête."
+          },
+          "ur": {
+            "text": "بہت سی صحت مند، خوشگوار اور ساتھ ساتھ گزری عیدوں کی دعا کرتا ہوں۔ عید مبارک۔"
+          },
+          "bn": {
+            "text": "আরও অসংখ্য সুস্থ, সুখী আর একত্রে ঈদ কামনা করি। আপনার ঈদ মোবারক।"
+          },
+          "fa": {
+            "text": "عیدهای بسیار سالم، شاد و در کنار هم آرزو می‌کنم. عیدتان مبارک."
+          },
+          "ru": {
+            "text": "Желаю многих здоровых, счастливых праздников вместе. С праздником."
+          }
+        }
+      },
+      {
+        "id": "bayram17",
+        "translations": {
+          "tr": {
+            "text": "Bayram; affetmenin ve kucaklaşmanın günüdür. Bayramınız mübarek olsun."
+          },
+          "en": {
+            "text": "The holiday is the day of forgiving and embracing. Blessed holiday."
+          },
+          "ar": {
+            "text": "العيد يوم العفو والتعانق. عيدكم مبارك."
+          },
+          "de": {
+            "text": "Das Fest ist der Tag des Vergebens und der Umarmung. Gesegnetes Fest."
+          },
+          "id": {
+            "text": "Hari raya adalah hari untuk saling memaafkan dan berpelukan. Selamat Hari Raya."
+          },
+          "fr": {
+            "text": "La fête est le jour du pardon et des embrassades. Joyeuse fête à vous."
+          },
+          "ur": {
+            "text": "عید معاف کرنے اور گلے ملنے کا دن ہے۔ عید مبارک ہو۔"
+          },
+          "bn": {
+            "text": "ঈদ হলো ক্ষমা করা ও আলিঙ্গন করার দিন। আপনার ঈদ মোবারক হোক।"
+          },
+          "fa": {
+            "text": "عید روز بخشش و در آغوش کشیدن است. عیدتان مبارک باد."
+          },
+          "ru": {
+            "text": "Праздник — день прощения и объятий. С праздником."
+          }
+        }
+      },
+      {
+        "id": "bayram18",
+        "translations": {
+          "tr": {
+            "text": "Bu bayram gönüllerde kırgınlık değil, yalnızca sevgi kalsın."
+          },
+          "en": {
+            "text": "On this holiday, may only love remain in hearts, never resentment."
+          },
+          "ar": {
+            "text": "عسى ألا يبقى في القلوب في هذا العيد إلا المحبة دون أي عتاب."
+          },
+          "de": {
+            "text": "Möge an diesem Fest in den Herzen kein Groll, sondern nur Liebe bleiben."
+          },
+          "id": {
+            "text": "Semoga di hari raya ini tidak ada lagi rasa kecewa di hati, hanya tersisa kasih sayang."
+          },
+          "fr": {
+            "text": "Que cette fête ne laisse dans les cœurs aucune rancune, mais seulement de l'amour."
+          },
+          "ur": {
+            "text": "اس عید دلوں میں رنجش نہیں، صرف محبت باقی رہے۔"
+          },
+          "bn": {
+            "text": "এই ঈদে হৃদয়ে যেন অভিমান না থাকে, শুধু ভালোবাসা থাকে।"
+          },
+          "fa": {
+            "text": "این عید، در دل‌ها نه کدورت بلکه تنها محبت بماند."
+          },
+          "ru": {
+            "text": "Пусть в этот праздник в сердцах не останется обид, а только любовь."
+          }
+        }
+      },
+      {
+        "id": "bayram19",
+        "translations": {
+          "tr": {
+            "text": "Rabbim her bayramı sevdiklerinizle ve sağlıkla nasip etsin."
+          },
+          "en": {
+            "text": "May my Lord grant you every holiday with your loved ones and in good health."
+          },
+          "ar": {
+            "text": "اللهم اجعل كل عيد نصيبًا لهم مع أحبائهم وبصحة وعافية."
+          },
+          "de": {
+            "text": "Möge mein Herr euch jedes Fest mit euren Liebsten und in Gesundheit gewähren."
+          },
+          "id": {
+            "text": "Semoga Tuhanku menganugerahkan setiap hari raya bersama orang-orang tercinta dan dalam keadaan sehat."
+          },
+          "fr": {
+            "text": "Que mon Seigneur vous accorde chaque fête avec vos êtres chers et en bonne santé."
+          },
+          "ur": {
+            "text": "اللہ ہر عید آپ کو اپنے پیاروں کے ساتھ اور صحت کے ساتھ نصیب کرے۔"
+          },
+          "bn": {
+            "text": "হে রব, প্রতিটি ঈদ আপনার প্রিয়জনদের সাথে আর সুস্থতায় নসিব করুন।"
+          },
+          "fa": {
+            "text": "پروردگار هر عید را در کنار عزیزانتان و با سلامتی نصیبتان کند."
+          },
+          "ru": {
+            "text": "Пусть Господь дарует вам каждый праздник с любимыми и в здравии."
+          }
+        }
+      },
+      {
+        "id": "bayram20",
+        "translations": {
+          "tr": {
+            "text": "Bayramınız mübarek; huzur evinizden, bereket sofranızdan eksilmesin."
+          },
+          "en": {
+            "text": "Blessed holiday; may peace never leave your home nor abundance leave your table."
+          },
+          "ar": {
+            "text": "عيدكم مبارك؛ عسى ألا تنقص السكينة من بيوتكم ولا البركة من موائدكم."
+          },
+          "de": {
+            "text": "Gesegnetes Fest; möge der Frieden in eurem Heim und der Segen auf eurer Tafel nicht abnehmen."
+          },
+          "id": {
+            "text": "Selamat Hari Raya; semoga ketenangan tidak lepas dari rumah Anda dan keberkahan tidak lepas dari hidangan Anda."
+          },
+          "fr": {
+            "text": "Joyeuse fête ; que la paix ne quitte pas votre maison ni l'abondance votre table."
+          },
+          "ur": {
+            "text": "عید مبارک؛ سکون آپ کے گھر سے اور برکت آپ کے دسترخوان سے کم نہ ہو۔"
+          },
+          "bn": {
+            "text": "আপনার ঈদ মোবারক; প্রশান্তি আপনার ঘর থেকে, বরকত আপনার দস্তরখান থেকে কমতি না হোক।"
+          },
+          "fa": {
+            "text": "عیدتان مبارک؛ آرامش از خانه‌تان و برکت از سفره‌تان کم نشود."
+          },
+          "ru": {
+            "text": "С праздником; пусть покой не покинет ваш дом, а изобилие — ваш стол."
+          }
+        }
+      }
     ]
   },
   {
     "occasion": "ramazan",
     "iconKey": "moon",
-    "translations": { "tr": { "label": "Ramazan" }, "en": { "label": "Ramadan" } },
+    "translations": {
+      "tr": {
+        "label": "Ramazan"
+      },
+      "en": {
+        "label": "Ramadan"
+      },
+      "ar": {
+        "label": "رمضان"
+      },
+      "de": {
+        "label": "Ramadan"
+      },
+      "id": {
+        "label": "Ramadan"
+      },
+      "fr": {
+        "label": "Ramadan"
+      },
+      "ur": {
+        "label": "رمضان"
+      },
+      "bn": {
+        "label": "রমজান"
+      },
+      "fa": {
+        "label": "رمضان"
+      },
+      "ru": {
+        "label": "Рамадан"
+      }
+    },
     "messages": [
-      { "id": "ramazan1", "translations": { "tr": { "text": "Ramazan ayınız mübarek olsun, oruçlarınız kabul olsun." }, "en": { "text": "May your Ramadan be blessed and your fasts accepted." } } },
-      { "id": "ramazan2", "translations": { "tr": { "text": "On bir ayın sultanı Ramazan'a hoş geldin." }, "en": { "text": "Welcome to Ramadan, the sultan of the eleven months." } } },
-      { "id": "ramazan3", "translations": { "tr": { "text": "Ramazan'ın bereketi sofranıza, huzuru gönlünüze dolsun." }, "en": { "text": "May the blessing of Ramadan fill your table and its peace your heart." } } },
-      { "id": "ramazan4", "translations": { "tr": { "text": "Tutulan her oruç, edilen her dua makbul olsun. Hayırlı Ramazanlar." }, "en": { "text": "May every fast kept and every prayer made be accepted. Blessed Ramadan." } } },
-      { "id": "ramazan5", "translations": { "tr": { "text": "Bu Ramazan; günahlardan arınma, rahmete erme vesilesi olsun." }, "en": { "text": "May this Ramadan be a means of cleansing from sin and reaching mercy." } } },
-      { "id": "ramazan6", "translations": { "tr": { "text": "İftar sofralarınız bereketli, gönülleriniz huzurlu olsun." }, "en": { "text": "May your iftar tables be abundant and your hearts at peace." } } },
-      { "id": "ramazan7", "translations": { "tr": { "text": "Ramazan'ın rahmet ikliminde dualarınız kabul olsun." }, "en": { "text": "In the climate of Ramadan's mercy, may your prayers be answered." } } },
-      { "id": "ramazan8", "translations": { "tr": { "text": "Sahurların bereketi, iftarların huzuru üzerinize olsun." }, "en": { "text": "May the blessing of suhoor and the peace of iftar be upon you." } } },
-      { "id": "ramazan9", "translations": { "tr": { "text": "Oruçların kabul, duaların makbul olduğu bir Ramazan diliyorum." }, "en": { "text": "I wish you a Ramadan in which fasts are accepted and prayers answered." } } },
-      { "id": "ramazan10", "translations": { "tr": { "text": "Ramazan; merhametin, paylaşmanın ve sabrın ayıdır. Hayırlı olsun." }, "en": { "text": "Ramadan is the month of mercy, sharing and patience. May it be blessed." } } },
-      { "id": "ramazan11", "translations": { "tr": { "text": "Bu mübarek ayda gönlünüz ferah, sofranız bereketli olsun." }, "en": { "text": "In this blessed month, may your heart be at ease and your table abundant." } } },
-      { "id": "ramazan12", "translations": { "tr": { "text": "Rabbim Ramazan hürmetine dualarınıza icabet etsin." }, "en": { "text": "For the sake of Ramadan, may God answer your prayers." } } },
-      { "id": "ramazan13", "translations": { "tr": { "text": "Kadir Gecesi'ne sağ salim ulaşmak duasıyla, hayırlı Ramazanlar." }, "en": { "text": "With the prayer to safely reach Laylat al-Qadr, blessed Ramadan." } } },
-      { "id": "ramazan14", "translations": { "tr": { "text": "Ramazan'ın nuru evinizi, bereketi sofranızı aydınlatsın." }, "en": { "text": "May the light of Ramadan illuminate your home and its blessing your table." } } },
-      { "id": "ramazan15", "translations": { "tr": { "text": "Oruçlu gönüllerinize huzur, dualarınıza kabul diliyorum." }, "en": { "text": "I wish peace to your fasting hearts and acceptance for your prayers." } } },
-      { "id": "ramazan16", "translations": { "tr": { "text": "Hayırlı Ramazanlar! Bu ay hepimize sağlık ve bereket getirsin." }, "en": { "text": "Blessed Ramadan! May this month bring all of us health and abundance." } } },
-      { "id": "ramazan17", "translations": { "tr": { "text": "Ramazan'ın son nefesine kadar tutulan oruçlar makbul olsun." }, "en": { "text": "May the fasts kept until Ramadan's last breath be accepted." } } },
-      { "id": "ramazan18", "translations": { "tr": { "text": "Bu Ramazan kalbinizi yumuşatsın, gönlünüzü zenginleştirsin." }, "en": { "text": "May this Ramadan soften your heart and enrich your soul." } } },
-      { "id": "ramazan19", "translations": { "tr": { "text": "Rabbim Ramazan'ın hürmetine hepimizi bağışlasın." }, "en": { "text": "For the sake of Ramadan, may God forgive us all." } } },
-      { "id": "ramazan20", "translations": { "tr": { "text": "Hayırlı Ramazanlar; sabrınız bol, duanız kabul olsun." }, "en": { "text": "Blessed Ramadan; may your patience be plenty and your prayers accepted." } } }
+      {
+        "id": "ramazan1",
+        "translations": {
+          "tr": {
+            "text": "Ramazan ayınız mübarek olsun, oruçlarınız kabul olsun."
+          },
+          "en": {
+            "text": "May your Ramadan be blessed and your fasts accepted."
+          },
+          "ar": {
+            "text": "شهر رمضان مبارك عليكم، وعسى أن يتقبّل الله صيامكم."
+          },
+          "de": {
+            "text": "Möge euer Ramadan gesegnet und eure Fasten angenommen sein."
+          },
+          "id": {
+            "text": "Selamat menunaikan ibadah di bulan Ramadan, semoga puasa Anda diterima."
+          },
+          "fr": {
+            "text": "Que votre mois de Ramadan soit béni et vos jeûnes acceptés."
+          },
+          "ur": {
+            "text": "آپ کا رمضان مبارک ہو، آپ کے روزے قبول ہوں۔"
+          },
+          "bn": {
+            "text": "আপনার রমজান মাস মোবারক হোক, আপনার রোজাগুলো কবুল হোক।"
+          },
+          "fa": {
+            "text": "ماه رمضانتان مبارک، روزه‌هایتان قبول باد."
+          },
+          "ru": {
+            "text": "Благословенного месяца Рамадан, пусть ваши посты будут приняты."
+          }
+        }
+      },
+      {
+        "id": "ramazan2",
+        "translations": {
+          "tr": {
+            "text": "On bir ayın sultanı Ramazan'a hoş geldin."
+          },
+          "en": {
+            "text": "Welcome to Ramadan, the sultan of the eleven months."
+          },
+          "ar": {
+            "text": "أهلًا بسلطان الأشهر الأحد عشر، رمضان."
+          },
+          "de": {
+            "text": "Willkommen, Ramadan, du Sultan der elf Monate."
+          },
+          "id": {
+            "text": "Selamat datang, Ramadan, sang sultan dari sebelas bulan."
+          },
+          "fr": {
+            "text": "Bienvenue au Ramadan, le sultan des onze mois."
+          },
+          "ur": {
+            "text": "گیارہ مہینوں کے سلطان رمضان کو خوش آمدید۔"
+          },
+          "bn": {
+            "text": "এগারো মাসের সুলতান রমজানকে স্বাগতম।"
+          },
+          "fa": {
+            "text": "رمضان، سلطان یازده ماه، خوش آمدی."
+          },
+          "ru": {
+            "text": "Добро пожаловать, Рамадан — султан одиннадцати месяцев."
+          }
+        }
+      },
+      {
+        "id": "ramazan3",
+        "translations": {
+          "tr": {
+            "text": "Ramazan'ın bereketi sofranıza, huzuru gönlünüze dolsun."
+          },
+          "en": {
+            "text": "May the abundance of Ramadan fill your table and its peace fill your heart."
+          },
+          "ar": {
+            "text": "عسى أن تملأ بركة رمضان موائدكم، وسكينته قلوبكم."
+          },
+          "de": {
+            "text": "Möge der Segen des Ramadan eure Tafel und der Frieden euer Herz erfüllen."
+          },
+          "id": {
+            "text": "Semoga keberkahan Ramadan memenuhi hidangan Anda dan ketenangannya memenuhi hati Anda."
+          },
+          "fr": {
+            "text": "Que la bénédiction du Ramadan emplisse votre table et sa sérénité votre cœur."
+          },
+          "ur": {
+            "text": "رمضان کی برکت آپ کے دسترخوان پر اور سکون آپ کے دل میں اترے۔"
+          },
+          "bn": {
+            "text": "রমজানের বরকত আপনার দস্তরখানে, প্রশান্তি আপনার হৃদয়ে পূর্ণ হোক।"
+          },
+          "fa": {
+            "text": "برکت رمضان به سفره‌تان و آرامش آن به دلتان سرازیر شود."
+          },
+          "ru": {
+            "text": "Пусть благодать Рамадана наполнит ваш стол, а покой — ваше сердце."
+          }
+        }
+      },
+      {
+        "id": "ramazan4",
+        "translations": {
+          "tr": {
+            "text": "Tutulan her oruç, edilen her dua makbul olsun. Hayırlı Ramazanlar."
+          },
+          "en": {
+            "text": "May every fast kept and every prayer made be accepted. Blessed Ramadan."
+          },
+          "ar": {
+            "text": "عسى أن يُتقبّل كل صوم ويُستجاب كل دعاء. رمضان مبارك."
+          },
+          "de": {
+            "text": "Möge jedes gehaltene Fasten und jedes gesprochene Gebet angenommen werden. Gesegneten Ramadan."
+          },
+          "id": {
+            "text": "Semoga setiap puasa yang ditunaikan dan setiap doa yang dipanjatkan diterima. Selamat menunaikan ibadah Ramadan."
+          },
+          "fr": {
+            "text": "Que chaque jeûne observé et chaque prière formulée soit accepté. Bon Ramadan béni."
+          },
+          "ur": {
+            "text": "رکھا گیا ہر روزہ اور مانگی گئی ہر دعا مقبول ہو۔ رمضان مبارک۔"
+          },
+          "bn": {
+            "text": "রাখা প্রতিটি রোজা, করা প্রতিটি দোয়া কবুল হোক। শুভ রমজান।"
+          },
+          "fa": {
+            "text": "هر روزه‌ای که می‌گیرید و هر دعایی که می‌کنید مقبول باد. رمضانتان مبارک."
+          },
+          "ru": {
+            "text": "Пусть каждый соблюдённый пост и каждая молитва будут приняты. Благословенного Рамадана."
+          }
+        }
+      },
+      {
+        "id": "ramazan5",
+        "translations": {
+          "tr": {
+            "text": "Bu Ramazan; günahlardan arınma, rahmete erme vesilesi olsun."
+          },
+          "en": {
+            "text": "May this Ramadan be a means of cleansing from sins and attaining mercy."
+          },
+          "ar": {
+            "text": "عسى أن يكون هذا رمضان سببًا للتطهّر من الذنوب ونيل الرحمة."
+          },
+          "de": {
+            "text": "Möge dieser Ramadan ein Anlass sein, sich von Sünden zu reinigen und Barmherzigkeit zu erlangen."
+          },
+          "id": {
+            "text": "Semoga Ramadan ini menjadi sarana untuk membersihkan diri dari dosa dan meraih rahmat."
+          },
+          "fr": {
+            "text": "Que ce Ramadan soit une occasion de se purifier des péchés et d'atteindre la miséricorde."
+          },
+          "ur": {
+            "text": "یہ رمضان گناہوں سے پاکیزگی اور رحمت پانے کا ذریعہ بنے۔"
+          },
+          "bn": {
+            "text": "এই রমজান গুনাহ থেকে পবিত্র হওয়া, রহমত লাভের উপলক্ষ হোক।"
+          },
+          "fa": {
+            "text": "این رمضان، وسیله پاک شدن از گناهان و رسیدن به رحمت باشد."
+          },
+          "ru": {
+            "text": "Пусть этот Рамадан станет поводом очиститься от грехов и обрести милость."
+          }
+        }
+      },
+      {
+        "id": "ramazan6",
+        "translations": {
+          "tr": {
+            "text": "İftar sofralarınız bereketli, gönülleriniz huzurlu olsun."
+          },
+          "en": {
+            "text": "May your iftar tables be abundant and your hearts at peace."
+          },
+          "ar": {
+            "text": "عسى أن تكون موائد إفطاركم عامرة بالبركة، وقلوبكم مطمئنة."
+          },
+          "de": {
+            "text": "Mögen eure Iftar-Tafeln gesegnet und eure Herzen voller Frieden sein."
+          },
+          "id": {
+            "text": "Semoga hidangan berbuka Anda penuh keberkahan dan hati Anda tenang."
+          },
+          "fr": {
+            "text": "Que vos tables d'iftar soient abondantes et vos cœurs sereins."
+          },
+          "ur": {
+            "text": "آپ کے افطار کے دسترخوان بابرکت اور آپ کے دل پرسکون ہوں۔"
+          },
+          "bn": {
+            "text": "আপনার ইফতারের দস্তরখান বরকতপূর্ণ, হৃদয় প্রশান্ত হোক।"
+          },
+          "fa": {
+            "text": "سفره‌های افطارتان پربرکت و دل‌هایتان آرام باد."
+          },
+          "ru": {
+            "text": "Пусть ваши столы для разговения будут изобильными, а сердца — спокойными."
+          }
+        }
+      },
+      {
+        "id": "ramazan7",
+        "translations": {
+          "tr": {
+            "text": "Ramazan'ın rahmet ikliminde dualarınız kabul olsun."
+          },
+          "en": {
+            "text": "May your prayers be accepted in the merciful climate of Ramadan."
+          },
+          "ar": {
+            "text": "عسى أن تُستجاب أدعيتكم في مناخ رحمة رمضان."
+          },
+          "de": {
+            "text": "Mögen im barmherzigen Klima des Ramadan eure Gebete erhört werden."
+          },
+          "id": {
+            "text": "Semoga doa-doa Anda dikabulkan dalam suasana penuh rahmat Ramadan."
+          },
+          "fr": {
+            "text": "Que vos prières soient exaucées dans le climat de miséricorde du Ramadan."
+          },
+          "ur": {
+            "text": "رمضان کی رحمت بھری فضا میں آپ کی دعائیں قبول ہوں۔"
+          },
+          "bn": {
+            "text": "রমজানের রহমতের আবহে আপনার দোয়াগুলো কবুল হোক।"
+          },
+          "fa": {
+            "text": "در فضای رحمت رمضان، دعاهایتان مستجاب شود."
+          },
+          "ru": {
+            "text": "Пусть в климате милости Рамадана ваши молитвы будут приняты."
+          }
+        }
+      },
+      {
+        "id": "ramazan8",
+        "translations": {
+          "tr": {
+            "text": "Sahurların bereketi, iftarların huzuru üzerinize olsun."
+          },
+          "en": {
+            "text": "May the abundance of suhoor and the peace of iftar be upon you."
+          },
+          "ar": {
+            "text": "عليكم بركة السحور وسكينة الإفطار."
+          },
+          "de": {
+            "text": "Möge der Segen der Sahurs und der Frieden der Iftars mit euch sein."
+          },
+          "id": {
+            "text": "Semoga keberkahan sahur dan ketenangan berbuka senantiasa menyertai Anda."
+          },
+          "fr": {
+            "text": "Que la bénédiction des sahurs et la sérénité des iftars soient sur vous."
+          },
+          "ur": {
+            "text": "سحری کی برکت اور افطار کا سکون آپ پر ہو۔"
+          },
+          "bn": {
+            "text": "সেহরির বরকত, ইফতারের প্রশান্তি আপনার ওপর বর্ষিত হোক।"
+          },
+          "fa": {
+            "text": "برکت سحرها و آرامش افطارها بر شما باد."
+          },
+          "ru": {
+            "text": "Пусть благодать сухура и покой ифтара пребудут с вами."
+          }
+        }
+      },
+      {
+        "id": "ramazan9",
+        "translations": {
+          "tr": {
+            "text": "Oruçların kabul, duaların makbul olduğu bir Ramazan diliyorum."
+          },
+          "en": {
+            "text": "I wish you a Ramadan in which fasts are accepted and prayers are answered."
+          },
+          "ar": {
+            "text": "أتمنى رمضان تُتقبّل فيه الأصوام وتُستجاب فيه الأدعية."
+          },
+          "de": {
+            "text": "Ich wünsche euch einen Ramadan, in dem die Fasten angenommen und die Gebete erhört werden."
+          },
+          "id": {
+            "text": "Saya doakan Ramadan yang puasanya diterima dan doanya dikabulkan."
+          },
+          "fr": {
+            "text": "Je vous souhaite un Ramadan où les jeûnes sont acceptés et les prières exaucées."
+          },
+          "ur": {
+            "text": "ایسے رمضان کی دعا کرتا ہوں جس میں روزے قبول اور دعائیں مقبول ہوں۔"
+          },
+          "bn": {
+            "text": "রোজাগুলো কবুল আর দোয়াগুলো গৃহীত হওয়া একটি রমজান কামনা করি।"
+          },
+          "fa": {
+            "text": "رمضانی آرزو می‌کنم که روزه‌ها قبول و دعاها مستجاب باشد."
+          },
+          "ru": {
+            "text": "Желаю вам Рамадана, в котором посты приняты, а молитвы услышаны."
+          }
+        }
+      },
+      {
+        "id": "ramazan10",
+        "translations": {
+          "tr": {
+            "text": "Ramazan; merhametin, paylaşmanın ve sabrın ayıdır. Hayırlı olsun."
+          },
+          "en": {
+            "text": "Ramadan is the month of compassion, sharing, and patience. May it be blessed."
+          },
+          "ar": {
+            "text": "رمضان شهر الرحمة والمشاركة والصبر. رمضان مبارك."
+          },
+          "de": {
+            "text": "Der Ramadan ist der Monat der Barmherzigkeit, des Teilens und der Geduld. Möge er gesegnet sein."
+          },
+          "id": {
+            "text": "Ramadan adalah bulan kasih sayang, berbagi, dan kesabaran. Selamat menunaikannya."
+          },
+          "fr": {
+            "text": "Le Ramadan est le mois de la miséricorde, du partage et de la patience. Qu'il soit béni."
+          },
+          "ur": {
+            "text": "رمضان رحمت، بانٹنے اور صبر کا مہینہ ہے۔ مبارک ہو۔"
+          },
+          "bn": {
+            "text": "রমজান হলো দয়া, ভাগাভাগি আর ধৈর্যের মাস। শুভ হোক।"
+          },
+          "fa": {
+            "text": "رمضان، ماه مهربانی، بخشش و صبر است. مبارک باد."
+          },
+          "ru": {
+            "text": "Рамадан — месяц милосердия, щедрости и терпения. Пусть будет благословенным."
+          }
+        }
+      },
+      {
+        "id": "ramazan11",
+        "translations": {
+          "tr": {
+            "text": "Bu mübarek ayda gönlünüz ferah, sofranız bereketli olsun."
+          },
+          "en": {
+            "text": "In this blessed month, may your heart find ease and your table be abundant."
+          },
+          "ar": {
+            "text": "عسى أن ينشرح صدركم وتعمر موائدكم بالبركة في هذا الشهر المبارك."
+          },
+          "de": {
+            "text": "Möge in diesem gesegneten Monat euer Herz heiter und eure Tafel reich gesegnet sein."
+          },
+          "id": {
+            "text": "Semoga di bulan yang penuh berkah ini hati Anda lapang dan hidangan Anda penuh keberkahan."
+          },
+          "fr": {
+            "text": "Qu'en ce mois béni votre cœur soit serein et votre table abondante."
+          },
+          "ur": {
+            "text": "اس مبارک مہینے میں آپ کا دل کھلا اور آپ کا دسترخوان بابرکت ہو۔"
+          },
+          "bn": {
+            "text": "এই বরকতময় মাসে আপনার হৃদয় প্রশান্ত, দস্তরখান বরকতপূর্ণ হোক।"
+          },
+          "fa": {
+            "text": "در این ماه پربرکت، دلتان فراخ و سفره‌تان پربرکت باد."
+          },
+          "ru": {
+            "text": "Пусть в этот священный месяц ваше сердце будет спокойным, а стол — изобильным."
+          }
+        }
+      },
+      {
+        "id": "ramazan12",
+        "translations": {
+          "tr": {
+            "text": "Rabbim Ramazan hürmetine dualarınıza icabet etsin."
+          },
+          "en": {
+            "text": "For the sake of Ramadan, may my Lord answer your prayers."
+          },
+          "ar": {
+            "text": "اللهم بحرمة رمضان استجب لأدعيتهم."
+          },
+          "de": {
+            "text": "Möge mein Herr um des Ramadan willen eure Gebete erhören."
+          },
+          "id": {
+            "text": "Semoga Tuhanku, demi kemuliaan Ramadan, mengabulkan doa-doa Anda."
+          },
+          "fr": {
+            "text": "Que mon Seigneur, en l'honneur du Ramadan, réponde à vos prières."
+          },
+          "ur": {
+            "text": "اللہ رمضان کے صدقے آپ کی دعائیں قبول فرمائے۔"
+          },
+          "bn": {
+            "text": "হে রব, রমজানের সম্মানে আপনার দোয়াগুলো কবুল করুন।"
+          },
+          "fa": {
+            "text": "پروردگارا به حرمت رمضان، دعاهایتان را اجابت کند."
+          },
+          "ru": {
+            "text": "Пусть Господь ради Рамадана ответит на ваши молитвы."
+          }
+        }
+      },
+      {
+        "id": "ramazan13",
+        "translations": {
+          "tr": {
+            "text": "Kadir Gecesi'ne sağ salim ulaşmak duasıyla, hayırlı Ramazanlar."
+          },
+          "en": {
+            "text": "With the prayer of reaching the Night of Power safe and sound, blessed Ramadan."
+          },
+          "ar": {
+            "text": "بدعاء بلوغ ليلة القدر سالمين، رمضان مبارك."
+          },
+          "de": {
+            "text": "Mit dem Gebet, die Nacht der Bestimmung (Laylat al-Qadr) wohlbehalten zu erreichen, gesegneten Ramadan."
+          },
+          "id": {
+            "text": "Dengan doa semoga kita sampai dengan selamat ke Malam Lailatulqadar, selamat menunaikan ibadah Ramadan."
+          },
+          "fr": {
+            "text": "En priant pour atteindre sain et sauf la Nuit du Destin, bon Ramadan béni."
+          },
+          "ur": {
+            "text": "شب قدر تک صحیح سلامت پہنچنے کی دعا کے ساتھ، رمضان مبارک۔"
+          },
+          "bn": {
+            "text": "লাইলাতুল কদরে নিরাপদে পৌঁছানোর দোয়ায়, শুভ রমজান।"
+          },
+          "fa": {
+            "text": "به امید رسیدن سالم به شب قدر، رمضانتان مبارک."
+          },
+          "ru": {
+            "text": "С молитвой благополучно дожить до Ночи предопределения — благословенного Рамадана."
+          }
+        }
+      },
+      {
+        "id": "ramazan14",
+        "translations": {
+          "tr": {
+            "text": "Ramazan'ın nuru evinizi, bereketi sofranızı aydınlatsın."
+          },
+          "en": {
+            "text": "May the light of Ramadan illuminate your home and its abundance your table."
+          },
+          "ar": {
+            "text": "عسى أن ينير نور رمضان بيوتكم، وتزهر بركته موائدكم."
+          },
+          "de": {
+            "text": "Möge das Licht des Ramadan euer Heim und sein Segen eure Tafel erhellen."
+          },
+          "id": {
+            "text": "Semoga cahaya Ramadan menerangi rumah Anda dan keberkahannya menerangi hidangan Anda."
+          },
+          "fr": {
+            "text": "Que la lumière du Ramadan illumine votre maison et son abondance votre table."
+          },
+          "ur": {
+            "text": "رمضان کا نور آپ کے گھر کو اور اس کی برکت آپ کے دسترخوان کو روشن کرے۔"
+          },
+          "bn": {
+            "text": "রমজানের নূর আপনার ঘর, বরকত আপনার দস্তরখান আলোকিত করুক।"
+          },
+          "fa": {
+            "text": "نور رمضان خانه‌تان و برکت آن سفره‌تان را روشن کند."
+          },
+          "ru": {
+            "text": "Пусть свет Рамадана озарит ваш дом, а его благодать — ваш стол."
+          }
+        }
+      },
+      {
+        "id": "ramazan15",
+        "translations": {
+          "tr": {
+            "text": "Oruçlu gönüllerinize huzur, dualarınıza kabul diliyorum."
+          },
+          "en": {
+            "text": "I wish peace for your fasting hearts and acceptance for your prayers."
+          },
+          "ar": {
+            "text": "أتمنى السكينة لقلوبكم الصائمة، والاستجابة لأدعيتكم."
+          },
+          "de": {
+            "text": "Ich wünsche euren fastenden Herzen Frieden und euren Gebeten Erhörung."
+          },
+          "id": {
+            "text": "Saya doakan ketenangan bagi hati Anda yang berpuasa dan terkabulnya doa-doa Anda."
+          },
+          "fr": {
+            "text": "Je souhaite la paix à vos cœurs jeûneurs et l'exaucement à vos prières."
+          },
+          "ur": {
+            "text": "آپ کے روزہ دار دلوں کے لیے سکون اور آپ کی دعاؤں کی قبولیت کی دعا کرتا ہوں۔"
+          },
+          "bn": {
+            "text": "আপনার রোজাদার হৃদয়ে প্রশান্তি, দোয়ায় কবুলিয়াত কামনা করি।"
+          },
+          "fa": {
+            "text": "برای دل‌های روزه‌دارتان آرامش و برای دعاهایتان قبولی آرزو می‌کنم."
+          },
+          "ru": {
+            "text": "Желаю покоя вашим постящимся сердцам и принятия ваших молитв."
+          }
+        }
+      },
+      {
+        "id": "ramazan16",
+        "translations": {
+          "tr": {
+            "text": "Hayırlı Ramazanlar! Bu ay hepimize sağlık ve bereket getirsin."
+          },
+          "en": {
+            "text": "Blessed Ramadan! May this month bring health and abundance to us all."
+          },
+          "ar": {
+            "text": "رمضان مبارك! عسى أن يجلب هذا الشهر لنا جميعًا الصحة والبركة."
+          },
+          "de": {
+            "text": "Gesegneten Ramadan! Möge dieser Monat uns allen Gesundheit und Segen bringen."
+          },
+          "id": {
+            "text": "Selamat menunaikan ibadah Ramadan! Semoga bulan ini membawa kesehatan dan keberkahan bagi kita semua."
+          },
+          "fr": {
+            "text": "Bon Ramadan béni ! Que ce mois nous apporte à tous santé et abondance."
+          },
+          "ur": {
+            "text": "رمضان مبارک! یہ مہینہ ہم سب کے لیے صحت اور برکت لائے۔"
+          },
+          "bn": {
+            "text": "শুভ রমজান! এই মাস আমাদের সবার জন্য সুস্থতা ও বরকত বয়ে আনুক।"
+          },
+          "fa": {
+            "text": "رمضانتان مبارک! این ماه برای همه ما سلامتی و برکت بیاورد."
+          },
+          "ru": {
+            "text": "Благословенного Рамадана! Пусть этот месяц принесёт всем нам здоровье и изобилие."
+          }
+        }
+      },
+      {
+        "id": "ramazan17",
+        "translations": {
+          "tr": {
+            "text": "Ramazan'ın son nefesine kadar tutulan oruçlar makbul olsun."
+          },
+          "en": {
+            "text": "May the fasts kept until the very last breath of Ramadan be accepted."
+          },
+          "ar": {
+            "text": "عسى أن تُتقبّل الأصوام المحفوظة حتى آخر نَفَس من رمضان."
+          },
+          "de": {
+            "text": "Mögen die bis zum letzten Atemzug des Ramadan gehaltenen Fasten angenommen werden."
+          },
+          "id": {
+            "text": "Semoga puasa yang ditunaikan hingga napas terakhir Ramadan diterima."
+          },
+          "fr": {
+            "text": "Que les jeûnes observés jusqu'au dernier souffle du Ramadan soient acceptés."
+          },
+          "ur": {
+            "text": "رمضان کے آخری لمحے تک رکھے گئے روزے مقبول ہوں۔"
+          },
+          "bn": {
+            "text": "রমজানের শেষ নিঃশ্বাস পর্যন্ত রাখা রোজাগুলো কবুল হোক।"
+          },
+          "fa": {
+            "text": "روزه‌هایی که تا آخرین نفس رمضان گرفته می‌شود مقبول باد."
+          },
+          "ru": {
+            "text": "Пусть посты, соблюдённые до последнего вздоха Рамадана, будут приняты."
+          }
+        }
+      },
+      {
+        "id": "ramazan18",
+        "translations": {
+          "tr": {
+            "text": "Bu Ramazan kalbinizi yumuşatsın, gönlünüzü zenginleştirsin."
+          },
+          "en": {
+            "text": "May this Ramadan soften your heart and enrich your soul."
+          },
+          "ar": {
+            "text": "عسى أن يرقّق هذا رمضان قلوبكم ويُثري أرواحكم."
+          },
+          "de": {
+            "text": "Möge dieser Ramadan euer Herz erweichen und euer Inneres bereichern."
+          },
+          "id": {
+            "text": "Semoga Ramadan ini melembutkan hati Anda dan memperkaya jiwa Anda."
+          },
+          "fr": {
+            "text": "Que ce Ramadan adoucisse votre cœur et enrichisse votre âme."
+          },
+          "ur": {
+            "text": "یہ رمضان آپ کے دل کو نرم اور آپ کے باطن کو غنی کرے۔"
+          },
+          "bn": {
+            "text": "এই রমজান আপনার হৃদয়কে নরম করুক, অন্তরকে সমৃদ্ধ করুক।"
+          },
+          "fa": {
+            "text": "این رمضان دلتان را نرم و جانتان را غنی کند."
+          },
+          "ru": {
+            "text": "Пусть этот Рамадан смягчит ваше сердце и обогатит вашу душу."
+          }
+        }
+      },
+      {
+        "id": "ramazan19",
+        "translations": {
+          "tr": {
+            "text": "Rabbim Ramazan'ın hürmetine hepimizi bağışlasın."
+          },
+          "en": {
+            "text": "For the sake of Ramadan, may my Lord forgive us all."
+          },
+          "ar": {
+            "text": "اللهم بحرمة رمضان اغفر لنا جميعًا."
+          },
+          "de": {
+            "text": "Möge mein Herr um des Ramadan willen uns alle vergeben."
+          },
+          "id": {
+            "text": "Semoga Tuhanku, demi kemuliaan Ramadan, mengampuni kita semua."
+          },
+          "fr": {
+            "text": "Que mon Seigneur, en l'honneur du Ramadan, nous pardonne à tous."
+          },
+          "ur": {
+            "text": "اللہ رمضان کے صدقے ہم سب کو بخش دے۔"
+          },
+          "bn": {
+            "text": "হে রব, রমজানের সম্মানে আমাদের সবাইকে ক্ষমা করে দিন।"
+          },
+          "fa": {
+            "text": "پروردگارا به حرمت رمضان همه ما را بیامرز."
+          },
+          "ru": {
+            "text": "Пусть Господь ради Рамадана простит всех нас."
+          }
+        }
+      },
+      {
+        "id": "ramazan20",
+        "translations": {
+          "tr": {
+            "text": "Hayırlı Ramazanlar; sabrınız bol, duanız kabul olsun."
+          },
+          "en": {
+            "text": "Blessed Ramadan; may your patience be plentiful and your prayers accepted."
+          },
+          "ar": {
+            "text": "رمضان مبارك؛ عسى أن يكون صبركم وافرًا ودعاؤكم مستجابًا."
+          },
+          "de": {
+            "text": "Gesegneten Ramadan; möge eure Geduld groß und euer Gebet erhört sein."
+          },
+          "id": {
+            "text": "Selamat menunaikan ibadah Ramadan; semoga kesabaran Anda berlimpah dan doa Anda dikabulkan."
+          },
+          "fr": {
+            "text": "Bon Ramadan béni ; que votre patience soit abondante et vos prières exaucées."
+          },
+          "ur": {
+            "text": "رمضان مبارک؛ آپ کا صبر فراواں اور آپ کی دعا قبول ہو۔"
+          },
+          "bn": {
+            "text": "শুভ রমজান; আপনার ধৈর্য প্রচুর, দোয়া কবুল হোক।"
+          },
+          "fa": {
+            "text": "رمضانتان مبارک؛ صبرتان فراوان و دعایتان مستجاب باد."
+          },
+          "ru": {
+            "text": "Благословенного Рамадана; пусть ваше терпение будет обильным, а молитвы — принятыми."
+          }
+        }
+      }
     ]
   },
   {
     "occasion": "kandil",
     "iconKey": "sparkles",
-    "translations": { "tr": { "label": "Kandil" }, "en": { "label": "Holy Night" } },
+    "translations": {
+      "tr": {
+        "label": "Kandil"
+      },
+      "en": {
+        "label": "Holy Night"
+      },
+      "ar": {
+        "label": "ليلة مباركة"
+      },
+      "de": {
+        "label": "Heilige Nacht"
+      },
+      "id": {
+        "label": "Malam Suci"
+      },
+      "fr": {
+        "label": "Nuit sainte"
+      },
+      "ur": {
+        "label": "مقدس رات"
+      },
+      "bn": {
+        "label": "পবিত্র রাত"
+      },
+      "fa": {
+        "label": "شب مبارک"
+      },
+      "ru": {
+        "label": "Святая ночь"
+      }
+    },
     "messages": [
-      { "id": "kandil1", "translations": { "tr": { "text": "Kandiliniz mübarek olsun! Bu gece dualarınız kabul olsun." }, "en": { "text": "Blessed Kandil! May your prayers be answered tonight." } } },
-      { "id": "kandil2", "translations": { "tr": { "text": "Bu mübarek gecenin nuru gönlünüze huzur getirsin." }, "en": { "text": "May the light of this blessed night bring peace to your heart." } } },
-      { "id": "kandil3", "translations": { "tr": { "text": "Kandil gecesinin feyzi ve bereketi üzerinize olsun." }, "en": { "text": "May the grace and blessing of this holy night be upon you." } } },
-      { "id": "kandil4", "translations": { "tr": { "text": "Bu gece edilen dualar göğe yükselsin, kabule erişsin. Kandiliniz mübarek." }, "en": { "text": "May tonight's prayers rise to the heavens and be accepted. Blessed Kandil." } } },
-      { "id": "kandil5", "translations": { "tr": { "text": "Mübarek kandil; kalbinize nur, evinize bereket getirsin." }, "en": { "text": "May this blessed night bring light to your heart and blessing to your home." } } },
-      { "id": "kandil6", "translations": { "tr": { "text": "Rabbim bu gece hürmetine dualarınızı kabul, günahlarınızı affetsin." }, "en": { "text": "For the sake of this night, may God accept your prayers and forgive your sins." } } },
-      { "id": "kandil7", "translations": { "tr": { "text": "Kandilin nuru yüzünüze, huzuru gönlünüze yansısın." }, "en": { "text": "May the light of this night reflect on your face and its peace in your heart." } } },
-      { "id": "kandil8", "translations": { "tr": { "text": "Bu mübarek gecede sevdiklerinizle birlikte nice kandillere." }, "en": { "text": "To many more holy nights together with your loved ones." } } },
-      { "id": "kandil9", "translations": { "tr": { "text": "Kandiliniz mübarek olsun; gönlünüzden geçen hayırlar gerçek olsun." }, "en": { "text": "Blessed Kandil; may the good wishes in your heart come true." } } },
-      { "id": "kandil10", "translations": { "tr": { "text": "Bu gece; rahmet kapılarının açıldığı gecedir. Kandiliniz mübarek." }, "en": { "text": "Tonight is when the gates of mercy open. Blessed Kandil." } } },
-      { "id": "kandil11", "translations": { "tr": { "text": "Dualarınızın kabul olduğu, nurlu bir kandil gecesi diliyorum." }, "en": { "text": "I wish you a luminous holy night in which your prayers are answered." } } },
-      { "id": "kandil12", "translations": { "tr": { "text": "Kandilin bereketi ömrünüze, huzuru yüreğinize dolsun." }, "en": { "text": "May the blessing of this night fill your life and its peace your heart." } } },
-      { "id": "kandil13", "translations": { "tr": { "text": "Bu mübarek gece; tüm İslam âlemine hayır ve bereket getirsin." }, "en": { "text": "May this blessed night bring goodness and blessing to the whole Muslim world." } } },
-      { "id": "kandil14", "translations": { "tr": { "text": "Kalbiniz nurla, duanız kabulle dolsun. Kandiliniz mübarek." }, "en": { "text": "May your heart be filled with light and your prayers with acceptance. Blessed Kandil." } } },
-      { "id": "kandil15", "translations": { "tr": { "text": "Bu gece edilen her dua, dökülen her gözyaşı makbul olsun." }, "en": { "text": "May every prayer made and every tear shed tonight be accepted." } } },
-      { "id": "kandil16", "translations": { "tr": { "text": "Mübarek kandilinizi tebrik eder, hayırlara vesile olmasını dilerim." }, "en": { "text": "I congratulate your blessed night and wish it to be a means of goodness." } } },
-      { "id": "kandil17", "translations": { "tr": { "text": "Bu mübarek gecede ettiğiniz hiçbir dua karşılıksız kalmasın. Kandiliniz mübarek." }, "en": { "text": "May no prayer you make this blessed night go unanswered. Blessed Kandil." } } },
-      { "id": "kandil18", "translations": { "tr": { "text": "Kandilin bereketi gönlünüze, huzuru evinize dolsun." }, "en": { "text": "May the blessing of this night fill your heart and its peace your home." } } },
-      { "id": "kandil19", "translations": { "tr": { "text": "Rabbim bu gece hürmetine gözyaşlarınızı rahmetiyle karşılasın." }, "en": { "text": "For the sake of this night, may God meet your tears with His mercy." } } },
-      { "id": "kandil20", "translations": { "tr": { "text": "Mübarek kandiliniz sağlık, huzur ve bereket getirsin." }, "en": { "text": "May your blessed night bring health, peace and abundance." } } }
+      {
+        "id": "kandil1",
+        "translations": {
+          "tr": {
+            "text": "Kandiliniz mübarek olsun! Bu gece dualarınız kabul olsun."
+          },
+          "en": {
+            "text": "Blessed holy night! May your prayers be accepted tonight."
+          },
+          "ar": {
+            "text": "ليلتكم المباركة مباركة! عسى أن تُستجاب أدعيتكم هذه الليلة."
+          },
+          "de": {
+            "text": "Gesegnete Kandil-Nacht! Mögen in dieser Nacht eure Gebete erhört werden."
+          },
+          "id": {
+            "text": "Selamat malam yang penuh berkah! Semoga malam ini doa-doa Anda dikabulkan."
+          },
+          "fr": {
+            "text": "Que votre nuit sainte soit bénie ! Que vos prières soient exaucées cette nuit."
+          },
+          "ur": {
+            "text": "آپ کی رات مبارک ہو! اس رات آپ کی دعائیں قبول ہوں۔"
+          },
+          "bn": {
+            "text": "আপনার কান্দিল মোবারক হোক! আজ রাতে আপনার দোয়াগুলো কবুল হোক।"
+          },
+          "fa": {
+            "text": "شب مبارکتان خجسته باد! امشب دعاهایتان مستجاب شود."
+          },
+          "ru": {
+            "text": "Благословенной священной ночи! Пусть в эту ночь ваши молитвы будут приняты."
+          }
+        }
+      },
+      {
+        "id": "kandil2",
+        "translations": {
+          "tr": {
+            "text": "Bu mübarek gecenin nuru gönlünüze huzur getirsin."
+          },
+          "en": {
+            "text": "May the light of this blessed night bring peace to your heart."
+          },
+          "ar": {
+            "text": "عسى أن يجلب نور هذه الليلة المباركة السكينة لقلوبكم."
+          },
+          "de": {
+            "text": "Möge das Licht dieser gesegneten Nacht eurem Herzen Frieden bringen."
+          },
+          "id": {
+            "text": "Semoga cahaya malam yang penuh berkah ini membawa ketenangan ke hati Anda."
+          },
+          "fr": {
+            "text": "Que la lumière de cette nuit bénie apporte la paix à votre cœur."
+          },
+          "ur": {
+            "text": "اس مبارک رات کا نور آپ کے دل میں سکون لائے۔"
+          },
+          "bn": {
+            "text": "এই বরকতময় রাতের নূর আপনার হৃদয়ে প্রশান্তি বয়ে আনুক।"
+          },
+          "fa": {
+            "text": "نور این شب مبارک به دلتان آرامش بیاورد."
+          },
+          "ru": {
+            "text": "Пусть свет этой благословенной ночи принесёт покой вашему сердцу."
+          }
+        }
+      },
+      {
+        "id": "kandil3",
+        "translations": {
+          "tr": {
+            "text": "Kandil gecesinin feyzi ve bereketi üzerinize olsun."
+          },
+          "en": {
+            "text": "May the grace and abundance of this holy night be upon you."
+          },
+          "ar": {
+            "text": "عليكم فيض الليلة المباركة وبركتها."
+          },
+          "de": {
+            "text": "Möge der Segen und die Gnade der Kandil-Nacht mit euch sein."
+          },
+          "id": {
+            "text": "Semoga keberkahan dan limpahan rahmat malam suci ini menyertai Anda."
+          },
+          "fr": {
+            "text": "Que la grâce et la bénédiction de cette nuit sainte soient sur vous."
+          },
+          "ur": {
+            "text": "اس مبارک رات کا فیض اور برکت آپ پر نازل ہو۔"
+          },
+          "bn": {
+            "text": "কান্দিল রাতের ফয়েজ ও বরকত আপনার ওপর বর্ষিত হোক।"
+          },
+          "fa": {
+            "text": "فیض و برکت این شب مبارک بر شما باد."
+          },
+          "ru": {
+            "text": "Пусть благодать и благословение этой священной ночи пребудут с вами."
+          }
+        }
+      },
+      {
+        "id": "kandil4",
+        "translations": {
+          "tr": {
+            "text": "Bu gece edilen dualar göğe yükselsin, kabule erişsin. Kandiliniz mübarek."
+          },
+          "en": {
+            "text": "May the prayers made tonight rise to the heavens and be accepted. Blessed holy night."
+          },
+          "ar": {
+            "text": "عسى أن تصعد الأدعية المرفوعة هذه الليلة إلى السماء وتنال القبول. ليلتكم مباركة."
+          },
+          "de": {
+            "text": "Mögen die in dieser Nacht gesprochenen Gebete zum Himmel aufsteigen und Erhörung finden. Gesegnete Kandil-Nacht."
+          },
+          "id": {
+            "text": "Semoga doa-doa yang dipanjatkan malam ini naik ke langit dan dikabulkan. Selamat malam yang penuh berkah."
+          },
+          "fr": {
+            "text": "Que les prières formulées cette nuit s'élèvent vers le ciel et soient exaucées. Bénie soit votre nuit sainte."
+          },
+          "ur": {
+            "text": "اس رات مانگی گئی دعائیں آسمان تک بلند ہوں اور قبولیت پائیں۔ آپ کی رات مبارک ہو۔"
+          },
+          "bn": {
+            "text": "আজ রাতে করা দোয়াগুলো আকাশে উঠে যাক, কবুলিয়াত লাভ করুক। আপনার কান্দিল মোবারক।"
+          },
+          "fa": {
+            "text": "دعاهایی که امشب می‌کنید به آسمان بالا رود و به اجابت برسد. شب مبارکتان خجسته باد."
+          },
+          "ru": {
+            "text": "Пусть молитвы, возносимые в эту ночь, вознесутся к небесам и будут приняты. Благословенной ночи."
+          }
+        }
+      },
+      {
+        "id": "kandil5",
+        "translations": {
+          "tr": {
+            "text": "Mübarek kandil; kalbinize nur, evinize bereket getirsin."
+          },
+          "en": {
+            "text": "May this blessed night bring light to your heart and abundance to your home."
+          },
+          "ar": {
+            "text": "عسى أن تجلب هذه الليلة المباركة النور لقلوبكم والبركة لبيوتكم."
+          },
+          "de": {
+            "text": "Möge die gesegnete Kandil-Nacht eurem Herzen Licht und eurem Heim Segen bringen."
+          },
+          "id": {
+            "text": "Semoga malam suci yang penuh berkah ini membawa cahaya ke hati Anda dan keberkahan ke rumah Anda."
+          },
+          "fr": {
+            "text": "Que cette nuit sainte bénie apporte la lumière à votre cœur et l'abondance à votre maison."
+          },
+          "ur": {
+            "text": "یہ مبارک رات آپ کے دل میں نور اور آپ کے گھر میں برکت لائے۔"
+          },
+          "bn": {
+            "text": "বরকতময় কান্দিল আপনার হৃদয়ে নূর, ঘরে বরকত বয়ে আনুক।"
+          },
+          "fa": {
+            "text": "این شب مبارک، به دلتان نور و به خانه‌تان برکت بیاورد."
+          },
+          "ru": {
+            "text": "Пусть эта благословенная ночь принесёт свет вашему сердцу и изобилие вашему дому."
+          }
+        }
+      },
+      {
+        "id": "kandil6",
+        "translations": {
+          "tr": {
+            "text": "Rabbim bu gece hürmetine dualarınızı kabul, günahlarınızı affetsin."
+          },
+          "en": {
+            "text": "For the sake of this night, may my Lord accept your prayers and forgive your sins."
+          },
+          "ar": {
+            "text": "اللهم بحرمة هذه الليلة استجب دعاءهم واغفر ذنوبهم."
+          },
+          "de": {
+            "text": "Möge mein Herr um dieser Nacht willen eure Gebete erhören und eure Sünden vergeben."
+          },
+          "id": {
+            "text": "Semoga Tuhanku, demi kemuliaan malam ini, mengabulkan doa-doa Anda dan mengampuni dosa-dosa Anda."
+          },
+          "fr": {
+            "text": "Que mon Seigneur, en l'honneur de cette nuit, exauce vos prières et pardonne vos péchés."
+          },
+          "ur": {
+            "text": "اللہ اس رات کے صدقے آپ کی دعائیں قبول اور آپ کے گناہ معاف فرمائے۔"
+          },
+          "bn": {
+            "text": "হে রব, এই রাতের সম্মানে আপনার দোয়াগুলো কবুল করুন, গুনাহগুলো ক্ষমা করুন।"
+          },
+          "fa": {
+            "text": "پروردگارا به حرمت این شب، دعاهایتان را مستجاب و گناهانتان را بیامرزد."
+          },
+          "ru": {
+            "text": "Пусть Господь ради этой ночи примет ваши молитвы и простит ваши грехи."
+          }
+        }
+      },
+      {
+        "id": "kandil7",
+        "translations": {
+          "tr": {
+            "text": "Kandilin nuru yüzünüze, huzuru gönlünüze yansısın."
+          },
+          "en": {
+            "text": "May the light of this holy night be reflected on your face and its peace in your heart."
+          },
+          "ar": {
+            "text": "عسى أن ينعكس نور الليلة المباركة على وجوهكم، وسكينتها على قلوبكم."
+          },
+          "de": {
+            "text": "Möge sich das Licht der Kandil-Nacht in eurem Gesicht und ihr Frieden in eurem Herzen widerspiegeln."
+          },
+          "id": {
+            "text": "Semoga cahaya malam suci memancar ke wajah Anda dan ketenangannya ke hati Anda."
+          },
+          "fr": {
+            "text": "Que la lumière de cette nuit sainte se reflète sur votre visage et sa paix dans votre cœur."
+          },
+          "ur": {
+            "text": "اس مبارک رات کا نور آپ کے چہرے پر اور سکون آپ کے دل میں جھلکے۔"
+          },
+          "bn": {
+            "text": "কান্দিলের নূর আপনার মুখে, প্রশান্তি আপনার হৃদয়ে প্রতিফলিত হোক।"
+          },
+          "fa": {
+            "text": "نور این شب بر چهره‌تان و آرامش آن در دلتان منعکس شود."
+          },
+          "ru": {
+            "text": "Пусть свет этой ночи отразится на вашем лице, а покой — в вашем сердце."
+          }
+        }
+      },
+      {
+        "id": "kandil8",
+        "translations": {
+          "tr": {
+            "text": "Bu mübarek gecede sevdiklerinizle birlikte nice kandillere."
+          },
+          "en": {
+            "text": "On this blessed night, wishing you many more holy nights with your loved ones."
+          },
+          "ar": {
+            "text": "في هذه الليلة المباركة، إلى ليالٍ مباركة كثيرة مع أحبائكم."
+          },
+          "de": {
+            "text": "Auf noch viele Kandil-Nächte mit euren Liebsten in dieser gesegneten Nacht."
+          },
+          "id": {
+            "text": "Semoga di malam yang penuh berkah ini, dan di banyak malam suci berikutnya, Anda bersama orang-orang tercinta."
+          },
+          "fr": {
+            "text": "En cette nuit bénie, pour de nombreuses nuits saintes auprès de vos êtres chers."
+          },
+          "ur": {
+            "text": "اس مبارک رات اپنے پیاروں کے ساتھ بہت سی مبارک راتیں نصیب ہوں۔"
+          },
+          "bn": {
+            "text": "এই বরকতময় রাতে প্রিয়জনদের সাথে আরও অসংখ্য কান্দিলের শুভকামনা।"
+          },
+          "fa": {
+            "text": "در این شب مبارک، در کنار عزیزانتان شب‌های مبارک بسیار در پیش باد."
+          },
+          "ru": {
+            "text": "Пусть в эту благословенную ночь, вместе с любимыми, будет начало многих благословенных ночей."
+          }
+        }
+      },
+      {
+        "id": "kandil9",
+        "translations": {
+          "tr": {
+            "text": "Kandiliniz mübarek olsun; gönlünüzden geçen hayırlar gerçek olsun."
+          },
+          "en": {
+            "text": "Blessed holy night; may the good wishes in your heart come true."
+          },
+          "ar": {
+            "text": "ليلتكم المباركة مباركة؛ عسى أن تتحقق الخيرات التي في قلوبكم."
+          },
+          "de": {
+            "text": "Gesegnete Kandil-Nacht; mögen die guten Wünsche, die euer Herz bewegen, wahr werden."
+          },
+          "id": {
+            "text": "Selamat malam yang penuh berkah; semoga segala kebaikan yang terbersit di hati Anda menjadi nyata."
+          },
+          "fr": {
+            "text": "Que votre nuit sainte soit bénie ; que les bienfaits que votre cœur désire se réalisent."
+          },
+          "ur": {
+            "text": "آپ کی رات مبارک ہو؛ آپ کے دل کی نیک خواہشیں حقیقت بنیں۔"
+          },
+          "bn": {
+            "text": "আপনার কান্দিল মোবারক হোক; আপনার হৃদয়ের সকল কল্যাণ বাস্তবে রূপ নিক।"
+          },
+          "fa": {
+            "text": "شب مبارکتان خجسته باد؛ خیرهایی که در دل دارید محقق شود."
+          },
+          "ru": {
+            "text": "Благословенной ночи; пусть исполнятся благие желания вашего сердца."
+          }
+        }
+      },
+      {
+        "id": "kandil10",
+        "translations": {
+          "tr": {
+            "text": "Bu gece; rahmet kapılarının açıldığı gecedir. Kandiliniz mübarek."
+          },
+          "en": {
+            "text": "Tonight is the night when the gates of mercy are opened. Blessed holy night."
+          },
+          "ar": {
+            "text": "هذه الليلة هي ليلة تُفتح فيها أبواب الرحمة. ليلتكم مباركة."
+          },
+          "de": {
+            "text": "Diese Nacht ist die Nacht, in der sich die Tore der Barmherzigkeit öffnen. Gesegnete Kandil-Nacht."
+          },
+          "id": {
+            "text": "Malam ini adalah malam terbukanya pintu-pintu rahmat. Selamat malam yang penuh berkah."
+          },
+          "fr": {
+            "text": "Cette nuit est celle où s'ouvrent les portes de la miséricorde. Bénie soit votre nuit sainte."
+          },
+          "ur": {
+            "text": "یہ وہ رات ہے جب رحمت کے دروازے کھلتے ہیں۔ آپ کی رات مبارک ہو۔"
+          },
+          "bn": {
+            "text": "এই রাত হলো রহমতের দরজা খুলে যাওয়ার রাত। আপনার কান্দিল মোবারক।"
+          },
+          "fa": {
+            "text": "امشب شبی است که درهای رحمت گشوده می‌شود. شب مبارکتان خجسته باد."
+          },
+          "ru": {
+            "text": "Это ночь, когда отворяются врата милости. Благословенной ночи."
+          }
+        }
+      },
+      {
+        "id": "kandil11",
+        "translations": {
+          "tr": {
+            "text": "Dualarınızın kabul olduğu, nurlu bir kandil gecesi diliyorum."
+          },
+          "en": {
+            "text": "I wish you a luminous holy night in which your prayers are accepted."
+          },
+          "ar": {
+            "text": "أتمنى لكم ليلة مباركة منيرة تُستجاب فيها أدعيتكم."
+          },
+          "de": {
+            "text": "Ich wünsche euch eine lichtvolle Kandil-Nacht, in der eure Gebete erhört werden."
+          },
+          "id": {
+            "text": "Saya doakan malam suci yang bercahaya, di mana doa-doa Anda dikabulkan."
+          },
+          "fr": {
+            "text": "Je vous souhaite une nuit sainte lumineuse où vos prières sont exaucées."
+          },
+          "ur": {
+            "text": "ایسی نورانی رات کی دعا کرتا ہوں جس میں آپ کی دعائیں قبول ہوں۔"
+          },
+          "bn": {
+            "text": "আপনার দোয়াগুলো কবুল হওয়া একটি নূরময় কান্দিল রাত কামনা করি।"
+          },
+          "fa": {
+            "text": "شب مبارکی نورانی آرزو می‌کنم که دعاهایتان در آن مستجاب شود."
+          },
+          "ru": {
+            "text": "Желаю вам светлой священной ночи, в которую принимаются молитвы."
+          }
+        }
+      },
+      {
+        "id": "kandil12",
+        "translations": {
+          "tr": {
+            "text": "Kandilin bereketi ömrünüze, huzuru yüreğinize dolsun."
+          },
+          "en": {
+            "text": "May the abundance of this holy night fill your life and its peace your heart."
+          },
+          "ar": {
+            "text": "عسى أن تملأ بركة الليلة المباركة أعماركم، وسكينتها قلوبكم."
+          },
+          "de": {
+            "text": "Möge der Segen der Kandil-Nacht euer Leben und ihr Frieden euer Herz erfüllen."
+          },
+          "id": {
+            "text": "Semoga keberkahan malam suci memenuhi umur Anda dan ketenangannya memenuhi hati Anda."
+          },
+          "fr": {
+            "text": "Que la bénédiction de cette nuit sainte emplisse votre vie et sa paix votre cœur."
+          },
+          "ur": {
+            "text": "اس رات کی برکت آپ کی زندگی میں اور سکون آپ کے دل میں اترے۔"
+          },
+          "bn": {
+            "text": "কান্দিলের বরকত আপনার জীবনে, প্রশান্তি আপনার হৃদয়ে পূর্ণ হোক।"
+          },
+          "fa": {
+            "text": "برکت این شب به عمرتان و آرامش آن به دلتان سرازیر شود."
+          },
+          "ru": {
+            "text": "Пусть благодать этой ночи наполнит вашу жизнь, а покой — ваше сердце."
+          }
+        }
+      },
+      {
+        "id": "kandil13",
+        "translations": {
+          "tr": {
+            "text": "Bu mübarek gece; tüm İslam âlemine hayır ve bereket getirsin."
+          },
+          "en": {
+            "text": "May this blessed night bring goodness and abundance to the entire Muslim world."
+          },
+          "ar": {
+            "text": "عسى أن تجلب هذه الليلة المباركة الخير والبركة للعالم الإسلامي كله."
+          },
+          "de": {
+            "text": "Möge diese gesegnete Nacht der ganzen islamischen Welt Gutes und Segen bringen."
+          },
+          "id": {
+            "text": "Semoga malam yang penuh berkah ini membawa kebaikan dan keberkahan bagi seluruh umat Islam."
+          },
+          "fr": {
+            "text": "Que cette nuit bénie apporte bienfait et abondance à tout le monde musulman."
+          },
+          "ur": {
+            "text": "یہ مبارک رات پورے عالم اسلام کے لیے خیر اور برکت لائے۔"
+          },
+          "bn": {
+            "text": "এই বরকতময় রাত সমগ্র ইসলামি বিশ্বের জন্য কল্যাণ ও বরকত বয়ে আনুক।"
+          },
+          "fa": {
+            "text": "این شب مبارک، برای همه جهان اسلام خیر و برکت بیاورد."
+          },
+          "ru": {
+            "text": "Пусть эта благословенная ночь принесёт всему исламскому миру благо и изобилие."
+          }
+        }
+      },
+      {
+        "id": "kandil14",
+        "translations": {
+          "tr": {
+            "text": "Kalbiniz nurla, duanız kabulle dolsun. Kandiliniz mübarek."
+          },
+          "en": {
+            "text": "May your heart be filled with light and your prayers with acceptance. Blessed holy night."
+          },
+          "ar": {
+            "text": "عسى أن يمتلئ قلبكم بالنور ودعاؤكم بالقبول. ليلتكم مباركة."
+          },
+          "de": {
+            "text": "Möge euer Herz mit Licht und euer Gebet mit Erhörung erfüllt sein. Gesegnete Kandil-Nacht."
+          },
+          "id": {
+            "text": "Semoga hati Anda dipenuhi cahaya dan doa Anda dikabulkan. Selamat malam yang penuh berkah."
+          },
+          "fr": {
+            "text": "Que votre cœur s'emplisse de lumière et vos prières d'exaucement. Bénie soit votre nuit sainte."
+          },
+          "ur": {
+            "text": "آپ کا دل نور سے اور آپ کی دعا قبولیت سے بھر جائے۔ آپ کی رات مبارک ہو۔"
+          },
+          "bn": {
+            "text": "আপনার হৃদয় নূরে, দোয়া কবুলিয়াতে পূর্ণ হোক। আপনার কান্দিল মোবারক।"
+          },
+          "fa": {
+            "text": "دلتان پر از نور و دعایتان پر از قبولی باد. شب مبارکتان خجسته باد."
+          },
+          "ru": {
+            "text": "Пусть ваше сердце наполнится светом, а молитвы — принятием. Благословенной ночи."
+          }
+        }
+      },
+      {
+        "id": "kandil15",
+        "translations": {
+          "tr": {
+            "text": "Bu gece edilen her dua, dökülen her gözyaşı makbul olsun."
+          },
+          "en": {
+            "text": "May every prayer made and every tear shed tonight be accepted."
+          },
+          "ar": {
+            "text": "عسى أن يُتقبّل كل دعاء يُرفع وكل دمعة تُذرف هذه الليلة."
+          },
+          "de": {
+            "text": "Mögen jedes Gebet und jede Träne, die in dieser Nacht vergossen wird, angenommen werden."
+          },
+          "id": {
+            "text": "Semoga setiap doa yang dipanjatkan dan setiap air mata yang tercurah malam ini diterima."
+          },
+          "fr": {
+            "text": "Que chaque prière formulée et chaque larme versée cette nuit soit acceptée."
+          },
+          "ur": {
+            "text": "اس رات مانگی گئی ہر دعا اور بہایا گیا ہر آنسو مقبول ہو۔"
+          },
+          "bn": {
+            "text": "আজ রাতে করা প্রতিটি দোয়া, ঝরা প্রতিটি অশ্রু কবুল হোক।"
+          },
+          "fa": {
+            "text": "هر دعایی که امشب می‌کنید و هر اشکی که می‌ریزید مقبول باد."
+          },
+          "ru": {
+            "text": "Пусть каждая молитва и каждая слеза, пролитая в эту ночь, будут приняты."
+          }
+        }
+      },
+      {
+        "id": "kandil16",
+        "translations": {
+          "tr": {
+            "text": "Mübarek kandilinizi tebrik eder, hayırlara vesile olmasını dilerim."
+          },
+          "en": {
+            "text": "I congratulate you on your blessed holy night and wish it to be a means of goodness."
+          },
+          "ar": {
+            "text": "أهنئكم بليلتكم المباركة، وأتمنى أن تكون وسيلة للخيرات."
+          },
+          "de": {
+            "text": "Ich gratuliere euch zu eurer gesegneten Kandil-Nacht und wünsche, dass sie Anlass zu Gutem sei."
+          },
+          "id": {
+            "text": "Saya ucapkan selamat malam suci yang penuh berkah, dan saya doakan semoga menjadi sarana kebaikan."
+          },
+          "fr": {
+            "text": "Je vous félicite pour votre nuit sainte bénie et souhaite qu'elle soit source de bienfaits."
+          },
+          "ur": {
+            "text": "آپ کی مبارک رات مبارک ہو، اور دعا ہے کہ یہ خیر کا ذریعہ بنے۔"
+          },
+          "bn": {
+            "text": "আপনার বরকতময় কান্দিল মোবারক জানাই এবং তা কল্যাণের উপলক্ষ হওয়ার কামনা করি।"
+          },
+          "fa": {
+            "text": "شب مبارکتان را تبریک می‌گویم و امیدوارم وسیله خیرها شود."
+          },
+          "ru": {
+            "text": "Поздравляю вас с благословенной священной ночью и желаю, чтобы она стала поводом для блага."
+          }
+        }
+      },
+      {
+        "id": "kandil17",
+        "translations": {
+          "tr": {
+            "text": "Bu mübarek gecede ettiğiniz hiçbir dua karşılıksız kalmasın. Kandiliniz mübarek."
+          },
+          "en": {
+            "text": "On this blessed night, may no prayer of yours go unanswered. Blessed holy night."
+          },
+          "ar": {
+            "text": "عسى ألا يبقى أي دعاء ترفعونه في هذه الليلة المباركة دون استجابة. ليلتكم مباركة."
+          },
+          "de": {
+            "text": "Möge in dieser gesegneten Nacht kein Gebet, das ihr sprecht, unerhört bleiben. Gesegnete Kandil-Nacht."
+          },
+          "id": {
+            "text": "Semoga tak satu pun doa yang Anda panjatkan di malam yang penuh berkah ini sia-sia. Selamat malam yang penuh berkah."
+          },
+          "fr": {
+            "text": "Qu'aucune des prières que vous formulez en cette nuit bénie ne reste sans réponse. Bénie soit votre nuit sainte."
+          },
+          "ur": {
+            "text": "اس مبارک رات آپ کی کوئی دعا بے جواب نہ رہے۔ آپ کی رات مبارک ہو۔"
+          },
+          "bn": {
+            "text": "এই বরকতময় রাতে আপনার করা কোনো দোয়াই যেন বিফলে না যায়। আপনার কান্দিল মোবারক।"
+          },
+          "fa": {
+            "text": "در این شب مبارک هیچ دعایی که می‌کنید بی‌پاسخ نماند. شب مبارکتان خجسته باد."
+          },
+          "ru": {
+            "text": "Пусть ни одна молитва, что вы вознесёте в эту благословенную ночь, не останется без ответа. Благословенной ночи."
+          }
+        }
+      },
+      {
+        "id": "kandil18",
+        "translations": {
+          "tr": {
+            "text": "Kandilin bereketi gönlünüze, huzuru evinize dolsun."
+          },
+          "en": {
+            "text": "May the abundance of the holy night fill your heart and its peace your home."
+          },
+          "ar": {
+            "text": "عسى أن تملأ بركة الليلة المباركة قلوبكم، وسكينتها بيوتكم."
+          },
+          "de": {
+            "text": "Möge der Segen der Kandil-Nacht euer Herz und ihr Frieden euer Heim erfüllen."
+          },
+          "id": {
+            "text": "Semoga keberkahan malam suci memenuhi hati Anda dan ketenangannya memenuhi rumah Anda."
+          },
+          "fr": {
+            "text": "Que la bénédiction de cette nuit sainte emplisse votre cœur et sa paix votre maison."
+          },
+          "ur": {
+            "text": "اس رات کی برکت آپ کے دل میں اور سکون آپ کے گھر میں اترے۔"
+          },
+          "bn": {
+            "text": "কান্দিলের বরকত আপনার হৃদয়ে, প্রশান্তি আপনার ঘরে পূর্ণ হোক।"
+          },
+          "fa": {
+            "text": "برکت این شب به دلتان و آرامش آن به خانه‌تان سرازیر شود."
+          },
+          "ru": {
+            "text": "Пусть благодать этой ночи наполнит ваше сердце, а покой — ваш дом."
+          }
+        }
+      },
+      {
+        "id": "kandil19",
+        "translations": {
+          "tr": {
+            "text": "Rabbim bu gece hürmetine gözyaşlarınızı rahmetiyle karşılasın."
+          },
+          "en": {
+            "text": "For the sake of this night, may my Lord meet your tears with His mercy."
+          },
+          "ar": {
+            "text": "اللهم بحرمة هذه الليلة تقبّل دموعهم برحمتك."
+          },
+          "de": {
+            "text": "Möge mein Herr um dieser Nacht willen eure Tränen mit Seiner Barmherzigkeit empfangen."
+          },
+          "id": {
+            "text": "Semoga Tuhanku, demi kemuliaan malam ini, menyambut air mata Anda dengan rahmat-Nya."
+          },
+          "fr": {
+            "text": "Que mon Seigneur, en l'honneur de cette nuit, accueille vos larmes par Sa miséricorde."
+          },
+          "ur": {
+            "text": "اللہ اس رات کے صدقے آپ کے آنسوؤں کو اپنی رحمت سے قبول فرمائے۔"
+          },
+          "bn": {
+            "text": "হে রব, এই রাতের সম্মানে আপনার অশ্রুগুলোকে আপনার রহমত দিয়ে গ্রহণ করুন।"
+          },
+          "fa": {
+            "text": "پروردگارا به حرمت این شب، اشک‌هایتان را با رحمتش پاسخ دهد."
+          },
+          "ru": {
+            "text": "Пусть Господь ради этой ночи встретит ваши слёзы Своей милостью."
+          }
+        }
+      },
+      {
+        "id": "kandil20",
+        "translations": {
+          "tr": {
+            "text": "Mübarek kandiliniz sağlık, huzur ve bereket getirsin."
+          },
+          "en": {
+            "text": "May your blessed holy night bring health, peace, and abundance."
+          },
+          "ar": {
+            "text": "عسى أن تجلب لكم ليلتكم المباركة الصحة والسكينة والبركة."
+          },
+          "de": {
+            "text": "Möge eure gesegnete Kandil-Nacht Gesundheit, Frieden und Segen bringen."
+          },
+          "id": {
+            "text": "Semoga malam suci Anda yang penuh berkah membawa kesehatan, ketenangan, dan keberkahan."
+          },
+          "fr": {
+            "text": "Que votre nuit sainte bénie apporte santé, paix et abondance."
+          },
+          "ur": {
+            "text": "آپ کی مبارک رات صحت، سکون اور برکت لائے۔"
+          },
+          "bn": {
+            "text": "আপনার বরকতময় কান্দিল সুস্থতা, প্রশান্তি ও বরকত বয়ে আনুক।"
+          },
+          "fa": {
+            "text": "شب مبارکتان سلامتی، آرامش و برکت بیاورد."
+          },
+          "ru": {
+            "text": "Пусть ваша благословенная священная ночь принесёт здоровье, покой и изобилие."
+          }
+        }
+      }
     ]
   },
   {
     "occasion": "birthday",
     "iconKey": "card",
-    "translations": { "tr": { "label": "Doğum Günü" }, "en": { "label": "Birthday" } },
+    "translations": {
+      "tr": {
+        "label": "Doğum Günü"
+      },
+      "en": {
+        "label": "Birthday"
+      },
+      "ar": {
+        "label": "عيد ميلاد"
+      },
+      "de": {
+        "label": "Geburtstag"
+      },
+      "id": {
+        "label": "Ulang Tahun"
+      },
+      "fr": {
+        "label": "Anniversaire"
+      },
+      "ur": {
+        "label": "سالگرہ"
+      },
+      "bn": {
+        "label": "জন্মদিন"
+      },
+      "fa": {
+        "label": "تولد"
+      },
+      "ru": {
+        "label": "День рождения"
+      }
+    },
     "messages": [
-      { "id": "birthday1", "translations": { "tr": { "text": "Doğum günün kutlu olsun! Nice mutlu, sağlıklı yıllara." }, "en": { "text": "Happy birthday! Wishing you many happy, healthy years." } } },
-      { "id": "birthday2", "translations": { "tr": { "text": "Allah sağlıklı, huzurlu ve hayırlı uzun ömürler versin." }, "en": { "text": "May God grant you a long, healthy and blessed life." } } },
-      { "id": "birthday3", "translations": { "tr": { "text": "Yeni yaşın sağlık, huzur ve bereket getirsin. İyi ki doğdun!" }, "en": { "text": "May your new year bring health, peace and blessing. Glad you were born!" } } },
-      { "id": "birthday4", "translations": { "tr": { "text": "Nice nice yaşlara; sağlıkla, sevgiyle ve gönül huzuruyla." }, "en": { "text": "To many more years; with health, love and peace of heart." } } },
-      { "id": "birthday5", "translations": { "tr": { "text": "Doğduğun bu güzel günde, Rabbim tüm dualarını kabul etsin." }, "en": { "text": "On this beautiful day you were born, may God accept all your prayers." } } },
-      { "id": "birthday6", "translations": { "tr": { "text": "İyi ki doğdun, iyi ki varsın! Yeni yaşın mübarek olsun." }, "en": { "text": "Glad you were born, glad you exist! May your new year be blessed." } } },
-      { "id": "birthday7", "translations": { "tr": { "text": "Yeni yaşının her günü hayır ve bereketle dolsun." }, "en": { "text": "May every day of your new year be filled with goodness and blessing." } } },
-      { "id": "birthday8", "translations": { "tr": { "text": "Allah seni sevdiklerinle birlikte, sağlık içinde yaşatsın." }, "en": { "text": "May God let you live in health, together with your loved ones." } } },
-      { "id": "birthday9", "translations": { "tr": { "text": "Nice mutlu, sağlıklı ve hayırlı yaşlar dilerim. Doğum günün kutlu olsun." }, "en": { "text": "Wishing you many happy, healthy and blessed years. Happy birthday." } } },
-      { "id": "birthday10", "translations": { "tr": { "text": "Yeni yaşın; gönlüne huzur, ömrüne bereket katsın." }, "en": { "text": "May your new year add peace to your heart and blessing to your life." } } },
-      { "id": "birthday11", "translations": { "tr": { "text": "Doğum günün kutlu olsun! Rabbim ömrünü hayırla uzun etsin." }, "en": { "text": "Happy birthday! May God lengthen your life with goodness." } } },
-      { "id": "birthday12", "translations": { "tr": { "text": "Bu özel günde sağlık, mutluluk ve huzur dolu bir yıl diliyorum." }, "en": { "text": "On this special day, I wish you a year full of health, happiness and peace." } } },
-      { "id": "birthday13", "translations": { "tr": { "text": "Yaşın kadar güzellik, ömrün kadar bereket diliyorum. İyi ki doğdun." }, "en": { "text": "I wish you beauty as your age and blessing as your life. Glad you were born." } } },
-      { "id": "birthday14", "translations": { "tr": { "text": "Allah'ın rahmeti ve bereketi yeni yaşında üzerinde olsun." }, "en": { "text": "May God's mercy and blessing be upon you in your new year." } } },
-      { "id": "birthday15", "translations": { "tr": { "text": "Nice sağlıklı ve dualı yaşlara eriş. Doğum günün mübarek olsun." }, "en": { "text": "May you reach many healthy years full of prayer. Blessed birthday." } } },
-      { "id": "birthday16", "translations": { "tr": { "text": "Kalbin hep huzurlu, yüzün hep gülücüklü olsun. İyi ki doğdun!" }, "en": { "text": "May your heart always be at peace and your face always smiling. Glad you were born!" } } },
-      { "id": "birthday17", "translations": { "tr": { "text": "Yeni yaşın hayırlı olsun; Rabbim gönlünce yaşatsın." }, "en": { "text": "May your new year be blessed; may God let you live as your heart desires." } } },
-      { "id": "birthday18", "translations": { "tr": { "text": "Nice baharlar gör, nice güzel günlere eriş. İyi ki doğdun." }, "en": { "text": "May you see many springs and reach many beautiful days. Glad you were born." } } },
-      { "id": "birthday19", "translations": { "tr": { "text": "Bu yaşın sana sağlık, huzur ve sevdiklerini getirsin." }, "en": { "text": "May this year bring you health, peace and your loved ones." } } },
-      { "id": "birthday20", "translations": { "tr": { "text": "Doğum günün kutlu olsun; ömrün vefa, kalbin huzur dolsun." }, "en": { "text": "Happy birthday; may your life be full of faithfulness and your heart of peace." } } }
+      {
+        "id": "birthday1",
+        "translations": {
+          "tr": {
+            "text": "Doğum günün kutlu olsun! Nice mutlu, sağlıklı yıllara."
+          },
+          "en": {
+            "text": "Happy birthday! Wishing you many happy, healthy years to come."
+          },
+          "ar": {
+            "text": "عيد ميلاد سعيد! إلى سنوات كثيرة سعيدة وصحية."
+          },
+          "de": {
+            "text": "Herzlichen Glückwunsch zum Geburtstag! Auf noch viele glückliche und gesunde Jahre."
+          },
+          "id": {
+            "text": "Selamat ulang tahun! Semoga panjang umur yang bahagia dan sehat menyertaimu."
+          },
+          "fr": {
+            "text": "Joyeux anniversaire ! Pour de nombreuses années heureuses et pleines de santé."
+          },
+          "ur": {
+            "text": "سالگرہ مبارک! بہت سی خوشگوار اور صحت مند سالیں نصیب ہوں۔"
+          },
+          "bn": {
+            "text": "শুভ জন্মদিন! আরও অসংখ্য সুখী, সুস্থ বছরের শুভকামনা।"
+          },
+          "fa": {
+            "text": "تولدت مبارک! سال‌های شاد و سالم بسیار در پیش باد."
+          },
+          "ru": {
+            "text": "С днём рождения! Многих счастливых, здоровых лет."
+          }
+        }
+      },
+      {
+        "id": "birthday2",
+        "translations": {
+          "tr": {
+            "text": "Allah sağlıklı, huzurlu ve hayırlı uzun ömürler versin."
+          },
+          "en": {
+            "text": "May Allah grant you a long life full of health, peace, and goodness."
+          },
+          "ar": {
+            "text": "أسأل الله أن يمنحك عمرًا طويلًا مليئًا بالصحة والسكينة والخير."
+          },
+          "de": {
+            "text": "Möge Gott dir ein gesundes, friedvolles und gesegnetes langes Leben schenken."
+          },
+          "id": {
+            "text": "Semoga Allah memberi umur panjang yang sehat, tenang, dan penuh kebaikan."
+          },
+          "fr": {
+            "text": "Qu'Allah t'accorde une longue vie pleine de santé, de paix et de bienfaits."
+          },
+          "ur": {
+            "text": "اللہ صحت مند، پرسکون اور بابرکت طویل عمر عطا کرے۔"
+          },
+          "bn": {
+            "text": "আল্লাহ আপনাকে সুস্থ, প্রশান্ত ও কল্যাণময় দীর্ঘ জীবন দান করুন।"
+          },
+          "fa": {
+            "text": "خداوند عمری طولانی، سالم، آرام و پربرکت عطا کند."
+          },
+          "ru": {
+            "text": "Пусть Аллах дарует здоровую, мирную и благую долгую жизнь."
+          }
+        }
+      },
+      {
+        "id": "birthday3",
+        "translations": {
+          "tr": {
+            "text": "Yeni yaşın sağlık, huzur ve bereket getirsin. İyi ki doğdun!"
+          },
+          "en": {
+            "text": "May your new year of age bring health, peace, and abundance. So glad you were born!"
+          },
+          "ar": {
+            "text": "عسى أن يجلب لك عمرك الجديد الصحة والسكينة والبركة. سعيد أنك وُلدت!"
+          },
+          "de": {
+            "text": "Möge dein neues Lebensjahr Gesundheit, Frieden und Segen bringen. Schön, dass du geboren wurdest!"
+          },
+          "id": {
+            "text": "Semoga usia barumu membawa kesehatan, ketenangan, dan keberkahan. Selamat atas kelahiranmu!"
+          },
+          "fr": {
+            "text": "Que ta nouvelle année apporte santé, paix et abondance. Heureux que tu sois né !"
+          },
+          "ur": {
+            "text": "آپ کا نیا سال صحت، سکون اور برکت لائے۔ آپ کا اس دنیا میں آنا کتنا خوب ہے!"
+          },
+          "bn": {
+            "text": "আপনার নতুন বয়স সুস্থতা, প্রশান্তি ও বরকত বয়ে আনুক। শুভ জন্মদিন!"
+          },
+          "fa": {
+            "text": "سال تازه‌ات سلامتی، آرامش و برکت بیاورد. خوب شد که به دنیا آمدی!"
+          },
+          "ru": {
+            "text": "Пусть новый год жизни принесёт здоровье, покой и изобилие. Хорошо, что ты родился!"
+          }
+        }
+      },
+      {
+        "id": "birthday4",
+        "translations": {
+          "tr": {
+            "text": "Nice nice yaşlara; sağlıkla, sevgiyle ve gönül huzuruyla."
+          },
+          "en": {
+            "text": "To many, many more years; with health, love, and peace of heart."
+          },
+          "ar": {
+            "text": "إلى أعمار كثيرة كثيرة؛ بصحة ومحبة وسكينة قلب."
+          },
+          "de": {
+            "text": "Auf viele weitere Jahre; in Gesundheit, Liebe und Herzensfrieden."
+          },
+          "id": {
+            "text": "Semoga umur panjang yang penuh kesehatan, kasih sayang, dan ketenangan hati."
+          },
+          "fr": {
+            "text": "Pour de très nombreuses années ; avec santé, amour et paix du cœur."
+          },
+          "ur": {
+            "text": "بہت سی سالگرہیں؛ صحت، محبت اور دلی سکون کے ساتھ۔"
+          },
+          "bn": {
+            "text": "আরও অসংখ্য বছরের শুভকামনা; সুস্থতায়, ভালোবাসায় ও হৃদয়ের প্রশান্তিতে।"
+          },
+          "fa": {
+            "text": "سال‌های بسیار؛ با سلامتی، با محبت و با آرامش دل."
+          },
+          "ru": {
+            "text": "Многих-многих лет — в здравии, с любовью и с покоем в сердце."
+          }
+        }
+      },
+      {
+        "id": "birthday5",
+        "translations": {
+          "tr": {
+            "text": "Doğduğun bu güzel günde, Rabbim tüm dualarını kabul etsin."
+          },
+          "en": {
+            "text": "On this beautiful day you were born, may my Lord accept all your prayers."
+          },
+          "ar": {
+            "text": "في هذا اليوم الجميل الذي وُلدت فيه، عسى أن يستجيب الله جميع أدعيتك."
+          },
+          "de": {
+            "text": "An diesem schönen Tag, an dem du geboren wurdest, möge mein Herr all deine Gebete erhören."
+          },
+          "id": {
+            "text": "Di hari indah kelahiranmu ini, semoga Tuhanku mengabulkan semua doamu."
+          },
+          "fr": {
+            "text": "En ce beau jour de ta naissance, que mon Seigneur exauce toutes tes prières."
+          },
+          "ur": {
+            "text": "اس خوبصورت دن جب آپ پیدا ہوئے، اللہ آپ کی تمام دعائیں قبول فرمائے۔"
+          },
+          "bn": {
+            "text": "আপনার এই সুন্দর জন্মদিনে, হে রব, আপনার সকল দোয়া কবুল করুন।"
+          },
+          "fa": {
+            "text": "در این روز زیبایی که به دنیا آمدی، پروردگار همه دعاهایت را مستجاب کند."
+          },
+          "ru": {
+            "text": "В этот прекрасный день твоего рождения пусть Господь примет все твои молитвы."
+          }
+        }
+      },
+      {
+        "id": "birthday6",
+        "translations": {
+          "tr": {
+            "text": "İyi ki doğdun, iyi ki varsın! Yeni yaşın mübarek olsun."
+          },
+          "en": {
+            "text": "So glad you were born, so glad you exist! Blessed birthday."
+          },
+          "ar": {
+            "text": "سعيد أنك وُلدت، وسعيد بوجودك! عمرك الجديد مبارك."
+          },
+          "de": {
+            "text": "Schön, dass du geboren wurdest, schön, dass es dich gibt! Gesegnetes neues Lebensjahr."
+          },
+          "id": {
+            "text": "Senang kamu lahir, senang kamu ada! Selamat atas usia barumu."
+          },
+          "fr": {
+            "text": "Heureux que tu sois né, heureux que tu existes ! Que ta nouvelle année soit bénie."
+          },
+          "ur": {
+            "text": "آپ کا پیدا ہونا اچھا ہوا، آپ کا ہونا اچھا ہے! آپ کی نئی عمر مبارک ہو۔"
+          },
+          "bn": {
+            "text": "ভালো যে আপনি জন্মেছেন, ভালো যে আপনি আছেন! আপনার নতুন বয়স মোবারক হোক।"
+          },
+          "fa": {
+            "text": "خوب شد که به دنیا آمدی، خوب شد که هستی! سال تازه‌ات مبارک باد."
+          },
+          "ru": {
+            "text": "Хорошо, что ты родился, хорошо, что ты есть! С днём рождения."
+          }
+        }
+      },
+      {
+        "id": "birthday7",
+        "translations": {
+          "tr": {
+            "text": "Yeni yaşının her günü hayır ve bereketle dolsun."
+          },
+          "en": {
+            "text": "May every day of your new year of age be filled with goodness and abundance."
+          },
+          "ar": {
+            "text": "عسى أن يمتلئ كل يوم من عمرك الجديد بالخير والبركة."
+          },
+          "de": {
+            "text": "Möge jeder Tag deines neuen Lebensjahres voller Gutem und Segen sein."
+          },
+          "id": {
+            "text": "Semoga setiap hari di usia barumu dipenuhi kebaikan dan keberkahan."
+          },
+          "fr": {
+            "text": "Que chaque jour de ta nouvelle année soit empli de bienfaits et d'abondance."
+          },
+          "ur": {
+            "text": "آپ کی نئی عمر کا ہر دن خیر اور برکت سے بھرپور ہو۔"
+          },
+          "bn": {
+            "text": "আপনার নতুন বয়সের প্রতিটি দিন কল্যাণ ও বরকতে পূর্ণ হোক।"
+          },
+          "fa": {
+            "text": "هر روز از سال تازه‌ات آکنده از خیر و برکت باد."
+          },
+          "ru": {
+            "text": "Пусть каждый день твоего нового года жизни будет наполнен благом и изобилием."
+          }
+        }
+      },
+      {
+        "id": "birthday8",
+        "translations": {
+          "tr": {
+            "text": "Allah seni sevdiklerinle birlikte, sağlık içinde yaşatsın."
+          },
+          "en": {
+            "text": "May Allah keep you alive in good health, together with your loved ones."
+          },
+          "ar": {
+            "text": "أسأل الله أن يبقيك مع أحبائك في صحة وعافية."
+          },
+          "de": {
+            "text": "Möge Gott dich gemeinsam mit deinen Liebsten und bei Gesundheit leben lassen."
+          },
+          "id": {
+            "text": "Semoga Allah memberimu umur panjang dalam keadaan sehat bersama orang-orang tercinta."
+          },
+          "fr": {
+            "text": "Qu'Allah te fasse vivre en bonne santé, entouré de ceux que tu aimes."
+          },
+          "ur": {
+            "text": "اللہ آپ کو اپنے پیاروں کے ساتھ، صحت کے ساتھ زندہ رکھے۔"
+          },
+          "bn": {
+            "text": "আল্লাহ আপনাকে প্রিয়জনদের সাথে, সুস্থতার মধ্যে বাঁচিয়ে রাখুন।"
+          },
+          "fa": {
+            "text": "خداوند تو را در کنار عزیزانت و در سلامتی زنده بدارد."
+          },
+          "ru": {
+            "text": "Пусть Аллах дарует тебе жизнь вместе с любимыми, в здравии."
+          }
+        }
+      },
+      {
+        "id": "birthday9",
+        "translations": {
+          "tr": {
+            "text": "Nice mutlu, sağlıklı ve hayırlı yaşlar dilerim. Doğum günün kutlu olsun."
+          },
+          "en": {
+            "text": "Wishing you many happy, healthy, and blessed years. Happy birthday."
+          },
+          "ar": {
+            "text": "أتمنى لك أعمارًا كثيرة سعيدة وصحية ومباركة. عيد ميلاد سعيد."
+          },
+          "de": {
+            "text": "Ich wünsche dir noch viele glückliche, gesunde und gesegnete Jahre. Herzlichen Glückwunsch zum Geburtstag."
+          },
+          "id": {
+            "text": "Saya doakan umur panjang yang bahagia, sehat, dan penuh kebaikan. Selamat ulang tahun."
+          },
+          "fr": {
+            "text": "Je te souhaite de nombreuses années heureuses, saines et bénies. Joyeux anniversaire."
+          },
+          "ur": {
+            "text": "بہت سی خوشگوار، صحت مند اور بابرکت عمریں نصیب ہوں۔ سالگرہ مبارک۔"
+          },
+          "bn": {
+            "text": "আরও অসংখ্য সুখী, সুস্থ ও কল্যাণময় বছর কামনা করি। শুভ জন্মদিন।"
+          },
+          "fa": {
+            "text": "سال‌های شاد، سالم و پر از خیر بسیار آرزو می‌کنم. تولدت مبارک."
+          },
+          "ru": {
+            "text": "Желаю многих счастливых, здоровых и благих лет. С днём рождения."
+          }
+        }
+      },
+      {
+        "id": "birthday10",
+        "translations": {
+          "tr": {
+            "text": "Yeni yaşın; gönlüne huzur, ömrüne bereket katsın."
+          },
+          "en": {
+            "text": "May your new year of age add peace to your heart and abundance to your life."
+          },
+          "ar": {
+            "text": "عسى أن يضيف عمرك الجديد السكينة إلى قلبك والبركة إلى حياتك."
+          },
+          "de": {
+            "text": "Möge dein neues Lebensjahr deinem Herzen Frieden und deinem Leben Segen hinzufügen."
+          },
+          "id": {
+            "text": "Semoga usia barumu menambahkan ketenangan ke hatimu dan keberkahan ke umurmu."
+          },
+          "fr": {
+            "text": "Que ta nouvelle année ajoute la paix à ton cœur et l'abondance à ta vie."
+          },
+          "ur": {
+            "text": "آپ کی نئی عمر آپ کے دل میں سکون اور آپ کی زندگی میں برکت بڑھائے۔"
+          },
+          "bn": {
+            "text": "আপনার নতুন বয়স হৃদয়ে প্রশান্তি, জীবনে বরকত যোগ করুক।"
+          },
+          "fa": {
+            "text": "سال تازه‌ات به دلت آرامش و به عمرت برکت بیفزاید."
+          },
+          "ru": {
+            "text": "Пусть новый год жизни добавит покоя твоему сердцу и изобилия твоей жизни."
+          }
+        }
+      },
+      {
+        "id": "birthday11",
+        "translations": {
+          "tr": {
+            "text": "Doğum günün kutlu olsun! Rabbim ömrünü hayırla uzun etsin."
+          },
+          "en": {
+            "text": "Happy birthday! May my Lord prolong your life with goodness."
+          },
+          "ar": {
+            "text": "عيد ميلاد سعيد! أسأل الله أن يطيل عمرك بالخير."
+          },
+          "de": {
+            "text": "Herzlichen Glückwunsch zum Geburtstag! Möge mein Herr dein Leben in Gutem verlängern."
+          },
+          "id": {
+            "text": "Selamat ulang tahun! Semoga Tuhanku memanjangkan umurmu dengan kebaikan."
+          },
+          "fr": {
+            "text": "Joyeux anniversaire ! Que mon Seigneur prolonge ta vie dans le bien."
+          },
+          "ur": {
+            "text": "سالگرہ مبارک! اللہ آپ کی عمر خیر کے ساتھ دراز کرے۔"
+          },
+          "bn": {
+            "text": "শুভ জন্মদিন! হে রব, আপনার জীবন কল্যাণের সাথে দীর্ঘ করুন।"
+          },
+          "fa": {
+            "text": "تولدت مبارک! پروردگار عمرت را با خیر طولانی کند."
+          },
+          "ru": {
+            "text": "С днём рождения! Пусть Господь продлит твою жизнь во благе."
+          }
+        }
+      },
+      {
+        "id": "birthday12",
+        "translations": {
+          "tr": {
+            "text": "Bu özel günde sağlık, mutluluk ve huzur dolu bir yıl diliyorum."
+          },
+          "en": {
+            "text": "On this special day, I wish you a year full of health, happiness, and peace."
+          },
+          "ar": {
+            "text": "في هذا اليوم الخاص أتمنى لك عامًا مليئًا بالصحة والسعادة والسكينة."
+          },
+          "de": {
+            "text": "An diesem besonderen Tag wünsche ich dir ein Jahr voller Gesundheit, Glück und Frieden."
+          },
+          "id": {
+            "text": "Di hari istimewa ini saya doakan setahun yang penuh kesehatan, kebahagiaan, dan ketenangan."
+          },
+          "fr": {
+            "text": "En ce jour spécial, je te souhaite une année pleine de santé, de bonheur et de paix."
+          },
+          "ur": {
+            "text": "اس خاص دن صحت، خوشی اور سکون سے بھرپور سال کی دعا کرتا ہوں۔"
+          },
+          "bn": {
+            "text": "এই বিশেষ দিনে সুস্থতা, সুখ ও প্রশান্তিতে ভরা একটি বছর কামনা করি।"
+          },
+          "fa": {
+            "text": "در این روز خاص، سالی پر از سلامتی، شادی و آرامش آرزو می‌کنم."
+          },
+          "ru": {
+            "text": "В этот особенный день желаю года, полного здоровья, счастья и покоя."
+          }
+        }
+      },
+      {
+        "id": "birthday13",
+        "translations": {
+          "tr": {
+            "text": "Yaşın kadar güzellik, ömrün kadar bereket diliyorum. İyi ki doğdun."
+          },
+          "en": {
+            "text": "I wish you as much beauty as your age and as much abundance as your life. So glad you were born."
+          },
+          "ar": {
+            "text": "أتمنى لك من الجمال بقدر عمرك، ومن البركة بقدر حياتك. سعيد أنك وُلدت."
+          },
+          "de": {
+            "text": "Ich wünsche dir so viel Schönheit wie dein Alter und so viel Segen wie dein Leben. Schön, dass du geboren wurdest."
+          },
+          "id": {
+            "text": "Saya doakan keindahan seindah usiamu dan keberkahan sepanjang umurmu. Senang kamu lahir."
+          },
+          "fr": {
+            "text": "Je te souhaite autant de beauté que d'années et autant d'abondance que de jours de vie. Heureux que tu sois né."
+          },
+          "ur": {
+            "text": "آپ کی عمر جتنی خوبصورتی اور آپ کی زندگی جتنی برکت کی دعا کرتا ہوں۔ آپ کا آنا اچھا ہوا۔"
+          },
+          "bn": {
+            "text": "আপনার বয়সের সমান সৌন্দর্য, জীবনের সমান বরকত কামনা করি। শুভ জন্মদিন।"
+          },
+          "fa": {
+            "text": "به اندازه سنت زیبایی و به اندازه عمرت برکت آرزو می‌کنم. خوب شد که به دنیا آمدی."
+          },
+          "ru": {
+            "text": "Желаю красоты на все твои годы и изобилия на всю твою жизнь. Хорошо, что ты родился."
+          }
+        }
+      },
+      {
+        "id": "birthday14",
+        "translations": {
+          "tr": {
+            "text": "Allah'ın rahmeti ve bereketi yeni yaşında üzerinde olsun."
+          },
+          "en": {
+            "text": "May Allah's mercy and blessing be upon you in your new year of age."
+          },
+          "ar": {
+            "text": "عسى أن تكون رحمة الله وبركته عليك في عمرك الجديد."
+          },
+          "de": {
+            "text": "Möge die Barmherzigkeit und der Segen Gottes in deinem neuen Lebensjahr mit dir sein."
+          },
+          "id": {
+            "text": "Semoga rahmat dan keberkahan Allah senantiasa menyertaimu di usia barumu."
+          },
+          "fr": {
+            "text": "Que la miséricorde et la bénédiction d'Allah soient sur toi en ta nouvelle année."
+          },
+          "ur": {
+            "text": "اللہ کی رحمت اور برکت آپ کی نئی عمر میں آپ پر رہے۔"
+          },
+          "bn": {
+            "text": "আল্লাহর রহমত ও বরকত আপনার নতুন বয়সে আপনার ওপর বর্ষিত হোক।"
+          },
+          "fa": {
+            "text": "رحمت و برکت خداوند در سال تازه‌ات بر تو باد."
+          },
+          "ru": {
+            "text": "Пусть милость и благословение Аллаха пребудут с тобой в новом году жизни."
+          }
+        }
+      },
+      {
+        "id": "birthday15",
+        "translations": {
+          "tr": {
+            "text": "Nice sağlıklı ve dualı yaşlara eriş. Doğum günün mübarek olsun."
+          },
+          "en": {
+            "text": "May you reach many healthy and prayerful years. Blessed birthday."
+          },
+          "ar": {
+            "text": "عسى أن تبلغ أعمارًا كثيرة صحية مليئة بالدعاء. عيد ميلادك مبارك."
+          },
+          "de": {
+            "text": "Mögest du noch viele gesunde und gebetsreiche Jahre erreichen. Gesegneten Geburtstag."
+          },
+          "id": {
+            "text": "Semoga kamu mencapai umur panjang yang sehat dan penuh doa. Selamat ulang tahun yang penuh berkah."
+          },
+          "fr": {
+            "text": "Atteins de nombreuses années saines et bénies de prières. Que ton anniversaire soit béni."
+          },
+          "ur": {
+            "text": "بہت سی صحت مند اور دعاؤں بھری عمریں پائیں۔ آپ کی سالگرہ مبارک ہو۔"
+          },
+          "bn": {
+            "text": "আরও অসংখ্য সুস্থ ও দোয়াময় বছরে পৌঁছান। আপনার জন্মদিন মোবারক হোক।"
+          },
+          "fa": {
+            "text": "به سال‌های بسیار سالم و پر از دعا برسی. تولدت مبارک باد."
+          },
+          "ru": {
+            "text": "Достигни многих здоровых и благословенных лет. Благословенного дня рождения."
+          }
+        }
+      },
+      {
+        "id": "birthday16",
+        "translations": {
+          "tr": {
+            "text": "Kalbin hep huzurlu, yüzün hep gülücüklü olsun. İyi ki doğdun!"
+          },
+          "en": {
+            "text": "May your heart always be at peace and your face always smiling. So glad you were born!"
+          },
+          "ar": {
+            "text": "عسى أن يبقى قلبك مطمئنًا دائمًا، ووجهك مبتسمًا أبدًا. سعيد أنك وُلدت!"
+          },
+          "de": {
+            "text": "Möge dein Herz stets friedvoll und dein Gesicht stets lächelnd sein. Schön, dass du geboren wurdest!"
+          },
+          "id": {
+            "text": "Semoga hatimu selalu tenang dan wajahmu selalu tersenyum. Senang kamu lahir!"
+          },
+          "fr": {
+            "text": "Que ton cœur soit toujours serein et ton visage toujours souriant. Heureux que tu sois né !"
+          },
+          "ur": {
+            "text": "آپ کا دل ہمیشہ پرسکون اور آپ کا چہرہ ہمیشہ مسکراتا رہے۔ آپ کا آنا اچھا ہوا!"
+          },
+          "bn": {
+            "text": "আপনার হৃদয় সবসময় প্রশান্ত, মুখ সবসময় হাসিতে পূর্ণ থাকুক। শুভ জন্মদিন!"
+          },
+          "fa": {
+            "text": "دلت همیشه آرام و چهره‌ات همیشه خندان باد. خوب شد که به دنیا آمدی!"
+          },
+          "ru": {
+            "text": "Пусть твоё сердце всегда будет спокойно, а лицо — с улыбкой. Хорошо, что ты родился!"
+          }
+        }
+      },
+      {
+        "id": "birthday17",
+        "translations": {
+          "tr": {
+            "text": "Yeni yaşın hayırlı olsun; Rabbim gönlünce yaşatsın."
+          },
+          "en": {
+            "text": "May your new year of age be blessed; may my Lord let you live as your heart desires."
+          },
+          "ar": {
+            "text": "عسى أن يكون عمرك الجديد مباركًا؛ وأن يبقيك الله كما تتمنى."
+          },
+          "de": {
+            "text": "Möge dein neues Lebensjahr gesegnet sein; möge mein Herr dich nach Herzenswunsch leben lassen."
+          },
+          "id": {
+            "text": "Semoga usia barumu penuh kebaikan; semoga Tuhanku memberimu umur sesuai harapan hatimu."
+          },
+          "fr": {
+            "text": "Que ta nouvelle année soit bénie ; que mon Seigneur te fasse vivre selon les vœux de ton cœur."
+          },
+          "ur": {
+            "text": "آپ کی نئی عمر مبارک ہو؛ اللہ آپ کو دل کی مراد کے مطابق زندہ رکھے۔"
+          },
+          "bn": {
+            "text": "আপনার নতুন বয়স কল্যাণময় হোক; হে রব, আপনার মনের মতো বাঁচিয়ে রাখুন।"
+          },
+          "fa": {
+            "text": "سال تازه‌ات خجسته باد؛ پروردگار آن‌گونه که می‌خواهی زنده‌ات بدارد."
+          },
+          "ru": {
+            "text": "Пусть новый год жизни будет благим; пусть Господь дарует тебе жизнь по сердцу."
+          }
+        }
+      },
+      {
+        "id": "birthday18",
+        "translations": {
+          "tr": {
+            "text": "Nice baharlar gör, nice güzel günlere eriş. İyi ki doğdun."
+          },
+          "en": {
+            "text": "May you see many springs and reach many beautiful days. So glad you were born."
+          },
+          "ar": {
+            "text": "عسى أن ترى ربيعًا كثيرة، وأن تبلغ أيامًا جميلة كثيرة. سعيد أنك وُلدت."
+          },
+          "de": {
+            "text": "Mögest du noch viele Frühlinge sehen und noch viele schöne Tage erleben. Schön, dass du geboren wurdest."
+          },
+          "id": {
+            "text": "Semoga kamu menyaksikan banyak musim semi dan mencapai banyak hari indah. Senang kamu lahir."
+          },
+          "fr": {
+            "text": "Vois de nombreux printemps, atteins de beaux jours. Heureux que tu sois né."
+          },
+          "ur": {
+            "text": "بہت سی بہاریں دیکھیں، بہت سے خوبصورت دنوں تک پہنچیں۔ آپ کا آنا اچھا ہوا۔"
+          },
+          "bn": {
+            "text": "আরও অসংখ্য বসন্ত দেখুন, আরও অসংখ্য সুন্দর দিনে পৌঁছান। শুভ জন্মদিন।"
+          },
+          "fa": {
+            "text": "بهارهای بسیار ببینی و به روزهای زیبای بسیار برسی. خوب شد که به دنیا آمدی."
+          },
+          "ru": {
+            "text": "Увидь много вёсен, достигни многих прекрасных дней. Хорошо, что ты родился."
+          }
+        }
+      },
+      {
+        "id": "birthday19",
+        "translations": {
+          "tr": {
+            "text": "Bu yaşın sana sağlık, huzur ve sevdiklerini getirsin."
+          },
+          "en": {
+            "text": "May this year of age bring you health, peace, and your loved ones."
+          },
+          "ar": {
+            "text": "عسى أن يجلب لك هذا العمر الصحة والسكينة وأحباءك."
+          },
+          "de": {
+            "text": "Möge dieses Lebensjahr dir Gesundheit, Frieden und deine Liebsten bringen."
+          },
+          "id": {
+            "text": "Semoga usia ini membawakanmu kesehatan, ketenangan, dan orang-orang yang kamu cintai."
+          },
+          "fr": {
+            "text": "Que cette année t'apporte santé, paix et tes êtres chers."
+          },
+          "ur": {
+            "text": "یہ عمر آپ کو صحت، سکون اور آپ کے پیارے عطا کرے۔"
+          },
+          "bn": {
+            "text": "এই বয়স আপনাকে সুস্থতা, প্রশান্তি ও আপনার প্রিয়জনদের বয়ে আনুক।"
+          },
+          "fa": {
+            "text": "این سال برایت سلامتی، آرامش و عزیزانت را بیاورد."
+          },
+          "ru": {
+            "text": "Пусть этот год жизни принесёт тебе здоровье, покой и твоих любимых."
+          }
+        }
+      },
+      {
+        "id": "birthday20",
+        "translations": {
+          "tr": {
+            "text": "Doğum günün kutlu olsun; ömrün vefa, kalbin huzur dolsun."
+          },
+          "en": {
+            "text": "Happy birthday; may your life be full of faithfulness and your heart full of peace."
+          },
+          "ar": {
+            "text": "عيد ميلاد سعيد؛ عسى أن يمتلئ عمرك بالوفاء وقلبك بالسكينة."
+          },
+          "de": {
+            "text": "Herzlichen Glückwunsch zum Geburtstag; möge dein Leben voller Treue und dein Herz voller Frieden sein."
+          },
+          "id": {
+            "text": "Selamat ulang tahun; semoga umurmu penuh kesetiaan dan hatimu penuh ketenangan."
+          },
+          "fr": {
+            "text": "Joyeux anniversaire ; que ta vie s'emplisse de fidélité et ton cœur de paix."
+          },
+          "ur": {
+            "text": "سالگرہ مبارک؛ آپ کی زندگی وفا سے اور آپ کا دل سکون سے بھرپور ہو۔"
+          },
+          "bn": {
+            "text": "শুভ জন্মদিন; আপনার জীবন বিশ্বস্ততায়, হৃদয় প্রশান্তিতে পূর্ণ হোক।"
+          },
+          "fa": {
+            "text": "تولدت مبارک؛ عمرت پر از وفا و دلت پر از آرامش باد."
+          },
+          "ru": {
+            "text": "С днём рождения; пусть жизнь будет верной, а сердце — наполненным покоем."
+          }
+        }
+      }
     ]
   },
   {
     "occasion": "general",
     "iconKey": "dua",
-    "translations": { "tr": { "label": "Genel" }, "en": { "label": "General" } },
+    "translations": {
+      "tr": {
+        "label": "Genel"
+      },
+      "en": {
+        "label": "General"
+      },
+      "ar": {
+        "label": "عام"
+      },
+      "de": {
+        "label": "Allgemein"
+      },
+      "id": {
+        "label": "Umum"
+      },
+      "fr": {
+        "label": "Général"
+      },
+      "ur": {
+        "label": "عام"
+      },
+      "bn": {
+        "label": "সাধারণ"
+      },
+      "fa": {
+        "label": "عمومی"
+      },
+      "ru": {
+        "label": "Общее"
+      }
+    },
     "messages": [
-      { "id": "general1", "translations": { "tr": { "text": "Allah'a emanet ol. Hayırlı ve bereketli günler dilerim." }, "en": { "text": "May God protect you. Wishing you blessed and abundant days." } } },
-      { "id": "general2", "translations": { "tr": { "text": "Gönlünüz huzur, eviniz bereket, yolunuz aydınlık olsun." }, "en": { "text": "May your heart find peace, your home blessings, and your path light." } } },
-      { "id": "general3", "translations": { "tr": { "text": "Rabbim yolunuzu açık, gönlünüzü ferah etsin." }, "en": { "text": "May God open your path and ease your heart." } } },
-      { "id": "general4", "translations": { "tr": { "text": "Hayırlı günler! Dualarınız kabul, işleriniz rast gelsin." }, "en": { "text": "Good day! May your prayers be answered and your affairs go well." } } },
-      { "id": "general5", "translations": { "tr": { "text": "Allah sağlık, huzur ve bereket eksik etmesin." }, "en": { "text": "May God never withhold health, peace and blessing." } } },
-      { "id": "general6", "translations": { "tr": { "text": "Gönlünüzdeki tüm hayırlı dilekler gerçek olsun." }, "en": { "text": "May all the good wishes in your heart come true." } } },
-      { "id": "general7", "translations": { "tr": { "text": "Rabbim sizi ve sevdiklerinizi her türlü kötülükten korusun." }, "en": { "text": "May God protect you and your loved ones from all harm." } } },
-      { "id": "general8", "translations": { "tr": { "text": "Bugün ve her gün; sağlık, huzur ve bereket sizinle olsun." }, "en": { "text": "Today and every day, may health, peace and blessing be with you." } } },
-      { "id": "general9", "translations": { "tr": { "text": "Allah gönlünüze göre versin, dualarınızı kabul etsin." }, "en": { "text": "May God grant according to your heart and accept your prayers." } } },
-      { "id": "general10", "translations": { "tr": { "text": "Hayırlı, sağlıklı ve huzurlu bir gün diliyorum." }, "en": { "text": "I wish you a good, healthy and peaceful day." } } },
-      { "id": "general11", "translations": { "tr": { "text": "Rabbim attığınız her adımı hayra, her duanızı kabule çevirsin." }, "en": { "text": "May God turn your every step to good and your every prayer to acceptance." } } },
-      { "id": "general12", "translations": { "tr": { "text": "Yüreğiniz sevgiyle, sofranız bereketle dolsun." }, "en": { "text": "May your heart be filled with love and your table with blessing." } } },
-      { "id": "general13", "translations": { "tr": { "text": "Allah'ın selâmı, rahmeti ve bereketi üzerinize olsun." }, "en": { "text": "May the peace, mercy and blessing of God be upon you." } } },
-      { "id": "general14", "translations": { "tr": { "text": "Dertleriniz son bulsun, dualarınız kabul olsun." }, "en": { "text": "May your troubles end and your prayers be answered." } } },
-      { "id": "general15", "translations": { "tr": { "text": "Rabbim sizi güzel günlere, hayırlı haberlere ulaştırsın." }, "en": { "text": "May God lead you to beautiful days and good news." } } },
-      { "id": "general16", "translations": { "tr": { "text": "Sağlıkla, huzurla ve sevdiklerinizle kalın. Allah'a emanet olun." }, "en": { "text": "Stay in health, peace and with your loved ones. May God protect you." } } },
-      { "id": "general17", "translations": { "tr": { "text": "Rabbim gönlünüzdeki güzellikleri ömrünüze yazsın." }, "en": { "text": "May God inscribe the beauty in your heart into your life." } } },
-      { "id": "general18", "translations": { "tr": { "text": "Sağlık, huzur ve bereket kapınızdan hiç eksilmesin." }, "en": { "text": "May health, peace and blessing never leave your door." } } },
-      { "id": "general19", "translations": { "tr": { "text": "Allah dualarınızı kabul, yüzünüzü ak etsin." }, "en": { "text": "May God accept your prayers and keep your honor bright." } } },
-      { "id": "general20", "translations": { "tr": { "text": "Hayırlı, bereketli ve huzurlu günler dilerim. Allah'a emanet olun." }, "en": { "text": "I wish you good, blessed and peaceful days. May God protect you." } } }
+      {
+        "id": "general1",
+        "translations": {
+          "tr": {
+            "text": "Allah'a emanet ol. Hayırlı ve bereketli günler dilerim."
+          },
+          "en": {
+            "text": "May you be in Allah's protection. I wish you good and blessed days."
+          },
+          "ar": {
+            "text": "في أمان الله. أتمنى لك أيامًا مليئة بالخير والبركة."
+          },
+          "de": {
+            "text": "Sei Gott anvertraut. Ich wünsche dir gute und gesegnete Tage."
+          },
+          "id": {
+            "text": "Semoga Allah menjagamu. Saya doakan hari-hari yang penuh kebaikan dan keberkahan."
+          },
+          "fr": {
+            "text": "Sois sous la protection d'Allah. Je te souhaite des jours bénis et abondants."
+          },
+          "ur": {
+            "text": "اللہ کی امان میں رہیں۔ بابرکت اور خیر بھرے دنوں کی دعا کرتا ہوں۔"
+          },
+          "bn": {
+            "text": "আল্লাহর হেফাজতে থাকুন। কল্যাণময় ও বরকতময় দিন কামনা করি।"
+          },
+          "fa": {
+            "text": "به خدا سپرده باشی. روزهای خیر و پربرکت آرزو می‌کنم."
+          },
+          "ru": {
+            "text": "Да хранит тебя Аллах. Желаю благих и изобильных дней."
+          }
+        }
+      },
+      {
+        "id": "general2",
+        "translations": {
+          "tr": {
+            "text": "Gönlünüz huzur, eviniz bereket, yolunuz aydınlık olsun."
+          },
+          "en": {
+            "text": "May your heart find peace, your home abundance, and your path be bright."
+          },
+          "ar": {
+            "text": "عسى أن يكون قلبكم مطمئنًا، وبيتكم مباركًا، وطريقكم منيرًا."
+          },
+          "de": {
+            "text": "Möge euer Herz voller Frieden, euer Heim voller Segen und euer Weg voller Licht sein."
+          },
+          "id": {
+            "text": "Semoga hati Anda tenang, rumah Anda penuh keberkahan, dan jalan Anda terang."
+          },
+          "fr": {
+            "text": "Que votre cœur soit serein, votre maison abondante et votre chemin lumineux."
+          },
+          "ur": {
+            "text": "آپ کا دل پرسکون، آپ کا گھر بابرکت اور آپ کی راہ روشن ہو۔"
+          },
+          "bn": {
+            "text": "আপনার হৃদয় প্রশান্তিতে, ঘর বরকতে, পথ আলোয় পূর্ণ হোক।"
+          },
+          "fa": {
+            "text": "دلتان آرام، خانه‌تان پربرکت و راهتان روشن باد."
+          },
+          "ru": {
+            "text": "Пусть ваше сердце будет спокойным, дом — изобильным, а путь — светлым."
+          }
+        }
+      },
+      {
+        "id": "general3",
+        "translations": {
+          "tr": {
+            "text": "Rabbim yolunuzu açık, gönlünüzü ferah etsin."
+          },
+          "en": {
+            "text": "May my Lord open your path and bring ease to your heart."
+          },
+          "ar": {
+            "text": "اللهم يسّر طريقهم واشرح صدرهم."
+          },
+          "de": {
+            "text": "Möge mein Herr euren Weg ebnen und euer Herz erleichtern."
+          },
+          "id": {
+            "text": "Semoga Tuhanku melapangkan jalan Anda dan menenangkan hati Anda."
+          },
+          "fr": {
+            "text": "Que mon Seigneur ouvre votre chemin et apaise votre cœur."
+          },
+          "ur": {
+            "text": "اللہ آپ کی راہ کھلی اور آپ کا دل کھلا کرے۔"
+          },
+          "bn": {
+            "text": "হে রব, আপনার পথ সুগম, হৃদয় প্রশস্ত করুন।"
+          },
+          "fa": {
+            "text": "پروردگار راهتان را گشوده و دلتان را فراخ کند."
+          },
+          "ru": {
+            "text": "Пусть Господь сделает ваш путь открытым, а сердце — спокойным."
+          }
+        }
+      },
+      {
+        "id": "general4",
+        "translations": {
+          "tr": {
+            "text": "Hayırlı günler! Dualarınız kabul, işleriniz rast gelsin."
+          },
+          "en": {
+            "text": "Good day! May your prayers be accepted and your affairs go well."
+          },
+          "ar": {
+            "text": "يومًا مباركًا! عسى أن تُستجاب أدعيتكم وتتيسّر أموركم."
+          },
+          "de": {
+            "text": "Schönen Tag! Mögen eure Gebete erhört werden und eure Vorhaben gelingen."
+          },
+          "id": {
+            "text": "Selamat beraktivitas! Semoga doa-doa Anda dikabulkan dan urusan Anda dilancarkan."
+          },
+          "fr": {
+            "text": "Bonne journée ! Que vos prières soient exaucées et vos affaires prospères."
+          },
+          "ur": {
+            "text": "بخیر دن ہوں! آپ کی دعائیں قبول اور آپ کے کام راس آئیں۔"
+          },
+          "bn": {
+            "text": "শুভ দিন! আপনার দোয়াগুলো কবুল, কাজগুলো সফল হোক।"
+          },
+          "fa": {
+            "text": "روزتان به خیر! دعاهایتان مستجاب و کارهایتان روبه‌راه باد."
+          },
+          "ru": {
+            "text": "Благих дней! Пусть ваши молитвы будут приняты, а дела — успешны."
+          }
+        }
+      },
+      {
+        "id": "general5",
+        "translations": {
+          "tr": {
+            "text": "Allah sağlık, huzur ve bereket eksik etmesin."
+          },
+          "en": {
+            "text": "May Allah never withhold health, peace, and abundance."
+          },
+          "ar": {
+            "text": "أسأل الله ألا يُحرمكم الصحة والسكينة والبركة."
+          },
+          "de": {
+            "text": "Möge Gott Gesundheit, Frieden und Segen nicht fehlen lassen."
+          },
+          "id": {
+            "text": "Semoga Allah tidak mengurangi kesehatan, ketenangan, dan keberkahan."
+          },
+          "fr": {
+            "text": "Qu'Allah ne vous prive jamais de santé, de paix et d'abondance."
+          },
+          "ur": {
+            "text": "اللہ صحت، سکون اور برکت میں کمی نہ کرے۔"
+          },
+          "bn": {
+            "text": "আল্লাহ সুস্থতা, প্রশান্তি ও বরকত কমতি না করুন।"
+          },
+          "fa": {
+            "text": "خداوند سلامتی، آرامش و برکت را کم نکند."
+          },
+          "ru": {
+            "text": "Пусть Аллах не лишит вас здоровья, покоя и изобилия."
+          }
+        }
+      },
+      {
+        "id": "general6",
+        "translations": {
+          "tr": {
+            "text": "Gönlünüzdeki tüm hayırlı dilekler gerçek olsun."
+          },
+          "en": {
+            "text": "May all the good wishes in your heart come true."
+          },
+          "ar": {
+            "text": "عسى أن تتحقق كل الأماني الطيبة التي في قلوبكم."
+          },
+          "de": {
+            "text": "Mögen all die guten Wünsche in eurem Herzen wahr werden."
+          },
+          "id": {
+            "text": "Semoga semua harapan baik yang ada di hati Anda menjadi nyata."
+          },
+          "fr": {
+            "text": "Que tous les bons vœux de votre cœur se réalisent."
+          },
+          "ur": {
+            "text": "آپ کے دل کی تمام نیک خواہشیں پوری ہوں۔"
+          },
+          "bn": {
+            "text": "আপনার হৃদয়ের সকল কল্যাণময় কামনা পূর্ণ হোক।"
+          },
+          "fa": {
+            "text": "همه آرزوهای خیری که در دل دارید محقق شود."
+          },
+          "ru": {
+            "text": "Пусть исполнятся все благие желания вашего сердца."
+          }
+        }
+      },
+      {
+        "id": "general7",
+        "translations": {
+          "tr": {
+            "text": "Rabbim sizi ve sevdiklerinizi her türlü kötülükten korusun."
+          },
+          "en": {
+            "text": "May my Lord protect you and your loved ones from every kind of evil."
+          },
+          "ar": {
+            "text": "اللهم احفظهم ومن يحبون من كل سوء."
+          },
+          "de": {
+            "text": "Möge mein Herr euch und eure Liebsten vor allem Übel bewahren."
+          },
+          "id": {
+            "text": "Semoga Tuhanku melindungi Anda dan orang-orang tercinta dari segala keburukan."
+          },
+          "fr": {
+            "text": "Que mon Seigneur vous protège, vous et vos êtres chers, de tout mal."
+          },
+          "ur": {
+            "text": "اللہ آپ کو اور آپ کے پیاروں کو ہر طرح کی برائی سے محفوظ رکھے۔"
+          },
+          "bn": {
+            "text": "হে রব, আপনাকে ও আপনার প্রিয়জনদের সকল প্রকার অনিষ্ট থেকে রক্ষা করুন।"
+          },
+          "fa": {
+            "text": "پروردگار شما و عزیزانتان را از هر بدی محفوظ بدارد."
+          },
+          "ru": {
+            "text": "Пусть Господь убережёт вас и ваших любимых от всякого зла."
+          }
+        }
+      },
+      {
+        "id": "general8",
+        "translations": {
+          "tr": {
+            "text": "Bugün ve her gün; sağlık, huzur ve bereket sizinle olsun."
+          },
+          "en": {
+            "text": "Today and every day, may health, peace, and abundance be with you."
+          },
+          "ar": {
+            "text": "اليوم وكل يوم؛ عسى أن تكون الصحة والسكينة والبركة معكم."
+          },
+          "de": {
+            "text": "Heute und an jedem Tag mögen Gesundheit, Frieden und Segen mit euch sein."
+          },
+          "id": {
+            "text": "Hari ini dan setiap hari; semoga kesehatan, ketenangan, dan keberkahan menyertai Anda."
+          },
+          "fr": {
+            "text": "Aujourd'hui et chaque jour, que la santé, la paix et l'abondance soient avec vous."
+          },
+          "ur": {
+            "text": "آج اور ہر دن؛ صحت، سکون اور برکت آپ کے ساتھ ہو۔"
+          },
+          "bn": {
+            "text": "আজ এবং প্রতিদিন; সুস্থতা, প্রশান্তি ও বরকত আপনার সাথে থাকুক।"
+          },
+          "fa": {
+            "text": "امروز و هر روز؛ سلامتی، آرامش و برکت با شما باد."
+          },
+          "ru": {
+            "text": "Пусть сегодня и каждый день здоровье, покой и изобилие будут с вами."
+          }
+        }
+      },
+      {
+        "id": "general9",
+        "translations": {
+          "tr": {
+            "text": "Allah gönlünüze göre versin, dualarınızı kabul etsin."
+          },
+          "en": {
+            "text": "May Allah grant you according to your heart and accept your prayers."
+          },
+          "ar": {
+            "text": "أسأل الله أن يعطيكم على قدر ما تتمنون وأن يستجيب أدعيتكم."
+          },
+          "de": {
+            "text": "Möge Gott euch nach eurem Herzenswunsch geben und eure Gebete erhören."
+          },
+          "id": {
+            "text": "Semoga Allah memberi sesuai harapan hati Anda dan mengabulkan doa-doa Anda."
+          },
+          "fr": {
+            "text": "Qu'Allah vous accorde selon les vœux de votre cœur et exauce vos prières."
+          },
+          "ur": {
+            "text": "اللہ آپ کے دل کے مطابق عطا کرے اور آپ کی دعائیں قبول فرمائے۔"
+          },
+          "bn": {
+            "text": "আল্লাহ আপনার মনের মতো দান করুন, আপনার দোয়াগুলো কবুল করুন।"
+          },
+          "fa": {
+            "text": "خداوند به اندازه دلتان عطا کند و دعاهایتان را مستجاب کند."
+          },
+          "ru": {
+            "text": "Пусть Аллах дарует вам по сердцу и примет ваши молитвы."
+          }
+        }
+      },
+      {
+        "id": "general10",
+        "translations": {
+          "tr": {
+            "text": "Hayırlı, sağlıklı ve huzurlu bir gün diliyorum."
+          },
+          "en": {
+            "text": "I wish you a good, healthy, and peaceful day."
+          },
+          "ar": {
+            "text": "أتمنى لكم يومًا مباركًا صحيًا مليئًا بالسكينة."
+          },
+          "de": {
+            "text": "Ich wünsche euch einen guten, gesunden und friedvollen Tag."
+          },
+          "id": {
+            "text": "Saya doakan hari yang penuh kebaikan, sehat, dan tenang."
+          },
+          "fr": {
+            "text": "Je vous souhaite une journée bénie, saine et paisible."
+          },
+          "ur": {
+            "text": "ایک خیر بھرے، صحت مند اور پرسکون دن کی دعا کرتا ہوں۔"
+          },
+          "bn": {
+            "text": "একটি কল্যাণময়, সুস্থ ও প্রশান্ত দিন কামনা করি।"
+          },
+          "fa": {
+            "text": "روزی پر از خیر، سلامتی و آرامش آرزو می‌کنم."
+          },
+          "ru": {
+            "text": "Желаю благого, здорового и спокойного дня."
+          }
+        }
+      },
+      {
+        "id": "general11",
+        "translations": {
+          "tr": {
+            "text": "Rabbim attığınız her adımı hayra, her duanızı kabule çevirsin."
+          },
+          "en": {
+            "text": "May my Lord turn every step you take into goodness and every prayer into acceptance."
+          },
+          "ar": {
+            "text": "اللهم اجعل كل خطوة يخطونها خيرًا وكل دعاء يرفعونه مستجابًا."
+          },
+          "de": {
+            "text": "Möge mein Herr jeden Schritt, den ihr tut, zum Guten und jedes eurer Gebete zur Erhörung wenden."
+          },
+          "id": {
+            "text": "Semoga Tuhanku menjadikan setiap langkah Anda sebagai kebaikan dan setiap doa Anda dikabulkan."
+          },
+          "fr": {
+            "text": "Que mon Seigneur fasse de chacun de vos pas un bien et de chacune de vos prières un exaucement."
+          },
+          "ur": {
+            "text": "اللہ آپ کے ہر قدم کو خیر اور ہر دعا کو قبولیت میں بدل دے۔"
+          },
+          "bn": {
+            "text": "হে রব, আপনার প্রতিটি পদক্ষেপ কল্যাণে, প্রতিটি দোয়া কবুলিয়াতে পরিণত করুন।"
+          },
+          "fa": {
+            "text": "پروردگار هر قدمی که برمی‌دارید را به خیر و هر دعایتان را به قبول تبدیل کند."
+          },
+          "ru": {
+            "text": "Пусть Господь обратит каждый ваш шаг во благо, а каждую молитву — в принятие."
+          }
+        }
+      },
+      {
+        "id": "general12",
+        "translations": {
+          "tr": {
+            "text": "Yüreğiniz sevgiyle, sofranız bereketle dolsun."
+          },
+          "en": {
+            "text": "May your heart be filled with love and your table with abundance."
+          },
+          "ar": {
+            "text": "عسى أن يمتلئ قلبكم بالمحبة، ومائدتكم بالبركة."
+          },
+          "de": {
+            "text": "Möge euer Herz voller Liebe und eure Tafel voller Segen sein."
+          },
+          "id": {
+            "text": "Semoga hati Anda dipenuhi kasih sayang dan hidangan Anda dipenuhi keberkahan."
+          },
+          "fr": {
+            "text": "Que votre cœur s'emplisse d'amour et votre table d'abondance."
+          },
+          "ur": {
+            "text": "آپ کا دل محبت سے اور آپ کا دسترخوان برکت سے بھر جائے۔"
+          },
+          "bn": {
+            "text": "আপনার হৃদয় ভালোবাসায়, দস্তরখান বরকতে পূর্ণ হোক।"
+          },
+          "fa": {
+            "text": "دلتان پر از محبت و سفره‌تان پر از برکت باد."
+          },
+          "ru": {
+            "text": "Пусть ваше сердце наполнится любовью, а стол — изобилием."
+          }
+        }
+      },
+      {
+        "id": "general13",
+        "translations": {
+          "tr": {
+            "text": "Allah'ın selâmı, rahmeti ve bereketi üzerinize olsun."
+          },
+          "en": {
+            "text": "May the peace, mercy, and blessings of Allah be upon you."
+          },
+          "ar": {
+            "text": "السلام عليكم ورحمة الله وبركاته."
+          },
+          "de": {
+            "text": "Möge der Friede, die Barmherzigkeit und der Segen Gottes mit euch sein."
+          },
+          "id": {
+            "text": "Semoga salam, rahmat, dan keberkahan Allah senantiasa menyertai Anda."
+          },
+          "fr": {
+            "text": "Que le salut, la miséricorde et la bénédiction d'Allah soient sur vous."
+          },
+          "ur": {
+            "text": "اللہ کا سلام، رحمت اور برکت آپ پر ہو۔"
+          },
+          "bn": {
+            "text": "আল্লাহর সালাম, রহমত ও বরকত আপনার ওপর বর্ষিত হোক।"
+          },
+          "fa": {
+            "text": "سلام، رحمت و برکت خداوند بر شما باد."
+          },
+          "ru": {
+            "text": "Мир вам, милость Аллаха и Его благословение."
+          }
+        }
+      },
+      {
+        "id": "general14",
+        "translations": {
+          "tr": {
+            "text": "Dertleriniz son bulsun, dualarınız kabul olsun."
+          },
+          "en": {
+            "text": "May your troubles come to an end and your prayers be accepted."
+          },
+          "ar": {
+            "text": "عسى أن تنتهي همومكم وأن تُستجاب أدعيتكم."
+          },
+          "de": {
+            "text": "Mögen eure Sorgen ein Ende finden und eure Gebete erhört werden."
+          },
+          "id": {
+            "text": "Semoga keluh kesah Anda berakhir dan doa-doa Anda dikabulkan."
+          },
+          "fr": {
+            "text": "Que vos peines prennent fin et que vos prières soient exaucées."
+          },
+          "ur": {
+            "text": "آپ کے دکھ ختم ہوں اور آپ کی دعائیں قبول ہوں۔"
+          },
+          "bn": {
+            "text": "আপনার কষ্টের অবসান হোক, দোয়াগুলো কবুল হোক।"
+          },
+          "fa": {
+            "text": "دردهایتان پایان یابد و دعاهایتان مستجاب شود."
+          },
+          "ru": {
+            "text": "Пусть закончатся ваши печали, а молитвы будут приняты."
+          }
+        }
+      },
+      {
+        "id": "general15",
+        "translations": {
+          "tr": {
+            "text": "Rabbim sizi güzel günlere, hayırlı haberlere ulaştırsın."
+          },
+          "en": {
+            "text": "May my Lord bring you to beautiful days and good news."
+          },
+          "ar": {
+            "text": "أسأل الله أن يبلّغكم أيامًا جميلة وأخبارًا سارة."
+          },
+          "de": {
+            "text": "Möge mein Herr euch zu schönen Tagen und guten Nachrichten führen."
+          },
+          "id": {
+            "text": "Semoga Tuhanku menyampaikan Anda ke hari-hari indah dan kabar-kabar baik."
+          },
+          "fr": {
+            "text": "Que mon Seigneur vous mène vers de beaux jours et de bonnes nouvelles."
+          },
+          "ur": {
+            "text": "اللہ آپ کو خوبصورت دنوں اور خوش خبریوں تک پہنچائے۔"
+          },
+          "bn": {
+            "text": "হে রব, আপনাকে সুন্দর দিনে, কল্যাণময় সংবাদে পৌঁছে দিন।"
+          },
+          "fa": {
+            "text": "پروردگار شما را به روزهای زیبا و خبرهای خوش برساند."
+          },
+          "ru": {
+            "text": "Пусть Господь приведёт вас к прекрасным дням и благим вестям."
+          }
+        }
+      },
+      {
+        "id": "general16",
+        "translations": {
+          "tr": {
+            "text": "Sağlıkla, huzurla ve sevdiklerinizle kalın. Allah'a emanet olun."
+          },
+          "en": {
+            "text": "Stay in health, peace, and with your loved ones. May you be in Allah's protection."
+          },
+          "ar": {
+            "text": "ابقوا بصحة وسكينة ومع أحبائكم. في أمان الله."
+          },
+          "de": {
+            "text": "Bleibt in Gesundheit, in Frieden und bei euren Liebsten. Seid Gott anvertraut."
+          },
+          "id": {
+            "text": "Tetaplah sehat, tenang, dan bersama orang-orang tercinta. Semoga Allah menjaga Anda."
+          },
+          "fr": {
+            "text": "Restez en bonne santé, en paix et avec vos êtres chers. Soyez sous la protection d'Allah."
+          },
+          "ur": {
+            "text": "صحت، سکون اور اپنے پیاروں کے ساتھ رہیں۔ اللہ کی امان میں رہیں۔"
+          },
+          "bn": {
+            "text": "সুস্থতায়, প্রশান্তিতে আর প্রিয়জনদের সাথে থাকুন। আল্লাহর হেফাজতে থাকুন।"
+          },
+          "fa": {
+            "text": "با سلامتی، آرامش و عزیزانتان بمانید. به خدا سپرده باشید."
+          },
+          "ru": {
+            "text": "Оставайтесь в здравии, покое и с любимыми. Да хранит вас Аллах."
+          }
+        }
+      },
+      {
+        "id": "general17",
+        "translations": {
+          "tr": {
+            "text": "Rabbim gönlünüzdeki güzellikleri ömrünüze yazsın."
+          },
+          "en": {
+            "text": "May my Lord write the beauties in your heart into your life."
+          },
+          "ar": {
+            "text": "اللهم اكتب الجمال الذي في قلوبهم في أعمارهم."
+          },
+          "de": {
+            "text": "Möge mein Herr die Schönheiten in eurem Herzen in euer Leben schreiben."
+          },
+          "id": {
+            "text": "Semoga Tuhanku menuliskan segala keindahan di hati Anda pada umur Anda."
+          },
+          "fr": {
+            "text": "Que mon Seigneur inscrive dans votre vie les belles choses de votre cœur."
+          },
+          "ur": {
+            "text": "اللہ آپ کے دل کی خوبیوں کو آپ کی زندگی میں لکھ دے۔"
+          },
+          "bn": {
+            "text": "হে রব, আপনার হৃদয়ের সৌন্দর্যগুলো আপনার জীবনে লিখে দিন।"
+          },
+          "fa": {
+            "text": "پروردگار زیبایی‌هایی را که در دل دارید به عمرتان بنویسد."
+          },
+          "ru": {
+            "text": "Пусть Господь впишет красоту вашего сердца в вашу жизнь."
+          }
+        }
+      },
+      {
+        "id": "general18",
+        "translations": {
+          "tr": {
+            "text": "Sağlık, huzur ve bereket kapınızdan hiç eksilmesin."
+          },
+          "en": {
+            "text": "May health, peace, and abundance never be absent from your door."
+          },
+          "ar": {
+            "text": "عسى ألا تنقص الصحة والسكينة والبركة من بابكم أبدًا."
+          },
+          "de": {
+            "text": "Möge Gesundheit, Frieden und Segen nie an eurer Tür fehlen."
+          },
+          "id": {
+            "text": "Semoga kesehatan, ketenangan, dan keberkahan tidak pernah lepas dari pintu Anda."
+          },
+          "fr": {
+            "text": "Que la santé, la paix et l'abondance ne quittent jamais votre porte."
+          },
+          "ur": {
+            "text": "صحت، سکون اور برکت آپ کے دروازے سے کبھی کم نہ ہو۔"
+          },
+          "bn": {
+            "text": "সুস্থতা, প্রশান্তি ও বরকত আপনার দরজা থেকে কখনো কমতি না হোক।"
+          },
+          "fa": {
+            "text": "سلامتی، آرامش و برکت هرگز از درگاه خانه‌تان کم نشود."
+          },
+          "ru": {
+            "text": "Пусть здоровье, покой и изобилие никогда не покинут ваш дом."
+          }
+        }
+      },
+      {
+        "id": "general19",
+        "translations": {
+          "tr": {
+            "text": "Allah dualarınızı kabul, yüzünüzü ak etsin."
+          },
+          "en": {
+            "text": "May Allah accept your prayers and grant you honor."
+          },
+          "ar": {
+            "text": "أسأل الله أن يستجيب أدعيتكم وأن يبيّض وجوهكم."
+          },
+          "de": {
+            "text": "Möge Gott eure Gebete erhören und euch in Ehren halten."
+          },
+          "id": {
+            "text": "Semoga Allah mengabulkan doa-doa Anda dan memuliakan Anda."
+          },
+          "fr": {
+            "text": "Qu'Allah exauce vos prières et préserve votre honneur."
+          },
+          "ur": {
+            "text": "اللہ آپ کی دعائیں قبول اور آپ کا چہرہ روشن کرے۔"
+          },
+          "bn": {
+            "text": "আল্লাহ আপনার দোয়াগুলো কবুল করুন, আপনাকে সম্মানিত করুন।"
+          },
+          "fa": {
+            "text": "خداوند دعاهایتان را مستجاب و روسفیدتان کند."
+          },
+          "ru": {
+            "text": "Пусть Аллах примет ваши молитвы и осветлит ваше лицо."
+          }
+        }
+      },
+      {
+        "id": "general20",
+        "translations": {
+          "tr": {
+            "text": "Hayırlı, bereketli ve huzurlu günler dilerim. Allah'a emanet olun."
+          },
+          "en": {
+            "text": "I wish you good, abundant, and peaceful days. May you be in Allah's protection."
+          },
+          "ar": {
+            "text": "أتمنى لكم أيامًا مباركة عامرة بالخير والسكينة. في أمان الله."
+          },
+          "de": {
+            "text": "Ich wünsche euch gute, gesegnete und friedvolle Tage. Seid Gott anvertraut."
+          },
+          "id": {
+            "text": "Saya doakan hari-hari yang penuh kebaikan, keberkahan, dan ketenangan. Semoga Allah menjaga Anda."
+          },
+          "fr": {
+            "text": "Je vous souhaite des jours bénis, abondants et paisibles. Soyez sous la protection d'Allah."
+          },
+          "ur": {
+            "text": "خیر بھرے، بابرکت اور پرسکون دنوں کی دعا کرتا ہوں۔ اللہ کی امان میں رہیں۔"
+          },
+          "bn": {
+            "text": "কল্যাণময়, বরকতময় ও প্রশান্ত দিন কামনা করি। আল্লাহর হেফাজতে থাকুন।"
+          },
+          "fa": {
+            "text": "روزهای خیر، پربرکت و آرام آرزو می‌کنم. به خدا سپرده باشید."
+          },
+          "ru": {
+            "text": "Желаю благих, изобильных и спокойных дней. Да хранит вас Аллах."
+          }
+        }
+      }
     ]
   }
 ]

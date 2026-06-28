@@ -311,39 +311,9 @@ final dhikrPresetsProvider = FutureProvider<List<DhikrPreset>>(
 final greetingTemplatesProvider = FutureProvider<List<GreetingOccasion>>((
   ref,
 ) async {
-  final bundled = await ref
+  // Tebrikler tamamen paket-içi (greeting_templates.json — 10 dil gömülü).
+  // Panel yönetimi kaldırıldı (kullanıcı isteği); yalnız bundled.
+  return ref
       .watch(assetJsonLoaderProvider)
       .loadModels('$_data/greeting_templates.json', GreetingOccasion.fromJson);
-  // Panel'den eklenen tebrik mesajlarını ('greeting_msg', extra.occasion) ilgili
-  // vesileye ekle → panelden ekle/çıkar yapılabilir.
-  final locale = ref.watch(appLocaleProvider);
-  final extras = ref.watch(collectionProvider('greeting_msg'));
-  if (extras.isEmpty) return bundled;
-  // Panel mesajları ÖNCE; aynı metin pakette de varsa bir kez göster (panele
-  // taşınınca çiftlenmesin). Panel boşsa paket yedeği döner (offline güvence).
-  final seen = <String>{};
-  final byOcc = <String, List<GreetingMessage>>{};
-  for (final c in extras) {
-    final t = (c.title ?? '').trim();
-    if (t.isEmpty) continue;
-    final occ = (c.extra?['occasion'] ?? 'general').toString();
-    seen.add('$occ|$t');
-    final loc = ((c.extra?['langs'] as Map?)?[locale] as Map?)?.cast<String, dynamic>();
-    final lt = (loc?['title'] as String?)?.trim();
-    final disp = (lt != null && lt.isNotEmpty) ? lt : t;
-    (byOcc[occ] ??= []).add(
-      GreetingMessage(c.id, {
-        locale: {'text': disp},
-        'tr': {'text': t},
-      }),
-    );
-  }
-  return [
-    for (final o in bundled)
-      GreetingOccasion(o.occasion, o.iconKey, [
-        ...(byOcc[o.occasion] ?? const <GreetingMessage>[]),
-        for (final m in o.messages)
-          if (!seen.contains('${o.occasion}|${m.text('tr').trim()}')) m,
-      ], o.translations),
-  ];
 });
