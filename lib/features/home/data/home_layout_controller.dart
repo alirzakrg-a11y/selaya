@@ -14,7 +14,9 @@ const homeSectionKeys = [
   'nearestMosque',
   'featured',
   'babyNames', // tek-satır "Bebek İsimleri" kartı
-  'quiz', // İslami Bilgi Yarışması kartı
+  // 'quiz' KAPATILDI (kullanıcı 2026-06-28) — Bilgi Yarışması ana ekrandan
+  // gizlendi (kayıtlı düzenler de süzülür). Kod + rota + quiz_screen duruyor;
+  // geri açmak için bu satırı + aşağıdaki etiketi geri ekle.
   'quickPair',
   'verseHadithPair', // Günün Ayeti + Hadisi YAN YANA (eski verseOfDay+hadithOfDay)
   'dailyDua',
@@ -34,7 +36,6 @@ const homeSectionLabels = {
   'nearestMosque': 'home.nearestMosque',
   'featured': 'home.featured',
   'babyNames': 'babyNames.title',
-  'quiz': 'quiz.title',
   'verseHadithPair': 'home.secVerseHadith',
   'dailyDua': 'akis.duaOfDay',
   'mediaPair': 'home.secMedia',

@@ -69,7 +69,8 @@ class MoreScreen extends ConsumerWidget {
       _Entry(Icons.volunteer_activism_rounded, 'zakat.title', Routes.zakat),
     ]),
     _Section('more.secDiscover', [
-      _Entry(Icons.quiz_rounded, 'quiz.title', Routes.quiz),
+      // Bilgi Yarışması KAPATILDI (kullanıcı 2026-06-28) — ana ekran + Daha Fazla'dan
+      // gizlendi; rota/ekran/backend duruyor, geri açmak için bu satırı geri ekle.
       _Entry(Icons.front_hand_rounded, 'duaWall.title', Routes.duaWall),
       _Entry(Icons.favorite_rounded, 'liked.title', Routes.liked),
       _Entry(Icons.child_friendly_rounded, 'babyNames.title', Routes.babyNames),
