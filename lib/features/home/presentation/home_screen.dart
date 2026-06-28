@@ -7,6 +7,7 @@ import 'package:go_router/go_router.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import '../../../core/data/content_providers.dart';
+import '../../../core/data/manifest_service.dart';
 import '../../../core/localization/localized_text.dart';
 import '../../../core/models/content.dart';
 import '../../../core/router/routes.dart';
@@ -71,7 +72,12 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
       body: GeometricBackground(
         child: SafeArea(
           bottom: false,
-          child: ListView(
+          // Instagram tarzı aşağı-çekme → panel içeriğini (manifest) zorla yenile.
+          child: RefreshIndicator(
+            onRefresh: () => forceRefreshManifest(ref),
+            color: c.gold,
+            child: ListView(
+            physics: const AlwaysScrollableScrollPhysics(),
             padding: const EdgeInsets.only(bottom: AppSpacing.xxxl),
             children: [
               const _HomeHeader(),
@@ -82,6 +88,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                 ..._section(context, k),
               const Padding(padding: AppSpacing.screen, child: _IdeaCard()),
             ],
+          ),
           ),
         ),
       ),

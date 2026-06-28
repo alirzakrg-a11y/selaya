@@ -167,3 +167,23 @@ final collectionProvider =
   final locale = ref.watch(appLocaleProvider);
   return ref.watch(manifestProvider).value?.ofLang(name, locale) ?? const [];
 });
+
+/// Instagram tarzı aşağı-çekme (pull-to-refresh): manifesti AĞDAN ZORLA çek —
+/// 3 dk app kısıtını + 60 sn CDN önbelleğini cache-buster (&_=ts) ile atla,
+/// kaydet, provider'ı yenile. Panelden eklenen/değişen içerik ANINDA gelir.
+Future<void> forceRefreshManifest(WidgetRef ref) async {
+  final prefs = ref.read(sharedPreferencesProvider);
+  final lang = ref.read(appLocaleProvider);
+  final cacheKey = '${_manifestCacheKey}_$lang';
+  final url =
+      '${SelayaCdn.manifestUrl}?lang=$lang&_=${DateTime.now().millisecondsSinceEpoch}';
+  try {
+    final res =
+        await http.get(Uri.parse(url)).timeout(const Duration(seconds: 12));
+    if (res.statusCode == 200 && res.body.isNotEmpty) {
+      await prefs.setString(cacheKey, res.body);
+      _lastManifestRefresh = DateTime.now();
+    }
+  } catch (_) {/* çevrimdışı — eski içerik ekranda kalır */}
+  ref.invalidate(manifestProvider);
+}
