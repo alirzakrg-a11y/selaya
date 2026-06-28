@@ -242,7 +242,13 @@ class PrayerScheduler {
   Future<void> _updateOngoing(
       NotificationService notif, AppSettings settings, City city) async {
     final ongoing = ref.read(ongoingPrayerServiceProvider);
-    if (!ref.read(ongoingNotificationProvider)) {
+    // Master "namaz bildirimleri" KAPALIYSA kalıcı "Sıradaki Vakit" bildirimini
+    // de kaldır → master artık TAM kill-switch. (Kullanıcı: bildirimleri kapatınca
+    // hâlâ açık kalıyor; kalıcı bildirim setOngoing+deleteIntent ile kaydırınca
+    // kendini geri postalıyor → ancak buradan kapanır.) Master AÇIKKEN kendi
+    // toggle'ı (ongoing) geçerli.
+    if (!ref.read(prayerAlertsProvider) ||
+        !ref.read(ongoingNotificationProvider)) {
       await ongoing.stop();
       await notif.cancelOngoing();
       return;

@@ -32,7 +32,14 @@ class DailyTasksScreen extends ConsumerWidget {
 
     return Scaffold(
       backgroundColor: c.bg,
-      appBar: AppBar(title: Text('tasks.title'.tr())),
+      appBar: AppBar(
+        title: Text('tasks.title'.tr()),
+        leading: IconButton(
+          icon: Icon(Icons.arrow_back_ios_new_rounded,
+              color: c.textPrimary, size: 20),
+          onPressed: () => Navigator.of(context).maybePop(),
+        ),
+      ),
       body: ListView(
         padding: const EdgeInsets.fromLTRB(
             AppSpacing.base, AppSpacing.base, AppSpacing.base, AppSpacing.xxxl),

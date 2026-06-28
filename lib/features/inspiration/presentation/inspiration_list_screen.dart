@@ -110,6 +110,7 @@ class _InspirationListScreenState extends ConsumerState<InspirationListScreen> {
     final wps = ref.watch(wallpapersProvider).value ?? const [];
 
     return SelayaScaffold(
+      showBack: true,
       body: async.when(
         loading: () => const Center(child: CircularProgressIndicator()),
         error: (_, _) => Center(

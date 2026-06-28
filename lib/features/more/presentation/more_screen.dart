@@ -146,35 +146,35 @@ class _Grid extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // 3-sütun ızgara — her araç ikon (üst) + başlık (alt) kutusu (kullanıcı seçimi:
-    // en kompakt, en az kaydırma). Başlık 2 satıra kadar ortalı.
+    // 2-sütun ızgara — ikon (sol) + başlık (sağ); ikon & yazı 1 tık BÜYÜK
+    // (kullanıcı isteği). Başlık 2 satıra kadar.
     return GridView.builder(
       shrinkWrap: true,
       physics: const NeverScrollableScrollPhysics(),
       gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-        crossAxisCount: 3,
+        crossAxisCount: 2,
         mainAxisSpacing: AppSpacing.sm,
         crossAxisSpacing: AppSpacing.sm,
-        childAspectRatio: 0.86,
+        childAspectRatio: 2.0,
       ),
       itemCount: entries.length,
       itemBuilder: (context, i) {
         final e = entries[i];
         return SelayaCard(
           onTap: () => context.openRoute(e.route),
-          padding:
-              const EdgeInsets.symmetric(horizontal: 4, vertical: AppSpacing.sm),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
+          padding: const EdgeInsets.symmetric(
+              horizontal: AppSpacing.md, vertical: AppSpacing.md),
+          child: Row(
             children: [
-              FeatureIcon(e.icon, index: i),
-              const Gap.xs(),
-              Text(e.labelKey.tr(),
-                  maxLines: 2,
-                  textAlign: TextAlign.center,
-                  overflow: TextOverflow.ellipsis,
-                  style:
-                      Theme.of(context).textTheme.labelSmall?.copyWith(height: 1.15)),
+              FeatureIcon(e.icon, index: i, size: 28),
+              const Gap.sm(),
+              Expanded(
+                child: Text(e.labelKey.tr(),
+                    maxLines: 2,
+                    overflow: TextOverflow.ellipsis,
+                    style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                        fontWeight: FontWeight.w600, height: 1.1)),
+              ),
             ],
           ),
         );

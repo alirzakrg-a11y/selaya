@@ -172,7 +172,7 @@ function publicUser(u) {
 
 // En fazla 2 aktif cihaz. Cihazı kaydet/tazele; yeni cihaz sınırı aşıyorsa EN
 // ESKİ (last_seen) cihaz(lar)ı düşür → onların token'ı sonraki istekte 401 olur.
-const MAX_DEVICES = 2;
+const MAX_DEVICES = 4;
 async function registerDevice(env, userId, deviceId, label) {
   if (!deviceId) return;
   const now = Date.now();
