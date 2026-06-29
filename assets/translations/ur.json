@@ -233,6 +233,9 @@
     "title": "قرآن پڑھنے کا منصوبہ"
   },
   "auth": {
+    "err_rumuz_required": "ایک درست عرفی نام منتخب کریں۔",
+    "err_email_not_verified": "آپ کا Google ای میل تصدیق شدہ نہیں ہے۔ تصدیق کر کے دوبارہ کوشش کریں۔",
+    "err_google_failed": "Google سے سائن اِن ناکام۔ دوبارہ کوشش کریں۔",
     "googleCta": "Google کے ساتھ جاری رکھیں",
     "title": "اکاؤنٹ",
     "login": "سائن اِن",

@@ -447,6 +447,15 @@ export async function handleAuth(request, env, path, ctx) {
     if (String(info.email_verified) !== 'true') {
       return json({ ok: false, error: 'email_not_verified' }, 401);
     }
+    // Güven sınırını kendi içinde tut (tokeninfo HTTP durumuna bel bağlama):
+    // issuer Google olmalı + token süresi dolmamış olmalı (savunma derinliği).
+    const gIss = (info.iss || '').toString();
+    if (gIss !== 'accounts.google.com' && gIss !== 'https://accounts.google.com') {
+      return json({ ok: false, error: 'google_verify_failed' }, 401);
+    }
+    if (!info.exp || Math.floor(Date.now() / 1000) >= Number(info.exp)) {
+      return json({ ok: false, error: 'google_verify_failed' }, 401);
+    }
     const email = (info.email || '').toString().trim().toLowerCase();
     if (!email) return json({ ok: false, error: 'no_email' }, 401);
     const now = Date.now();
@@ -465,8 +474,12 @@ export async function handleAuth(request, env, path, ctx) {
     // YENİ kullanıcı → rumuz ZORUNLU. Yoksa Flutter'a "rumuz seç" sinyali (200, ok:false).
     const rv = validateRumuz(b.rumuz);
     if (!rv.ok) {
+      // Rumuz HİÇ verilmediyse → "rumuz seç" sinyali. Verildi ama geçersizse
+      // (kısa/yasak karakter/küfür/kutsal) → spesifik kodu döndür ki Flutter
+      // kullanıcıya NEDEN'ini gösterip tekrar sorabilsin (register ile parite).
+      const supplied = (b.rumuz || '').toString().trim().length > 0;
       return json({
-        ok: false, error: 'rumuz_required', detail: rv.error,
+        ok: false, error: supplied ? rv.error : 'rumuz_required', detail: rv.error,
         email, name: (info.given_name || info.name || '').toString(),
       });
     }
@@ -580,7 +593,11 @@ export async function handleAuth(request, env, path, ctx) {
       const pw = ((b && b.password) || '').toString();
       const u = await env.DB.prepare('SELECT * FROM users WHERE id=?').bind(uid).first();
       if (!u) return json({ ok: false, error: 'not_found' }, 404);
-      if (!(await verifyPassword(pw, u.pass_salt, u.pass_hash, u.iters))) {
+      // Google hesapları şifresiz (pass_hash=''). Oturum (Bearer) zaten requireUser
+      // ile doğrulandı → şifresiz hesapta parola teyidini atla (in-app silme Play/KVKK
+      // gereği çalışsın); şifreli hesapta eskisi gibi parola teyidi şart.
+      const hasPw = !!(u.pass_hash && u.pass_salt);
+      if (hasPw && !(await verifyPassword(pw, u.pass_salt, u.pass_hash, u.iters))) {
         return json({ ok: false, error: 'wrong_password' }, 401);
       }
       // Yardımcı tablolar (özellik hiç kullanılmadıysa tablo olmayabilir →
@@ -612,7 +629,9 @@ export async function handleAuth(request, env, path, ctx) {
       if (!validPassword(newPw)) return json({ ok: false, error: 'weak_password' }, 400);
       const u = await env.DB.prepare('SELECT * FROM users WHERE id=?').bind(uid).first();
       if (!u) return json({ ok: false, error: 'not_found' }, 404);
-      if (!(await verifyPassword(oldPw, u.pass_salt, u.pass_hash, u.iters))) {
+      // Google hesabı (şifresiz) → ilk parolayı eski-parola teyidi olmadan kurabilsin.
+      const hasPwd = !!(u.pass_hash && u.pass_salt);
+      if (hasPwd && !(await verifyPassword(oldPw, u.pass_salt, u.pass_hash, u.iters))) {
         return json({ ok: false, error: 'wrong_password' }, 401);
       }
       const np = await hashPassword(newPw);

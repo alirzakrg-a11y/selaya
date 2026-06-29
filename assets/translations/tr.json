@@ -12,6 +12,9 @@
     "stories": "Sesli Hikâyeler"
   },
   "auth": {
+    "err_rumuz_required": "Geçerli bir rumuz seç.",
+    "err_email_not_verified": "Google e-postan doğrulanmamış. Doğrulayıp tekrar dene.",
+    "err_google_failed": "Google ile giriş yapılamadı. Tekrar dene.",
     "googleCta": "Google ile devam et",
     "title": "Hesap",
     "login": "Giriş Yap",

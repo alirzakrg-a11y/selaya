@@ -49,11 +49,18 @@ class _AuthScreenState extends ConsumerState<AuthScreen> {
   }
 
   String _msg(String code) {
+    // Google yapılandırma/uç hataları (kullanıcı-eylemsiz) tek mesajda toplanır.
+    if (code == 'google_verify_failed' || code == 'google_aud_mismatch' ||
+        code == 'no_email' || code == 'no_token' || code == 'bad_body' ||
+        code == 'server_misconfig') {
+      code = 'google_failed';
+    }
     const known = {
       'email_taken', 'invalid_email', 'weak_password',
       'invalid_credentials', 'name_required', 'network', 'bad_response',
       'too_many_attempts', 'name_profanity', 'banned',
       'rumuz_length', 'rumuz_chars', 'rumuz_profanity', 'rumuz_sacred', 'rumuz_taken',
+      'rumuz_required', 'email_not_verified', 'google_failed',
     };
     return (known.contains(code) ? 'auth.err_$code' : 'auth.err_unknown').tr();
   }
@@ -131,17 +138,25 @@ class _AuthScreenState extends ConsumerState<AuthScreen> {
         return;
       }
       final ctrl = ref.read(authControllerProvider.notifier);
-      try {
-        await ctrl.googleLogin(idToken: idToken);
-      } on AuthException catch (e) {
-        if (e.code == 'rumuz_required') {
-          final rumuz = await _askGoogleRumuz();
-          if (rumuz == null || rumuz.trim().isEmpty) {
-            if (mounted) setState(() => _busy = false);
-            return;
+      // YENİ kullanıcı + rumuz yoksa sunucu rumuz_required der → tek-seferlik rumuz
+      // iste; geçersizse (kısa/yasak/küfür/kutsal/alınmış) NEDEN'i gösterip TEKRAR sor.
+      String? rumuz;
+      while (true) {
+        try {
+          await ctrl.googleLogin(idToken: idToken, rumuz: rumuz);
+          break; // giriş başarılı
+        } on AuthException catch (e) {
+          if (e.code == 'rumuz_required' || e.code.startsWith('rumuz_')) {
+            if (!mounted) return;
+            final priorErr = rumuz == null ? null : _msg(e.code);
+            final r = await _askGoogleRumuz(error: priorErr);
+            if (r == null || r.trim().isEmpty) {
+              if (mounted) setState(() => _busy = false);
+              return; // kullanıcı vazgeçti
+            }
+            rumuz = r.trim();
+            continue;
           }
-          await ctrl.googleLogin(idToken: idToken, rumuz: rumuz.trim());
-        } else {
           rethrow;
         }
       }
@@ -158,42 +173,55 @@ class _AuthScreenState extends ConsumerState<AuthScreen> {
   }
 
   /// Yeni Google kullanıcısına tek-seferlik rumuz sor (Dua Duvarı için zorunlu).
-  Future<String?> _askGoogleRumuz() async {
+  /// [error] verilirse önceki denemenin nedeni kırmızı gösterilir (tekrar-sor).
+  Future<String?> _askGoogleRumuz({String? error}) async {
     final ctrl = TextEditingController();
     final c = context.colors;
-    return showDialog<String>(
-      context: context,
-      builder: (ctx) => AlertDialog(
-        backgroundColor: c.surface,
-        title: Text('auth.rumuz'.tr()),
-        content: Column(
-          mainAxisSize: MainAxisSize.min,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text('auth.rumuzHint'.tr(),
-                style: TextStyle(color: c.textSecondary, fontSize: 12.5)),
-            const Gap.md(),
-            TextField(
-              controller: ctrl,
-              autofocus: true,
-              decoration: InputDecoration(
-                labelText: 'auth.rumuz'.tr(),
-                prefixIcon: const Icon(Icons.front_hand_rounded, size: 20),
+    try {
+      return await showDialog<String>(
+        context: context,
+        builder: (ctx) => AlertDialog(
+          backgroundColor: c.surface,
+          title: Text('auth.rumuz'.tr()),
+          content: Column(
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              if (error != null) ...[
+                Text(error,
+                    style: TextStyle(
+                        color: c.danger,
+                        fontSize: 12.5,
+                        fontWeight: FontWeight.w600)),
+                const Gap.sm(),
+              ],
+              Text('auth.rumuzHint'.tr(),
+                  style: TextStyle(color: c.textSecondary, fontSize: 12.5)),
+              const Gap.md(),
+              TextField(
+                controller: ctrl,
+                autofocus: true,
+                decoration: InputDecoration(
+                  labelText: 'auth.rumuz'.tr(),
+                  prefixIcon: const Icon(Icons.front_hand_rounded, size: 20),
+                ),
+                onSubmitted: (v) => Navigator.pop(ctx, v.trim()),
               ),
-              onSubmitted: (v) => Navigator.pop(ctx, v.trim()),
+            ],
+          ),
+          actions: [
+            FilledButton(
+              onPressed: () => Navigator.pop(ctx, ctrl.text.trim()),
+              style: FilledButton.styleFrom(
+                  backgroundColor: c.gold, foregroundColor: c.bg),
+              child: Text('onboarding.next'.tr()),
             ),
           ],
         ),
-        actions: [
-          FilledButton(
-            onPressed: () => Navigator.pop(ctx, ctrl.text.trim()),
-            style: FilledButton.styleFrom(
-                backgroundColor: c.gold, foregroundColor: c.bg),
-            child: Text('onboarding.next'.tr()),
-          ),
-        ],
-      ),
-    );
+      );
+    } finally {
+      ctrl.dispose();
+    }
   }
 
   @override

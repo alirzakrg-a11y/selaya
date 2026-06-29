@@ -233,6 +233,9 @@
     "title": "خطة قراءة القرآن"
   },
   "auth": {
+    "err_rumuz_required": "اختر اسمًا مستعارًا صالحًا.",
+    "err_email_not_verified": "بريدك الإلكتروني في Google غير مُوثَّق. وثّقه ثم حاول مجددًا.",
+    "err_google_failed": "تعذّر تسجيل الدخول عبر Google. حاول مجددًا.",
     "googleCta": "المتابعة باستخدام Google",
     "title": "الحساب",
     "login": "تسجيل الدخول",

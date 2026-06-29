@@ -233,6 +233,9 @@
     "title": "Plan de lecture du Coran"
   },
   "auth": {
+    "err_rumuz_required": "Choisis un pseudo valide.",
+    "err_email_not_verified": "Ton e-mail Google n'est pas vérifié. Vérifie-le et réessaie.",
+    "err_google_failed": "Échec de la connexion Google. Réessaie.",
     "googleCta": "Continuer avec Google",
     "title": "Compte",
     "login": "Se connecter",

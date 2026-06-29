@@ -233,6 +233,9 @@
     "title": "Koran-Leseplan"
   },
   "auth": {
+    "err_rumuz_required": "Wähle einen gültigen Spitznamen.",
+    "err_email_not_verified": "Deine Google-E-Mail ist nicht verifiziert. Verifiziere sie und versuche es erneut.",
+    "err_google_failed": "Google-Anmeldung fehlgeschlagen. Versuche es erneut.",
     "googleCta": "Mit Google fortfahren",
     "title": "Konto",
     "login": "Anmelden",

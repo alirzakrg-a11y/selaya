@@ -233,6 +233,9 @@
     "title": "কুরআন পঠন পরিকল্পনা"
   },
   "auth": {
+    "err_rumuz_required": "একটি বৈধ ডাকনাম বেছে নিন।",
+    "err_email_not_verified": "আপনার Google ইমেল যাচাই করা হয়নি। যাচাই করে আবার চেষ্টা করুন।",
+    "err_google_failed": "Google দিয়ে সাইন-ইন ব্যর্থ। আবার চেষ্টা করুন।",
     "googleCta": "Google দিয়ে চালিয়ে যান",
     "title": "অ্যাকাউন্ট",
     "login": "সাইন ইন",

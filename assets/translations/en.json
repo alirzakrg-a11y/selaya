@@ -12,6 +12,9 @@
     "stories": "Audio Stories"
   },
   "auth": {
+    "err_rumuz_required": "Choose a valid nickname.",
+    "err_email_not_verified": "Your Google email isn't verified. Verify it and try again.",
+    "err_google_failed": "Google sign-in failed. Try again.",
     "googleCta": "Continue with Google",
     "title": "Account",
     "login": "Sign In",

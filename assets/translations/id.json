@@ -233,6 +233,9 @@
     "title": "Rencana Membaca Al-Qur'an"
   },
   "auth": {
+    "err_rumuz_required": "Pilih nama panggilan yang valid.",
+    "err_email_not_verified": "Email Google-mu belum diverifikasi. Verifikasi lalu coba lagi.",
+    "err_google_failed": "Masuk dengan Google gagal. Coba lagi.",
     "googleCta": "Lanjutkan dengan Google",
     "title": "Akun",
     "login": "Masuk",

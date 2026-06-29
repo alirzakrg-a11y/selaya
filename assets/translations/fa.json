@@ -233,6 +233,9 @@
     "title": "برنامهٔ قرائت قرآن"
   },
   "auth": {
+    "err_rumuz_required": "یک نام مستعار معتبر انتخاب کنید.",
+    "err_email_not_verified": "ایمیل Google شما تأیید نشده است. آن را تأیید کنید و دوباره تلاش کنید.",
+    "err_google_failed": "ورود با Google ناموفق بود. دوباره تلاش کنید.",
     "googleCta": "ادامه با Google",
     "title": "حساب کاربری",
     "login": "ورود",
