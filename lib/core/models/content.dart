@@ -376,6 +376,9 @@ class Wallpaper {
   /// tam boy [image] yalnızca detay/indirme ekranında çekilir.
   final String thumb;
 
+  /// Yapay zeka ile üretilen görsel → uygulamada "Yapay zeka ile üretildi" rozeti.
+  final bool ai;
+
   const Wallpaper(
     this.id,
     this.category,
@@ -384,6 +387,7 @@ class Wallpaper {
     this.palette,
     this.translations, {
     this.thumb = '',
+    this.ai = false,
   });
 
   /// Izgara/kart görünümleri için: önizleme varsa o, yoksa tam görsel.

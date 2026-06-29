@@ -143,6 +143,34 @@ class _WallpaperTile extends ConsumerWidget {
                   size: 18,
                 ),
               ),
+            // Yapay zeka ile üretilmiş görsel → küçük "✨ AI" rozeti (şeffaflık).
+            if (wp.ai)
+              Positioned(
+                top: 8,
+                left: 8,
+                child: DecoratedBox(
+                  decoration: BoxDecoration(
+                    color: Colors.black.withValues(alpha: 0.45),
+                    borderRadius: BorderRadius.circular(6),
+                  ),
+                  child: const Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 6, vertical: 2),
+                    child: Row(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        Icon(Icons.auto_awesome_rounded,
+                            color: Colors.white, size: 11),
+                        SizedBox(width: 3),
+                        Text('AI',
+                            style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 10,
+                                fontWeight: FontWeight.w700)),
+                      ],
+                    ),
+                  ),
+                ),
+              ),
             Positioned(
               left: 10,
               right: 10,
@@ -362,6 +390,35 @@ class _WallpaperDetailState extends ConsumerState<WallpaperDetail> {
                   '${_current + 1} / ${widget.list.length}',
                   style: const TextStyle(color: Colors.white60, fontSize: 13),
                 ),
+                if (wp.ai) ...[
+                  const SizedBox(height: 8),
+                  Container(
+                    padding:
+                        const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
+                    decoration: BoxDecoration(
+                      color: Colors.white.withValues(alpha: 0.14),
+                      borderRadius: BorderRadius.circular(99),
+                      border: Border.all(color: Colors.white24),
+                    ),
+                    child: Row(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        const Icon(Icons.auto_awesome_rounded,
+                            color: Colors.white70, size: 13),
+                        const SizedBox(width: 5),
+                        Text(
+                          lang == 'tr'
+                              ? 'Yapay zeka ile üretildi'
+                              : 'AI-generated',
+                          style: const TextStyle(
+                              color: Colors.white70,
+                              fontSize: 12,
+                              fontWeight: FontWeight.w600),
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
                 const Gap.lg(),
                 Padding(
                   padding: const EdgeInsets.all(AppSpacing.lg),

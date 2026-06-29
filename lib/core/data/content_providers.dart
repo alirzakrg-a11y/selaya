@@ -264,6 +264,7 @@ final wallpapersProvider = FutureProvider<List<Wallpaper>>((ref) async {
           'tr': {'title': t},
         },
         thumb: c.thumb ?? '',
+        ai: c.extra?['ai'] == true,
       ),
     );
   }
