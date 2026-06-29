@@ -16,6 +16,7 @@ import '../../../core/theme/app_icons.dart';
 import '../../../core/theme/app_spacing.dart';
 import '../../../core/widgets/app_image.dart';
 import '../../../core/widgets/content_report.dart';
+import '../../../core/widgets/double_tap_heart_animation.dart';
 import '../../../core/widgets/like_button.dart';
 import '../../../core/widgets/selaya_scaffold.dart';
 import '../../../core/widgets/states.dart';
@@ -273,6 +274,16 @@ class _WallpaperDetailState extends ConsumerState<WallpaperDetail> {
     return Scaffold(
       backgroundColor: Colors.black,
       body: GestureDetector(
+        // Çift-tıkla beğen (zaten beğeniliyse geri ALMAZ; kalbi yine gösterir).
+        onDoubleTap: () {
+          final cwp = widget.list[_current];
+          final key = 'wallpaper:${cwp.id}';
+          if (!ref.read(likedKeysProvider).contains(key)) {
+            HapticFeedback.selectionClick();
+            ref.read(likedKeysProvider.notifier).toggle(key);
+          }
+          DoubleTapHeartAnimation.show(context);
+        },
         onVerticalDragUpdate: (d) {
           final ny = (_dragDy + d.delta.dy).clamp(0.0, 700.0);
           if (ny != _dragDy) setState(() => _dragDy = ny);

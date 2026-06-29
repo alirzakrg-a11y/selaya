@@ -367,6 +367,9 @@ export default {
             'INSERT INTO likes (key, count, last_at) VALUES (?1, 1, ?2) ' +
             'ON CONFLICT(key) DO UPDATE SET count = count + 1, last_at = ?2'
           ).bind(key, Date.now()).run();
+          // Edge cache'i düşür → diğer kullanıcılar güncel sayıyı HEMEN görür
+          // (yoksa GET /v1/likes 30 sn boyunca eski sayıyı döndürürdü).
+          if (ctx) ctx.waitUntil(cache.delete(LIKES_CK));
           // Giriş yapan kullanıcının beğenisini KİME ait olarak kaydet (panelde
           // "kim beğendi" + kullanıcının beğendikleri). Anonimse yalnız sayaç.
           const lu = await requireUser(request, env);
@@ -398,6 +401,7 @@ export default {
           await env.DB.prepare(
             'UPDATE likes SET count = MAX(0, count - 1) WHERE key = ?1'
           ).bind(key).run();
+          if (ctx) ctx.waitUntil(cache.delete(LIKES_CK)); // güncel sayı hemen görünsün
           // Beğeni geri alınınca kullanıcının kaydını da sil.
           const uu = await requireUser(request, env);
           if (uu && uu !== 'banned' && uu.sub) {

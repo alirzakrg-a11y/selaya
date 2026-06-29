@@ -98,6 +98,9 @@ class _SelayaAppState extends ConsumerState<SelayaApp>
     // Panelden eklenen içerik, uygulamaya her dönüşte hemen görünsün diye
     // manifesti tazele (wallpapers/stories/feed/… bu manifesti izliyor).
     ref.invalidate(manifestProvider);
+    // Panelden gönderilen bildirimler de her dönüşte çekilsin — gerçek push (FCM)
+    // YOK; pull modeli → app öne geldiğinde yeni bildirimler yerel olarak gösterilir.
+    ref.invalidate(customNotificationsSyncProvider);
     // Keep the shared permission/service status fresh — a grant made in system
     // settings (exact alarm, battery, full-screen) is reflected on resume.
     ref.read(permissionsControllerProvider.notifier).refresh();
@@ -187,7 +190,11 @@ class _SelayaAppState extends ConsumerState<SelayaApp>
     if (ref.read(settingsProvider).cityId != 'current') return;
     if (!await ref.read(permissionServiceProvider).locationGranted()) return;
     if (!mounted) return;
-    final loc = await ref.read(locationServiceProvider).currentLocation();
+    // Hareket tespiti için TAZE konum şart — 3 dk'lık cache, kullanıcı şehir
+    // değiştirdiğinde eski konumu döndürüp vakitleri güncellememeye yol açıyordu.
+    final loc = await ref
+        .read(locationServiceProvider)
+        .currentLocation(allowCache: false);
     if (!mounted || loc == null || loc.name.isEmpty) return;
     if (loc.name == ref.read(settingsProvider).gpsName) return;
     await ref

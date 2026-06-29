@@ -332,6 +332,9 @@ class _Stat extends StatelessWidget {
                 .titleSmall
                 ?.copyWith(fontWeight: FontWeight.w700)),
         Text(label,
+            maxLines: 1,
+            overflow: TextOverflow.ellipsis,
+            textAlign: TextAlign.center,
             style: Theme.of(context)
                 .textTheme
                 .labelSmall

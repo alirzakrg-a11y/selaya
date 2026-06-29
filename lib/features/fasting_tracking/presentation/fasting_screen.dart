@@ -481,6 +481,8 @@ class _DateChip extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(label,
+              maxLines: 1,
+              overflow: TextOverflow.ellipsis,
               style: Theme.of(context)
                   .textTheme
                   .labelSmall
@@ -512,6 +514,8 @@ class _Legend extends StatelessWidget {
             ),
             const Gap.xs(),
             Text(label,
+                maxLines: 1,
+                overflow: TextOverflow.ellipsis,
                 style: Theme.of(context)
                     .textTheme
                     .bodySmall

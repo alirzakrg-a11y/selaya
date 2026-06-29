@@ -440,7 +440,10 @@ class _RamadanScreenState extends ConsumerState<RamadanScreen> {
       children: [
         Icon(icon, color: c.gold, size: 18),
         const SizedBox(height: 3),
-        Text(label, style: TextStyle(color: c.textSecondary, fontSize: 12)),
+        Text(label,
+            maxLines: 1,
+            overflow: TextOverflow.ellipsis,
+            style: TextStyle(color: c.textSecondary, fontSize: 12)),
         Text(time,
             style: TextStyle(
                 color: c.textPrimary,

@@ -186,6 +186,9 @@ class KazaScreen extends ConsumerWidget {
         shape: const RoundedRectangleBorder(borderRadius: AppRadius.rMd),
       ),
       child: Text(label,
+          maxLines: 1,
+          overflow: TextOverflow.ellipsis,
+          textAlign: TextAlign.center,
           style: TextStyle(color: c.gold, fontWeight: FontWeight.w700)),
     );
   }

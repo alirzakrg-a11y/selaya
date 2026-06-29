@@ -17,6 +17,7 @@ import '../../../core/theme/app_colors.dart';
 import '../../../core/theme/app_icons.dart';
 import '../../../core/theme/app_spacing.dart';
 import '../../../core/widgets/app_image.dart';
+import '../../../core/widgets/double_tap_heart_animation.dart';
 import '../../../core/widgets/states.dart';
 
 /// Reels-style vertical video feed. The page in view autoplays; when a clip
@@ -290,6 +291,14 @@ class _FeedPageState extends ConsumerState<_FeedPage> {
         Positioned.fill(
           child: GestureDetector(
             onTap: _togglePlay,
+            // Çift-tıkla beğen (zaten beğeniliyse geri ALMAZ; kalbi yine gösterir).
+            onDoubleTap: () {
+              if (!ref.read(likedKeysProvider).contains(likeKey)) {
+                HapticFeedback.selectionClick();
+                ref.read(likedKeysProvider.notifier).toggle(likeKey);
+              }
+              DoubleTapHeartAnimation.show(context);
+            },
             behavior: HitTestBehavior.opaque,
             child: (_ready && c != null)
                 ? FittedBox(

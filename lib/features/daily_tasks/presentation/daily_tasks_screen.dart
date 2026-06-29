@@ -348,7 +348,7 @@ class _Bar extends StatelessWidget {
         const SizedBox(height: 6),
         Text(label,
             maxLines: 1,
-            overflow: TextOverflow.clip,
+            overflow: TextOverflow.ellipsis,
             style: Theme.of(context).textTheme.labelSmall?.copyWith(
                 color: isToday ? c.gold : c.textTertiary,
                 fontWeight: isToday ? FontWeight.w700 : FontWeight.w500)),
