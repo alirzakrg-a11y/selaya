@@ -584,14 +584,25 @@ class _DuaCard extends StatelessWidget {
               ),
               const Gap.sm(),
               Expanded(
-                child: Text(
-                  post.rumuz,
-                  maxLines: 1,
-                  overflow: TextOverflow.ellipsis,
-                  style: Theme.of(context)
-                      .textTheme
-                      .titleSmall
-                      ?.copyWith(fontWeight: FontWeight.w700),
+                child: Row(
+                  children: [
+                    Flexible(
+                      child: Text(
+                        post.rumuz,
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
+                        style: Theme.of(context)
+                            .textTheme
+                            .titleSmall
+                            ?.copyWith(fontWeight: FontWeight.w700),
+                      ),
+                    ),
+                    // Resmî (doğrulanmış) hesap → altın ✓ rozet.
+                    if (post.official) ...[
+                      const SizedBox(width: 4),
+                      Icon(Icons.verified_rounded, size: 15, color: c.gold),
+                    ],
+                  ],
                 ),
               ),
               Text(_ago(),

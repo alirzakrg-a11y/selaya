@@ -72,8 +72,10 @@ export async function handleDuaWall(request, env, path, ctx) {
     }
     const before = parseInt(beforeParam || '0', 10) || Date.now() + 1;
     const { results } = await env.DB.prepare(
-      "SELECT id, rumuz, text, amins, created_at FROM dua_wall " +
-      "WHERE status='approved' AND created_at < ? ORDER BY created_at DESC LIMIT ?"
+      "SELECT d.id, d.rumuz, d.text, d.amins, d.created_at, " +
+      "CASE WHEN u.is_official=1 THEN 1 ELSE 0 END AS official FROM dua_wall d " +
+      "LEFT JOIN users u ON u.id=d.user_id " +
+      "WHERE d.status='approved' AND d.created_at < ? ORDER BY d.created_at DESC LIMIT ?"
     ).bind(before, PAGE).all();
     const resp = json({ ok: true, duas: results || [] });
     if (!beforeParam) {

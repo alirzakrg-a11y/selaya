@@ -491,7 +491,7 @@ export default {
           if (!uid) return json({ ok: false, error: 'id_required' }, { status: 400 });
           const u = await env.DB.prepare(
             'SELECT u.id, u.name, u.surname, u.email, u.rumuz, u.email_verified, ' +
-            'u.banned, u.ban_reason, u.created_at, u.last_active, ud.device, ' +
+            'u.banned, u.ban_reason, u.created_at, u.last_active, u.is_official, ud.device, ' +
             "CASE WHEN COALESCE(u.pass_hash,'')='' THEN 'google' ELSE 'email' END AS auth_type " +
             'FROM users u LEFT JOIN user_data ud ON ud.user_id=u.id WHERE u.id=?'
           ).bind(uid).first();
@@ -505,6 +505,17 @@ export default {
           u.dua_count = await cnt('SELECT COUNT(*) AS n FROM dua_wall WHERE user_id=?');
           u.hatim_done = await cnt("SELECT COUNT(*) AS n FROM hatim_juz WHERE user_id=? AND status='done'");
           return json({ ok: true, user: u });
+        }
+        // ---- üyeyi RESMÎ yap / kaldır (uygulamada ✓ doğrulanmış görünüm) ----
+        if (request.method === 'POST' && path === '/api/user-official') {
+          const form = await request.formData();
+          const uid = (form.get('id') || '').toString();
+          const official =
+            (form.get('official') || '0').toString() === '1' ? 1 : 0;
+          if (!uid) return json({ ok: false, error: 'id_required' }, { status: 400 });
+          await env.DB.prepare('UPDATE users SET is_official=? WHERE id=?')
+            .bind(official, uid).run();
+          return json({ ok: true, official });
         }
         // ---- üye sil (KVKK: hesabı + verisini kalıcı sil) ----
         if (request.method === 'POST' && path === '/api/user-delete') {
@@ -2030,6 +2041,14 @@ const PANEL_HTML = `<!doctype html>
       }).catch(function(e){ toast('Hata: '+e); });
     };
   }
+  // Üyeyi resmî yap / kaldır (uygulamada ✓ doğrulanmış rozet).
+  function setUserOfficial(uid, official){
+    var fd=new FormData(); fd.append('id',uid); fd.append('official',String(official));
+    api('user-official',{method:'POST',body:fd}).then(function(res){
+      if(res.j&&res.j.ok){ toast(official ? 'Resmî yapıldı ✓' : 'Resmî kaldırıldı'); if(typeof loadUsers==='function') loadUsers(); }
+      else { toast('Hata: '+((res.j&&res.j.error)||res.status)); }
+    }).catch(function(e){ toast('Hata: '+e); });
+  }
   // Herhangi bir yerden (sıralama/şikayet/hatim/dua) kullanıcıya tıkla → TÜM
   // bilgileri tek modalda (Google mı e-posta mı dahil) + ban/af.
   function showUserDetail(uid){
@@ -2050,6 +2069,7 @@ const PANEL_HTML = `<!doctype html>
       rr+=row('Giriş yöntemi', authBadge);
       rr+=row('E-posta', esc(u.email||'—'));
       rr+=row('Rumuz', u.rumuz ? '@'+esc(u.rumuz) : '<span style="color:var(--danger)">yok</span>');
+      rr+=row('Resmî hesap', u.is_official ? '<span class="ok">✓ Resmî (doğrulanmış)</span>' : 'hayır');
       rr+=row('E-posta doğrulandı', u.email_verified ? '<span class="ok">evet</span>' : 'hayır');
       rr+=row('Durum', u.banned ? '<span style="color:var(--danger)">🚫 BANLI'+(u.ban_reason?' — '+esc(u.ban_reason):'')+'</span>' : '<span class="ok">aktif</span>');
       rr+=row('Kayıt tarihi', fmtDate(u.created_at));
@@ -2059,12 +2079,17 @@ const PANEL_HTML = `<!doctype html>
       rr+=row('Dua sayısı', (u.dua_count||0)+' adet');
       rr+=row('Hatim cüzü (okudu)', (u.hatim_done||0)+' cüz');
       var act='<div class="row" style="margin-top:16px">';
+      act += u.is_official
+        ? '<button class="ghost" id="udUnofficial">Resmî Kaldır</button>'
+        : '<button class="ghost" id="udOfficial">⭐ Resmî Yap</button>';
       if(u.banned) act+='<button class="ghost" id="udUnban">✓ Yasağı Kaldır</button>';
       else act+='<button class="danger" id="udBan">🚫 Banla</button>';
       act+='</div>';
       b.innerHTML='<div>'+rr+'</div>'+act;
       var bb=b.querySelector('#udBan'); if(bb) bb.onclick=function(){ ov.remove(); banUser(u.id, u.email||''); };
       var bu=b.querySelector('#udUnban'); if(bu) bu.onclick=function(){ ov.remove(); unbanUser(u.id, u.email||''); };
+      var uo=b.querySelector('#udOfficial'); if(uo) uo.onclick=function(){ ov.remove(); setUserOfficial(u.id, 1); };
+      var ux=b.querySelector('#udUnofficial'); if(ux) ux.onclick=function(){ ov.remove(); setUserOfficial(u.id, 0); };
     }).catch(function(e){ var b=ov.querySelector('#udBody'); if(b) b.innerHTML='<p class="hint" style="color:var(--danger)">Hata: '+esc(String(e))+'</p>'; });
   }
   // Duaya tıklayınca yazarın tam hesap bilgileri (moderasyon görünümü).
