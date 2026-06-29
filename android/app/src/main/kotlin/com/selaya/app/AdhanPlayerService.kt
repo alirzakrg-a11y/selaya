@@ -34,7 +34,9 @@ class AdhanPlayerService : Service() {
 
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
         if (intent?.action == ACTION_STOP) {
-            // Kullanıcı "Kapat" dedi → iz bırakmadan kapat.
+            // Kullanıcı "Kapat" dedi → otomatik-sessizi (Camide/Akıllı) GERİ AL +
+            // iz bırakmadan kapat. (Kapat sesi kapatmıyordu; oto-sessiz kapatıyordu.)
+            restoreSilencedRinger()
             stopEverything(lingering = false)
             return START_NOT_STICKY
         }
@@ -98,6 +100,26 @@ class AdhanPlayerService : Service() {
             @Suppress("DEPRECATION") stopForeground(true)
         }
         stopSelf()
+    }
+
+    /** Kullanıcı ezanı "Kapat" dedi → otomatik sessiz (Camide / Akıllı Sessiz)
+     *  cihazı sessize aldıysa GERİ AL — kullanıcı burada ve sesini geri istiyor.
+     *  DND/bildirim-politikası izni yoksa no-op. NOT: camide geofence HÂLÂ yakında
+     *  ise app öne geldiğinde tekrar sessize alabilir → kalıcı çözüm "Camide
+     *  Otomatik Sessiz"i ayarlardan kapatmaktır. */
+    private fun restoreSilencedRinger() {
+        val nm = getSystemService(Context.NOTIFICATION_SERVICE) as? NotificationManager ?: return
+        if (Build.VERSION.SDK_INT >= 23 && !nm.isNotificationPolicyAccessGranted) return
+        val am = getSystemService(Context.AUDIO_SERVICE) as? AudioManager ?: return
+        for (p in listOf("selaya_mosque_silent", "selaya_silent")) {
+            val prefs = getSharedPreferences(p, Context.MODE_PRIVATE)
+            if (prefs.getBoolean("muted", false)) {
+                try {
+                    am.ringerMode = prefs.getInt("prev_mode", AudioManager.RINGER_MODE_NORMAL)
+                } catch (_: Exception) {}
+                prefs.edit().putBoolean("muted", false).apply()
+            }
+        }
     }
 
     /** Ezan bittikten sonra perdede KALAN sessiz kayıt: "Öğle • 12:40 — ezan
