@@ -55,6 +55,7 @@ abstract final class Routes {
   static const abdestGuide = '/abdest'; // abdest & taharet rehberi HUB
   static const guideDetail = '/guide-detail'; // tekil rehber (extra: guide+collection)
   static const namazGuide = '/namaz-guide'; // namaz rehberi hub (#17)
+  static const specialPrayers = '/special-prayers'; // nafile/özel namazlar rehberi
   static const namazHowTo = '/namaz-howto'; // adım adım namaz rehberi
   static const imsakiye = '/imsakiye'; // 2 aylık imsakiye (imsak/iftar)
   static const hatim = '/hatim'; // Hatim Takibi (kişisel)

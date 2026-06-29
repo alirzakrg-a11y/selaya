@@ -44,6 +44,8 @@ class MoreScreen extends ConsumerWidget {
     _Section('more.secWorship', [
       _Entry(Icons.self_improvement_rounded, 'more.namazGuide',
           Routes.namazGuide),
+      _Entry(Icons.nights_stay_rounded, 'more.specialPrayers',
+          Routes.specialPrayers),
       _Entry(Icons.water_drop_rounded, 'more.abdestGuide', Routes.abdestGuide),
       _Entry(Icons.travel_explore_rounded, 'hajj.title', Routes.hajj),
       _Entry(Icons.flight_rounded, 'travel.title', Routes.travel),

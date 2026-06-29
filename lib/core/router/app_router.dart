@@ -25,6 +25,7 @@ import '../../features/guides/domain/guide.dart';
 import '../../features/guides/presentation/abdest_rehberi_screen.dart';
 import '../../features/guides/presentation/guide_screen.dart';
 import '../../features/guides/presentation/namaz_rehberi_screen.dart';
+import '../../features/guides/presentation/special_prayers_screen.dart';
 import '../../features/hajj/presentation/hajj_umrah_screen.dart';
 import '../../features/home/presentation/featured_grid_screen.dart';
 import '../../features/home/presentation/home_layout_screen.dart';
@@ -173,6 +174,7 @@ final routerProvider = Provider<GoRouter>((ref) {
       fs(Routes.abdestGuide, (_, _) => const AbdestRehberiScreen()),
       fs(Routes.guideDetail, (_, s) => GuideScreen(guide: s.extra as Guide)),
       fs(Routes.namazGuide, (_, _) => const NamazRehberiScreen()),
+      fs(Routes.specialPrayers, (_, _) => const SpecialPrayersScreen()),
       fs(Routes.namazHowTo, (_, _) => const GuideScreen(guide: namazGuide)),
       fs(Routes.widgetsGallery, (_, _) => const WidgetsGalleryScreen()),
       fs(Routes.homeLayout, (_, _) => const HomeLayoutScreen()),
