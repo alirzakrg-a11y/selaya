@@ -10,15 +10,15 @@ const homeSectionKeys = [
   'greeting',
   'religiousDay',
   'gaugeCarousel',
-  'verseOfDay', // Günün Ayeti — TAM kart (Arapça + meal), ÜSTE taşındı
-  'hadithOfDay', // Günün Hadisi — TAM kart (Arapça + meal), ÜSTE taşındı
-  'dailyDua', // Günün Duası — temalı zemin (Arapçasız), ÜSTE taşındı
   'prayerStrip',
   'nearestMosque',
   'featured',
   'babyNames', // tek-satır "Bebek İsimleri" kartı
   'quiz', // İslami Bilgi Yarışması kartı
   'audioStories', // Sesli Dini Hikâyeler (TR-only; diğer dillerde boş döner)
+  'verseOfDay', // Günün Ayeti — sesli hikâyelerin ALTINA alındı (TAM kart)
+  'hadithOfDay', // Günün Hadisi — sesli hikâyelerin ALTINA alındı (TAM kart)
+  'dailyDua', // Günün Duası — sesli hikâyelerin ALTINA (temalı zemin, Arapçasız)
   'quickPair',
   'mediaPair', // Videolar + Duvar Kâğıdı YAN YANA (eski videos+wallpaper)
   'widgetPromo',
