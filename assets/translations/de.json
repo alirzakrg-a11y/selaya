@@ -721,6 +721,12 @@
     "title": "Ramadan"
   },
   "onboarding": {
+    "adhanTitle": "Adhan & Gebetszeit",
+    "adhanIntro": "Wie möchtest du zur Gebetszeit benachrichtigt werden? Du kannst dies später in den Einstellungen ändern.",
+    "adhanSesli": "Hörbarer Adhan",
+    "adhanSessiz": "Stille Benachrichtigung",
+    "adhanKapali": "Keine Benachrichtigungen",
+    "adhanChoose": "Bitte triff eine Auswahl",
     "chooseLanguage": "Wähle deine Sprache",
     "languageSubtitle": "Du kannst sie jederzeit in den Einstellungen ändern",
     "skip": "Überspringen",

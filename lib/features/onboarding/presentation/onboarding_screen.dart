@@ -22,6 +22,8 @@ import '../../../core/widgets/permission_dialog.dart';
 import '../../notifications/data/daily_content_controller.dart';
 import '../../notifications/data/prayer_notification_controller.dart';
 import '../../notifications/data/special_notifications.dart';
+import '../../notifications/domain/prayer_notification_settings.dart';
+import '../../prayer_times/domain/prayer.dart';
 import '../../settings/presentation/settings_controller.dart';
 
 class OnboardingScreen extends ConsumerStatefulWidget {
@@ -33,7 +35,7 @@ class OnboardingScreen extends ConsumerStatefulWidget {
 class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
   final _controller = PageController();
   int _page = 0;
-  static const _last = 3;
+  static const _last = 4;
   bool _terms = false;
   bool _termsWarn = false; // kutu işaretlenmeden ilerlenmeye çalışıldı → vurgula
   bool _permIntroShown = false;
@@ -41,6 +43,7 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
   // The actual grant status is the single source of truth in
   // [permissionsControllerProvider].
   bool _warnPerms = false;
+  bool _adhanChosen = false; // #10: ezan seçim sayfasında seçim yapılmadan geçilemez
 
   @override
   void dispose() {
@@ -76,6 +79,13 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
       // Buton ALTINDA snackbar açıp Devam'ı kapatmak yerine kutuyu KIRMIZI
       // vurgula — kullanıcı neyi işaretlemesi gerektiğini net görür (madde 6).
       setState(() => _termsWarn = true);
+      return;
+    }
+    // #10: Ezan/namaz-vakti seçim sayfasında (index 3) bir mod seçilmeden geçilemez.
+    if (_page == 3 && !_adhanChosen) {
+      ScaffoldMessenger.of(context)
+        ..clearSnackBars()
+        ..showSnackBar(SnackBar(content: Text('onboarding.adhanChoose'.tr())));
       return;
     }
     if (_page < _last) {
@@ -149,6 +159,8 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
                     const _LanguagePage(),
                     const _FeaturesShowcasePage(),
                     const _NotificationPrefsPage(),
+                    _AdhanChoicePage(
+                        onChosen: () => setState(() => _adhanChosen = true)),
                     _SetupPage(warn: _warnPerms),
                   ],
                 ),
@@ -557,6 +569,105 @@ class _FeaturesShowcasePage extends StatelessWidget {
 /// and the daily verse + hadith. All default ON; turning one off here persists
 /// immediately (daily ones are (re)scheduled/cancelled on the spot). Prayer
 /// reminders + the adhan sound are pre-configured and tunable later in Settings.
+/// #10: Ezan & namaz-vakti bildirimi için AYRI, zorunlu seçim sayfası — kullanıcı
+/// bir mod seçmeden ilerleyemez (hızlıca atlayamasın). Seçim namaz bildirim
+/// ayarına yazılır; sonradan Ayarlar'dan değiştirilebilir.
+class _AdhanChoicePage extends ConsumerStatefulWidget {
+  final VoidCallback onChosen;
+  const _AdhanChoicePage({required this.onChosen});
+  @override
+  ConsumerState<_AdhanChoicePage> createState() => _AdhanChoicePageState();
+}
+
+class _AdhanChoicePageState extends ConsumerState<_AdhanChoicePage> {
+  String? _sel;
+
+  Future<void> _choose(String mode) async {
+    final alerts = ref.read(prayerAlertsProvider.notifier);
+    if (mode == 'kapali') {
+      await alerts.set(false);
+    } else {
+      await alerts.set(true);
+      final sound = mode == 'sessiz'
+          ? AdhanSound.silent
+          : AdhanSound.values.firstWhere((s) => !s.isSilent);
+      final notif = ref.read(prayerNotificationProvider.notifier);
+      for (final s in PrayerSlot.values) {
+        await notif.setAlarm(
+          s,
+          ref
+              .read(prayerNotificationProvider)
+              .alarmFor(s)
+              .copyWith(atTime: true, atTimeSound: sound),
+        );
+      }
+    }
+    setState(() => _sel = mode);
+    widget.onChosen();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final c = context.colors;
+    return Padding(
+      padding: AppSpacing.screen,
+      child: ListView(
+        children: [
+          const Gap.md(),
+          Icon(Icons.volume_up_rounded, color: c.gold, size: 40),
+          const Gap.sm(),
+          Text('onboarding.adhanTitle'.tr(),
+              textAlign: TextAlign.center,
+              style: Theme.of(context).textTheme.headlineSmall),
+          const Gap.sm(),
+          Text('onboarding.adhanIntro'.tr(),
+              textAlign: TextAlign.center,
+              style: Theme.of(context)
+                  .textTheme
+                  .bodyLarge
+                  ?.copyWith(color: c.textSecondary, height: 1.5)),
+          const Gap.lg(),
+          _card('sesli', Icons.volume_up_rounded, 'onboarding.adhanSesli'.tr()),
+          const Gap.md(),
+          _card('sessiz', Icons.notifications_active_rounded,
+              'onboarding.adhanSessiz'.tr()),
+          const Gap.md(),
+          _card('kapali', Icons.notifications_off_rounded,
+              'onboarding.adhanKapali'.tr()),
+        ],
+      ),
+    );
+  }
+
+  Widget _card(String mode, IconData icon, String title) {
+    final c = context.colors;
+    final sel = _sel == mode;
+    return GestureDetector(
+      onTap: () => _choose(mode),
+      child: Container(
+        padding: const EdgeInsets.all(AppSpacing.md),
+        decoration: BoxDecoration(
+          color: sel ? c.gold.withValues(alpha: 0.12) : c.surfaceAlt,
+          borderRadius: BorderRadius.circular(16),
+          border:
+              Border.all(color: sel ? c.gold : c.border, width: sel ? 1.6 : 1),
+        ),
+        child: Row(children: [
+          Icon(icon, color: sel ? c.gold : c.textSecondary, size: 26),
+          const Gap.md(),
+          Expanded(
+              child: Text(title,
+                  style: Theme.of(context)
+                      .textTheme
+                      .titleMedium
+                      ?.copyWith(fontWeight: FontWeight.w600))),
+          if (sel) Icon(Icons.check_circle_rounded, color: c.gold, size: 24),
+        ]),
+      ),
+    );
+  }
+}
+
 class _NotificationPrefsPage extends ConsumerWidget {
   const _NotificationPrefsPage();
 

@@ -286,6 +286,12 @@
     "more": "More"
   },
   "onboarding": {
+    "adhanTitle": "Adhan & Prayer Time",
+    "adhanIntro": "How do you want to be notified at prayer time? You can change this later in Settings.",
+    "adhanSesli": "Audible Adhan",
+    "adhanSessiz": "Silent Notification",
+    "adhanKapali": "No Notifications",
+    "adhanChoose": "Please make a choice",
     "chooseLanguage": "Choose your language",
     "languageSubtitle": "You can change it anytime in settings",
     "skip": "Skip",

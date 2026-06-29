@@ -721,6 +721,12 @@
     "title": "رمضان"
   },
   "onboarding": {
+    "adhanTitle": "الأذان ووقت الصلاة",
+    "adhanIntro": "كيف تريد أن يتم تنبيهك عند دخول وقت الصلاة؟ يمكنك تغيير ذلك لاحقًا من الإعدادات.",
+    "adhanSesli": "أذان مسموع",
+    "adhanSessiz": "إشعار صامت",
+    "adhanKapali": "بدون إشعارات",
+    "adhanChoose": "يرجى الاختيار",
     "chooseLanguage": "اختر لغتك",
     "languageSubtitle": "يمكنك تغييرها في أي وقت من الإعدادات",
     "skip": "تخطٍ",

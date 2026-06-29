@@ -721,6 +721,12 @@
     "title": "Ramadan"
   },
   "onboarding": {
+    "adhanTitle": "Azan & Waktu Salat",
+    "adhanIntro": "Bagaimana Anda ingin diberi tahu saat waktu salat tiba? Anda dapat mengubahnya nanti di Pengaturan.",
+    "adhanSesli": "Azan Bersuara",
+    "adhanSessiz": "Notifikasi Senyap",
+    "adhanKapali": "Tanpa Notifikasi",
+    "adhanChoose": "Silakan pilih",
     "chooseLanguage": "Pilih bahasa Anda",
     "languageSubtitle": "Anda bisa mengubahnya kapan saja di pengaturan",
     "skip": "Lewati",

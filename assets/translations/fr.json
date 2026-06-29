@@ -721,6 +721,12 @@
     "title": "Ramadan"
   },
   "onboarding": {
+    "adhanTitle": "Adhan et heure de prière",
+    "adhanIntro": "Comment souhaitez-vous être averti à l'heure de la prière ? Vous pourrez le modifier plus tard dans les Réglages.",
+    "adhanSesli": "Adhan sonore",
+    "adhanSessiz": "Notification silencieuse",
+    "adhanKapali": "Aucune notification",
+    "adhanChoose": "Veuillez faire un choix",
     "chooseLanguage": "Choisissez votre langue",
     "languageSubtitle": "Vous pouvez la changer à tout moment dans les paramètres",
     "skip": "Passer",
