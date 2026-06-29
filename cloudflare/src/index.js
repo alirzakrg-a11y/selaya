@@ -5,7 +5,7 @@
 // Bağlamalar: DB (D1: selaya-content), CDN (R2: selaya-cdn), CDN_BASE (var),
 //             ADMIN_TOKEN (secret), AUTH_SECRET (secret — JWT imzası)
 
-import { handleAuth, hashPassword, timingSafeEqual, requireUser } from './auth.js';
+import { handleAuth, hashPassword, timingSafeEqual, requireUser, deleteUserCascade } from './auth.js';
 import { LANDING_HTML } from './landing.js';
 import { handleDuaWall } from './dua_wall.js';
 import { handleHatim } from './hatim.js';
@@ -485,8 +485,10 @@ export default {
           const form = await request.formData();
           const uid = (form.get('id') || '').toString();
           if (!uid) return json({ ok: false, error: 'id_required' }, { status: 400 });
-          await env.DB.prepare('DELETE FROM user_data WHERE user_id=?').bind(uid).run();
-          await env.DB.prepare('DELETE FROM users WHERE id=?').bind(uid).run();
+          // Üyeyi + TÜM verisini sil (dua duvarı yazıları + âmin/şikayet, QUIZ
+          // birinciliği/skorları, cihazlar, kodlar; hatim cüzleri serbest) — in-app
+          // silme ile ORTAK helper (auth.js deleteUserCascade).
+          await deleteUserCascade(env, uid);
           return json({ ok: true });
         }
         // ---- üye şifresini sıfırla (admin; kullanıcı unuttuğunda manuel) ----

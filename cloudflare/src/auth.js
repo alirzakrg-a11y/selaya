@@ -199,6 +199,37 @@ async function registerDevice(env, userId, deviceId, label) {
   ).bind(userId, deviceId, label || '', now, now).run();
 }
 
+// Kullanıcıyı + TÜM verisini KALICI sil (TEK KAYNAK: hem in-app /v1/me/delete hem
+// panel /api/user-delete bunu çağırır). Silinen: dua duvarı yazıları + o dualara
+// gelen âmin'ler & şikayetler, kullanıcının başka dualara âmin'leri/şikayetleri,
+// QUIZ skorları (birincilikler), cihazlar, reset kodları. Hatim cüzleri serbest
+// bırakılır. Tablo yoksa hata yutulur (FK CASCADE D1'de tetiklenmez → elle).
+export async function deleteUserCascade(env, uid) {
+  if (!uid) return;
+  const ops = [
+    // Önce silinecek kullanıcının dualarına ait âmin/şikayetler (öksüz kalmasın):
+    'DELETE FROM dua_amins WHERE dua_id IN (SELECT id FROM dua_wall WHERE user_id=?)',
+    'DELETE FROM dua_reports WHERE dua_id IN (SELECT id FROM dua_wall WHERE user_id=?)',
+    // Kullanıcının kendi duaları + başka dualara verdiği âmin'ler/şikayetler:
+    'DELETE FROM dua_wall WHERE user_id=?',
+    'DELETE FROM dua_amins WHERE user_id=?',
+    'DELETE FROM dua_reports WHERE user_id=?',
+    // Quiz (bilgi yarışması) birinciliği/skorları:
+    'DELETE FROM quiz_scores WHERE user_id=?',
+    // Cihazlar + şifre-sıfırlama kodları:
+    'DELETE FROM user_devices WHERE user_id=?',
+    'DELETE FROM auth_codes WHERE user_id=?',
+    // Hatim cüzleri: silme, SERBEST bırak (başkası alabilsin):
+    "UPDATE hatim_juz SET status='open', user_id=NULL, rumuz=NULL, claimed_at=NULL, done_at=NULL WHERE user_id=?",
+    // Çekirdek: bulut senkron verisi + hesabın kendisi:
+    'DELETE FROM user_data WHERE user_id=?',
+    'DELETE FROM users WHERE id=?',
+  ];
+  for (const sql of ops) {
+    try { await env.DB.prepare(sql).bind(uid).run(); } catch (_) {}
+  }
+}
+
 // Bearer token'dan kullanıcıyı doğrula → payload | null
 export async function requireUser(request, env) {
   if (!env.AUTH_SECRET) return null;
@@ -600,23 +631,9 @@ export async function handleAuth(request, env, path, ctx) {
       if (hasPw && !(await verifyPassword(pw, u.pass_salt, u.pass_hash, u.iters))) {
         return json({ ok: false, error: 'wrong_password' }, 401);
       }
-      // Yardımcı tablolar (özellik hiç kullanılmadıysa tablo olmayabilir →
-      // tek tek dene, hatayı yut). hatim cüzleri serbest bırakılır.
-      const aux = [
-        'DELETE FROM user_devices WHERE user_id=?',
-        'DELETE FROM dua_wall WHERE user_id=?',
-        'DELETE FROM dua_amins WHERE user_id=?',   // FK CASCADE D1'de tetiklenmez → elle
-        'DELETE FROM dua_reports WHERE user_id=?',
-        'DELETE FROM quiz_scores WHERE user_id=?',
-        'DELETE FROM auth_codes WHERE user_id=?',
-        "UPDATE hatim_juz SET status='open', user_id=NULL, rumuz=NULL, claimed_at=NULL, done_at=NULL WHERE user_id=?",
-      ];
-      for (const sql of aux) {
-        try { await env.DB.prepare(sql).bind(uid).run(); } catch (_) {}
-      }
-      // Çekirdek: bulut senkron verisi + hesap.
-      await env.DB.prepare('DELETE FROM user_data WHERE user_id=?').bind(uid).run();
-      await env.DB.prepare('DELETE FROM users WHERE id=?').bind(uid).run();
+      // Kullanıcıyı + TÜM verisini sil (dua duvarı + âmin/şikayet + quiz skorları
+      // + cihazlar + kodlar; hatim cüzleri serbest) — panel silme ile ORTAK kaynak.
+      await deleteUserCascade(env, uid);
       return json({ ok: true });
     }
 
