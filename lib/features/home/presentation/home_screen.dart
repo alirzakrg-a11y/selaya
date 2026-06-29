@@ -6,6 +6,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:url_launcher/url_launcher.dart';
 
+import '../../../core/ads/ad_widgets.dart';
 import '../../../core/data/content_providers.dart';
 import '../../../core/data/manifest_service.dart';
 import '../../../core/localization/localized_text.dart';
@@ -87,6 +88,11 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
               for (final k in ref.watch(homeLayoutProvider).visible)
                 ..._section(context, k),
               const Padding(padding: AppSpacing.screen, child: _IdeaCard()),
+              // Reklam (premium VEYA ana anahtar kapalıysa hiç yer kaplamaz —
+              // adsActiveProvider): ana sayfa yerel kartı + en altta banner.
+              const NativeAdCard(),
+              const Gap.md(),
+              const AdBanner(),
             ],
           ),
           ),

@@ -5,10 +5,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:intl/date_symbol_data_local.dart';
+import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:timezone/data/latest_all.dart' as tzdata;
 
 import 'app.dart';
+import 'core/ads/ads_config.dart';
 import 'core/di/providers.dart';
 import 'features/notifications/domain/prayer_notification_settings.dart';
 import 'features/audio_stories/data/audio_handler.dart';
@@ -140,6 +142,10 @@ Future<void> main() async {
     audioServiceError = '$e\n$s'.split('\n').take(4).join('\n');
     audioHandler = AppAudioHandler();
   }
+
+  // AdMob başlat (ana anahtar açıkken). App açılışını bloke etmesin diye
+  // await edilmez; premium/yerleşim kontrolü AdsService + adsActiveProvider'da.
+  if (kAdsEnabled) MobileAds.instance.initialize();
 
   runApp(
     ProviderScope(

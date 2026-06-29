@@ -35,6 +35,11 @@
         android:label="SELAYA"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
+        <!-- AdMob App ID (gerçek SELAYA; reklam birimi ID'leri kodda test/gerçek
+             bayrağıyla yönetilir — ads_config.dart kUseTestAds). -->
+        <meta-data
+            android:name="com.google.android.gms.ads.APPLICATION_ID"
+            android:value="ca-app-pub-5462166590735357~2899282618"/>
         <activity
             android:name=".MainActivity"
             android:exported="true"

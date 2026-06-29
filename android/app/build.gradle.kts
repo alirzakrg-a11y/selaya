@@ -30,7 +30,9 @@ android {
         applicationId = "com.selaya.app"
         // You can update the following values to match your application needs.
         // For more information, see: https://flutter.dev/to/review-gradle-config.
-        minSdk = flutter.minSdkVersion
+        // google_mobile_ads 5.x en az API 23 ister; flutter varsayılanı daha
+        // düşükse 23'e yükselt (Android 6.0 — kullanıcı kaybı ihmal edilebilir).
+        minSdk = maxOf(23, flutter.minSdkVersion)
         // Google Play, 31 Ağu 2025'ten beri yeni uygulama/güncellemeler için
         // targetSdk >= 35 (Android 15) şart koşuyor; 36 (Android 16) ise
         // Flutter 3.44'ün önerdiği en son stabil ve compileSdk de zaten 36.
