@@ -694,129 +694,119 @@ class _DailyContentCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // Arka plan = panel duvar kâğıtlarından biri (kart + paylaşım aynı görsel).
-    return ClipRRect(
-      borderRadius: AppRadius.rXl,
-      child: Stack(
-        children: [
-          Positioned.fill(child: AppImage.cdn(backgroundImage)),
-          const Positioned.fill(
-            child: DecoratedBox(
-              decoration: BoxDecoration(
-                gradient: LinearGradient(
-                  begin: Alignment.topCenter,
-                  end: Alignment.bottomCenter,
-                  colors: [Color(0x9905070D), Color(0xF205070D)],
-                ),
-              ),
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.all(AppSpacing.md),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: [
-                Row(
-                  children: [
-                    Icon(icon, size: 16, color: AppColors.goldBright),
-                    const SizedBox(width: 6),
-                    Text(
-                      label.toUpperCase(),
-                      style: const TextStyle(
-                        color: AppColors.goldBright,
-                        fontSize: 11,
-                        letterSpacing: 0.8,
-                        fontWeight: FontWeight.w700,
-                      ),
-                    ),
-                  ],
-                ),
-                if (arabic != null && arabic!.isNotEmpty) ...[
-                  const Gap.md(),
+    // Arka plan artık FOTOĞRAF değil → imza GeometricBackground (koyu: gradyan +
+    // yıldız + altın parıltı; açık tema: sakin tinted yüzey). Paylaşımda hâlâ
+    // duvar kâğıdı görseli kullanılır (backgroundImage → showVerseShareSheet).
+    final c = context.colors;
+    final onCard = c.isDark ? Colors.white : c.textPrimary;
+    return Container(
+      clipBehavior: Clip.antiAlias,
+      decoration: BoxDecoration(
+        borderRadius: AppRadius.rXl,
+        border: Border.all(
+          color: c.gold.withValues(alpha: c.isDark ? 0.22 : 0.30),
+        ),
+      ),
+      child: GeometricBackground(
+        gradientColors: c.isDark ? null : [c.surfaceAlt],
+        patternOpacity: c.isDark ? 0.06 : 0.0,
+        glowColor: c.gold,
+        child: Padding(
+          padding: const EdgeInsets.all(AppSpacing.md),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              Row(
+                children: [
+                  Icon(icon, size: 16, color: c.gold),
+                  const SizedBox(width: 6),
                   Text(
-                    arabic!,
-                    textAlign: TextAlign.center,
-                    textDirection: TextDirection.rtl,
-                    maxLines: 2,
-                    overflow: TextOverflow.ellipsis,
-                    style: AppTypography.arabic(
-                      fontSize: 20,
-                      color: Colors.white,
+                    label.toUpperCase(),
+                    style: TextStyle(
+                      color: c.gold,
+                      fontSize: 11,
+                      letterSpacing: 0.8,
+                      fontWeight: FontWeight.w700,
                     ),
                   ),
                 ],
+              ),
+              if (arabic != null && arabic!.isNotEmpty) ...[
                 const Gap.md(),
                 Text(
-                  '"$text"',
+                  arabic!,
+                  textAlign: TextAlign.center,
+                  textDirection: TextDirection.rtl,
                   maxLines: 3,
                   overflow: TextOverflow.ellipsis,
-                  style: const TextStyle(
-                    color: Colors.white,
-                    fontSize: 14,
-                    height: 1.45,
-                  ),
-                ),
-                const Gap.sm(),
-                Row(
-                  children: [
-                    Expanded(
-                      child: Text(
-                        reference,
-                        style: const TextStyle(
-                          color: AppColors.goldBright,
-                          fontSize: 12,
-                          fontWeight: FontWeight.w600,
-                        ),
-                      ),
-                    ),
-                    LikeButton(likeKey: likeKey, light: true),
-                    const Gap.xs(),
-                    GestureDetector(
-                      onTap: () => showVerseShareSheet(
-                        context,
-                        arabic: arabic,
-                        text: text,
-                        reference: reference,
-                        label: label,
-                        backgroundImage: backgroundImage,
-                      ),
-                      child: Container(
-                        padding: const EdgeInsets.symmetric(
-                          horizontal: 12,
-                          vertical: 7,
-                        ),
-                        decoration: BoxDecoration(
-                          color: Colors.white.withValues(alpha: 0.12),
-                          borderRadius: AppRadius.rSm,
-                          border: Border.all(color: Colors.white24),
-                        ),
-                        child: Row(
-                          mainAxisSize: MainAxisSize.min,
-                          children: [
-                            const Icon(
-                              AppIcons.share,
-                              size: 14,
-                              color: Colors.white,
-                            ),
-                            const SizedBox(width: 6),
-                            Text(
-                              'common.share'.tr(),
-                              style: const TextStyle(
-                                color: Colors.white,
-                                fontSize: 12,
-                                fontWeight: FontWeight.w600,
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                  ],
+                  style: AppTypography.arabic(fontSize: 22, color: onCard),
                 ),
               ],
-            ),
+              const Gap.md(),
+              Text(
+                '"$text"',
+                maxLines: 4,
+                overflow: TextOverflow.ellipsis,
+                style: TextStyle(color: onCard, fontSize: 14, height: 1.45),
+              ),
+              const Gap.sm(),
+              Row(
+                children: [
+                  Expanded(
+                    child: Text(
+                      reference,
+                      style: TextStyle(
+                        color: c.gold,
+                        fontSize: 12,
+                        fontWeight: FontWeight.w600,
+                      ),
+                    ),
+                  ),
+                  LikeButton(likeKey: likeKey, light: c.isDark),
+                  const Gap.xs(),
+                  GestureDetector(
+                    onTap: () => showVerseShareSheet(
+                      context,
+                      arabic: arabic,
+                      text: text,
+                      reference: reference,
+                      label: label,
+                      backgroundImage: backgroundImage,
+                    ),
+                    child: Container(
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 12,
+                        vertical: 7,
+                      ),
+                      decoration: BoxDecoration(
+                        color: c.gold.withValues(alpha: c.isDark ? 0.16 : 0.12),
+                        borderRadius: AppRadius.rSm,
+                        border: Border.all(
+                          color: c.gold.withValues(alpha: 0.30),
+                        ),
+                      ),
+                      child: Row(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          Icon(AppIcons.share, size: 14, color: c.gold),
+                          const SizedBox(width: 6),
+                          Text(
+                            'common.share'.tr(),
+                            style: TextStyle(
+                              color: c.gold,
+                              fontSize: 12,
+                              fontWeight: FontWeight.w600,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ],
           ),
-        ],
+        ),
       ),
     );
   }

@@ -125,13 +125,41 @@ class _LikedScreenState extends ConsumerState<LikedScreen> {
       for (final w in walls)
         if (liked.contains('wallpaper:${w.id}')) w,
     ];
+    // Sesli hikâye favorileri ("catId:index") → kategori + bölümü çöz (favoriler
+    // likedKeys değil ayrı prefs'te; burada görünsün ki "ne beğenirsem burada").
+    final audioFavs = ref
+            .watch(sharedPreferencesProvider)
+            .getStringList(PrefKeys.favoriteAudio) ??
+        const <String>[];
+    final audioCats =
+        ref.watch(audioStoriesProvider).value ?? const <AudioStoryCategory>[];
+    final likedAudio =
+        <({String catId, int index, AudioStoryCategory cat, AudioEpisode ep})>[];
+    for (final key in audioFavs) {
+      final ci = key.lastIndexOf(':');
+      if (ci <= 0) continue;
+      final catId = key.substring(0, ci);
+      final idx = int.tryParse(key.substring(ci + 1));
+      if (idx == null) continue;
+      AudioStoryCategory? cat;
+      for (final ct in audioCats) {
+        if (ct.id == catId) {
+          cat = ct;
+          break;
+        }
+      }
+      if (cat == null || idx < 0 || idx >= cat.episodes.length) continue;
+      likedAudio
+          .add((catId: catId, index: idx, cat: cat, ep: cat.episodes[idx]));
+    }
     final total =
         verses.length +
         hadithItems.length +
         duaItems.length +
         vids.length +
         likedWalls.length +
-        likedSurahs.length;
+        likedSurahs.length +
+        likedAudio.length;
 
     // Tür filtresi çipleri (yalnız dolu kategoriler).
     final cats = <(String, String, int)>[
@@ -144,6 +172,8 @@ class _LikedScreenState extends ConsumerState<LikedScreen> {
       if (duaItems.isNotEmpty) ('duas', 'liked.duas'.tr(), duaItems.length),
       if (likedWalls.isNotEmpty)
         ('wallpapers', 'liked.wallpapers'.tr(), likedWalls.length),
+      if (likedAudio.isNotEmpty)
+        ('audio', 'audioStories.title'.tr(), likedAudio.length),
     ];
     if (_filter != 'all' && !cats.any((e) => e.$1 == _filter)) _filter = 'all';
 
@@ -210,6 +240,19 @@ class _LikedScreenState extends ConsumerState<LikedScreen> {
                             index: likedWalls.indexOf(w),
                           ),
                         ),
+                      ),
+                    ),
+                  const Gap.lg(),
+                ],
+                if (_show('audio') && likedAudio.isNotEmpty) ...[
+                  _SectionTitle('audioStories.title'.tr(), likedAudio.length),
+                  for (final a in likedAudio)
+                    _MediaCard(
+                      image: a.ep.cover.isEmpty ? a.cat.cover : a.ep.cover,
+                      title: a.ep.title(lang),
+                      icon: Icons.headphones_rounded,
+                      onTap: () => context.push(
+                        '${Routes.audioStories}/player/${a.catId}/${a.index}',
                       ),
                     ),
                   const Gap.lg(),

@@ -10,6 +10,9 @@ const homeSectionKeys = [
   'greeting',
   'religiousDay',
   'gaugeCarousel',
+  'verseOfDay', // Günün Ayeti — TAM kart (Arapça + meal), ÜSTE taşındı
+  'hadithOfDay', // Günün Hadisi — TAM kart (Arapça + meal), ÜSTE taşındı
+  'dailyDua', // Günün Duası — temalı zemin (Arapçasız), ÜSTE taşındı
   'prayerStrip',
   'nearestMosque',
   'featured',
@@ -17,8 +20,6 @@ const homeSectionKeys = [
   'quiz', // İslami Bilgi Yarışması kartı
   'audioStories', // Sesli Dini Hikâyeler (TR-only; diğer dillerde boş döner)
   'quickPair',
-  'verseHadithPair', // Günün Ayeti + Hadisi YAN YANA (eski verseOfDay+hadithOfDay)
-  'dailyDua',
   'mediaPair', // Videolar + Duvar Kâğıdı YAN YANA (eski videos+wallpaper)
   'widgetPromo',
 ];
@@ -37,7 +38,8 @@ const homeSectionLabels = {
   'babyNames': 'babyNames.title',
   'quiz': 'quiz.title',
   'audioStories': 'audioStories.title',
-  'verseHadithPair': 'home.secVerseHadith',
+  'verseOfDay': 'akis.verseOfDay',
+  'hadithOfDay': 'akis.hadithOfDay',
   'dailyDua': 'akis.duaOfDay',
   'mediaPair': 'home.secMedia',
   'quickPair': 'home.quickPair',
