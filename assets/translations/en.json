@@ -12,6 +12,7 @@
     "stories": "Audio Stories"
   },
   "auth": {
+    "googleCta": "Continue with Google",
     "title": "Account",
     "login": "Sign In",
     "register": "Sign Up",

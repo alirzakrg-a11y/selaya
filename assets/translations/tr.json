@@ -12,6 +12,7 @@
     "stories": "Sesli Hikâyeler"
   },
   "auth": {
+    "googleCta": "Google ile devam et",
     "title": "Hesap",
     "login": "Giriş Yap",
     "register": "Üye Ol",

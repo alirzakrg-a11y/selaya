@@ -54,6 +54,21 @@ class AuthApi {
     'device': ?deviceLabel,
   });
 
+  /// Google ile giriş — google_sign_in idToken'ı Worker'da doğrulanır. YENİ
+  /// kullanıcı + rumuz yoksa AuthException('rumuz_required') fırlar (çağıran
+  /// tek-seferlik rumuz adımını gösterip rumuz ile tekrar çağırır).
+  static Future<AuthResult> google({
+    required String idToken,
+    String? rumuz,
+    String? deviceId,
+    String? deviceLabel,
+  }) => _auth('/v1/auth/google', {
+    'idToken': idToken,
+    'rumuz': ?rumuz,
+    'deviceId': ?deviceId,
+    'device': ?deviceLabel,
+  });
+
   static Future<AuthResult> _auth(
     String path,
     Map<String, dynamic> body,

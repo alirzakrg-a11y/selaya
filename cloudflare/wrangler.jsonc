@@ -22,7 +22,8 @@
   ],
 
   "vars": {
-    "CDN_BASE": "https://cdn.selaya.app"
+    "CDN_BASE": "https://cdn.selaya.app",
+    "GOOGLE_WEB_CLIENT_ID": "997724620512-ootjka80r1oho6jtdvpuor1liki5a102.apps.googleusercontent.com"
   },
 
   "routes": [

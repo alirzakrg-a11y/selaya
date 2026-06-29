@@ -233,6 +233,7 @@
     "title": "Plan de lecture du Coran"
   },
   "auth": {
+    "googleCta": "Continuer avec Google",
     "title": "Compte",
     "login": "Se connecter",
     "register": "S'inscrire",

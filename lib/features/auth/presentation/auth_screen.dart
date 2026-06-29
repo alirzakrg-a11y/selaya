@@ -2,6 +2,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 
 import '../../../core/router/routes.dart';
 import '../../../core/theme/app_colors.dart';
@@ -13,6 +14,11 @@ import '../data/auth_controller.dart';
 import '../data/sync_service.dart';
 import '../domain/auth_validators.dart';
 import 'auth_error_banner.dart';
+
+/// Google Web Client ID (serverClientId) → idToken'ın aud'u bu olur; Worker da
+/// bunu bekler (env.GOOGLE_WEB_CLIENT_ID). Android client SHA-1 Google Cloud'da.
+const _googleWebClientId =
+    '997724620512-ootjka80r1oho6jtdvpuor1liki5a102.apps.googleusercontent.com';
 
 /// Tek ekran: üstte Giriş / Üye Ol geçişi. Üye ol modunda ad/soyad da görünür.
 class AuthScreen extends ConsumerStatefulWidget {
@@ -100,6 +106,94 @@ class _AuthScreenState extends ConsumerState<AuthScreen> {
     } finally {
       if (mounted) setState(() => _busy = false);
     }
+  }
+
+  /// Google ile giriş: hesap seç → idToken → Worker. YENİ kullanıcı + rumuz
+  /// yoksa tek-seferlik rumuz iste, sonra aynı idToken + rumuz ile tekrar dene.
+  Future<void> _googleSignIn() async {
+    setState(() {
+      _error = null;
+      _busy = true;
+    });
+    try {
+      final gsi = GoogleSignIn(serverClientId: _googleWebClientId);
+      await gsi.signOut(); // her seferinde hesap seçtir (önceki oturumu temizle)
+      final account = await gsi.signIn();
+      if (account == null) {
+        if (mounted) setState(() => _busy = false);
+        return; // kullanıcı iptal etti
+      }
+      final gAuth = await account.authentication;
+      final idToken = gAuth.idToken;
+      if (idToken == null || idToken.isEmpty) {
+        _snack(_msg('network'));
+        if (mounted) setState(() => _busy = false);
+        return;
+      }
+      final ctrl = ref.read(authControllerProvider.notifier);
+      try {
+        await ctrl.googleLogin(idToken: idToken);
+      } on AuthException catch (e) {
+        if (e.code == 'rumuz_required') {
+          final rumuz = await _askGoogleRumuz();
+          if (rumuz == null || rumuz.trim().isEmpty) {
+            if (mounted) setState(() => _busy = false);
+            return;
+          }
+          await ctrl.googleLogin(idToken: idToken, rumuz: rumuz.trim());
+        } else {
+          rethrow;
+        }
+      }
+      await ref.read(syncControllerProvider.notifier).restore();
+      if (!mounted) return;
+      context.pushReplacement(Routes.account);
+    } on AuthException catch (e) {
+      _snack(_msg(e.code));
+    } catch (_) {
+      _snack(_msg('unknown'));
+    } finally {
+      if (mounted) setState(() => _busy = false);
+    }
+  }
+
+  /// Yeni Google kullanıcısına tek-seferlik rumuz sor (Dua Duvarı için zorunlu).
+  Future<String?> _askGoogleRumuz() async {
+    final ctrl = TextEditingController();
+    final c = context.colors;
+    return showDialog<String>(
+      context: context,
+      builder: (ctx) => AlertDialog(
+        backgroundColor: c.surface,
+        title: Text('auth.rumuz'.tr()),
+        content: Column(
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text('auth.rumuzHint'.tr(),
+                style: TextStyle(color: c.textSecondary, fontSize: 12.5)),
+            const Gap.md(),
+            TextField(
+              controller: ctrl,
+              autofocus: true,
+              decoration: InputDecoration(
+                labelText: 'auth.rumuz'.tr(),
+                prefixIcon: const Icon(Icons.front_hand_rounded, size: 20),
+              ),
+              onSubmitted: (v) => Navigator.pop(ctx, v.trim()),
+            ),
+          ],
+        ),
+        actions: [
+          FilledButton(
+            onPressed: () => Navigator.pop(ctx, ctrl.text.trim()),
+            style: FilledButton.styleFrom(
+                backgroundColor: c.gold, foregroundColor: c.bg),
+            child: Text('onboarding.next'.tr()),
+          ),
+        ],
+      ),
+    );
   }
 
   @override
@@ -231,6 +325,23 @@ class _AuthScreenState extends ConsumerState<AuthScreen> {
                           : 'auth.loginCta'.tr(),
                       style: const TextStyle(
                           fontWeight: FontWeight.w700, fontSize: 16)),
+            ),
+          ),
+          const Gap.md(),
+          // Google ile devam et (madde 20) — yeni kullanıcıya tek-seferlik rumuz.
+          SizedBox(
+            height: 52,
+            child: OutlinedButton.icon(
+              onPressed: _busy ? null : _googleSignIn,
+              icon: const Icon(Icons.account_circle_rounded, size: 22),
+              label: Text('auth.googleCta'.tr(),
+                  style: const TextStyle(
+                      fontWeight: FontWeight.w700, fontSize: 15)),
+              style: OutlinedButton.styleFrom(
+                foregroundColor: c.textPrimary,
+                side: BorderSide(color: c.border),
+                shape: RoundedRectangleBorder(borderRadius: AppRadius.rLg),
+              ),
             ),
           ),
           const Gap.md(),

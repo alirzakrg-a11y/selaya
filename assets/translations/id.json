@@ -233,6 +233,7 @@
     "title": "Rencana Membaca Al-Qur'an"
   },
   "auth": {
+    "googleCta": "Lanjutkan dengan Google",
     "title": "Akun",
     "login": "Masuk",
     "register": "Daftar",

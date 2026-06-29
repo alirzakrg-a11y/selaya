@@ -45,6 +45,20 @@ class AuthController extends Notifier<AuthState> {
     );
   }
 
+  /// Google ile giriş — [idToken] google_sign_in'den gelir. YENİ kullanıcı +
+  /// rumuz yoksa AuthApi `rumuz_required` fırlatır → çağıran (auth_screen)
+  /// tek-seferlik rumuz alıp aynı idToken + rumuz ile tekrar çağırır.
+  Future<void> googleLogin({required String idToken, String? rumuz}) async {
+    await _persist(
+      await AuthApi.google(
+        idToken: idToken,
+        rumuz: rumuz,
+        deviceId: _ensureDeviceId(),
+        deviceLabel: defaultTargetPlatform.name,
+      ),
+    );
+  }
+
   Future<void> register({
     required String name,
     required String surname,
