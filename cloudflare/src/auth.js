@@ -129,7 +129,7 @@ async function issueToken(env, user, deviceId) {
     sub: user.id, email: user.email, iat: now, exp: now + TOKEN_TTL,
     sv: Number(user.sec_version) || 0,
   };
-  if (deviceId) payload.did = deviceId; // en fazla 2 cihaz: token'ı cihaza bağla
+  if (deviceId) payload.did = deviceId; // en fazla 4 cihaz: token'ı cihaza bağla
   return signJWT(payload, env.AUTH_SECRET);
 }
 
@@ -170,7 +170,7 @@ function publicUser(u) {
   };
 }
 
-// En fazla 2 aktif cihaz. Cihazı kaydet/tazele; yeni cihaz sınırı aşıyorsa EN
+// En fazla 4 aktif cihaz. Cihazı kaydet/tazele; yeni cihaz sınırı aşıyorsa EN
 // ESKİ (last_seen) cihaz(lar)ı düşür → onların token'ı sonraki istekte 401 olur.
 const MAX_DEVICES = 4;
 async function registerDevice(env, userId, deviceId, label) {
@@ -212,7 +212,7 @@ export async function requireUser(request, env) {
   // "engellendiniz" gösterip oturumu kapatır). Banlanınca hiçbir authed istek geçmez.
   // ⚠️ Ban kontrolü cihaz kontrolünden ÖNCE: ban, user_devices kayıtlarını da
   // sildiği için aşağıdaki "did hâlâ kayıtlı mı" kontrolü null (401) döndürür ve
-  // uygulamaya yanlışlıkla "başka cihazda açıldı (en fazla 2 cihaz)" mesajı
+  // uygulamaya yanlışlıkla "başka cihazda açıldı (en fazla 4 cihaz)" mesajı
   // gösterirdi. Banlı kullanıcı net biçimde "engellendiniz" görsün diye en başta.
   const u = await env.DB.prepare('SELECT banned, sec_version FROM users WHERE id=?')
       .bind(payload.sub).first();
@@ -221,7 +221,7 @@ export async function requireUser(request, env) {
   // Oturum iptali: şifre değişimi/reset/ban sec_version'ı artırır → eski token'lar
   // (düşük sv) burada düşer. Eski (sv'siz) token'lar 0 sayılır; ilk artışta düşer.
   if ((Number(payload.sv) || 0) !== (Number(u.sec_version) || 0)) return null;
-  // En fazla 2 cihaz: token bir cihaza bağlıysa (did) o cihaz HÂLÂ kayıtlı olmalı.
+  // En fazla 4 cihaz: token bir cihaza bağlıysa (did) o cihaz HÂLÂ kayıtlı olmalı.
   // Hesap başka cihazda açılınca bu cihaz düşürülür (did silinir) → burada 401.
   // Eski (did'siz) token'lar geriye dönük çalışır; yeniden girişte did kazanır.
   if (payload.did) {

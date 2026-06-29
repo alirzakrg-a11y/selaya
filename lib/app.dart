@@ -86,7 +86,7 @@ class _SelayaAppState extends ConsumerState<SelayaApp>
     // (yalnız zaten verilmişse) ve yalnız şehir adı değişince yeniden hesaplar.
     _refreshGpsIfMoved();
     // Girişliyse: bulut başka cihazda güncellendiyse sessizce çek (çok-cihaz);
-    // hesap başka yerde açıldığı için bu cihaz düşürüldüyse (en fazla 2 cihaz)
+    // hesap başka yerde açıldığı için bu cihaz düşürüldüyse (en fazla 4 cihaz)
     // "çıkış yapıldı" bilgisini göster.
     ref.read(syncControllerProvider.notifier).syncOnResume().then((_) {
       if (mounted) _checkSessionRevoked();
@@ -125,7 +125,7 @@ class _SelayaAppState extends ConsumerState<SelayaApp>
     await ref.read(prayerSchedulerProvider).rescheduleAll();
   }
 
-  /// Hesap başka cihazda açıldığı için bu cihaz düşürüldüyse (en fazla 2 cihaz)
+  /// Hesap başka cihazda açıldığı için bu cihaz düşürüldüyse (en fazla 4 cihaz)
   /// bir kez "çıkış yapıldı" bilgisi göster — senkron servisi oturumu çoktan
   /// kapattı (sessionRevoked).
   void _checkSessionRevoked() {
@@ -157,8 +157,8 @@ class _SelayaAppState extends ConsumerState<SelayaApp>
         duration: const Duration(seconds: 6),
         content: Text(
           tr
-              ? 'Hesabın başka bir cihazda açıldığı için bu cihazdan çıkış yapıldı (en fazla 2 cihaz).'
-              : 'Signed out: your account was opened on another device (max 2 devices).',
+              ? 'Hesabın başka bir cihazda açıldığı için bu cihazdan çıkış yapıldı (en fazla 4 cihaz).'
+              : 'Signed out: your account was opened on another device (max 4 devices).',
         ),
       ),
     );

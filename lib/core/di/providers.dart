@@ -17,7 +17,7 @@ abstract final class PrefKeys {
   static const String authToken = 'auth_token';
   static const String authUser = 'auth_user'; // json {id,name,surname,email}
   static const String deviceId =
-      'device_id'; // kalıcı cihaz kimliği — en fazla 2 cihaz limiti için (senkronlanmaz)
+      'device_id'; // kalıcı cihaz kimliği — en fazla 4 cihaz limiti için (senkronlanmaz)
   static const String sessionRevoked =
       'session_revoked'; // bool: oturum başka cihazda düşürüldü → bir kez bildir
   static const String bannedFlag =

@@ -35,7 +35,7 @@ export const PRIVACY_HTML = `<!DOCTYPE html>
 <ul>
   <li>Ad, soyad, e-posta adresi ve seçtiğiniz rumuz (takma ad).</li>
   <li>Şifreniz <b>geri döndürülemez biçimde şifrelenerek (hash)</b> saklanır; düz metin olarak görülemez.</li>
-  <li>Cihaz tanımlayıcısı ve etiketi (aynı anda en fazla 2 cihaz kuralı için).</li>
+  <li>Cihaz tanımlayıcısı ve etiketi (aynı anda en fazla 4 cihaz kuralı için).</li>
 </ul>
 <h3>Konum (yalnızca uygulama açıkken — foreground)</h3>
 <ul>
@@ -109,7 +109,7 @@ export const PRIVACY_HTML = `<!DOCTYPE html>
 <ul>
   <li>Name, surname, email and your chosen nickname (rumuz).</li>
   <li>Your password is stored <b>hashed (irreversibly encrypted)</b> — never in plain text.</li>
-  <li>A device identifier and label (to enforce the max-2-devices rule).</li>
+  <li>A device identifier and label (to enforce the max-4-devices rule).</li>
 </ul>
 <h3>Location (foreground only — while the app is open)</h3>
 <ul>

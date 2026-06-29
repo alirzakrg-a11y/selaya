@@ -221,7 +221,7 @@ class SyncController extends Notifier<SyncState> {
   }
 
   /// Sunucu oturumu reddettiyse (token süresi doldu VEYA hesap başka cihazda
-  /// açıldığı için bu cihaz DÜŞÜRÜLDÜ — en fazla 2 cihaz) yerel oturumu kapat.
+  /// açıldığı için bu cihaz DÜŞÜRÜLDÜ — en fazla 4 cihaz) yerel oturumu kapat.
   Future<void> _handleError(Object e) async {
     final code = _code(e);
     if (code == 'banned') {

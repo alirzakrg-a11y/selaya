@@ -86,7 +86,7 @@ class AuthController extends Notifier<AuthState> {
     await logout();
   }
 
-  /// Bu kuruluma özel KALICI cihaz kimliği (en fazla 2 cihaz limiti için). İlk
+  /// Bu kuruluma özel KALICI cihaz kimliği (en fazla 4 cihaz limiti için). İlk
   /// ihtiyaçta üretilir + prefs'e yazılır; SENKRONLANMAZ (her cihaz benzersiz).
   String _ensureDeviceId() {
     final prefs = ref.read(sharedPreferencesProvider);
@@ -103,7 +103,7 @@ class AuthController extends Notifier<AuthState> {
   }
 
   /// Sunucu oturumu reddetti (token süresi doldu VEYA hesap başka cihazda açıldı
-  /// — en fazla 2 cihaz, bu cihaz düşürüldü). Yerel oturumu kapat + sebebi
+  /// — en fazla 4 cihaz, bu cihaz düşürüldü). Yerel oturumu kapat + sebebi
   /// işaretle (UI bir kez bilgilendirsin).
   Future<void> sessionRevoked() async {
     if (!state.loggedIn) return;
