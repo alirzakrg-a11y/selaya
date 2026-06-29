@@ -874,7 +874,8 @@ class _HadithOfDayCard extends ConsumerWidget {
 }
 
 /// "Günün Duası" — gerçek dualar (Dualar ekranıyla aynı kaynak: duasProvider),
-/// her açılışta rastgele biri, duvar kâğıdı arkaplanlı.
+/// GÜNLÜK SABİT: ayet/hadis gibi gün indeksiyle seçilir → gün boyu aynı, ertesi
+/// gün değişir. (Eskiden her açılışta rastgele değişiyordu; kullanıcı: günde 1.)
 class _DailyDuaCard extends ConsumerWidget {
   const _DailyDuaCard();
   @override
@@ -883,7 +884,7 @@ class _DailyDuaCard extends ConsumerWidget {
     final duas = ref.watch(duasProvider).value ?? const <Dua>[];
     if (duas.isEmpty) return const SizedBox.shrink();
     final seed = ref.watch(inspirationSeedProvider);
-    final d = duas[seed % duas.length];
+    final d = duas[DateTime.now().day % duas.length];
     final wps = ref.watch(wallpapersProvider).value ?? const <Wallpaper>[];
     return GestureDetector(
       onTap: () => context.push('${Routes.duas}?open=${d.id}'),

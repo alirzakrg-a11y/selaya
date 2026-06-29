@@ -29,6 +29,23 @@ class IntroScreen extends StatelessWidget {
     _Feature(AppIcons.sparkles, 'intro.f4Title', 'intro.f4Desc'),
   ];
 
+  // "Ve daha fazlası" — kompakt çipler (tümü MEVCUT çeviri anahtarı → yeni metin yok).
+  static const _moreFeatures = <(IconData, String)>[
+    (AppIcons.tasbih, 'dhikr.title'),
+    (Icons.repeat_rounded, 'tesbihat.title'),
+    (AppIcons.dua, 'duas.title'),
+    (Icons.quiz_rounded, 'quiz.title'),
+    (AppIcons.headphones, 'audioStories.title'),
+    (AppIcons.calendar, 'calendar.title'),
+    (Icons.auto_stories_rounded, 'hatim.title'),
+    (Icons.groups_rounded, 'communityHatim.title'),
+    (Icons.child_friendly_rounded, 'babyNames.title'),
+    (Icons.flight_rounded, 'travel.title'),
+    (Icons.front_hand_rounded, 'duaWall.title'),
+    (Icons.volunteer_activism_rounded, 'zakat.title'),
+    (AppIcons.wallpaper, 'wallpapers.title'),
+  ];
+
   @override
   Widget build(BuildContext context) {
     final c = context.colors;
@@ -164,6 +181,16 @@ class IntroScreen extends StatelessWidget {
                             .fadeIn(delay: (460 + 110 * i).ms, duration: 420.ms)
                             .slideX(begin: 0.10, end: 0, curve: Curves.easeOut),
                       ),
+                    const Gap.sm(),
+                    Wrap(
+                      spacing: 8,
+                      runSpacing: 8,
+                      alignment: WrapAlignment.center,
+                      children: [
+                        for (final f in _moreFeatures)
+                          _MiniFeatureChip(icon: f.$1, label: f.$2.tr()),
+                      ],
+                    ).animate().fadeIn(delay: 900.ms, duration: 500.ms),
                   ],
                 ),
               ),
@@ -185,6 +212,30 @@ class IntroScreen extends StatelessWidget {
           ),
         ),
       ),
+    );
+  }
+}
+
+/// "Ve daha fazlası" çipi — ikon + özellik adı (giriş ekranı showcase'i).
+class _MiniFeatureChip extends StatelessWidget {
+  final IconData icon;
+  final String label;
+  const _MiniFeatureChip({required this.icon, required this.label});
+  @override
+  Widget build(BuildContext context) {
+    final c = context.colors;
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+      decoration: BoxDecoration(
+        color: c.surfaceAlt,
+        borderRadius: BorderRadius.circular(99),
+        border: Border.all(color: c.gold.withValues(alpha: 0.25)),
+      ),
+      child: Row(mainAxisSize: MainAxisSize.min, children: [
+        Icon(icon, size: 15, color: c.gold),
+        const Gap.xs(),
+        Text(label, style: Theme.of(context).textTheme.labelMedium),
+      ]),
     );
   }
 }
