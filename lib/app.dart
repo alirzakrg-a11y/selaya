@@ -142,8 +142,8 @@ class _SelayaAppState extends ConsumerState<SelayaApp>
             backgroundColor: const Color(0xFFC0392B),
             content: Text(
               tr
-                  ? '⛔ Hesabınız engellendi. Uygulamayı kullanmaya devam edemezsiniz.'
-                  : '⛔ Your account has been blocked. You can no longer use the app.',
+                  ? '⛔ Hesabınız engellendi ve çıkış yapıldı. Uygulamayı misafir olarak kullanmaya devam edebilirsiniz.'
+                  : '⛔ Your account has been blocked and you were signed out. You can keep using the app as a guest.',
               style: const TextStyle(color: Colors.white, fontWeight: FontWeight.w600),
             ),
           ),

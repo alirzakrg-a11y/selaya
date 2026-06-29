@@ -518,8 +518,19 @@ export async function handleAuth(request, env, path, ctx) {
     const rTaken = await env.DB.prepare('SELECT id FROM users WHERE rumuz=? COLLATE NOCASE')
         .bind(rumuz).first();
     if (rTaken) return json({ ok: false, error: 'rumuz_taken' }, 409);
-    const name = (info.given_name || info.name || 'Kullanıcı').toString().trim().slice(0, 60);
-    const surname = (info.family_name || '').toString().trim().slice(0, 60);
+    // Ad/soyad ayrımı: family_name varsa given_name + family_name. Yoksa tam adı
+    // böl (son kelime = soyad) — bazı Google hesapları soyadı ayrı vermez (yoksa
+    // panelde tüm ad "ad" alanında görünürdü).
+    let gName = (info.given_name || '').toString().trim();
+    let gSurname = (info.family_name || '').toString().trim();
+    if (!gSurname) {
+      const full = ((info.name || '').toString().trim() || gName);
+      const parts = full.split(/\s+/).filter(Boolean);
+      if (parts.length > 1) { gSurname = parts.pop(); gName = parts.join(' '); }
+      else gName = full;
+    }
+    const name = (gName || 'Kullanıcı').slice(0, 60);
+    const surname = gSurname.slice(0, 60);
     const id = crypto.randomUUID();
     try {
       await env.DB.prepare(

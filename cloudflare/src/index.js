@@ -480,6 +480,28 @@ export default {
           ).all();
           return json({ ok: true, users: results });
         }
+        // ---- tek üye detayı (panelde her yerden "kullanıcıya tıkla" → tüm bilgi) ----
+        if (request.method === 'GET' && path === '/api/user-detail') {
+          const url = new URL(request.url);
+          const uid = (url.searchParams.get('id') || '').toString();
+          if (!uid) return json({ ok: false, error: 'id_required' }, { status: 400 });
+          const u = await env.DB.prepare(
+            'SELECT u.id, u.name, u.surname, u.email, u.rumuz, u.email_verified, ' +
+            'u.banned, u.ban_reason, u.created_at, u.last_active, ud.device, ' +
+            "CASE WHEN COALESCE(u.pass_hash,'')='' THEN 'google' ELSE 'email' END AS auth_type " +
+            'FROM users u LEFT JOIN user_data ud ON ud.user_id=u.id WHERE u.id=?'
+          ).bind(uid).first();
+          if (!u) return json({ ok: false, error: 'not_found' }, { status: 404 });
+          // Sayımlar: özellik hiç kullanılmadıysa tablo olmayabilir → hatayı yut.
+          const cnt = async (sql) => {
+            try { const r = await env.DB.prepare(sql).bind(uid).first(); return (r && r.n) || 0; }
+            catch (_) { return 0; }
+          };
+          u.quiz_count = await cnt('SELECT COUNT(*) AS n FROM quiz_scores WHERE user_id=?');
+          u.dua_count = await cnt('SELECT COUNT(*) AS n FROM dua_wall WHERE user_id=?');
+          u.hatim_done = await cnt("SELECT COUNT(*) AS n FROM hatim_juz WHERE user_id=? AND status='done'");
+          return json({ ok: true, user: u });
+        }
         // ---- üye sil (KVKK: hesabı + verisini kalıcı sil) ----
         if (request.method === 'POST' && path === '/api/user-delete') {
           const form = await request.formData();
@@ -600,6 +622,7 @@ export default {
             "u.email AS author_email, u.name AS author_name, u.surname AS author_surname, " +
             "u.rumuz AS author_rumuz, u.banned AS author_banned, u.ban_reason AS author_ban_reason, " +
             "u.email_verified AS author_verified, u.created_at AS author_created, u.last_active AS author_last, " +
+            "CASE WHEN COALESCE(u.pass_hash,'')='' THEN 'google' ELSE 'email' END AS author_auth, " +
             "ud.device AS author_device ";
           const AUTHJOIN =
             "LEFT JOIN users u ON u.id=d.user_id LEFT JOIN user_data ud ON ud.user_id=d.user_id ";
@@ -710,7 +733,7 @@ export default {
           const out = [];
           for (const c of camps.results || []) {
             const j = await env.DB.prepare(
-              "SELECT j.juz_no, j.status, j.rumuz, j.claimed_at, j.done_at, " +
+              "SELECT j.user_id, j.juz_no, j.status, j.rumuz, j.claimed_at, j.done_at, " +
               "u.email AS claimer_email, u.name AS claimer_name FROM hatim_juz j " +
               "LEFT JOIN users u ON u.id=j.user_id WHERE j.campaign_id=? ORDER BY j.juz_no"
             ).bind(c.id).all();
@@ -789,7 +812,7 @@ export default {
           let rows = [];
           if (week) {
             const r = await env.DB.prepare(
-              "SELECT q.rumuz, q.score, q.correct, q.total, q.updated_at, u.email " +
+              "SELECT q.user_id, q.rumuz, q.score, q.correct, q.total, q.updated_at, u.email " +
               "FROM quiz_scores q LEFT JOIN users u ON u.id=q.user_id " +
               "WHERE q.week=? ORDER BY q.score DESC, q.updated_at ASC LIMIT 200"
             ).bind(week).all();
@@ -2003,6 +2026,43 @@ const PANEL_HTML = `<!doctype html>
       }).catch(function(e){ toast('Hata: '+e); });
     };
   }
+  // Herhangi bir yerden (sıralama/şikayet/hatim/dua) kullanıcıya tıkla → TÜM
+  // bilgileri tek modalda (Google mı e-posta mı dahil) + ban/af.
+  function showUserDetail(uid){
+    if(!uid || uid==='panel-author'){ uiAlert('Bu içerik panelden eklendi — gerçek bir kullanıcı hesabı yok.','Kullanıcı'); return; }
+    var ov=_modal('<h3 style="margin:0 0 10px">👤 Kullanıcı Bilgileri</h3><div id="udBody"><p class="muted">Yükleniyor…</p></div><div class="row" style="margin-top:18px"><button class="ghost" data-x>Kapat</button></div>');
+    var cx=ov.querySelector('[data-x]'); if(cx) cx.onclick=function(){ ov.remove(); };
+    api('user-detail?id='+encodeURIComponent(uid)).then(function(res){
+      var b=ov.querySelector('#udBody'); if(!b) return;
+      if(!(res.j&&res.j.ok)){ b.innerHTML='<p class="hint" style="color:var(--danger)">⚠️ Kullanıcı bulunamadı — hesap silinmiş olabilir.</p>'; return; }
+      var u=res.j.user;
+      function row(k,v){ return '<div style="display:flex;justify-content:space-between;gap:14px;padding:8px 0;border-top:1px solid var(--line)"><span class="muted">'+esc(k)+'</span><span style="text-align:right;word-break:break-word;font-weight:600">'+v+'</span></div>'; }
+      var nm=((u.name||'')+' '+(u.surname||'')).trim()||'—';
+      var authBadge=u.auth_type==='google'
+        ? '<span style="background:#e8f0fe;color:#1a73e8;font-weight:700;border-radius:6px;padding:2px 9px">🔵 Google ile giriş</span>'
+        : '<span style="background:var(--gold-soft);color:var(--gold);font-weight:700;border-radius:6px;padding:2px 9px">✉️ E-posta + şifre</span>';
+      var rr='';
+      rr+=row('Ad Soyad', esc(nm));
+      rr+=row('Giriş yöntemi', authBadge);
+      rr+=row('E-posta', esc(u.email||'—'));
+      rr+=row('Rumuz', u.rumuz ? '@'+esc(u.rumuz) : '<span style="color:var(--danger)">yok</span>');
+      rr+=row('E-posta doğrulandı', u.email_verified ? '<span class="ok">evet</span>' : 'hayır');
+      rr+=row('Durum', u.banned ? '<span style="color:var(--danger)">🚫 BANLI'+(u.ban_reason?' — '+esc(u.ban_reason):'')+'</span>' : '<span class="ok">aktif</span>');
+      rr+=row('Kayıt tarihi', fmtDate(u.created_at));
+      rr+=row('Son aktif', fmtDate(u.last_active));
+      if(u.device) rr+=row('Cihaz', esc(u.device));
+      rr+=row('Quiz kaydı', (u.quiz_count||0)+' hafta');
+      rr+=row('Dua sayısı', (u.dua_count||0)+' adet');
+      rr+=row('Hatim cüzü (okudu)', (u.hatim_done||0)+' cüz');
+      var act='<div class="row" style="margin-top:16px">';
+      if(u.banned) act+='<button class="ghost" id="udUnban">✓ Yasağı Kaldır</button>';
+      else act+='<button class="danger" id="udBan">🚫 Banla</button>';
+      act+='</div>';
+      b.innerHTML='<div>'+rr+'</div>'+act;
+      var bb=b.querySelector('#udBan'); if(bb) bb.onclick=function(){ ov.remove(); banUser(u.id, u.email||''); };
+      var bu=b.querySelector('#udUnban'); if(bu) bu.onclick=function(){ ov.remove(); unbanUser(u.id, u.email||''); };
+    }).catch(function(e){ var b=ov.querySelector('#udBody'); if(b) b.innerHTML='<p class="hint" style="color:var(--danger)">Hata: '+esc(String(e))+'</p>'; });
+  }
   // Duaya tıklayınca yazarın tam hesap bilgileri (moderasyon görünümü).
   function showDuaAuthor(id){
     var d=null; for(var k=0;k<DUA_ALL.length;k++){ if(DUA_ALL[k].id===id){ d=DUA_ALL[k]; break; } }
@@ -2020,6 +2080,7 @@ const PANEL_HTML = `<!doctype html>
       var rr='';
       rr+=row('Ad Soyad', esc(full));
       rr+=row('E-posta', esc(d.author_email));
+      rr+=row('Giriş yöntemi', d.author_auth==='google' ? '<span style="color:#1a73e8;font-weight:700">🔵 Google</span>' : '<span style="color:var(--gold);font-weight:700">✉️ E-posta + şifre</span>');
       rr+=row('Kayıtlı rumuz', ar ? ('@'+esc(ar)+(mism?' <span style="color:var(--danger)">⚠️ duadaki @'+esc(d.rumuz)+' ile farklı</span>':' <span class="ok">✓ uyumlu</span>')) : '<span style="color:var(--danger)">yok</span>');
       rr+=row('E-posta doğrulandı', d.author_verified ? '<span class="ok">evet</span>' : 'hayır');
       rr+=row('Durum', d.author_banned ? '<span style="color:var(--danger)">🚫 BANLI'+(d.author_ban_reason?' — '+esc(d.author_ban_reason):'')+'</span>' : '<span class="ok">aktif</span>');
@@ -2190,7 +2251,8 @@ const PANEL_HTML = `<!doctype html>
       '<div class="kv"><span>Ad</span><b>'+esc(j.claimer_name||'—')+'</b></div>'+
       '<div class="kv"><span>E-posta</span><b>'+esc(j.claimer_email||'(hesap bulunamadı)')+'</b></div>'+
       (j.claimed_at?'<div class="kv"><span>Aldığı</span><b>'+fmtDate(j.claimed_at)+'</b></div>':'')+
-      (j.done_at?'<div class="kv"><span>Okuduğu</span><b>'+fmtDate(j.done_at)+'</b></div>':'');
+      (j.done_at?'<div class="kv"><span>Okuduğu</span><b>'+fmtDate(j.done_at)+'</b></div>':'')+
+      (j.user_id?'<div class="kv"><span>Kullanıcı</span><b><span style="cursor:pointer;color:var(--gold);text-decoration:underline" data-uid="'+esc(j.user_id)+'" onclick="showUserDetail(this.dataset.uid)">tüm bilgileri gör →</span></b></div>':'');
     var ov=_modal('<h3>📖 '+juz+'. Cüz — okuyan</h3>'+rows+
       '<div class="row" style="margin-top:18px"><button class="ghost" data-x>Kapat</button><button class="danger" data-r>Cüzü Sıfırla</button></div>');
     ov.querySelector('[data-x]').onclick=function(){ ov.remove(); };
@@ -2244,7 +2306,7 @@ const PANEL_HTML = `<!doctype html>
         '<th style="text-align:right;padding:8px 6px;color:var(--mut);font-size:12px">Skor</th></tr></thead><tbody>';
       rows.forEach(function(r,i){
         var medal = i===0?'🥇':i===1?'🥈':i===2?'🥉':(i+1)+'.';
-        h+='<tr style="border-top:1px solid var(--line);cursor:pointer" data-i="'+i+'" onclick="quizDetail(this.dataset.i)">'+
+        h+='<tr style="border-top:1px solid var(--line);cursor:pointer" data-uid="'+esc(r.user_id||'')+'" onclick="showUserDetail(this.dataset.uid)">'+
           '<td style="padding:8px 6px;font-weight:700">'+medal+'</td>'+
           '<td style="padding:8px 6px;font-weight:600">@'+esc(r.rumuz||'—')+'</td>'+
           '<td style="padding:8px 6px;color:var(--mut);font-size:12px">'+esc(r.email||'—')+'</td>'+
