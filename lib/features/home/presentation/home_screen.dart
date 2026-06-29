@@ -699,115 +699,134 @@ class _DailyContentCard extends StatelessWidget {
     // duvar kâğıdı görseli kullanılır (backgroundImage → showVerseShareSheet).
     final c = context.colors;
     final onCard = c.isDark ? Colors.white : c.textPrimary;
+    // İçerik = Stack'i BOYUTLANDIRAN (non-positioned) çocuk → ListView içinde
+    // sınırsız-yükseklik çökmesi OLMAZ. Yıldız deseni arkada Positioned.fill.
+    final content = Padding(
+      padding: const EdgeInsets.all(AppSpacing.md),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          Row(
+            children: [
+              Icon(icon, size: 16, color: c.gold),
+              const SizedBox(width: 6),
+              Text(
+                label.toUpperCase(),
+                style: TextStyle(
+                  color: c.gold,
+                  fontSize: 11,
+                  letterSpacing: 0.8,
+                  fontWeight: FontWeight.w700,
+                ),
+              ),
+            ],
+          ),
+          if (arabic != null && arabic!.isNotEmpty) ...[
+            const Gap.md(),
+            Text(
+              arabic!,
+              textAlign: TextAlign.center,
+              textDirection: TextDirection.rtl,
+              maxLines: 3,
+              overflow: TextOverflow.ellipsis,
+              style: AppTypography.arabic(fontSize: 22, color: onCard),
+            ),
+          ],
+          const Gap.md(),
+          Text(
+            '"$text"',
+            maxLines: 4,
+            overflow: TextOverflow.ellipsis,
+            style: TextStyle(color: onCard, fontSize: 14, height: 1.45),
+          ),
+          const Gap.sm(),
+          Row(
+            children: [
+              Expanded(
+                child: Text(
+                  reference,
+                  style: TextStyle(
+                    color: c.gold,
+                    fontSize: 12,
+                    fontWeight: FontWeight.w600,
+                  ),
+                ),
+              ),
+              LikeButton(likeKey: likeKey, light: c.isDark),
+              const Gap.xs(),
+              GestureDetector(
+                onTap: () => showVerseShareSheet(
+                  context,
+                  arabic: arabic,
+                  text: text,
+                  reference: reference,
+                  label: label,
+                  backgroundImage: backgroundImage,
+                ),
+                child: Container(
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 12,
+                    vertical: 7,
+                  ),
+                  decoration: BoxDecoration(
+                    color: c.gold.withValues(alpha: c.isDark ? 0.16 : 0.12),
+                    borderRadius: AppRadius.rSm,
+                    border: Border.all(
+                      color: c.gold.withValues(alpha: 0.30),
+                    ),
+                  ),
+                  child: Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Icon(AppIcons.share, size: 14, color: c.gold),
+                      const SizedBox(width: 6),
+                      Text(
+                        'common.share'.tr(),
+                        style: TextStyle(
+                          color: c.gold,
+                          fontSize: 12,
+                          fontWeight: FontWeight.w600,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ],
+      ),
+    );
     return Container(
       clipBehavior: Clip.antiAlias,
       decoration: BoxDecoration(
+        gradient: c.isDark
+            ? LinearGradient(
+                begin: Alignment.topCenter,
+                end: Alignment.bottomCenter,
+                colors: [c.bg, c.surface, c.bg],
+              )
+            : null,
+        color: c.isDark ? null : c.surfaceAlt,
         borderRadius: AppRadius.rXl,
         border: Border.all(
           color: c.gold.withValues(alpha: c.isDark ? 0.22 : 0.30),
         ),
       ),
-      child: GeometricBackground(
-        gradientColors: c.isDark ? null : [c.surfaceAlt],
-        patternOpacity: c.isDark ? 0.06 : 0.0,
-        glowColor: c.gold,
-        child: Padding(
-          padding: const EdgeInsets.all(AppSpacing.md),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: [
-              Row(
-                children: [
-                  Icon(icon, size: 16, color: c.gold),
-                  const SizedBox(width: 6),
-                  Text(
-                    label.toUpperCase(),
-                    style: TextStyle(
-                      color: c.gold,
-                      fontSize: 11,
-                      letterSpacing: 0.8,
-                      fontWeight: FontWeight.w700,
+      child: c.isDark
+          ? Stack(
+              children: [
+                Positioned.fill(
+                  child: CustomPaint(
+                    painter: StarPatternPainter(
+                      color: c.gold.withValues(alpha: 0.06),
                     ),
                   ),
-                ],
-              ),
-              if (arabic != null && arabic!.isNotEmpty) ...[
-                const Gap.md(),
-                Text(
-                  arabic!,
-                  textAlign: TextAlign.center,
-                  textDirection: TextDirection.rtl,
-                  maxLines: 3,
-                  overflow: TextOverflow.ellipsis,
-                  style: AppTypography.arabic(fontSize: 22, color: onCard),
                 ),
+                content,
               ],
-              const Gap.md(),
-              Text(
-                '"$text"',
-                maxLines: 4,
-                overflow: TextOverflow.ellipsis,
-                style: TextStyle(color: onCard, fontSize: 14, height: 1.45),
-              ),
-              const Gap.sm(),
-              Row(
-                children: [
-                  Expanded(
-                    child: Text(
-                      reference,
-                      style: TextStyle(
-                        color: c.gold,
-                        fontSize: 12,
-                        fontWeight: FontWeight.w600,
-                      ),
-                    ),
-                  ),
-                  LikeButton(likeKey: likeKey, light: c.isDark),
-                  const Gap.xs(),
-                  GestureDetector(
-                    onTap: () => showVerseShareSheet(
-                      context,
-                      arabic: arabic,
-                      text: text,
-                      reference: reference,
-                      label: label,
-                      backgroundImage: backgroundImage,
-                    ),
-                    child: Container(
-                      padding: const EdgeInsets.symmetric(
-                        horizontal: 12,
-                        vertical: 7,
-                      ),
-                      decoration: BoxDecoration(
-                        color: c.gold.withValues(alpha: c.isDark ? 0.16 : 0.12),
-                        borderRadius: AppRadius.rSm,
-                        border: Border.all(
-                          color: c.gold.withValues(alpha: 0.30),
-                        ),
-                      ),
-                      child: Row(
-                        mainAxisSize: MainAxisSize.min,
-                        children: [
-                          Icon(AppIcons.share, size: 14, color: c.gold),
-                          const SizedBox(width: 6),
-                          Text(
-                            'common.share'.tr(),
-                            style: TextStyle(
-                              color: c.gold,
-                              fontSize: 12,
-                              fontWeight: FontWeight.w600,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-            ],
-          ),
-        ),
-      ),
+            )
+          : content,
     );
   }
 }
