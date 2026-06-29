@@ -2354,7 +2354,13 @@ const PANEL_HTML = `<!doctype html>
     if(r.citemtitle && !repIdLike(r.citemtitle)) return r.citemtitle;
     if(r.ctitle && !repIdLike(r.ctitle)) return r.ctitle;
     if(r.citemsub && !repIdLike(r.citemsub)) return r.citemsub;
-    return (r.ckind==='video'||r.ctype==='feed') ? '🎬 Video' : (r.ckey||'—');
+    if(r.ckind==='video'||r.ctype==='feed') return '🎬 Video';
+    // Panelde çözülemeyen anahtar (uygulamaya GÖMÜLÜ ayet/hadis/dua — content_items'ta
+    // yok) → ham "verse:ins30" yerine tür etiketi göster (alt satırda anahtar zaten var).
+    var TT={verse:'📖 Ayet',ayah:'📖 Ayet',hadith:'📜 Hadis',dua:'🤲 Dua',
+      wallpaper:'🖼️ Duvar Kâğıdı',surah:'📗 Sûre',story:'📷 Hikâye',feed:'🎬 Video',video:'🎬 Video'};
+    var ck=(r.ckey||''); var i=ck.indexOf(':');
+    return TT[i>0?ck.slice(0,i):''] || ck || '—';
   }
   var REPORTS=[], REP_CDN='';
   function loadReports(){
