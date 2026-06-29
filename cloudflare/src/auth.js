@@ -324,7 +324,8 @@ export async function handleAuth(request, env, path, ctx) {
   // yakabilir. Binding yoksa (eski deploy) sessizce atlanır (fail-open).
   if (request.method === 'POST' && env.AUTH_RL &&
       (path === '/v1/auth/register' || path === '/v1/auth/login' ||
-       path === '/v1/auth/forgot' || path === '/v1/auth/reset')) {
+       path === '/v1/auth/forgot' || path === '/v1/auth/reset' ||
+       path === '/v1/auth/google')) {
     const ip = request.headers.get('CF-Connecting-IP') || 'anon';
     const { success } = await env.AUTH_RL.limit({ key: 'auth:' + ip });
     if (!success) return json({ ok: false, error: 'too_many_attempts' }, 429);
@@ -418,6 +419,77 @@ export async function handleAuth(request, env, path, ctx) {
     const deviceLabel = (b.device || '').toString().slice(0, 80);
     await registerDevice(env, u.id, deviceId, deviceLabel);
     return json({ ok: true, token: await issueToken(env, u, deviceId), user: publicUser(u) });
+  }
+
+  // ---- GOOGLE İLE GİRİŞ ----
+  // Flutter google_sign_in idToken'ı Google'da DOĞRULANIR (tokeninfo: aud = Web
+  // Client ID + email_verified). Mevcut e-posta → giriş (şifresiz). Yeni e-posta →
+  // rumuz ZORUNLU (Dua Duvarı) → rumuz yoksa Flutter tek-seferlik adım gösterir.
+  if (request.method === 'POST' && path === '/v1/auth/google') {
+    const b = await readJson(request);
+    if (!b) return json({ ok: false, error: 'bad_body' }, 400);
+    const idToken = (b.idToken || '').toString();
+    if (!idToken) return json({ ok: false, error: 'no_token' }, 400);
+    let info;
+    try {
+      const r = await fetch(
+        'https://oauth2.googleapis.com/tokeninfo?id_token=' +
+          encodeURIComponent(idToken));
+      if (!r.ok) return json({ ok: false, error: 'google_verify_failed' }, 401);
+      info = await r.json();
+    } catch (_) {
+      return json({ ok: false, error: 'google_verify_failed' }, 401);
+    }
+    const expectedAud = (env.GOOGLE_WEB_CLIENT_ID || '').toString();
+    if (!expectedAud || (info.aud || '').toString() !== expectedAud) {
+      return json({ ok: false, error: 'google_aud_mismatch' }, 401);
+    }
+    if (String(info.email_verified) !== 'true') {
+      return json({ ok: false, error: 'email_not_verified' }, 401);
+    }
+    const email = (info.email || '').toString().trim().toLowerCase();
+    if (!email) return json({ ok: false, error: 'no_email' }, 401);
+    const now = Date.now();
+    const deviceId = (b.deviceId || '').toString().slice(0, 80);
+    const deviceLabel = (b.device || '').toString().slice(0, 80);
+
+    // Mevcut kullanıcı → giriş (ban kontrolü; Google hesabı = şifresiz).
+    const u = await env.DB.prepare('SELECT * FROM users WHERE email=?').bind(email).first();
+    if (u) {
+      if (u.banned) return json({ ok: false, error: 'banned' }, 403);
+      await env.DB.prepare('UPDATE users SET last_active=? WHERE id=?').bind(now, u.id).run();
+      await registerDevice(env, u.id, deviceId, deviceLabel);
+      return json({ ok: true, token: await issueToken(env, u, deviceId), user: publicUser(u) });
+    }
+
+    // YENİ kullanıcı → rumuz ZORUNLU. Yoksa Flutter'a "rumuz seç" sinyali (200, ok:false).
+    const rv = validateRumuz(b.rumuz);
+    if (!rv.ok) {
+      return json({
+        ok: false, error: 'rumuz_required', detail: rv.error,
+        email, name: (info.given_name || info.name || '').toString(),
+      });
+    }
+    const rumuz = rv.value;
+    const rTaken = await env.DB.prepare('SELECT id FROM users WHERE rumuz=? COLLATE NOCASE')
+        .bind(rumuz).first();
+    if (rTaken) return json({ ok: false, error: 'rumuz_taken' }, 409);
+    const name = (info.given_name || info.name || 'Kullanıcı').toString().trim().slice(0, 60);
+    const surname = (info.family_name || '').toString().trim().slice(0, 60);
+    const id = crypto.randomUUID();
+    try {
+      await env.DB.prepare(
+        'INSERT INTO users (id,name,surname,email,rumuz,pass_hash,pass_salt,iters,email_verified,created_at,last_active) ' +
+        'VALUES (?,?,?,?,?,?,?,?,1,?,?)'
+      ).bind(id, name, surname, email, rumuz, '', '', 0, now, now).run();
+    } catch (_) {
+      return json({ ok: false, error: 'email_taken' }, 409);
+    }
+    await env.DB.prepare('INSERT INTO user_data (user_id,data,updated_at) VALUES (?,?,?)')
+      .bind(id, '{}', now).run();
+    await registerDevice(env, id, deviceId, deviceLabel);
+    const newUser = { id, name, surname, email, rumuz };
+    return json({ ok: true, token: await issueToken(env, newUser, deviceId), user: newUser });
   }
 
   // ---- ŞİFREMİ UNUTTUM: e-postaya kod gönder ----
