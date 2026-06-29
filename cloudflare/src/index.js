@@ -836,6 +836,21 @@ export default {
           return json({ ok: true, week, weeks, rows });
         }
 
+        // ---- Bilgi yarışması SIRALAMASINI temizle (skorları sil; HESAPLAR kalır) ----
+        if (request.method === 'POST' && path === '/api/quiz-clear') {
+          const form = await request.formData();
+          const week = (form.get('week') || '').toString();
+          const all = (form.get('all') || '').toString() === '1';
+          if (all) {
+            await env.DB.prepare('DELETE FROM quiz_scores').run();
+          } else if (week) {
+            await env.DB.prepare('DELETE FROM quiz_scores WHERE week=?').bind(week).run();
+          } else {
+            return json({ ok: false, error: 'no_week' }, { status: 400 });
+          }
+          return json({ ok: true });
+        }
+
         // ---- İÇERİK ŞİKAYETLERİ (Bildir) ----
         if (request.method === 'GET' && path === '/api/content-reports') {
           await ensureReports(env);
@@ -1534,6 +1549,7 @@ const PANEL_HTML = `<!doctype html>
           <h3 style="margin:0">🎯 Haftalık Sıralama</h3>
           <select id="quizWeek" onchange="loadQuizBoard(this.value)" style="flex:0 0 auto;min-width:150px"></select>
           <button class="ghost" style="flex:0 0 auto" onclick="loadQuizBoard()">Yenile</button>
+          <button class="danger" style="flex:0 0 auto" onclick="quizClear()">🗑️ Sıralamayı Temizle</button>
         </div>
         <p class="hint">Bilgi Yarışması'nda her hafta (ISO hafta) kullanıcıların EN İYİ skorları. Skor = doğru×100 + hız bonusu. Madalyalar ilk üç sıradır.</p>
         <div id="quizBody"><p class="muted">Yükleniyor…</p></div>
@@ -2317,6 +2333,19 @@ const PANEL_HTML = `<!doctype html>
 
   // --- Bilgi Yarışması haftalık sıralama (admin) ---
   var QUIZ_ROWS=[];
+  // Bilgi yarışması sıralamasını temizle (seçili haftanın skorlarını siler;
+  // kullanıcı HESAPLARI silinmez). Test verisini temizlemek için.
+  function quizClear(){
+    var sel=el('quizWeek'); var week=sel?sel.value:'';
+    if(!week){ toast('Önce hafta seç'); return; }
+    uiConfirm('“'+week+'” haftasının TÜM sıralaması (skorlar) silinsin mi? Kullanıcı hesapları SİLİNMEZ — yalnızca bu haftanın quiz skorları temizlenir.', function(){
+      var fd=new FormData(); fd.append('week',week);
+      api('quiz-clear',{method:'POST',body:fd}).then(function(res){
+        if(res.j&&res.j.ok){ toast('Sıralama temizlendi ✓'); loadQuizBoard(); }
+        else { toast('Hata: '+((res.j&&res.j.error)||res.status)); }
+      }).catch(function(e){ toast('Hata: '+e); });
+    }, {danger:true, yes:'Temizle', title:'Sıralamayı Temizle'});
+  }
   function loadQuizBoard(week){
     el('quizBody').innerHTML='<p class="muted">Yükleniyor…</p>';
     api('quiz-leaderboard'+(week?('?week='+encodeURIComponent(week)):'')).then(function(res){
