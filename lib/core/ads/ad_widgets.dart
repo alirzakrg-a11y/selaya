@@ -6,9 +6,9 @@ import 'ads_config.dart';
 
 /// İçerik ekranlarının altına konan **banner reklam**.
 ///
-/// [adsActiveProvider] kapalıysa (ana anahtar kapalı VEYA premium) hiç yer
-/// kaplamaz. Reklam yüklenene kadar da yer kaplamaz (layout zıplamasın); yüklenince
-/// banner yüksekliğini alır. Her örnek kendi reklamını yükler ve dispose'da bırakır.
+/// [adsActiveProvider] kapalıysa (ana anahtar / premium) hiç yer kaplamaz. AdMob
+/// SDK hazır ([adsReady]) olana ve reklam yüklenene kadar da yer kaplamaz
+/// (layout zıplamasın). Her örnek kendi reklamını yükler ve dispose'da bırakır.
 class AdBanner extends ConsumerStatefulWidget {
   const AdBanner({super.key});
 
@@ -21,12 +21,20 @@ class _AdBannerState extends ConsumerState<AdBanner> {
   bool _loaded = false;
 
   @override
-  void didChangeDependencies() {
-    super.didChangeDependencies();
-    if (_ad == null && ref.read(adsActiveProvider)) _load();
+  void initState() {
+    super.initState();
+    adsReady.addListener(_maybeLoad); // init geç tamamlanırsa yükle
   }
 
-  void _load() {
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    _maybeLoad();
+  }
+
+  void _maybeLoad() {
+    if (!mounted || _ad != null) return;
+    if (!adsReady.value || !ref.read(adsActiveProvider)) return;
     final ad = BannerAd(
       adUnitId: AdIds.banner,
       size: AdSize.banner,
@@ -35,7 +43,10 @@ class _AdBannerState extends ConsumerState<AdBanner> {
         onAdLoaded: (_) {
           if (mounted) setState(() => _loaded = true);
         },
-        onAdFailedToLoad: (ad, err) => ad.dispose(),
+        onAdFailedToLoad: (ad, err) {
+          ad.dispose();
+          _ad = null; // dangling/disposed referans bırakma
+        },
       ),
     );
     _ad = ad;
@@ -44,6 +55,7 @@ class _AdBannerState extends ConsumerState<AdBanner> {
 
   @override
   void dispose() {
+    adsReady.removeListener(_maybeLoad);
     _ad?.dispose();
     super.dispose();
   }
@@ -65,9 +77,9 @@ class _AdBannerState extends ConsumerState<AdBanner> {
   }
 }
 
-/// İçeriğin akışına gömülen **yerel (native) reklam kartı** — ana sayfada
-/// video/duvar kâğıdı bölümünün altına konur. AdMob "medium" şablonu kullanır
-/// (platform factory GEREKMEZ). adsActive değilse hiç yer kaplamaz.
+/// İçeriğin akışına gömülen **yerel (native) reklam kartı** — ana sayfada.
+/// AdMob "medium" şablonu kullanır (platform factory GEREKMEZ). adsActive/
+/// adsReady değilse hiç yer kaplamaz.
 class NativeAdCard extends ConsumerStatefulWidget {
   const NativeAdCard({super.key});
 
@@ -80,12 +92,20 @@ class _NativeAdCardState extends ConsumerState<NativeAdCard> {
   bool _loaded = false;
 
   @override
-  void didChangeDependencies() {
-    super.didChangeDependencies();
-    if (_ad == null && ref.read(adsActiveProvider)) _load();
+  void initState() {
+    super.initState();
+    adsReady.addListener(_maybeLoad);
   }
 
-  void _load() {
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    _maybeLoad();
+  }
+
+  void _maybeLoad() {
+    if (!mounted || _ad != null) return;
+    if (!adsReady.value || !ref.read(adsActiveProvider)) return;
     final ad = NativeAd(
       adUnitId: AdIds.native,
       request: const AdRequest(),
@@ -96,7 +116,10 @@ class _NativeAdCardState extends ConsumerState<NativeAdCard> {
         onAdLoaded: (_) {
           if (mounted) setState(() => _loaded = true);
         },
-        onAdFailedToLoad: (ad, err) => ad.dispose(),
+        onAdFailedToLoad: (ad, err) {
+          ad.dispose();
+          _ad = null;
+        },
       ),
     );
     _ad = ad;
@@ -105,6 +128,7 @@ class _NativeAdCardState extends ConsumerState<NativeAdCard> {
 
   @override
   void dispose() {
+    adsReady.removeListener(_maybeLoad);
     _ad?.dispose();
     super.dispose();
   }

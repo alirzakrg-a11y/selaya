@@ -6,6 +6,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:share_plus/share_plus.dart';
 
+import '../../../core/ads/ad_widgets.dart';
 import '../../../core/data/content_providers.dart';
 import '../../../core/data/likes_service.dart';
 import '../../../core/localization/localized_text.dart';
@@ -57,7 +58,10 @@ class _WallpapersScreenState extends ConsumerState<WallpapersScreen> {
           onPressed: () => setState(() => _favsOnly = !_favsOnly),
         ),
       ],
-      body: wallpapers.when(
+      body: Column(
+        children: [
+          Expanded(
+            child: wallpapers.when(
         loading: () => const SelayaLoading(),
         error: (e, _) => SelayaError(error: e),
         data: (allRaw) {
@@ -92,6 +96,10 @@ class _WallpapersScreenState extends ConsumerState<WallpapersScreen> {
                 _WallpaperTile(list: list, index: i),
           );
         },
+            ),
+          ),
+          const AdBanner(),
+        ],
       ),
     );
   }

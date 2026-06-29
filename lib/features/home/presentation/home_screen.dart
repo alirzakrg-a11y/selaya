@@ -88,11 +88,9 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
               for (final k in ref.watch(homeLayoutProvider).visible)
                 ..._section(context, k),
               const Padding(padding: AppSpacing.screen, child: _IdeaCard()),
-              // Reklam (premium VEYA ana anahtar kapalıysa hiç yer kaplamaz —
-              // adsActiveProvider): ana sayfa yerel kartı + en altta banner.
+              // Reklam: ana sayfa yerel (native) kartı. Banner ayrı içerik
+              // ekranlarında — iki reklam üst üste yığılmasın (AdMob yoğunluk).
               const NativeAdCard(),
-              const Gap.md(),
-              const AdBanner(),
             ],
           ),
           ),

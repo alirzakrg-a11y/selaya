@@ -5,7 +5,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:intl/date_symbol_data_local.dart';
-import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:timezone/data/latest_all.dart' as tzdata;
 
@@ -143,9 +142,10 @@ Future<void> main() async {
     audioHandler = AppAudioHandler();
   }
 
-  // AdMob başlat (ana anahtar açıkken). App açılışını bloke etmesin diye
-  // await edilmez; premium/yerleşim kontrolü AdsService + adsActiveProvider'da.
-  if (kAdsEnabled) MobileAds.instance.initialize();
+  // AdMob'u GÜVENLİ başlat (içerik derecesi G + UMP/GDPR onayı + initialize).
+  // App açılışını bloke etmesin diye await edilmez; premium/yerleşim kontrolü
+  // AdsService + adsActiveProvider'da.
+  if (kAdsEnabled) initAds();
 
   runApp(
     ProviderScope(
