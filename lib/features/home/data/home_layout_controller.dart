@@ -60,6 +60,15 @@ class HomeLayoutController extends Notifier<HomeLayout> {
   @override
   HomeLayout build() {
     final prefs = ref.read(sharedPreferencesProvider);
+    // TEK SEFERLİK: eski/karışık kayıtlı ana-sayfa sırasını temiz varsayılana
+    // SIFIRLA (kullanıcı "sıralama bozuk" dedi; yıllarca merge ile birikmiş
+    // karışıklık). Manuel ↻ gerekmesin diye güncellemede otomatik uygulanır.
+    if (!(prefs.getBool('home_layout_reset_v2') ?? false)) {
+      prefs.setBool('home_layout_reset_v2', true);
+      prefs.remove(PrefKeys.homeOrder);
+      prefs.remove(PrefKeys.homeHidden);
+      return HomeLayout(List.of(homeSectionKeys), <String>{});
+    }
     final saved = prefs.getStringList(PrefKeys.homeOrder);
     final hidden =
         (prefs.getStringList(PrefKeys.homeHidden) ?? const []).toSet();
