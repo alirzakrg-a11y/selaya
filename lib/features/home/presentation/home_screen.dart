@@ -6,7 +6,6 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-import '../../../core/ads/ad_widgets.dart';
 import '../../../core/ads/ads_config.dart';
 import '../../../core/data/content_providers.dart';
 import '../../../core/data/manifest_service.dart';
@@ -89,11 +88,9 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
               for (final k in ref.watch(homeLayoutProvider).visible)
                 ..._section(context, k),
               const Padding(padding: AppSpacing.screen, child: _IdeaCard()),
-              // Reklam: ana sayfa yerel (native) kartı. Banner ayrı içerik
-              // ekranlarında — iki reklam üst üste yığılmasın (AdMob yoğunluk).
-              const NativeAdCard(),
-              // "Reklamsız deneyim" → premium ekranı. Yalnız reklam AKTİFKEN
-              // (premium değil + ana anahtar açık) görünür.
+              // Ana sayfada native kart KALDIRILDI → reklam artık alt-menü
+              // üstündeki SABİT banner (yoğunluk azalsın). Yalnızca "Reklamsız
+              // deneyim" butonu kalır; reklam AKTİFKEN (premium değil) görünür.
               if (ref.watch(adsActiveProvider))
                 Padding(
                   padding: const EdgeInsets.fromLTRB(

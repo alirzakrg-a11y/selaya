@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
+import '../../../core/ads/ad_widgets.dart';
 import '../../../core/router/nav.dart';
 import '../../../core/router/routes.dart';
 import '../../auth/data/auth_controller.dart';
@@ -111,7 +112,7 @@ class MoreScreen extends ConsumerWidget {
           const Gap.lg(),
           const _AccountCard(),
           const Gap.lg(),
-          for (final s in _sections) ...[
+          for (final (i, s) in _sections.indexed) ...[
             _SectionTitle(s.titleKey.tr()),
             const Gap.sm(),
             _Grid(
@@ -121,6 +122,11 @@ class MoreScreen extends ConsumerWidget {
                         context.locale.languageCode == 'tr')
                     .toList()),
             const Gap.lg(),
+            // Özellikler arasına TEK yerel reklam (bezdirmemek için ortalarda).
+            if (i == 1) ...[
+              const NativeAdCard(),
+              const Gap.lg(),
+            ],
           ],
         ],
       ),

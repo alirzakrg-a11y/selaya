@@ -62,17 +62,28 @@ import '../../features/travel/presentation/travel_mode_screen.dart';
 import '../../features/wallpapers/presentation/wallpapers_screen.dart';
 import '../../features/widgets_gallery/presentation/widgets_gallery_screen.dart';
 import '../../features/zakat/presentation/zakat_screen.dart';
+import '../ads/ad_widgets.dart';
+import '../ads/ads_service.dart';
 import '../widgets/mini_player_chrome.dart';
 import '../widgets/selaya_bottom_nav.dart';
 import 'routes.dart';
 
 final routerProvider = Provider<GoRouter>((ref) {
+  // name=path: geçiş reklamı gözlemcisi (AdInterstitialObserver) route'u
+  // atlama listesine göre süzebilsin diye her tam-sayfa route ADINI taşır.
   GoRoute fs(String path, Widget Function(BuildContext, GoRouterState) builder) =>
-      GoRoute(path: path, parentNavigatorKey: rootNavigatorKey, builder: builder);
+      GoRoute(
+        path: path,
+        name: path,
+        parentNavigatorKey: rootNavigatorKey,
+        builder: builder,
+      );
 
   return GoRouter(
     navigatorKey: rootNavigatorKey,
     initialLocation: Routes.splash,
+    // Geçiş reklamı: kök-navigatöre push edilen tam-sayfa geçişlerini sayar.
+    observers: [AdInterstitialObserver(ref)],
     routes: [
       GoRoute(path: Routes.splash, builder: (_, _) => const SplashScreen()),
       GoRoute(path: Routes.intro, builder: (_, _) => const IntroScreen()),
@@ -200,10 +211,20 @@ class _MainShell extends StatelessWidget {
       body: shell,
       bottomNavigationBar: HeightReporter(
         notifier: navBarHeight,
-        child: SelayaBottomNav(
-          currentIndex: shell.currentIndex,
-          onTap: (i) =>
-              shell.goBranch(i, initialLocation: i == shell.currentIndex),
+        // Sabit reklam: alt menünün hemen ÜSTÜNDE banner (tüm ana sekmelerde;
+        // kabuk-dışı okuyucu/zikir ekranlarında görünmez). adsActive değilse
+        // (premium/kapalı) AdBanner kendini gizler → yer kaplamaz. HeightReporter
+        // ikisini ölçer → mini player banner+navbar üstüne konumlanır.
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            const AdBanner(),
+            SelayaBottomNav(
+              currentIndex: shell.currentIndex,
+              onTap: (i) =>
+                  shell.goBranch(i, initialLocation: i == shell.currentIndex),
+            ),
+          ],
         ),
       ),
     );

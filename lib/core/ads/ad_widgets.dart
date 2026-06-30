@@ -66,13 +66,10 @@ class _AdBannerState extends ConsumerState<AdBanner> {
     if (!ref.watch(adsActiveProvider) || !_loaded || ad == null) {
       return const SizedBox.shrink();
     }
-    return SafeArea(
-      top: false,
-      child: SizedBox(
-        width: double.infinity,
-        height: ad.size.height.toDouble(),
-        child: AdWidget(ad: ad),
-      ),
+    return SizedBox(
+      width: double.infinity,
+      height: ad.size.height.toDouble(),
+      child: AdWidget(ad: ad),
     );
   }
 }
