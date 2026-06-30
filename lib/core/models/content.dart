@@ -245,14 +245,6 @@ class StorySlide {
   String heading(String l) =>
       translations.mapFor(l)['heading'] as String? ?? '';
   String body(String l) => translations.mapFor(l)['body'] as String? ?? '';
-
-  factory StorySlide.fromJson(Map<String, dynamic> j) => StorySlide(
-    j['image'] as String,
-    j['durationMs'] as int? ?? 6000,
-    j['arabic'] as String?,
-    _tr(j),
-    video: j['video'] as String?,
-  );
 }
 
 class Story {
@@ -273,17 +265,6 @@ class Story {
 
   String title(String l) => translations.mapFor(l)['title'] as String;
   Color get accentColor => hexColor(accent);
-
-  factory Story.fromJson(Map<String, dynamic> j) => Story(
-    j['id'] as String,
-    j['type'] as String,
-    j['accent'] as String? ?? '#E0B250',
-    j['cover'] as String,
-    (j['slides'] as List)
-        .map((e) => StorySlide.fromJson((e as Map).cast<String, dynamic>()))
-        .toList(),
-    _tr(j),
-  );
 }
 
 class GreetingMessage {
@@ -395,15 +376,6 @@ class Wallpaper {
 
   String title(String l) => translations.mapFor(l)['title'] as String;
   List<Color> get colors => palette.map(hexColor).toList();
-
-  factory Wallpaper.fromJson(Map<String, dynamic> j) => Wallpaper(
-    j['id'] as String,
-    j['category'] as String,
-    j['image'] as String,
-    j['premium'] as bool? ?? false,
-    ((j['palette'] as List?) ?? const ['#05070D', '#E0B250']).cast<String>(),
-    _tr(j),
-  );
 }
 
 class Mosque {
@@ -448,18 +420,6 @@ class FeedItem {
   String title(String l) => translations.mapFor(l)['title'] as String;
   String caption(String l) =>
       translations.mapFor(l)['caption'] as String? ?? '';
-
-  /// Asset path today (e.g. `assets/images/videolar/x.mp4`) or a remote URL
-  /// later (`https://…`); empty when the item carries no video.
-  factory FeedItem.fromJson(Map<String, dynamic> j) => FeedItem(
-    j['id'] as String,
-    j['type'] as String? ?? 'video',
-    j['poster'] as String,
-    j['video'] as String? ?? '',
-    j['author'] as String? ?? 'SELAYA',
-    j['likes'] as int? ?? 0,
-    _tr(j),
-  );
 }
 
 class DhikrPreset {
