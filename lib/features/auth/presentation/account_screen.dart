@@ -98,6 +98,33 @@ class AccountScreen extends ConsumerWidget {
                           ),
                         ),
                       ],
+                      if (user.isPremium) ...[
+                        const Gap.sm(),
+                        Container(
+                          padding: const EdgeInsets.symmetric(
+                              horizontal: 14, vertical: 7),
+                          decoration: BoxDecoration(
+                            gradient: LinearGradient(colors: [
+                              c.gold,
+                              c.gold.withValues(alpha: 0.7),
+                            ]),
+                            borderRadius: BorderRadius.circular(99),
+                          ),
+                          child: Row(
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              const Icon(Icons.workspace_premium_rounded,
+                                  size: 16, color: Color(0xFF15110A)),
+                              const SizedBox(width: 6),
+                              Text('premium.title'.tr(),
+                                  style: const TextStyle(
+                                      color: Color(0xFF15110A),
+                                      fontWeight: FontWeight.w800,
+                                      fontSize: 13)),
+                            ],
+                          ),
+                        ),
+                      ],
                       const Gap.sm(),
                       TextButton.icon(
                         onPressed: () => _showEditProfile(context, ref),

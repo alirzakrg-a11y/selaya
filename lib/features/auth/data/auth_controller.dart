@@ -4,6 +4,7 @@ import 'dart:math';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../../../core/ads/ads_config.dart';
 import '../../../core/di/providers.dart';
 import '../domain/auth_user.dart';
 import 'auth_api.dart';
@@ -25,10 +26,14 @@ class AuthController extends Notifier<AuthState> {
     final raw = prefs.getString(PrefKeys.authUser);
     if (token != null && token.isNotEmpty && raw != null) {
       try {
-        return AuthState(
+        final st = AuthState(
           token: token,
           user: AuthUser.fromJson(jsonDecode(raw) as Map<String, dynamic>),
         );
+        // Açılışta hesabın premium durumunu sunucudan tazele (panelden verilmiş
+        // olabilir; cihazlar arası senkron). Sessiz (offline'da mevcut korunur).
+        _refreshPremium(token);
+        return st;
       } catch (_) {}
     }
     return const AuthState();
@@ -118,6 +123,40 @@ class AuthController extends Notifier<AuthState> {
     await prefs.setString(PrefKeys.authToken, r.token);
     await prefs.setString(PrefKeys.authUser, jsonEncode(r.user.toJson()));
     state = AuthState(token: r.token, user: r.user);
+    // Login yanıtı premium içermeyebilir → sunucudan tazele.
+    _refreshPremium(r.token);
+  }
+
+  /// Sunucudan güncel premium durumunu çek → yerel bayrak + state. Offline sessiz.
+  Future<void> _refreshPremium(String token) async {
+    try {
+      final me = await AuthApi.fetchMe(token);
+      await _applyPremium(me.isPremium);
+      final u = state.user;
+      if (u != null && u.isPremium != me.isPremium) {
+        await updateUser(u.copyWith(isPremium: me.isPremium));
+      }
+    } catch (_) {}
+  }
+
+  Future<void> _applyPremium(bool premium) async {
+    await ref
+        .read(sharedPreferencesProvider)
+        .setBool(PrefKeys.isPremium, premium);
+    ref.invalidate(isPremiumProvider);
+  }
+
+  /// IAP satın alma başarılı → hesabı premium işaretle (sunucu + yerel + state).
+  Future<void> markPremiumPurchased() async {
+    final token = state.token;
+    if (token != null && token.isNotEmpty) {
+      try {
+        await AuthApi.markPremium(token);
+      } catch (_) {}
+    }
+    await _applyPremium(true);
+    final u = state.user;
+    if (u != null) await updateUser(u.copyWith(isPremium: true));
   }
 
   /// Profil (ad/soyad) güncellendi → yerel kaydı tazele.

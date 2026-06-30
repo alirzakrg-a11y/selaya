@@ -3,8 +3,8 @@ import 'dart:async';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:in_app_purchase/in_app_purchase.dart';
 
-import '../../../core/ads/ads_config.dart';
 import '../../../core/di/providers.dart';
+import '../../auth/data/auth_controller.dart';
 
 /// Premium ürün ID'leri — Play Console'da AYNI ID'lerle oluşturulmalı:
 /// monthly/yearly = abonelik (subscription), lifetime = tek seferlik (yönetilen ürün).
@@ -117,9 +117,10 @@ class PurchaseController extends Notifier<PurchaseState> {
   }
 
   Future<void> _grantPremium() async {
-    await ref.read(sharedPreferencesProvider).setBool(PrefKeys.isPremium, true);
+    // Hesaba bağla: markPremiumPurchased() → /v1/me/premium + setBool(isPremium)
+    // + isPremiumProvider invalidate → profilde/panelde görünür + reklam gizli.
+    await ref.read(authControllerProvider.notifier).markPremiumPurchased();
     state = state.copyWith(isPremium: true, purchasePending: false);
-    ref.invalidate(isPremiumProvider); // reklamlar anında gizlensin
   }
 
   /// Seçilen ürünü satın al (abonelik + tek-seferlik ikisi de buyNonConsumable).

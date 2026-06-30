@@ -227,6 +227,37 @@ class AuthApi {
     throw AuthException((d['error'] ?? 'unknown').toString());
   }
 
+  /// Güncel profili (premium dahil) sunucudan çek (GET /v1/me).
+  static Future<AuthUser> fetchMe(String token) async {
+    http.Response res;
+    try {
+      res = await http
+          .get(_u('/v1/me'), headers: {'Authorization': 'Bearer $token'})
+          .timeout(_timeout);
+    } catch (_) {
+      throw AuthException('network');
+    }
+    final d = _decode(res);
+    if (res.statusCode == 200 && d['ok'] == true) {
+      return AuthUser.fromJson(
+        ((d['user'] as Map?) ?? const {}).cast<String, dynamic>(),
+      );
+    }
+    throw AuthException((d['error'] ?? 'unknown').toString());
+  }
+
+  /// Premium satın alındığında hesabı premium işaretle (POST /v1/me/premium).
+  static Future<void> markPremium(String token) async {
+    try {
+      await http
+          .post(_u('/v1/me/premium'),
+              headers: {'Authorization': 'Bearer $token'})
+          .timeout(_timeout);
+    } catch (_) {
+      throw AuthException('network');
+    }
+  }
+
   /// Şifremi unuttum: e-postaya kod gönder (Resend kuruluysa).
   static Future<void> forgot(String email) async {
     http.Response res;

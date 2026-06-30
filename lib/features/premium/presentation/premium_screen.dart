@@ -29,6 +29,7 @@ class _PremiumScreenState extends ConsumerState<PremiumScreen> {
   static const _fallbackPrice = {
     PremiumIds.monthly: '₺119,99',
     PremiumIds.yearly: '₺799,99',
+    PremiumIds.lifetime: '₺1.999,99',
   };
 
   // "Premium aktif" — yeni çeviri anahtarı eklememek için dil-kodu haritası.
@@ -44,6 +45,39 @@ class _PremiumScreenState extends ConsumerState<PremiumScreen> {
       'bn': 'প্রিমিয়াম সক্রিয় ✓',
       'fa': 'پریمیوم فعال ✓',
       'ru': 'Премиум активен ✓',
+    };
+    return m[lang] ?? m['en']!;
+  }
+
+  // "Ömür boyu" / "tek seferlik" — yeni çeviri anahtarı eklememek için harita.
+  static String _lifetimeLabel(String lang) {
+    const m = {
+      'tr': 'Ömür boyu',
+      'en': 'Lifetime',
+      'ar': 'مدى الحياة',
+      'de': 'Lebenslang',
+      'id': 'Seumur hidup',
+      'fr': 'À vie',
+      'ur': 'تاحیات',
+      'bn': 'আজীবন',
+      'fa': 'مادام‌العمر',
+      'ru': 'Навсегда',
+    };
+    return m[lang] ?? m['en']!;
+  }
+
+  static String _onceLabel(String lang) {
+    const m = {
+      'tr': 'tek seferlik',
+      'en': 'one-time',
+      'ar': 'دفعة واحدة',
+      'de': 'einmalig',
+      'id': 'sekali bayar',
+      'fr': 'paiement unique',
+      'ur': 'ایک بار',
+      'bn': 'এককালীন',
+      'fa': 'یک‌بار',
+      'ru': 'разовый',
     };
     return m[lang] ?? m['en']!;
   }
@@ -68,6 +102,7 @@ class _PremiumScreenState extends ConsumerState<PremiumScreen> {
 
     final yearly = purchase.byId(PremiumIds.yearly);
     final monthly = purchase.byId(PremiumIds.monthly);
+    final lifetime = purchase.byId(PremiumIds.lifetime);
 
     return Scaffold(
       backgroundColor: c.bg,
@@ -163,6 +198,16 @@ class _PremiumScreenState extends ConsumerState<PremiumScreen> {
                       per: 'premium.perMonth'.tr(),
                       selected: _selected == PremiumIds.monthly,
                       onTap: () => setState(() => _selected = PremiumIds.monthly),
+                    ),
+                    const Gap.sm(),
+                    _PlanTile(
+                      label: _lifetimeLabel(lang),
+                      price: lifetime?.price ??
+                          _fallbackPrice[PremiumIds.lifetime]!,
+                      per: _onceLabel(lang),
+                      selected: _selected == PremiumIds.lifetime,
+                      onTap: () =>
+                          setState(() => _selected = PremiumIds.lifetime),
                     ),
                   ],
                 ),
