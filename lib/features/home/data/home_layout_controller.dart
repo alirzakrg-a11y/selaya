@@ -16,8 +16,7 @@ const homeSectionKeys = [
   'babyNames', // tek-satır "Bebek İsimleri" kartı
   'quiz', // İslami Bilgi Yarışması kartı
   'audioStories', // Sesli Dini Hikâyeler (TR-only; diğer dillerde boş döner)
-  'verseOfDay', // Günün Ayeti — sesli hikâyelerin ALTINDA (kullanıcı isteği)
-  'hadithOfDay', // Günün Hadisi — sesli hikâyelerin ALTINDA
+  'verseHadithPair', // Günün Ayeti + Hadisi YAN YANA, Arapçasız (sesli hikâye altı)
   'dailyDua', // Günün Duası — sesli hikâyelerin ALTINDA
   'quickPair',
   'mediaPair', // Videolar + Duvar Kâğıdı YAN YANA (eski videos+wallpaper)
@@ -38,6 +37,7 @@ const homeSectionLabels = {
   'babyNames': 'babyNames.title',
   'quiz': 'quiz.title',
   'audioStories': 'audioStories.title',
+  'verseHadithPair': 'akis.verseOfDay',
   'verseOfDay': 'akis.verseOfDay',
   'hadithOfDay': 'akis.hadithOfDay',
   'dailyDua': 'akis.duaOfDay',
@@ -63,8 +63,8 @@ class HomeLayoutController extends Notifier<HomeLayout> {
     // TEK SEFERLİK: eski/karışık kayıtlı ana-sayfa sırasını temiz varsayılana
     // SIFIRLA (kullanıcı "sıralama bozuk" dedi; yıllarca merge ile birikmiş
     // karışıklık). Manuel ↻ gerekmesin diye güncellemede otomatik uygulanır.
-    if (!(prefs.getBool('home_layout_reset_v3') ?? false)) {
-      prefs.setBool('home_layout_reset_v3', true);
+    if (!(prefs.getBool('home_layout_reset_v4') ?? false)) {
+      prefs.setBool('home_layout_reset_v4', true);
       prefs.remove(PrefKeys.homeOrder);
       prefs.remove(PrefKeys.homeHidden);
       return HomeLayout(List.of(homeSectionKeys), <String>{});
