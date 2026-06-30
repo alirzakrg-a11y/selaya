@@ -31,9 +31,25 @@ class _Zikr {
   );
 }
 
-/// Namaz sonrası tesbihat: 33 Sübhânallah + 33 Elhamdülillah + 33 Allâhüekber
-/// + kelime-i tevhîd (toplam 100). Metinler standart/doğrulanmış kısa zikirlerdir.
+/// Namaz sonrası tesbihat (Diyanet tertibi): selâmdan sonra istiğfar + esenlik
+/// duâsı, ardından 33 Sübhânallah + 33 Elhamdülillah + 33 Allâhüekber + kelime-i
+/// tevhîd. Kısa metinler Müslim/standart kaynaklıdır. (Âyetü'l-Kürsî tam metni
+/// ayrı/kaydırılabilir kart gerektirdiğinden ileride eklenecek.)
 const _steps = <_Zikr>[
+  _Zikr(
+    'أَسْتَغْفِرُ اللّٰهَ',
+    'Estağfirullah',
+    'Allah’tan bağışlanma dilerim.',
+    'I seek forgiveness from Allah.',
+    3,
+  ),
+  _Zikr(
+    'اَللّٰهُمَّ أَنْتَ السَّلَامُ وَمِنْكَ السَّلَامُ تَبَارَكْتَ يَا ذَا الْجَلَالِ وَالْإِكْرَامِ',
+    'Allâhümme ente’s-selâmü ve minke’s-selâm, tebârekte yâ ze’l-celâli ve’l-ikrâm',
+    'Allah’ım! Selâm sensin, esenlik yalnız sendendir. Ey celâl ve ikram sahibi, sen mübareksin.',
+    'O Allah, You are Peace and from You is peace. Blessed are You, O Owner of Majesty and Honour.',
+    1,
+  ),
   _Zikr(
     'سُبْحَانَ اللّٰهِ',
     'Sübhânallah',
