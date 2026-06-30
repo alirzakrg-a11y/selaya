@@ -178,9 +178,9 @@ class _WallpaperTile extends ConsumerWidget {
                   size: 18,
                 ),
               ),
-            // Yapay zeka ile üretilmiş görsel → küçük "✨ AI" rozeti (şeffaflık).
-            if (wp.ai)
-              Positioned(
+            // "✨ AI" rozeti — TÜM duvar kâğıtlarında (şeffaflık; risk almamak için
+            // hepsi yapay zeka üretimi olarak işaretlenir).
+            Positioned(
                 top: 8,
                 left: 8,
                 child: DecoratedBox(
@@ -425,7 +425,7 @@ class _WallpaperDetailState extends ConsumerState<WallpaperDetail> {
                   '${_current + 1} / ${widget.list.length}',
                   style: const TextStyle(color: Colors.white60, fontSize: 13),
                 ),
-                if (wp.ai) ...[
+                ...[
                   const SizedBox(height: 8),
                   Container(
                     padding:

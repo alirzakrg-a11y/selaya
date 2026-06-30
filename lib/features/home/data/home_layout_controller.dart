@@ -13,10 +13,10 @@ const homeSectionKeys = [
   'prayerStrip',
   'nearestMosque',
   'featured',
-  'babyNames', // tek-satır "Bebek İsimleri" kartı
+  'verseHadithPair', // Günün Ayeti + Hadisi YAN YANA (bebek isimleriyle YER DEĞİŞTİ)
   'quiz', // İslami Bilgi Yarışması kartı
   'audioStories', // Sesli Dini Hikâyeler (TR-only; diğer dillerde boş döner)
-  'verseHadithPair', // Günün Ayeti + Hadisi YAN YANA, Arapçasız (sesli hikâye altı)
+  'babyNames', // tek-satır "Bebek İsimleri" kartı (ayet/hadis ile YER DEĞİŞTİ)
   'dailyDua', // Günün Duası — sesli hikâyelerin ALTINDA
   'quickPair',
   'mediaPair', // Videolar + Duvar Kâğıdı YAN YANA (eski videos+wallpaper)
@@ -63,8 +63,8 @@ class HomeLayoutController extends Notifier<HomeLayout> {
     // TEK SEFERLİK: eski/karışık kayıtlı ana-sayfa sırasını temiz varsayılana
     // SIFIRLA (kullanıcı "sıralama bozuk" dedi; yıllarca merge ile birikmiş
     // karışıklık). Manuel ↻ gerekmesin diye güncellemede otomatik uygulanır.
-    if (!(prefs.getBool('home_layout_reset_v4') ?? false)) {
-      prefs.setBool('home_layout_reset_v4', true);
+    if (!(prefs.getBool('home_layout_reset_v5') ?? false)) {
+      prefs.setBool('home_layout_reset_v5', true);
       prefs.remove(PrefKeys.homeOrder);
       prefs.remove(PrefKeys.homeHidden);
       return HomeLayout(List.of(homeSectionKeys), <String>{});

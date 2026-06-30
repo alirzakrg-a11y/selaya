@@ -600,6 +600,18 @@ class _MushafScreenState extends ConsumerState<MushafScreen>
             padding: const EdgeInsets.fromLTRB(16, 6, 16, 0),
             child: Row(
               children: [
+                // 🔁 Sure tekrarı (Kur'an okuyucuyla AYNI): açıkken sure bitince
+                // baştan döner (LoopMode.all), kapalıyken sıradaki sureye geçer.
+                IconButton(
+                  tooltip: lang == 'tr' ? 'Sureyi tekrarla' : 'Repeat surah',
+                  icon: Icon(audio.repeatSurah
+                      ? Icons.repeat_one_on_rounded
+                      : Icons.repeat_rounded),
+                  color: audio.repeatSurah ? c.gold : c.textSecondary,
+                  onPressed: () => ref
+                      .read(quranAudioControllerProvider.notifier)
+                      .toggleRepeat(),
+                ),
                 // ◀ Önceki sure (kullanıcı 2026-06-15: mushaf navigasyonu).
                 IconButton(
                   tooltip: 'xt.muPrevSurah'.tr(),
