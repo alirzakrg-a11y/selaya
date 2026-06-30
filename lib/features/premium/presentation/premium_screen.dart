@@ -1,5 +1,6 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../core/theme/app_colors.dart';
 import '../../../core/theme/app_icons.dart';
@@ -8,15 +9,16 @@ import '../../../core/widgets/geometric_background.dart';
 import '../../../core/widgets/gradient_button.dart';
 import '../../../core/widgets/selaya_card.dart';
 import '../../../core/widgets/selaya_logo.dart';
+import '../data/purchase_service.dart';
 
-class PremiumScreen extends StatefulWidget {
+class PremiumScreen extends ConsumerStatefulWidget {
   const PremiumScreen({super.key});
   @override
-  State<PremiumScreen> createState() => _PremiumScreenState();
+  ConsumerState<PremiumScreen> createState() => _PremiumScreenState();
 }
 
-class _PremiumScreenState extends State<PremiumScreen> {
-  bool _yearly = true;
+class _PremiumScreenState extends ConsumerState<PremiumScreen> {
+  String _selected = PremiumIds.yearly;
 
   static const _features = [
     (AppIcons.close, 'premium.featureAdfree'),
@@ -24,9 +26,50 @@ class _PremiumScreenState extends State<PremiumScreen> {
     (AppIcons.wallpaper, 'premium.featureWidgets'),
   ];
 
+  // Mağaza fiyatı yüklenene kadar yedek (gerçek fiyat Play Console'dan gelir).
+  static const _fallbackPrice = {
+    PremiumIds.monthly: '₺119,99',
+    PremiumIds.yearly: '₺799,99',
+  };
+
+  // "Premium aktif" — yeni çeviri anahtarı eklememek için dil-kodu haritası.
+  static String _activeLabel(String lang) {
+    const m = {
+      'tr': 'Premium aktif ✓',
+      'en': 'Premium active ✓',
+      'ar': 'العضوية المميزة مُفعّلة ✓',
+      'de': 'Premium aktiv ✓',
+      'id': 'Premium aktif ✓',
+      'fr': 'Premium actif ✓',
+      'ur': 'پریمیم فعال ✓',
+      'bn': 'প্রিমিয়াম সক্রিয় ✓',
+      'fa': 'پریمیوم فعال ✓',
+      'ru': 'Премиум активен ✓',
+    };
+    return m[lang] ?? m['en']!;
+  }
+
+  void _snack(String msg) {
+    if (!mounted) return;
+    ScaffoldMessenger.of(context)
+        .showSnackBar(SnackBar(content: Text(msg)));
+  }
+
   @override
   Widget build(BuildContext context) {
     final c = context.colors;
+    final lang = context.locale.languageCode;
+    final purchase = ref.watch(purchaseProvider);
+    final ctrl = ref.read(purchaseProvider.notifier);
+
+    // Satın alma hatasını bir kez snackbar ile bildir.
+    ref.listen(purchaseProvider, (prev, next) {
+      if (next.error != null && next.error != prev?.error) _snack(next.error!);
+    });
+
+    final yearly = purchase.byId(PremiumIds.yearly);
+    final monthly = purchase.byId(PremiumIds.monthly);
+
     return Scaffold(
       backgroundColor: c.bg,
       body: GeometricBackground(
@@ -108,42 +151,74 @@ class _PremiumScreenState extends State<PremiumScreen> {
                     const Gap.lg(),
                     _PlanTile(
                       label: 'premium.yearly'.tr(),
-                      price: '₺499,99',
+                      price: yearly?.price ?? _fallbackPrice[PremiumIds.yearly]!,
                       per: 'premium.perYear'.tr(),
                       badge: 'premium.bestValue'.tr(),
-                      selected: _yearly,
-                      onTap: () => setState(() => _yearly = true),
+                      selected: _selected == PremiumIds.yearly,
+                      onTap: () => setState(() => _selected = PremiumIds.yearly),
                     ),
                     const Gap.sm(),
                     _PlanTile(
                       label: 'premium.monthly'.tr(),
-                      price: '₺69,99',
+                      price: monthly?.price ?? _fallbackPrice[PremiumIds.monthly]!,
                       per: 'premium.perMonth'.tr(),
-                      selected: !_yearly,
-                      onTap: () => setState(() => _yearly = false),
+                      selected: _selected == PremiumIds.monthly,
+                      onTap: () => setState(() => _selected = PremiumIds.monthly),
                     ),
                   ],
                 ),
               ),
               Padding(
                 padding: AppSpacing.screen,
-                child: Column(
-                  children: [
-                    GradientButton(
-                      label: 'premium.subscribe'.tr(),
-                      icon: AppIcons.crown,
-                      expand: true,
-                      onPressed: () => ScaffoldMessenger.of(context).showSnackBar(
-                        SnackBar(content: Text('common.comingSoon'.tr())),
+                child: purchase.isPremium
+                    ? Container(
+                        width: double.infinity,
+                        padding: const EdgeInsets.symmetric(vertical: 16),
+                        decoration: BoxDecoration(
+                          color: c.success.withValues(alpha: 0.14),
+                          borderRadius: AppRadius.rLg,
+                          border: Border.all(
+                              color: c.success.withValues(alpha: 0.5)),
+                        ),
+                        child: Center(
+                          child: Text(_activeLabel(lang),
+                              style: TextStyle(
+                                  color: c.success,
+                                  fontWeight: FontWeight.w700,
+                                  fontSize: 16)),
+                        ),
+                      )
+                    : Column(
+                        children: [
+                          if (purchase.purchasePending)
+                            const Padding(
+                              padding: EdgeInsets.symmetric(vertical: 8),
+                              child: CircularProgressIndicator(),
+                            )
+                          else
+                            GradientButton(
+                              label: 'premium.subscribe'.tr(),
+                              icon: AppIcons.crown,
+                              expand: true,
+                              onPressed: () {
+                                final p = purchase.byId(_selected);
+                                if (p == null) {
+                                  _snack('common.comingSoon'.tr());
+                                  return;
+                                }
+                                ctrl.buy(p);
+                              },
+                            ),
+                          TextButton(
+                            onPressed: () {
+                              ctrl.restore();
+                              _snack('premium.restore'.tr());
+                            },
+                            child: Text('premium.restore'.tr(),
+                                style: TextStyle(color: c.textTertiary)),
+                          ),
+                        ],
                       ),
-                    ),
-                    TextButton(
-                      onPressed: () {},
-                      child: Text('premium.restore'.tr(),
-                          style: TextStyle(color: c.textTertiary)),
-                    ),
-                  ],
-                ),
               ),
             ],
           ),

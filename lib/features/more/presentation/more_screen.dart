@@ -86,6 +86,7 @@ class MoreScreen extends ConsumerWidget {
           Routes.homeLayout),
     ]),
     _Section('more.secApp', [
+      _Entry(AppIcons.crown, 'premium.title', Routes.premium),
       _Entry(Icons.alarm_rounded, 'reminders.title', Routes.reminders),
       _Entry(AppIcons.settings, 'settings.title', Routes.settings),
       _Entry(AppIcons.info, 'intro.welcome', Routes.intro),
