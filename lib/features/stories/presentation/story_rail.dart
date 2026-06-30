@@ -37,27 +37,32 @@ class StoryRail extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    // Tüm eklenen hikâyeleri göster — limit KALDIRILDI (kullanıcı isteği).
-    // Yatay şerit lazy (ListView) → çok hikâyede de performans sorunu olmaz.
+    // Şeritte EN FAZLA 5 hikâye — SABİT, yatay KAYDIRMA YOK. (Kaydırınca her
+    // karede SweepGradient halkalar yeniden çiziliyordu → kasma/donma.) Bir
+    // hikâyeye dokununca açılan tam ekran oynatıcı TÜM hikâyeleri gösterir;
+    // kaydırma orada devam eder (StoryPlayer = full liste + startIndex).
     final stories = ref.watch(storiesProvider).value ?? const <Story>[];
     if (stories.isEmpty) return const SizedBox(height: 0);
     final lang = context.langCode;
+    final shown = stories.length > 5 ? stories.sublist(0, 5) : stories;
 
     return SizedBox(
-      height: 104,
-      child: ListView.separated(
-        scrollDirection: Axis.horizontal,
+      height: 100,
+      child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: AppSpacing.base),
-        itemCount: stories.length,
-        separatorBuilder: (_, _) => const Gap.md(),
-        itemBuilder: (context, i) {
-          final s = stories[i];
-          return _StoryAvatar(
-            story: s,
-            label: s.title(lang),
-            onTap: () => context.push('${Routes.story}/$i'),
-          );
-        },
+        child: Row(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            for (final (i, s) in shown.indexed)
+              Expanded(
+                child: _StoryAvatar(
+                  story: s,
+                  label: s.title(lang),
+                  onTap: () => context.push('${Routes.story}/$i'),
+                ),
+              ),
+          ],
+        ),
       ),
     );
   }
@@ -75,60 +80,58 @@ class _StoryAvatar extends StatelessWidget {
     final ring = _ringColors(story.id);
     return GestureDetector(
       onTap: onTap,
-      child: SizedBox(
-        width: 74,
-        child: Column(
-          children: [
-            SizedBox(
-              width: 68,
-              height: 68,
-              child: Stack(
-                alignment: Alignment.center,
-                children: [
-                  // Renkli gradyan halka — STATİK (kullanıcı 2026-06-15: "akış
-                  // animasyonunda donma"). ÖNCEDEN sonsuz dönüyordu (repeat
-                  // rotate); flutter_animate ticker'ı widget görünür kaldıkça
-                  // sürekli tick atıp ana thread'i yakıyordu (akış + ana ekran
-                  // donması). Dönüş kaldırıldı; renkli halka kalır.
-                  Container(
-                    width: 68,
-                    height: 68,
-                    decoration: BoxDecoration(
-                      shape: BoxShape.circle,
-                      gradient: SweepGradient(colors: [...ring, ring.first]),
+      behavior: HitTestBehavior.opaque, // dilimdeki boşluk da tıklanabilir
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          SizedBox(
+            width: 60,
+            height: 60,
+            child: Stack(
+              alignment: Alignment.center,
+              children: [
+                // Renkli gradyan halka — STATİK (dönmez; akış animasyonu donma
+                // yapıyordu, 2026-06-15). Şerit de artık kaydırılmıyor (kasma yok).
+                Container(
+                  width: 60,
+                  height: 60,
+                  decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    gradient: SweepGradient(colors: [...ring, ring.first]),
+                  ),
+                ),
+                Container(
+                  width: 54,
+                  height: 54,
+                  padding: const EdgeInsets.all(2.5),
+                  decoration:
+                      BoxDecoration(shape: BoxShape.circle, color: c.bg),
+                  child: ClipOval(
+                    child: AppImage.cdn(
+                      story.cover,
+                      fit: BoxFit.cover,
+                      fallbackColors: [
+                        ring[0].withValues(alpha: 0.35),
+                        ring[1].withValues(alpha: 0.15),
+                      ],
                     ),
                   ),
-                  // Avatar — sabit (dönmez).
-                  Container(
-                    width: 62,
-                    height: 62,
-                    padding: const EdgeInsets.all(2.5),
-                    decoration:
-                        BoxDecoration(shape: BoxShape.circle, color: c.bg),
-                    child: ClipOval(
-                      child: AppImage.cdn(
-                        story.cover,
-                        fit: BoxFit.cover,
-                        fallbackColors: [
-                          ring[0].withValues(alpha: 0.35),
-                          ring[1].withValues(alpha: 0.15),
-                        ],
-                      ),
-                    ),
-                  ),
-                ],
-              ),
+                ),
+              ],
             ),
-            const SizedBox(height: 6),
-            Text(
+          ),
+          const SizedBox(height: 6),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 2),
+            child: Text(
               label,
               maxLines: 1,
               overflow: TextOverflow.ellipsis,
               textAlign: TextAlign.center,
               style: Theme.of(context).textTheme.labelSmall,
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }
