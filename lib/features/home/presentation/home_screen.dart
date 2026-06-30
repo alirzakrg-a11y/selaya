@@ -921,8 +921,6 @@ class _VerseHadithPair extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final lang = context.langCode;
-    final seed = ref.watch(inspirationSeedProvider);
-    final wps = ref.watch(wallpapersProvider).value ?? const <Wallpaper>[];
     final all =
         ref.watch(inspirationProvider).value ?? const <InspirationItem>[];
     final verses = [
@@ -941,7 +939,6 @@ class _VerseHadithPair extends ConsumerWidget {
         icon: Icons.menu_book_rounded,
         text: v.text(lang),
         reference: v.reference,
-        backgroundImage: wps.isEmpty ? '' : wps[(seed + 2) % wps.length].image,
         onTap: () => context.push('${Routes.verses}?open=${v.id}'),
       ));
     }
@@ -952,7 +949,6 @@ class _VerseHadithPair extends ConsumerWidget {
         icon: Icons.format_quote_rounded,
         text: h.text(lang),
         reference: h.reference,
-        backgroundImage: wps.isEmpty ? '' : wps[(seed + 3) % wps.length].image,
         onTap: () => context.push('${Routes.hadiths}?open=${h.id}'),
       ));
     }
@@ -982,14 +978,12 @@ class _MiniContentCard extends StatelessWidget {
   final IconData icon;
   final String text;
   final String reference;
-  final String backgroundImage;
   final VoidCallback onTap;
   const _MiniContentCard({
     required this.label,
     required this.icon,
     required this.text,
     required this.reference,
-    required this.backgroundImage,
     required this.onTap,
   });
   @override
@@ -1001,15 +995,14 @@ class _MiniContentCard extends StatelessWidget {
         child: Stack(
           fit: StackFit.expand,
           children: [
-            backgroundImage.isEmpty
-                ? const ColoredBox(color: Color(0xFF0E1322))
-                : AppImage.cdn(backgroundImage),
+            // Arka plan GÖRSELİ kaldırıldı (kullanıcı isteği) → temalı koyu
+            // (hafif altın tonlu) gradyan zemin; beyaz/altın metin okunaklı.
             const DecoratedBox(
               decoration: BoxDecoration(
                 gradient: LinearGradient(
-                  begin: Alignment.topCenter,
-                  end: Alignment.bottomCenter,
-                  colors: [Color(0x9905070D), Color(0xF205070D)],
+                  begin: Alignment.topLeft,
+                  end: Alignment.bottomRight,
+                  colors: [Color(0xFF161208), Color(0xFF0B0E16)],
                 ),
               ),
             ),
