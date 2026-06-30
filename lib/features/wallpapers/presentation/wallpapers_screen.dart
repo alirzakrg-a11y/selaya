@@ -6,6 +6,8 @@ import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:share_plus/share_plus.dart';
 
+import '../../../core/ads/ad_widgets.dart';
+import '../../../core/ads/ads_config.dart';
 import '../../../core/data/content_providers.dart';
 import '../../../core/data/likes_service.dart';
 import '../../../core/localization/localized_text.dart';
@@ -39,6 +41,7 @@ class _WallpapersScreenState extends ConsumerState<WallpapersScreen> {
     final c = context.colors;
     final wallpapers = ref.watch(wallpapersProvider);
     final liked = ref.watch(likedKeysProvider);
+    final adsOn = ref.watch(adsActiveProvider);
 
     return SelayaScaffold(
       title: 'wallpapers.title'.tr(),
@@ -74,23 +77,55 @@ class _WallpapersScreenState extends ConsumerState<WallpapersScreen> {
               message: 'xt.wpNoFavorites'.tr(),
             );
           }
-          return GridView.builder(
-            padding: const EdgeInsets.fromLTRB(
-              AppSpacing.base,
-              AppSpacing.sm,
-              AppSpacing.base,
-              AppSpacing.xxxl,
-            ),
-            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisCount: 2,
-              mainAxisSpacing: AppSpacing.md,
-              crossAxisSpacing: AppSpacing.md,
-              childAspectRatio: 0.62,
-            ),
-            itemCount: list.length,
-            itemBuilder: (context, i) =>
-                _WallpaperTile(list: list, index: i),
+          const gridDelegate = SliverGridDelegateWithFixedCrossAxisCount(
+            crossAxisCount: 2,
+            mainAxisSpacing: AppSpacing.md,
+            crossAxisSpacing: AppSpacing.md,
+            childAspectRatio: 0.62,
           );
+          // Reklamsız (premium/kapalı) → düz ızgara.
+          if (!adsOn) {
+            return GridView.builder(
+              padding: const EdgeInsets.fromLTRB(AppSpacing.base,
+                  AppSpacing.sm, AppSpacing.base, AppSpacing.xxxl),
+              gridDelegate: gridDelegate,
+              itemCount: list.length,
+              itemBuilder: (context, i) =>
+                  _WallpaperTile(list: list, index: i),
+            );
+          }
+          // Feed içi reklam: her 4 görselde (2 satır) bir tam-genişlik yerel
+          // reklam. Izgara parçalara bölünüp aralara NativeAdCard konur.
+          const chunk = 4;
+          final slivers = <Widget>[];
+          for (var start = 0; start < list.length; start += chunk) {
+            final end =
+                (start + chunk) > list.length ? list.length : start + chunk;
+            slivers.add(SliverPadding(
+              padding: EdgeInsets.fromLTRB(AppSpacing.base,
+                  start == 0 ? AppSpacing.sm : 0, AppSpacing.base, AppSpacing.md),
+              sliver: SliverGrid(
+                gridDelegate: gridDelegate,
+                delegate: SliverChildBuilderDelegate(
+                  (context, j) =>
+                      _WallpaperTile(list: list, index: start + j),
+                  childCount: end - start,
+                ),
+              ),
+            ));
+            if (end < list.length) {
+              slivers.add(const SliverToBoxAdapter(
+                child: Padding(
+                  padding: EdgeInsets.fromLTRB(
+                      AppSpacing.base, 0, AppSpacing.base, AppSpacing.md),
+                  child: NativeAdCard(),
+                ),
+              ));
+            }
+          }
+          slivers.add(const SliverToBoxAdapter(
+              child: SizedBox(height: AppSpacing.xxxl)));
+          return CustomScrollView(slivers: slivers);
         },
       ),
     );

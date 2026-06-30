@@ -6,6 +6,8 @@ import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:video_player/video_player.dart';
 
+import '../../../core/ads/ad_widgets.dart';
+import '../../../core/ads/ads_config.dart';
 import '../../../core/data/content_providers.dart';
 import '../../../core/data/likes_service.dart';
 import '../../../core/localization/localized_text.dart';
@@ -81,20 +83,29 @@ class _FeedScreenState extends ConsumerState<FeedScreen> {
           final items = widget.initialIndex == 0
               ? (raw.toList()..shuffle(Random(_shuffleSeed)))
               : raw;
+          final adsOn = ref.watch(adsActiveProvider);
+          // Feed içi reklam: her 3 video sonrası 1 reklam sayfası (premium'da yok).
+          final total =
+              adsOn ? items.length + (items.length ~/ 3) : items.length;
           return Stack(
             children: [
               PageView.builder(
                 controller: _pageController,
                 scrollDirection: Axis.vertical,
-                itemCount: items.length,
+                itemCount: total,
                 onPageChanged: (i) => setState(() => _current = i),
-                itemBuilder: (context, i) => _FeedPage(
-                  item: items[i],
-                  active: i == _current,
-                  muted: _muted,
-                  onToggleMute: () => setState(() => _muted = !_muted),
-                  onCompleted: () => _advance(items.length),
-                ),
+                itemBuilder: (context, c) {
+                  // Her 4. konum (3 video sonrası) reklam sayfası.
+                  if (adsOn && c % 4 == 3) return const _FeedAdPage();
+                  final ri = adsOn ? (c ~/ 4) * 3 + (c % 4) : c;
+                  return _FeedPage(
+                    item: items[ri],
+                    active: c == _current,
+                    muted: _muted,
+                    onToggleMute: () => setState(() => _muted = !_muted),
+                    onCompleted: () => _advance(total),
+                  );
+                },
               ),
               SafeArea(
                 child: Align(
@@ -108,6 +119,25 @@ class _FeedScreenState extends ConsumerState<FeedScreen> {
             ],
           );
         },
+      ),
+    );
+  }
+}
+
+/// Reels akışında her 3 videoda bir gösterilen reklam sayfası (yerel reklam,
+/// siyah zemin ortada). Premium'da hiç eklenmez (adsActive false → bu sayfa
+/// PageView'a hiç konmaz).
+class _FeedAdPage extends StatelessWidget {
+  const _FeedAdPage();
+  @override
+  Widget build(BuildContext context) {
+    return const ColoredBox(
+      color: Colors.black,
+      child: Center(
+        child: Padding(
+          padding: EdgeInsets.all(AppSpacing.base),
+          child: NativeAdCard(),
+        ),
       ),
     );
   }
