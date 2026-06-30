@@ -288,6 +288,10 @@ class AppAudioHandler extends BaseAudioHandler with SeekHandler {
       final session = await AudioSession.instance;
       await session.configure(const AudioSessionConfiguration.music());
       await player.setAudioSources(sources, initialIndex: idx);
+      // Yeni oturum DÖNGÜSÜZ başlasın → bir modun loop'u (ör. Kur'an sure-tekrarı
+      // LoopMode.all) diğerine (hikâye) SIZMASIN. Her özellik kendi loop'unu
+      // playPlaylist'ten SONRA tekrar açar.
+      await player.setLoopMode(LoopMode.off);
       _setTrackMediaItem(idx);
       await player.play();
     } catch (_) {}

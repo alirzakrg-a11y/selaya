@@ -497,6 +497,8 @@ class _QuranReaderScreenState extends ConsumerState<QuranReaderScreen> {
             playing: isPlaying,
             loading: st.loading,
             canPlay: versesList.any((v) => v.audio != null),
+            repeat: st.repeatSurah,
+            onRepeatToggle: () => _ctrl.toggleRepeat(),
             onPlayPause: versesList.isEmpty
                 ? null
                 : () => _toggleSurah(versesList, surah?.name(lang) ?? 'Sure'),
@@ -946,16 +948,20 @@ class _QuranReaderNav extends StatelessWidget {
   final bool playing;
   final bool loading;
   final bool canPlay;
+  final bool repeat;
   final VoidCallback? onPlayPause;
   final VoidCallback? onPrev;
   final VoidCallback? onNext;
+  final VoidCallback? onRepeatToggle;
   const _QuranReaderNav({
     required this.playing,
     required this.loading,
     required this.canPlay,
+    required this.repeat,
     this.onPlayPause,
     this.onPrev,
     this.onNext,
+    this.onRepeatToggle,
   });
 
   @override
@@ -968,12 +974,21 @@ class _QuranReaderNav extends StatelessWidget {
       ),
       child: Padding(
         padding: const EdgeInsets.symmetric(
-          horizontal: AppSpacing.lg,
+          horizontal: AppSpacing.md,
           vertical: AppSpacing.xs,
         ),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
+            // 🔁 Sure tekrarı (Kur'an + Yâsîn): açıkken sure bitince baştan döner.
+            _NavBtn(
+              icon: repeat
+                  ? Icons.repeat_one_on_rounded
+                  : Icons.repeat_rounded,
+              label: _repeatLabel(context.langCode),
+              onTap: canPlay ? onRepeatToggle : null,
+              active: repeat,
+            ),
             _NavBtn(
               icon: Icons.skip_previous_rounded,
               label: 'xt.qrPrevSurah'.tr(),
@@ -1012,11 +1027,34 @@ class _QuranReaderNav extends StatelessWidget {
   }
 }
 
+/// Tekrar düğmesi etiketi (10 dil) — yeni çeviri anahtarı eklememek için harita.
+String _repeatLabel(String lang) {
+  const m = {
+    'tr': 'Tekrar',
+    'en': 'Repeat',
+    'ar': 'تكرار',
+    'de': 'Wiederholen',
+    'id': 'Ulang',
+    'fr': 'Répéter',
+    'ur': 'دہرائیں',
+    'bn': 'পুনরাবৃত্তি',
+    'fa': 'تکرار',
+    'ru': 'Повтор',
+  };
+  return m[lang] ?? m['en']!;
+}
+
 class _NavBtn extends StatelessWidget {
   final IconData icon;
   final String label;
   final VoidCallback? onTap;
-  const _NavBtn({required this.icon, required this.label, this.onTap});
+  final bool active;
+  const _NavBtn({
+    required this.icon,
+    required this.label,
+    this.onTap,
+    this.active = false,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -1028,11 +1066,20 @@ class _NavBtn extends StatelessWidget {
       onTap: onTap,
       borderRadius: BorderRadius.circular(12),
       child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
+        padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 6),
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            Icon(icon, color: color, size: 26),
+            Container(
+              padding: const EdgeInsets.all(4),
+              decoration: active
+                  ? BoxDecoration(
+                      shape: BoxShape.circle,
+                      color: c.gold.withValues(alpha: 0.18),
+                    )
+                  : null,
+              child: Icon(icon, color: color, size: 24),
+            ),
             const SizedBox(height: 2),
             Text(
               label,

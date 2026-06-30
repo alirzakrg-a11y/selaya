@@ -110,6 +110,7 @@ class _StoryAvatar extends StatelessWidget {
                     child: AppImage.cdn(
                       story.cover,
                       fit: BoxFit.cover,
+                      memWidth: 150, // 54px çembere tam-çözünürlük decode etme
                       fallbackColors: [
                         ring[0].withValues(alpha: 0.35),
                         ring[1].withValues(alpha: 0.15),

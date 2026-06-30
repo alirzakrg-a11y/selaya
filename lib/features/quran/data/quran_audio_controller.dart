@@ -15,11 +15,13 @@ class QuranAudioState {
   final String surahName;
   final bool playing;
   final bool loading;
+  final bool repeatSurah; // 🔁 sure tekrarı açık mı (LoopMode.all)
   const QuranAudioState({
     this.surahNumber,
     this.surahName = '',
     this.playing = false,
     this.loading = false,
+    this.repeatSurah = false,
   });
 
   QuranAudioState copyWith({
@@ -27,6 +29,7 @@ class QuranAudioState {
     String? surahName,
     bool? playing,
     bool? loading,
+    bool? repeatSurah,
     bool clear = false,
   }) =>
       QuranAudioState(
@@ -34,6 +37,7 @@ class QuranAudioState {
         surahName: clear ? '' : (surahName ?? this.surahName),
         playing: playing ?? this.playing,
         loading: loading ?? this.loading,
+        repeatSurah: clear ? false : (repeatSurah ?? this.repeatSurah),
       );
 }
 
@@ -52,8 +56,10 @@ class QuranAudioController extends Notifier<QuranAudioState> {
         loading: s.processingState == ProcessingState.loading ||
             s.processingState == ProcessingState.buffering,
       );
-      // 🔁 Sure bitince OTOMATİK sıradaki sureye geç → Yâsîn/Kur'an kesintisiz okuma.
-      if (s.processingState == ProcessingState.completed) {
+      // Sure bitince: tekrar AÇIKSA LoopMode.all zaten baştan döndürür (completed
+      // normalde gelmez; gelse de tekrarda geçme). KAPALIYSA otomatik sıradaki
+      // sureye geç → Yâsîn/Kur'an kesintisiz okuma.
+      if (s.processingState == ProcessingState.completed && !state.repeatSurah) {
         _advanceToNextSurah();
       }
     });
@@ -113,10 +119,22 @@ class QuranAudioController extends Notifier<QuranAudioState> {
         playing: true);
     await _h.playPlaylist(tracks,
         albumTitle: surahName, startIndex: index, mode: 'quran');
+    // Tekrar açıkken yeni sure de döngüye girsin (playPlaylist loop'u sıfırlar).
+    if (state.repeatSurah) await _h.player.setLoopMode(LoopMode.all);
   }
 
   Future<void> toggle() async {
     _h.player.playing ? await _h.pause() : await _h.play();
+  }
+
+  /// 🔁 Sure tekrarı: AÇIK → çalan sure bitince baştan döner (LoopMode.all);
+  /// KAPALI → sıradaki sureye geçer (kesintisiz okuma). Kur'an + Yâsîn için aynı.
+  /// Player paylaşıldığından yeni çalma listesi playPlaylist'te loop'u sıfırlar →
+  /// tekrar hikâyelere sızmaz.
+  Future<void> toggleRepeat() async {
+    final on = !state.repeatSurah;
+    state = state.copyWith(repeatSurah: on);
+    await _h.player.setLoopMode(on ? LoopMode.all : LoopMode.off);
   }
 
   Future<void> stop() async {

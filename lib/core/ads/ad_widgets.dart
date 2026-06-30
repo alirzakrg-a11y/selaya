@@ -71,10 +71,14 @@ class _AdBannerState extends ConsumerState<AdBanner> {
     if (!ref.watch(adsActiveProvider) || !_loaded || ad == null) {
       return const SizedBox.shrink();
     }
-    return SizedBox(
-      width: double.infinity,
-      height: ad.size.height.toDouble(),
-      child: AdWidget(ad: ad),
+    // RepaintBoundary: platform-view (texture) katmanını izole et → alt menünün
+    // (aktif sekme AnimatedScale vb.) yeniden çizimleri banner'ı kirletmesin.
+    return RepaintBoundary(
+      child: SizedBox(
+        width: double.infinity,
+        height: ad.size.height.toDouble(),
+        child: AdWidget(ad: ad),
+      ),
     );
   }
 }
@@ -149,7 +153,7 @@ class _NativeAdCardState extends ConsumerState<NativeAdCard> {
       padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
       child: ConstrainedBox(
         constraints: const BoxConstraints(minHeight: 320, maxHeight: 360),
-        child: AdWidget(ad: ad),
+        child: RepaintBoundary(child: AdWidget(ad: ad)),
       ),
     );
   }

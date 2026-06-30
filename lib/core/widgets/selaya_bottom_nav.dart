@@ -1,5 +1,3 @@
-import 'dart:ui';
-
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
@@ -58,33 +56,31 @@ class SelayaBottomNav extends StatelessWidget {
       mainAxisSize: MainAxisSize.min,
       children: [
         const AdBanner(),
-        ClipRect(
-          child: BackdropFilter(
-            filter: ImageFilter.blur(sigmaX: 22, sigmaY: 22),
-            child: Container(
-              decoration: BoxDecoration(
-                color: c.surface.withValues(alpha: c.isDark ? 0.72 : 0.86),
-                border: Border(top: BorderSide(color: c.border)),
-              ),
-              padding: EdgeInsets.only(
-                top: AppSpacing.sm,
-                bottom:
-                    MediaQuery.viewPaddingOf(context).bottom + AppSpacing.sm,
-                left: AppSpacing.sm,
-                right: AppSpacing.sm,
-              ),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                children: [
-                  for (var i = 0; i < kSelayaNavItems.length; i++)
-                    _NavButton(
-                      item: kSelayaNavItems[i],
-                      active: i == currentIndex,
-                      onTap: () => onTap(i),
-                    ),
-                ],
-              ),
-            ),
+        // ÖNCE: CANLI BackdropFilter(blur 22) → her karede (HER ekranda) saveLayer
+        // + GPU blur = akıcılık/donma kaynağıydı (perf denetimi). Bar zaten ~%72-86
+        // opaktı (blur zar zor görünüyordu) → blur KALDIRILDI, neredeyse opak düz
+        // dolgu. Tek seferlik kazanç: alt menü artık her karede yeniden çizilmiyor.
+        Container(
+          decoration: BoxDecoration(
+            color: c.surface.withValues(alpha: c.isDark ? 0.96 : 0.98),
+            border: Border(top: BorderSide(color: c.border)),
+          ),
+          padding: EdgeInsets.only(
+            top: AppSpacing.sm,
+            bottom: MediaQuery.viewPaddingOf(context).bottom + AppSpacing.sm,
+            left: AppSpacing.sm,
+            right: AppSpacing.sm,
+          ),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children: [
+              for (var i = 0; i < kSelayaNavItems.length; i++)
+                _NavButton(
+                  item: kSelayaNavItems[i],
+                  active: i == currentIndex,
+                  onTap: () => onTap(i),
+                ),
+            ],
           ),
         ),
       ],

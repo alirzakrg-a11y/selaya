@@ -337,7 +337,10 @@ class _GreetingBanner extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final c = context.colors;
     final name = (ref.watch(authControllerProvider).user?.name ?? '').trim();
-    final h = (ref.watch(clockProvider).value ?? DateTime.now()).hour;
+    // Sadece SAAT lazım → .select ile yalnız saat değişince yeniden çiz (saniyede
+    // bir değil). Yoksa selamlama kartı her saniye gereksiz yeniden kuruluyordu.
+    final h = ref.watch(
+        clockProvider.select((a) => (a.value ?? DateTime.now()).hour));
     final timeGreeting = h < 11
         ? 'xt.hmGoodMorning'.tr()
         : h < 17
@@ -1097,7 +1100,7 @@ class _MediaPair extends ConsumerWidget {
         play: true,
         onTap: () => context.push(Routes.feed),
         image: v.poster.isNotEmpty
-            ? AppImage.cdn(v.poster)
+            ? AppImage.cdn(v.poster, memWidth: 360)
             : ref.watch(videoThumbProvider(v.video)).maybeWhen(
                   data: (p) => p == null
                       ? const _VideoPosterPlaceholder()
@@ -1112,7 +1115,7 @@ class _MediaPair extends ConsumerWidget {
         label: 'home.dailyWallpaper'.tr(),
         play: false,
         onTap: () => context.push(Routes.wallpapers),
-        image: AppImage.cdn(wp.image),
+        image: AppImage.cdn(wp.image, memWidth: 360),
       ));
     }
     if (tiles.isEmpty) return const SizedBox.shrink();
@@ -1479,14 +1482,20 @@ class _GaugeCarouselState extends State<_GaugeCarousel> {
           height:
               218.0 *
               MediaQuery.textScalerOf(context).scale(1.0).clamp(1.0, 1.35),
-          child: PageView(
+          // .builder → yalnız GÖRÜNEN sayfa kurulur/çalışır. Önce 3 sayfa birden
+          // mount oluyor + her biri clockProvider'ı (1sn) izliyordu → saniyede 3×
+          // yeniden çiz + 2 görünmeyen CustomPainter boşuna repaint. Artık 1×.
+          child: PageView.builder(
             controller: _controller,
+            itemCount: 3,
             onPageChanged: (i) => setState(() => _page = i),
-            children: const [
-              Center(child: NextPrayerCard()),
-              Center(child: PrayerClockDial()),
-              Center(child: PrayerTimelineGauge()),
-            ],
+            itemBuilder: (_, i) => Center(
+              child: switch (i) {
+                0 => const NextPrayerCard(),
+                1 => const PrayerClockDial(),
+                _ => const PrayerTimelineGauge(),
+              },
+            ),
           ),
         ),
         const Gap.sm(),

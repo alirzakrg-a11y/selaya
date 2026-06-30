@@ -72,11 +72,17 @@ class GeometricBackground extends StatelessWidget {
               ),
             ),
           ),
-          // geometric star tessellation
+          // geometric star tessellation — RepaintBoundary + raster ipuçları: ~1000
+          // çizgili yıldız yolu BİR KEZ rasterize edilip katman olarak cache'lenir
+          // (her mount/RefreshIndicator/geçişte yeniden çizilmesin → ilk-kare cila).
           Positioned.fill(
-            child: CustomPaint(
-              painter: StarPatternPainter(
-                color: colors.gold.withValues(alpha: patternOpacity),
+            child: RepaintBoundary(
+              child: CustomPaint(
+                isComplex: true,
+                willChange: false,
+                painter: StarPatternPainter(
+                  color: colors.gold.withValues(alpha: patternOpacity),
+                ),
               ),
             ),
           ),
