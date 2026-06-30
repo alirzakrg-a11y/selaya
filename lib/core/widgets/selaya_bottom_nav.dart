@@ -3,6 +3,7 @@ import 'dart:ui';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
+import '../ads/ad_widgets.dart';
 import '../router/routes.dart';
 import '../theme/app_colors.dart';
 import '../theme/app_icons.dart';
@@ -49,33 +50,44 @@ class SelayaBottomNav extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final c = context.colors;
-    return ClipRect(
-      child: BackdropFilter(
-        filter: ImageFilter.blur(sigmaX: 22, sigmaY: 22),
-        child: Container(
-          decoration: BoxDecoration(
-            color: c.surface.withValues(alpha: c.isDark ? 0.72 : 0.86),
-            border: Border(top: BorderSide(color: c.border)),
-          ),
-          padding: EdgeInsets.only(
-            top: AppSpacing.sm,
-            bottom: MediaQuery.viewPaddingOf(context).bottom + AppSpacing.sm,
-            left: AppSpacing.sm,
-            right: AppSpacing.sm,
-          ),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            children: [
-              for (var i = 0; i < kSelayaNavItems.length; i++)
-                _NavButton(
-                  item: kSelayaNavItems[i],
-                  active: i == currentIndex,
-                  onTap: () => onTap(i),
-                ),
-            ],
+    // Sabit reklam: alt menünün hemen ÜSTÜNDE → alt menünün göründüğü TÜM
+    // ekranlarda (Kur'an okuyucu dahil). Kur'an'da TAM EKRAN/geçiş reklamı YOK
+    // (AdInterstitialObserver atlama listesi). adsActive değilse (premium/kapalı)
+    // AdBanner kendini gizler → hiç yer kaplamaz.
+    return Column(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        const AdBanner(),
+        ClipRect(
+          child: BackdropFilter(
+            filter: ImageFilter.blur(sigmaX: 22, sigmaY: 22),
+            child: Container(
+              decoration: BoxDecoration(
+                color: c.surface.withValues(alpha: c.isDark ? 0.72 : 0.86),
+                border: Border(top: BorderSide(color: c.border)),
+              ),
+              padding: EdgeInsets.only(
+                top: AppSpacing.sm,
+                bottom:
+                    MediaQuery.viewPaddingOf(context).bottom + AppSpacing.sm,
+                left: AppSpacing.sm,
+                right: AppSpacing.sm,
+              ),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  for (var i = 0; i < kSelayaNavItems.length; i++)
+                    _NavButton(
+                      item: kSelayaNavItems[i],
+                      active: i == currentIndex,
+                      onTap: () => onTap(i),
+                    ),
+                ],
+              ),
+            ),
           ),
         ),
-      ),
+      ],
     );
   }
 }

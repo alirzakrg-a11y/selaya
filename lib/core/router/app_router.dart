@@ -62,7 +62,6 @@ import '../../features/travel/presentation/travel_mode_screen.dart';
 import '../../features/wallpapers/presentation/wallpapers_screen.dart';
 import '../../features/widgets_gallery/presentation/widgets_gallery_screen.dart';
 import '../../features/zakat/presentation/zakat_screen.dart';
-import '../ads/ad_widgets.dart';
 import '../ads/ads_service.dart';
 import '../widgets/mini_player_chrome.dart';
 import '../widgets/selaya_bottom_nav.dart';
@@ -211,20 +210,12 @@ class _MainShell extends StatelessWidget {
       body: shell,
       bottomNavigationBar: HeightReporter(
         notifier: navBarHeight,
-        // Sabit reklam: alt menünün hemen ÜSTÜNDE banner (tüm ana sekmelerde;
-        // kabuk-dışı okuyucu/zikir ekranlarında görünmez). adsActive değilse
-        // (premium/kapalı) AdBanner kendini gizler → yer kaplamaz. HeightReporter
-        // ikisini ölçer → mini player banner+navbar üstüne konumlanır.
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            const AdBanner(),
-            SelayaBottomNav(
-              currentIndex: shell.currentIndex,
-              onTap: (i) =>
-                  shell.goBranch(i, initialLocation: i == shell.currentIndex),
-            ),
-          ],
+        // Sabit reklam artık SelayaBottomNav'ın İÇİNDE → alt menünün göründüğü
+        // TÜM ekranlarda banner (shell + detay ekranlar). Burada sade nav.
+        child: SelayaBottomNav(
+          currentIndex: shell.currentIndex,
+          onTap: (i) =>
+              shell.goBranch(i, initialLocation: i == shell.currentIndex),
         ),
       ),
     );
