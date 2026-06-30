@@ -345,7 +345,7 @@ export async function notifyAdmin(env, subject, lines) {
 export async function handleAuth(request, env, path, ctx) {
   if (!path.startsWith('/v1/auth/') &&
       path !== '/v1/me' && path !== '/v1/me/data' && path !== '/v1/me/password' &&
-      path !== '/v1/me/delete') {
+      path !== '/v1/me/delete' && path !== '/v1/me/premium') {
     return null;
   }
   if (!env.AUTH_SECRET) return json({ ok: false, error: 'server_misconfig' }, 500);
@@ -623,7 +623,7 @@ export async function handleAuth(request, env, path, ctx) {
 
   // ---- PROFİL & VERİ (Bearer şart) ----
   if (path === '/v1/me' || path === '/v1/me/data' || path === '/v1/me/password' ||
-      path === '/v1/me/delete') {
+      path === '/v1/me/delete' || path === '/v1/me/premium') {
     const payload = await requireUser(request, env);
     if (payload === 'banned') return json({ ok: false, error: 'banned' }, 403);
     if (!payload) return json({ ok: false, error: 'unauthorized' }, 401);
@@ -691,10 +691,20 @@ export async function handleAuth(request, env, path, ctx) {
 
     if (path === '/v1/me' && request.method === 'GET') {
       const u = await env.DB.prepare(
-        'SELECT id,name,surname,email,rumuz,email_verified,created_at,last_active FROM users WHERE id=?'
+        'SELECT id,name,surname,email,rumuz,email_verified,is_premium,created_at,last_active FROM users WHERE id=?'
       ).bind(uid).first();
       if (!u) return json({ ok: false, error: 'not_found' }, 404);
       return json({ ok: true, user: u });
+    }
+
+    // Uygulamada premium SATIN ALINDIĞINDA (IAP) hesabı premium işaretle →
+    // cihazlar arası senkron + profilde/panelde görünür. NOT: satın-alma token'ı
+    // henüz Google ile DOĞRULANMIYOR (ileride sertleştir); kötüye kullananı
+    // panelden "Premium İptal" ile düşürebilirsin.
+    if (path === '/v1/me/premium' && request.method === 'POST') {
+      await env.DB.prepare('UPDATE users SET is_premium=1 WHERE id=?')
+        .bind(uid).run();
+      return json({ ok: true, is_premium: 1 });
     }
 
     if (path === '/v1/me/data' && request.method === 'GET') {
