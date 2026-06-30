@@ -163,6 +163,25 @@ async function ensureResetCols(env) {
   _resetColOk = true;
 }
 
+// Premium (reklamsız) + resmî-hesap kolonları + IAP makbuz alanları. Bu kolonlar
+// base şemada (auth_schema.sql) YOK — eskiden elle ALTER ile eklenmişti. DB
+// sıfırdan kurulursa GET /v1/me bunları SELECT ettiği için her oturumlu istek
+// 500 verirdi → her isolate'te bir kez idempotent garanti et (varsa hata yutulur).
+let _premiumColOk = false;
+async function ensurePremiumCols(env) {
+  if (_premiumColOk) return;
+  for (const sql of [
+    'ALTER TABLE users ADD COLUMN is_premium INTEGER NOT NULL DEFAULT 0',
+    'ALTER TABLE users ADD COLUMN is_official INTEGER NOT NULL DEFAULT 0',
+    'ALTER TABLE users ADD COLUMN premium_token TEXT',
+    'ALTER TABLE users ADD COLUMN premium_product TEXT',
+    'ALTER TABLE users ADD COLUMN premium_at INTEGER',
+  ]) {
+    try { await env.DB.prepare(sql).run(); } catch (_) {}
+  }
+  _premiumColOk = true;
+}
+
 function publicUser(u) {
   return {
     id: u.id, name: u.name, surname: u.surname || '', email: u.email,
@@ -362,6 +381,7 @@ export async function handleAuth(request, env, path, ctx) {
     if (!success) return json({ ok: false, error: 'too_many_attempts' }, 429);
   }
   await ensureSecCol(env); // oturum-iptali kolonu (register/reset için garanti)
+  await ensurePremiumCols(env); // premium/resmî/makbuz kolonları (/v1/me 500 olmasın)
 
   // ---- KAYIT ----
   if (request.method === 'POST' && path === '/v1/auth/register') {
@@ -698,12 +718,30 @@ export async function handleAuth(request, env, path, ctx) {
     }
 
     // Uygulamada premium SATIN ALINDIĞINDA (IAP) hesabı premium işaretle →
-    // cihazlar arası senkron + profilde/panelde görünür. NOT: satın-alma token'ı
-    // henüz Google ile DOĞRULANMIYOR (ileride sertleştir); kötüye kullananı
-    // panelden "Premium İptal" ile düşürebilirsin.
+    // cihazlar arası senkron + profilde/panelde görünür.
+    //
+    // 🔴 GÜVENLİK: Play satın-alma token'ı HENÜZ Google Play Developer API ile
+    // DOĞRULANMIYOR (servis hesabı + Worker secret kurulunca eklenecek). O zamana
+    // kadar bu uç GÜVENİLMEZ: makbuzu saklarız ama doğrulayamayız → herhangi bir
+    // oturumlu kullanıcı kendini premium yapabilir. Kötüye kullananı panelden
+    // "Premium İptal" ile düşür. İstemci gövdede {purchase_token, product_id,
+    // package_name} gönderir (doğrulama gelince hazır olsun diye saklanır).
     if (path === '/v1/me/premium' && request.method === 'POST') {
-      await env.DB.prepare('UPDATE users SET is_premium=1 WHERE id=?')
-        .bind(uid).run();
+      // Tekrar-yazma amplifikasyonunu kes (istemci her açılışta POST edebilir).
+      const cur = await env.DB.prepare('SELECT is_premium FROM users WHERE id=?')
+        .bind(uid).first();
+      if (cur && cur.is_premium === 1) return json({ ok: true, is_premium: 1 });
+      // Yazma throttle'ı — kullanıcı başına (binding yoksa fail-open).
+      if (env.WRITE_RL) {
+        const { success } = await env.WRITE_RL.limit({ key: 'prem:' + uid });
+        if (!success) return json({ ok: false, error: 'too_many_requests' }, 429);
+      }
+      const b = (await readJson(request)) || {};
+      const ptok = (b.purchase_token || '').toString().slice(0, 1024) || null;
+      const prod = (b.product_id || '').toString().slice(0, 120) || null;
+      await env.DB.prepare(
+        'UPDATE users SET is_premium=1, premium_token=?, premium_product=?, premium_at=? WHERE id=?'
+      ).bind(ptok, prod, Date.now(), uid).run();
       return json({ ok: true, is_premium: 1 });
     }
 

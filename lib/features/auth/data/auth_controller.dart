@@ -131,6 +131,9 @@ class AuthController extends Notifier<AuthState> {
   Future<void> _refreshPremium(String token) async {
     try {
       final me = await AuthApi.fetchMe(token);
+      // Yarış koruması: istek uçarken çıkış yapıldı / başka hesap girdiyse
+      // (token değişti) bu yanıtı UYGULAMA — yoksa hesaplar birbirine karışır.
+      if (state.token != token) return;
       await _applyPremium(me.isPremium);
       final u = state.user;
       if (u != null && u.isPremium != me.isPremium) {
@@ -147,12 +150,17 @@ class AuthController extends Notifier<AuthState> {
   }
 
   /// IAP satın alma başarılı → hesabı premium işaretle (sunucu + yerel + state).
-  Future<void> markPremiumPurchased() async {
+  /// [purchaseToken]/[productId] = Play makbuzu (sunucuya iletilir; ileride
+  /// doğrulama). Sunucu çağrısı başarısız olsa da YERELDE premium verilir
+  /// (kullanıcı ödedi) — sonraki açılış senkronu / "Geri yükle" sunucuyu tazeler.
+  Future<void> markPremiumPurchased({
+    String? purchaseToken,
+    String? productId,
+  }) async {
     final token = state.token;
     if (token != null && token.isNotEmpty) {
-      try {
-        await AuthApi.markPremium(token);
-      } catch (_) {}
+      await AuthApi.markPremium(token,
+          purchaseToken: purchaseToken, productId: productId);
     }
     await _applyPremium(true);
     final u = state.user;
@@ -171,6 +179,10 @@ class AuthController extends Notifier<AuthState> {
     final prefs = ref.read(sharedPreferencesProvider);
     await prefs.remove(PrefKeys.authToken);
     await prefs.remove(PrefKeys.authUser);
+    // Premium HESABA bağlı → oturumla beraber gitsin; yoksa aynı cihazda sonraki
+    // misafir/kullanıcı bedavaya reklamsız kalır. Yeniden girişte /v1/me tazeler.
+    await prefs.remove(PrefKeys.isPremium);
+    ref.invalidate(isPremiumProvider);
     state = const AuthState();
   }
 

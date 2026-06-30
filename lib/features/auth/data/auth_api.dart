@@ -247,15 +247,36 @@ class AuthApi {
   }
 
   /// Premium satın alındığında hesabı premium işaretle (POST /v1/me/premium).
-  static Future<void> markPremium(String token) async {
+  /// Play makbuzunu (purchaseToken+productId) gönderir — sunucu bunu ileride
+  /// Google Play Developer API ile DOĞRULAYACAK (servis hesabı kurulunca); şu an
+  /// saklar. Başarılı (200 + ok) → true; ağ/sunucu hatası → false (çağıran yerelde
+  /// yine premium verir, sonraki açılış senkronu yeniden dener). HATA FIRLATMAZ.
+  static Future<bool> markPremium(
+    String token, {
+    String? purchaseToken,
+    String? productId,
+  }) async {
+    http.Response res;
     try {
-      await http
-          .post(_u('/v1/me/premium'),
-              headers: {'Authorization': 'Bearer $token'})
+      res = await http
+          .post(
+            _u('/v1/me/premium'),
+            headers: {
+              'Authorization': 'Bearer $token',
+              'Content-Type': 'application/json',
+            },
+            body: jsonEncode({
+              'purchase_token': ?purchaseToken,
+              'product_id': ?productId,
+              'package_name': 'com.selaya.app',
+            }),
+          )
           .timeout(_timeout);
     } catch (_) {
-      throw AuthException('network');
+      return false;
     }
+    final d = _decode(res);
+    return res.statusCode == 200 && d['ok'] == true;
   }
 
   /// Şifremi unuttum: e-postaya kod gönder (Resend kuruluysa).

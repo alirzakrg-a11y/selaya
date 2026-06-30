@@ -92,7 +92,7 @@ class PurchaseController extends Notifier<PurchaseState> {
   }
 
   Future<void> _onPurchases(List<PurchaseDetails> purchases) async {
-    var granted = false;
+    PurchaseDetails? granted;
     for (final p in purchases) {
       switch (p.status) {
         case PurchaseStatus.pending:
@@ -100,7 +100,7 @@ class PurchaseController extends Notifier<PurchaseState> {
           break;
         case PurchaseStatus.purchased:
         case PurchaseStatus.restored:
-          granted = true;
+          granted = p; // makbuzu sakla (sunucuya iletilecek)
           break;
         case PurchaseStatus.error:
           state = state.copyWith(
@@ -113,13 +113,16 @@ class PurchaseController extends Notifier<PurchaseState> {
       // Her tamamlanmamış işlemi kapat (Play kuyrukta bırakmasın).
       if (p.pendingCompletePurchase) await _iap.completePurchase(p);
     }
-    if (granted) await _grantPremium();
+    if (granted != null) await _grantPremium(granted);
   }
 
-  Future<void> _grantPremium() async {
-    // Hesaba bağla: markPremiumPurchased() → /v1/me/premium + setBool(isPremium)
-    // + isPremiumProvider invalidate → profilde/panelde görünür + reklam gizli.
-    await ref.read(authControllerProvider.notifier).markPremiumPurchased();
+  Future<void> _grantPremium(PurchaseDetails p) async {
+    // Hesaba bağla: markPremiumPurchased() → /v1/me/premium (Play makbuzuyla) +
+    // setBool(isPremium) + isPremiumProvider invalidate → profilde/panelde görünür.
+    await ref.read(authControllerProvider.notifier).markPremiumPurchased(
+          purchaseToken: p.verificationData.serverVerificationData,
+          productId: p.productID,
+        );
     state = state.copyWith(isPremium: true, purchasePending: false);
   }
 

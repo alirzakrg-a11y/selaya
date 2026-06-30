@@ -62,6 +62,11 @@ class _AdBannerState extends ConsumerState<AdBanner> {
 
   @override
   Widget build(BuildContext context) {
+    // Premium iptal/bitince (adsActive false→true) banner'ı yeniden yükle —
+    // yoksa reklamlar ancak ekran/State yeniden kurulunca (≈2 açılış) geri gelir.
+    ref.listen<bool>(adsActiveProvider, (prev, next) {
+      if (next) _maybeLoad();
+    });
     final ad = _ad;
     if (!ref.watch(adsActiveProvider) || !_loaded || ad == null) {
       return const SizedBox.shrink();
@@ -132,6 +137,10 @@ class _NativeAdCardState extends ConsumerState<NativeAdCard> {
 
   @override
   Widget build(BuildContext context) {
+    // Premium iptal/bitince (adsActive false→true) native reklamı yeniden yükle.
+    ref.listen<bool>(adsActiveProvider, (prev, next) {
+      if (next) _maybeLoad();
+    });
     final ad = _ad;
     if (!ref.watch(adsActiveProvider) || !_loaded || ad == null) {
       return const SizedBox.shrink();
