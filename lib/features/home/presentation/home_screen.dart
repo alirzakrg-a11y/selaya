@@ -93,8 +93,9 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
               // deneyim" butonu kalır; reklam AKTİFKEN (premium değil) görünür.
               if (ref.watch(adsActiveProvider))
                 Padding(
-                  padding: const EdgeInsets.fromLTRB(
-                      AppSpacing.base, 0, AppSpacing.base, AppSpacing.lg),
+                  // "Bizi geliştir" ile bitişik olmasın → üstte boşluk.
+                  padding: const EdgeInsets.fromLTRB(AppSpacing.base,
+                      AppSpacing.lg, AppSpacing.base, AppSpacing.lg),
                   child: OutlinedButton.icon(
                     onPressed: () => context.push(Routes.premium),
                     icon: Icon(AppIcons.crown, size: 18, color: c.gold),

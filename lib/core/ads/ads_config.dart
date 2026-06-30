@@ -12,14 +12,16 @@ import '../di/providers.dart';
 /// YAYIN LİSTESİ: false yapmadan ÖNCE [kAdsTestDeviceIds]'e kendi test
 /// telefonunun hash'ini ekle (logcat "setTestDeviceIds") ki gerçek birimlerle
 /// test ederken kendine tıklama / geçersiz trafik riski olmasın.
-const bool kUseTestAds = true;
+const bool kUseTestAds = false;
 
 /// Reklam ana anahtarı — false ise hiçbir reklam yüklenmez/gösterilmez.
 const bool kAdsEnabled = true;
 
 /// Geliştirici test telefonları (hash). kUseTestAds=false iken bu cihazlarda
 /// YİNE test reklamı döner. Hash ilk reklam isteğinde logcat'e yazılır.
-const List<String> kAdsTestDeviceIds = <String>[];
+const List<String> kAdsTestDeviceIds = <String>[
+  '3207913BCC09A9478839DD50611FCB01', // geliştirici telefonu (logcat hash)
+];
 
 /// AdMob SDK başlatıldı + içerik/onay yapılandırması tamam → reklamlar
 /// YÜKLENEBİLİR. Banner/native widget'ları bunu dinler (init bitmeden yükleme
