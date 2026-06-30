@@ -8,3 +8,4 @@ ALTER TABLE users ADD COLUMN is_official INTEGER NOT NULL DEFAULT 0;
 ALTER TABLE users ADD COLUMN premium_token TEXT;     -- Play purchaseToken (doğrulama için saklanır)
 ALTER TABLE users ADD COLUMN premium_product TEXT;   -- ör. selaya_premium_yearly
 ALTER TABLE users ADD COLUMN premium_at INTEGER;      -- epoch ms (audit)
+ALTER TABLE users ADD COLUMN premium_expiry INTEGER;  -- abonelik bitiş (ms); lifetime=NULL

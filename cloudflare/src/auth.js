@@ -9,6 +9,7 @@
 // Oturum = HMAC-SHA256 ile imzalı JWT (secret: env.AUTH_SECRET).
 
 import { validateRumuz, containsProfanity } from './profanity.js';
+import { verifyPlayPurchase } from './play_verify.js';
 
 const enc = new TextEncoder();
 
@@ -176,6 +177,7 @@ async function ensurePremiumCols(env) {
     'ALTER TABLE users ADD COLUMN premium_token TEXT',
     'ALTER TABLE users ADD COLUMN premium_product TEXT',
     'ALTER TABLE users ADD COLUMN premium_at INTEGER',
+    'ALTER TABLE users ADD COLUMN premium_expiry INTEGER', // abonelik bitiş (ms); lifetime=NULL
   ]) {
     try { await env.DB.prepare(sql).run(); } catch (_) {}
   }
@@ -711,21 +713,26 @@ export async function handleAuth(request, env, path, ctx) {
 
     if (path === '/v1/me' && request.method === 'GET') {
       const u = await env.DB.prepare(
-        'SELECT id,name,surname,email,rumuz,email_verified,is_premium,created_at,last_active FROM users WHERE id=?'
+        'SELECT id,name,surname,email,rumuz,email_verified,is_premium,premium_expiry,created_at,last_active FROM users WHERE id=?'
       ).bind(uid).first();
       if (!u) return json({ ok: false, error: 'not_found' }, 404);
+      // Abonelik süresi dolmuşsa premium'u TEMBEL düşür (oto-downgrade) → cihaz
+      // sonraki senkronda reklamları geri getirir. (lifetime'da premium_expiry NULL.)
+      if (u.is_premium === 1 && u.premium_expiry && u.premium_expiry < Date.now()) {
+        await env.DB.prepare('UPDATE users SET is_premium=0 WHERE id=?').bind(uid).run();
+        u.is_premium = 0;
+      }
       return json({ ok: true, user: u });
     }
 
     // Uygulamada premium SATIN ALINDIĞINDA (IAP) hesabı premium işaretle →
-    // cihazlar arası senkron + profilde/panelde görünür.
+    // cihazlar arası senkron + profilde/panelde görünür. İstemci gövdede
+    // {purchase_token, product_id, package_name} gönderir.
     //
-    // 🔴 GÜVENLİK: Play satın-alma token'ı HENÜZ Google Play Developer API ile
-    // DOĞRULANMIYOR (servis hesabı + Worker secret kurulunca eklenecek). O zamana
-    // kadar bu uç GÜVENİLMEZ: makbuzu saklarız ama doğrulayamayız → herhangi bir
-    // oturumlu kullanıcı kendini premium yapabilir. Kötüye kullananı panelden
-    // "Premium İptal" ile düşür. İstemci gövdede {purchase_token, product_id,
-    // package_name} gönderir (doğrulama gelince hazır olsun diye saklanır).
+    // GÜVENLİK: Servis-hesabı secret'ları (GOOGLE_SA_JSON ya da GOOGLE_SA_EMAIL +
+    // GOOGLE_SA_PRIVATE_KEY) AYARLIYSA → makbuz Google Play Developer API ile
+    // DOĞRULANIR (sahte/forge/expired/replay reddedilir). Secret YOKSA (kurulum
+    // bitene kadar) eski stopgap: doğrulamadan ver (panelden İptal ile düşülür).
     if (path === '/v1/me/premium' && request.method === 'POST') {
       // Tekrar-yazma amplifikasyonunu kes (istemci her açılışta POST edebilir).
       const cur = await env.DB.prepare('SELECT is_premium FROM users WHERE id=?')
@@ -739,9 +746,25 @@ export async function handleAuth(request, env, path, ctx) {
       const b = (await readJson(request)) || {};
       const ptok = (b.purchase_token || '').toString().slice(0, 1024) || null;
       const prod = (b.product_id || '').toString().slice(0, 120) || null;
+      const pkg = (b.package_name || 'com.selaya.app').toString().slice(0, 120);
+
+      const haveSA = !!(env.GOOGLE_SA_JSON ||
+        (env.GOOGLE_SA_EMAIL && env.GOOGLE_SA_PRIVATE_KEY));
+      let expiry = null;
+      if (haveSA) {
+        const v = await verifyPlayPurchase(
+          env, { packageName: pkg, productId: prod, purchaseToken: ptok }, Date.now());
+        if (!v.ok) return json({ ok: false, error: 'verify_failed', reason: v.reason }, 402);
+        expiry = v.expiryMs || null; // lifetime → null (süresiz)
+        // Replay: bu makbuz başka hesaba bağlıysa reddet (tek token = tek hesap).
+        const owner = await env.DB
+          .prepare('SELECT id FROM users WHERE premium_token=? AND id<>?')
+          .bind(ptok, uid).first();
+        if (owner) return json({ ok: false, error: 'token_in_use' }, 409);
+      }
       await env.DB.prepare(
-        'UPDATE users SET is_premium=1, premium_token=?, premium_product=?, premium_at=? WHERE id=?'
-      ).bind(ptok, prod, Date.now(), uid).run();
+        'UPDATE users SET is_premium=1, premium_token=?, premium_product=?, premium_at=?, premium_expiry=? WHERE id=?'
+      ).bind(ptok, prod, Date.now(), expiry, uid).run();
       return json({ ok: true, is_premium: 1 });
     }
 
