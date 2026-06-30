@@ -20,10 +20,9 @@ class PremiumScreen extends ConsumerStatefulWidget {
 class _PremiumScreenState extends ConsumerState<PremiumScreen> {
   String _selected = PremiumIds.yearly;
 
+  // Sadece "reklamsız deneyim" (kullanıcı: premium yalnız reklam kaldırma).
   static const _features = [
     (AppIcons.close, 'premium.featureAdfree'),
-    (AppIcons.moon, 'premium.featureThemes'),
-    (AppIcons.wallpaper, 'premium.featureWidgets'),
   ];
 
   // Mağaza fiyatı yüklenene kadar yedek (gerçek fiyat Play Console'dan gelir).

@@ -7,6 +7,7 @@ import 'package:go_router/go_router.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import '../../../core/ads/ad_widgets.dart';
+import '../../../core/ads/ads_config.dart';
 import '../../../core/data/content_providers.dart';
 import '../../../core/data/manifest_service.dart';
 import '../../../core/localization/localized_text.dart';
@@ -91,6 +92,26 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
               // Reklam: ana sayfa yerel (native) kartı. Banner ayrı içerik
               // ekranlarında — iki reklam üst üste yığılmasın (AdMob yoğunluk).
               const NativeAdCard(),
+              // "Reklamsız deneyim" → premium ekranı. Yalnız reklam AKTİFKEN
+              // (premium değil + ana anahtar açık) görünür.
+              if (ref.watch(adsActiveProvider))
+                Padding(
+                  padding: const EdgeInsets.fromLTRB(
+                      AppSpacing.base, 0, AppSpacing.base, AppSpacing.lg),
+                  child: OutlinedButton.icon(
+                    onPressed: () => context.push(Routes.premium),
+                    icon: Icon(AppIcons.crown, size: 18, color: c.gold),
+                    label: Text('premium.featureAdfree'.tr()),
+                    style: OutlinedButton.styleFrom(
+                      minimumSize: const Size(double.infinity, 46),
+                      foregroundColor: c.gold,
+                      side:
+                          BorderSide(color: c.gold.withValues(alpha: 0.45)),
+                      shape: const RoundedRectangleBorder(
+                          borderRadius: AppRadius.rMd),
+                    ),
+                  ),
+                ),
             ],
           ),
           ),
