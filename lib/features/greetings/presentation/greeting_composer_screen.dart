@@ -55,6 +55,28 @@ class _GreetingComposerScreenState
   bool _busy = false;
   int _tool = 0; // Canva araç sekmesi: 0 Mesaj · 1 Arka Plan · 2 Yazı · 3 Kime
 
+  // ── Kart üzerinde DOĞRUDAN dokunma (gerçek Canva hissi) ──
+  int _anchorIndex = 0; // hazır konum şablonu (bkz _anchors)
+  Offset _textNudge = Offset.zero; // sürükleyerek eklenen ince ayar (normalize)
+  double _baseFontScale = 1.0; // pinch başlarken _fontScale'i dondurmak için
+  final _msgFocus = FocusNode(); // karta dokununca Mesaj alanına odaklanmak için
+
+  // Hazır konum şablonları: kart içinde mesajın oturduğu Alignment.
+  static const _anchors = <Alignment>[
+    Alignment.center,
+    Alignment(0, -0.72),
+    Alignment(0, 0.7),
+    Alignment(-0.62, 0.7),
+    Alignment(0.62, 0.7),
+  ];
+  static const _anchorIcons = <IconData>[
+    Icons.vertical_align_center_rounded,
+    Icons.vertical_align_top_rounded,
+    Icons.vertical_align_bottom_rounded,
+    Icons.south_west_rounded,
+    Icons.south_east_rounded,
+  ];
+
   static const _fontLabels = ['Varsayılan', 'Amiri', 'Zarif', 'El Yazısı', 'Modern'];
   static const _fontFamilies = <String?>[
     null, 'Amiri', 'Playfair Display', 'Dancing Script', 'Sora'
@@ -88,11 +110,20 @@ class _GreetingComposerScreenState
   // TR birincil kullanıcı, diğer diller EN'e düşer.
   String _ll(String tr, String en) => context.langCode == 'tr' ? tr : en;
 
+  String _anchorLabel(int i) => switch (i) {
+        0 => _ll('Orta', 'Center'),
+        1 => _ll('Üst', 'Top'),
+        2 => _ll('Alt', 'Bottom'),
+        3 => _ll('Sol Alt', 'Bottom L'),
+        _ => _ll('Sağ Alt', 'Bottom R'),
+      };
+
   @override
   void dispose() {
     _controller.dispose();
     _toCtrl.dispose();
     _fromCtrl.dispose();
+    _msgFocus.dispose();
     super.dispose();
   }
 
@@ -269,18 +300,51 @@ class _GreetingComposerScreenState
                               child: SizedBox(
                                 width: cardW,
                                 height: cardH,
-                                child: RepaintBoundary(
-                                  key: _cardKey,
-                                  child: GreetingCard(
-                                    message: _composed(lang),
-                                    backgroundImage: backgrounds[_bg],
-                                    fontFamily: _fontFamilies[_fontIndex],
-                                    fontScale: _fontScale,
-                                    lineHeight: _lineHeight,
-                                    textColor: _textColors[_colorIndex],
-                                    textAlign: _aligns[_alignIndex],
-                                    framed: _framed,
-                                    overlayStrength: _overlay,
+                                // Gerçek Canva hissi: karta dokunup SÜRÜKLEYEREK
+                                // metni konumlandır, İKİ PARMAKLA yakınlaştır/
+                                // uzaklaştır, TEK dokunuşla Mesaj alanına atla.
+                                // GestureDetector RepaintBoundary'yi SARIYOR (içi
+                                // değil) → paylaşım/indirme yakalaması etkilenmez.
+                                child: GestureDetector(
+                                  behavior: HitTestBehavior.opaque,
+                                  onScaleStart: (_) =>
+                                      _baseFontScale = _fontScale,
+                                  onScaleUpdate: (d) => setState(() {
+                                    _fontScale =
+                                        (_baseFontScale * d.scale)
+                                            .clamp(0.55, 2.0);
+                                    final dx = d.focalPointDelta.dx / cardW;
+                                    final dy = d.focalPointDelta.dy / cardH;
+                                    _textNudge = Offset(
+                                      (_textNudge.dx + dx).clamp(-0.34, 0.34),
+                                      (_textNudge.dy + dy).clamp(-0.30, 0.30),
+                                    );
+                                  }),
+                                  onTap: () {
+                                    setState(() => _tool = 0);
+                                    WidgetsBinding.instance
+                                        .addPostFrameCallback((_) {
+                                      if (mounted) {
+                                        FocusScope.of(context)
+                                            .requestFocus(_msgFocus);
+                                      }
+                                    });
+                                  },
+                                  child: RepaintBoundary(
+                                    key: _cardKey,
+                                    child: GreetingCard(
+                                      message: _composed(lang),
+                                      backgroundImage: backgrounds[_bg],
+                                      fontFamily: _fontFamilies[_fontIndex],
+                                      fontScale: _fontScale,
+                                      lineHeight: _lineHeight,
+                                      textColor: _textColors[_colorIndex],
+                                      textAlign: _aligns[_alignIndex],
+                                      framed: _framed,
+                                      overlayStrength: _overlay,
+                                      textAnchor: _anchors[_anchorIndex],
+                                      textNudge: _textNudge,
+                                    ),
                                   ),
                                 ),
                               ),
@@ -314,6 +378,27 @@ class _GreetingComposerScreenState
                             ),
                           ),
                       ],
+                    ),
+                    const Gap.sm(),
+                    // ── DÜZEN şeridi: hazır konum şablonları (Canva "template"
+                    // seçme hissi) — dokununca metin ANINDA o konuma oturur;
+                    // ince ayar için hâlâ karttan sürüklenebilir.
+                    SizedBox(
+                      height: 56,
+                      child: ListView.separated(
+                        scrollDirection: Axis.horizontal,
+                        itemCount: _anchors.length,
+                        separatorBuilder: (_, _) => const Gap.sm(),
+                        itemBuilder: (context, i) => _AnchorChip(
+                          icon: _anchorIcons[i],
+                          label: _anchorLabel(i),
+                          selected: i == _anchorIndex,
+                          onTap: () => setState(() {
+                            _anchorIndex = i;
+                            _textNudge = Offset.zero; // her şablon sıfırdan başlar
+                          }),
+                        ),
+                      ),
                     ),
                   ],
                 ),
@@ -416,6 +501,7 @@ class _GreetingComposerScreenState
                         const Gap.sm(),
                         TextField(
                           controller: _controller,
+                          focusNode: _msgFocus,
                           maxLines: 6,
                           minLines: 3,
                           maxLength: 200,
@@ -790,6 +876,51 @@ class _ChipButton extends StatelessWidget {
                 color: selected ? c.onGold : c.textSecondary,
                 fontWeight: FontWeight.w600,
                 fontSize: 13)),
+      ),
+    );
+  }
+}
+
+/// Düzen (konum) şablonu çipi — ikon + küçük etiket, seçiliyse altın.
+class _AnchorChip extends StatelessWidget {
+  final IconData icon;
+  final String label;
+  final bool selected;
+  final VoidCallback onTap;
+  const _AnchorChip({
+    required this.icon,
+    required this.label,
+    required this.selected,
+    required this.onTap,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    final c = context.colors;
+    return GestureDetector(
+      onTap: onTap,
+      child: Container(
+        width: 58,
+        padding: const EdgeInsets.symmetric(vertical: 6),
+        decoration: BoxDecoration(
+          color: selected ? c.gold : c.surfaceAlt,
+          borderRadius: AppRadius.rMd,
+          border: Border.all(color: selected ? c.gold : c.border),
+        ),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Icon(icon, size: 18, color: selected ? c.onGold : c.textSecondary),
+            const SizedBox(height: 2),
+            Text(label,
+                maxLines: 1,
+                overflow: TextOverflow.ellipsis,
+                style: TextStyle(
+                    fontSize: 9.5,
+                    fontWeight: FontWeight.w700,
+                    color: selected ? c.onGold : c.textTertiary)),
+          ],
+        ),
       ),
     );
   }

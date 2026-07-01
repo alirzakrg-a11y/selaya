@@ -20,6 +20,10 @@ class GreetingCard extends StatelessWidget {
   final TextAlign textAlign;
   final bool framed;
   final double overlayStrength; // fotoğraf üstü karartma çarpanı (0.4–1.5)
+  final Alignment textAnchor; // Canva-tarzı hazır konum (orta/üst/alt/köşe)
+  final Offset textNudge; // sürükleme ile eklenen ince ayar (kart genişlik/
+  // yüksekliğinin oranı olarak normalize — klavye açılıp kart küçülünce de
+  // doğru yerde kalsın diye MUTLAK PİKSEL DEĞİL).
 
   const GreetingCard({
     super.key,
@@ -33,6 +37,8 @@ class GreetingCard extends StatelessWidget {
     this.textAlign = TextAlign.center,
     this.framed = false,
     this.overlayStrength = 1.0,
+    this.textAnchor = Alignment.center,
+    this.textNudge = Offset.zero,
   });
 
   TextStyle _msgStyle() {
@@ -109,18 +115,28 @@ class GreetingCard extends StatelessWidget {
                         fontWeight: FontWeight.w700)),
               ],
               // Auto-scaled so long greetings always fit instead of clipping.
+              // Align = Canva-tarzı hazır konum (üst/orta/alt/köşe); Transform.
+              // translate = kullanıcının kart üzerinde sürükleyerek eklediği
+              // ince ayar (normalize offset → constraints boyutuna göre ölçekli).
               Expanded(
-                child: Center(
-                  child: LayoutBuilder(
-                    builder: (context, constraints) => FittedBox(
-                      fit: BoxFit.scaleDown,
-                      child: ConstrainedBox(
-                        constraints:
-                            BoxConstraints(maxWidth: constraints.maxWidth),
-                        child: Text(
-                          message,
-                          textAlign: textAlign,
-                          style: _msgStyle(),
+                child: LayoutBuilder(
+                  builder: (context, constraints) => Align(
+                    alignment: textAnchor,
+                    child: Transform.translate(
+                      offset: Offset(
+                        textNudge.dx * constraints.maxWidth,
+                        textNudge.dy * constraints.maxHeight,
+                      ),
+                      child: FittedBox(
+                        fit: BoxFit.scaleDown,
+                        child: ConstrainedBox(
+                          constraints: BoxConstraints(
+                              maxWidth: constraints.maxWidth * 0.94),
+                          child: Text(
+                            message,
+                            textAlign: textAlign,
+                            style: _msgStyle(),
+                          ),
                         ),
                       ),
                     ),
