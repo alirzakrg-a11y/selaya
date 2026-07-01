@@ -691,12 +691,19 @@ class NotificationService {
     // sessizce düşüren oydu) ve Play tanıtım-videosu gerektirmez. Tam Ekran KAPALI
     // (varsayılan) → bu native bildirim tek deneyimdir (erken return). Native
     // KURULAMAZSA (catch) aşağıdaki kanal-sesi yoluna düşülür → ezan en azından çalar.
-    if (atTime && sound != AdhanSound.silent && sound.androidRaw != null) {
+    // Özel ses → dosya yolu; diğerleri → res/raw adı. Native oynatıcı ikisini de
+    // çalar (yol '/' ile başlarsa dosyadan, yoksa res/raw'dan).
+    final nativeRes =
+        sound.isUserCustom ? customAdhanPath : sound.androidRaw;
+    if (atTime &&
+        sound != AdhanSound.silent &&
+        nativeRes != null &&
+        nativeRes.isNotEmpty) {
       try {
         await _adhanNativeChannel.invokeMethod('scheduleAdhanAlarm', {
           'id': id,
           'time': when.millisecondsSinceEpoch,
-          'res': sound.androidRaw,
+          'res': nativeRes,
           'label': title,
         });
         nativeAdhan = true;
@@ -811,13 +818,14 @@ class NotificationService {
     required AdhanSound sound,
     required String label,
   }) async {
-    if (sound == AdhanSound.silent || sound.androidRaw == null) return;
+    final res = sound.isUserCustom ? customAdhanPath : sound.androidRaw;
+    if (sound == AdhanSound.silent || res == null || res.isEmpty) return;
     if (!when.isAfter(tz.TZDateTime.now(tz.local))) return;
     try {
       await _adhanNativeChannel.invokeMethod('scheduleAdhanAlarm', {
         'id': 0,
         'time': when.millisecondsSinceEpoch,
-        'res': sound.androidRaw,
+        'res': res,
         'label': label,
       });
     } catch (_) {

@@ -74,6 +74,8 @@ abstract final class PrefKeys {
 
   // Prayer notifications
   static const String prayerNotifConfig = 'prayer_notif_config'; // json
+  static const String customAdhanPath = 'custom_adhan_path'; // kullanıcı özel ezan sesi (dosya yolu)
+  static const String customAdhanName = 'custom_adhan_name'; // özel sesin görünen adı
   static const String ongoingNotif =
       'ongoing_notif'; // bool: persistent next-prayer bar
   static const String dailyHadithNotif =

@@ -12,6 +12,12 @@ import '../../prayer_times/domain/prayer.dart';
 /// id = taze kanal).
 bool prayerVibration = true;
 
+/// Kullanıcının cihazdan seçtiği ÖZEL ezan sesi — app-özel dosya yolu + görünen
+/// ad. Açılışta prefs'ten yüklenir (main.dart). [AdhanSound.custom] bunu kullanır;
+/// native oynatıcı mutlak dosya yolunu doğrudan çalar (res/raw değil).
+String? customAdhanPath;
+String? customAdhanName;
+
 enum AdhanSound {
   silent(id: 'silent', labelKey: 'notif.soundSilent'),
   defaultTone(id: 'default', labelKey: 'notif.soundDefault'),
@@ -51,7 +57,11 @@ enum AdhanSound {
   toneR021(id: 'tone_r021', properName: 'Zil 1', file: 'tone_r021'),
   toneR029(id: 'tone_r029', properName: 'Zil 2', file: 'tone_r029'),
   toneR057(id: 'tone_r057', properName: 'Zil 3', file: 'tone_r057'),
-  toneR084(id: 'tone_r084', properName: 'Zil 4', file: 'tone_r084');
+  toneR084(id: 'tone_r084', properName: 'Zil 4', file: 'tone_r084'),
+
+  // ───── KULLANICI ÖZEL SESİ — cihazdan seçilen dosya. androidRaw/asset yok
+  // (dosya yolu global [customAdhanPath]'te); native oynatıcı mutlak yolu çalar.
+  custom(id: 'custom');
 
   const AdhanSound({required this.id, this.labelKey, this.properName, this.file});
 
@@ -90,6 +100,7 @@ enum AdhanSound {
 
   bool get isCustom => file != null;
   bool get isSilent => this == AdhanSound.silent;
+  bool get isUserCustom => this == AdhanSound.custom;
 
   static AdhanSound fromId(String id) {
     // Kaldırılan eski müezzin/melodi id'leri → ezan kaybolmasın diye sesli SABAH

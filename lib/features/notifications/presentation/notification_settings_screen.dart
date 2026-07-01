@@ -4,7 +4,10 @@ import 'dart:io';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:file_picker/file_picker.dart';
 import 'package:just_audio/just_audio.dart';
+import 'package:path_provider/path_provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../../core/di/providers.dart';
 import '../../../core/services/notification_service.dart';
@@ -26,8 +29,9 @@ import '../domain/ramadan_mode.dart';
 
 const _offsetChoices = [10, 15, 20, 25, 30, 45];
 
-String _soundName(AdhanSound s) =>
-    s.properName ?? (s.labelKey != null ? s.labelKey!.tr() : s.id);
+String _soundName(AdhanSound s) => s.isUserCustom
+    ? (customAdhanName ?? 'Kendi sesim')
+    : (s.properName ?? (s.labelKey != null ? s.labelKey!.tr() : s.id));
 
 class NotificationSettingsScreen extends ConsumerStatefulWidget {
   const NotificationSettingsScreen({super.key});
@@ -645,6 +649,34 @@ class _MuezzinSheetState extends State<_MuezzinSheet> {
     }
   }
 
+  /// 🎵 Cihazdan ses dosyası seç → app-özel klasöre kopyala → prefs'e yaz → seç.
+  /// (Kaynak dosya sonradan silinse bile ezan çalar; native oynatıcı bu yolu okur.)
+  Future<void> _pickCustom() async {
+    try {
+      final res = await FilePicker.platform.pickFiles(type: FileType.audio);
+      final src = res?.files.single.path;
+      final nm = res?.files.single.name;
+      if (src == null || nm == null) return;
+      final dir = await getApplicationSupportDirectory();
+      final ext = src.contains('.') ? src.split('.').last : 'mp3';
+      final dest = '${dir.path}/custom_adhan.$ext';
+      await File(src).copy(dest);
+      final prefs = await SharedPreferences.getInstance();
+      await prefs.setString(PrefKeys.customAdhanPath, dest);
+      await prefs.setString(PrefKeys.customAdhanName, nm);
+      customAdhanPath = dest;
+      customAdhanName = nm;
+      if (!mounted) return;
+      widget.onPick(AdhanSound.custom);
+      Navigator.pop(context);
+    } catch (_) {
+      if (mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+            const SnackBar(content: Text('Ses seçilemedi')));
+      }
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     final c = context.colors;
@@ -693,6 +725,24 @@ class _MuezzinSheetState extends State<_MuezzinSheet> {
                         Navigator.pop(context);
                       },
                     ),
+                  // 🎵 Kendi sesim — cihazdan bir ses/müzik dosyası seç.
+                  ListTile(
+                    leading: CircleAvatar(
+                      backgroundColor: c.gold.withValues(alpha: 0.14),
+                      child: Icon(Icons.library_music_rounded,
+                          color: c.gold, size: 20),
+                    ),
+                    title: Text(customAdhanName ?? 'Kendi sesimi seç…'),
+                    subtitle: customAdhanName == null
+                        ? null
+                        : Text('Kendi sesin — değiştirmek için dokun',
+                            style:
+                                TextStyle(color: c.textTertiary, fontSize: 12)),
+                    trailing: widget.current == AdhanSound.custom
+                        ? Icon(AppIcons.checkCircle, color: c.gold)
+                        : Icon(Icons.folder_open_rounded, color: c.gold),
+                    onTap: _pickCustom,
+                  ),
                 ],
               ),
             ),

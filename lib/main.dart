@@ -64,6 +64,9 @@ Future<void> main() async {
   // Bildirim titreşim tercihini kanallar kurulmadan ÖNCE yükle (kanal id'sine
   // yansıdığından doğru kanalın oluşması için gerekli).
   prayerVibration = prefs.getBool(PrefKeys.notifVibration) ?? true;
+  // Kullanıcının seçtiği özel ezan sesini yükle (AdhanSound.custom için).
+  customAdhanPath = prefs.getString(PrefKeys.customAdhanPath);
+  customAdhanName = prefs.getString(PrefKeys.customAdhanName);
 
   // Arka plan ses oynatma + medya bildirimi (audio_service) — sesli hikâyeler
   // için. Init başarısız olursa app açılışı bloke olmasın diye sarıldı; o durumda

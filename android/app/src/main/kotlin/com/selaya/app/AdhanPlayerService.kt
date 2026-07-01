@@ -59,19 +59,23 @@ class AdhanPlayerService : Service() {
         return START_NOT_STICKY
     }
 
-    /** Seçili ezanı res/raw'dan çalar; bittiğinde kendini kapatır. */
+    /** Seçili ezanı çalar; bittiğinde kendini kapatır. Ad '/' ile başlıyorsa
+     *  KULLANICI ÖZEL SESİ (mutlak dosya yolu) → dosyadan; yoksa res/raw'dan. */
     private fun play(resName: String?) {
         val name = if (!resName.isNullOrEmpty()) resName else selectedRes()
-        var resId = resources.getIdentifier(name, "raw", packageName)
-        if (resId == 0) resId = resources.getIdentifier(DEFAULT, "raw", packageName)
-        if (resId == 0) { stopEverything(lingering = false); return }
+        val isFile = name.startsWith("/")
+        var afd: android.content.res.AssetFileDescriptor? = null
+        if (!isFile) {
+            var resId = resources.getIdentifier(name, "raw", packageName)
+            if (resId == 0) resId = resources.getIdentifier(DEFAULT, "raw", packageName)
+            if (resId == 0) { stopEverything(lingering = false); return }
+            afd = resources.openRawResourceFd(resId)
+        }
         try {
             player?.release()
             // MediaPlayer ELLE kurulur (create() değil): ses öznitelikleri
-            // prepare'dan ÖNCE set edilmeli (sonradan set bazı cihazlarda yok
-            // sayılıp ezanı MEDYA kanalına düşürüyordu) + PARTIAL wake-lock —
-            // ekran kapalı/doze'da uzun ezan ORTADAN KESİLMESİN.
-            val afd = resources.openRawResourceFd(resId)
+            // prepare'dan ÖNCE set edilmeli + PARTIAL wake-lock — ekran kapalı/
+            // doze'da uzun ezan ORTADAN KESİLMESİN.
             player = MediaPlayer().apply {
                 setAudioAttributes(
                     AudioAttributes.Builder()
@@ -80,18 +84,18 @@ class AdhanPlayerService : Service() {
                         .build()
                 )
                 setWakeMode(this@AdhanPlayerService, PowerManager.PARTIAL_WAKE_LOCK)
-                setDataSource(afd.fileDescriptor, afd.startOffset, afd.length)
+                if (isFile) setDataSource(name)
+                else setDataSource(afd!!.fileDescriptor, afd!!.startOffset, afd!!.length)
                 isLooping = false
-                // Ezan KENDİLİĞİNDEN bitti → kalıcı "ezan okundu" kaydı bırak
-                // (kullanıcı bildirimi kaçırmasın; perdede silene dek durur).
                 setOnCompletionListener { stopEverything(lingering = true) }
                 setOnErrorListener { _, _, _ -> stopEverything(lingering = false); true }
                 prepare()
                 start()
             }
-            afd.close()
+            afd?.close()
             registerStopHooks() // güç/ses tuşuyla durdurma
         } catch (_: Exception) {
+            afd?.close()
             stopEverything(lingering = false)
         }
     }

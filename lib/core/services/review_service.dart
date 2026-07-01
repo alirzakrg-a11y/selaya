@@ -11,12 +11,18 @@ class ReviewService {
 
   /// Manuel — "Bizi Değerlendir" düğmesinden. Native akış yoksa mağaza sayfası.
   static Future<void> openReview() async {
+    // Uygulama-içi akış (Play'den kurulu + kullanılabilir) → native pencere.
     try {
       if (await _iar.isAvailable()) {
         await _iar.requestReview();
-      } else {
-        await _iar.openStoreListing();
+        return;
       }
+    } catch (_) {
+      // sideload / kapalı test → in-app akış "hata" verir; mağaza sayfasına düş.
+    }
+    // Yedek: Play mağaza sayfasını aç (her durumda çalışır).
+    try {
+      await _iar.openStoreListing();
     } catch (_) {}
   }
 
