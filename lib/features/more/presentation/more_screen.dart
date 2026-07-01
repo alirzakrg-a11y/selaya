@@ -6,6 +6,7 @@ import 'package:go_router/go_router.dart';
 import '../../../core/ads/ad_widgets.dart';
 import '../../../core/router/nav.dart';
 import '../../../core/router/routes.dart';
+import '../../../core/services/review_service.dart';
 import '../../auth/data/auth_controller.dart';
 import '../../../core/theme/app_colors.dart';
 import '../../../core/theme/app_icons.dart';
@@ -128,10 +129,49 @@ class MoreScreen extends ConsumerWidget {
               const Gap.lg(),
             ],
           ],
+          // ⭐ Bizi Değerlendir — uygulama içi yıldız (Play) akışı.
+          SelayaCard(
+            onTap: () => ReviewService.openReview(),
+            padding: const EdgeInsets.all(AppSpacing.md),
+            child: Row(
+              children: [
+                Icon(Icons.star_rounded, color: context.colors.gold),
+                const Gap.md(),
+                Expanded(
+                  child: Text(
+                    _rateLabel(context.locale.languageCode),
+                    style: Theme.of(context)
+                        .textTheme
+                        .bodyMedium
+                        ?.copyWith(fontWeight: FontWeight.w600),
+                  ),
+                ),
+                Icon(AppIcons.forward, color: context.colors.gold, size: 18),
+              ],
+            ),
+          ),
+          const Gap.lg(),
         ],
       ),
     );
   }
+}
+
+/// "Bizi Değerlendir" etiketi (10 dil) — yeni çeviri anahtarı eklememek için.
+String _rateLabel(String lang) {
+  const m = {
+    'tr': 'Bizi Değerlendir ⭐',
+    'en': 'Rate us ⭐',
+    'ar': 'قيّمنا ⭐',
+    'de': 'Bewerte uns ⭐',
+    'id': 'Beri nilai ⭐',
+    'fr': 'Évaluez-nous ⭐',
+    'ur': 'ہمیں ریٹ کریں ⭐',
+    'bn': 'আমাদের রেট দিন ⭐',
+    'fa': 'به ما امتیاز دهید ⭐',
+    'ru': 'Оцените нас ⭐',
+  };
+  return m[lang] ?? m['en']!;
 }
 
 class _SectionTitle extends StatelessWidget {

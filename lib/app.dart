@@ -12,6 +12,7 @@ import 'core/services/location_service.dart';
 import 'core/services/mosque_silent_service.dart';
 import 'core/services/notification_service.dart';
 import 'core/services/permission_service.dart';
+import 'core/services/review_service.dart';
 import 'core/services/smart_silent_service.dart';
 import 'core/services/permissions_controller.dart';
 import 'core/services/widget_service.dart';
@@ -57,6 +58,14 @@ class _SelayaAppState extends ConsumerState<SelayaApp>
     WidgetsBinding.instance.addPostFrameCallback((_) {
       _syncBackground();
       _maybeRemindPermissions();
+      // (#değerlendir) Yeterince kullanıldıysa uygun bir anda "Bizi Değerlendir"
+      // penceresini iste — açılışı bölmesin diye gecikmeli; Google sıklığı sınırlar.
+      Future.delayed(const Duration(seconds: 12), () {
+        if (mounted) {
+          ReviewService.maybeRequest(
+              prefs, _launchCount, DateTime.now().millisecondsSinceEpoch);
+        }
+      });
     });
     // Surface the full-screen adhan alarm when requested (notification tap /
     // full-screen intent / launch, and the in-app watcher below).

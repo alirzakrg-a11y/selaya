@@ -1,6 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 import '../../../core/theme/app_colors.dart';
 import '../../../core/theme/app_icons.dart';
@@ -78,6 +79,40 @@ class _PremiumScreenState extends ConsumerState<PremiumScreen> {
       'bn': 'এককালীন',
       'fa': 'یک‌بار',
       'ru': 'разовый',
+    };
+    return m[lang] ?? m['en']!;
+  }
+
+  // "Daha önce satın aldım" (geri yükle) — net etiket.
+  static String _restoreLabel(String lang) {
+    const m = {
+      'tr': 'Daha önce satın aldım',
+      'en': 'I already purchased',
+      'ar': 'لقد اشتريت بالفعل',
+      'de': 'Bereits gekauft',
+      'id': 'Sudah pernah beli',
+      'fr': 'Déjà acheté',
+      'ur': 'میں پہلے خرید چکا ہوں',
+      'bn': 'আগেই কিনেছি',
+      'fa': 'قبلاً خریده‌ام',
+      'ru': 'Уже куплено',
+    };
+    return m[lang] ?? m['en']!;
+  }
+
+  // "Aboneliği yönet / iptal et" — Play abonelik sayfasını açar.
+  static String _manageLabel(String lang) {
+    const m = {
+      'tr': 'Aboneliği yönet / iptal et',
+      'en': 'Manage / cancel subscription',
+      'ar': 'إدارة / إلغاء الاشتراك',
+      'de': 'Abo verwalten / kündigen',
+      'id': 'Kelola / batalkan langganan',
+      'fr': "Gérer / annuler l'abonnement",
+      'ur': 'سبسکرپشن منظم / منسوخ کریں',
+      'bn': 'সাবস্ক্রিপশন পরিচালনা / বাতিল',
+      'fa': 'مدیریت / لغو اشتراک',
+      'ru': 'Управление / отмена подписки',
     };
     return m[lang] ?? m['en']!;
   }
@@ -214,8 +249,10 @@ class _PremiumScreenState extends ConsumerState<PremiumScreen> {
               ),
               Padding(
                 padding: AppSpacing.screen,
-                child: purchase.isPremium
-                    ? Container(
+                child: Column(
+                  children: [
+                    if (purchase.isPremium)
+                      Container(
                         width: double.infinity,
                         padding: const EdgeInsets.symmetric(vertical: 16),
                         decoration: BoxDecoration(
@@ -232,37 +269,53 @@ class _PremiumScreenState extends ConsumerState<PremiumScreen> {
                                   fontSize: 16)),
                         ),
                       )
-                    : Column(
-                        children: [
-                          if (purchase.purchasePending)
-                            const Padding(
-                              padding: EdgeInsets.symmetric(vertical: 8),
-                              child: CircularProgressIndicator(),
-                            )
-                          else
-                            GradientButton(
-                              label: 'premium.subscribe'.tr(),
-                              icon: AppIcons.crown,
-                              expand: true,
-                              onPressed: () {
-                                final p = purchase.byId(_selected);
-                                if (p == null) {
-                                  _snack('common.comingSoon'.tr());
-                                  return;
-                                }
-                                ctrl.buy(p);
-                              },
-                            ),
-                          TextButton(
-                            onPressed: () {
-                              ctrl.restore();
-                              _snack('premium.restore'.tr());
-                            },
-                            child: Text('premium.restore'.tr(),
-                                style: TextStyle(color: c.textTertiary)),
-                          ),
-                        ],
+                    else ...[
+                      if (purchase.purchasePending)
+                        const Padding(
+                          padding: EdgeInsets.symmetric(vertical: 8),
+                          child: CircularProgressIndicator(),
+                        )
+                      else
+                        GradientButton(
+                          label: 'premium.subscribe'.tr(),
+                          icon: AppIcons.crown,
+                          expand: true,
+                          onPressed: () {
+                            final p = purchase.byId(_selected);
+                            if (p == null) {
+                              _snack('common.comingSoon'.tr());
+                              return;
+                            }
+                            ctrl.buy(p);
+                          },
+                        ),
+                      TextButton(
+                        onPressed: () {
+                          ctrl.restore();
+                          _snack(lang == 'tr'
+                              ? 'Önceki satın alımların kontrol ediliyor…'
+                              : 'Checking previous purchases…');
+                        },
+                        child: Text(_restoreLabel(lang),
+                            style: TextStyle(color: c.textTertiary)),
                       ),
+                    ],
+                    // Aboneliği Play'den yönet / iptal et — HER ZAMAN tıklanabilir
+                    // (Play abonelik iptalini kendi sayfasından yaptırır).
+                    TextButton.icon(
+                      onPressed: () => launchUrl(
+                        Uri.parse(
+                            'https://play.google.com/store/account/subscriptions'),
+                        mode: LaunchMode.externalApplication,
+                      ),
+                      icon: Icon(Icons.open_in_new_rounded,
+                          size: 15, color: c.textTertiary),
+                      label: Text(_manageLabel(lang),
+                          style: TextStyle(
+                              color: c.textTertiary, fontSize: 12.5)),
+                    ),
+                  ],
+                ),
               ),
             ],
           ),

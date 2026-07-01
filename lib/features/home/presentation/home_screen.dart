@@ -96,17 +96,45 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                   // "Bizi geliştir" ile bitişik olmasın → üstte boşluk.
                   padding: const EdgeInsets.fromLTRB(AppSpacing.base,
                       AppSpacing.lg, AppSpacing.base, AppSpacing.lg),
-                  child: OutlinedButton.icon(
-                    onPressed: () => context.push(Routes.premium),
-                    icon: Icon(AppIcons.crown, size: 18, color: c.gold),
-                    label: Text('premium.featureAdfree'.tr()),
-                    style: OutlinedButton.styleFrom(
-                      minimumSize: const Size(double.infinity, 46),
-                      foregroundColor: c.gold,
-                      side:
-                          BorderSide(color: c.gold.withValues(alpha: 0.45)),
-                      shape: const RoundedRectangleBorder(
-                          borderRadius: AppRadius.rMd),
+                  // GOLD dolgulu (eski ince çerçeveli yerine) → fark net görünsün.
+                  child: Material(
+                    color: Colors.transparent,
+                    child: InkWell(
+                      onTap: () => context.push(Routes.premium),
+                      borderRadius: AppRadius.rMd,
+                      child: Ink(
+                        decoration: BoxDecoration(
+                          gradient: LinearGradient(colors: [
+                            c.gold,
+                            c.gold.withValues(alpha: 0.78),
+                          ]),
+                          borderRadius: AppRadius.rMd,
+                          boxShadow: [
+                            BoxShadow(
+                              color: c.gold.withValues(alpha: 0.35),
+                              blurRadius: 12,
+                              offset: const Offset(0, 4),
+                            ),
+                          ],
+                        ),
+                        child: Container(
+                          height: 50,
+                          alignment: Alignment.center,
+                          child: Row(
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              const Icon(AppIcons.crown,
+                                  size: 19, color: Color(0xFF15110A)),
+                              const SizedBox(width: 8),
+                              Text('premium.featureAdfree'.tr(),
+                                  style: const TextStyle(
+                                      color: Color(0xFF15110A),
+                                      fontWeight: FontWeight.w800,
+                                      fontSize: 15)),
+                            ],
+                          ),
+                        ),
+                      ),
                     ),
                   ),
                 ),
