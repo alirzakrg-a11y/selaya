@@ -29,7 +29,9 @@ class NextPrayerCard extends ConsumerWidget {
 
     return AspectRatio(
       // Kompakt: üst/alt boşluk azaltıldı + içerik ortalandı (kullanıcı 2026-06-18).
-      aspectRatio: 16 / (8.8 * scale),
+      // Kullanıcı isteği: alttaki ilerleme çubuğu kenara çok yakındı — kart
+      // biraz uzatıldı (8.8 → 9.4) ki nefes alsın.
+      aspectRatio: 16 / (9.4 * scale),
       child: Container(
         // Kullanıcı isteği: fotoğraf arka plan KALDIRILDI → yerine temanın
         // rengine göre imzamız olan yıldız deseni + belirgin altın çerçeve.
@@ -95,7 +97,7 @@ class NextPrayerCard extends ConsumerWidget {
                     AppSpacing.lg,
                     AppSpacing.md,
                     AppSpacing.lg,
-                    AppSpacing.md,
+                    AppSpacing.base,
                   ),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.center,
@@ -182,7 +184,7 @@ class NextPrayerCard extends ConsumerWidget {
                           ),
                         ],
                       ),
-                      const Gap.sm(),
+                      const Gap.md(),
                       ClipRRect(
                         borderRadius: BorderRadius.circular(AppRadius.pill),
                         child: LinearProgressIndicator(
