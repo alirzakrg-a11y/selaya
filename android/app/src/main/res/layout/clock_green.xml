@@ -17,7 +17,9 @@
         android:format12Hour="HH:mm"
         android:format24Hour="HH:mm"
         android:textColor="#E0B250"
-        android:textSize="50sp"
+        android:textSize="52sp"
+        android:fontFamily="sans-serif-medium"
+        android:letterSpacing="0.01"
         android:textStyle="bold" />
 
     <TextClock

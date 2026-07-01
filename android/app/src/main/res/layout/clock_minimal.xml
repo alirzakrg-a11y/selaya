@@ -16,17 +16,21 @@
         android:format12Hour="HH:mm"
         android:format24Hour="HH:mm"
         android:textColor="#F4F6FB"
-        android:textSize="50sp"
+        android:textSize="52sp"
+        android:fontFamily="sans-serif-medium"
+        android:letterSpacing="0.01"
         android:textStyle="bold" />
 
     <TextClock
         android:id="@+id/widget_cm_date"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:paddingTop="2dp"
+        android:paddingTop="3dp"
         android:format12Hour="d MMMM EEEE"
         android:format24Hour="d MMMM EEEE"
         android:textColor="#9AA3B8"
         android:textSize="13sp"
+        android:fontFamily="sans-serif"
+        android:letterSpacing="0.03"
         android:maxLines="1" />
 </LinearLayout>
