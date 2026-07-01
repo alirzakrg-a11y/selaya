@@ -22,6 +22,7 @@ import '../domain/prayer.dart';
 import 'widgets/extended_times_section.dart';
 import 'widgets/next_prayer_card.dart';
 import 'widgets/prayer_clock_dial.dart';
+import 'widgets/prayer_timeline_gauge.dart';
 
 class PrayerTimesScreen extends ConsumerStatefulWidget {
   const PrayerTimesScreen({super.key});
@@ -106,6 +107,10 @@ class _PrayerTimesScreenState extends ConsumerState<PrayerTimesScreen> {
           ),
           const Gap.lg(),
           const PrayerClockDial(),
+          const Gap.lg(),
+          // Ana sayfadaki eski kaydırmalı sayaç panosundan taşındı (kullanıcı
+          // isteği): artık burada, ayrı bir sekme/kaydırma olmadan.
+          const PrayerTimelineGauge(),
           const Gap.lg(),
           const ExtendedTimesSection(),
           const Gap.md(),

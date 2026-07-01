@@ -59,6 +59,7 @@ class MoreScreen extends ConsumerWidget {
       _Entry(AppIcons.qibla, 'qibla.title', Routes.qibla),
     ]),
     _Section('more.secTimes', [
+      _Entry(AppIcons.times, 'nav.times', Routes.times),
       _Entry(Icons.nightlight_round, 'ramadan.title', Routes.ramadan),
       _Entry(Icons.wb_twilight_rounded, 'imsakiye.title', Routes.imsakiye),
       _Entry(AppIcons.calendar, 'calendar.title', Routes.calendar),
@@ -74,6 +75,7 @@ class MoreScreen extends ConsumerWidget {
       _Entry(Icons.volunteer_activism_rounded, 'zakat.title', Routes.zakat),
     ]),
     _Section('more.secDiscover', [
+      _Entry(Icons.dynamic_feed_rounded, 'nav.akis', Routes.akis),
       _Entry(Icons.quiz_rounded, 'quiz.title', Routes.quiz),
       _Entry(Icons.front_hand_rounded, 'duaWall.title', Routes.duaWall),
       _Entry(Icons.favorite_rounded, 'liked.title', Routes.liked),

@@ -33,11 +33,9 @@ import '../../prayer_times/data/prayer_repository.dart';
 import '../../ibadah_tracking/data/prayer_checkin.dart';
 import '../../notifications/data/prayer_scheduler.dart';
 import '../../prayer_times/presentation/widgets/next_prayer_card.dart';
-import '../../prayer_times/presentation/widgets/prayer_clock_dial.dart';
 import '../../prayer_times/presentation/widgets/prayer_strip.dart';
 import '../../baby_names/presentation/baby_names_screen.dart';
 import '../../quiz/data/quiz_models.dart';
-import '../../prayer_times/presentation/widgets/prayer_timeline_gauge.dart';
 import '../../stories/presentation/story_rail.dart';
 import '../../weather/data/weather_service.dart';
 import '../data/featured_tools.dart';
@@ -160,9 +158,21 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
       case 'religiousDay':
         return const [_ReligiousDayCard()];
       case 'gaugeCarousel':
-        return const [
-          Padding(padding: AppSpacing.screen, child: _GaugeCarousel()),
-          Gap.md(),
+        // Eskiden sağa kaydırınca 3 farklı sayaç türü (24s kadran/zaman
+        // çizelgesi) dönüyordu — o ikisi Vakitler ekranına taşındı (kullanıcı
+        // isteği). Burada artık TEK sayaç kartı var; dokununca Vakitler açılır
+        // (alt menüden zaten erişilebiliyor, burada tekrar aynı içeriği
+        // göstermeye gerek yok).
+        return [
+          Padding(
+            padding: AppSpacing.screen,
+            child: GestureDetector(
+              behavior: HitTestBehavior.opaque,
+              onTap: () => context.go(Routes.times),
+              child: const NextPrayerCard(),
+            ),
+          ),
+          const Gap.md(),
         ];
       case 'prayerStrip':
         return [
@@ -1477,73 +1487,6 @@ class _SeeMoreButton extends StatelessWidget {
           ],
         ),
       ),
-    );
-  }
-}
-
-/// Swipeable gauge: page 0 = next-prayer countdown card, page 1 = 24h radial
-/// dial — matching the PDF's "swipe to change the indicator" request.
-class _GaugeCarousel extends StatefulWidget {
-  const _GaugeCarousel();
-  @override
-  State<_GaugeCarousel> createState() => _GaugeCarouselState();
-}
-
-class _GaugeCarouselState extends State<_GaugeCarousel> {
-  final _controller = PageController();
-  int _page = 0;
-
-  @override
-  void dispose() {
-    _controller.dispose();
-    super.dispose();
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    final c = context.colors;
-    return Column(
-      children: [
-        SizedBox(
-          // Kompakt — geri sayım kartının üst/alt boşluğu en aza indirildi. Büyük
-          // fontta (1.3x) içerik taşmasın diye yükseklik metin ölçeğiyle büyür.
-          height:
-              218.0 *
-              MediaQuery.textScalerOf(context).scale(1.0).clamp(1.0, 1.35),
-          // .builder → yalnız GÖRÜNEN sayfa kurulur/çalışır. Önce 3 sayfa birden
-          // mount oluyor + her biri clockProvider'ı (1sn) izliyordu → saniyede 3×
-          // yeniden çiz + 2 görünmeyen CustomPainter boşuna repaint. Artık 1×.
-          child: PageView.builder(
-            controller: _controller,
-            itemCount: 3,
-            onPageChanged: (i) => setState(() => _page = i),
-            itemBuilder: (_, i) => Center(
-              child: switch (i) {
-                0 => const NextPrayerCard(),
-                1 => const PrayerClockDial(),
-                _ => const PrayerTimelineGauge(),
-              },
-            ),
-          ),
-        ),
-        const Gap.sm(),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            for (var i = 0; i < 3; i++)
-              AnimatedContainer(
-                duration: const Duration(milliseconds: 200),
-                margin: const EdgeInsets.symmetric(horizontal: 3),
-                width: _page == i ? 18 : 6,
-                height: 6,
-                decoration: BoxDecoration(
-                  color: _page == i ? c.gold : c.border,
-                  borderRadius: BorderRadius.circular(99),
-                ),
-              ),
-          ],
-        ),
-      ],
     );
   }
 }

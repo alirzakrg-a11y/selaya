@@ -124,7 +124,16 @@ class _AuthScreenState extends ConsumerState<AuthScreen> {
     });
     try {
       final gsi = GoogleSignIn(serverClientId: _googleWebClientId);
-      await gsi.signOut(); // her seferinde hesap seçtir (önceki oturumu temizle)
+      // signOut() SADECE "en iyi çaba" ile önceki oturumu temizleyip hesap
+      // seçtirmek için — bazı Play Services sürümlerinde önceden aktif oturum
+      // yokken (ör. bir önceki logout'tan hemen sonra) fırlatabiliyor. Bunu
+      // İZOLE ET ki bu iyimser adım tüm giriş akışını ("bir şeyler ters gitti")
+      // düşürmesin — asıl işi yapan signIn() zaten devam edebilir.
+      try {
+        await gsi.signOut();
+      } catch (e) {
+        debugPrint('GoogleSignIn.signOut() best-effort hata (yok sayıldı): $e');
+      }
       final account = await gsi.signIn();
       if (account == null) {
         if (mounted) setState(() => _busy = false);
@@ -165,7 +174,8 @@ class _AuthScreenState extends ConsumerState<AuthScreen> {
       context.pushReplacement(Routes.account);
     } on AuthException catch (e) {
       _snack(_msg(e.code));
-    } catch (_) {
+    } catch (e) {
+      debugPrint('Google Sign-In hatası: $e');
       _snack(_msg('unknown'));
     } finally {
       if (mounted) setState(() => _busy = false);

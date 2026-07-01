@@ -183,6 +183,10 @@ class AuthController extends Notifier<AuthState> {
     // misafir/kullanıcı bedavaya reklamsız kalır. Yeniden girişte /v1/me tazeler.
     await prefs.remove(PrefKeys.isPremium);
     ref.invalidate(isPremiumProvider);
+    debugPrint(
+        'AuthController.logout(): isPremium pref sonrası=${prefs.getBool(PrefKeys.isPremium)}, '
+        'isPremiumProvider sonrası=${ref.read(isPremiumProvider)}, '
+        'adsActive sonrası=${ref.read(adsActiveProvider)}');
     state = const AuthState();
   }
 

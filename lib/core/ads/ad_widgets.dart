@@ -34,7 +34,12 @@ class _AdBannerState extends ConsumerState<AdBanner> {
 
   void _maybeLoad() {
     if (!mounted || _ad != null) return;
-    if (!adsReady.value || !ref.read(adsActiveProvider)) return;
+    if (!adsReady.value || !ref.read(adsActiveProvider)) {
+      debugPrint(
+          'AdBanner._maybeLoad() atlandı: adsReady=${adsReady.value}, '
+          'adsActive=${ref.read(adsActiveProvider)}, isPremium=${ref.read(isPremiumProvider)}');
+      return;
+    }
     final ad = BannerAd(
       adUnitId: AdIds.banner,
       size: AdSize.banner,
@@ -111,7 +116,12 @@ class _NativeAdCardState extends ConsumerState<NativeAdCard> {
 
   void _maybeLoad() {
     if (!mounted || _ad != null) return;
-    if (!adsReady.value || !ref.read(adsActiveProvider)) return;
+    if (!adsReady.value || !ref.read(adsActiveProvider)) {
+      debugPrint(
+          'NativeAdCard._maybeLoad() atlandı: adsReady=${adsReady.value}, '
+          'adsActive=${ref.read(adsActiveProvider)}, isPremium=${ref.read(isPremiumProvider)}');
+      return;
+    }
     final ad = NativeAd(
       adUnitId: AdIds.native,
       request: const AdRequest(),

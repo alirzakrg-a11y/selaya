@@ -1,23 +1,15 @@
-import 'dart:math';
-
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../../../../core/data/content_providers.dart';
 import '../../../../core/localization/localized_text.dart';
-import '../../../../core/models/content.dart';
 import '../../../../core/theme/app_colors.dart';
 import '../../../../core/theme/app_icons.dart';
 import '../../../../core/theme/app_spacing.dart';
 import '../../../../core/theme/app_typography.dart';
 import '../../../../core/utils/formatters.dart';
-import '../../../../core/widgets/app_image.dart';
+import '../../../../core/widgets/geometric_background.dart';
 import '../../data/prayer_repository.dart';
-
-/// Sayaç kartı arka planı için OTURUM başına SABİT rastgele seed → her uygulama
-/// açılışında FARKLI tek görsel; rebuild'lerde DEĞİŞMEZ (geçiş/titreme yok).
-final _heroBgSeedProvider = Provider<int>((ref) => Random().nextInt(1 << 30));
 
 /// Large hero card: city, date, hijri date, next prayer + live countdown + progress.
 class NextPrayerCard extends ConsumerWidget {
@@ -25,6 +17,7 @@ class NextPrayerCard extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final c = context.colors;
     final lang = context.langCode;
     // Büyük fontta (1.3x) içerik taşmasın diye kart YÜKSEKLİĞİ metin ölçeğiyle
     // büyür (öne-çıkanlar gridindeki "/ scale" tekniğiyle aynı). (kullanıcı 2026-06-17)
@@ -33,44 +26,45 @@ class NextPrayerCard extends ConsumerWidget {
     ).scale(1.0).clamp(1.0, 1.35).toDouble();
     final viewAsync = ref.watch(prayerViewProvider);
     final now = ref.watch(clockProvider).value ?? DateTime.now();
-    // Arka plan: her açılışta duvar kâğıtlarımızdan SABİT rastgele tek görsel
-    // (video KALDIRILDI — kullanıcı 2026-06-15).
-    final wps = ref.watch(wallpapersProvider).value ?? const <Wallpaper>[];
-    final imgs = [for (final w in wps) w.image];
-    final heroBg = imgs.isEmpty
-        ? ''
-        : imgs[ref.watch(_heroBgSeedProvider) % imgs.length];
 
     return AspectRatio(
       // Kompakt: üst/alt boşluk azaltıldı + içerik ortalandı (kullanıcı 2026-06-18).
       aspectRatio: 16 / (8.8 * scale),
-      child: ClipRRect(
-        borderRadius: AppRadius.rXl,
-        child: Stack(
-          fit: StackFit.expand,
-          children: [
-            // Video arka plan KALDIRILDI (kullanıcı 2026-06-15): her açılışta
-            // duvar kâğıtlarımızdan SABİT rastgele tek görsel (statik, geçiş yok).
-            heroBg.isEmpty
-                ? Image.asset(
-                    'assets/images/hero_mosque.jpg',
-                    fit: BoxFit.cover,
-                  )
-                : AppImage.cdn(heroBg, fit: BoxFit.cover, memWidth: 720),
-            const DecoratedBox(
-              decoration: BoxDecoration(
-                gradient: LinearGradient(
-                  begin: Alignment.topLeft,
-                  end: Alignment.bottomRight,
-                  colors: [
-                    Color(0xCC05070D),
-                    Color(0x6605070D),
-                    Color(0xEE05070D),
-                  ],
+      child: Container(
+        // Kullanıcı isteği: fotoğraf arka plan KALDIRILDI → yerine temanın
+        // rengine göre imzamız olan yıldız deseni + belirgin altın çerçeve.
+        decoration: BoxDecoration(
+          borderRadius: AppRadius.rXl,
+          border: Border.all(color: c.gold.withValues(alpha: 0.55), width: 1.6),
+        ),
+        child: ClipRRect(
+          borderRadius: AppRadius.rXl,
+          child: Stack(
+            fit: StackFit.expand,
+            children: [
+              DecoratedBox(
+                decoration: BoxDecoration(
+                  gradient: LinearGradient(
+                    begin: Alignment.topLeft,
+                    end: Alignment.bottomRight,
+                    colors: [c.bg, c.surface, c.bg],
+                  ),
                 ),
               ),
-            ),
-            viewAsync.when(
+              // Yıldız deseni TEK SEFER rasterize edilip cache'lenir
+              // (RepaintBoundary + willChange:false) → sonsuz repaint DÖNGÜSÜ yok.
+              Positioned.fill(
+                child: RepaintBoundary(
+                  child: CustomPaint(
+                    isComplex: true,
+                    willChange: false,
+                    painter: StarPatternPainter(
+                      color: c.gold.withValues(alpha: 0.10),
+                    ),
+                  ),
+                ),
+              ),
+              viewAsync.when(
               loading: () => const Center(
                 child: SizedBox(
                   width: 26,
@@ -205,7 +199,8 @@ class NextPrayerCard extends ConsumerWidget {
                 );
               },
             ),
-          ],
+            ],
+          ),
         ),
       ),
     );
