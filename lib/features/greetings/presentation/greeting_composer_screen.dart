@@ -143,6 +143,22 @@ class _GreetingComposerScreenState
     }
   }
 
+  /// Üstteki "Sıfırla" ikonu: metin/arka plan İÇERİĞİNE dokunmadan, sadece
+  /// stil ayarlarını (font/boyut/renk/hizalama/konum/çerçeve/karartma) baştaki
+  /// haline döndürür — Canva'daki "reset" hissi.
+  void _resetStyle() => setState(() {
+        _fontIndex = 0;
+        _fontScale = 1.0;
+        _lineHeight = 1.55;
+        _colorIndex = 0;
+        _alignIndex = 0;
+        _framed = false;
+        _overlay = 1.0;
+        _anchorIndex = 0;
+        _textNudge = Offset.zero;
+        _baseFontScale = 1.0;
+      });
+
   /// Kartı galeriye indir (yakala → PNG → galeri).
   Future<void> _downloadCard() async {
     setState(() => _busy = true);
@@ -236,6 +252,34 @@ class _GreetingComposerScreenState
     return SelayaScaffold(
       title: 'greetings.title'.tr(),
       showBack: true,
+      // Canva'daki gibi Paylaş/İndir/Sıfırla üst çubukta ikon — alt kısım
+      // tamamen araç/şablon seçimine ayrılır (bkz kullanıcı referans görseli).
+      actions: [
+        IconButton(
+          icon: const Icon(Icons.restart_alt_rounded),
+          tooltip: _ll('Stili sıfırla', 'Reset style'),
+          onPressed: _busy ? null : _resetStyle,
+        ),
+        IconButton(
+          icon: const Icon(Icons.download_rounded),
+          tooltip: 'common.download'.tr(),
+          onPressed: _busy ? null : _downloadCard,
+        ),
+        IconButton(
+          icon: const Icon(Icons.ios_share_rounded),
+          tooltip: 'common.share'.tr(),
+          onPressed: _busy ? null : () => _doShare(ShareTarget.system),
+        ),
+        if (_busy)
+          const Padding(
+            padding: EdgeInsets.only(right: 14),
+            child: SizedBox(
+              width: 18,
+              height: 18,
+              child: CircularProgressIndicator(strokeWidth: 2),
+            ),
+          ),
+      ],
       body: async.when(
         loading: () => const SelayaLoading(),
         error: (e, _) => SelayaError(error: e),
@@ -776,58 +820,6 @@ class _GreetingComposerScreenState
                       ],
                   },
                 ),
-              ),
-              // ── ALT AKSİYON ÇUBUĞU (sabit) ──
-              Container(
-                padding: const EdgeInsets.fromLTRB(AppSpacing.base,
-                    AppSpacing.sm, AppSpacing.base, AppSpacing.md),
-                decoration: BoxDecoration(
-                  color: c.surface,
-                  border: Border(top: BorderSide(color: c.border)),
-                ),
-                child: _busy
-                    ? const Center(
-                        child: Padding(
-                          padding: EdgeInsets.all(AppSpacing.sm),
-                          child: SizedBox(
-                              width: 26,
-                              height: 26,
-                              child: CircularProgressIndicator(
-                                  strokeWidth: 2, color: AppColors.gold)),
-                        ),
-                      )
-                    : Row(
-                        children: [
-                          Expanded(
-                            child: FilledButton.icon(
-                              onPressed: () => _doShare(ShareTarget.system),
-                              icon: const Icon(Icons.ios_share_rounded),
-                              label: Text('common.share'.tr()),
-                              style: FilledButton.styleFrom(
-                                backgroundColor: c.gold,
-                                foregroundColor: c.onGold,
-                                padding: const EdgeInsets.symmetric(
-                                    vertical: 14),
-                              ),
-                            ),
-                          ),
-                          const Gap.sm(),
-                          Expanded(
-                            child: OutlinedButton.icon(
-                              onPressed: _downloadCard,
-                              icon: const Icon(Icons.download_rounded),
-                              label: Text('common.download'.tr()),
-                              style: OutlinedButton.styleFrom(
-                                foregroundColor: c.gold,
-                                side: BorderSide(
-                                    color: c.gold.withValues(alpha: 0.5)),
-                                padding: const EdgeInsets.symmetric(
-                                    vertical: 14),
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
               ),
             ],
           );
