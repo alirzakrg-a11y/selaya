@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -62,6 +63,23 @@ class _SplashScreenState extends ConsumerState<SplashScreen> {
     } catch (_) {}
   }
 
+  /// Ana ekranın ilk gösterdiği hikâye kapaklarını (üst şerit) ağdan indirip
+  /// cached_network_image önbelleğine yerleştir → home'da anında görünür.
+  Future<void> _warmHomeImages() async {
+    try {
+      final stories = await ref.read(storiesProvider.future);
+      if (!mounted) return;
+      for (final s in stories.take(6)) {
+        if (!s.cover.startsWith('http')) continue;
+        if (!mounted) return;
+        await precacheImage(CachedNetworkImageProvider(s.cover), context)
+            .catchError((_) {});
+      }
+    } catch (_) {
+      /* önbelleğe alma başarısız → home yine de yükler, sorun değil */
+    }
+  }
+
   Future<void> _go() async {
     // İLK AÇILIŞ SENKRONİZASYON SÜRECİ (kullanıcı 2026-06-17): panel/manifest
     // içeriği (hikâye, duvar kâğıdı, video, günün ayeti…) GELENE KADAR splash'te
@@ -98,6 +116,10 @@ class _SplashScreenState extends ConsumerState<SplashScreen> {
     }
 
     await Future.wait([minSplash, loadContent()]);
+    // Ana ekranın üstteki hikâye kapaklarını ÖNBELLEĞE al → home açılınca
+    // görseller ANINDA gelir, "pop-in"/donma hissi olmaz (özellikle ilk
+    // kurulumda). Kısa süreli + hata-toleranslı: yavaş/çevrimdışı ağda takılma.
+    await _warmHomeImages().timeout(const Duration(seconds: 3), onTimeout: () {});
     if (mounted) {
       setState(() {
         _syncLabel = 'xt.spReady'.tr();

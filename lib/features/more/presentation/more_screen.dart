@@ -4,6 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../../core/ads/ad_widgets.dart';
+import '../../../core/ads/ads_config.dart';
 import '../../../core/router/nav.dart';
 import '../../../core/router/routes.dart';
 import '../../../core/services/review_service.dart';
@@ -88,7 +89,6 @@ class MoreScreen extends ConsumerWidget {
           Routes.homeLayout),
     ]),
     _Section('more.secApp', [
-      _Entry(AppIcons.crown, 'premium.title', Routes.premium),
       _Entry(Icons.alarm_rounded, 'reminders.title', Routes.reminders),
       _Entry(AppIcons.settings, 'settings.title', Routes.settings),
       _Entry(AppIcons.info, 'intro.welcome', Routes.intro),
@@ -112,6 +112,8 @@ class MoreScreen extends ConsumerWidget {
           ),
           const Gap.lg(),
           const _AccountCard(),
+          const Gap.md(),
+          const _PremiumCard(),
           const Gap.lg(),
           for (final (i, s) in _sections.indexed) ...[
             _SectionTitle(s.titleKey.tr()),
@@ -233,6 +235,161 @@ class _Grid extends StatelessWidget {
 }
 
 // _AiBanner (SELAYA AI Asistanı kartı) KALDIRILDI — AI asistanı komple çıkarıldı.
+
+/// ⭐ SELAYA Plus — göze çarpan altın gradyan tanıtım kartı. Premium ise
+/// "aktif üyelik" durumu, değilse "kilidini aç" çağrısı gösterir.
+class _PremiumCard extends ConsumerWidget {
+  const _PremiumCard();
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final isPremium = ref.watch(isPremiumProvider);
+    // Altın gradyan — koyu tema üstünde sıcak, "premium" his.
+    const gold = Color(0xFFE0B250);
+    const goldDeep = Color(0xFFC8912F);
+    return GestureDetector(
+      onTap: () => context.push(Routes.premium),
+      child: Container(
+        padding: const EdgeInsets.all(AppSpacing.base),
+        decoration: BoxDecoration(
+          borderRadius: AppRadius.rLg,
+          gradient: const LinearGradient(
+            begin: Alignment.topLeft,
+            end: Alignment.bottomRight,
+            colors: [gold, goldDeep],
+          ),
+          boxShadow: [
+            BoxShadow(
+              color: gold.withValues(alpha: 0.35),
+              blurRadius: 18,
+              offset: const Offset(0, 6),
+            ),
+          ],
+        ),
+        child: Row(
+          children: [
+            // Taç ikonu — koyu daire içinde, kontrast için.
+            Container(
+              width: 46,
+              height: 46,
+              decoration: BoxDecoration(
+                color: const Color(0xFF1A1206).withValues(alpha: 0.85),
+                shape: BoxShape.circle,
+              ),
+              child: const Icon(AppIcons.crown, color: gold, size: 24),
+            ),
+            const Gap.base(),
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Row(
+                    children: [
+                      const Text('SELAYA Plus',
+                          style: TextStyle(
+                            color: Color(0xFF1A1206),
+                            fontWeight: FontWeight.w900,
+                            fontSize: 17,
+                            letterSpacing: 0.2,
+                          )),
+                      if (isPremium) ...[
+                        const SizedBox(width: 6),
+                        const Icon(Icons.verified_rounded,
+                            color: Color(0xFF1A1206), size: 16),
+                      ],
+                    ],
+                  ),
+                  const SizedBox(height: 2),
+                  Text(
+                    isPremium
+                        ? _activeLabel(context.locale.languageCode)
+                        : 'premium.subtitle'.tr(),
+                    maxLines: 2,
+                    overflow: TextOverflow.ellipsis,
+                    style: const TextStyle(
+                      color: Color(0xCC1A1206),
+                      fontSize: 12.5,
+                      fontWeight: FontWeight.w600,
+                      height: 1.2,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            const Gap.sm(),
+            // "Keşfet/Yönet" hap düğme.
+            Container(
+              padding:
+                  const EdgeInsets.symmetric(horizontal: 12, vertical: 7),
+              decoration: BoxDecoration(
+                color: const Color(0xFF1A1206),
+                borderRadius: BorderRadius.circular(20),
+              ),
+              child: Text(
+                isPremium
+                    ? _manageLabel(context.locale.languageCode)
+                    : _unlockLabel(context.locale.languageCode),
+                style: const TextStyle(
+                  color: gold,
+                  fontWeight: FontWeight.w800,
+                  fontSize: 12.5,
+                ),
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+String _activeLabel(String l) {
+  const m = {
+    'tr': 'Üyeliğin aktif — teşekkürler 🤍',
+    'en': 'Your membership is active — thank you 🤍',
+    'ar': 'عضويتك فعّالة — شكرًا لك 🤍',
+    'de': 'Deine Mitgliedschaft ist aktiv — danke 🤍',
+    'id': 'Keanggotaanmu aktif — terima kasih 🤍',
+    'fr': 'Votre abonnement est actif — merci 🤍',
+    'ur': 'آپ کی رکنیت فعال ہے — شکریہ 🤍',
+    'bn': 'আপনার সদস্যপদ সক্রিয় — ধন্যবাদ 🤍',
+    'fa': 'عضویت شما فعال است — سپاسگزاریم 🤍',
+    'ru': 'Ваша подписка активна — спасибо 🤍',
+  };
+  return m[l] ?? m['en']!;
+}
+
+String _unlockLabel(String l) {
+  const m = {
+    'tr': 'Keşfet',
+    'en': 'Explore',
+    'ar': 'اكتشف',
+    'de': 'Entdecken',
+    'id': 'Jelajahi',
+    'fr': 'Découvrir',
+    'ur': 'دریافت',
+    'bn': 'দেখুন',
+    'fa': 'کاوش',
+    'ru': 'Открыть',
+  };
+  return m[l] ?? m['en']!;
+}
+
+String _manageLabel(String l) {
+  const m = {
+    'tr': 'Yönet',
+    'en': 'Manage',
+    'ar': 'إدارة',
+    'de': 'Verwalten',
+    'id': 'Kelola',
+    'fr': 'Gérer',
+    'ur': 'انتظام',
+    'bn': 'পরিচালনা',
+    'fa': 'مدیریت',
+    'ru': 'Управлять',
+  };
+  return m[l] ?? m['en']!;
+}
 
 /// Üyelik kartı — giriş yapılmışsa "Hesabım" (ad+e-posta), değilse "Giriş/Üye ol".
 class _AccountCard extends ConsumerWidget {

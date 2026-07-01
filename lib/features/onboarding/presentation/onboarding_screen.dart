@@ -131,7 +131,10 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
 
   Future<void> _finish() async {
     await ref.read(sharedPreferencesProvider).setBool(PrefKeys.onboardingSeen, true);
-    if (mounted) context.go(Routes.home);
+    // Doğrudan ana ekrana atlamak yerine YÜKLEME ekranından geç → içerik +
+    // görseller önbelleğe alınır, home ilk açılışta DOLU + akıcı gelir
+    // (kullanıcı: "ilk kurulumdan sonra resimler çekilirken donma oluyor").
+    if (mounted) context.go(Routes.splash);
   }
 
   @override
@@ -588,17 +591,19 @@ class _AdhanChoicePageState extends ConsumerState<_AdhanChoicePage> {
       await alerts.set(false);
     } else {
       await alerts.set(true);
-      final sound = mode == 'sessiz'
-          ? AdhanSound.silent
-          : AdhanSound.values.firstWhere((s) => !s.isSilent);
       final notif = ref.read(prayerNotificationProvider.notifier);
+      // SESLİ → her vaktin VARSAYILAN sesli vakit anonsu (per-prayer: sabah→Fajr
+      // … yatsı→İsha, defaults()'tan). SESSİZ → hepsi sessiz (yalnız görsel).
+      final def = PrayerNotificationConfig.defaults();
       for (final s in PrayerSlot.values) {
+        final ds = def.alarmFor(s);
+        final sound = mode == 'sessiz' ? AdhanSound.silent : ds.atTimeSound;
         await notif.setAlarm(
           s,
-          ref
-              .read(prayerNotificationProvider)
-              .alarmFor(s)
-              .copyWith(atTime: true, atTimeSound: sound),
+          ref.read(prayerNotificationProvider).alarmFor(s).copyWith(
+                atTime: ds.atTime,
+                atTimeSound: sound,
+              ),
         );
       }
     }
@@ -953,14 +958,13 @@ class _SetupPage extends ConsumerWidget {
                 ref.read(settingsProvider.notifier).setCalcMethod(v!),
             child: Column(
               children: [
-                for (final m in [
-                  CalcMethod.diyanet,
-                  CalcMethod.mwl,
-                  CalcMethod.egypt
-                ])
+                // Tüm hesaplama yöntemleri (Diyanet ilk/varsayılan). Liste
+                // ListView içinde olduğundan uzun liste rahatça kaydırılır.
+                for (final m in CalcMethod.values)
                   RadioListTile<CalcMethod>(
                     value: m,
                     activeColor: c.gold,
+                    dense: true,
                     contentPadding: EdgeInsets.zero,
                     title: Text(m.label(lang),
                         style: Theme.of(context).textTheme.bodyMedium),

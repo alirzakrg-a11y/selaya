@@ -15,6 +15,10 @@ abstract final class PrefKeys {
       'is_premium'; // premium abonelik (reklamsız) — gerçek IAP sonra set edilir
   static const String appLaunchCount =
       'app_launch_count'; // #12: 3-4. açılışta eksik izin hatırlatması
+  static const String permRemindLastMs =
+      'perm_remind_last_ms'; // eksik izin hatırlatmasının son gösterim zamanı (ms)
+  static const String permRemindCount =
+      'perm_remind_count'; // eksik izin hatırlatmasının toplam gösterim sayısı (üst sınır)
   // Üyelik (auth) — oturum token'ı + profil (json)
   static const String authToken = 'auth_token';
   static const String authUser = 'auth_user'; // json {id,name,surname,email}

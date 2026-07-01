@@ -213,15 +213,28 @@ class _SelayaAppState extends ConsumerState<SelayaApp>
     await ref.read(prayerSchedulerProvider).rescheduleAll();
   }
 
-  /// (#12) 3. ve 4. açılışta, bildirim VEYA tam-alarm izni eksikse BİR kez nazikçe
-  /// hatırlat. PİL OPTİMİZASYONU dahil DEĞİL (onu hatırlatmak kullanıcıyı yorar).
-  /// _launchCount doğal sınır: yalnız 3-4. açılışta çalışır, sonra hiç.
+  /// (#12) Bildirim VEYA tam-alarm izni eksikse "arada bir" nazikçe hatırlat —
+  /// ama kullanıcıyı SIKMADAN. Kurallar:
+  ///  • yalnız çift açılışlarda (her 2. girişte) kontrol et,
+  ///  • en az 2 gün ara olsun (aynı gün üst üste çıkmasın),
+  ///  • ömür boyu en fazla 5 kez göster (sonra bir daha hiç),
+  ///  • tüm izinler tamsa hiç çıkma.
+  /// PİL OPTİMİZASYONU dahil DEĞİL (onu hatırlatmak kullanıcıyı yorar).
   Future<void> _maybeRemindPermissions() async {
-    if (_launchCount != 3 && _launchCount != 4) return;
+    // Her 2. açılış: "arada bir" hissi (her girişte değil).
+    if (_launchCount < 2 || _launchCount.isOdd) return;
+    final prefs = ref.read(sharedPreferencesProvider);
+    final shownCount = prefs.getInt(PrefKeys.permRemindCount) ?? 0;
+    if (shownCount >= 5) return; // üst sınır → artık sıkma
+    final lastMs = prefs.getInt(PrefKeys.permRemindLastMs) ?? 0;
+    final now = DateTime.now().millisecondsSinceEpoch;
+    if (now - lastMs < const Duration(days: 2).inMilliseconds) return; // 2 gün ara
     final perms = ref.read(permissionServiceProvider);
     final notifOk = await perms.notificationsGranted();
     final exactOk = await perms.exactAlarmsGranted();
-    if (notifOk && exactOk) return;
+    if (notifOk && exactOk) return; // her şey tam → gösterme
+    await prefs.setInt(PrefKeys.permRemindLastMs, now);
+    await prefs.setInt(PrefKeys.permRemindCount, shownCount + 1);
     if (!mounted) return;
     await showOpenSettingsDialog(context, perms,
         title: 'notif.permissionDeniedTitle'.tr(),

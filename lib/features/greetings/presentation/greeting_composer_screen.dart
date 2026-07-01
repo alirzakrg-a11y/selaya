@@ -47,6 +47,10 @@ class _GreetingComposerScreenState
   int _fontIndex = 0;
   double _fontScale = 1.0;
   double _lineHeight = 1.55;
+  int _colorIndex = 0; // metin rengi
+  int _alignIndex = 0; // 0 orta · 1 sol · 2 sağ
+  bool _framed = false; // altın çerçeve
+  double _overlay = 1.0; // fotoğraf karartması (0.5–1.4)
   bool _seeded = false;
   bool _busy = false;
   int _tool = 0; // Canva araç sekmesi: 0 Mesaj · 1 Arka Plan · 2 Yazı · 3 Kime
@@ -54,6 +58,18 @@ class _GreetingComposerScreenState
   static const _fontLabels = ['Varsayılan', 'Amiri', 'Zarif', 'El Yazısı', 'Modern'];
   static const _fontFamilies = <String?>[
     null, 'Amiri', 'Playfair Display', 'Dancing Script', 'Sora'
+  ];
+  // Metin renk paleti: beyaz · altın · krem · koyu (fotoğrafa göre okunur).
+  static const _textColors = <Color>[
+    Colors.white,
+    Color(0xFFE9C15E),
+    Color(0xFFF3E9D2),
+    Color(0xFF11131C),
+  ];
+  static const _aligns = <TextAlign>[
+    TextAlign.center,
+    TextAlign.left,
+    TextAlign.right,
   ];
 
   /// Karta hitap eden son metin: "Sevgili {alıcı}," + mesaj + "— {gönderen}".
@@ -67,6 +83,10 @@ class _GreetingComposerScreenState
     if (from.isNotEmpty) buf.write('\n\n— $from');
     return buf.toString();
   }
+
+  // Küçük stil etiketleri için (yeni 10-dil çeviri anahtarı açmamak adına) —
+  // TR birincil kullanıcı, diğer diller EN'e düşer.
+  String _ll(String tr, String en) => context.langCode == 'tr' ? tr : en;
 
   @override
   void dispose() {
@@ -257,6 +277,10 @@ class _GreetingComposerScreenState
                                     fontFamily: _fontFamilies[_fontIndex],
                                     fontScale: _fontScale,
                                     lineHeight: _lineHeight,
+                                    textColor: _textColors[_colorIndex],
+                                    textAlign: _aligns[_alignIndex],
+                                    framed: _framed,
+                                    overlayStrength: _overlay,
                                   ),
                                 ),
                               ),
@@ -447,6 +471,51 @@ class _GreetingComposerScreenState
                             );
                           },
                         ),
+                        const Gap.lg(),
+                        _Label(_ll('Fotoğraf Karartma', 'Photo Dimming')),
+                        Row(
+                          children: [
+                            Icon(Icons.brightness_6_rounded,
+                                size: 18, color: c.textSecondary),
+                            Expanded(
+                              child: Slider(
+                                value: _overlay,
+                                min: 0.5,
+                                max: 1.4,
+                                divisions: 9,
+                                activeColor: c.gold,
+                                label: '${(_overlay * 100).round()}%',
+                                onChanged: (v) =>
+                                    setState(() => _overlay = v),
+                              ),
+                            ),
+                            Text('${(_overlay * 100).round()}%',
+                                style: TextStyle(
+                                    color: c.textSecondary,
+                                    fontSize: 12,
+                                    fontWeight: FontWeight.w600)),
+                          ],
+                        ),
+                        const Gap.sm(),
+                        Row(
+                          children: [
+                            Icon(Icons.crop_din_rounded,
+                                size: 18, color: c.gold),
+                            const Gap.sm(),
+                            Expanded(
+                              child: Text(_ll('Altın çerçeve', 'Gold frame'),
+                                  style: TextStyle(
+                                      color: c.textPrimary,
+                                      fontSize: 14,
+                                      fontWeight: FontWeight.w600)),
+                            ),
+                            Switch(
+                              value: _framed,
+                              activeThumbColor: c.gold,
+                              onChanged: (v) => setState(() => _framed = v),
+                            ),
+                          ],
+                        ),
                       ],
                     // 2 — YAZI: font + boyut + satır aralığı
                     2 => [
@@ -512,6 +581,80 @@ class _GreetingComposerScreenState
                                     color: c.textSecondary,
                                     fontSize: 12,
                                     fontWeight: FontWeight.w600)),
+                          ],
+                        ),
+                        const Gap.md(),
+                        _Label(_ll('Metin Rengi', 'Text Color')),
+                        const Gap.sm(),
+                        Row(
+                          children: [
+                            for (var i = 0; i < _textColors.length; i++)
+                              GestureDetector(
+                                onTap: () =>
+                                    setState(() => _colorIndex = i),
+                                child: Container(
+                                  width: 36,
+                                  height: 36,
+                                  margin: const EdgeInsets.only(right: 12),
+                                  decoration: BoxDecoration(
+                                    color: _textColors[i],
+                                    shape: BoxShape.circle,
+                                    border: Border.all(
+                                        color: i == _colorIndex
+                                            ? c.gold
+                                            : c.border,
+                                        width: i == _colorIndex ? 2.5 : 1),
+                                  ),
+                                  child: i == _colorIndex
+                                      ? Icon(Icons.check_rounded,
+                                          size: 18,
+                                          color: _textColors[i]
+                                                      .computeLuminance() >
+                                                  0.5
+                                              ? Colors.black
+                                              : Colors.white)
+                                      : null,
+                                ),
+                              ),
+                          ],
+                        ),
+                        const Gap.md(),
+                        _Label(_ll('Hizalama', 'Alignment')),
+                        const Gap.sm(),
+                        Row(
+                          children: [
+                            for (var i = 0; i < _aligns.length; i++)
+                              Padding(
+                                padding: const EdgeInsets.only(right: 10),
+                                child: GestureDetector(
+                                  onTap: () =>
+                                      setState(() => _alignIndex = i),
+                                  child: Container(
+                                    padding: const EdgeInsets.all(11),
+                                    decoration: BoxDecoration(
+                                      color: i == _alignIndex
+                                          ? c.gold
+                                          : c.surfaceAlt,
+                                      borderRadius: AppRadius.rMd,
+                                      border: Border.all(
+                                          color: i == _alignIndex
+                                              ? c.gold
+                                              : c.border),
+                                    ),
+                                    child: Icon(
+                                      const [
+                                        Icons.format_align_center_rounded,
+                                        Icons.format_align_left_rounded,
+                                        Icons.format_align_right_rounded,
+                                      ][i],
+                                      size: 20,
+                                      color: i == _alignIndex
+                                          ? c.onGold
+                                          : c.textSecondary,
+                                    ),
+                                  ),
+                                ),
+                              ),
                           ],
                         ),
                       ],
