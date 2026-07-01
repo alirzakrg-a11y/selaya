@@ -783,6 +783,66 @@ class NotificationService {
     }
   }
 
+  // ── NAFİLE hatırlatıcıları — her GÜN aynı saatte tekrarlayan BASİT bildirim
+  // (namaz-vakti/ezan sisteminden AYRI; id 6000+, kendi kanalı). Nafile namaz
+  // hatırlatma özelliği için (Teheccüd/Kuşluk/Evvâbîn vb.).
+  bool _nafileChannelDone = false;
+  Future<void> _ensureNafileChannel() async {
+    if (_nafileChannelDone) return;
+    final android = _plugin.resolvePlatformSpecificImplementation<
+        AndroidFlutterLocalNotificationsPlugin>();
+    if (android != null) {
+      await android.createNotificationChannel(const AndroidNotificationChannel(
+        'selaya_nafile',
+        'Nafile hatırlatıcı',
+        description: 'Nafile namaz hatırlatmaları',
+        importance: Importance.high,
+      ));
+    }
+    _nafileChannelDone = true;
+  }
+
+  tz.TZDateTime _nextDaily(int hour, int minute) {
+    final now = tz.TZDateTime.now(tz.local);
+    var d = tz.TZDateTime(tz.local, now.year, now.month, now.day, hour, minute);
+    if (!d.isAfter(now)) d = d.add(const Duration(days: 1));
+    return d;
+  }
+
+  /// Nafile hatırlatıcısı kur (her gün [hour]:[minute]).
+  Future<void> scheduleNafileReminder(
+      int id, String title, String body, int hour, int minute) async {
+    await init();
+    await _ensureNafileChannel();
+    final details = NotificationDetails(
+      android: AndroidNotificationDetails(
+        'selaya_nafile',
+        'Nafile hatırlatıcı',
+        channelDescription: 'Nafile namaz hatırlatmaları',
+        importance: Importance.high,
+        priority: Priority.high,
+      ),
+      iOS: const DarwinNotificationDetails(),
+    );
+    try {
+      await _plugin.zonedSchedule(
+        id: id,
+        title: title,
+        body: body,
+        scheduledDate: _nextDaily(hour, minute),
+        notificationDetails: details,
+        androidScheduleMode: AndroidScheduleMode.inexactAllowWhileIdle,
+        matchDateTimeComponents: DateTimeComponents.time,
+      );
+    } catch (_) {}
+  }
+
+  Future<void> cancelNafileReminder(int id) async {
+    try {
+      await _plugin.cancel(id: id);
+    } catch (_) {}
+  }
+
   /// Cancels any *currently-showing* at-time prayer notification (the prayer id
   /// block 3000–3699 + the at-time test id 9998) so its alarm-channel adhan
   /// stops — called when the full-screen adhan screen takes over and plays the

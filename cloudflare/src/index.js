@@ -477,12 +477,26 @@ export default {
         if (request.method === 'GET' && path === '/api/users') {
           const { results } = await env.DB.prepare(
             'SELECT u.id, u.name, u.surname, u.email, u.rumuz, u.banned, u.ban_reason, ' +
-            'u.email_verified, u.created_at, u.last_active, d.updated_at AS data_updated, d.device ' +
+            'u.email_verified, u.is_premium, u.is_official, u.created_at, u.last_active, ' +
+            'd.updated_at AS data_updated, d.device ' +
             'FROM users u LEFT JOIN user_data d ON d.user_id = u.id ' +
             "WHERE u.id NOT IN ('seed-demo','panel-author') " +
             'ORDER BY u.banned DESC, u.created_at DESC LIMIT 1000'
           ).all();
-          return json({ ok: true, users: results });
+          // Özet istatistik (COUNT) — panel üstünde rozet olarak gösterilir.
+          let stats = null;
+          try {
+            stats = await env.DB.prepare(
+              'SELECT COUNT(*) AS total, ' +
+              'SUM(CASE WHEN COALESCE(is_premium,0)=1 THEN 1 ELSE 0 END) AS premium, ' +
+              'SUM(CASE WHEN COALESCE(is_official,0)=1 THEN 1 ELSE 0 END) AS official, ' +
+              'SUM(CASE WHEN COALESCE(banned,0)=1 THEN 1 ELSE 0 END) AS banned, ' +
+              "SUM(CASE WHEN COALESCE(pass_hash,'')='' THEN 1 ELSE 0 END) AS google, " +
+              'SUM(CASE WHEN email_verified=1 THEN 1 ELSE 0 END) AS verified ' +
+              "FROM users WHERE id NOT IN ('seed-demo','panel-author')"
+            ).first();
+          } catch (_) {}
+          return json({ ok: true, users: results, stats });
         }
         // ---- tek üye detayı (panelde her yerden "kullanıcıya tıkla" → tüm bilgi) ----
         if (request.method === 'GET' && path === '/api/user-detail') {
@@ -1931,7 +1945,16 @@ const PANEL_HTML = `<!doctype html>
     api('users').then(function(res){
       var us=(res.j&&res.j.users)||[];
       if(!us.length){ el('usersBody').innerHTML='<p class="muted">Henüz kayıtlı kullanıcı yok.</p>'; return; }
-      var h='<p class="muted" style="margin:0 0 8px">Toplam: <b>'+us.length+'</b> üye</p>';
+      var st=(res.j&&res.j.stats)||{};
+      var stat=function(lbl,val,cl){ return '<div style="flex:1;min-width:88px;background:#12151c;border:1px solid #232a36;border-radius:10px;padding:10px 8px;text-align:center"><div style="font-size:20px;font-weight:800;color:'+(cl||'#e0b250')+'">'+(val!=null?val:0)+'</div><div style="font-size:11px;color:#8a93a6;margin-top:2px">'+lbl+'</div></div>'; };
+      var h='<div style="display:flex;gap:8px;flex-wrap:wrap;margin:0 0 12px">'+
+        stat('Toplam üye', st.total!=null?st.total:us.length, '#fff')+
+        stat('⭐ Premium', st.premium, '#e0b250')+
+        stat('✓ Resmî', st.official, '#4aa8e0')+
+        stat('E-posta doğrulı', st.verified, '#3ecf8e')+
+        stat('Google girişi', st.google, '#8a93a6')+
+        stat('🚫 Banlı', st.banned, '#e57373')+
+      '</div>';
       h+=us.map(function(u){
         var name=esc(((u.name||'')+' '+(u.surname||'')).trim()||'—');
         var em=esc(u.email||''); var id=esc(u.id);

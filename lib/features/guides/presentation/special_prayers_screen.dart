@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../core/localization/localized_text.dart';
 import '../../../core/theme/app_colors.dart';
 import '../../../core/theme/app_spacing.dart';
 import '../../../core/widgets/selaya_scaffold.dart';
+import '../data/nafile_reminder_controller.dart';
 import '../domain/special_prayers.dart';
 
 /// Nafile / özel namazlar rehberi — 5 vakit dışında kılınan namazlar.
@@ -62,15 +64,60 @@ class _IntroNote extends StatelessWidget {
   }
 }
 
-class _PrayerCard extends StatefulWidget {
+// Hatırlatıcı OLMAYAN nafileler: olay-bazlı (tutulma/yağmur) + ana akım dışı
+// (teveccüh) — bunlarda çan gösterilmez.
+const _noRemind = {'kusuf', 'istiska', 'teveccuh'};
+
+class _PrayerCard extends ConsumerStatefulWidget {
   final SpecialPrayer prayer;
   const _PrayerCard({required this.prayer});
   @override
-  State<_PrayerCard> createState() => _PrayerCardState();
+  ConsumerState<_PrayerCard> createState() => _PrayerCardState();
 }
 
-class _PrayerCardState extends State<_PrayerCard> {
+class _PrayerCardState extends ConsumerState<_PrayerCard> {
   bool _open = false;
+
+  /// Çan → hatırlatma kur/değiştir/kaldır (günlük tekrarlayan bildirim).
+  Future<void> _reminderTap() async {
+    final ctrl = ref.read(nafileReminderProvider.notifier);
+    final existing = ctrl.timeFor(widget.prayer.key);
+    if (existing != null) {
+      final action = await showModalBottomSheet<String>(
+        context: context,
+        builder: (_) => SafeArea(
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              ListTile(
+                leading: const Icon(Icons.schedule_rounded),
+                title: const Text('Saati değiştir'),
+                onTap: () => Navigator.pop(context, 'change'),
+              ),
+              ListTile(
+                leading: const Icon(Icons.notifications_off_rounded),
+                title: const Text('Hatırlatmayı kaldır'),
+                onTap: () => Navigator.pop(context, 'clear'),
+              ),
+              const SizedBox(height: 6),
+            ],
+          ),
+        ),
+      );
+      if (action == 'clear') {
+        await ctrl.clearReminder(widget.prayer.key);
+        return;
+      }
+      if (action != 'change') return;
+    }
+    if (!mounted) return;
+    final t = await showTimePicker(
+      context: context,
+      initialTime: existing ?? const TimeOfDay(hour: 5, minute: 0),
+    );
+    if (t != null) await ctrl.setReminder(widget.prayer, t);
+  }
+
   @override
   Widget build(BuildContext context) {
     final c = context.colors;
@@ -133,6 +180,12 @@ class _PrayerCardState extends State<_PrayerCard> {
                         ],
                       ),
                     ),
+                    if (!_noRemind.contains(p.key))
+                      _ReminderBell(
+                        time: ref.watch(
+                            nafileReminderProvider.select((m) => m[p.key])),
+                        onTap: _reminderTap,
+                      ),
                     Icon(
                       _open
                           ? Icons.expand_less_rounded
@@ -202,6 +255,45 @@ class _PrayerCardState extends State<_PrayerCard> {
             style: TextStyle(color: c.textSecondary, fontSize: 13, height: 1.5),
           ),
         ],
+      ),
+    );
+  }
+}
+
+/// Nafile kartındaki hatırlatma çanı — kuruluysa altın çan + saat, değilse boş çan.
+class _ReminderBell extends StatelessWidget {
+  final String? time; // "HH:mm" veya null
+  final VoidCallback onTap;
+  const _ReminderBell({required this.time, required this.onTap});
+  @override
+  Widget build(BuildContext context) {
+    final c = context.colors;
+    final on = time != null;
+    return InkWell(
+      onTap: onTap,
+      borderRadius: BorderRadius.circular(20),
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 4),
+        child: Row(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Icon(
+              on
+                  ? Icons.notifications_active_rounded
+                  : Icons.notifications_none_rounded,
+              size: 20,
+              color: on ? c.gold : c.textTertiary,
+            ),
+            if (on) ...[
+              const SizedBox(width: 3),
+              Text(time!,
+                  style: TextStyle(
+                      color: c.gold,
+                      fontSize: 11.5,
+                      fontWeight: FontWeight.w700)),
+            ],
+          ],
+        ),
       ),
     );
   }

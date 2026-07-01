@@ -332,14 +332,23 @@ class _WallpaperDetailState extends ConsumerState<WallpaperDetail> {
   @override
   Widget build(BuildContext context) {
     final lang = context.langCode;
-    final wp = widget.list[_current];
+    // Reklam aktifse (premium değil) → swipe akışına her 4 sayfada 1 native
+    // reklam (3 duvar kâğıdı + 1 reklam). Tam-ekran/geçiş reklamı DEĞİL.
+    final adsOn = ref.watch(adsActiveProvider);
+    final len = widget.list.length;
+    final total = adsOn ? len + (len ~/ 3) : len;
+    bool adOf(int p) => adsOn && p % 4 == 3;
+    int realOf(int p) => adsOn ? (p ~/ 4) * 3 + (p % 4) : p;
+    final curAd = adOf(_current);
+    final wp = widget.list[realOf(_current).clamp(0, len - 1)];
     final scale = (1 - (_dragDy / 1600)).clamp(0.9, 1.0);
     return Scaffold(
       backgroundColor: Colors.black,
       body: GestureDetector(
         // Çift-tıkla beğen (zaten beğeniliyse geri ALMAZ; kalbi yine gösterir).
         onDoubleTap: () {
-          final cwp = widget.list[_current];
+          if (curAd) return; // reklam sayfasında beğeni yok
+          final cwp = widget.list[realOf(_current)];
           final key = 'wallpaper:${cwp.id}';
           if (!ref.read(likedKeysProvider).contains(key)) {
             HapticFeedback.selectionClick();
@@ -368,12 +377,17 @@ class _WallpaperDetailState extends ConsumerState<WallpaperDetail> {
           // Swipe left/right through the whole wallpaper list.
           PageView.builder(
             controller: _controller,
-            itemCount: widget.list.length,
+            itemCount: total,
             onPageChanged: (i) => setState(() => _current = i),
-            itemBuilder: (_, i) => AppImage.cdn(
-              widget.list[i].image,
-              fallbackColors: widget.list[i].colors,
-            ),
+            itemBuilder: (_, i) => adOf(i)
+                ? const ColoredBox(
+                    color: Colors.black,
+                    child: Center(child: NativeAdCard()),
+                  )
+                : AppImage.cdn(
+                    widget.list[realOf(i)].image,
+                    fallbackColors: widget.list[realOf(i)].colors,
+                  ),
           ),
           const IgnorePointer(
             child: DecoratedBox(
@@ -401,31 +415,33 @@ class _WallpaperDetailState extends ConsumerState<WallpaperDetail> {
                       onPressed: () => Navigator.of(context).pop(),
                     ),
                     const Spacer(),
-                    IconButton(
-                      icon: const Icon(Icons.flag_outlined, color: Colors.white70),
-                      tooltip: 'report.cta'.tr(),
-                      onPressed: () => showContentReport(context,
-                          key: 'wallpaper:${wp.id}',
-                          type: 'wallpapers',
-                          title: wp.title(lang)),
-                    ),
+                    if (!curAd)
+                      IconButton(
+                        icon: const Icon(Icons.flag_outlined,
+                            color: Colors.white70),
+                        tooltip: 'report.cta'.tr(),
+                        onPressed: () => showContentReport(context,
+                            key: 'wallpaper:${wp.id}',
+                            type: 'wallpapers',
+                            title: wp.title(lang)),
+                      ),
                   ],
                 ),
                 const Spacer(),
-                Text(
-                  wp.title(lang),
-                  style: const TextStyle(
-                    color: Colors.white,
-                    fontSize: 22,
-                    fontWeight: FontWeight.w700,
+                if (!curAd) ...[
+                  Text(
+                    wp.title(lang),
+                    style: const TextStyle(
+                      color: Colors.white,
+                      fontSize: 22,
+                      fontWeight: FontWeight.w700,
+                    ),
                   ),
-                ),
-                const SizedBox(height: 6),
-                Text(
-                  '${_current + 1} / ${widget.list.length}',
-                  style: const TextStyle(color: Colors.white60, fontSize: 13),
-                ),
-                ...[
+                  const SizedBox(height: 6),
+                  Text(
+                    '${realOf(_current) + 1} / $len',
+                    style: const TextStyle(color: Colors.white60, fontSize: 13),
+                  ),
                   const SizedBox(height: 8),
                   Container(
                     padding:
@@ -453,9 +469,8 @@ class _WallpaperDetailState extends ConsumerState<WallpaperDetail> {
                       ],
                     ),
                   ),
-                ],
-                const Gap.lg(),
-                Padding(
+                  const Gap.lg(),
+                  Padding(
                   padding: const EdgeInsets.all(AppSpacing.lg),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -484,6 +499,7 @@ class _WallpaperDetailState extends ConsumerState<WallpaperDetail> {
                     ],
                   ),
                 ),
+                ],
               ],
             ),
           ),
