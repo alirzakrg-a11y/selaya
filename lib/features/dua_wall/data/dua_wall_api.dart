@@ -20,7 +20,8 @@ class DuaPost {
   final int amins;
   final int createdAt;
   final String status; // yalnız /mine için: pending|approved|rejected
-  final bool official; // resmî (doğrulanmış) hesap → ✓ rozet
+  final bool official; // resmî (doğrulanmış) hesap → altın ✓ rozet
+  final bool premium; // premium üye → küçük mavi ✓ (doğrulanmış rozet)
   const DuaPost({
     required this.id,
     required this.rumuz,
@@ -29,6 +30,7 @@ class DuaPost {
     required this.createdAt,
     this.status = 'approved',
     this.official = false,
+    this.premium = false,
   });
   factory DuaPost.fromJson(Map<String, dynamic> j) => DuaPost(
         id: (j['id'] ?? '').toString(),
@@ -38,6 +40,7 @@ class DuaPost {
         createdAt: (j['created_at'] as num?)?.toInt() ?? 0,
         status: (j['status'] ?? 'approved').toString(),
         official: ((j['official'] as num?)?.toInt() ?? 0) == 1,
+        premium: ((j['premium'] as num?)?.toInt() ?? 0) == 1,
       );
 }
 

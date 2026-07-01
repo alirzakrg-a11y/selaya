@@ -377,19 +377,6 @@ class _DuaWallScreenState extends ConsumerState<DuaWallScreen> {
     }
   }
 
-  /// Bir kullanıcıyı (rumuz) engelle — duaları bu cihazda gizlenir (yerel).
-  Future<void> _block(DuaPost post) async {
-    final rumuz = post.rumuz;
-    _blocked.add(rumuz);
-    await ref
-        .read(sharedPreferencesProvider)
-        .setStringList('dua_blocked', _blocked.toList());
-    setState(() => _duas.removeWhere((d) => d.rumuz == rumuz));
-    if (mounted) {
-      _toast('xt.dwBlocked'.tr(args: [rumuz]));
-    }
-  }
-
   /// Üstte duran "dua paylaş" davet kutusu — dokununca compose akışı (giriş +
   /// rumuz kontrolü _onCompose'da). Listeyle birlikte kayar.
   Widget _composePrompt(bool tr) {
@@ -525,7 +512,6 @@ class _DuaWallScreenState extends ConsumerState<DuaWallScreen> {
                                 amined: _amined.contains(d.id),
                                 onAmin: () => _onAmin(d),
                                 onReport: () => _report(d),
-                                onBlock: () => _block(d),
                                 tr: tr,
                               );
                             },
@@ -541,14 +527,12 @@ class _DuaCard extends StatelessWidget {
   final bool amined;
   final VoidCallback onAmin;
   final VoidCallback onReport;
-  final VoidCallback onBlock;
   final bool tr;
   const _DuaCard({
     required this.post,
     required this.amined,
     required this.onAmin,
     required this.onReport,
-    required this.onBlock,
     required this.tr,
   });
 
@@ -597,10 +581,14 @@ class _DuaCard extends StatelessWidget {
                             ?.copyWith(fontWeight: FontWeight.w700),
                       ),
                     ),
-                    // Resmî (doğrulanmış) hesap → altın ✓ rozet.
+                    // Resmî hesap → altın ✓; premium üye → mavi ✓ (doğrulanmış).
                     if (post.official) ...[
                       const SizedBox(width: 4),
                       Icon(Icons.verified_rounded, size: 15, color: c.gold),
+                    ] else if (post.premium) ...[
+                      const SizedBox(width: 4),
+                      const Icon(Icons.verified_rounded,
+                          size: 14, color: Color(0xFF4AA8E0)),
                     ],
                   ],
                 ),
@@ -613,11 +601,7 @@ class _DuaCard extends StatelessWidget {
                 padding: EdgeInsets.zero,
                 splashRadius: 18,
                 onSelected: (v) {
-                  if (v == 'report') {
-                    onReport();
-                  } else if (v == 'block') {
-                    onBlock();
-                  }
+                  if (v == 'report') onReport();
                 },
                 itemBuilder: (_) => [
                   PopupMenuItem(
@@ -626,13 +610,6 @@ class _DuaCard extends StatelessWidget {
                         const Icon(Icons.flag_outlined, size: 18),
                         const Gap.sm(),
                         Text('xt.dwReport'.tr()),
-                      ])),
-                  PopupMenuItem(
-                      value: 'block',
-                      child: Row(children: [
-                        const Icon(Icons.block_rounded, size: 18),
-                        const Gap.sm(),
-                        Text('xt.dwBlockUser'.tr()),
                       ])),
                 ],
               ),
