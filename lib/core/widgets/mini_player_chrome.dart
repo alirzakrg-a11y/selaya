@@ -33,6 +33,9 @@ const _miniHiddenPrefixes = <String>{
   Routes.story, // hikâye görüntüleyici (/story/:index)
   Routes.feed, // tam ekran video akışı (reels)
   Routes.adhanAlarm, // ezan alarmı (/adhan-alarm/:slot)
+  // Tebrik kartı editörü: kendi Paylaş/İndir çubuğu var; alt menü + reklam
+  // banner'ı düzenleme alanını sıkıştırıp Canva-tarzı araçları gizliyordu.
+  Routes.greetings,
 };
 
 /// Kabuk sekmeleri — mini, SelayaBottomNav'ın hemen üstünde konumlanır.
