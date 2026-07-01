@@ -11,8 +11,21 @@ import '../domain/prayer_notification_settings.dart';
 /// scheduling concerns.
 class PrayerNotificationController extends Notifier<PrayerNotificationConfig> {
   @override
-  PrayerNotificationConfig build() => PrayerNotificationConfig.decode(
-      ref.read(sharedPreferencesProvider).getString(PrefKeys.prayerNotifConfig));
+  PrayerNotificationConfig build() {
+    final prefs = ref.read(sharedPreferencesProvider);
+    // TEK SEFERLİK (v1.0.320+): eski ezan/melodi sesleri kaldırıldı → mevcut
+    // kullanıcıların kayıtlı seçimlerini YENİ per-prayer SESLİ vakit anonsu
+    // varsayılanlarına sıfırla (silinen sesler zaten çalmaz; kullanıcı yine
+    // değiştirebilir). İlk kurulumda decode() zaten defaults() döner.
+    if (!(prefs.getBool('adhan_voices_reset_v1') ?? false)) {
+      prefs.setBool('adhan_voices_reset_v1', true);
+      final def = PrayerNotificationConfig.defaults();
+      prefs.setString(PrefKeys.prayerNotifConfig, def.encode());
+      return def;
+    }
+    return PrayerNotificationConfig.decode(
+        prefs.getString(PrefKeys.prayerNotifConfig));
+  }
 
   Future<void> _persist(PrayerNotificationConfig config) async {
     await ref

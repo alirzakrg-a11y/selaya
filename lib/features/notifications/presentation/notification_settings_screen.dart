@@ -652,9 +652,9 @@ class _MuezzinSheetState extends State<_MuezzinSheet> {
       AdhanSound.silent,
       AdhanSound.defaultTone,
       AdhanSound.chime,
-      // Manevi/İslami melodiler (ney/ud/doğu/tını) — kolay erişim için müezzinlerden önce.
-      ...AdhanSound.melodies,
-      ...AdhanSound.muezzins,
+      // Sesli vakit anonsları (per-prayer varsayılan) — üstte; sonra zil sesleri.
+      ...AdhanSound.announces,
+      ...AdhanSound.ringtones,
     ];
     return SafeArea(
       child: ConstrainedBox(

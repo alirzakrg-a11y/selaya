@@ -24,69 +24,11 @@ Future<void> main() async {
   tzdata.initializeTimeZones();
   SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.light);
 
-  // Attribution for the bundled CC BY-SA 4.0 adhan (shown on the app's licence
-  // page, satisfying the licence's attribution requirement).
+  // Bundled görsel/font/veri atıfları (Flutter lisans sayfasında görünür). NOT:
+  // eski müezzin/melodi ses dosyaları 2026-07-01'de KALDIRILDI → atıfları da
+  // kaldırıldı; yeni sesli vakit anonsları + zil sesleri kullanıcı tarafından
+  // sağlandı (ayrı atıf gerektirmiyor).
   LicenseRegistry.addLicense(() async* {
-    yield const LicenseEntryWithLineBreaks(
-      ['SELAYA — audio'],
-      'The Adhan – Muslim Call to Prayer (file: adhan_commons).\n'
-      'Reciter: Aaqib Azeez. Uploaded by: Atcovi. Source: Wikimedia Commons '
-      '(commons.wikimedia.org/wiki/File:The_Adhan_-_Muslim_Call_to_Prayer.mp3).\n'
-      'Licence: Creative Commons Attribution-ShareAlike 4.0 International '
-      '(CC BY-SA 4.0) — creativecommons.org/licenses/by-sa/4.0/. Used unmodified.',
-    );
-    yield const LicenseEntryWithLineBreaks(
-      ['SELAYA — audio'],
-      'Adhan, Great Mosque of Mecca - Jan 21, 2013 (file: adhan_mecca_full).\n'
-      'Source: Wikimedia Commons (commons.wikimedia.org/wiki/'
-      'File:Adhan,_Great_Mosque_of_Mecca_-_Jan_21,_2013.webm).\n'
-      'Licence: Creative Commons Attribution 3.0 (CC BY 3.0) — '
-      'creativecommons.org/licenses/by/3.0/. '
-      'Modified: audio extracted, converted to MP3, loudness-normalised.',
-    );
-    yield const LicenseEntryWithLineBreaks(
-      ['SELAYA — audio'],
-      'Maghrib Adhan at the Masjid al Haram, Mecca - 25 Feb, 2012 '
-      '(file: adhan_mecca_maghrib).\n'
-      'Source: Wikimedia Commons (commons.wikimedia.org/wiki/'
-      'File:Maghrib_Adhan_at_the_Masjid_al_Haram,_Mecca_-_25_Feb,_2012.webm).\n'
-      'Licence: Creative Commons Attribution 3.0 (CC BY 3.0) — '
-      'creativecommons.org/licenses/by/3.0/. '
-      'Modified: audio extracted, converted to MP3, loudness-normalised.',
-    );
-    yield const LicenseEntryWithLineBreaks(
-      ['SELAYA — audio'],
-      'Adhan, Great Mosque of Mecca — short excerpt (file: adhan_makkah, 0:25).\n'
-      'Source: Internet Archive (archive.org/details/MakkahAzan_20171111).\n'
-      'Licence: Creative Commons Zero 1.0 (CC0 — public domain, no attribution '
-      'required). Modified: trimmed to 25 s, fade-out, loudness-normalised.',
-    );
-    yield const LicenseEntryWithLineBreaks(
-      ['SELAYA — audio'],
-      'Adhan from Egypt — reciter Abdulnasser Harak (file: adhan_harak, 0:24).\n'
-      'Source: Internet Archive '
-      '(archive.org/details/adhan-from-egypt-abdulnasser-harak).\n'
-      'Licence: Public Domain Mark 1.0. Modified: trimmed to 24 s, fade-out, '
-      'loudness-normalised.',
-    );
-    yield const LicenseEntryWithLineBreaks(
-      ['SELAYA — audio'],
-      'Call to prayer (Adhan) by Sabah Fakhri — short 24 s excerpt '
-      '(file: adhan_fakhri).\n'
-      'Reciter: Sabah Fakhri. Source: Wikimedia Commons '
-      '(commons.wikimedia.org/wiki/File:Call_to_prayer_by_Sabah_Fakhry.mp3).\n'
-      'Licence: Public domain. Modified: trimmed to 24 s, fade-out, '
-      'loudness-normalised.',
-    );
-    yield const LicenseEntryWithLineBreaks(
-      ['SELAYA — audio'],
-      'Spiritual / Islamic notification melodies (files: melody_neyud, '
-      'melody_ney, melody_oud, melody_dogu, melody_huzur, melody_cingirak).\n'
-      'Sources (Freesound.org): avnonsen/440817, aliaref/580759, '
-      'tarane468/550876, code_box/505166, manuelsound/829480, NikoletB/846674.\n'
-      'Licence: Creative Commons Zero 1.0 (CC0 — public domain, no attribution '
-      'required). Modified: trimmed, fade-out, loudness-normalised.',
-    );
     yield const LicenseEntryWithLineBreaks(
       ['SELAYA — images'],
       'Quran page images — Madani Mushaf script by King Fahd Glorious Quran '

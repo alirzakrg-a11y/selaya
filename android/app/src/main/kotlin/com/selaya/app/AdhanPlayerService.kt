@@ -4,15 +4,21 @@ import android.app.NotificationChannel
 import android.app.NotificationManager
 import android.app.PendingIntent
 import android.app.Service
+import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
+import android.content.IntentFilter
 import android.content.pm.ServiceInfo
+import android.database.ContentObserver
 import android.media.AudioAttributes
 import android.media.AudioManager
 import android.media.MediaPlayer
 import android.os.Build
+import android.os.Handler
 import android.os.IBinder
+import android.os.Looper
 import android.os.PowerManager
+import android.provider.Settings
 import androidx.core.app.NotificationCompat
 
 /**
@@ -84,12 +90,64 @@ class AdhanPlayerService : Service() {
                 start()
             }
             afd.close()
+            registerStopHooks() // güç/ses tuşuyla durdurma
         } catch (_: Exception) {
             stopEverything(lingering = false)
         }
     }
 
+    // ── Güç/ses tuşuyla HIZLI SUSTURMA (kullanıcı isteği): ezan çalarken kullanıcı
+    // toplantıda vb. olabilir → SES-KISMA tuşuna (alarm akışı sesi değişir) veya
+    // GÜÇ tuşuna (ekran kapanır) basınca ezanı ANINDA durdur. Servis kapanınca
+    // dinleyiciler bırakılır. Uygulama ön planda OLMASA da çalışır (native).
+    private var volumeObserver: ContentObserver? = null
+    private var screenOffReceiver: BroadcastReceiver? = null
+    private var lastAlarmVol: Int = -1
+
+    private fun registerStopHooks() {
+        val am = getSystemService(Context.AUDIO_SERVICE) as? AudioManager
+        lastAlarmVol = am?.getStreamVolume(AudioManager.STREAM_ALARM) ?: -1
+        // Ses tuşu (ALARM akışı) değişince → durdur. (Ezan STREAM_ALARM çaldığından
+        // donanım ses tuşları bu akışı ayarlar → değişim gözlemcisi yakalar.)
+        volumeObserver = object : ContentObserver(Handler(Looper.getMainLooper())) {
+            override fun onChange(selfChange: Boolean) {
+                val v = am?.getStreamVolume(AudioManager.STREAM_ALARM) ?: return
+                if (v != lastAlarmVol) {
+                    lastAlarmVol = v
+                    restoreSilencedRinger()
+                    stopEverything(lingering = false)
+                }
+            }
+        }
+        try {
+            contentResolver.registerContentObserver(
+                Settings.System.CONTENT_URI, true, volumeObserver!!)
+        } catch (_: Exception) {}
+        // Güç tuşu → ekran kapanır → durdur.
+        screenOffReceiver = object : BroadcastReceiver() {
+            override fun onReceive(ctx: Context?, i: Intent?) {
+                if (i?.action == Intent.ACTION_SCREEN_OFF) {
+                    restoreSilencedRinger()
+                    stopEverything(lingering = false)
+                }
+            }
+        }
+        try {
+            registerReceiver(screenOffReceiver, IntentFilter(Intent.ACTION_SCREEN_OFF))
+        } catch (_: Exception) {}
+    }
+
+    private fun unregisterStopHooks() {
+        try {
+            volumeObserver?.let { contentResolver.unregisterContentObserver(it) }
+        } catch (_: Exception) {}
+        volumeObserver = null
+        try { screenOffReceiver?.let { unregisterReceiver(it) } } catch (_: Exception) {}
+        screenOffReceiver = null
+    }
+
     private fun stopEverything(lingering: Boolean) {
+        unregisterStopHooks()
         try { player?.let { if (it.isPlaying) it.stop() } } catch (_: Exception) {}
         try { player?.release() } catch (_: Exception) {}
         player = null
@@ -154,6 +212,7 @@ class AdhanPlayerService : Service() {
     }
 
     override fun onDestroy() {
+        unregisterStopHooks()
         try { player?.release() } catch (_: Exception) {}
         player = null
         super.onDestroy()
@@ -225,7 +284,7 @@ class AdhanPlayerService : Service() {
         const val CHANNEL = "selaya_adhan_player"
         const val PREFS = "selaya_widget"
         const val KEY_RES = "adhan_res"
-        const val DEFAULT = "adhan_mecca_full"
+        const val DEFAULT = "vakit_sabah"
         const val ACTION_STOP = "com.selaya.app.adhan.STOP"
         const val ACTION_VOLUME = "com.selaya.app.adhan.VOLUME"
         const val EXTRA_RES = "res"

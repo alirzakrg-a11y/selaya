@@ -15,62 +15,43 @@ bool prayerVibration = true;
 enum AdhanSound {
   silent(id: 'silent', labelKey: 'notif.soundSilent'),
   defaultTone(id: 'default', labelKey: 'notif.soundDefault'),
-  // Soft, ~5s glockenspiel chime — the default for "before" reminders: gentle
-  // yet noticeable, long enough not to vanish instantly (see res/raw/notif_chime).
+  // Yumuşak ~5 sn çıngırak — "vakitten önce" hatırlatmanın varsayılanı
+  // (res/raw/notif_chime). GENEL bildirimlerde de kullanılır → korunur.
   chime(id: 'chime', labelKey: 'notif.soundChime', file: 'notif_chime'),
-  // TELİF TEMİZLİĞİ (2026-06-11, Play Store hazırlığı): kaynağı kanıtlanamayan
-  // 7 isimli klip (mishary, ahmed_nafees, hafiz_mustafa, masjid_haram,
-  // qari_kareem, sheikh_jamac, salah_mansor) + ticari albümden çıktığı ID3 ile
-  // kanıtlanan karl_jenkins KALDIRILDI. Yalnız belgeli/lisanslı kayıtlar
-  // dağıtılır; eski seçimler fromId() ile meccaFull'a taşınır.
-  // Freely-licensed adhan from Wikimedia Commons (reciter Aaqib Azeez, uploaded
-  // by Atcovi, CC BY-SA 4.0). Shown like the other muezzins by the reciter's
-  // name; the formal attribution is registered in main.dart (LicenseRegistry)
-  // and documented in NOTICE_AUDIO.md.
-  aaqibAzeez(id: 'commons', properName: 'Aaqib Azeez', file: 'adhan_commons'),
-  // TAM (kesintisiz) ezanlar — diğer kayıtlar ~10-24 sn'lik klipti ("ezan bir
-  // anda kesiliyor" şikâyetinin kökü). İkisi de Wikimedia Commons'tan, gerçek
-  // cami kayıtları; atıflar main.dart LicenseRegistry + NOTICE_AUDIO.md'de.
-  // (iOS .caf karşılıkları henüz paketlenmedi — Android öncelikli.)
-  meccaFull(
-      id: 'mecca_full',
-      properName: 'Mescid-i Harâm · Tam Ezan (3:17)',
-      file: 'adhan_mecca_full'),
-  meccaMaghrib(
-      id: 'mecca_maghrib',
-      properName: 'Mescid-i Harâm · Akşam Ezanı (5:01)',
-      file: 'adhan_mecca_maghrib'),
-  hassan2Full(
-      id: 'hassan2_full',
-      properName: 'Hassan II Camii · Tam Ezan (2:55)',
-      file: 'adhan_hassan2_full'),
-  // KISA (≤25 sn) YASAL ezanlar — Public Domain / CC0 gerçek kayıtlar.
-  // Mescid-i Harâm (Mekke) — CC0 (Internet Archive), gerçek ~25 sn kayıt.
-  makkah(
-      id: 'makkah',
-      properName: 'Mescid-i Harâm · Kısa Ezan (0:25)',
-      file: 'adhan_makkah'),
-  // Abdunnâsır Harak (Mısır) — Public Domain (Internet Archive), 24 sn.
-  harak(
-      id: 'harak',
-      properName: 'Abdunnâsır Harak · Mısır (0:24)',
-      file: 'adhan_harak'),
-  // Sabah Fahri (efsanevi Suriyeli ses sanatçısı) — PUBLIC DOMAIN, yüksek
-  // kaliteli (stereo) 24 sn kısa ezan; Wikimedia Commons.
-  fakhri(
-      id: 'fakhri',
-      properName: 'Sabah Fahri · Kısa Ezan (0:24)',
-      file: 'adhan_fakhri'),
-  // ───── MANEVİ / İSLAMİ MELODİLER (bildirim tonu) — müezzin DEĞİL; namaz-öncesi
-  // hatırlatma + genel bildirim için yumuşak ney/ud/doğu ezgileri + huzur tınısı
-  // + çıngırak. Hepsi Freesound, CC0 (kamu malı, atıf gerekmez). ~6-16 sn.
-  melNeyUd(id: 'mel_neyud', properName: 'Ney & Ud', file: 'melody_neyud'),
-  melNey(id: 'mel_ney', properName: 'Ney Ezgisi', file: 'melody_ney'),
-  melOud(id: 'mel_oud', properName: 'Ud Ezgisi', file: 'melody_oud'),
-  melDogu(id: 'mel_dogu', properName: 'Doğu Ezgisi', file: 'melody_dogu'),
-  melHuzur(id: 'mel_huzur', properName: 'Huzur Tınısı', file: 'melody_huzur'),
-  melCingirak(
-      id: 'mel_cingirak', properName: 'Çıngırak', file: 'melody_cingirak');
+
+  // ───── SESLİ VAKİT ANONSLARI — "X namazı vakti" konuşma kaydı. İLK KURULUMDA
+  // her vaktin VARSAYILANI kendi anonsudur (sabah→Fajr … yatsı→İsha).
+  vakitSabah(
+      id: 'vakit_sabah',
+      properName: 'Sabah namazı vakti (sesli)',
+      file: 'vakit_sabah'),
+  vakitOgle(
+      id: 'vakit_ogle',
+      properName: 'Öğle namazı vakti (sesli)',
+      file: 'vakit_ogle'),
+  vakitIkindi(
+      id: 'vakit_ikindi',
+      properName: 'İkindi namazı vakti (sesli)',
+      file: 'vakit_ikindi'),
+  vakitAksam(
+      id: 'vakit_aksam',
+      properName: 'Akşam namazı vakti (sesli)',
+      file: 'vakit_aksam'),
+  vakitYatsi(
+      id: 'vakit_yatsi',
+      properName: 'Yatsı namazı vakti (sesli)',
+      file: 'vakit_yatsi'),
+
+  // ───── ZİL SESLERİ — alternatif bildirim tonları (istenen vakte seçilebilir).
+  toneNasheed(
+      id: 'tone_nasheed',
+      properName: 'İlahi (fon müziği)',
+      file: 'tone_nasheed'),
+  toneMyst(id: 'tone_myst', properName: 'Gizemli ton', file: 'tone_myst'),
+  toneR021(id: 'tone_r021', properName: 'Zil 1', file: 'tone_r021'),
+  toneR029(id: 'tone_r029', properName: 'Zil 2', file: 'tone_r029'),
+  toneR057(id: 'tone_r057', properName: 'Zil 3', file: 'tone_r057'),
+  toneR084(id: 'tone_r084', properName: 'Zil 4', file: 'tone_r084');
 
   const AdhanSound({required this.id, this.labelKey, this.properName, this.file});
 
@@ -111,39 +92,37 @@ enum AdhanSound {
   bool get isSilent => this == AdhanSound.silent;
 
   static AdhanSound fromId(String id) {
-    // Telif temizliğinde kaldırılan eski müezzin id'leri → ezan kaybolmasın
-    // diye tam Mekke ezanına taşınır (defaultTone sistem sesi olurdu).
-    const legacyAdhans = {
-      'ahmed_nafees', 'mishary', 'hafiz_mustafa', 'masjid_haram',
-      'qari_kareem', 'sheikh_jamac', 'karl_jenkins', 'salah_mansor',
+    // Kaldırılan eski müezzin/melodi id'leri → ezan kaybolmasın diye sesli SABAH
+    // anonsuna taşınır (yeni per-prayer varsayılanlar reset ile de uygulanır).
+    const removed = {
+      'ahmed_nafees', 'mishary', 'hafiz_mustafa', 'masjid_haram', 'qari_kareem',
+      'sheikh_jamac', 'karl_jenkins', 'salah_mansor',
+      'mecca_full', 'mecca_maghrib', 'hassan2_full', 'commons', 'makkah',
+      'harak', 'fakhri',
+      'mel_neyud', 'mel_ney', 'mel_oud', 'mel_dogu', 'mel_huzur', 'mel_cingirak',
     };
-    if (legacyAdhans.contains(id)) return AdhanSound.meccaFull;
+    if (removed.contains(id)) return AdhanSound.vakitSabah;
     return AdhanSound.values.firstWhere((s) => s.id == id,
         orElse: () => AdhanSound.defaultTone);
   }
 
-  /// Named adhan voices (assets/audio/adhan + res/raw). TAM ezanlar başta —
-  /// kullanıcı kesintisiz ezan istiyor; kısa klipler (~10-24 sn) sonda kalır.
-  static const muezzins = [
-    meccaFull,
-    meccaMaghrib,
-    hassan2Full,
-    aaqibAzeez,
-    // KISA (≤25 sn) YASAL ezanlar (PD/CC0) — sonda.
-    fakhri,
-    makkah,
-    harak,
+  /// Sesli vakit anonsları — her vaktin İLK-KURULUM varsayılanı buradandır.
+  static const announces = [
+    vakitSabah,
+    vakitOgle,
+    vakitIkindi,
+    vakitAksam,
+    vakitYatsi,
   ];
 
-  /// Manevi/İslami bildirim melodileri (Freesound, CC0). Müezzinlerden AYRI grup:
-  /// namaz-öncesi hatırlatma + genel bildirim için yumuşak ney/ud/doğu tonları.
-  static const melodies = [
-    melNeyUd,
-    melNey,
-    melOud,
-    melDogu,
-    melHuzur,
-    melCingirak,
+  /// Zil sesleri — alternatif bildirim tonları (herhangi bir vakte seçilebilir).
+  static const ringtones = [
+    toneNasheed,
+    toneMyst,
+    toneR021,
+    toneR029,
+    toneR057,
+    toneR084,
   ];
 }
 
@@ -223,17 +202,28 @@ class PrayerNotificationConfig {
   /// Default (everything ON, as requested): the five canonical prayers ring at
   /// their time WITH the adhan, plus 30- and 10-minute-before reminders with a
   /// tone. Sunrise is excluded (it is not a salah). Users can still tune any of this.
-  factory PrayerNotificationConfig.defaults() => PrayerNotificationConfig({
-        for (final s in PrayerSlot.values)
-          if (s != PrayerSlot.sunrise)
-            s: const PrayerAlarm(
-              atTime: true,
-              atTimeSound: AdhanSound.meccaFull,
-              beforeEnabled: true,
-              beforeOffsets: [30, 10],
-              beforeSound: AdhanSound.chime,
-            ),
-      });
+  factory PrayerNotificationConfig.defaults() {
+    // Her vaktin VARSAYILANI kendi sesli anonsudur (sabah→Fajr … yatsı→İsha);
+    // vakitten önce yumuşak çıngırak. Sunrise namaz değil → hariç.
+    const voice = {
+      PrayerSlot.imsak: AdhanSound.vakitSabah,
+      PrayerSlot.dhuhr: AdhanSound.vakitOgle,
+      PrayerSlot.asr: AdhanSound.vakitIkindi,
+      PrayerSlot.maghrib: AdhanSound.vakitAksam,
+      PrayerSlot.isha: AdhanSound.vakitYatsi,
+    };
+    return PrayerNotificationConfig({
+      for (final s in PrayerSlot.values)
+        if (s != PrayerSlot.sunrise)
+          s: PrayerAlarm(
+            atTime: true,
+            atTimeSound: voice[s] ?? AdhanSound.vakitSabah,
+            beforeEnabled: true,
+            beforeOffsets: const [30, 10],
+            beforeSound: AdhanSound.chime,
+          ),
+    });
+  }
 
   String encode() => jsonEncode(
       {for (final e in alarms.entries) e.key.name: e.value.toJson()});
