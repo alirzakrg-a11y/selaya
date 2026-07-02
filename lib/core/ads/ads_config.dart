@@ -20,7 +20,10 @@ const bool kAdsEnabled = true;
 /// Geliştirici test telefonları (hash). kUseTestAds=false iken bu cihazlarda
 /// YİNE test reklamı döner. Hash ilk reklam isteğinde logcat'e yazılır.
 const List<String> kAdsTestDeviceIds = <String>[
-  '3207913BCC09A9478839DD50611FCB01', // geliştirici telefonu (logcat hash)
+  '3207913BCC09A9478839DD50611FCB01', // geliştirici telefonu (eski kurulum)
+  // Play'den temiz kurulum reklam kimliğini sıfırlayınca hash değişti —
+  // ikisini de tut (hash, reklam kimliği sıfırlanana kadar sabit kalır).
+  '9FED97B06C6A28A246E4600F09761FE0', // geliştirici telefonu (Play kurulumu)
 ];
 
 /// AdMob SDK başlatıldı + içerik/onay yapılandırması tamam → reklamlar
